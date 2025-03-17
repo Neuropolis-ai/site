@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Container from '../ui/Container'
 
 const projectsData = [
@@ -29,13 +29,11 @@ const projectsData = [
 
 const Projects = () => {
     const scrollContainerRef = useRef<HTMLDivElement>(null)
-    const [isScrollEnd, setIsScrollEnd] = useState(false)
 
     const handleScroll = () => {
         if (scrollContainerRef.current) {
             const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
             const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 10
-            setIsScrollEnd(isAtEnd)
 
             // Reset scroll to beginning when reaching the end
             if (isAtEnd) {
@@ -57,16 +55,18 @@ const Projects = () => {
     }, [])
 
     return (
-        <Container>
-            <section id="projects" className="py-[60px] sm:py-[80px] md:py-[100px] lg:py-[120px]">
+        <section id="projects" className="relative py-16 md:py-24 overflow-hidden">
+            <Container>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] md:gap-[40px] lg:gap-[60px]">
                     {/* Left side - Fixed content */}
                     <div className="p-4 sm:p-6 md:p-8 lg:sticky lg:top-20 lg:self-start">
-                        <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-white text-sm mb-4 switch-box">
-                            Проекты
+                        <div className='max-[425px]:flex max-[425px]:justify-center'>
+                            <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-white text-sm mb-4 switch-box">
+                                Проекты
+                            </div>
                         </div>
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Некоторые из наших проектов</h2>
-                        <p className="text-gray-400 max-w-xl">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 max-[425px]:text-center">Некоторые из наших проектов</h2>
+                        <p className="text-gray-400 max-w-xl max-[425px]:text-[14px]">
                             Каждый из этих проектов демонстрирует, как ИИ может обеспечить измеримые результаты в различных отраслях.
                         </p>
                     </div>
@@ -109,8 +109,8 @@ const Projects = () => {
                         </div>
                     </div>
                 </div>
-            </section>
-        </Container>
+            </Container>
+        </section>
     )
 }
 

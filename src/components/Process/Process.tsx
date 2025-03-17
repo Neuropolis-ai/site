@@ -11,7 +11,7 @@ const Process = () => {
                         Процесс
                     </div>
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Автономные ИИ-решения</h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-400 max-w-2xl mx-auto max-[425px]:text-[14px]">
                         С нами ИИ становится простым, масштабируемым и всегда работает на улучшение вашего бизнеса.
                     </p>
                 </div>
@@ -23,7 +23,7 @@ const Process = () => {
                             <BsFileEarmarkText className="text-blue-500 text-xl" />
                         </div>
                         <h3 className="text-[20px] font-bold text-white mb-3">Исследование и кастомизация</h3>
-                        <p className="text-gray-400">
+                        <p className="text-gray-400 max-[425px]:text-[14px]">
                             Мы начинаем с анализа потребностей вашего бизнеса и постановки целей, адаптируя ИИ-решения под уникальные требования вашей компании для достижения максимальных результатов.
                         </p>
                     </div>
@@ -34,7 +34,7 @@ const Process = () => {
                             <BsGear className="text-blue-500 text-xl" />
                         </div>
                         <h3 className="text-xl font-bold text-white mb-3">Бесшовная Интеграция ИИ</h3>
-                        <p className="text-gray-400">
+                        <p className="text-gray-400 max-[425px]:text-[14px]">
                             После разработки стратегии мы интегрируем наши ИИ-агенты непосредственно в ваши рабочие процессы, существующее ПО или платформы, обеспечивая беспрепятственную работу.
                         </p>
                     </div>
@@ -46,7 +46,7 @@ const Process = () => {
                         </div>
                         <h3 className="text-xl font-bold text-white mb-3">Оптимизация и Поддержка
                         </h3>
-                        <p className="text-gray-400">
+                        <p className="text-gray-400 max-[425px]:text-[14px]">
                             С нашей ежемесячной подпиской вы получаете постоянную оптимизацию ИИ, мониторинг производительности и круглосуточную поддержку, обеспечивая бесперебойную работу и развитие вашего бизнеса.
                         </p>
                     </div>

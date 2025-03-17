@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { BsStarFill } from 'react-icons/bs'
 import '../../style/card-line.css'
 import Container from '../ui/Container'
@@ -14,7 +14,7 @@ const testimonialData = [
         stars: 5,
         quote: '“Бесшовная интеграция и первоклассная поддержка!”',
         text: ' То, что действительно отличает эту компанию, — это их способность бесшовно интегрировать ИИ в наши существующие системы. Созданные ими кастомные чат-боты обрабатывают 80% запросов в службу поддержки.',
-        image: '/assets/img/testimonial-1.jpg'
+        image: 'https://framerusercontent.com/images/RP3AA1pzAoLKdwEYkQEfEOuuVE.jpeg'
     },
     {
         id: 2,
@@ -24,7 +24,7 @@ const testimonialData = [
         stars: 5,
         quote: '“Революционные ИИ-решения!”',
         text: 'Сотрудничество стало прорывом для нашего бизнеса. Внедренный ими ИИ-движок рекомендаций увеличил наши продажи на 20% всего за три месяца!',
-        image: '/assets/img/testimonial-2.jpg'
+        image: 'https://framerusercontent.com/images/SXFz8Wuy8bsYZ1ytQVNXmVyWXP0.jpg?scale-down-to=512'
     },
     {
         id: 3,
@@ -34,7 +34,7 @@ const testimonialData = [
         stars: 5,
         quote: '“Непревзойденная эффективность и инновации!”',
         text: 'Инструменты автоматизации на основе ИИ кардинально изменили наши внутренние процессы. Мы сократили ручные операции на 35%, что позволило нашей команде сосредоточиться на более ценной работе.',
-        image: '/assets/img/testimonial-3.jpg'
+        image: 'https://framerusercontent.com/images/wYtPvzWhc9qtXuROb6JL6kk.jpg?scale-down-to=512'
     },
     {
         id: 4,
@@ -44,19 +44,17 @@ const testimonialData = [
         stars: 5,
         quote: '“Удивительная аналитика клиентов!”',
         text: 'Благодаря инструментам предиктивной аналитики на основе ИИ мы получили глубокое понимание поведения наших клиентов.',
-        image: '/assets/img/testimonial-3.jpg'
+        image: 'https://framerusercontent.com/images/u8K8rbgmRaS81RzFu2M7Wl00qI.jpg?scale-down-to=1024'
     }
 ]
 
 const Testimonials = () => {
     const scrollContainerRef = useRef<HTMLDivElement>(null)
-    const [isScrollEnd, setIsScrollEnd] = useState(false)
 
     const handleScroll = () => {
         if (scrollContainerRef.current) {
             const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current
             const isAtEnd = scrollLeft + clientWidth >= scrollWidth - 10
-            setIsScrollEnd(isAtEnd)
 
             // Reset scroll to beginning when reaching the end
             if (isAtEnd) {
@@ -85,7 +83,7 @@ const Testimonials = () => {
                         Отзывы
                     </div>
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Отзывы наших клиентов</h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-400 max-w-2xl mx-auto max-[425px]:text-[14px]">
                         Истории успеха наших клиентов из разных отраслей.
                     </p>
                 </div>
@@ -105,25 +103,26 @@ const Testimonials = () => {
                                     key={testimonial.id}
                                     className="flex flex-col justify-between w-[280px] sm:w-[320px] md:w-[400px] bg-[#050A1B] rounded-xl overflow-hidden border border-[#262626] p-4 sm:p-5 md:p-6 process-card"
                                 >
-                                    <div className="flex mb-3 md:mb-4">
-                                        {[...Array(5)].map((_, i) => (
-                                            <BsStarFill
-                                                key={i}
-                                                className={`${i < testimonial.stars ? 'text-yellow-400' : 'text-gray-600'} mr-1 text-sm sm:text-base`}
-                                            />
-                                        ))}
-                                    </div>
 
-                                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">{testimonial.quote}</h3>
-                                    <p className="text-gray-400 text-sm sm:text-base mb-2">
-                                        {testimonial.text}
-                                    </p>
 
                                     <div>
-                                        <span className='line mb-2' ></span>
+                                        <div className="flex mb-3 md:mb-4">
+                                            {[...Array(5)].map((_, i) => (
+                                                <BsStarFill
+                                                    key={i}
+                                                    className={`${i < testimonial.stars ? 'text-yellow-400' : 'text-gray-600'} mr-1 text-sm sm:text-base`}
+                                                />
+                                            ))}
+                                        </div>
+                                        <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 max-[425px]:text-[16px]">{testimonial.quote}</h3>
+                                        <p className="text-gray-400 text-sm sm:text-base mb-2 max-[425px]:text-[12px]">{testimonial.text}</p>
+                                    </div>
+
+                                    <div>
+                                        <span className='line-a mb-2' ></span>
 
                                         <div className="flex items-center">
-                                            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden mr-3 sm:mr-4">
+                                            <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-[8px] overflow-hidden mr-3 sm:mr-4">
                                                 <Image
                                                     src={testimonial.image}
                                                     alt={testimonial.name}
@@ -132,7 +131,7 @@ const Testimonials = () => {
                                                 />
                                             </div>
                                             <div>
-                                                <p className="text-white font-medium text-sm sm:text-base">{testimonial.name}</p>
+                                                <h6 className="text-white font-medium text-sm sm:text-base ">{testimonial.name}</h6>
                                                 <p className="text-gray-400 text-xs sm:text-sm">{testimonial.position}</p>
                                             </div>
                                         </div>

@@ -1,11 +1,24 @@
-import Link from 'next/link'
+'use client'
+
+import Image from 'next/image'
+import logo from '../../app/assets/svg/logo.svg'
+import '../../style/hero.css'
 import Container from '../ui/Container'
+
+
+// Helper function for smooth scrolling
+const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' })
+    }
+}
 
 const Footer = () => {
     return (
         <footer className="relative py-8 sm:py-12 md:py-16 overflow-hidden">
             {/* Background Video */}
-            <div className="video-container absolute inset-0 z-0">
+            <div className="video-container v absolute inset-0 z-0">
                 <div className="video-content">
                     <video
                         autoPlay
@@ -18,19 +31,18 @@ const Footer = () => {
                     </video>
                 </div>
             </div>
-            <div className="absolute inset-0 bg-black/80 z-10"></div>
+            {/* <div className="absolute inset-0 bg-black/65 z-10"></div> */}
 
             <Container>
                 <div className="relative z-20">
                     {/* Top Section */}
                     <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-[300px]">
                         {/* Logo and Description */}
-                        <div className="w-full md:w-1/3 mb-8 md:mb-0">
+                        <div className="w-full md:w-1/3 mb-8 md:mb-0 max-[425px]:mb-0">
                             <div className="flex items-center mb-4">
-                                <div className="w-3 h-3 rounded-full bg-blue-600 mr-2"></div>
-                                <span className="text-white text-xl font-bold">Noctis</span>
+                                <Image src={logo} alt="Noctis AI" width={120} height={48} />
                             </div>
-                            <p className="text-gray-400 mb-6">
+                            <p className="text-gray-400 mb-6 max-[425px]:text-[14px] max-[425px]:mb-0">
                                 В авангарде инноваций в области искусственного интеллекта, помогая компаниям процветать в цифровом мире.
                             </p>
                         </div>
@@ -39,22 +51,60 @@ const Footer = () => {
                         <div className="flex flex-col md:flex-row">
                             <div className="mb-8 md:mb-0">
                                 <h3 className="text-white font-medium mb-4">Навигация</h3>
-                                <div className="flex flex-wrap gap-4 md:gap-2">
-                                    <Link href="/" className="text-gray-400 hover:text-white transition-colors">Услуги</Link>
-                                    <Link href="/services" className="text-gray-400 hover:text-white transition-colors">Проекты</Link>
-                                    <Link href="/projects" className="text-gray-400 hover:text-white transition-colors">Услуги</Link>
-                                    <Link href="/pricing" className="text-gray-400 hover:text-white transition-colors">Контакты</Link>
-                                    <Link href="/faqs" className="text-gray-400 hover:text-white transition-colors">Блог</Link>
+                                <div className="flex flex-wrap gap-4 md:gap-2 max-[425px]:text-[14px]">
+                                    <a
+                                        href="#services"
+                                        className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            scrollToSection('services')
+                                        }}
+                                    >
+                                        Услуги
+                                    </a>
+                                    <a
+                                        href="#projects"
+                                        className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            scrollToSection('projects')
+                                        }}
+                                    >
+                                        Проекты
+                                    </a>
+                                    <a
+                                        href="#services"
+                                        className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            scrollToSection('services')
+                                        }}
+                                    >
+                                        Услуги
+                                    </a>
+                                    <a
+                                        href="#contact"
+                                        className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            scrollToSection('contact')
+                                        }}
+                                    >
+                                        Контакты
+                                    </a>
+                                    <a
+                                        href="#blog"
+                                        className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            scrollToSection('blog')
+                                        }}
+                                    >
+                                        Блог
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    {/* Copyright section */}
-                    <div className="pt-6 mt-6 border-t border-gray-800">
-                        <p className="text-gray-500 text-sm">
-                            © {new Date().getFullYear()} Noctis AI. Все права защищены.
-                        </p>
                     </div>
                 </div>
             </Container>

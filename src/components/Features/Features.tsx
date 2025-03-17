@@ -5,8 +5,19 @@ const Features = () => {
     return (
         <section className="py-20 bg-black relative">
             {/* Background network effect */}
-            <div className="absolute inset-0 opacity-20 z-0 overflow-hidden">
-                <div className="absolute w-full h-full bg-[url('/assets/img/network-bg.png')] bg-no-repeat bg-cover"></div>
+            {/* Background Video */}
+            <div className="video-container fx">
+                <div className="video-content f">
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="video-one"
+                    >
+                        <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
+                    </video>
+                </div>
             </div>
 
             <Container>
@@ -25,7 +36,7 @@ const Features = () => {
                             <BsGraphUp className="text-blue-400 text-2xl" />
                         </div>
                         <h3 className="text-xl font-bold text-white mb-3 ">Предиктивная аналитика</h3>
-                        <p className="text-gray-400">
+                        <p className="text-gray-400 max-[425px]:text-[14px]">
                             Используйте ИИ для анализа исторических данных и прогнозирования будущих трендов.
 
                         </p>
@@ -38,7 +49,7 @@ const Features = () => {
                         </div>
                         <h3 className="text-xl font-bold text-white mb-3">Персонализированные маркетинговые кампании
                         </h3>
-                        <p className="text-gray-400">
+                        <p className="text-gray-400 max-[425px]:text-[14px]">
                             Применяйте ИИ для точечного таргетинга аудитории и создания персонализированного контента.
                         </p>
                     </div>
@@ -49,7 +60,7 @@ const Features = () => {
                             <BsPersonCircle className="text-blue-400 text-2xl" />
                         </div>
                         <h3 className="text-xl font-bold text-white mb-3">Служба поддержки с ИИ-агенты</h3>
-                        <p className="text-gray-400">
+                        <p className="text-gray-400 max-[425px]:text-[14px]">
                             Разрабатываем ИИ-агентов для службы поддержки, которые общаются с клиентами и отвечают на сложные запросы.
                         </p>
                     </div>
@@ -61,7 +72,7 @@ const Features = () => {
                         </div>
                         <h3 className="text-xl font-bold text-white mb-3">Интеграция ИИ
                         </h3>
-                        <p className="text-gray-400">
+                        <p className="text-gray-400 max-[425px]:text-[14px]">
                             Помогаем компаниям внедрять ИИ-агентов в их существующие программные платформы.
                         </p>
                     </div>
@@ -72,7 +83,7 @@ const Features = () => {
                             <BsPlayCircle className="text-blue-400 text-2xl" />
                         </div>
                         <h3 className="text-xl font-bold text-white mb-3">Создание контента с ИИ</h3>
-                        <p className="text-gray-400">
+                        <p className="text-gray-400 max-[425px]:text-[14px]">
                             Разработка ИИ-агентов для автоматизированного создания контента
                         </p>
                     </div>
@@ -84,7 +95,7 @@ const Features = () => {
                         </div>
                         <h3 className="text-xl font-bold text-white mb-3"> ИИ-поиск
                         </h3>
-                        <p className="text-gray-400">
+                        <p className="text-gray-400 max-[425px]:text-[14px]">
                             Разработка ИИ-агентов для автоматизированного поиска в Интернете
                         </p>
                     </div>

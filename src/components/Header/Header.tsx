@@ -70,12 +70,12 @@ const Header = () => {
                 </Link>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden md:flex items-center gap-4 lg:gap-8">
+                <nav className="hidden md:flex items-center gap-2 lg:gap-4">
                     {menuItems.map(item => (
                         <button
                             key={item.id}
                             onClick={() => scrollToSection(item.id)}
-                            className={`text-[14px] ${activeSection === item.id ? 'text-blue-500' : 'text-[#F2F2F2]'} hover:text-blue-500 transition-colors`}
+                            className={`text-[14px] py-[6px] px-[16px] rounded-[12px] ${activeSection === item.id ? 'bg-[#262626]' : 'text-[#F2F2F2]'} hover:text-[#F2F2F2] transition-colors`}
                         >
                             {item.label}
                         </button>
@@ -96,13 +96,12 @@ const Header = () => {
                 className={`w-full transition-all duration-300 ease-in-out md:hidden
                     ${mobileMenuOpen ? 'max-h-[240px] opacity-100' : 'max-h-0 opacity-0'}`}
             >
-                <div className="w-full h-[1px] bg-[#262626] mb-2 opacity-50"></div>
                 <nav className="flex flex-col items-center gap-0 px-2">
                     {menuItems.map(item => (
                         <button
                             key={item.id}
                             onClick={() => scrollToSection(item.id)}
-                            className={`text-[16px] w-full text-center py-3 ${activeSection === item.id ? 'text-blue-500' : 'text-[#F2F2F2]'} hover:text-blue-500 transition-colors`}
+                            className={`text-[16px]  py-[6px] px-[16px] rounded-[12px] text-center ${activeSection === item.id ? 'bg-[#262626]' : 'bg-transparent'} hover:bg-[#262626] transition-colors`}
                         >
                             {item.label}
                         </button>

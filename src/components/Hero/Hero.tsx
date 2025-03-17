@@ -1,12 +1,23 @@
+'use client'
+
 import "@/style/hero.css"
+import { BsArrowRight } from 'react-icons/bs'
 import '../../style/card-line.css'
 import ButtonLink from '../ui/buttonLink'
+
+// Helper function for smooth scrolling
+const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' })
+    }
+}
 
 const Hero = () => {
     return (
         <div id="hero" className="relative flex items-center justify-center overflow-hidden pt-[120px] sm:pt-[150px] md:pt-[180px] lg:pt-[200px] pb-16 md:pb-24">
             {/* Background Video */}
-            <div className="video-container">
+            <div className="video-container o">
                 <div className="video-content">
                     <video
                         autoPlay
@@ -21,8 +32,8 @@ const Hero = () => {
             </div>
 
             {/* Dark Overlay */}
-            <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-10" />
-            <div className="oval-blur" />
+            {/* <div className="absolute top-0 left-0 w-full h-full bg-black/60 z-10" />
+            <div className="oval-blur" /> */}
             {/* Content */}
             <div className="relative z-20 text-center max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-[900px] mx-auto px-4">
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-4 sm:mb-6 md:mb-8 switch-box" >
@@ -37,16 +48,23 @@ const Hero = () => {
                 <h1 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px] font-bold text-white mb-4 sm:mb-5 md:mb-6">
                     Прокачайте свой бизнес с помощью интеллектуальных ИИ-агентов
                 </h1>
-                <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8">
+                <p className="text-base sm:text-lg text-gray-300 mb-6 sm:mb-8 max-[425px]:text-[14px]">
                     Мы специализируемся на предоставлении передовых решений на основе искусственного интеллекта, призванных расширить возможности предприятий во всех отраслях.
                 </p>
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <ButtonLink href="/" className="w-full sm:w-auto">
+                    <ButtonLink
+                        variantBtn="btn"
+                        onClick={() => scrollToSection('contact')}
+                        className="w-full sm:w-auto bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white rounded-[10px] px-6 py-3 hover:opacity-90 transition-opacity"
+                    >
                         Получить консультацию
                     </ButtonLink>
-                    <ButtonLink href="/" className="w-full sm:w-auto mt-3 sm:mt-0">
-                        Наши улуги
-                    </ButtonLink>
+                    <button
+                        onClick={() => scrollToSection('services')}
+                        className="flex items-center gap-2 border border-[#262626] text-white px-6 py-3 rounded-[10px] hover:bg-white/10 transition-colors"
+                    >
+                        Наши улуги <BsArrowRight />
+                    </button>
                 </div>
             </div>
 

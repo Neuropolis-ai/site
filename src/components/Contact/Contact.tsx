@@ -35,16 +35,16 @@ const Contact = () => {
                         Контакты
                     </div>
                     <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Свяжитесь с нами</h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-[#919191] max-w-2xl mx-auto max-[425px]:text-[14px]">
                         Есть вопросы о наших услугах или вы готовы преобразовать свой бизнес с помощью ИИ? Мы здесь, чтобы помочь!
                     </p>
                 </div>
-                <div className='process-card p-[20px]'>
-                    <div className="flex flex-col md:flex-row gap-10">
+                <div className='contact-card p-[20px] border border-[#00185e]!important max-[425px]:p-[10px]'>
+                    <div className="flex max-[1024px]:flex-col max-[1024px]:flex-col-reverse gap-10 max-[425px]:gap-[20px]">
                         <div className="md:w-1/2">
                             <form onSubmit={handleSubmit} className="rounded-xl">
-                                <div className='flex w-full'>
-                                    <div className="mb-4 w-1/2">
+                                <div className='flex w-full gap-[10px] max-[1024px]:flex-col'>
+                                    <div className="w-1/2 max-[1024px]:w-full">
                                         <input
                                             type="text"
                                             name="name"
@@ -52,10 +52,10 @@ const Contact = () => {
                                             value={formData.name}
                                             onChange={handleChange}
                                             required
-                                            className="w-full p-4 bg-[#0A1128] border border-[#01195e] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full p-3 bg-[#060811] border border-[#262626] rounded-[10px] text-white outline-none max-[425px]:text-[12px]"
                                         />
                                     </div>
-                                    <div className="mb-4 w-1/2">
+                                    <div className="mb-3 w-1/2 max-[1024px]:w-full">
                                         <input
                                             type="email"
                                             name="email"
@@ -63,11 +63,11 @@ const Contact = () => {
                                             value={formData.email}
                                             onChange={handleChange}
                                             required
-                                            className="w-full p-4 bg-[#0A1128] border border-[#01195e] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full p-3 bg-[#060811] border border-[#262626] rounded-[10px] text-white outline-none max-[425px]:text-[12px]"
                                         />
                                     </div>
                                 </div>
-                                <div className="mb-6">
+                                <div className="mb-3">
                                     <textarea
                                         name="message"
                                         placeholder="Сообщение"
@@ -75,27 +75,28 @@ const Contact = () => {
                                         onChange={handleChange}
                                         required
                                         rows={6}
-                                        className="w-full p-4 bg-[#0A1128] border border-[#01195e] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                                        className="w-full p-3 bg-[#060811] border border-[#262626] rounded-[10px] text-white outline-none max-[425px]:text-[12px]"
                                     ></textarea>
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full bg-blue-600 text-white py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors"
+                                    className="w-full bg-[#153aa1] text-white py-[13px] px-6 rounded-[10px] hover:bg-[#102a71] transition-colors max-[425px]:text-[12px]"
                                 >
-                                    Отправить сообщение                            </button>
+                                    Отправить сообщение
+                                </button>
                             </form>
                         </div>
 
-                        <div className="md:w-1/2 bg-[#050A1B] p-8 rounded-xl border border-[#01195e]">
+                        <div className="md:w-1/2 bg-[#05060a] p-8 max-[425px]:p-[15px] rounded-xl border border-[#040b23]">
                             <div className="mb-8">
                                 <h3 className="text-gray-400 mb-2">Email:</h3>
-                                <a href="mailto:0code.zm@gmail.com" className="text-white text-xl font-medium">0code.zm@gmail.com
+                                <a href="mailto:0code.zm@gmail.com" className="text-white text-xl font-medium max-[1024px]:text-base">0code.zm@gmail.com
                                 </a>
                             </div>
 
                             <div className="mb-8">
                                 <h3 className="text-gray-400 mb-2">Телефон:</h3>
-                                <a href="tel:+79601078900" className="text-white text-xl font-medium">+7 960 107-89-00</a>
+                                <a href="tel:+79601078900" className="text-white text-xl font-medium max-[1024px]:text-base">+7 960 107-89-00</a>
                             </div>
                         </div>
                     </div>

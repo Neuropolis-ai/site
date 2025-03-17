@@ -1,0 +1,64 @@
+.process-card {
+    position: relative;
+    backdrop-filter: blur(5px);
+    background: radial-gradient(50% 50% at 50% 50%, #153AA1 0%, #00185E 100%);
+    border-radius: 12px;
+    border: 1px solid #153AA1;
+}
+
+.process-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: linear-gradient(146deg, rgba(5, 5, 5, 0.75) 0%, #050505 100%);
+    z-index: -1;
+}
+
+.span-box {
+    background: linear-gradient(180deg, #00185e 0%, #050505 100%);
+    border-radius: 20px;
+    border: 1px solid #00185E;
+    color: white;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+.switch-box {
+    padding: 7px 15px;
+    font-size: 14px;
+    border: 1px solid #363636;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #050505 0%, #121212 100%);
+}
+
+.line {
+    display: inline-block;
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(84, 84, 84, 0) 0%, #00185e 50%, rgba(0, 0, 0, 0) 100%);
+}
+
+.accordion-card-line {
+    display: inline-block;
+    width: 700px;
+    height: 1px;
+    margin-left: 20px;
+    background: linear-gradient(90deg, #00185e 0%, rgba(60, 60, 60, 0) 100%, rgba(51, 51, 51, 0) 100%);
+}
+
+/* Hide scrollbar but keep scrolling functionality */
+.hide-scrollbar {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}

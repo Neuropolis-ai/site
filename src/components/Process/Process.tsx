@@ -1,51 +1,53 @@
 import { BsFileEarmarkText, BsGear, BsGraphUp } from 'react-icons/bs'
+import '../../style/card-line.css'
 import Container from '../ui/Container'
 
 const Process = () => {
     return (
-        <section className="py-[120px] bg-black">
+        <section className="py-20 bg-black">
             <Container>
                 <div className="text-center mb-16">
-                    <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-white text-sm mb-4">
-                        Process
+                    <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-white text-sm mb-4 switch-box">
+                        Процесс
                     </div>
-                    <h2 className="text-4xl font-bold text-white mb-4">Simplified AI Solutions</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Автономные ИИ-решения</h2>
                     <p className="text-gray-400 max-w-2xl mx-auto">
-                        With Noctis, AI is simple, scalable, and always working to improve your business.
+                        С нами ИИ становится простым, масштабируемым и всегда работает на улучшение вашего бизнеса.
                     </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {/* Card 1 */}
-                    <div className="bg-[#050A1B] p-8 rounded-xl border border-[#262626]">
+                    <div className="p-[22px] process-card">
                         <div className="w-12 h-12 bg-blue-900/20 rounded-lg flex items-center justify-center mb-6">
                             <BsFileEarmarkText className="text-blue-500 text-xl" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3">1. Discovery & Customization</h3>
+                        <h3 className="text-[20px] font-bold text-white mb-3">Исследование и кастомизация</h3>
                         <p className="text-gray-400">
-                            We start by understanding your business needs and goals, tailoring our AI solutions to fit your unique requirements.
+                            Мы начинаем с анализа потребностей вашего бизнеса и постановки целей, адаптируя ИИ-решения под уникальные требования вашей компании для достижения максимальных результатов.
                         </p>
                     </div>
 
                     {/* Card 2 */}
-                    <div className="bg-[#050A1B] p-8 rounded-xl border border-[#262626]">
+                    <div className="p-[22px] process-card">
                         <div className="w-12 h-12 bg-blue-900/20 rounded-lg flex items-center justify-center mb-6">
                             <BsGear className="text-blue-500 text-xl" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3">2. Seamless AI Integration</h3>
+                        <h3 className="text-xl font-bold text-white mb-3">Бесшовная Интеграция ИИ</h3>
                         <p className="text-gray-400">
-                            Once the plan is set, we integrate our AI tools directly into your existing workflows, software, or platforms.
+                            После разработки стратегии мы интегрируем наши ИИ-агенты непосредственно в ваши рабочие процессы, существующее ПО или платформы, обеспечивая беспрепятственную работу.
                         </p>
                     </div>
 
                     {/* Card 3 */}
-                    <div className="bg-[#050A1B] p-8 rounded-xl border border-[#262626]">
+                    <div className="p-[22px] process-card">
                         <div className="w-12 h-12 bg-blue-900/20 rounded-lg flex items-center justify-center mb-6">
                             <BsGraphUp className="text-blue-500 text-xl" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3">3. Optimization & Support</h3>
+                        <h3 className="text-xl font-bold text-white mb-3">Оптимизация и Поддержка
+                        </h3>
                         <p className="text-gray-400">
-                            With our monthly subscription, we provide ongoing AI optimization, performance monitoring, and 24/7 support.
+                            С нашей ежемесячной подпиской вы получаете постоянную оптимизацию ИИ, мониторинг производительности и круглосуточную поддержку, обеспечивая бесперебойную работу и развитие вашего бизнеса.
                         </p>
                     </div>
                 </div>

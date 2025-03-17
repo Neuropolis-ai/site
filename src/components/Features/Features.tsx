@@ -3,7 +3,7 @@ import Container from '../ui/Container'
 
 const Features = () => {
     return (
-        <section className="py-[120px] bg-black relative">
+        <section className="py-20 bg-black relative">
             {/* Background network effect */}
             <div className="absolute inset-0 opacity-20 z-0 overflow-hidden">
                 <div className="absolute w-full h-full bg-[url('/assets/img/network-bg.png')] bg-no-repeat bg-cover"></div>
@@ -11,10 +11,11 @@ const Features = () => {
 
             <Container>
                 <div className="text-center mb-16 relative z-10">
-                    <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-white text-sm mb-4">
-                        Services
+                    <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-white text-sm mb-4 switch-box">
+                        Услуги
                     </div>
-                    <h2 className="text-4xl font-bold text-white mb-4">Harness The Full Potential Of AI</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Используйте весь потенциал ИИ
+                    </h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10">
@@ -23,9 +24,10 @@ const Features = () => {
                         <div className="w-16 h-16 bg-blue-900/20 rounded-lg flex items-center justify-center mx-auto mb-6">
                             <BsGraphUp className="text-blue-400 text-2xl" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3">Predictive Analytics</h3>
+                        <h3 className="text-xl font-bold text-white mb-3 ">Предиктивная аналитика</h3>
                         <p className="text-gray-400">
-                            Use AI to analyze historical data and predict future trends.
+                            Используйте ИИ для анализа исторических данных и прогнозирования будущих трендов.
+
                         </p>
                     </div>
 
@@ -34,9 +36,10 @@ const Features = () => {
                         <div className="w-16 h-16 bg-blue-900/20 rounded-lg flex items-center justify-center mx-auto mb-6">
                             <BsPersonCircle className="text-blue-400 text-2xl" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3">Personalized Marketing Campaigns</h3>
+                        <h3 className="text-xl font-bold text-white mb-3">Персонализированные маркетинговые кампании
+                        </h3>
                         <p className="text-gray-400">
-                            Use AI to target specific audiences with personalized content.
+                            Применяйте ИИ для точечного таргетинга аудитории и создания персонализированного контента.
                         </p>
                     </div>
 
@@ -45,9 +48,9 @@ const Features = () => {
                         <div className="w-16 h-16 bg-blue-900/20 rounded-lg flex items-center justify-center mx-auto mb-6">
                             <BsPersonCircle className="text-blue-400 text-2xl" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3">AI Personal Assistants</h3>
+                        <h3 className="text-xl font-bold text-white mb-3">Служба поддержки с ИИ-агенты</h3>
                         <p className="text-gray-400">
-                            Develop virtual assistants that automate tasks and answer complex queries.
+                            Разрабатываем ИИ-агентов для службы поддержки, которые общаются с клиентами и отвечают на сложные запросы.
                         </p>
                     </div>
 
@@ -56,9 +59,10 @@ const Features = () => {
                         <div className="w-16 h-16 bg-blue-900/20 rounded-lg flex items-center justify-center mx-auto mb-6">
                             <BsPuzzle className="text-blue-400 text-2xl" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3">AI Integration</h3>
+                        <h3 className="text-xl font-bold text-white mb-3">Интеграция ИИ
+                        </h3>
                         <p className="text-gray-400">
-                            Help companies integrate AI tools into their existing software platforms.
+                            Помогаем компаниям внедрять ИИ-агентов в их существующие программные платформы.
                         </p>
                     </div>
 
@@ -67,9 +71,9 @@ const Features = () => {
                         <div className="w-16 h-16 bg-blue-900/20 rounded-lg flex items-center justify-center mx-auto mb-6">
                             <BsPlayCircle className="text-blue-400 text-2xl" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3">AI Content Creation</h3>
+                        <h3 className="text-xl font-bold text-white mb-3">Создание контента с ИИ</h3>
                         <p className="text-gray-400">
-                            Offer AI-generated videos, images, and text for content marketing.
+                            Разработка ИИ-агентов для автоматизированного создания контента
                         </p>
                     </div>
 
@@ -78,9 +82,10 @@ const Features = () => {
                         <div className="w-16 h-16 bg-blue-900/20 rounded-lg flex items-center justify-center mx-auto mb-6">
                             <BsSearch className="text-blue-400 text-2xl" />
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3">AI-Powered SEO</h3>
+                        <h3 className="text-xl font-bold text-white mb-3"> ИИ-поиск
+                        </h3>
                         <p className="text-gray-400">
-                            Implement AI tools to optimize content for search engines.
+                            Разработка ИИ-агентов для автоматизированного поиска в Интернете
                         </p>
                     </div>
                 </div>

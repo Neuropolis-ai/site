@@ -1,0 +1,17 @@
+/* Добавьте эти стили в ваш CSS файл */
+.left-content {
+    position: relative;
+}
+
+.left-content.is-sticky {
+    position: sticky;
+    top: 20px;
+    align-self: start;
+}
+
+@media (max-width: 1023px) {
+    .left-content.is-sticky {
+        position: relative;
+        top: 0;
+    }
+}

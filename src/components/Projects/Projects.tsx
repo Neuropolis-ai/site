@@ -1,4 +1,5 @@
 'use client'
+import { useTheme } from '@/context/ThemeContext'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import Container from '../ui/Container'
@@ -28,6 +29,7 @@ const projectsData = [
 ]
 
 const Projects = () => {
+    const { isDark } = useTheme()
     const scrollContainerRef = useRef<HTMLDivElement>(null)
 
     const handleScroll = () => {
@@ -59,16 +61,20 @@ const Projects = () => {
             <Container>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] md:gap-[40px] lg:gap-[60px]">
                     {/* Left side - Fixed content */}
-                    <div className="p-4 sm:p-6 md:p-8 lg:sticky lg:top-20 lg:self-start">
-                        <div className='max-[425px]:flex max-[425px]:justify-center'>
-                            <div className="inline-block px-4 py-1 rounded-full bg-white/10 text-white text-sm mb-4 switch-box">
-                                Проекты
+                    <div className="lg:sticky lg:top-20" style={{ height: 'fit-content' }}>
+                        <div className="p-4 sm:p-6 md:p-8">
+                            <div className='max-[425px]:flex max-[425px]:justify-center'>
+                                <div className={`inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box ${!isDark && 'light-switch-box'}`}>
+                                    Проекты
+                                </div>
                             </div>
+                            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold dark:text-white text-black mb-4 max-[425px]:text-center">
+                                Некоторые из наших проектов
+                            </h2>
+                            <p className="dark:text-[#919191] text-gray-600 max-w-xl max-[425px]:text-[14px]">
+                                Каждый из этих проектов демонстрирует, как ИИ может обеспечить измеримые результаты в различных отраслях.
+                            </p>
                         </div>
-                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 max-[425px]:text-center">Некоторые из наших проектов</h2>
-                        <p className="text-gray-400 max-w-xl max-[425px]:text-[14px]">
-                            Каждый из этих проектов демонстрирует, как ИИ может обеспечить измеримые результаты в различных отраслях.
-                        </p>
                     </div>
 
                     {/* Right side - Scrollable cards */}
@@ -82,7 +88,11 @@ const Projects = () => {
                                 {projectsData.map((project) => (
                                     <div
                                         key={project.id}
-                                        className="flex-shrink-0 w-full bg-[#050A1B] rounded-xl overflow-hidden border border-[#262626] process-card"
+                                        className={`flex-shrink-0 w-full rounded-xl overflow-hidden border 
+                                            ${isDark
+                                                ? 'bg-[#050A1B] border-[#262626] process-card'
+                                                : 'bg-white border-gray-200 light-process-card'
+                                            }`}
                                     >
                                         <div className='p-[12px]'>
                                             <div className="relative h-[180px] sm:h-[200px] md:h-[240px] w-full">
@@ -95,11 +105,17 @@ const Projects = () => {
                                             </div>
                                         </div>
                                         <div className="p-4 sm:p-6">
-                                            <div className="inline-block px-3 py-1 bg-blue-900/30 text-blue-400 text-xs rounded-full mb-4 span-box">
+                                            <div className={`inline-block px-3 py-1 rounded-full text-xs mb-4 span-box
+                                                ${isDark
+                                                    ? 'bg-blue-900/30 text-blue-400'
+                                                    : 'bg-blue-100 text-blue-600'
+                                                }`}>
                                                 {project.category}
                                             </div>
-                                            <h3 className="text-lg sm:text-xl font-bold text-white mb-3">{project.title}</h3>
-                                            <p className="text-[#919191] text-xs sm:text-sm">
+                                            <h3 className="text-lg sm:text-xl font-bold dark:text-white text-gray-900 mb-3">
+                                                {project.title}
+                                            </h3>
+                                            <p className="dark:text-[#919191] text-gray-600 text-xs sm:text-sm">
                                                 {project.description}
                                             </p>
                                         </div>

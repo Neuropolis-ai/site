@@ -1,0 +1,356 @@
+/* Advanced icon animations for Process section */
+.icon-animated {
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: visible;
+    z-index: 2;
+}
+
+.icon-animated:hover {
+    transform: scale(1.15) translateY(-5px);
+    filter: drop-shadow(0 10px 15px rgba(0, 24, 94, 0.3));
+}
+
+.icon-animated svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.4));
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Basic styling for all SVG elements */
+.icon-animated path,
+.icon-animated rect,
+.icon-animated circle,
+.icon-animated line,
+.icon-animated polyline,
+.icon-animated polygon {
+    fill: none;
+    stroke: #3b82f6;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw-icon 4s ease-in-out forwards infinite;
+    filter: drop-shadow(0 2px 3px rgba(59, 130, 246, 0.2));
+}
+
+/* 3D effect for filled elements */
+.icon-animated .filled {
+    fill: rgba(59, 130, 246, 0.15);
+    stroke: #3b82f6;
+    stroke-width: 1;
+    opacity: 0.8;
+    animation: fill-3d 4s ease-in-out forwards infinite;
+}
+
+/* Glowing effect */
+.icon-animated .glow {
+    filter: blur(3px);
+    opacity: 0.5;
+    stroke: #61a0ff;
+    stroke-width: 1;
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Particle effects */
+.particle {
+    fill: #93c5fd;
+    stroke: none;
+    r: 0;
+    opacity: 0;
+    animation: twinkle 3s ease-in-out infinite;
+}
+
+/* Float animation */
+.float {
+    animation: float-effect 4s ease-in-out infinite;
+    transform-origin: center;
+}
+
+/* Bounce animation */
+.bounce {
+    animation: bounce-effect 2s ease-in-out infinite;
+    transform-origin: center;
+}
+
+/* Pulsing elements */
+.pulse {
+    animation: pulse-effect 2s ease-in-out infinite;
+    transform-origin: center;
+}
+
+/* Rotating elements */
+.gear-spin {
+    transform-origin: center;
+    animation: spin-3d 12s linear infinite;
+}
+
+.gear-spin-reverse {
+    transform-origin: center;
+    animation: spin-3d-reverse 8s linear infinite;
+}
+
+/* Document animation */
+.document-line {
+    animation: draw-line-3d 4s ease-in-out infinite;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+}
+
+.document-text {
+    opacity: 0;
+    animation: fade-in-3d 0.8s ease forwards;
+}
+
+/* Graph animation */
+.graph-line {
+    animation: grow-line-3d 3s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+    transform-origin: left bottom;
+}
+
+.graph-point {
+    opacity: 0;
+    animation: pop-in-3d 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Animation keyframes */
+@keyframes draw-icon {
+    0% {
+        stroke-dashoffset: 1000;
+        opacity: 0.3;
+    }
+
+    40% {
+        stroke-dashoffset: 0;
+        opacity: 0.8;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    90%,
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fill-3d {
+    0% {
+        fill-opacity: 0;
+    }
+
+    40% {
+        fill-opacity: 0;
+    }
+
+    60% {
+        fill-opacity: 0.7;
+    }
+
+    100% {
+        fill-opacity: 0.8;
+    }
+}
+
+@keyframes glow-pulse {
+    0% {
+        opacity: 0.4;
+        filter: blur(3px);
+    }
+
+    50% {
+        opacity: 0.8;
+        filter: blur(5px);
+    }
+
+    100% {
+        opacity: 0.4;
+        filter: blur(3px);
+    }
+}
+
+@keyframes pulse-effect {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+}
+
+@keyframes twinkle {
+    0% {
+        r: 0;
+        opacity: 0;
+    }
+
+    50% {
+        r: 1.5;
+        opacity: 0.8;
+    }
+
+    100% {
+        r: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes float-effect {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    25% {
+        transform: translateY(-3px) translateX(2px);
+    }
+
+    50% {
+        transform: translateY(1px) translateX(3px);
+    }
+
+    75% {
+        transform: translateY(2px) translateX(-2px);
+    }
+}
+
+@keyframes bounce-effect {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes spin-3d {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-3d-reverse {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes draw-line-3d {
+    0% {
+        stroke-dashoffset: 100;
+        opacity: 0.3;
+    }
+
+    60% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in-3d {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes grow-line-3d {
+    0% {
+        transform: scaleX(0) scaleY(0);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scaleX(1) scaleY(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scaleX(1) scaleY(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pop-in-3d {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.4);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Light theme adjustments */
+[data-theme='light'] .icon-animated path,
+[data-theme='light'] .icon-animated rect,
+[data-theme='light'] .icon-animated circle,
+[data-theme='light'] .icon-animated line,
+[data-theme='light'] .icon-animated polyline,
+[data-theme='light'] .icon-animated polygon {
+    stroke: #2563eb;
+}
+
+[data-theme='light'] .icon-animated .filled {
+    fill: rgba(37, 99, 235, 0.15);
+    stroke: #2563eb;
+}
+
+[data-theme='light'] .icon-animated .glow {
+    stroke: #3b82f6;
+}
+
+/* Enhanced hover effects */
+.process-card:hover .icon-animated,
+.light-process-card:hover .icon-animated {
+    transform: scale(1.15) translateY(-10px);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Make animations more vibrant on hover */
+.process-card:hover .document-line,
+.light-process-card:hover .document-line,
+.process-card:hover .graph-line,
+.light-process-card:hover .graph-line {
+    animation-duration: 2.5s !important;
+    stroke-width: 2px;
+}

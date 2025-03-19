@@ -1,4 +1,5 @@
 'use client'
+import { useTheme } from '@/context/ThemeContext'
 import { useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
 import Container from '../ui/Container'
@@ -32,6 +33,7 @@ const faqData = [
 ]
 
 const FAQ = () => {
+    const { isDark } = useTheme()
     const [openItems, setOpenItems] = useState<number[]>([])
 
     const toggleFAQ = (index: number) => {
@@ -45,16 +47,16 @@ const FAQ = () => {
     }
 
     return (
-        <section className="py-10 sm:py-15 md:py-20 max-[425px]:py-10 max-[425px]:px-[10px]" style={{ background: 'linear-gradient(174deg, rgba(5, 5, 5, 0.75) 0%, #050505 100%)' }}>
+        <section className="py-10 sm:py-15 md:py-20 max-[425px]:py-10 max-[425px]:px-[10px] dark:bg-black bg-white" >
             <Container>
                 <div className="flex flex-col md:flex-row gap-6 md:gap-10">
                     <div className="md:w-1/3">
                         <div className='max-[425px]:flex max-[425px]:justify-center'>
-                            <div className="inline-block px-3 sm:px-4 py-1 rounded-full bg-white/10 text-white text-xs sm:text-sm mb-3 sm:mb-4 switch-box">
+                            <div className={`inline-block px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm mb-3 sm:mb-4 switch-box ${!isDark && 'light-switch-box'}`}>
                                 FAQs
                             </div>
                         </div>
-                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 max-[425px]:text-center">Часто задаваемые вопросы</h2>
+                        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold dark:text-white text-black mb-3 sm:mb-4 max-[425px]:text-center">Часто задаваемые вопросы</h2>
                     </div>
 
                     <div className="md:w-2/3">
@@ -62,16 +64,21 @@ const FAQ = () => {
                             {faqData.map((faq, index) => (
                                 <div
                                     key={faq.id}
-                                    className="border border-[#01195e] rounded-lg sm:rounded-xl overflow-hidden bg-[#050A1B]"
+                                    className={`border rounded-lg sm:rounded-xl overflow-hidden ${isDark
+                                        ? 'border-[#01195e] bg-[#050A1B]'
+                                        : 'border-gray-200 bg-gray-50'
+                                        }`}
                                 >
                                     <button
-                                        className="w-full flex items-center justify-between p-3 sm:p-[15px] text-left text-white text-sm sm:text-base font-medium"
+                                        className={`w-full flex items-center justify-between p-3 sm:p-[15px] text-left text-sm sm:text-base font-medium ${isDark ? 'text-white' : 'text-gray-800'
+                                            }`}
                                         onClick={() => toggleFAQ(index)}
                                         aria-expanded={openItems.includes(index)}
                                     >
                                         {faq.question}
                                         <BsPlus
-                                            className={`min-w-[24px] min-h-[24px] text-xl sm:text-2xl transition-transform duration-300 ${openItems.includes(index) ? 'rotate-45' : ''}`}
+                                            className={`min-w-[24px] min-h-[24px] text-xl sm:text-2xl transition-transform duration-300 ${openItems.includes(index) ? 'rotate-45' : ''
+                                                } ${isDark ? 'text-white' : 'text-gray-700'}`}
                                         />
                                     </button>
 
@@ -80,7 +87,8 @@ const FAQ = () => {
                                     >
                                         <span className='accordion-card-line'></span>
 
-                                        <div className="px-3 sm:px-[15px] pt-3 sm:pt-[15px] pb-4 sm:pb-6 text-sm sm:text-base text-gray-400">
+                                        <div className={`px-3 sm:px-[15px] pt-3 sm:pt-[15px] pb-4 sm:pb-6 text-sm sm:text-base ${isDark ? 'text-[#919191]' : 'text-gray-600'
+                                            }`}>
                                             {faq.answer}
                                         </div>
                                     </div>

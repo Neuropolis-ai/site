@@ -2,7 +2,6 @@ import Blog from "@/components/Blog/Blog"
 import Contact from "@/components/Contact/Contact"
 import FAQ from "@/components/FAQ/FAQ"
 import Features from "@/components/Features/Features"
-import Header from "@/components/Header/Header"
 import Hero from "@/components/Hero/Hero"
 import Process from "@/components/Process/Process"
 import Projects from "@/components/Projects/Projects"
@@ -13,7 +12,6 @@ import VideoPlayer from '@/components/VideoPlayer/VideoPlayer'
 export default function Home() {
   return (
     <main>
-      <Header />
       <Hero />
       <VideoPlayer />
       <Process />
@@ -21,9 +19,9 @@ export default function Home() {
       <Features />
       <Projects />
       <Testimonials />
+      <Blog />
       <FAQ />
       <Contact />
-      <Blog />
     </main>
   )
 }

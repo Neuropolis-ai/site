@@ -1,5 +1,6 @@
 'use client'
 import Container from '@/components/ui/Container'
+import { useTheme } from '@/context/ThemeContext'
 import '@/style/hero.css'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -137,6 +138,7 @@ const blogPosts = [
 ]
 
 export default function BlogPost() {
+    const { isDark } = useTheme()
     const params = useParams()
     const slug = params.slug as string
 
@@ -144,10 +146,10 @@ export default function BlogPost() {
 
     if (!post) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-black">
+            <div className={`min-h-screen flex items-center justify-center ${isDark ? 'bg-black' : 'bg-white'}`}>
                 <div className="text-center">
-                    <h1 className="text-3xl font-bold text-white mb-4">Article Not Found</h1>
-                    <Link href="/blog" className="text-blue-500 hover:text-blue-400 flex items-center justify-center gap-2">
+                    <h1 className={`text-3xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>Article Not Found</h1>
+                    <Link href="/blog" className={isDark ? "text-blue-500 hover:text-blue-400 flex items-center justify-center gap-2" : "text-blue-600 hover:text-blue-700 flex items-center justify-center gap-2"}>
                         <BsArrowLeft /> Back to Blog
                     </Link>
                 </div>
@@ -156,10 +158,10 @@ export default function BlogPost() {
     }
 
     return (
-        <div className="min-h-screen bg-black text-white pt-[200px] pb-20">
+        <div className={`min-h-screen pt-[200px] pb-20 ${isDark ? 'bg-black text-white' : 'bg-white text-gray-900'}`}>
             <Container>
                 <div className="flex justify-center mb-4">
-                    <div className="inline-flex rounded-full bg-white/10 px-3 py-1 text-xs switch-box">
+                    <div className={`inline-flex rounded-full px-3 py-1 text-xs ${isDark ? 'bg-white/10 switch-box' : 'bg-gray-100 text-gray-700'}`}>
                         {post.date}
                     </div>
                 </div>
@@ -178,7 +180,7 @@ export default function BlogPost() {
                 </div>
 
                 <div className="w-[600px] mx-auto max-[610px]:w-full">
-                    <article className="prose prose-invert prose-lg max-w-none">
+                    <article className={`prose max-w-none ${isDark ? 'prose-invert' : ''} prose-lg`}>
                         <div dangerouslySetInnerHTML={{ __html: post.content }} />
                     </article>
                 </div>

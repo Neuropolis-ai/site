@@ -180,3 +180,442 @@
         width: 16px;
     }
 }
+
+/* Workflow Animation Styles */
+@keyframes rotate-icon {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 5px 0px rgba(21, 58, 161, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 12px 3px rgba(21, 58, 161, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 0 5px 0px rgba(21, 58, 161, 0.3);
+    }
+}
+
+@keyframes flow-line {
+    0% {
+        opacity: 0.3;
+        background: linear-gradient(90deg, rgba(0, 24, 94, 0.5), rgb(21, 58, 161));
+    }
+
+    50% {
+        opacity: 1;
+        background: linear-gradient(90deg, rgb(21, 58, 161), rgb(0, 24, 94));
+    }
+
+    100% {
+        opacity: 0.3;
+        background: linear-gradient(90deg, rgb(21, 58, 161), rgba(0, 24, 94, 0.5));
+    }
+}
+
+.workflow-animation .icon-box {
+    transition: transform 0.3s ease-in-out;
+}
+
+.workflow-animation .icon-box:hover {
+    transform: scale(1.1);
+}
+
+.workflow-visible .icon-box {
+    animation: pulse-glow 3s infinite;
+}
+
+.workflow-visible .icon-box img {
+    animation: rotate-icon 20s linear infinite;
+}
+
+.workflow-visible .line {
+    animation: flow-line 2s infinite;
+}
+
+/* Apply different animation delays to create a wave effect */
+.workflow-row .icon-box:nth-of-type(1) {
+    animation-delay: 0s;
+}
+
+.workflow-row .icon-box:nth-of-type(3) {
+    animation-delay: 0.4s;
+}
+
+.workflow-row .icon-box:nth-of-type(5) {
+    animation-delay: 0.8s;
+}
+
+.workflow-row .icon-box:nth-of-type(7) {
+    animation-delay: 1.2s;
+}
+
+.workflow-row .icon-box:nth-of-type(9) {
+    animation-delay: 1.6s;
+}
+
+.workflow-row .circle-container:nth-of-type(2n) .line {
+    animation-delay: 0.3s;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #3b82f6;
+    border-radius: 50%;
+    display: inline-block;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.animation-delay-200 {
+    animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1.0);
+    }
+}
+
+/* AI Agent Box with Animated Lines */
+.ai-agent-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ai-animated-lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.ai-line {
+    position: absolute;
+    background: rgba(21, 58, 161, 0.3);
+    overflow: hidden;
+    transition: all 1.2s cubic-bezier(0.17, 0.67, 0.4, 1);
+    opacity: 0;
+    transform-origin: center;
+}
+
+/* Top line */
+.ai-line-top {
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    width: 2px;
+    height: 60px;
+}
+
+/* Right line */
+.ai-line-right {
+    top: 50%;
+    right: -60px;
+    transform: translateY(-50%) scaleX(0);
+    width: 60px;
+    height: 2px;
+}
+
+/* Bottom line */
+.ai-line-bottom {
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    width: 2px;
+    height: 60px;
+}
+
+/* Left line */
+.ai-line-left {
+    top: 50%;
+    left: -60px;
+    transform: translateY(-50%) scaleX(0);
+    width: 60px;
+    height: 2px;
+}
+
+/* Glowing effect that will move along the lines */
+.ai-line-glow {
+    position: absolute;
+    background: linear-gradient(90deg, rgba(21, 58, 161, 0), rgba(21, 58, 161, 1), rgba(21, 58, 161, 0));
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    animation: lineGlowAnimation 2s infinite linear;
+    animation-play-state: paused;
+}
+
+/* Different animation direction for horizontal and vertical lines */
+.ai-line-top .ai-line-glow,
+.ai-line-bottom .ai-line-glow {
+    background: linear-gradient(0deg, rgba(21, 58, 161, 0), rgba(21, 58, 161, 1), rgba(21, 58, 161, 0));
+    width: 100%;
+    height: 200%;
+}
+
+.ai-line-left .ai-line-glow,
+.ai-line-right .ai-line-glow {
+    width: 200%;
+    height: 100%;
+}
+
+/* Animation for the glowing effect */
+@keyframes lineGlowAnimation {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Vertical lines use different animation */
+.ai-line-top .ai-line-glow {
+    animation: lineGlowAnimationVertical 2s infinite linear;
+    animation-delay: 0.5s;
+}
+
+.ai-line-bottom .ai-line-glow {
+    animation: lineGlowAnimationVertical 2s infinite linear;
+    animation-delay: 1.5s;
+}
+
+.ai-line-right .ai-line-glow {
+    animation-delay: 1s;
+}
+
+.ai-line-left .ai-line-glow {
+    animation-delay: 0s;
+}
+
+@keyframes lineGlowAnimationVertical {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+/* Enhance box glow */
+.ai-agent-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --border-bottom-width: 1px;
+    --border-color: rgb(21, 58, 161);
+    --border-left-width: 1px;
+    --border-right-width: 1px;
+    --border-style: solid;
+    --border-top-width: 1px;
+    background: linear-gradient(180deg, rgb(0, 24, 94) 0%, rgb(5, 5, 5) 100%);
+    border-radius: 10px;
+    box-shadow:
+        rgba(0, 2, 128, 0.016) 0px 0.602187px 3.01094px 0px,
+        rgba(0, 2, 128, 0.06) 0px 2.28853px 11.4427px 0px,
+        rgba(0, 2, 128, 0.25) 0px 10px 50px 0px,
+        0 0 15px 2px rgba(21, 58, 161, 0.5);
+    opacity: 1;
+    border: 1px solid rgb(21, 58, 161);
+    animation: aiBoxGlow 3s infinite alternate;
+}
+
+@keyframes aiBoxGlow {
+    0% {
+        box-shadow:
+            rgba(0, 2, 128, 0.016) 0px 0.602187px 3.01094px 0px,
+            rgba(0, 2, 128, 0.06) 0px 2.28853px 11.4427px 0px,
+            rgba(0, 2, 128, 0.25) 0px 10px 50px 0px,
+            0 0 8px 2px rgba(21, 58, 161, 0.3);
+    }
+
+    100% {
+        box-shadow:
+            rgba(0, 2, 128, 0.016) 0px 0.602187px 3.01094px 0px,
+            rgba(0, 2, 128, 0.06) 0px 2.28853px 11.4427px 0px,
+            rgba(0, 2, 128, 0.25) 0px 10px 50px 0px,
+            0 0 20px 5px rgba(21, 58, 161, 0.7);
+    }
+}
+
+/* Adaptive styles for smaller screens */
+@media (max-width: 639px) {
+
+    .ai-line-top,
+    .ai-line-bottom {
+        height: 40px;
+    }
+
+    .ai-line-top {
+        top: -40px;
+    }
+
+    .ai-line-bottom {
+        bottom: -40px;
+    }
+
+    .ai-line-left,
+    .ai-line-right {
+        width: 40px;
+    }
+
+    .ai-line-left {
+        left: -40px;
+    }
+
+    .ai-line-right {
+        right: -40px;
+    }
+
+    .ai-agent-box {
+        box-shadow:
+            rgba(0, 2, 128, 0.016) 0px 0.4px 2px 0px,
+            rgba(0, 2, 128, 0.06) 0px 1.5px 8px 0px,
+            rgba(0, 2, 128, 0.25) 0px 7px 35px 0px,
+            0 0 10px 2px rgba(21, 58, 161, 0.5);
+    }
+}
+
+/* Анимированные линии с плавным появлением */
+.ai-line {
+    position: absolute;
+    background: rgba(21, 58, 161, 0.3);
+    overflow: hidden;
+    transition: all 1.2s cubic-bezier(0.17, 0.67, 0.4, 1);
+    opacity: 0;
+    transform-origin: center;
+}
+
+/* Класс для анимированных линий */
+.ai-line-animated .ai-line {
+    opacity: 1;
+}
+
+/* Начальное состояние линий */
+.ai-line-top {
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    width: 2px;
+    height: 60px;
+}
+
+.ai-line-right {
+    top: 50%;
+    right: -60px;
+    transform: translateY(-50%) scaleX(0);
+    width: 60px;
+    height: 2px;
+}
+
+.ai-line-bottom {
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    width: 2px;
+    height: 60px;
+}
+
+.ai-line-left {
+    top: 50%;
+    left: -60px;
+    transform: translateY(-50%) scaleX(0);
+    width: 60px;
+    height: 2px;
+}
+
+/* Анимированное состояние линий */
+.ai-line-animated .ai-line-top {
+    transform: translateX(-50%) scaleY(1);
+}
+
+.ai-line-animated .ai-line-right {
+    transform: translateY(-50%) scaleX(1);
+}
+
+.ai-line-animated .ai-line-bottom {
+    transform: translateX(-50%) scaleY(1);
+}
+
+.ai-line-animated .ai-line-left {
+    transform: translateY(-50%) scaleX(1);
+}
+
+/* Глоу-эффект на линиях появляется после выдвижения линий */
+.ai-line-glow {
+    position: absolute;
+    background: linear-gradient(90deg, rgba(21, 58, 161, 0), rgba(21, 58, 161, 1), rgba(21, 58, 161, 0));
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    animation: lineGlowAnimation 2s infinite linear;
+    animation-play-state: paused;
+}
+
+.ai-line-animated .ai-line-glow {
+    opacity: 1;
+    animation-play-state: running;
+    transition-delay: 0.8s;
+}
+
+/* Разные направления для горизонтальных и вертикальных линий */
+.ai-line-top .ai-line-glow,
+.ai-line-bottom .ai-line-glow {
+    background: linear-gradient(0deg, rgba(21, 58, 161, 0), rgba(21, 58, 161, 1), rgba(21, 58, 161, 0));
+    width: 100%;
+    height: 200%;
+}
+
+.ai-line-left .ai-line-glow,
+.ai-line-right .ai-line-glow {
+    width: 200%;
+    height: 100%;
+}
+
+/* Разные задержки появления для каждой линии */
+.ai-line-animated .ai-line-top {
+    transition-delay: 0.2s;
+}
+
+.ai-line-animated .ai-line-right {
+    transition-delay: 0.4s;
+}
+
+.ai-line-animated .ai-line-bottom {
+    transition-delay: 0.6s;
+}
+
+.ai-line-animated .ai-line-left {
+    transition-delay: 0.8s;
+}

@@ -13,7 +13,6 @@ const Services = () => {
     const chartRef = useRef(null)
     const [isChatVisible, setIsChatVisible] = useState(false)
     const [isTyping, setIsTyping] = useState(false)
-    const [showAIResponse, setShowAIResponse] = useState(false)
     const chatRef = useRef(null)
     const [aiLinesVisible, setAiLinesVisible] = useState(false)
     const aiAgentRef = useRef(null)
@@ -51,20 +50,21 @@ const Services = () => {
                     setTimeout(() => setIsTyping(true), 1000)
                     setTimeout(() => {
                         setIsTyping(false)
-                        setShowAIResponse(true)
                     }, 3000)
                 }
             },
             { threshold: 0.3 }
         )
 
-        if (chatRef.current) {
-            observer.observe(chatRef.current)
+        const currentRef = chatRef.current
+
+        if (currentRef) {
+            observer.observe(currentRef)
         }
 
         return () => {
-            if (chatRef.current) {
-                observer.unobserve(chatRef.current)
+            if (currentRef) {
+                observer.unobserve(currentRef)
             }
         }
     }, [])
@@ -81,13 +81,15 @@ const Services = () => {
             { threshold: 0.3 }
         )
 
-        if (aiAgentRef.current) {
-            observer.observe(aiAgentRef.current)
+        const currentRef = aiAgentRef.current
+
+        if (currentRef) {
+            observer.observe(currentRef)
         }
 
         return () => {
-            if (aiAgentRef.current) {
-                observer.unobserve(aiAgentRef.current)
+            if (currentRef) {
+                observer.unobserve(currentRef)
             }
         }
     }, [])

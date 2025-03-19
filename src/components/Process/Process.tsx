@@ -22,13 +22,15 @@ const Process = () => {
             { threshold: 0.3 }
         )
 
-        if (processRef.current) {
-            observer.observe(processRef.current)
+        const currentRef = processRef.current
+
+        if (currentRef) {
+            observer.observe(currentRef)
         }
 
         return () => {
-            if (processRef.current) {
-                observer.unobserve(processRef.current)
+            if (currentRef) {
+                observer.unobserve(currentRef)
             }
         }
     }, [])

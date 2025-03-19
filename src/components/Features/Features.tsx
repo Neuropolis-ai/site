@@ -1,32 +1,32 @@
 'use client'
 import { useTheme } from '@/context/ThemeContext'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import '../../style/icon-animations.css'
 import Container from '../ui/Container'
 
 const Features = () => {
     const { isDark } = useTheme()
-    const [isVisible, setIsVisible] = useState(false)
     const featuresRef = useRef(null)
 
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    setIsVisible(true)
                     observer.disconnect()
                 }
             },
             { threshold: 0.2 }
         )
 
-        if (featuresRef.current) {
-            observer.observe(featuresRef.current)
+        const currentRef = featuresRef.current
+
+        if (currentRef) {
+            observer.observe(currentRef)
         }
 
         return () => {
-            if (featuresRef.current) {
-                observer.unobserve(featuresRef.current)
+            if (currentRef) {
+                observer.unobserve(currentRef)
             }
         }
     }, [])

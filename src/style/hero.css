@@ -113,11 +113,6 @@
 }
 
 /* Special animation for the icon box */
-.switch-box {
-    animation: fade-in-down 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
-    opacity: 0;
-    filter: blur(15px);
-}
 
 @keyframes fade-in-down {
     0% {

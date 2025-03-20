@@ -37,7 +37,6 @@ const Hero = () => {
             {/* Content */}
             <div className="relative z-20 text-center max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-[900px] mx-auto px-4">
                 <div>
-
                     <span className={`inline-flex items-center justify-center border border-blue-500 gap-2 px-4 py-1 rounded-full switch-box ${!isDark && 'light-switch-box'} text-sm mb-4`}> <span>
                         <svg width={15} height={15} viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" className='dark:text-white text-black'>
                             <path opacity="0.2" d="M14.0063 8.11585L9.82259 9.6371L8.30133 13.8208C8.26582 13.9165 8.20186 13.9991 8.11807 14.0573C8.03428 14.1156 7.93465 14.1469 7.83258 14.1469C7.73052 14.1469 7.63089 14.1156 7.5471 14.0573C7.4633 13.9991 7.39935 13.9165 7.36383 13.8208L5.84508 9.6371L1.66133 8.11585C1.56565 8.08033 1.48312 8.01638 1.42484 7.93258C1.36656 7.84879 1.33533 7.74917 1.33533 7.6471C1.33533 7.54503 1.36656 7.44541 1.42484 7.36161C1.48312 7.27782 1.56565 7.21387 1.66133 7.17835L5.84508 5.6596L7.36633 1.47585C7.40185 1.38016 7.4658 1.29763 7.5496 1.23936C7.63339 1.18108 7.73302 1.14984 7.83508 1.14984C7.93715 1.14984 8.03678 1.18108 8.12057 1.23936C8.20436 1.29763 8.26832 1.38016 8.30383 1.47585L9.82508 5.6596L14.0088 7.18085C14.1036 7.21708 14.1851 7.28129 14.2425 7.36495C14.2999 7.44861 14.3305 7.54775 14.3303 7.64921C14.33 7.75067 14.2989 7.84965 14.241 7.933C14.1831 8.01635 14.1013 8.08012 14.0063 8.11585Z" fill="white" />
@@ -46,14 +45,14 @@ const Hero = () => {
                     </span> NoctisAI</span>
                 </div>
 
-                <div className="text-blur-in">
+                <div>
                     <h1 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px] font-bold dark:text-white light:text-black mb-4 sm:mb-5 md:mb-6">
                         Прокачайте свой бизнес с помощью
                         интеллектуальных ИИ-агентов
                     </h1>
                 </div>
 
-                <p className={`text-base sm:text-lg mb-6 sm:mb-8 max-[425px]:text-[14px] text-blur-in text-blur-in-delay-1 text-gray-500 dark:text-[#919191]`}>
+                <p className={`text-base sm:text-lg mb-6 sm:mb-8 max-[425px]:text-[14px] text-gray-500 dark:text-[#919191]`}>
                     Мы специализируемся на предоставлении передовых решений на основе искусственного интеллекта, призванных расширить возможности предприятий во всех отраслях.
                 </p>
 
@@ -61,13 +60,13 @@ const Hero = () => {
                     <ButtonLink
                         variantBtn="btn"
                         onClick={() => scrollToSection('contact')}
-                        className="w-full sm:w-auto bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white rounded-[10px] px-6 py-3 hover:opacity-90 transition-opacity button-appear button-appear-delay-1"
+                        className="w-full sm:w-auto bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white rounded-[10px] px-6 py-3 hover:opacity-90 transition-opacity"
                     >
                         Получить консультацию
                     </ButtonLink>
                     <button
                         onClick={() => scrollToSection('services')}
-                        className="flex items-center gap-2 border dark:border-[#262626]  border-[#b4b4b4] dark:text-white text-gray-500 px-6 py-3 rounded-[10px] hover:bg-white/10 transition-colors button-appear button-appear-delay-2"
+                        className="flex items-center gap-2 border dark:border-[#262626]  border-[#b4b4b4] dark:text-white text-gray-500 px-6 py-3 rounded-[10px] hover:bg-white/10 transition-colors"
                     >
                         Наши улуги <BsArrowRight />
                     </button>

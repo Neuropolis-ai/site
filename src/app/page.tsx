@@ -7,13 +7,11 @@ import Process from "@/components/Process/Process"
 import Projects from "@/components/Projects/Projects"
 import Services from "@/components/Services/Services"
 import Testimonials from "@/components/Testimonials/Testimonials"
-import VideoPlayer from '@/components/VideoPlayer/VideoPlayer'
 
 export default function Home() {
   return (
     <main>
       <Hero />
-      <VideoPlayer />
       <Process />
       <Services />
       <Features />

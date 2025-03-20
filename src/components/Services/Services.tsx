@@ -1,12 +1,11 @@
 'use client'
 import { useTheme } from '@/context/ThemeContext'
-import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import '../../style/card-line.css'
 import '../../style/hero.css'
 import '../../style/services.css'
 import Container from '../ui/Container'
-
+import Workflow from './Workflow'
 const Services = () => {
     const { isDark } = useTheme()
     const [isChartVisible, setIsChartVisible] = useState(false)
@@ -251,146 +250,7 @@ const Services = () => {
                     </div>
 
                     <div className='flex flex-col lg:flex-row gap-6 w-full'>
-                        {/* Workflow Automation Card */}
-                        <div className={`w-full lg:w-[523px] p-[20px] rounded-xl border border-[#262626] overflow-hidden  ${isDark ? 'process-card' : 'bg-gray-50 border-gray-200'}`}>
-                            {/* First row of icons */}
-                            <div className={`py-[30px] sm:py-[50px] flex flex-col items-center gap-[20px] sm:gap-[30px] overflow-hidden w-full ${isDark ? 'ai-card ' : 'bg-white rounded-xl border border-gray-100'}`} style={{ mask: 'linear-gradient(rgb(0, 0, 0) 80%, rgba(0, 0, 0, 0) 100%)' }}>
-                                <div className='w-full flex items-center gap-[4px] sm:gap-[8px] overflow-x-auto pb-2 sm:overflow-hidden' style={{ mask: 'linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 87.5%, rgba(0, 0, 0, 0) 100%)' }}>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/7ccIrhplk721bhbtvb1UCavI.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/qc6WiaOLMJCgLjRA2nE1Poq3zLk.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/8y8OLtsq3aj0TJnWcRwlcPqvWE.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/ScGavdIdTjHTgHXBhFQXusFFEn4.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/7ccIrhplk721bhbtvb1UCavI.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/qc6WiaOLMJCgLjRA2nE1Poq3zLk.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/8y8OLtsq3aj0TJnWcRwlcPqvWE.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/ScGavdIdTjHTgHXBhFQXusFFEn4.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                </div>
-                                <div className='w-full flex items-center gap-[4px] sm:gap-[8px] overflow-x-auto pb-2 sm:overflow-hidden' style={{ mask: 'linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 12.5%, rgb(0, 0, 0) 87.5%, rgba(0, 0, 0, 0) 100%)' }}>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/hvfBGbwc1AsKFtdq8R2VcwHAv0A.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/YcyG9QsC7RV1Onc50wyEXquv1k.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/ZokCuPJkR8AKgTToaXlDYY95I.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/Kjci2ZiHnCXWVjKZxU9rwu3GSfI.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/hvfBGbwc1AsKFtdq8R2VcwHAv0A.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/YcyG9QsC7RV1Onc50wyEXquv1k.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/ZokCuPJkR8AKgTToaXlDYY95I.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                    <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                                        <Image src={'https://framerusercontent.com/images/Kjci2ZiHnCXWVjKZxU9rwu3GSfI.svg'} alt="w" width={28} height={28} className="sm:w-[36px] sm:h-[36px]" />
-                                    </div>
-                                    <div className="flex-shrink-0 circle-container">
-                                        <span className="circle"></span>
-                                        <span className="line"></span>
-                                        <span className="circle"></span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div>
-                                <h4 className=" font-medium text-base sm:text-lg mb-1 sm:mb-2 dark:text-white text-gray-800">Автоматизация рабочих процессов</h4>
-                                <p className="dark:text-[#919191] text-gray-600 text-xs sm:text-sm">
-                                    Мы помогаем компаниям интегрировать инструменты ИИ в существующие программные платформы, CRM-системы или маркетинговые каналы.
-                                </p>
-                            </div>
-                        </div>
+                        <Workflow />
 
                         {/* Strategy Consulting Card */}
                         <div className={`w-full lg:w-[732px] p-[20px] rounded-xl border border-[#262626] overflow-hidden  ${isDark ? 'process-card' : 'bg-gray-50 border-gray-200'}`}>

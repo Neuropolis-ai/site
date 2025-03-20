@@ -3,6 +3,7 @@ import Header from "@/components/Header/Header"
 import { ThemeProvider } from "@/context/ThemeContext"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import '../style/normalize.css'
 import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 

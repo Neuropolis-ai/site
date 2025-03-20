@@ -223,49 +223,97 @@
     }
 }
 
+@keyframes pop-in {
+    0% {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+
+    40% {
+        transform: scale(1.15);
+    }
+
+    70% {
+        transform: scale(0.9);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
 .workflow-animation .icon-box {
     transition: transform 0.3s ease-in-out;
+    opacity: 0;
 }
 
 .workflow-animation .icon-box:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
+    z-index: 10;
 }
 
 .workflow-visible .icon-box {
     animation: pulse-glow 3s infinite;
+    opacity: 1;
+    animation: pop-in 0.6s forwards;
 }
 
 .workflow-visible .icon-box img {
     animation: rotate-icon 20s linear infinite;
+    transition: all 0.3s ease;
+}
+
+.workflow-visible .icon-box:hover img {
+    animation-duration: 6s;
+    filter: brightness(1.2) drop-shadow(0 0 8px rgba(21, 58, 161, 0.6));
 }
 
 .workflow-visible .line {
     animation: flow-line 2s infinite;
 }
 
+.workflow-visible .circle {
+    animation: pulse-glow 2s infinite;
+}
+
 /* Apply different animation delays to create a wave effect */
 .workflow-row .icon-box:nth-of-type(1) {
-    animation-delay: 0s;
+    animation-delay: 0.1s;
 }
 
 .workflow-row .icon-box:nth-of-type(3) {
-    animation-delay: 0.4s;
+    animation-delay: 0.2s;
 }
 
 .workflow-row .icon-box:nth-of-type(5) {
-    animation-delay: 0.8s;
+    animation-delay: 0.3s;
 }
 
 .workflow-row .icon-box:nth-of-type(7) {
-    animation-delay: 1.2s;
+    animation-delay: 0.4s;
 }
 
 .workflow-row .icon-box:nth-of-type(9) {
-    animation-delay: 1.6s;
+    animation-delay: 0.5s;
 }
 
 .workflow-row .circle-container:nth-of-type(2n) .line {
-    animation-delay: 0.3s;
+    animation-delay: 0.15s;
 }
 
 .typing-dot {

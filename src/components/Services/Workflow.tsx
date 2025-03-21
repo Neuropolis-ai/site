@@ -102,19 +102,21 @@ const Workflow = () => {
     // Функция для создания элемента иконки с соединительными линиями
     const renderIcon = (src: string, index: number | string) => (
         <React.Fragment key={`icon-${index}`}>
-            <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
-                <Image
-                    src={src}
-                    alt="workflow icon"
-                    width={28}
-                    height={28}
-                    className="sm:w-[36px] sm:h-[36px] object-contain"
-                />
-            </div>
-            <div className="flex-shrink-0 circle-container">
-                <span className="circle"></span>
-                <span className="line"></span>
-                <span className="circle"></span>
+            <div className="flex items-center gap-[10px] ml-[10px]">
+                <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
+                    <Image
+                        src={src}
+                        alt="workflow icon"
+                        width={28}
+                        height={28}
+                        className="sm:w-[36px] sm:h-[36px] object-contain"
+                    />
+                </div>
+                <div className="flex-shrink-0 circle-container">
+                    <span className="circle"></span>
+                    <span className="line"></span>
+                    <span className="circle"></span>
+                </div>
             </div>
         </React.Fragment>
     )

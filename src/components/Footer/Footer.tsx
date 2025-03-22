@@ -42,10 +42,10 @@ const Footer = () => {
               <div className="flex items-center mb-4">
                 <Image
                   src={isDark ? logo : blackLogo}
-                  className="w-[84px] h-[34px] object-cover"
+                  className="w-[120px] h-[48px] object-cover"
                   alt="Neuropolis.ai"
-                  width={84}
-                  height={34}
+                  width={120}
+                  height={48}
                 />
               </div>
               <p

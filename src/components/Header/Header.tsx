@@ -76,13 +76,13 @@ const Header = () => {
       {/* Header Main */}
       <div className="w-full p-[8px] pr-[14px] flex items-center justify-between">
         <Link href="/" onClick={() => scrollToSection("hero")}>
-          <div className="w-[120px] h-[48px] relative">
+          <div className="w-[84px] h-[34px] relative">
             <Image
               src={isDark ? logo : blackLogo}
               alt="logo"
               fill
               priority
-              className="object-cover w-[120px] h-[48px]"
+              className="object-cover w-[84px] h-[34px]"
             />
           </div>
         </Link>

@@ -82,7 +82,7 @@ const Header = () => {
               alt="logo"
               fill
               priority
-              className="object-cover w-[120px] h-[48px]"
+              className="object-contain w-[120px] h-[48px]"
             />
           </div>
         </Link>

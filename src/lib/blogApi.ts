@@ -21,16 +21,14 @@ export async function getAllArticles(): Promise<Article[]> {
  * Получение статьи по slug
  */
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
-  // В Supabase нет прямой поддержки slug, поэтому можно использовать id
-  // или добавить поле slug в таблицу articles
   const { data, error } = await supabase
     .from("articles")
     .select("*")
-    .eq("id", slug)
+    .eq("slug", slug)
     .single();
 
   if (error) {
-    console.error(`Ошибка при получении статьи с ID ${slug}:`, error);
+    console.error(`Ошибка при получении статьи с slug ${slug}:`, error);
     return null;
   }
 

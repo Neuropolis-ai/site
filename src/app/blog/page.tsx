@@ -136,7 +136,7 @@ export default function BlogPage() {
             {filteredPosts.map((post) => (
               <Link
                 key={post.id}
-                href={`/blog/${post.id}`}
+                href={`/blog/${post.slug}`}
                 className={
                   isDark
                     ? "text-blue-500 hover:text-blue-400"

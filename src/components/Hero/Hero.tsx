@@ -66,7 +66,11 @@ const Hero = () => {
 
         <div>
           <h1 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px] font-bold dark:text-white light:text-black mb-4 sm:mb-5 md:mb-6">
-            Прокачайте свой бизнес с помощью интеллектуальных ИИ-агентов
+            Прокачайте свой бизнес
+            <br />
+            с помощью
+            <br />
+            интеллектуальных ИИ-агентов
           </h1>
         </div>
 

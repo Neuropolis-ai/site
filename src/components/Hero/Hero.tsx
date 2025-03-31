@@ -73,14 +73,6 @@ const Hero = () => {
         <p
           className={`text-base sm:text-lg mb-6 sm:mb-8 max-[425px]:text-[14px] text-gray-500 dark:text-[#919191]`}
         >
-          Мы специализируемся на предоставлении передовых решений на основе
-          искусственного интеллекта, призванных расширить возможности
-          предприятий во всех отраслях.
-        </p>
-
-        <p
-          className={`text-base sm:text-lg mb-6 sm:mb-8 max-[425px]:text-[14px] text-gray-500 dark:text-[#919191]`}
-        >
           Автоматизируйте рутинные задачи, улучшайте взаимодействие с клиентами
           и принимайте более обоснованные решения с помощью наших
           интеллектуальных ИИ-агентов.
@@ -98,7 +90,7 @@ const Hero = () => {
             onClick={() => scrollToSection("services")}
             className="flex items-center gap-2 border dark:border-[#262626]  border-[#b4b4b4] dark:text-white text-gray-500 px-6 py-3 rounded-[10px] hover:bg-white/10 transition-colors"
           >
-            Наши услуги <BsArrowRight />
+            Наши возможности <BsArrowRight />
           </button>
         </div>
       </div>

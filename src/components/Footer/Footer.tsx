@@ -81,7 +81,7 @@ const Footer = () => {
                       scrollToSection("services");
                     }}
                   >
-                    Услуги
+                    Возможности
                   </a>
                   <a
                     href="#projects"
@@ -109,7 +109,7 @@ const Footer = () => {
                       scrollToSection("services");
                     }}
                   >
-                    Услуги
+                    Возможности
                   </a>
                   <a
                     href="#contact"

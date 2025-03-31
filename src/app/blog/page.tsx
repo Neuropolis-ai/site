@@ -1,155 +1,55 @@
-"use client";
 import { getAllArticles } from "@/lib/blogApi";
-import { Article } from "@/lib/supabase";
-import { useTheme } from "@/context/ThemeContext";
-import "@/style/hero.css";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { BsArrowRight, BsSearch } from "react-icons/bs";
 
-export default function BlogPage() {
-  const { isDark } = useTheme();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+export const metadata: Metadata = {
+  title:
+    "Блог Neuropolis.ai - Статьи об искусственном интеллекте и автоматизации",
+  description:
+    "Актуальные статьи о технологиях искусственного интеллекта, автоматизации бизнес-процессов и цифровой трансформации.",
+  keywords:
+    "блог, статьи, искусственный интеллект, автоматизация, цифровая трансформация",
+};
 
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        setIsLoading(true);
-        const data = await getAllArticles();
-        setArticles(data);
-      } catch (err) {
-        console.error("Ошибка при загрузке статей:", err);
-        setError("Не удалось загрузить статьи. Пожалуйста, попробуйте позже.");
-      } finally {
-        setIsLoading(false);
-      }
-    };
+function formatDate(dateString: string) {
+  return new Intl.DateTimeFormat("ru-RU", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(dateString));
+}
 
-    fetchArticles();
-  }, []);
-
-  const filteredPosts = articles.filter(
-    (post) =>
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (post.description &&
-        post.description.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
-
-  // Форматирование даты в понятный вид
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return new Intl.DateTimeFormat("ru-RU", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    }).format(date);
-  };
+export default async function BlogPageComponent() {
+  const articles = await getAllArticles();
 
   return (
-    <div
-      className={`relative min-h-screen pt-32 pb-20 overflow-hidden ${
-        isDark ? "bg-black" : "bg-white"
-      }`}
-    >
+    <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black">
       <div className="container mx-auto max-w-[1280px] px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <div
-            className={`inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box ${
-              !isDark && "light-switch-box"
-            }`}
-          >
+          <div className="inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box dark:bg-[#262626] dark:text-white bg-gray-100 text-gray-800">
             Блог
           </div>
-          <h1
-            className={`text-5xl font-bold mb-4 ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}
-          >
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
             Наш Блог
           </h1>
-          <p
-            className={`max-w-2xl mx-auto mb-8 ${
-              isDark ? "text-gray-400" : "text-gray-600"
-            }`}
-          >
+          <p className="max-w-2xl mx-auto mb-8 text-gray-600 dark:text-gray-400">
             Блог Neuropolis — ваш надежный источник информации о том, как ИИ
             меняет отрасли и способствует успеху бизнеса.
           </p>
-
-          {/* Search Bar */}
-          <div className="relative max-w-md mx-auto w-[300px]">
-            <input
-              type="text"
-              placeholder="Поиск статей"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className={`w-full p-3 pr-12 rounded-[12px] outline-none transition-colors duration-300 ${
-                isDark
-                  ? "bg-transparent border-[#262626] text-white hover:border-[#4f4f4f]"
-                  : "bg-gray-50 border-gray-300 text-gray-800 hover:border-gray-400"
-              } border text-sm`}
-            />
-            <BsSearch
-              className={`absolute right-4 top-1/2 transform -translate-y-1/2 ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
-            />
-          </div>
         </div>
 
-        {/* Состояние загрузки */}
-        {isLoading && (
-          <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-          </div>
-        )}
-
-        {/* Сообщение об ошибке */}
-        {error && (
-          <div className="text-center py-12">
-            <p
-              className={`text-lg ${isDark ? "text-red-400" : "text-red-600"}`}
-            >
-              {error}
-            </p>
-            <button
-              onClick={() => window.location.reload()}
-              className={
-                isDark
-                  ? "mt-4 text-blue-500 hover:text-blue-400"
-                  : "mt-4 text-blue-600 hover:text-blue-700"
-              }
-            >
-              Попробовать снова
-            </button>
-          </div>
-        )}
-
         {/* Blog Posts Grid */}
-        {!isLoading && !error && (
+        {articles.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPosts.map((post) => (
+            {articles.map((post) => (
               <Link
                 key={post.id}
                 href={`/blog/${post.slug}`}
-                className={
-                  isDark
-                    ? "text-blue-500 hover:text-blue-400"
-                    : "text-blue-600 hover:text-blue-700"
-                }
+                className="text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-400"
               >
-                <div
-                  className={`overflow-hidden group ${
-                    isDark
-                      ? "blog-card"
-                      : "border border-gray-200 rounded-xl bg-gray-50"
-                  }`}
-                >
+                <div className="overflow-hidden group border border-gray-200 dark:border-[#262626] rounded-xl bg-gray-50 dark:bg-[#121212]">
                   <div className="p-[12px]">
                     <div className="relative p-[12px] h-[200px] w-full overflow-hidden rounded-[12px]">
                       <Image
@@ -161,39 +61,22 @@ export default function BlogPage() {
                     </div>
                   </div>
                   <div className="p-[12px]">
-                    <h3
-                      className={`text-xl font-semibold mb-4 line-clamp-2 ${
-                        isDark ? "text-white" : "text-gray-800"
-                      }`}
-                    >
+                    <h3 className="text-xl font-semibold mb-4 line-clamp-2 text-gray-800 dark:text-white">
                       {post.title}
                     </h3>
                     {post.description && (
-                      <p
-                        className={`text-sm mb-3 line-clamp-3 ${
-                          isDark ? "text-gray-400" : "text-gray-600"
-                        }`}
-                      >
+                      <p className="text-sm mb-3 line-clamp-3 text-gray-600 dark:text-gray-400">
                         {post.description}
                       </p>
                     )}
                     <span className="line-a mb-2"></span>
                     <div className="flex items-center justify-between">
-                      <span
-                        className={`text-sm ${
-                          isDark ? "text-gray-400" : "text-gray-500"
-                        }`}
-                      >
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
                         {formatDate(post.published_at)}
                       </span>
-                      <BsArrowRight className="text-lg" />
                     </div>
                     {post.source && (
-                      <div
-                        className={`text-xs mt-2 ${
-                          isDark ? "text-gray-500" : "text-gray-400"
-                        }`}
-                      >
+                      <div className="text-xs mt-2 text-gray-400 dark:text-gray-500">
                         Источник: {post.source}
                       </div>
                     )}
@@ -202,28 +85,11 @@ export default function BlogPage() {
               </Link>
             ))}
           </div>
-        )}
-
-        {/* No Results */}
-        {!isLoading && !error && filteredPosts.length === 0 && (
-          <div className="text-center py-12">
-            <p
-              className={`text-lg ${
-                isDark ? "text-gray-400" : "text-gray-600"
-              }`}
-            >
-              Статьи не найдены, соответствующие вашему запросу.
+        ) : (
+          <div className="text-center">
+            <p className="text-lg text-gray-600 dark:text-gray-400">
+              Статьи скоро появятся...
             </p>
-            <button
-              onClick={() => setSearchQuery("")}
-              className={
-                isDark
-                  ? "mt-4 text-blue-500 hover:text-blue-400"
-                  : "mt-4 text-blue-600 hover:text-blue-700"
-              }
-            >
-              Очистить поиск
-            </button>
           </div>
         )}
       </div>

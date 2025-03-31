@@ -9,3 +9,11 @@ export const metadata: Metadata = {
   keywords:
     "блог, статьи, искусственный интеллект, автоматизация, цифровая трансформация, нейронные сети, машинное обучение, ИИ",
 };
+
+export default function BlogLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
+}

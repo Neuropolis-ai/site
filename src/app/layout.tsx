@@ -8,9 +8,11 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Noctis AI - Custom AI Solutions for Business",
+  title: "Neuropolis.ai - Цифровая трансформация и автоматизация бизнеса",
   description:
-    "Noctis AI provides cutting-edge artificial intelligence solutions to help businesses automate processes, gain insights, and improve customer experiences.",
+    "Современные IT решения для бизнеса: искусственный интеллект, автоматизация, цифровая трансформация. Создаем технологичные решения для вашего успеха.",
+  keywords:
+    "искусственный интеллект, цифровая трансформация, автоматизация, нейронные сети, машинное обучение, ИИ, бизнес решения, IT консалтинг",
 };
 
 export default function RootLayout({

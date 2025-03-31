@@ -9,6 +9,7 @@ import { BsArrowLeft } from "react-icons/bs";
 import { getArticleBySlug } from "@/lib/blogApi";
 import { Article } from "@/lib/supabase";
 import { useEffect, useState } from "react";
+import type { Metadata } from "next";
 
 export default function BlogPost() {
   const { isDark } = useTheme();
@@ -157,4 +158,35 @@ export default function BlogPost() {
       </Container>
     </div>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const article = await getArticleBySlug(params.slug);
+
+  if (!article) {
+    return {
+      title: "Статья не найдена - Neuropolis.ai",
+      description: "Запрашиваемая статья не найдена или была удалена",
+    };
+  }
+
+  return {
+    title: `${article.title} - Блог Neuropolis.ai`,
+    description:
+      article.description ||
+      `Читайте статью "${article.title}" в блоге Neuropolis.ai`,
+    keywords:
+      "искусственный интеллект, автоматизация, цифровая трансформация, нейронные сети",
+    openGraph: {
+      title: article.title,
+      description:
+        article.description ||
+        `Читайте статью "${article.title}" в блоге Neuropolis.ai`,
+      images: [{ url: article.image_url || "/assets/images/placeholder.jpg" }],
+    },
+  };
 }

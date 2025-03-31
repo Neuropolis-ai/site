@@ -81,7 +81,7 @@ const Footer = () => {
                       scrollToSection("services");
                     }}
                   >
-                    Возможности
+                    Услуги
                   </a>
                   <a
                     href="#projects"
@@ -96,20 +96,6 @@ const Footer = () => {
                     }}
                   >
                     Проекты
-                  </a>
-                  <a
-                    href="#services"
-                    className={`transition-colors cursor-pointer ${
-                      isDark
-                        ? "text-[#919191] hover:text-white"
-                        : "text-gray-600 hover:text-gray-900"
-                    }`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection("services");
-                    }}
-                  >
-                    Возможности
                   </a>
                   <a
                     href="#contact"

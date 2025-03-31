@@ -90,7 +90,7 @@ const Hero = () => {
             onClick={() => scrollToSection("services")}
             className="flex items-center gap-2 border dark:border-[#262626]  border-[#b4b4b4] dark:text-white text-gray-500 px-6 py-3 rounded-[10px] hover:bg-white/10 transition-colors"
           >
-            Наши возможности <BsArrowRight />
+            Наши услуги <BsArrowRight />
           </button>
         </div>
       </div>

@@ -181,7 +181,7 @@ const Features = () => {
               Предиктивная аналитика
             </h3>
             <p
-              className={`max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >
@@ -330,7 +330,7 @@ const Features = () => {
               Персонализированные маркетинговые кампании
             </h3>
             <p
-              className={`max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >
@@ -475,7 +475,7 @@ const Features = () => {
               Служба поддержки с ИИ-агенты
             </h3>
             <p
-              className={`max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >
@@ -631,7 +631,7 @@ const Features = () => {
               Интеграция ИИ
             </h3>
             <p
-              className={`max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >
@@ -755,7 +755,7 @@ const Features = () => {
               Создание контента с ИИ
             </h3>
             <p
-              className={`max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >
@@ -917,7 +917,7 @@ const Features = () => {
               ИИ-поиск
             </h3>
             <p
-              className={`max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >

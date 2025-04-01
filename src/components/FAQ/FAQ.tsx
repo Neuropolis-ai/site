@@ -104,7 +104,7 @@ const FAQ = () => {
                     <span className="accordion-card-line"></span>
 
                     <div
-                      className={`px-3 sm:px-[15px] pt-3 sm:pt-[15px] pb-4 sm:pb-6 text-sm sm:text-base ${
+                      className={`px-3 sm:px-[15px] pt-3 sm:pt-[15px] pb-4 sm:pb-6 text-sm sm:text-base faq-answer ${
                         isDark ? "text-[#919191]" : "text-gray-600"
                       }`}
                     >

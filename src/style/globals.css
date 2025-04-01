@@ -1,17 +1,56 @@
 /* Добавьте эти стили в ваш CSS файл */
 .left-content {
-    position: relative;
+  position: relative;
 }
 
 .left-content.is-sticky {
-    position: sticky;
-    top: 20px;
-    align-self: start;
+  position: sticky;
+  top: 20px;
+  align-self: start;
 }
 
 @media (max-width: 1023px) {
-    .left-content.is-sticky {
-        position: relative;
-        top: 0;
-    }
+  .left-content.is-sticky {
+    position: relative;
+    top: 0;
+  }
+}
+
+/* Улучшенные интервалы для текста */
+p,
+.text-sm,
+.text-base,
+.text-lg {
+  line-height: 1.7;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.3;
+}
+
+.feature-description {
+  line-height: 1.7;
+  margin-top: 0.75rem;
+}
+
+.faq-answer {
+  line-height: 1.8;
+}
+
+.ai-message,
+.user-message {
+  line-height: 1.7;
+}
+
+.leading-relaxed {
+  line-height: 1.75;
+}
+
+.leading-loose {
+  line-height: 2;
 }

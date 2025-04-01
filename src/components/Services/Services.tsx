@@ -108,7 +108,7 @@ const Services = () => {
             Как ИИ может трансформировать ваш бизнес
           </h2>
           <p
-            className={`max-w-2xl mx-auto ${
+            className={`max-w-2xl mx-auto leading-relaxed ${
               isDark ? "text-[#919191]" : "text-gray-600"
             }`}
           >
@@ -156,7 +156,7 @@ const Services = () => {
                       }`}
                     >
                       <p
-                        className={`text-sm max-[425px]:text-[11px] ${
+                        className={`text-sm max-[425px]:text-[11px] user-message ${
                           isDark ? "text-gray-300" : "text-gray-700"
                         }`}
                       >
@@ -257,7 +257,7 @@ const Services = () => {
                       style={{ transitionDelay: isTyping ? "0ms" : "1500ms" }}
                     >
                       <p
-                        className={`max-w-[400px] text-[14px] max-[425px]:text-[11px] ${
+                        className={`max-w-[400px] text-[14px] max-[425px]:text-[11px] ai-message ${
                           isDark ? "text-gray-300" : "text-gray-700"
                         }`}
                       >

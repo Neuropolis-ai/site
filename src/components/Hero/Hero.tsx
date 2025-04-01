@@ -75,7 +75,7 @@ const Hero = () => {
         </div>
 
         <p
-          className={`text-base sm:text-lg mb-6 sm:mb-8 max-[425px]:text-[14px] text-gray-500 dark:text-[#919191]`}
+          className={`text-base sm:text-lg mb-6 sm:mb-8 max-[425px]:text-[14px] text-gray-500 dark:text-[#919191] leading-relaxed`}
         >
           Автоматизируйте рутинные задачи, улучшайте взаимодействие с клиентами
           и принимайте более обоснованные решения с помощью наших

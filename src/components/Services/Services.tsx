@@ -102,7 +102,7 @@ const Services = () => {
               !isDark && "light-switch-box"
             }`}
           >
-            Возможности
+            Услуги
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold dark:text-white text-black mb-4">
             Как ИИ может трансформировать ваш бизнес
@@ -160,7 +160,7 @@ const Services = () => {
                           isDark ? "text-gray-300" : "text-gray-700"
                         }`}
                       >
-                        Как вы может помочь улучшить мои бизнес-процессы?
+                        Как вы можете помочь улучшить мои бизнес-процессы?
                       </p>
                     </div>
                   </div>

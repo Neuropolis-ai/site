@@ -1,7 +1,19 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+// Используем значения окружения или значения по умолчанию
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  "https://fbenmtscvsdmkevftofw.supabase.co";
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZiZW5tdHNjdnNkbWtldmZ0b2Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI2MDg1MjEsImV4cCI6MjA1ODE4NDUyMX0.fwhZ7ZzAa_lhP91zfRwjO5ZwlA4PsSY23S2xeHD6jJI";
+
+// Проверка наличия URL
+if (!supabaseUrl) {
+  console.warn(
+    "Supabase URL не установлен. Используется значение по умолчанию."
+  );
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 

@@ -1,21 +1,16 @@
 import { createClient } from "@supabase/supabase-js";
 
-// Используем значения окружения или значения по умолчанию
-const supabaseUrl =
-  process.env.NEXT_PUBLIC_SUPABASE_URL ||
-  "https://fbenmtscvsdmkevftofw.supabase.co";
-const supabaseAnonKey =
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZiZW5tdHNjdnNkbWtldmZ0b2Z3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI2MDg1MjEsImV4cCI6MjA1ODE4NDUyMX0.fwhZ7ZzAa_lhP91zfRwjO5ZwlA4PsSY23S2xeHD6jJI";
-
-// Проверка наличия URL
-if (!supabaseUrl) {
-  console.warn(
-    "Supabase URL не установлен. Используется значение по умолчанию."
-  );
+if (!process.env.NEXT_PUBLIC_SUPABASE_URL) {
+  throw new Error("Missing env.NEXT_PUBLIC_SUPABASE_URL");
+}
+if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+  throw new Error("Missing env.NEXT_PUBLIC_SUPABASE_ANON_KEY");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+export const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 export type BlogCategory = {
   id: string;

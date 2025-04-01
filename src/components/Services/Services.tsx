@@ -105,7 +105,7 @@ const Services = () => {
             Услуги
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold dark:text-white text-black mb-4">
-            Используйте весь потенциал ИИ
+            Как ИИ может трансформировать ваш бизнес
           </h2>
           <p
             className={`max-w-2xl mx-auto ${

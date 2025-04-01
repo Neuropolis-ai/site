@@ -138,7 +138,7 @@ const Services = () => {
               >
                 {/* Сообщение клиента */}
                 <div
-                  className={`flex items-center justify-end mb-4 gap-[7px] transition-opacity duration-500 ${
+                  className={`flex items-start justify-end mb-4 gap-[7px] transition-opacity duration-500 ${
                     isChatVisible ? "opacity-100" : "opacity-0"
                   }`}
                 >
@@ -165,7 +165,7 @@ const Services = () => {
                     </div>
                   </div>
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                    className={`user-oval rounded-full flex items-center justify-center self-start mt-[2px] ${
                       isDark
                         ? "bg-[#262626] text-white"
                         : "bg-gray-300 text-white"
@@ -188,13 +188,13 @@ const Services = () => {
 
                 {/* Сообщение AI с анимацией печати */}
                 <div
-                  className={`flex gap-3 mt-2 h-[160px] transition-opacity duration-500 ${
+                  className={`flex gap-3 mt-2 h-[160px] transition-opacity duration-500 items-start ${
                     isChatVisible ? "opacity-100" : "opacity-0"
                   }`}
                   style={{ transitionDelay: "800ms" }}
                 >
                   <div
-                    className={`w-10 h-10 ai-oval rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 ${
+                    className={`w-10 h-10 ai-oval rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-[2px] ${
                       isDark
                         ? "bg-blue-900 text-blue-200"
                         : "bg-blue-100 text-blue-600"
@@ -202,7 +202,7 @@ const Services = () => {
                   >
                     AI
                   </div>
-                  <div className="flex-1">
+                  <div className="flex flex-col">
                     <h4
                       className={`text-[14px] font-medium mb-2 max-[425px]:text-[12px] ${
                         isDark ? "text-[#a8a8a8]" : "text-gray-500"

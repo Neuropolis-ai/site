@@ -165,7 +165,7 @@ const Services = () => {
                     </div>
                   </div>
                   <div
-                    className={`w-8 h-8 user-oval rounded-full flex items-center justify-center ${
+                    className={`w-8 h-8 rounded-full flex items-center justify-center ${
                       isDark
                         ? "bg-[#262626] text-white"
                         : "bg-gray-300 text-white"

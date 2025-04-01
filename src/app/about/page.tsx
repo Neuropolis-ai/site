@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { NextPage } from "next";
 
 export const metadata: Metadata = {
   title: "О компании Neuropolis.ai - Инновационные решения для бизнеса",
@@ -9,7 +8,7 @@ export const metadata: Metadata = {
     "о компании, команда, миссия, ценности, искусственный интеллект, автоматизация, цифровая трансформация",
 };
 
-const AboutPage: NextPage = () => {
+export default function Page() {
   return (
     <div className="container mx-auto py-16 px-4">
       <h1 className="text-3xl font-bold mb-8 dark:text-white text-black">
@@ -62,6 +61,4 @@ const AboutPage: NextPage = () => {
       </div>
     </div>
   );
-};
-
-export default AboutPage;
+}

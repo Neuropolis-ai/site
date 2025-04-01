@@ -59,7 +59,7 @@ const Header = () => {
 
   // Menu items
   const menuItems = [
-    { id: "services", label: "Услуги" },
+    { id: "services", label: "Возможности" },
     { id: "projects", label: "Проекты" },
     { id: "blog", label: "Блог" },
     { id: "contact", label: "Контакты" },

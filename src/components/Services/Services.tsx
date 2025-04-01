@@ -102,10 +102,10 @@ const Services = () => {
               !isDark && "light-switch-box"
             }`}
           >
-            Услуги
+            Возможности
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold dark:text-white text-black mb-4">
-            Как ИИ может трансформировать ваш бизнес
+            Используйте весь потенциал ИИ
           </h2>
           <p
             className={`max-w-2xl mx-auto ${

@@ -76,15 +76,9 @@ export default async function BlogPost({
           </nav>
 
           <div className="mb-6">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white text-center">
               {article.title}
             </h1>
-            <div className="flex items-center text-gray-500 mb-4">
-              <span>{formatDate(article.published_at)}</span>
-              {article.source && (
-                <span className="ml-4">Источник: {article.source}</span>
-              )}
-            </div>
           </div>
 
           {article.image_url && (
@@ -99,9 +93,16 @@ export default async function BlogPost({
           )}
 
           <div
-            className="prose prose-lg max-w-none dark:prose-invert"
+            className="prose prose-lg max-w-none dark:prose-invert mb-8"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
+
+          <div className="flex items-center text-gray-500 mb-4">
+            <span>{formatDate(article.published_at)}</span>
+            {article.source && (
+              <span className="ml-4">Источник: {article.source}</span>
+            )}
+          </div>
         </div>
       </div>
     );

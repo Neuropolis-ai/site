@@ -65,7 +65,7 @@ const Hero = () => {
         </div>
 
         <div>
-          <h1 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px] font-bold dark:text-white light:text-black mb-4 sm:mb-5 md:mb-6">
+          <h1 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px] font-bold dark:text-white text-black mb-4 sm:mb-5 md:mb-6">
             Прокачайте свой бизнес
             <br />
             с помощью
@@ -92,7 +92,11 @@ const Hero = () => {
           </ButtonLink>
           <button
             onClick={() => scrollToSection("services")}
-            className="flex items-center gap-2 border dark:border-[#262626]  border-[#b4b4b4] dark:text-white text-gray-500 px-6 py-3 rounded-[10px] hover:bg-white/10 transition-colors"
+            className={`flex items-center gap-2 px-6 py-3 rounded-[12px] transition-colors ${
+              isDark
+                ? "border border-[#363636] text-[#F2F2F2] bg-[#050505] hover:bg-[#111111]"
+                : "border border-gray-300 text-gray-800 hover:bg-gray-100"
+            }`}
           >
             Наши услуги <BsArrowRight />
           </button>

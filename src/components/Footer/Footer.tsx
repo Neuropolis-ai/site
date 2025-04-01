@@ -80,7 +80,7 @@ const Footer = () => {
                       scrollToSection("services");
                     }}
                   >
-                    Возможности
+                    Услуги
                   </a>
                   <a
                     href="#projects"

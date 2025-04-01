@@ -98,7 +98,7 @@ const Hero = () => {
                 : "border border-gray-300 text-gray-800 hover:bg-gray-100"
             }`}
           >
-            Наши возможности <BsArrowRight />
+            Наши услуги <BsArrowRight />
           </button>
         </div>
       </div>

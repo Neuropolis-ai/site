@@ -2,6 +2,7 @@ import { getAllArticles } from "@/lib/blogApi";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
 export const metadata: Metadata = {
   title:
@@ -20,7 +21,7 @@ function formatDate(dateString: string) {
   }).format(new Date(dateString));
 }
 
-export default async function BlogPageComponent() {
+export default async function Page(): Promise<React.ReactNode> {
   const articles = await getAllArticles();
 
   return (

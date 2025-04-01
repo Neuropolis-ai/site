@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
 export async function generateMetadata({
   params,
@@ -37,11 +38,11 @@ function formatDate(dateString: string) {
   }).format(new Date(dateString));
 }
 
-export default async function BlogPost({
+export default async function Page({
   params,
 }: {
   params: { slug: string };
-}) {
+}): Promise<React.ReactNode> {
   try {
     const article = await getArticleBySlug(params.slug);
 

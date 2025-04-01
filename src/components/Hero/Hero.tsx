@@ -92,7 +92,7 @@ const Hero = () => {
           </ButtonLink>
           <button
             onClick={() => scrollToSection("services")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-[12px] transition-colors ${
+            className={`w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-[12px] transition-colors ${
               isDark
                 ? "border border-[#363636] text-[#F2F2F2] bg-[#050505] hover:bg-[#111111]"
                 : "border border-gray-300 text-gray-800 hover:bg-gray-100"

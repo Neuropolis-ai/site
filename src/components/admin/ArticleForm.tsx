@@ -4,12 +4,11 @@ import { Article } from "@/lib/supabase";
 import { uploadArticleImage } from "@/lib/blogApi";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import { Editor } from "@tinymce/tinymce-react";
-// Убираем импорты, вызывающие ошибки
-// import 'tinymce/tinymce';
-// import 'tinymce/themes/silver';
-// import 'tinymce/skins/ui/oxide/skin.css';
-// ... и так далее
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css"; // Импорт стилей
+
+// Динамический импорт React-Quill для использования на стороне клиента
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 type ArticleFormProps = {
   article?: Article;
@@ -32,7 +31,7 @@ export default function ArticleForm({
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [publishedAt, setPublishedAt] = useState("");
-  const editorRef = useRef<any>(null);
+  const quillRef = useRef<any>(null);
 
   // Заполнить форму данными существующей статьи при редактировании
   useEffect(() => {
@@ -135,44 +134,100 @@ export default function ArticleForm({
     }
   };
 
-  // Функция для обработки загрузки изображений в редакторе
-  const handleEditorImageUpload = async (
-    blobInfo: any,
-    progress: Function
-  ): Promise<string> => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const file = blobInfo.blob();
-        const url = await uploadArticleImage(file);
-        if (url) {
-          resolve(url);
-        } else {
-          reject("Ошибка при загрузке изображения");
+  // Загрузка изображений для редактора
+  const handleImageUploadForEditor = () => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (file) {
+        try {
+          const url = await uploadArticleImage(file);
+          if (url) {
+            // Получаем ссылку на редактор через callback функцию
+            const editor = quillRef.current?.getEditor();
+            if (editor) {
+              const range = editor.getSelection();
+              if (range) {
+                editor.insertEmbed(range.index, "image", url);
+              }
+            }
+          }
+        } catch (error) {
+          console.error("Ошибка при загрузке изображения в редактор:", error);
         }
-      } catch (error) {
-        console.error("Ошибка при загрузке изображения:", error);
-        reject("Ошибка при загрузке изображения");
       }
-    });
+    };
   };
+
+  // Модули для React-Quill
+  const modules = {
+    toolbar: {
+      container: [
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        ["bold", "italic", "underline", "strike", "blockquote"],
+        [
+          { list: "ordered" },
+          { list: "bullet" },
+          { indent: "-1" },
+          { indent: "+1" },
+        ],
+        ["link", "image", "video"],
+        [{ color: [] }, { background: [] }],
+        [{ align: [] }],
+        ["clean"],
+      ],
+      handlers: {
+        image: handleImageUploadForEditor,
+      },
+    },
+    clipboard: {
+      // Разрешаем вставку форматированного текста
+      matchVisual: false,
+    },
+  };
+
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+    "video",
+    "color",
+    "background",
+    "align",
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const publishedDate = new Date(publishedAt);
-    const editorContent = editorRef.current
-      ? editorRef.current.getContent()
-      : content;
 
     await onSubmit({
       title,
       slug,
-      content: editorContent,
+      content,
       description,
       source,
       image_url: imageUrl,
       published_at: publishedDate.toISOString(),
     });
+  };
+
+  // Функция для установки ref на ReactQuill
+  const handleQuillRef = (el: any) => {
+    quillRef.current = el;
   };
 
   return (
@@ -234,44 +289,16 @@ export default function ArticleForm({
         >
           Содержание *
         </label>
-        <div className="mt-1">
-          <Editor
-            onInit={(_, editor) => (editorRef.current = editor)}
-            initialValue={content}
-            apiKey="no-api-key" // нам нужен api-key для редактора в сети
-            init={{
-              height: 500,
-              menubar: true,
-              plugins: [
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "help",
-                "wordcount",
-              ],
-              toolbar:
-                "undo redo | formatselect | " +
-                "bold italic backcolor | alignleft aligncenter " +
-                "alignright alignjustify | bullist numlist outdent indent | " +
-                "removeformat | help | image media link",
-              content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
-              images_upload_handler: handleEditorImageUpload,
-              automatic_uploads: true,
-              file_picker_types: "image media",
-            }}
+        <div className="mt-1 quill-container">
+          <ReactQuill
+            theme="snow"
+            value={content}
+            onChange={setContent}
+            modules={modules}
+            formats={formats}
+            placeholder="Введите содержание статьи..."
+            className="dark:text-white"
+            ref={handleQuillRef}
           />
         </div>
       </div>
@@ -388,6 +415,41 @@ export default function ArticleForm({
             : "Создать статью"}
         </button>
       </div>
+
+      <style jsx global>{`
+        .quill-container {
+          height: 500px;
+        }
+        .ql-editor {
+          min-height: 400px;
+          max-height: 600px;
+        }
+        .ql-container {
+          font-size: 16px;
+        }
+        .dark .ql-toolbar.ql-snow {
+          background-color: #374151;
+          border-color: #4b5563;
+        }
+        .dark .ql-container.ql-snow {
+          border-color: #4b5563;
+        }
+        .dark .ql-editor {
+          color: #e5e7eb;
+          background-color: #1f2937;
+        }
+        .dark .ql-picker-label,
+        .dark .ql-picker-options {
+          color: #e5e7eb;
+        }
+        .dark .ql-toolbar.ql-snow .ql-formats button {
+          color: #e5e7eb;
+        }
+        .dark .ql-toolbar.ql-snow .ql-formats svg {
+          fill: #e5e7eb;
+          stroke: #e5e7eb;
+        }
+      `}</style>
     </form>
   );
 }

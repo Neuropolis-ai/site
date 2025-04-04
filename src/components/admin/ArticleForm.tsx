@@ -2,13 +2,18 @@
 
 import { Article } from "@/lib/supabase";
 import { uploadArticleImage } from "@/lib/blogApi";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css"; // Импорт стилей
 
 // Динамический импорт React-Quill для использования на стороне клиента
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-96 w-full bg-gray-100 dark:bg-gray-800 animate-pulse rounded" />
+  ),
+});
 
 type ArticleFormProps = {
   article?: Article;
@@ -31,7 +36,6 @@ export default function ArticleForm({
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [publishedAt, setPublishedAt] = useState("");
-  const quillRef = useRef<any>(null);
 
   // Заполнить форму данными существующей статьи при редактировании
   useEffect(() => {
@@ -135,11 +139,10 @@ export default function ArticleForm({
   };
 
   // Загрузка изображений для редактора
-  const handleImageUploadForEditor = () => {
+  const imageHandler = useCallback(() => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/*");
-
     input.click();
 
     input.onchange = async () => {
@@ -148,21 +151,21 @@ export default function ArticleForm({
         try {
           const url = await uploadArticleImage(file);
           if (url) {
-            // Получаем ссылку на редактор через callback функцию
-            const editor = quillRef.current?.getEditor();
-            if (editor) {
-              const range = editor.getSelection();
-              if (range) {
-                editor.insertEmbed(range.index, "image", url);
-              }
+            // Использовать ReactQuill API из модуля
+            const quill = (document.querySelector(".ql-editor") as any)?.[
+              "__quill"
+            ];
+            if (quill) {
+              const range = quill.getSelection();
+              quill.insertEmbed(range?.index || 0, "image", url);
             }
           }
         } catch (error) {
-          console.error("Ошибка при загрузке изображения в редактор:", error);
+          console.error("Ошибка загрузки изображения:", error);
         }
       }
     };
-  };
+  }, []);
 
   // Модули для React-Quill
   const modules = {
@@ -182,7 +185,7 @@ export default function ArticleForm({
         ["clean"],
       ],
       handlers: {
-        image: handleImageUploadForEditor,
+        image: imageHandler,
       },
     },
     clipboard: {
@@ -225,9 +228,8 @@ export default function ArticleForm({
     });
   };
 
-  // Функция для установки ref на ReactQuill
-  const handleQuillRef = (el: any) => {
-    quillRef.current = el;
+  const handleContentChange = (value: string) => {
+    setContent(value);
   };
 
   return (
@@ -293,12 +295,11 @@ export default function ArticleForm({
           <ReactQuill
             theme="snow"
             value={content}
-            onChange={setContent}
+            onChange={handleContentChange}
             modules={modules}
             formats={formats}
             placeholder="Введите содержание статьи..."
             className="dark:text-white"
-            ref={handleQuillRef}
           />
         </div>
       </div>

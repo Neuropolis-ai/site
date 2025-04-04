@@ -50,11 +50,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased dark:bg-[#050505] bg-[#ffffff] text-foreground`}
       >
-        <ThemeProvider>
-          <Header />
-          {children}
-          <Footer />
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

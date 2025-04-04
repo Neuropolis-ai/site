@@ -9,7 +9,7 @@ import Container from '../ui/Container'
 const testimonialData = [
     {
         id: 1,
-        name: 'Marina',
+        name: 'Марина',
         position: 'CEO',
         company: 'E-commerce Platform',
         stars: 5,
@@ -19,7 +19,7 @@ const testimonialData = [
     },
     {
         id: 2,
-        name: 'Mark J.',
+        name: 'Алекс',
         position: 'Operations Manager',
         company: 'Manufacturing Corp',
         stars: 5,
@@ -29,7 +29,7 @@ const testimonialData = [
     },
     {
         id: 3,
-        name: 'Elena R.',
+        name: 'Елена',
         position: 'Marketing Director',
         company: 'Retail Chain',
         stars: 5,
@@ -39,7 +39,7 @@ const testimonialData = [
     },
     {
         id: 4,
-        name: 'Elena R.',
+        name: 'Ольга',
         position: 'Marketing Director',
         company: 'Retail Chain',
         stars: 5,

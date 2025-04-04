@@ -60,7 +60,7 @@ const Hero = () => {
                 />
               </svg>
             </span>{" "}
-            Neropolis.ai
+            Neuropolis.ai
           </span>
         </div>
 

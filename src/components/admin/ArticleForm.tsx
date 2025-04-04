@@ -2,8 +2,9 @@
 
 import { Article } from "@/lib/supabase";
 import { uploadArticleImage } from "@/lib/blogApi";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import { Editor } from "@tinymce/tinymce-react";
 
 type ArticleFormProps = {
   article?: Article;
@@ -26,6 +27,7 @@ export default function ArticleForm({
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [publishedAt, setPublishedAt] = useState("");
+  const editorRef = useRef<any>(null);
 
   // Заполнить форму данными существующей статьи при редактировании
   useEffect(() => {
@@ -128,15 +130,39 @@ export default function ArticleForm({
     }
   };
 
+  // Функция для обработки загрузки изображений в редакторе
+  const handleEditorImageUpload = async (
+    blobInfo: any,
+    progress: Function
+  ): Promise<string> => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const file = blobInfo.blob();
+        const url = await uploadArticleImage(file);
+        if (url) {
+          resolve(url);
+        } else {
+          reject("Ошибка при загрузке изображения");
+        }
+      } catch (error) {
+        console.error("Ошибка при загрузке изображения:", error);
+        reject("Ошибка при загрузке изображения");
+      }
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const publishedDate = new Date(publishedAt);
+    const editorContent = editorRef.current
+      ? editorRef.current.getContent()
+      : content;
 
     await onSubmit({
       title,
       slug,
-      content,
+      content: editorContent,
       description,
       source,
       image_url: imageUrl,
@@ -203,14 +229,61 @@ export default function ArticleForm({
         >
           Содержание *
         </label>
-        <textarea
-          id="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          rows={15}
-          required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white"
-        />
+        <div className="mt-1">
+          <Editor
+            onInit={(_, editor) => (editorRef.current = editor)}
+            initialValue={content}
+            apiKey="no-api-key"
+            init={{
+              height: 500,
+              menubar: true,
+              plugins: [
+                "advlist",
+                "autolink",
+                "lists",
+                "link",
+                "image",
+                "charmap",
+                "preview",
+                "anchor",
+                "searchreplace",
+                "visualblocks",
+                "code",
+                "fullscreen",
+                "insertdatetime",
+                "media",
+                "table",
+                "code",
+                "help",
+                "wordcount",
+                "paste",
+                "textpattern",
+              ],
+              toolbar:
+                "undo redo | formatselect | " +
+                "bold italic backcolor | alignleft aligncenter " +
+                "alignright alignjustify | bullist numlist outdent indent | " +
+                "removeformat | help | image media link | paste",
+              content_style:
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+              paste_data_images: true,
+              paste_retain_style_properties: "all",
+              paste_word_valid_elements: "*[*]",
+              paste_webkit_styles: "all",
+              paste_merge_formats: true,
+              images_upload_handler: handleEditorImageUpload,
+              automatic_uploads: true,
+              file_picker_types: "image media",
+              skin: window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "oxide-dark"
+                : "oxide",
+              content_css: window.matchMedia("(prefers-color-scheme: dark)")
+                .matches
+                ? "dark"
+                : "default",
+            }}
+          />
+        </div>
       </div>
 
       <div>

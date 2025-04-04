@@ -5,6 +5,36 @@ import { uploadArticleImage } from "@/lib/blogApi";
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Editor } from "@tinymce/tinymce-react";
+// Импорт для использования локальной версии TinyMCE
+import "tinymce/tinymce";
+// Темы
+import "tinymce/themes/silver";
+// Скины
+import "tinymce/skins/ui/oxide/skin.css";
+import "tinymce/skins/ui/oxide/content.css";
+import "tinymce/skins/ui/oxide-dark/skin.css";
+import "tinymce/skins/ui/oxide-dark/content.css";
+import "tinymce/skins/content/default/content.css";
+import "tinymce/skins/content/dark/content.css";
+// Необходимые плагины
+import "tinymce/plugins/advlist";
+import "tinymce/plugins/autolink";
+import "tinymce/plugins/lists";
+import "tinymce/plugins/link";
+import "tinymce/plugins/image";
+import "tinymce/plugins/charmap";
+import "tinymce/plugins/preview";
+import "tinymce/plugins/anchor";
+import "tinymce/plugins/searchreplace";
+import "tinymce/plugins/visualblocks";
+import "tinymce/plugins/code";
+import "tinymce/plugins/fullscreen";
+import "tinymce/plugins/insertdatetime";
+import "tinymce/plugins/media";
+import "tinymce/plugins/table";
+import "tinymce/plugins/help";
+import "tinymce/plugins/wordcount";
+import "tinymce/plugins/paste";
 
 type ArticleFormProps = {
   article?: Article;
@@ -233,7 +263,6 @@ export default function ArticleForm({
           <Editor
             onInit={(_, editor) => (editorRef.current = editor)}
             initialValue={content}
-            apiKey="no-api-key"
             init={{
               height: 500,
               menubar: true,
@@ -253,11 +282,9 @@ export default function ArticleForm({
                 "insertdatetime",
                 "media",
                 "table",
-                "code",
                 "help",
                 "wordcount",
                 "paste",
-                "textpattern",
               ],
               toolbar:
                 "undo redo | formatselect | " +
@@ -281,6 +308,8 @@ export default function ArticleForm({
                 .matches
                 ? "dark"
                 : "default",
+              // Убираем api_key, так как используем локальную версию
+              // apiKey: "no-api-key",
             }}
           />
         </div>

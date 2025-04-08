@@ -1,0 +1,114 @@
+/* Стили для блога */
+.dark .prose,
+[data-theme="dark"] .prose {
+  color: #e0e0e0;
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6,
+[data-theme="dark"] .prose h1,
+[data-theme="dark"] .prose h2,
+[data-theme="dark"] .prose h3,
+[data-theme="dark"] .prose h4,
+[data-theme="dark"] .prose h5,
+[data-theme="dark"] .prose h6 {
+  color: #ffffff;
+}
+
+.dark .prose strong,
+[data-theme="dark"] .prose strong {
+  color: #ffffff;
+}
+
+.dark .prose a,
+[data-theme="dark"] .prose a {
+  color: #3b82f6;
+}
+
+.dark .prose blockquote,
+[data-theme="dark"] .prose blockquote {
+  color: #d1d5db;
+  border-left-color: #4b5563;
+}
+
+.dark .prose code,
+[data-theme="dark"] .prose code {
+  color: #f9fafb;
+  background-color: #1f2937;
+}
+
+.dark .prose pre,
+[data-theme="dark"] .prose pre {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+
+.dark .prose ol li::before,
+[data-theme="dark"] .prose ol li::before {
+  color: #9ca3af;
+}
+
+.dark .prose ul li::before,
+[data-theme="dark"] .prose ul li::before {
+  background-color: #9ca3af;
+}
+
+/* Скрываем маркеры ```html и ``` */
+.prose p:has(> code:only-child) {
+  display: none;
+}
+
+.prose pre:empty {
+  display: none;
+}
+
+.prose p:empty {
+  display: none;
+}
+
+/* Фиксированная высота изображений */
+.prose img {
+  max-height: 500px;
+  object-fit: contain;
+}
+
+/* Источник */
+.article-source {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(156, 163, 175, 0.2);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.article-source-link {
+  color: #3b82f6;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.article-source-link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.dark .article-source,
+[data-theme="dark"] .article-source {
+  color: #9ca3af;
+}
+
+.article-date {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.dark .article-date,
+[data-theme="dark"] .article-date {
+  color: #9ca3af;
+}

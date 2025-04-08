@@ -48,6 +48,27 @@ function formatDate(dateString: string) {
   }).format(new Date(dateString));
 }
 
+// Функция для извлечения домена из URL
+function extractDomain(url: string): string {
+  try {
+    const domain = new URL(url);
+    return domain.hostname;
+  } catch (e) {
+    return url;
+  }
+}
+
+// Функция для удаления маркеров кода из текста
+function cleanContentMarkups(content: string): string {
+  // Удаляем блоки ```html и ``` с помощью регулярных выражений
+  let cleanedContent = content
+    .replace(/```html/g, "")
+    .replace(/```/g, "")
+    .replace(/<code><\/code>/g, "");
+
+  return cleanedContent;
+}
+
 export default async function Page({
   params,
 }: {
@@ -102,6 +123,9 @@ export default async function Page({
       );
     }
 
+    // Очищаем текст статьи от маркеров кода
+    const cleanedContent = cleanContentMarkups(article.content);
+
     return (
       <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black">
         <div className="container mx-auto max-w-4xl px-4">
@@ -132,13 +156,6 @@ export default async function Page({
             <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
               {article.title}
             </h1>
-
-            <div className="flex items-center text-gray-500 mb-4">
-              <span>{formatDate(article.published_at)}</span>
-              {article.source && (
-                <span className="ml-4">Источник: {article.source}</span>
-              )}
-            </div>
           </div>
 
           {article.image_url && (
@@ -154,9 +171,34 @@ export default async function Page({
           )}
 
           <div
-            className="prose prose-lg max-w-none dark:prose-dark"
-            dangerouslySetInnerHTML={{ __html: article.content }}
+            className="prose prose-lg max-w-none dark:prose-invert lg:prose-xl"
+            dangerouslySetInnerHTML={{ __html: cleanedContent }}
           />
+
+          {/* Информация о дате и источнике внизу статьи */}
+          <div className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
+            <div className="article-date">
+              {formatDate(article.published_at)}
+            </div>
+
+            {article.source && (
+              <div className="article-source">
+                Источник:{" "}
+                {article.source.startsWith("http") ? (
+                  <a
+                    href={article.source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="article-source-link"
+                  >
+                    {extractDomain(article.source)}
+                  </a>
+                ) : (
+                  article.source
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );

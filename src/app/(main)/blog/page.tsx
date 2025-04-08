@@ -1,8 +1,13 @@
 import { getAllArticles } from "@/lib/blogApi";
+import { Article } from "@/lib/supabase";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import BlogImage from "@/components/BlogImage";
+
+// Полностью отключаем кеширование страницы
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title:
@@ -22,7 +27,16 @@ function formatDate(dateString: string) {
 }
 
 export default async function Page(): Promise<React.ReactNode> {
-  const articles = await getAllArticles();
+  let articles: Article[] = [];
+  let error = null;
+
+  try {
+    articles = await getAllArticles();
+    console.log("Получено статей на странице блога:", articles.length);
+  } catch (err) {
+    console.error("Ошибка при получении статей для страницы блога:", err);
+    error = err;
+  }
 
   return (
     <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black">
@@ -42,7 +56,16 @@ export default async function Page(): Promise<React.ReactNode> {
         </div>
 
         {/* Blog Posts Grid */}
-        {articles.length > 0 ? (
+        {error ? (
+          <div className="text-center">
+            <p className="text-lg text-red-600 dark:text-red-400 mb-4">
+              Произошла ошибка при загрузке статей
+            </p>
+            <p className="text-gray-600 dark:text-gray-400">
+              Пожалуйста, попробуйте обновить страницу
+            </p>
+          </div>
+        ) : articles.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {articles.map((post) => (
               <Link
@@ -53,11 +76,12 @@ export default async function Page(): Promise<React.ReactNode> {
                 <div className="overflow-hidden group border border-gray-200 dark:border-[#262626] rounded-xl bg-gray-50 dark:bg-[#121212]">
                   <div className="p-[12px]">
                     <div className="relative p-[12px] h-[200px] w-full overflow-hidden rounded-[12px]">
-                      <Image
-                        src={post.image_url || "/assets/images/placeholder.jpg"}
+                      <BlogImage
+                        src={post.image_url || "/placeholder.jpg"}
                         alt={post.title}
                         fill
                         className="object-cover transition-transform group-hover:scale-[1.06]"
+                        unoptimized={true}
                       />
                     </div>
                   </div>

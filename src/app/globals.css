@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Импорт стилей для блога */
-@import url("./styles.css");
+@import "styles.css";
 
 /* :root {
     --background: #ffffff;
@@ -24,6 +24,9 @@
 } */
 
 :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
   --foreground: #000;
   --background: #fff;
   --card-bg: rgba(240, 240, 240, 0.7);
@@ -31,12 +34,17 @@
   --border-color: #e0e0e0;
 }
 
-[data-theme="dark"] {
-  --foreground: #fff;
-  --background: #000;
-  --card-bg: rgba(30, 30, 30, 0.7);
-  --shadow-color: rgba(0, 0, 0, 0.2);
-  --border-color: #262626;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+    --foreground: #fff;
+    --background: #000;
+    --card-bg: rgba(30, 30, 30, 0.7);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --border-color: #262626;
+  }
 }
 
 body {

@@ -177,11 +177,11 @@ const Features = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold dark:text-white text-black mb-3">
+            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
               Предиктивная аналитика
             </h3>
             <p
-              className={`feature-description max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >
@@ -326,11 +326,11 @@ const Features = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold dark:text-white text-black mb-3">
+            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
               Персонализированные маркетинговые кампании
             </h3>
             <p
-              className={`feature-description max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >
@@ -471,11 +471,11 @@ const Features = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold dark:text-white text-black mb-3">
+            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
               Служба поддержки с ИИ-агенты
             </h3>
             <p
-              className={`feature-description max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >
@@ -627,11 +627,11 @@ const Features = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold dark:text-white text-black mb-3">
+            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
               Интеграция ИИ
             </h3>
             <p
-              className={`feature-description max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >
@@ -751,11 +751,11 @@ const Features = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold dark:text-white text-black mb-3">
+            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
               Создание контента с ИИ
             </h3>
             <p
-              className={`feature-description max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >
@@ -913,11 +913,11 @@ const Features = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold dark:text-white text-black mb-3">
+            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
               ИИ-поиск
             </h3>
             <p
-              className={`feature-description max-[425px]:text-[14px] ${
+              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
                 isDark ? "text-[#919191]" : "text-gray-600"
               }`}
             >

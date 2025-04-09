@@ -225,10 +225,10 @@ const Process = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-[20px] font-bold dark:text-white text-gray-800 mb-3">
+            <h3 className="text-base sm:text-lg font-medium dark:text-white text-gray-800 mb-3">
               Исследование и кастомизация
             </h3>
-            <p className="dark:text-[#919191] text-gray-600 max-[425px]:text-[14px]">
+            <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
               Мы начинаем с анализа потребностей вашего бизнеса и постановки
               целей, адаптируя ИИ-решения под уникальные требования вашей
               компании для достижения максимальных результатов.
@@ -408,13 +408,13 @@ const Process = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold dark:text-white text-gray-800 mb-3">
+            <h3 className="text-base sm:text-lg font-medium dark:text-white text-gray-800 mb-3">
               Бесшовная Интеграция ИИ
             </h3>
-            <p className="dark:text-[#919191] text-gray-600 max-[425px]:text-[14px]">
-              После разработки стратегии мы интегрируем наши ИИ-агенты
-              непосредственно в ваши рабочие процессы, существующее ПО или
-              платформы, обеспечивая беспрепятственную работу.
+            <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
+              Наши инженеры и разработчики ИИ интегрируют решения в вашу
+              существующую инфраструктуру, обеспечивая бесшовное взаимодействие
+              систем и максимальную автоматизацию.
             </p>
           </div>
 
@@ -606,13 +606,13 @@ const Process = () => {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold dark:text-white text-gray-800 mb-3">
+            <h3 className="text-base sm:text-lg font-medium dark:text-white text-gray-800 mb-3">
               Оптимизация и Поддержка
             </h3>
-            <p className="dark:text-[#919191] text-gray-600 max-[425px]:text-[14px]">
-              С нашей ежемесячной подпиской вы получаете постоянную оптимизацию
-              ИИ, мониторинг производительности и круглосуточную поддержку,
-              обеспечивая бесперебойную работу и развитие вашего бизнеса.
+            <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
+              После внедрения мы продолжаем мониторить и оптимизировать ИИ,
+              обеспечивая его постоянное обучение и улучшение на основе новых
+              данных и результатов работы.
             </p>
           </div>
         </div>

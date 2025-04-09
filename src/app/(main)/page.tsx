@@ -1,7 +1,7 @@
 import { getRecentArticles } from "@/lib/blogApi";
 import Link from "next/link";
 import React from "react";
-import BlogImage from "@/components/BlogImage";
+import BlogCard from "@/components/BlogCard";
 import Hero from "@/components/Hero/Hero";
 import Services from "@/components/Services/Services";
 import Features from "@/components/Features/Features";
@@ -43,32 +43,7 @@ export default async function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {recentArticles.map((post) => (
-                <Link
-                  key={post.id}
-                  href={`/blog/${post.slug}`}
-                  className="group overflow-hidden rounded-xl border border-gray-200 dark:border-[#262626] bg-gray-50 dark:bg-[#121212]"
-                >
-                  <div className="p-[12px]">
-                    <div className="relative h-[200px] w-full overflow-hidden rounded-[12px]">
-                      <BlogImage
-                        src={post.image_url || "/placeholder.jpg"}
-                        alt={post.title}
-                        fill
-                        className="object-cover transition-transform group-hover:scale-[1.06]"
-                      />
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 line-clamp-2 text-gray-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                      {post.title}
-                    </h3>
-                    {post.description && (
-                      <p className="text-sm mb-4 line-clamp-3 text-gray-600 dark:text-gray-400">
-                        {post.description}
-                      </p>
-                    )}
-                  </div>
-                </Link>
+                <BlogCard key={post.id} post={post} />
               ))}
             </div>
 

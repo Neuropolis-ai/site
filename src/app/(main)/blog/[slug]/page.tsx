@@ -171,25 +171,25 @@ export default async function Page({
           )}
 
           <div
-            className="prose prose-lg max-w-none dark:prose-invert lg:prose-xl"
+            className="prose prose-base max-w-none dark:prose-invert"
             dangerouslySetInnerHTML={{ __html: cleanedContent }}
           />
 
           {/* Информация о дате и источнике внизу статьи */}
           <div className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
-            <div className="article-date">
+            <div className="article-date text-gray-700 dark:text-gray-400">
               {formatDate(article.published_at)}
             </div>
 
             {article.source && (
-              <div className="article-source">
-                Источник:{" "}
+              <div className="article-source text-gray-700 dark:text-gray-400 mt-2">
+                <span className="font-medium">Источник:</span>{" "}
                 {article.source.startsWith("http") ? (
                   <a
                     href={article.source}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="article-source-link"
+                    className="article-source-link text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     {extractDomain(article.source)}
                   </a>

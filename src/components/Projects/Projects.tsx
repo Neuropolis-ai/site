@@ -87,7 +87,7 @@ const Projects = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold dark:text-white text-black mb-4 max-[425px]:text-center">
                 Некоторые из наших проектов
               </h2>
-              <p className="dark:text-[#919191] text-gray-600 max-w-xl max-[425px]:text-[14px]">
+              <p className="dark:text-[#919191] text-gray-600 max-w-xl max-[425px]:text-[14px] leading-relaxed">
                 Каждый из этих проектов демонстрирует, как ИИ может обеспечить
                 измеримые результаты в различных отраслях.
               </p>
@@ -136,7 +136,7 @@ const Projects = () => {
                       <h3 className="text-lg sm:text-xl font-bold dark:text-white text-gray-900 mb-3">
                         {project.title}
                       </h3>
-                      <p className="dark:text-[#919191] text-gray-600 text-xs sm:text-sm">
+                      <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
                         {project.description}
                       </p>
                     </div>

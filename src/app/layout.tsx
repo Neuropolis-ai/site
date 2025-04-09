@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import { ThemeProvider } from "@/context/ThemeContext";
+import YandexMetrika from "@/components/YandexMetrika";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../style/normalize.css";
@@ -50,7 +51,10 @@ export default function RootLayout({
       <body
         className={`${inter.className} antialiased dark:bg-[#050505] bg-[#ffffff] text-foreground`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <YandexMetrika />
+        </ThemeProvider>
       </body>
     </html>
   );

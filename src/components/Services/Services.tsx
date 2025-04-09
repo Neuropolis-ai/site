@@ -348,7 +348,7 @@ const Services = () => {
                   Чат-боты для поддержки клиентов
                 </h4>
                 <p
-                  className={`text-xs sm:text-sm ${
+                  className={`text-sm sm:text-base ${
                     isDark ? "text-[#919191]" : "text-gray-600"
                   }`}
                 >
@@ -430,7 +430,7 @@ const Services = () => {
                   Автономные ИИ-агенты
                 </h4>
                 <p
-                  className={`text-xs sm:text-sm ${
+                  className={`text-sm sm:text-base ${
                     isDark ? "text-[#919191]" : "text-gray-600"
                   }`}
                 >
@@ -502,7 +502,7 @@ const Services = () => {
                 <h4 className="dark:text-white text-gray-800 font-medium text-base sm:text-lg mb-1 sm:mb-2">
                   Стратегический консалтинг
                 </h4>
-                <p className="dark:text-[#919191] text-gray-600 text-xs sm:text-sm">
+                <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
                   Мы оцениваем ваш бизнес и отрасль, определяем, где ИИ может
                   принести наибольшую пользу с учетом ваших целей и ресурсов.
                 </p>

@@ -93,7 +93,7 @@ const Header = () => {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`text-[14px] py-[6px] px-[16px] rounded-[12px] dark:text-white 
+              className={`text-[14px] py-[6px] px-[16px] rounded-[12px] text-gray-800 dark:text-white 
                             ${
                               activeSection === item.id
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
@@ -120,7 +120,7 @@ const Header = () => {
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="p-[6px] rounded-full bg-[#e0e0e0] dark:bg-[#262626] text-[var(--text-primary)] dark:text-white"
+            className="p-[6px] rounded-full bg-[#e0e0e0] dark:bg-[#262626] text-gray-800 dark:text-white"
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
@@ -128,7 +128,7 @@ const Header = () => {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="text-[var(--text-primary)] p-2 dark:text-white"
+            className="text-gray-800 p-2 dark:text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
@@ -150,7 +150,7 @@ const Header = () => {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-center dark:text-white 
+              className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-center text-gray-800 dark:text-white 
                             ${
                               activeSection === item.id
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"

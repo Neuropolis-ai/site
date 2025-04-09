@@ -207,7 +207,7 @@ const Workflow = () => {
           </div>
         </div>
 
-        <div>
+        <div className="mt-[30px]">
           <h4 className="font-medium text-base sm:text-lg mb-1 sm:mb-2 dark:text-white text-gray-800">
             Автоматизация рабочих процессов
           </h4>

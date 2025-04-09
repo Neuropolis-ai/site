@@ -10,6 +10,7 @@ import Projects from "@/components/Projects/Projects";
 import Testimonials from "@/components/Testimonials/Testimonials";
 import Contact from "@/components/Contact/Contact";
 import FAQ from "@/components/FAQ/FAQ";
+import { BsArrowRight } from "react-icons/bs";
 
 // Отключаем кеширование данных для этой страницы
 export const dynamic = "force-dynamic";
@@ -50,9 +51,10 @@ export default async function Home() {
             <div className="text-center mt-10">
               <Link
                 href="/blog"
-                className="inline-block px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[12px] border border-gray-300 text-gray-800 hover:bg-gray-100 dark:border-[#363636] dark:text-[#F2F2F2] dark:bg-[#050505] dark:hover:bg-[#111111] font-medium transition-colors"
               >
                 Все статьи
+                <BsArrowRight />
               </Link>
             </div>
           </div>

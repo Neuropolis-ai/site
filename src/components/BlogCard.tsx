@@ -25,7 +25,11 @@ export default function BlogCard({ post }: BlogCardProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group overflow-hidden rounded-xl border border-gray-200 dark:border-[#262626] bg-gray-50 dark:bg-[#121212] hover:shadow-md transition-all duration-300"
+      className={`group overflow-hidden rounded-xl ${
+        isDark
+          ? "border border-[#0d1635] bg-[#050A1B] process-card"
+          : "border border-gray-200 bg-gray-50"
+      } hover:shadow-md transition-all duration-300`}
     >
       <div className="p-[12px]">
         <div className="relative h-[200px] w-full overflow-hidden rounded-[12px]">
@@ -41,7 +45,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         <h3
           className={`text-base font-semibold mb-4 line-clamp-2 ${
             isDark ? "text-white" : "text-gray-800"
-          } group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors`}
+          } group-hover:text-gray-400 dark:group-hover:text-gray-300 transition-colors`}
         >
           {post.title}
         </h3>
@@ -62,7 +66,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             {formatDate(post.published_at)}
           </span>
           <BsArrowRight
-            className={`text-lg ${isDark ? "text-blue-500" : "text-blue-600"}`}
+            className={`text-lg ${isDark ? "text-white" : "text-gray-800"}`}
           />
         </div>
       </div>

@@ -51,13 +51,13 @@ const Blog = () => {
         <div className="flex justify-center mt-12">
           <Link
             href="/blog"
-            className={`flex items-center gap-2 px-6 py-3 rounded-[10px] transition-colors ${
+            className={`w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-[12px] transition-colors ${
               isDark
-                ? "border border-[#262626] text-white hover:bg-white/10"
+                ? "border border-[#363636] text-[#F2F2F2] bg-[#050505] hover:bg-[#111111]"
                 : "border border-gray-300 text-gray-800 hover:bg-gray-100"
             }`}
           >
-            Перейти в Блог
+            Все статьи
             <BsArrowRight />
           </Link>
         </div>

@@ -368,7 +368,7 @@ const Services = () => {
               }`}
             >
               <div
-                className={` flex items-center justify-center h-[180px] sm:h-[240px]  ${
+                className={` flex items-center justify-center h-[341px] sm:h-[341px]  ${
                   isDark
                     ? "ai-card ai-agent"
                     : "bg-white rounded-xl border border-gray-100 mb-[20px]"
@@ -421,7 +421,7 @@ const Services = () => {
                 </div>
               </div>
 
-              <div>
+              <div className="mt-[30px]">
                 <h4
                   className={`font-medium text-base sm:text-lg mb-1 sm:mb-2 ${
                     isDark ? "text-white" : "text-gray-800"
@@ -454,7 +454,7 @@ const Services = () => {
               <div>
                 <div
                   ref={chartRef}
-                  className={`flex items-end justify-center h-[150px]  sm:h-[200px] ${
+                  className={`flex items-end justify-center h-[235.23px] sm:h-[235.23px] ${
                     isDark
                       ? "ai-card "
                       : "bg-white rounded-xl border border-gray-100"

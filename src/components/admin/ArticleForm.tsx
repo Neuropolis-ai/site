@@ -152,9 +152,8 @@ export default function ArticleForm({
           const url = await uploadArticleImage(file);
           if (url) {
             // Использовать ReactQuill API из модуля
-            const quill = (document.querySelector(".ql-editor") as any)?.[
-              "__quill"
-            ];
+            const quill = (document.querySelector(".ql-editor") as any)
+              ?.__quill;
             if (quill) {
               const range = quill.getSelection();
               quill.insertEmbed(range?.index || 0, "image", url);
@@ -373,7 +372,8 @@ export default function ArticleForm({
         {imagePreview && (
           <div className="mt-4">
             <p className="text-sm text-yellow-600 dark:text-yellow-400 mb-2">
-              Изображение не загружено. Нажмите "Загрузить", чтобы сохранить.
+              Изображение не загружено. Нажмите &quot;Загрузить&quot;, чтобы
+              сохранить.
             </p>
             <div className="relative h-40 w-full max-w-md rounded overflow-hidden">
               <Image

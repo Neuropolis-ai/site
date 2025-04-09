@@ -2,7 +2,6 @@
 
 import { useTheme } from "@/context/ThemeContext";
 import { Article } from "@/lib/supabase";
-import Image from "next/image";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import BlogImage from "./BlogImage";

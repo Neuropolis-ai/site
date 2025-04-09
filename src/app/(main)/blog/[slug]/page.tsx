@@ -61,7 +61,7 @@ function extractDomain(url: string): string {
 // Функция для удаления маркеров кода из текста
 function cleanContentMarkups(content: string): string {
   // Удаляем блоки ```html и ``` с помощью регулярных выражений
-  let cleanedContent = content
+  const cleanedContent = content
     .replace(/```html/g, "")
     .replace(/```/g, "")
     .replace(/<code><\/code>/g, "");

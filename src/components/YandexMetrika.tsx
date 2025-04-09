@@ -3,19 +3,28 @@
 import Script from "next/script";
 import { useEffect } from "react";
 
+interface YandexMetrikaWindow extends Window {
+  ym?: (
+    counterId: number,
+    method: string,
+    options?: Record<string, unknown>
+  ) => void;
+}
+
 export default function YandexMetrika() {
   useEffect(() => {
     // Этот код выполнится только на стороне клиента
     const attachYandexMetrika = () => {
       // Убедимся, что этот скрипт не был загружен ранее
-      if ((window as any).ym) return;
+      if ((window as YandexMetrikaWindow).ym) return;
 
-      (window as any).ym =
-        (window as any).ym ||
-        function () {
-          ((window as any).ym.a = (window as any).ym.a || []).push(arguments);
+      (window as YandexMetrikaWindow).ym =
+        (window as YandexMetrikaWindow).ym ||
+        function (...params: unknown[]) {
+          (((window as YandexMetrikaWindow).ym as any).a =
+            ((window as YandexMetrikaWindow).ym as any).a || []).push(params);
         };
-      (window as any).ym.l = 1 * new Date().getTime();
+      ((window as YandexMetrikaWindow).ym as any).l = 1 * new Date().getTime();
     };
 
     attachYandexMetrika();
@@ -45,6 +54,7 @@ export default function YandexMetrika() {
       />
       <noscript>
         <div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://mc.yandex.ru/watch/100875330"
             style={{ position: "absolute", left: "-9999px" }}

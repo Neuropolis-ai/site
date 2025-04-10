@@ -40,9 +40,9 @@ export default function BlogCard({ post }: BlogCardProps) {
           />
         </div>
       </div>
-      <div className="p-6 flex flex-col flex-grow">
+      <div className="p-5 flex flex-col flex-grow">
         <h3
-          className={`text-lg font-semibold mb-4 line-clamp-2 ${
+          className={`text-lg font-semibold -mt-1 mb-2 line-clamp-2 ${
             isDark
               ? "text-white dark:group-hover:text-gray-300"
               : "text-gray-800 group-hover:text-gray-900"
@@ -59,7 +59,7 @@ export default function BlogCard({ post }: BlogCardProps) {
             {post.description}
           </p>
         )}
-        <span className="line-a mb-4 block"></span>
+        <span className="line-a mb-3 block"></span>
         <div className="flex items-center justify-between mt-auto">
           <span
             className={`text-base ${

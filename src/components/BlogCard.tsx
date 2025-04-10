@@ -42,7 +42,7 @@ export default function BlogCard({ post }: BlogCardProps) {
       </div>
       <div className="p-6 flex flex-col flex-grow">
         <h3
-          className={`text-base font-semibold mb-4 line-clamp-2 ${
+          className={`text-lg font-semibold mb-4 line-clamp-2 ${
             isDark
               ? "text-white dark:group-hover:text-gray-300"
               : "text-gray-800 group-hover:text-gray-900"
@@ -52,7 +52,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         </h3>
         {post.description && (
           <p
-            className={`text-sm mb-4 line-clamp-3 ${
+            className={`text-base mb-4 line-clamp-3 ${
               isDark ? "text-gray-400" : "text-gray-600"
             }`}
           >
@@ -62,12 +62,14 @@ export default function BlogCard({ post }: BlogCardProps) {
         <span className="line-a mb-4 block"></span>
         <div className="flex items-center justify-between mt-auto">
           <span
-            className={`text-sm ${isDark ? "text-[#919191]" : "text-gray-500"}`}
+            className={`text-base ${
+              isDark ? "text-[#919191]" : "text-gray-500"
+            }`}
           >
             {formatDate(post.published_at)}
           </span>
           <BsArrowRight
-            className={`text-lg ${isDark ? "text-white" : "text-gray-800"}`}
+            className={`text-xl ${isDark ? "text-white" : "text-gray-800"}`}
           />
         </div>
       </div>

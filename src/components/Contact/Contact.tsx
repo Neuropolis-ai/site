@@ -179,12 +179,12 @@ const Contact = () => {
                   Email:
                 </h3>
                 <a
-                  href="mailto:0code.zm@gmail.com"
+                  href="mailto:agent@neuropolis.ai"
                   className={`${
                     isDark ? "text-white" : "text-gray-800"
                   } text-xl font-medium max-[1024px]:text-base`}
                 >
-                  0code.zm@gmail.com
+                  agent@neuropolis.ai
                 </a>
               </div>
 
@@ -204,6 +204,23 @@ const Contact = () => {
                 >
                   +7 960 107-89-00
                 </a>
+              </div>
+
+              <div className="mb-8">
+                <h3
+                  className={`${
+                    isDark ? "text-[#919191]" : "text-gray-500"
+                  } mb-2`}
+                >
+                  Адрес:
+                </h3>
+                <p
+                  className={`${
+                    isDark ? "text-white" : "text-gray-800"
+                  } text-xl font-medium max-[1024px]:text-base`}
+                >
+                  Россия, Воронеж
+                </p>
               </div>
             </div>
           </div>

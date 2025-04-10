@@ -330,12 +330,59 @@ export default async function ArticlePage({
             </main>
 
             <footer>
+              {/* Кнопки шеринга */}
+              <div className="mt-8 flex items-center gap-4">
+                <span className="text-gray-700 dark:text-gray-300">
+                  Поделиться:
+                </span>
+                <a
+                  href={`https://t.me/share/url?url=${encodeURIComponent(
+                    articleUrl
+                  )}&text=${encodeURIComponent(article.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-700 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
+                  aria-label="Поделиться в Telegram"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.38 15.84 14.22 15.51 15.99C15.37 16.74 15.09 16.99 14.83 17.02C14.25 17.07 13.81 16.64 13.25 16.27C12.37 15.69 11.87 15.33 11.02 14.77C10.03 14.12 10.67 13.76 11.24 13.18C11.39 13.03 13.95 10.7 14 10.49C14.0069 10.4582 14.006 10.4252 13.9973 10.3938C13.9886 10.3624 13.9724 10.3337 13.95 10.31C13.89 10.26 13.81 10.28 13.74 10.29C13.65 10.31 12.25 11.24 9.52 13.08C9.1 13.35 8.72 13.49 8.38 13.48C8.01 13.47 7.3 13.28 6.76 13.12C6.1 12.92 5.58 12.81 5.62 12.45C5.64 12.26 5.9 12.07 6.4 11.88C9.32 10.59 11.25 9.74 12.18 9.33C14.86 8.15 15.45 7.94 15.83 7.93C15.91 7.93 16.09 7.95 16.21 8.05C16.29 8.12 16.34 8.23 16.35 8.33C16.36 8.44 16.37 8.56 16.64 8.8Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href={`https://vk.com/share.php?url=${encodeURIComponent(
+                    articleUrl
+                  )}&title=${encodeURIComponent(article.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-700 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
+                  aria-label="Поделиться ВКонтакте"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93V15.07C2 20.67 3.33 22 8.93 22H15.07C20.67 22 22 20.67 22 15.07V8.93C22 3.33 20.67 2 15.07 2ZM18.15 16.27H16.69C16.01 16.27 15.81 15.67 14.76 14.62C13.85 13.74 13.5 13.59 13.24 13.59C12.89 13.59 12.79 13.69 12.79 14.18V15.59C12.79 16 12.64 16.19 11.65 16.19C10.57 16.15 9.52 15.82 8.59 15.23C7.66 14.64 6.88 13.81 6.31 12.83C5.11 11.2 4.11 9.29 3.38 7.23C3.38 6.89 3.53 6.59 4.02 6.59H5.47C5.89 6.59 6.07 6.78 6.26 7.23C7.11 9.89 8.45 12.16 9.08 12.16C9.3 12.16 9.4 12.06 9.4 11.51V9.33C9.34 8.39 8.9 8.32 8.9 7.91C8.91 7.75 9.03 7.61 9.19 7.61H11.5C11.84 7.61 11.98 7.79 11.98 8.23V11.01C11.98 11.35 12.16 11.48 12.27 11.48C12.49 11.48 12.67 11.35 13.08 10.94C13.98 9.77 14.71 8.49 15.25 7.13C15.32 6.94 15.47 6.79 15.65 6.72C15.77 6.68 15.9 6.66 16.03 6.67H17.48C17.96 6.67 18.08 6.91 17.96 7.23C17.29 8.87 16.45 10.43 15.45 11.9C15.27 12.2 15.21 12.34 15.45 12.64C15.61 12.86 16.14 13.31 16.5 13.73C17.04 14.29 17.49 14.93 17.83 15.63C17.99 16.06 17.77 16.27 18.15 16.27Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+              </div>
+
               {/* Метаданные статьи */}
               <div className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-800">
-                <div className="article-date text-gray-700 dark:text-gray-400">
-                  {formatDate(article.published_at)}
-                </div>
-
                 {article.source && (
                   <div className="article-source text-gray-700 dark:text-gray-400">
                     <span className="font-medium">Источник:</span>{" "}
@@ -353,47 +400,6 @@ export default async function ArticlePage({
                     )}
                   </div>
                 )}
-              </div>
-
-              {/* Кнопки шеринга */}
-              <div className="mt-8 flex items-center gap-4">
-                <span className="text-gray-700 dark:text-gray-300">
-                  Поделиться:
-                </span>
-                <a
-                  href={`https://t.me/share/url?url=${encodeURIComponent(
-                    articleUrl
-                  )}&text=${encodeURIComponent(article.title)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-700 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
-                  aria-label="Поделиться в Telegram"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2c5.514 0 10 4.486 10 10s-4.486 10-10 10S2 17.514 2 12 6.486 2 12 2zm-1.908 14.05l-.391-.015a.6.6 0 0 1-.53-.41l-1.13-3.765 7.415-4.35-.69 1.1-5.325 3.245c-.2.115-.285.39-.195.535.09.145.315.215.51.155l1.495-.425 3.235 2.365c.175.125.41.125.585 0 .175-.125.25-.355.185-.56l-1.94-6.785c-.075-.26-.335-.425-.6-.38-.135.02-.255.08-.345.18L5.45 12.81c-.195.2-.25.49-.14.75.105.245.35.41.62.41h4.155l.007.01z"></path>
-                  </svg>
-                </a>
-                <a
-                  href={`https://vk.com/share.php?url=${encodeURIComponent(
-                    articleUrl
-                  )}&title=${encodeURIComponent(article.title)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-700 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400 transition-colors"
-                  aria-label="Поделиться ВКонтакте"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.884 14.184c.17.28.36.56.52.84.72 1.58 1.03 2.58 1.39 3.58H17.2c-.36-.78-.93-1.76-1.54-2.63-.8-1.16-1.48-1.94-1.8-2.14-.33-.2-.57-.27-.8-.27-.39 0-.58.34-.58.97v2.97c0 .42-.22.72-.92 1.08h-2.29c-1.89 0-2.79-1.19-3.93-2.97-1.14-1.78-2.3-4.14-3.28-7.09l4.51.01c.51.01.97.33 1.14.83.17.5.32 1.02.49 1.53.16.52.38 1.25.65 2.2.28.96.51 1.64.69 2.04.32-.38.5-1.22.54-2.54.05-1.32.07-2.08.07-2.3 0-.42-.05-.72-.14-.9-.09-.17-.27-.32-.52-.43-.26-.12-.58-.17-.95-.17-.37 0-.78.09-1.23.28.16-.53.35-.98.59-1.33.23-.36.63-.66 1.22-.93.58-.27 1.38-.4 2.41-.4h.78c1.16 0 2.04.18 2.65.55.61.37.91 1.03.91 1.98l-.09 2.59c-.06 1.72-.09 2.73-.09 3.03 0 .18.01.38.02.62.01.24.03.43.08.58.04.15.11.28.21.37.09.09.24.13.45.13.22 0 .48-.11.8-.34.32-.23.68-.63 1.09-1.19.42-.57.78-1.18 1.09-1.85.31-.67.59-1.41.84-2.21.07-.25.17-.45.29-.58.12-.13.29-.2.49-.2h3.03l-.4.82z"></path>
-                  </svg>
-                </a>
               </div>
 
               {/* Навигация между статьями */}
@@ -470,17 +476,32 @@ export default async function ArticlePage({
                   <Link
                     key={relatedArticle.id}
                     href={`/blog/${relatedArticle.slug}`}
-                    className="block p-4 border border-gray-200 dark:border-gray-800 rounded-lg hover:shadow-md transition-shadow"
+                    className="block border border-gray-200 dark:border-gray-800 rounded-lg hover:shadow-md transition-shadow overflow-hidden group"
                   >
-                    <h3 className="font-medium text-gray-900 dark:text-white mb-2 line-clamp-2">
-                      {relatedArticle.title}
-                    </h3>
-                    <time
-                      dateTime={relatedArticle.published_at}
-                      className="text-sm text-gray-500 dark:text-gray-400"
-                    >
-                      {formatDate(relatedArticle.published_at)}
-                    </time>
+                    <div className="relative w-full h-48 overflow-hidden">
+                      {relatedArticle.image_url ? (
+                        <Image
+                          src={relatedArticle.image_url}
+                          alt={relatedArticle.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600" />
+                      )}
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-medium text-gray-900 dark:text-white mb-2 line-clamp-2">
+                        {relatedArticle.title}
+                      </h3>
+                      <time
+                        dateTime={relatedArticle.published_at}
+                        className="text-sm text-gray-500 dark:text-gray-400"
+                      >
+                        {formatDate(relatedArticle.published_at)}
+                      </time>
+                    </div>
                   </Link>
                 ))}
             </div>

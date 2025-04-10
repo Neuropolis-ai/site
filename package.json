@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "HOST=172.20.10.8 PORT=3000 next dev",
+    "dev": "next dev -p ${PORT:-3002}",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

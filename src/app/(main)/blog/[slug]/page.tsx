@@ -180,7 +180,7 @@ export default async function Page({
           </div>
 
           {article.image_url && (
-            <div className="relative h-[400px] w-full mb-8 rounded-xl overflow-hidden">
+            <div className="relative w-full mb-8 rounded-xl overflow-hidden aspect-[16/9] sm:h-[400px]">
               <BlogImage
                 src={article.image_url}
                 alt={article.title}

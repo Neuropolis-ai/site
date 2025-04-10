@@ -118,9 +118,23 @@
 }
 
 .prose img {
+  max-width: 100%;
+  height: auto;
   max-height: 500px;
   object-fit: contain;
   margin: 1.5rem auto;
+  display: block;
+  border-radius: 0.5rem;
+}
+
+/* Стили для адаптивных изображений в статьях */
+@media (max-width: 768px) {
+  .prose img {
+    max-height: none;
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-position: center;
+  }
 }
 
 /* Стили для карточек блога */

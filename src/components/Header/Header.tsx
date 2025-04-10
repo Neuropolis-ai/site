@@ -99,7 +99,7 @@ const Header = () => {
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
                                 : ""
                             } 
-                            hover:bg-blue-700 hover:text-white dark:hover:text-[var(--text-primary)] transition-colors`}
+                            hover:text-[#0a2e6b] dark:hover:text-[var(--text-primary)] transition-colors`}
             >
               {item.label}
             </button>
@@ -156,7 +156,7 @@ const Header = () => {
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
                                 : "bg-transparent"
                             } 
-                            hover:bg-blue-700 hover:text-white dark:hover:bg-[#262626] transition-colors`}
+                            hover:text-[#0a2e6b] dark:hover:bg-[#262626] transition-colors`}
             >
               {item.label}
             </button>

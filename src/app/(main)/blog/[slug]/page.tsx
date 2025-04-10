@@ -1,4 +1,4 @@
-import { getArticleBySlug } from "@/lib/blogApi";
+import { getArticleBySlug, getAllArticles } from "@/lib/blogApi";
 import { Metadata } from "next";
 import React from "react";
 import Link from "next/link";
@@ -69,6 +69,24 @@ function cleanContentMarkups(content: string): string {
   return cleanedContent;
 }
 
+// Функция для получения соседних статей
+async function getAdjacentArticles(currentSlug: string) {
+  const allArticles = await getAllArticles();
+  const currentIndex = allArticles.findIndex(
+    (article) => article.slug === currentSlug
+  );
+
+  if (currentIndex === -1) return { prev: null, next: null };
+
+  const prev = currentIndex > 0 ? allArticles[currentIndex - 1] : null;
+  const next =
+    currentIndex < allArticles.length - 1
+      ? allArticles[currentIndex + 1]
+      : null;
+
+  return { prev, next };
+}
+
 export default async function Page({
   params,
 }: {
@@ -126,6 +144,9 @@ export default async function Page({
     // Очищаем текст статьи от маркеров кода
     const cleanedContent = cleanContentMarkups(article.content);
 
+    // Получаем соседние статьи
+    const { prev, next } = await getAdjacentArticles(params.slug);
+
     return (
       <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black">
         <div className="container mx-auto max-w-4xl px-4">
@@ -153,7 +174,7 @@ export default async function Page({
           </nav>
 
           <div className="mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white text-center leading-relaxed">
               {article.title}
             </h1>
           </div>
@@ -182,7 +203,7 @@ export default async function Page({
             </div>
 
             {article.source && (
-              <div className="article-source text-gray-700 dark:text-gray-400 mt-2">
+              <div className="article-source text-gray-700 dark:text-gray-400">
                 <span className="font-medium">Источник:</span>{" "}
                 {article.source.startsWith("http") ? (
                   <a
@@ -197,6 +218,59 @@ export default async function Page({
                   article.source
                 )}
               </div>
+            )}
+          </div>
+
+          {/* Навигация между статьями */}
+          <div className="mt-10 flex justify-between">
+            {prev ? (
+              <Link
+                href={`/blog/${prev.slug}`}
+                className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                <svg
+                  className="w-4 h-4 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M15 19l-7-7 7-7"
+                  ></path>
+                </svg>
+                Предыдущая статья
+              </Link>
+            ) : (
+              <div></div>
+            )}
+
+            {next ? (
+              <Link
+                href={`/blog/${next.slug}`}
+                className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              >
+                Следующая статья
+                <svg
+                  className="w-4 h-4 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </Link>
+            ) : (
+              <div></div>
             )}
           </div>
         </div>

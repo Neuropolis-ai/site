@@ -24,7 +24,7 @@ export default function BlogCard({ post }: BlogCardProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className={`group overflow-hidden rounded-xl ${
+      className={`group overflow-hidden rounded-xl flex flex-col h-full ${
         isDark
           ? "border border-[#0d1635] bg-[#050A1B] process-card"
           : "border border-gray-200 bg-gray-50"
@@ -40,11 +40,13 @@ export default function BlogCard({ post }: BlogCardProps) {
           />
         </div>
       </div>
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-grow">
         <h3
           className={`text-base font-semibold mb-4 line-clamp-2 ${
-            isDark ? "text-white" : "text-gray-800"
-          } group-hover:text-gray-400 dark:group-hover:text-gray-300 transition-colors`}
+            isDark
+              ? "text-white dark:group-hover:text-gray-300"
+              : "text-gray-800 group-hover:text-gray-900"
+          } transition-colors`}
         >
           {post.title}
         </h3>
@@ -58,7 +60,7 @@ export default function BlogCard({ post }: BlogCardProps) {
           </p>
         )}
         <span className="line-a mb-4 block"></span>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-auto">
           <span
             className={`text-sm ${isDark ? "text-[#919191]" : "text-gray-500"}`}
           >

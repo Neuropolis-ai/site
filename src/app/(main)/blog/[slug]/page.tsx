@@ -1,13 +1,12 @@
+"use client";
+
 import { getArticleBySlug, getAllArticles } from "@/lib/blogApi";
-import { Metadata } from "next";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Article } from "@/lib/supabase";
 import { notFound } from "next/navigation";
-
-// Используем статическую генерацию
-export const dynamic = "force-static";
+import BlogCard from "@/components/BlogCard";
 
 // Указываем, что страница должна предварительно рендериться
 export const generateStaticParams = async (): Promise<{ slug: string }[]> => {
@@ -17,85 +16,6 @@ export const generateStaticParams = async (): Promise<{ slug: string }[]> => {
     slug: article.slug,
   }));
 };
-
-// Расширенная генерация метаданных для SEO
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const article = await getArticleBySlug(params.slug);
-
-  if (!article) {
-    return {
-      title: "Статья не найдена | Neuropolis.ai",
-      description: "Запрашиваемая статья не найдена",
-    };
-  }
-
-  // Базовый URL сайта
-  const baseUrl = "https://neuropolis.ai";
-  // URL текущей статьи
-  const articleUrl = `${baseUrl}/blog/${params.slug}`;
-
-  // Формируем keywords на основе тегов или содержимого статьи
-  const keywordsBase =
-    "искусственный интеллект, ИИ, автоматизация, цифровая трансформация";
-  const keywordsFromTitle = article.title
-    .toLowerCase()
-    .split(" ")
-    .filter((word) => word.length > 3)
-    .slice(0, 5)
-    .join(", ");
-
-  return {
-    title: `${article.title} | Neuropolis.ai`,
-    description: article.description || generateDescription(article.content),
-    keywords: `${keywordsBase}, ${keywordsFromTitle}`,
-
-    // Open Graph метаданные
-    openGraph: {
-      type: "article",
-      url: articleUrl,
-      title: article.title,
-      description: article.description || generateDescription(article.content),
-      siteName: "Neuropolis.ai",
-      images: article.image_url
-        ? [
-            {
-              url: article.image_url,
-              alt: article.title,
-              width: 1200,
-              height: 630,
-            },
-          ]
-        : [],
-      locale: "ru_RU",
-      publishedTime: article.published_at,
-      modifiedTime: article.published_at,
-    },
-
-    // Twitter Card метаданные
-    twitter: {
-      card: "summary_large_image",
-      title: article.title,
-      description: article.description || generateDescription(article.content),
-      images: article.image_url ? [article.image_url] : [],
-    },
-
-    // Указываем canonical URL
-    alternates: {
-      canonical: articleUrl,
-    },
-
-    // Прочие мета-теги
-    authors: [{ name: "Neuropolis.ai" }],
-    robots: {
-      index: true,
-      follow: true,
-    },
-  };
-}
 
 // Функция для генерации описания из контента
 function generateDescription(content: string): string {
@@ -253,23 +173,81 @@ function JsonLd({ article, url }: { article: Article; url: string }) {
 }
 
 // Основной компонент страницы
-export default async function ArticlePage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const article = await getArticleBySlug(params.slug);
+export default function ArticlePage({ params }: { params: { slug: string } }) {
+  const [article, setArticle] = useState<Article | null>(null);
+  const [prevArticle, setPrevArticle] = useState<Article | null>(null);
+  const [nextArticle, setNextArticle] = useState<Article | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Если статья не найдена, возвращаем 404
-  if (!article) {
-    notFound();
+  useEffect(() => {
+    const fetchArticle = async () => {
+      try {
+        setIsLoading(true);
+        // Получаем статью по slug
+        const articleData = await getArticleBySlug(params.slug);
+
+        if (!articleData) {
+          setError("Статья не найдена");
+          return;
+        }
+
+        setArticle(articleData);
+
+        // Получаем соседние статьи
+        const { prev, next } = await getAdjacentArticles(params.slug);
+        setPrevArticle(prev);
+        setNextArticle(next);
+      } catch (err) {
+        console.error("Ошибка при загрузке статьи:", err);
+        setError("Произошла ошибка при загрузке статьи");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchArticle();
+  }, [params.slug]);
+
+  // Если статья не найдена или произошла ошибка
+  if (error) {
+    return (
+      <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            {error}
+          </h1>
+          <Link href="/blog" className="text-blue-500 hover:underline">
+            Вернуться к блогу
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // Пока загружаются данные
+  if (isLoading || !article) {
+    return (
+      <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div
+            className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent text-blue-600 dark:text-blue-400 align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+            role="status"
+          >
+            <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+              Загрузка...
+            </span>
+          </div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">
+            Загрузка статьи...
+          </p>
+        </div>
+      </div>
+    );
   }
 
   // Очищаем текст статьи от маркеров кода
   const cleanedContent = cleanContentMarkups(article.content);
-
-  // Получаем соседние статьи
-  const { prev, next } = await getAdjacentArticles(params.slug);
 
   // Формируем URL статьи
   const baseUrl = "https://neuropolis.ai";
@@ -335,53 +313,137 @@ export default async function ArticlePage({
                 <span className="text-gray-700 dark:text-gray-300">
                   Поделиться:
                 </span>
+                {/* Telegram */}
                 <a
                   href={`https://t.me/share/url?url=${encodeURIComponent(
                     articleUrl
                   )}&text=${encodeURIComponent(article.title)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-700 hover:text-[#229ED9] dark:text-gray-300 dark:hover:text-[#229ED9] transition-colors"
+                  className="transition-transform hover:scale-110"
                   aria-label="Поделиться в Telegram"
                 >
                   <svg
+                    viewBox="0 0 16 16"
                     width="24"
                     height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
                     xmlns="http://www.w3.org/2000/svg"
+                    xmlnsXlink="http://www.w3.org/1999/xlink"
                   >
+                    <linearGradient
+                      id="a"
+                      x1="66.67%"
+                      x2="41.67%"
+                      y1="16.67%"
+                      y2="75%"
+                    >
+                      <stop offset="0" stopColor="#37aee2" />
+                      <stop offset="1" stopColor="#1e96c8" />
+                    </linearGradient>
+                    <linearGradient
+                      id="b"
+                      x1="65.97%"
+                      x2="85.12%"
+                      y1="43.69%"
+                      y2="80.24%"
+                    >
+                      <stop offset="0" stopColor="#eff7fc" />
+                      <stop offset="1" stopColor="#fff" />
+                    </linearGradient>
+                    <circle cx="8" cy="8" fill="url(#a)" r="8" />
                     <path
-                      d="M12 0C5.37 0 0 5.37 0 12C0 18.63 5.37 24 12 24C18.63 24 24 18.63 24 12C24 5.37 18.63 0 12 0ZM17.84 8.22C17.68 10.08 16.95 14.47 16.58 16.6C16.42 17.53 16.09 17.84 15.77 17.88C15.08 17.95 14.55 17.42 13.87 16.97C12.8 16.27 12.21 15.83 11.17 15.14C9.96 14.34 10.74 13.91 11.42 13.21C11.61 13.02 14.67 10.19 14.73 9.92C14.74 9.88 14.75 9.74 14.67 9.67C14.59 9.6 14.48 9.62 14.4 9.64C14.28 9.66 12.56 10.8 9.22 13.09C8.72 13.42 8.26 13.58 7.85 13.57C7.39 13.56 6.52 13.33 5.88 13.13C5.09 12.88 4.47 12.75 4.52 12.31C4.55 12.08 4.85 11.84 5.46 11.61C9.03 10.06 11.37 9.06 12.49 8.6C15.67 7.25 16.38 7 16.85 7C16.96 7 17.21 7.03 17.37 7.16C17.5 7.27 17.55 7.42 17.56 7.53C17.55 7.61 17.57 7.92 17.84 8.22Z"
-                      fill="currentColor"
+                      d="m6.53333333 11.6666667c-.25917333 0-.21513333-.09786-.30452-.3446334l-.76214666-2.50830663 5.86666663-3.48039334"
+                      fill="#c8daea"
+                    />
+                    <path
+                      d="m6.53333333 11.6666667c.2 0 .28836667-.0914667.4-.2l1.06666667-1.0372-1.33053333-.80233337"
+                      fill="#a9c9dd"
+                    />
+                    <path
+                      d="m6.66933333 9.62733333 3.224 2.38193337c.36789997.2029933.63342667.0978933.72506667-.3415667l1.3123333-6.1842c.13436-.53868-.20534-.783-.5572933-.62321333l-7.706 2.9714c-.52600667.21098-.52294.50444-.09588.6352l1.97753333.61722 4.57819997-2.88833334c.2161267-.13106.4144867-.06059933.25168.08389334"
+                      fill="url(#b)"
                     />
                   </svg>
                 </a>
+
+                {/* VKontakte */}
                 <a
                   href={`https://vk.com/share.php?url=${encodeURIComponent(
                     articleUrl
                   )}&title=${encodeURIComponent(article.title)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-700 hover:text-[#0077FF] dark:text-gray-300 dark:hover:text-[#0077FF] transition-colors"
+                  className="transition-transform hover:scale-110"
                   aria-label="Поделиться ВКонтакте"
                 >
                   <svg
                     width="24"
                     height="24"
-                    viewBox="0 0 400 400"
+                    viewBox="0 0 92 93"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
-                      width="400"
-                      height="400"
-                      rx="200"
-                      fill="currentColor"
+                      fill="#2787f5"
+                      height="91.56"
+                      rx="45.78"
+                      width="91.56"
+                      y=".803711"
                     />
                     <path
-                      d="M314.344 144.227C316.396 137.527 314.344 132.5 304.834 132.5H276.954C268.854 132.5 264.965 136.867 262.913 141.563C262.913 141.563 249.141 176.014 229.448 198.658C222.047 206.028 218.5 208.551 214.295 208.551C212.243 208.551 209.171 206.028 209.171 199.327V144.227C209.171 136.142 206.708 132.5 199.985 132.5H161.668C156.45 132.5 153.338 136.305 153.338 139.906C153.338 147.564 165.668 149.262 167.046 170.82V209.671C167.046 219.723 165.096 221.5 160.891 221.5C149.199 221.5 126.574 186.884 113.38 144.907C110.7 136.115 107.508 132.5 99.384 132.5H71.497C62.207 132.5 60 136.867 60 141.563C60 149.936 71.692 188.681 108.4 241.101C132.586 276.738 166.398 296.25 197.307 296.25C215.858 296.25 220 291.565 220 283.803V258.872C220 249.58 222.335 247.386 229.229 247.386C234.092 247.386 242.192 249.91 258.354 265.572C277.18 284.356 280.9 296.25 293.142 296.25H321.022C330.312 296.25 334.957 291.565 332.21 282.654C329.232 273.755 318.827 261.064 305.096 246.266C297.694 237.9 286.66 228.854 283.251 224.158C278.387 218.142 279.782 215.279 283.251 209.671C283.251 209.671 317.069 161.828 314.344 144.227Z"
+                      clipRule="evenodd"
+                      d="m72.4961 33.4006c.387-1.2104.0001-2.0998-1.8415-2.0998h-6.0894c-1.5484 0-2.2622.7683-2.6493 1.6155 0 0-3.0967 7.0806-7.4836 11.68-1.4193 1.3313-2.0645 1.7549-2.8386 1.7549-.3871 0-.9474-.4236-.9474-1.6339v-11.3167c0-1.4525-.4493-2.0998-1.7397-2.0998h-9.5692c-.9675 0-1.5495.6741-1.5495 1.313 0 1.3769 2.1934 1.6944 2.4195 5.5676v8.412c0 1.8443-.3551 2.1787-1.1293 2.1787-2.0643 0-7.0859-7.1123-10.0641-15.2506-.5837-1.5818-1.1691-2.2207-2.7254-2.2207h-6.0894c-1.7399 0-2.0879.7683-2.0879 1.6155 0 1.513 2.0645 9.0172 9.6125 18.9421 5.032 6.7779 12.1217 10.452 18.573 10.452 3.8708 0 4.3496-.816 4.3496-2.2216v-5.1227c0-1.6321.3667-1.9579 1.5925-1.9579.9031 0 2.4515.4237 6.0643 3.6916 4.1288 3.8731 4.8095 5.6106 7.1319 5.6106h6.0895c1.7398 0 2.6097-.816 2.1079-2.4264-.5492-1.605-2.5205-3.9337-5.1362-6.6942-1.4194-1.5735-3.5483-3.2679-4.1935-4.1153-.9031-1.0892-.6451-1.5734 0-2.5416 0 0 7.4192-9.8039 8.1933-13.1323z"
+                      fill="#fff"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </a>
+
+                {/* Facebook */}
+                <a
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                    articleUrl
+                  )}&t=${encodeURIComponent(article.title)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-transform hover:scale-110"
+                  aria-label="Поделиться в Facebook"
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 512 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect fill="#1877f2" height="512" rx="15%" width="512" />
+                    <path
+                      d="m355.6 330 11.4-74h-71v-48c0-20.2 9.9-40 41.7-40h32.3v-63s-29.3-5-57.3-5c-58.5 0-96.7 35.4-96.7 99.6v56.4h-65v74h65v182h80v-182z"
+                      fill="#fff"
+                    />
+                  </svg>
+                </a>
+
+                {/* Twitter/X */}
+                <a
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                    article.title
+                  )}&url=${encodeURIComponent(articleUrl)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-transform hover:scale-110 bg-black dark:bg-white rounded-full p-1"
+                  aria-label="Поделиться в Twitter/X"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
                       fill="white"
+                      className="dark:fill-black"
                     />
                   </svg>
                 </a>
@@ -413,9 +475,9 @@ export default async function ArticlePage({
                 className="mt-10 flex justify-between"
                 aria-label="Навигация по статьям"
               >
-                {prev ? (
+                {prevArticle ? (
                   <Link
-                    href={`/blog/${prev.slug}`}
+                    href={`/blog/${prevArticle.slug}`}
                     className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     rel="prev"
                   >
@@ -440,9 +502,9 @@ export default async function ArticlePage({
                   <div></div>
                 )}
 
-                {next ? (
+                {nextArticle ? (
                   <Link
-                    href={`/blog/${next.slug}`}
+                    href={`/blog/${nextArticle.slug}`}
                     className="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     rel="next"
                   >
@@ -476,39 +538,13 @@ export default async function ArticlePage({
               Другие статьи
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[...(prev ? [prev] : []), ...(next ? [next] : [])]
+              {[
+                ...(prevArticle ? [prevArticle] : []),
+                ...(nextArticle ? [nextArticle] : []),
+              ]
                 .slice(0, 2)
                 .map((relatedArticle) => (
-                  <Link
-                    key={relatedArticle.id}
-                    href={`/blog/${relatedArticle.slug}`}
-                    className="block border border-gray-200 dark:border-gray-800 rounded-lg hover:shadow-md transition-shadow overflow-hidden group"
-                  >
-                    <div className="relative w-full h-48 overflow-hidden">
-                      {relatedArticle.image_url ? (
-                        <Image
-                          src={relatedArticle.image_url}
-                          alt={relatedArticle.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600" />
-                      )}
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-medium text-gray-900 dark:text-white mb-2 line-clamp-2">
-                        {relatedArticle.title}
-                      </h3>
-                      <time
-                        dateTime={relatedArticle.published_at}
-                        className="text-sm text-gray-500 dark:text-gray-400"
-                      >
-                        {formatDate(relatedArticle.published_at)}
-                      </time>
-                    </div>
-                  </Link>
+                  <BlogCard key={relatedArticle.id} post={relatedArticle} />
                 ))}
             </div>
           </aside>

@@ -8,15 +8,6 @@ import { Article } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 import BlogCard from "@/components/BlogCard";
 
-// Указываем, что страница должна предварительно рендериться
-export const generateStaticParams = async (): Promise<{ slug: string }[]> => {
-  const articles = await getAllArticles();
-
-  return articles.map((article) => ({
-    slug: article.slug,
-  }));
-};
-
 // Функция для генерации описания из контента
 function generateDescription(content: string): string {
   // Очищаем от HTML-тегов и берем первые 160 символов

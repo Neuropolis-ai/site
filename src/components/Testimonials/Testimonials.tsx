@@ -9,47 +9,39 @@ import Container from "../ui/Container";
 const testimonialData = [
   {
     id: 1,
-    name: "Марина",
-    position: "CEO",
+    name: "Марина Л.",
+    position: "CDTO",
     company: "E-commerce Platform",
     stars: 5,
     quote: '"Бесшовная интеграция и первоклассная поддержка!"',
     text: " То, что действительно отличает эту компанию, — это их способность бесшовно интегрировать ИИ в наши существующие системы. Созданные ими кастомные чат-боты обрабатывают 80% запросов в службу поддержки.",
-    image:
-      "https://framerusercontent.com/images/RP3AA1pzAoLKdwEYkQEfEOuuVE.jpeg",
   },
   {
     id: 2,
-    name: "Алекс",
-    position: "Operations Manager",
+    name: "Алексей А.",
+    position: "Менеджер",
     company: "Manufacturing Corp",
     stars: 5,
     quote: '"Революционные ИИ-решения!"',
     text: "Сотрудничество стало прорывом для нашего бизнеса. Внедренный ими ИИ-движок рекомендаций увеличил наши продажи на 20% всего за три месяца!",
-    image:
-      "https://framerusercontent.com/images/SXFz8Wuy8bsYZ1ytQVNXmVyWXP0.jpg?scale-down-to=512",
   },
   {
     id: 3,
-    name: "Елена",
-    position: "Marketing Director",
+    name: "Сергей Т.",
+    position: "Специалист по автоматизации",
     company: "Retail Chain",
     stars: 5,
     quote: '"Непревзойденная эффективность и инновации!"',
     text: "Инструменты автоматизации на основе ИИ кардинально изменили наши внутренние процессы. Мы сократили ручные операции на 35%, что позволило нашей команде сосредоточиться на более ценной работе.",
-    image:
-      "https://framerusercontent.com/images/wYtPvzWhc9qtXuROb6JL6kk.jpg?scale-down-to=512",
   },
   {
     id: 4,
-    name: "Ольга",
-    position: "Marketing Director",
+    name: "Ольга Г.",
+    position: "Директор по маркетингу",
     company: "Retail Chain",
     stars: 5,
     quote: '"Удивительная аналитика клиентов!"',
     text: "Благодаря инструментам предиктивной аналитики на основе ИИ мы получили глубокое понимание поведения наших клиентов.",
-    image:
-      "https://framerusercontent.com/images/u8K8rbgmRaS81RzFu2M7Wl00qI.jpg?scale-down-to=1024",
   },
 ];
 
@@ -163,14 +155,6 @@ const Testimonials = () => {
                     <span className="line-a mb-2"></span>
 
                     <div className="flex items-center">
-                      <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-[8px] overflow-hidden mr-3 sm:mr-4">
-                        <Image
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
                       <div>
                         <h6
                           className={`font-medium text-sm sm:text-base ${

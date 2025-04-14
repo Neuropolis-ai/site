@@ -197,9 +197,9 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     return (
       <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             {error}
-          </h1>
+          </h2>
           <Link href="/blog" className="text-blue-500 hover:underline">
             Вернуться к блогу
           </Link>

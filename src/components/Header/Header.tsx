@@ -179,7 +179,11 @@ const Header = () => {
                         : "max-h-0 opacity-0"
                     }`}
       >
-        <nav className="flex flex-col items-center gap-0 px-2">
+        <nav
+          className="flex flex-col items-center gap-0 px-2"
+          aria-hidden="true"
+          role="presentation"
+        >
           {menuItems.map((item) => (
             <button
               key={item.id}

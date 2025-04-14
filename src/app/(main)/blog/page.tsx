@@ -1,34 +1,54 @@
-import { getAllArticles } from "@/lib/blogApi";
-import Link from "next/link";
-import { Metadata } from "next";
-import React from "react";
+"use client";
+
+import { getPaginatedArticles } from "@/lib/blogApi";
+import React, { useEffect, useState } from "react";
 import BlogCard from "@/components/BlogCard";
 import { Article } from "@/lib/supabase";
+import Pagination from "@/components/ui/Pagination";
 
-// Полностью отключаем кеширование страницы
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Количество статей на странице
+const ARTICLES_PER_PAGE = 9;
 
-export const metadata: Metadata = {
-  title: "Блог Neuropolis.ai - Инсайты в мире ИИ и автоматизации",
-  description:
-    "Блог об инновациях в области искусственного интеллекта, цифровой трансформации и автоматизации бизнес-процессов.",
-  keywords:
-    "ИИ, искусственный интеллект, машинное обучение, автоматизация, цифровая трансформация, технологические инновации, блог, нейросети",
-};
+export default function BlogPage() {
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [totalArticles, setTotalArticles] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 
-export default async function BlogPage() {
-  let articles: Article[] = [];
-  let error = null;
+  // Вычисляем общее количество страниц
+  const totalPages = Math.ceil(totalArticles / ARTICLES_PER_PAGE);
 
-  try {
-    console.log("Получаем статьи для страницы блога...");
-    articles = await getAllArticles();
-    console.log(`Получено статей на странице блога: ${articles.length}`);
-  } catch (err) {
-    console.error("Ошибка при получении статей:", err);
-    error = err;
-  }
+  // Загружаем статьи при изменении страницы
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        setLoading(true);
+        console.log(`Загрузка статей для страницы ${currentPage}...`);
+        const { articles, total } = await getPaginatedArticles(
+          currentPage,
+          ARTICLES_PER_PAGE
+        );
+
+        setArticles(articles);
+        setTotalArticles(total);
+        console.log(`Загружено ${articles.length} статей из ${total}`);
+      } catch (err) {
+        console.error("Ошибка при получении статей:", err);
+        setError(err instanceof Error ? err : new Error("Неизвестная ошибка"));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, [currentPage]);
+
+  // Обработчик изменения страницы
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black">
@@ -44,8 +64,18 @@ export default async function BlogPage() {
           </p>
         </div>
 
-        {/* Blog Posts Grid */}
-        {error ? (
+        {/* Загрузка */}
+        {loading && (
+          <div className="text-center py-10">
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+            <p className="mt-4 text-gray-600 dark:text-gray-400">
+              Загрузка статей...
+            </p>
+          </div>
+        )}
+
+        {/* Ошибка */}
+        {error && !loading && (
           <div className="text-center">
             <p className="text-lg text-red-600 dark:text-red-400 mb-4">
               Произошла ошибка при загрузке статей
@@ -54,13 +84,28 @@ export default async function BlogPage() {
               Пожалуйста, попробуйте обновить страницу
             </p>
           </div>
-        ) : articles.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articles.map((post) => (
-              <BlogCard key={post.id} post={post} />
-            ))}
-          </div>
-        ) : (
+        )}
+
+        {/* Blog Posts Grid */}
+        {!loading && !error && articles.length > 0 && (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {articles.map((post) => (
+                <BlogCard key={post.id} post={post} />
+              ))}
+            </div>
+
+            {/* Пагинация */}
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+            />
+          </>
+        )}
+
+        {/* Пустой результат */}
+        {!loading && !error && articles.length === 0 && (
           <div className="text-center">
             <p className="text-lg text-gray-600 dark:text-gray-400">
               Статьи скоро появятся...

@@ -339,7 +339,7 @@ const Features = () => {
             </p>
           </div>
 
-          {/* Feature 3 - Служба поддержки с ИИ-агенты */}
+          {/* Feature 3 - Служба поддержки с ИИ-агентом */}
           <div className="text-center">
             <div
               className={`w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6 icon-animated ${
@@ -472,7 +472,7 @@ const Features = () => {
               </svg>
             </div>
             <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
-              Служба поддержки с ИИ-агенты
+              Служба поддержки с ИИ-агентом
             </h3>
             <p
               className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
@@ -632,7 +632,7 @@ const Features = () => {
             </h3>
             <p
               className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
-                isDark ? "text-[#919191]" : "text-gray-600"
+                isDark ? "text-[#919191]" : "text-gray-700"
               }`}
             >
               Помогаем компаниям внедрять ИИ-агентов в их существующие

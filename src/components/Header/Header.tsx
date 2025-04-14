@@ -8,11 +8,15 @@ import { FiMoon, FiSun } from "react-icons/fi";
 import { HiMenu, HiX } from "react-icons/hi";
 import blackLogo from "../../app/assets/svg/black-logo.svg";
 import logo from "../../app/assets/svg/logo.svg";
+import { usePathname, useRouter } from "next/navigation";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const { theme, isDark, toggleTheme } = useTheme();
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHomePage = pathname === "/";
 
   // Log theme information for debugging
   useEffect(() => {
@@ -20,17 +24,31 @@ const Header = () => {
     console.log("Header component - isDark:", isDark);
   }, [theme, isDark]);
 
-  // Function to scroll to section
-  const scrollToSection = (sectionId: string) => {
+  // Функция для перехода к секции
+  const navigateToSection = (sectionId: string) => {
     setMobileMenuOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+
+    if (sectionId === "blog") {
+      router.push("/blog");
+      return;
+    }
+
+    if (isHomePage) {
+      // Если мы на главной, просто прокручиваем к секции
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Если мы не на главной, переходим на главную с хэшем
+      router.push(`/#${sectionId}`);
     }
   };
 
-  // Function to check which section is in viewport
+  // Function to check which section is in viewport (только на главной странице)
   useEffect(() => {
+    if (!isHomePage) return;
+
     const handleScroll = () => {
       const sections = ["hero", "services", "projects", "contact", "blog"];
 
@@ -55,7 +73,21 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isHomePage]);
+
+  // Проверяем хэш при загрузке страницы
+  useEffect(() => {
+    if (isHomePage && window.location.hash) {
+      const sectionId = window.location.hash.substring(1);
+      const element = document.getElementById(sectionId);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+          setActiveSection(sectionId);
+        }, 500); // Небольшая задержка, чтобы страница успела загрузиться
+      }
+    }
+  }, [isHomePage]);
 
   // Menu items
   const menuItems = [
@@ -75,7 +107,7 @@ const Header = () => {
     >
       {/* Header Main */}
       <div className="w-full p-[8px] pr-[14px] flex items-center justify-between">
-        <Link href="/" onClick={() => scrollToSection("hero")}>
+        <Link href="/">
           <div className="w-[120px] h-[48px] relative">
             <Image
               src={isDark ? logo : blackLogo}
@@ -92,10 +124,12 @@ const Header = () => {
           {menuItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => scrollToSection(item.id)}
+              onClick={() => navigateToSection(item.id)}
               className={`text-[14px] py-[6px] px-[16px] rounded-[12px] text-gray-800 dark:text-white 
                             ${
-                              activeSection === item.id
+                              activeSection === item.id && isHomePage
+                                ? "bg-[#e0e0e0] dark:bg-[#262626]"
+                                : pathname === "/blog" && item.id === "blog"
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
                                 : ""
                             } 
@@ -149,10 +183,12 @@ const Header = () => {
           {menuItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => scrollToSection(item.id)}
+              onClick={() => navigateToSection(item.id)}
               className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-center text-gray-800 dark:text-white 
                             ${
-                              activeSection === item.id
+                              activeSection === item.id && isHomePage
+                                ? "bg-[#e0e0e0] dark:bg-[#262626]"
+                                : pathname === "/blog" && item.id === "blog"
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
                                 : "bg-transparent"
                             } 

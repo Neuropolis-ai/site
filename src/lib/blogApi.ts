@@ -18,6 +18,49 @@ export async function getAllArticles(): Promise<Article[]> {
 }
 
 /**
+ * Получение статей блога с пагинацией
+ * @param page - номер страницы (начиная с 1)
+ * @param pageSize - количество статей на странице
+ */
+export async function getPaginatedArticles(
+  page: number = 1,
+  pageSize: number = 9
+): Promise<{ articles: Article[]; total: number }> {
+  // Вычисляем смещение для запроса
+  const offset = (page - 1) * pageSize;
+
+  // Получаем общее количество статей
+  const countResponse = await supabase
+    .from("articles")
+    .select("*", { count: "exact", head: true });
+
+  if (countResponse.error) {
+    console.error(
+      "Ошибка при получении количества статей:",
+      countResponse.error
+    );
+    return { articles: [], total: 0 };
+  }
+
+  // Получаем статьи для текущей страницы
+  const { data, error } = await supabase
+    .from("articles")
+    .select("*")
+    .order("published_at", { ascending: false })
+    .range(offset, offset + pageSize - 1);
+
+  if (error) {
+    console.error("Ошибка при получении статей с пагинацией:", error);
+    return { articles: [], total: countResponse.count || 0 };
+  }
+
+  return {
+    articles: data || [],
+    total: countResponse.count || 0,
+  };
+}
+
+/**
  * Получение статьи по slug
  */
 export async function getArticleBySlug(slug: string): Promise<Article | null> {

@@ -29,8 +29,8 @@ const Header = () => {
     setMobileMenuOpen(false);
 
     if (sectionId === "blog") {
-      router.push("/blog");
-      return;
+      // Используем ссылки вместо программной навигации для блога
+      return; // Не делаем ничего, будет работать через Link
     }
 
     if (isHomePage) {
@@ -121,23 +121,37 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-2 lg:gap-4">
-          {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => navigateToSection(item.id)}
-              className={`text-[14px] py-[6px] px-[16px] rounded-[12px] text-gray-800 dark:text-white 
+          {menuItems.map((item) =>
+            item.id === "blog" ? (
+              <Link
+                key={item.id}
+                href="/blog"
+                className={`text-[14px] py-[6px] px-[16px] rounded-[12px] text-gray-800 dark:text-white 
                             ${
-                              activeSection === item.id && isHomePage
-                                ? "bg-[#e0e0e0] dark:bg-[#262626]"
-                                : pathname === "/blog" && item.id === "blog"
+                              pathname === "/blog"
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
                                 : ""
                             } 
                             hover:text-[#0a2e6b] dark:hover:text-[var(--text-primary)] transition-colors`}
-            >
-              {item.label}
-            </button>
-          ))}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <button
+                key={item.id}
+                onClick={() => navigateToSection(item.id)}
+                className={`text-[14px] py-[6px] px-[16px] rounded-[12px] text-gray-800 dark:text-white 
+                            ${
+                              activeSection === item.id && isHomePage
+                                ? "bg-[#e0e0e0] dark:bg-[#262626]"
+                                : ""
+                            } 
+                            hover:text-[#0a2e6b] dark:hover:text-[var(--text-primary)] transition-colors`}
+              >
+                {item.label}
+              </button>
+            )
+          )}
 
           {/* Theme Toggle Button */}
           <button
@@ -184,23 +198,38 @@ const Header = () => {
           aria-hidden="true"
           role="presentation"
         >
-          {menuItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => navigateToSection(item.id)}
-              className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-center text-gray-800 dark:text-white 
+          {menuItems.map((item) =>
+            item.id === "blog" ? (
+              <Link
+                key={item.id}
+                href="/blog"
+                className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-center text-gray-800 dark:text-white 
                             ${
-                              activeSection === item.id && isHomePage
-                                ? "bg-[#e0e0e0] dark:bg-[#262626]"
-                                : pathname === "/blog" && item.id === "blog"
+                              pathname === "/blog"
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
                                 : "bg-transparent"
                             } 
                             hover:text-[#0a2e6b] dark:hover:bg-[#262626] transition-colors`}
-            >
-              {item.label}
-            </button>
-          ))}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <button
+                key={item.id}
+                onClick={() => navigateToSection(item.id)}
+                className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-center text-gray-800 dark:text-white 
+                            ${
+                              activeSection === item.id && isHomePage
+                                ? "bg-[#e0e0e0] dark:bg-[#262626]"
+                                : "bg-transparent"
+                            } 
+                            hover:text-[#0a2e6b] dark:hover:bg-[#262626] transition-colors`}
+              >
+                {item.label}
+              </button>
+            )
+          )}
         </nav>
       </div>
     </header>

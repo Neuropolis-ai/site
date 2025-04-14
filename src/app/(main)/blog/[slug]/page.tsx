@@ -7,22 +7,13 @@ import Image from "next/image";
 import { Article } from "@/lib/supabase";
 import { notFound } from "next/navigation";
 import BlogCard from "@/components/BlogCard";
+import FormattedDate from "@/components/FormattedDate";
 
 // Функция для генерации описания из контента
 function generateDescription(content: string): string {
   // Очищаем от HTML-тегов и берем первые 160 символов
   const plainText = content.replace(/<[^>]+>/g, "");
   return plainText.slice(0, 157) + "...";
-}
-
-// Функция форматирования даты
-function formatDate(dateString: string): string {
-  return new Intl.DateTimeFormat("ru-RU", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    timeZone: "UTC",
-  }).format(new Date(dateString));
 }
 
 // Функция для извлечения домена из URL
@@ -268,9 +259,11 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
               )}
 
               <div className="flex justify-center items-center text-sm text-gray-500 dark:text-gray-400 mb-6">
-                <time dateTime={article.published_at}>
-                  {formatDate(article.published_at)}
-                </time>
+                <FormattedDate
+                  dateString={article.published_at}
+                  format="full"
+                  className="date-text"
+                />
               </div>
             </header>
 

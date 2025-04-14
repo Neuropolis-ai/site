@@ -190,7 +190,7 @@ const Features = () => {
             </p>
           </div>
 
-          {/* Feature 2 - Персонализированные маркетинговые кампании */}
+          {/* Feature 2 - Персонализация маркетинга */}
           <div className="text-center">
             <div
               className={`w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6 icon-animated ${
@@ -327,7 +327,7 @@ const Features = () => {
               </svg>
             </div>
             <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
-              Персонализированные маркетинговые кампании
+              Персонализация маркетинга
             </h3>
             <p
               className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${

@@ -124,12 +124,9 @@ const Projects = () => {
                     </div>
                     <div className="p-4 sm:p-6">
                       <div
-                        className={`inline-block px-3 py-1 rounded-full text-xs mb-4 span-box
-                                                ${
-                                                  isDark
-                                                    ? "bg-blue-900/30 text-blue-400"
-                                                    : "bg-blue-100 text-blue-600"
-                                                }`}
+                        className={`inline-block px-3 py-1 rounded-full text-xs mb-4 ${
+                          isDark ? "switch-box" : "switch-box light-switch-box"
+                        }`}
                       >
                         {project.category}
                       </div>

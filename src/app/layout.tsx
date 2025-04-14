@@ -2,6 +2,7 @@ import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import { ThemeProvider } from "@/context/ThemeContext";
 import YandexMetrika from "@/components/YandexMetrika";
+import { ThemeScript } from "@/components/ThemeScript";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../style/normalize.css";
@@ -22,34 +23,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Используем темную тему по умолчанию для рендеринга на сервере
+  const initialTheme = "dark";
+
   return (
-    <html lang="en">
+    <html lang="ru" data-theme={initialTheme}>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            (function() {
-              try {
-                const storedTheme = localStorage.getItem('theme');
-                if (storedTheme) {
-                  document.documentElement.setAttribute('data-theme', storedTheme);
-                } else {
-                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  const initialTheme = prefersDark ? 'dark' : 'light';
-                  document.documentElement.setAttribute('data-theme', initialTheme);
-                  localStorage.setItem('theme', initialTheme);
-                }
-              } catch (e) {
-                console.error('Error setting initial theme:', e);
-                document.documentElement.setAttribute('data-theme', 'dark');
-              }
-            })();
-          `,
-          }}
-        />
+        <ThemeScript />
       </head>
       <body
-        className={`${inter.className} antialiased dark:bg-[#050505] bg-[#ffffff] text-foreground`}
+        className={`${inter.className} antialiased bg-[#ffffff] dark:bg-[#050505] text-foreground min-h-screen transition-colors duration-300`}
       >
         <ThemeProvider>
           {children}

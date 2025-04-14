@@ -5,6 +5,7 @@ import { Article } from "@/lib/supabase";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import BlogImage from "./BlogImage";
+import FormattedDate from "./FormattedDate";
 
 interface BlogCardProps {
   post: Article;
@@ -12,15 +13,6 @@ interface BlogCardProps {
 
 export default function BlogCard({ post }: BlogCardProps) {
   const { isDark } = useTheme();
-
-  const formatDate = (dateString: string) => {
-    return new Intl.DateTimeFormat("ru-RU", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-      timeZone: "UTC",
-    }).format(new Date(dateString));
-  };
 
   return (
     <Link
@@ -62,13 +54,12 @@ export default function BlogCard({ post }: BlogCardProps) {
         )}
         <span className="line-a mb-3 block"></span>
         <div className="flex items-center justify-between mt-auto">
-          <span
+          <FormattedDate
+            dateString={post.published_at}
             className={`text-base ${
               isDark ? "text-[#919191]" : "text-gray-500"
             }`}
-          >
-            {formatDate(post.published_at)}
-          </span>
+          />
           <BsArrowRight
             className={`text-xl ${isDark ? "text-white" : "text-gray-800"}`}
           />

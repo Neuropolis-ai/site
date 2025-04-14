@@ -10,6 +10,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,16 +29,58 @@ const Contact = () => {
     }));
   };
 
+  // Функция для отправки сообщения в Telegram
+  const sendToTelegram = async () => {
+    const botToken = "8020073798:AAHmXxi9XijA0z1k9JY2DzNpDI7j6ICqthI";
+    const chatId = "-1002655068247";
+
+    const text = `
+📩 Новая заявка:
+👤 Имя: ${formData.name}
+📞 Телефон: ${formData.phone}
+✉️ Email: ${formData.email}
+💬 Сообщение: ${formData.message}
+    `;
+
+    try {
+      const response = await fetch(
+        `https://api.telegram.org/bot${botToken}/sendMessage`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: text,
+            parse_mode: "HTML",
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Ошибка отправки в Telegram");
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("Ошибка при отправке в Telegram:", error);
+      throw error;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: "" });
 
     try {
+      // Сохраняем в Supabase
       const { error } = await supabase.from("contacts").insert([
         {
           name: formData.name,
           email: formData.email,
+          phone: formData.phone,
           message: formData.message,
           created_at: new Date().toISOString(),
         },
@@ -45,11 +88,14 @@ const Contact = () => {
 
       if (error) throw error;
 
+      // Отправляем в Telegram
+      await sendToTelegram();
+
       setSubmitStatus({
         type: "success",
         message: "Спасибо! Ваше сообщение успешно отправлено.",
       });
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
       setSubmitStatus({
@@ -101,7 +147,7 @@ const Contact = () => {
                 </div>
               )}
               <form onSubmit={handleSubmit} className="rounded-xl">
-                <div className="flex w-full gap-[10px] max-[1024px]:flex-col">
+                <div className="flex w-full gap-[10px] max-[1024px]:flex-col mb-3">
                   <div className="w-1/2 max-[1024px]:w-full">
                     <input
                       type="text"
@@ -118,7 +164,7 @@ const Contact = () => {
                       disabled={isSubmitting}
                     />
                   </div>
-                  <div className="mb-3 w-1/2 max-[1024px]:w-full">
+                  <div className="w-1/2 max-[1024px]:w-full">
                     <input
                       type="email"
                       name="email"
@@ -134,6 +180,22 @@ const Contact = () => {
                       disabled={isSubmitting}
                     />
                   </div>
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Телефон"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    className={`w-full p-3 rounded-[10px] outline-none max-[425px]:text-[12px] ${
+                      isDark
+                        ? "bg-[#060811] border-[#262626] text-white"
+                        : "bg-white border-gray-300 text-gray-800"
+                    } border`}
+                    disabled={isSubmitting}
+                  />
                 </div>
                 <div className="mb-3">
                   <textarea

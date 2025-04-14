@@ -105,7 +105,7 @@ const Services = () => {
             Услуги
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold dark:text-white text-black mb-4">
-            Как ИИ может трансформировать ваш бизнес
+            Как ИИ может автоматизировать ваш бизнес
           </h2>
           <p
             className={`max-w-2xl mx-auto leading-relaxed ${
@@ -143,13 +143,13 @@ const Services = () => {
                   }`}
                 >
                   <div>
-                    <h3
+                    <div
                       className={`font-medium text-end text-[14px] max-[425px]:text-[12px]  ${
                         isDark ? "text-[#a8a8a8]" : "text-gray-500"
                       }`}
                     >
                       Клиент
-                    </h3>
+                    </div>
                     <div
                       className={`mt-2 p-3 rounded-tl-xl rounded-bl-xl rounded-tr-xl ${
                         isDark ? "bg-[#0a0f28]" : "bg-gray-200"
@@ -203,13 +203,13 @@ const Services = () => {
                     AI
                   </div>
                   <div className="flex flex-col">
-                    <h4
+                    <div
                       className={`text-[14px] font-medium mb-2 max-[425px]:text-[12px] ${
                         isDark ? "text-[#a8a8a8]" : "text-gray-500"
                       }`}
                     >
                       ИИ-агент
-                    </h4>
+                    </div>
 
                     {/* Анимация печатания */}
                     {isTyping && (
@@ -340,13 +340,13 @@ const Services = () => {
               </div>
 
               <div>
-                <h4
+                <h3
                   className={`font-medium text-base sm:text-lg mb-1 sm:mb-2 ${
                     isDark ? "text-white" : "text-gray-800"
                   }`}
                 >
                   Чат-боты для поддержки клиентов
-                </h4>
+                </h3>
                 <p
                   className={`text-sm sm:text-base ${
                     isDark ? "text-[#919191]" : "text-gray-600"
@@ -422,13 +422,13 @@ const Services = () => {
               </div>
 
               <div className="mt-[30px]">
-                <h4
+                <h3
                   className={`font-medium text-base sm:text-lg mb-1 sm:mb-2 ${
                     isDark ? "text-white" : "text-gray-800"
                   }`}
                 >
                   Автономные ИИ-агенты
-                </h4>
+                </h3>
                 <p
                   className={`text-sm sm:text-base ${
                     isDark ? "text-[#919191]" : "text-gray-600"
@@ -499,9 +499,9 @@ const Services = () => {
               </div>
 
               <div className="mt-[30px]">
-                <h4 className="dark:text-white text-gray-800 font-medium text-base sm:text-lg mb-1 sm:mb-2">
+                <h3 className="dark:text-white text-gray-800 font-medium text-base sm:text-lg mb-1 sm:mb-2">
                   Стратегический консалтинг
-                </h4>
+                </h3>
                 <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
                   Мы оцениваем ваш бизнес и отрасль, определяем, где ИИ может
                   принести наибольшую пользу с учетом ваших целей и ресурсов.

@@ -30,6 +30,21 @@ export default function RootLayout({
     <html lang="ru" data-theme={initialTheme}>
       <head>
         <ThemeScript />
+        {/* Google tag (gtag.js) */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-024R9ZTD1K"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-024R9ZTD1K');
+            `,
+          }}
+        />
       </head>
       <body
         className={`${inter.className} antialiased bg-[#ffffff] dark:bg-[#050505] text-foreground min-h-screen transition-colors duration-300`}

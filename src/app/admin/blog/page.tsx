@@ -49,6 +49,7 @@ export default function AdminBlogPage() {
       day: "numeric",
       month: "long",
       year: "numeric",
+      timeZone: "UTC",
     }).format(new Date(dateString));
   };
 

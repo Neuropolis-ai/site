@@ -18,6 +18,7 @@ export default function BlogCard({ post }: BlogCardProps) {
       day: "numeric",
       month: "long",
       year: "numeric",
+      timeZone: "UTC",
     }).format(new Date(dateString));
   };
 

@@ -4,6 +4,7 @@ import { supabase } from "@/lib/supabase";
 import { useState } from "react";
 import "../../style/card-line.css";
 import Container from "../ui/Container";
+import InputMask from "react-input-mask";
 
 const Contact = () => {
   const { isDark } = useTheme();
@@ -182,7 +183,8 @@ const Contact = () => {
                   </div>
                 </div>
                 <div className="mb-3">
-                  <input
+                  <InputMask
+                    mask="+7 (999) 999-99-99"
                     type="tel"
                     name="phone"
                     placeholder="Телефон"

@@ -86,18 +86,8 @@ const Hero = () => {
             onClick={() => scrollToSection("contact")}
             className="w-full sm:w-auto bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white rounded-[10px] px-6 py-3 hover:opacity-90 transition-opacity"
           >
-            Получить консультацию
+            Узнать, как внедрить ИИ в мой бизнес
           </ButtonLink>
-          <button
-            onClick={() => scrollToSection("services")}
-            className={`w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-[12px] transition-colors ${
-              isDark
-                ? "border border-[#363636] text-[#F2F2F2] bg-[#050505] hover:bg-[#111111]"
-                : "border border-gray-300 text-gray-800 hover:bg-gray-100"
-            }`}
-          >
-            Наши услуги <BsArrowRight />
-          </button>
         </div>
       </div>
     </div>

@@ -45,6 +45,49 @@ const testimonialData = [
   },
 ];
 
+const TestimonialSchema = ({
+  testimonials,
+}: {
+  testimonials: {
+    name: string;
+    stars: number;
+    text: string;
+    company: string;
+  }[];
+}) => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Neuropolis.ai — AI-решения для бизнеса",
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: (
+        testimonials.reduce((acc, t) => acc + t.stars, 0) / testimonials.length
+      ).toFixed(1),
+      reviewCount: testimonials.length,
+    },
+    review: testimonials.map((t) => ({
+      "@type": "Review",
+      author: t.name,
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: t.stars,
+      },
+      reviewBody: t.text,
+      publisher: {
+        "@type": "Organization",
+        name: t.company,
+      },
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+};
+
 const Testimonials = () => {
   const { isDark } = useTheme();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -83,6 +126,7 @@ const Testimonials = () => {
       className="py-10 bg-white sm:py-14 md:py-20 dark:bg-black"
     >
       <Container>
+        <TestimonialSchema testimonials={testimonialData} />
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <div
             className={`inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box ${

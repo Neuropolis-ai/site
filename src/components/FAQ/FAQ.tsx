@@ -37,6 +37,27 @@ const faqData = [
   },
 ];
 
+function FAQSchema({ faqs }: { faqs: { question: string; answer: string }[] }) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 const FAQ = () => {
   const { isDark } = useTheme();
   const [openItems, setOpenItems] = useState<number[]>([]);
@@ -54,6 +75,7 @@ const FAQ = () => {
   return (
     <section className="py-10 sm:py-15 md:py-20 max-[425px]:py-10 max-[425px]:px-[10px] dark:bg-black bg-white">
       <Container>
+        <FAQSchema faqs={faqData} />
         <div className="flex flex-col md:flex-row gap-6 md:gap-10">
           <div className="md:w-1/3">
             <div className="max-[425px]:flex max-[425px]:justify-center">

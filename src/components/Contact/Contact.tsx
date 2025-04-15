@@ -108,9 +108,43 @@ const Contact = () => {
     }
   };
 
+  function OrganizationSchema() {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Neuropolis.ai",
+      url: "https://neuropolis.ai",
+      logo: "https://neuropolis.ai/logo.png",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "ул. Примерная, д. 1",
+        addressLocality: "Москва",
+        postalCode: "123456",
+        addressCountry: "RU",
+      },
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+7-495-123-45-67",
+          contactType: "customer support",
+          areaServed: "RU",
+          availableLanguage: ["Russian"],
+        },
+      ],
+    };
+    return (
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+    );
+  }
+
   return (
     <section className="py-20 bg-white dark:bg-black" id="contact">
       <Container>
+        {/* Микроразметка Organization */}
+        <OrganizationSchema />
         <div className="text-center mb-10">
           <div
             className={`inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box ${

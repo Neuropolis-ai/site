@@ -52,6 +52,40 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // http://neuropolis.ai -> https://neuropolis.ai
+      {
+        source: "/:path*",
+        has: [
+          { type: "host", value: "neuropolis.ai" },
+          { type: "protocol", value: "http" },
+        ],
+        destination: "https://neuropolis.ai/:path*",
+        permanent: true,
+      },
+      // http://www.neuropolis.ai -> https://neuropolis.ai
+      {
+        source: "/:path*",
+        has: [
+          { type: "host", value: "www.neuropolis.ai" },
+          { type: "protocol", value: "http" },
+        ],
+        destination: "https://neuropolis.ai/:path*",
+        permanent: true,
+      },
+      // https://www.neuropolis.ai -> https://neuropolis.ai
+      {
+        source: "/:path*",
+        has: [
+          { type: "host", value: "www.neuropolis.ai" },
+          { type: "protocol", value: "https" },
+        ],
+        destination: "https://neuropolis.ai/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

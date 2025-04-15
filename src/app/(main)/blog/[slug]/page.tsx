@@ -1,7 +1,4 @@
-"use client";
-
 import { getArticleBySlug, getAllArticles } from "@/lib/blogApi";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Article } from "@/lib/supabase";
@@ -155,50 +152,60 @@ function JsonLd({ article, url }: { article: Article; url: string }) {
   );
 }
 
-// Основной компонент страницы
-export default function ArticlePage({ params }: { params: { slug: string } }) {
-  const [article, setArticle] = useState<Article | null>(null);
-  const [prevArticle, setPrevArticle] = useState<Article | null>(null);
-  const [nextArticle, setNextArticle] = useState<Article | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+// Дефолтные значения для SEO
+const DEFAULT_TITLE = "Блог Neuropolis.ai";
+const DEFAULT_DESCRIPTION =
+  "Свежие статьи и новости об искусственном интеллекте, автоматизации и технологиях на Neuropolis.ai.";
 
-  useEffect(() => {
-    const fetchArticle = async () => {
-      try {
-        setIsLoading(true);
-        // Получаем статью по slug
-        const articleData = await getArticleBySlug(params.slug);
+// Динамическая генерация SEO-метаданных
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const article = await getArticleBySlug(params.slug);
 
-        if (!articleData) {
-          setError("Статья не найдена");
-          return;
-        }
-
-        setArticle(articleData);
-
-        // Получаем соседние статьи
-        const { prev, next } = await getAdjacentArticles(params.slug);
-        setPrevArticle(prev);
-        setNextArticle(next);
-      } catch (err) {
-        console.error("Ошибка при загрузке статьи:", err);
-        setError("Произошла ошибка при загрузке статьи");
-      } finally {
-        setIsLoading(false);
-      }
+  if (!article) {
+    return {
+      title: DEFAULT_TITLE,
+      description: DEFAULT_DESCRIPTION,
+      openGraph: {
+        title: DEFAULT_TITLE,
+        description: DEFAULT_DESCRIPTION,
+      },
     };
+  }
 
-    fetchArticle();
-  }, [params.slug]);
+  return {
+    title: article.title,
+    description: article.description || generateDescription(article.content),
+    openGraph: {
+      title: article.title,
+      description: article.description || generateDescription(article.content),
+      images: article.image_url ? [article.image_url] : [],
+    },
+  };
+}
 
-  // Если статья не найдена или произошла ошибка
-  if (error) {
+// SSG: Генерация статических путей для всех статей
+export async function generateStaticParams() {
+  const articles = await getAllArticles();
+  return articles.map((article) => ({ slug: article.slug }));
+}
+
+// СЕРВЕРНЫЙ КОМПОНЕНТ
+export default async function ArticlePage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const article = await getArticleBySlug(params.slug);
+  if (!article) {
     return (
       <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            {error}
+            Статья не найдена
           </h2>
           <Link href="/blog" className="text-blue-500 hover:underline">
             Вернуться к блогу
@@ -208,31 +215,10 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     );
   }
 
-  // Пока загружаются данные
-  if (isLoading || !article) {
-    return (
-      <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black flex items-center justify-center">
-        <div className="text-center">
-          <div
-            className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent text-blue-600 dark:text-blue-400 align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-            role="status"
-          >
-            <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-              Загрузка...
-            </span>
-          </div>
-          <p className="mt-4 text-gray-600 dark:text-gray-400">
-            Загрузка статьи...
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  // Очищаем текст статьи от маркеров кода
+  const { prev: prevArticle, next: nextArticle } = await getAdjacentArticles(
+    params.slug
+  );
   const cleanedContent = cleanContentMarkups(article.content);
-
-  // Формируем URL статьи
   const baseUrl = "https://neuropolis.ai";
   const articleUrl = `${baseUrl}/blog/${params.slug}`;
 
@@ -240,24 +226,20 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     <>
       {/* Структурированные данные JSON-LD */}
       <JsonLd article={article} url={articleUrl} />
-
       <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black">
         <div className="container mx-auto max-w-4xl px-4">
           {/* Хлебные крошки */}
           <BreadcrumbNav slug={params.slug} title={article.title} />
-
           <article className="article-content">
             <header className="mb-12">
               <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white text-center leading-relaxed">
                 {article.title}
               </h1>
-
               {article.description && (
                 <p className="text-lg text-gray-600 dark:text-gray-400 text-center mb-4">
                   {article.description}
                 </p>
               )}
-
               <div className="flex justify-center items-center text-sm text-gray-500 dark:text-gray-400 mb-6">
                 <FormattedDate
                   dateString={article.published_at}
@@ -266,7 +248,6 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 />
               </div>
             </header>
-
             {article.image_url && (
               <figure className="relative w-full mb-8 rounded-xl overflow-hidden aspect-[16/9] sm:h-[400px]">
                 <Image
@@ -284,14 +265,12 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
                 )}
               </figure>
             )}
-
             <main>
               <div
                 className="prose prose-base max-w-none dark:prose-invert"
                 dangerouslySetInnerHTML={{ __html: cleanedContent }}
               />
             </main>
-
             <footer>
               {/* Кнопки шеринга */}
               <div className="mt-8 flex items-center gap-4">

@@ -14,6 +14,7 @@ const Footer = () => {
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === "/";
+  const isBlogPage = pathname.startsWith("/blog");
 
   // Функция для перехода к секции - аналогично Header
   const navigateToSection = (
@@ -34,7 +35,7 @@ const Footer = () => {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // Если мы не на главной, переходим на главную с хэшем
+      // Если мы не на главной (включая страницы блога), переходим на главную с хэшем
       router.push(`/#${sectionId}`);
     }
   };

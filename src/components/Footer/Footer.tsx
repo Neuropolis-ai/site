@@ -2,21 +2,42 @@
 
 import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import blackLogo from "../../app/assets/svg/black-logo.svg";
 import logo from "../../app/assets/svg/logo.svg";
 import "../../style/hero.css";
 import Container from "../ui/Container";
 
-// Helper function for smooth scrolling
-const scrollToSection = (sectionId: string) => {
-  const section = document.getElementById(sectionId);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth" });
-  }
-};
-
 const Footer = () => {
   const { isDark } = useTheme();
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHomePage = pathname === "/";
+
+  // Функция для перехода к секции - аналогично Header
+  const navigateToSection = (
+    sectionId: string,
+    e: React.MouseEvent<HTMLAnchorElement>
+  ) => {
+    e.preventDefault();
+
+    if (sectionId === "blog") {
+      router.push("/blog");
+      return;
+    }
+
+    if (isHomePage) {
+      // Если мы на главной, просто прокручиваем к секции
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Если мы не на главной, переходим на главную с хэшем
+      router.push(`/#${sectionId}`);
+    }
+  };
 
   return (
     <footer className="relative py-8 sm:py-12 md:py-16 overflow-hidden">
@@ -75,10 +96,7 @@ const Footer = () => {
                         ? "text-[#919191] hover:text-white"
                         : "text-gray-700 hover:text-gray-900"
                     }`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection("services");
-                    }}
+                    onClick={(e) => navigateToSection("services", e)}
                   >
                     Услуги
                   </a>
@@ -89,10 +107,7 @@ const Footer = () => {
                         ? "text-[#919191] hover:text-white"
                         : "text-gray-700 hover:text-gray-900"
                     }`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection("projects");
-                    }}
+                    onClick={(e) => navigateToSection("projects", e)}
                   >
                     Проекты
                   </a>
@@ -103,27 +118,20 @@ const Footer = () => {
                         ? "text-[#919191] hover:text-white"
                         : "text-gray-700 hover:text-gray-900"
                     }`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection("contact");
-                    }}
+                    onClick={(e) => navigateToSection("contact", e)}
                   >
                     Контакты
                   </a>
-                  <a
-                    href="#blog"
+                  <Link
+                    href="/blog"
                     className={`transition-colors cursor-pointer ${
                       isDark
                         ? "text-[#919191] hover:text-white"
                         : "text-gray-700 hover:text-gray-900"
                     }`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection("blog");
-                    }}
                   >
                     Блог
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

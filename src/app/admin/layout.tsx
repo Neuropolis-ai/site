@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function AdminLayout({
   children,
@@ -9,6 +10,57 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const [isAuth, setIsAuth] = useState(false);
+  const [input, setInput] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const auth = localStorage.getItem("admin_auth");
+      if (auth === "1") setIsAuth(true);
+    }
+  }, []);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
+    if (input === adminPassword) {
+      localStorage.setItem("admin_auth", "1");
+      setIsAuth(true);
+      setError("");
+    } else {
+      setError("Неверный пароль");
+    }
+  };
+
+  if (!isAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <form
+          onSubmit={handleLogin}
+          className="bg-white dark:bg-gray-800 p-8 rounded shadow-md w-full max-w-xs"
+        >
+          <h2 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">
+            Вход в админку
+          </h2>
+          <input
+            type="password"
+            placeholder="Пароль"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            className="w-full p-2 mb-4 border rounded dark:bg-gray-700 dark:text-white"
+          />
+          {error && <div className="text-red-500 mb-2 text-sm">{error}</div>}
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+          >
+            Войти
+          </button>
+        </form>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">

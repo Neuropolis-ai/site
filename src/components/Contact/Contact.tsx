@@ -32,16 +32,14 @@ const Contact = () => {
 
   // Функция для отправки сообщения в Telegram
   const sendToTelegram = async () => {
-    const botToken = "8020073798:AAHmXxi9XijA0z1k9JY2DzNpDI7j6ICqthI";
-    const chatId = "-1002655068247";
+    const botToken = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
 
-    const text = `
-📩 Новая заявка:
-👤 Имя: ${formData.name}
-📞 Телефон: ${formData.phone}
-✉️ Email: ${formData.email}
-💬 Сообщение: ${formData.message}
-    `;
+    if (!botToken || !chatId) {
+      throw new Error("Не настроены переменные окружения для Telegram");
+    }
+
+    const text = `\n📩 Новая заявка:\n👤 Имя: ${formData.name}\n📞 Телефон: ${formData.phone}\n✉️ Email: ${formData.email}\n💬 Сообщение: ${formData.message}\n    `;
 
     try {
       const response = await fetch(

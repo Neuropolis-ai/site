@@ -1,6 +1,8 @@
 # Allow all crawlers
 User-agent: *
 Allow: /
+Disallow: /services/autonomous-ai-agents
+Disallow: /cases/ai-sales-agent
 
 # Sitemap location
 Sitemap: https://neuropolis.ai/sitemap.xml 

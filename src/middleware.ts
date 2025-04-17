@@ -70,16 +70,16 @@ export function middleware(request: NextRequest) {
   );
 
   // Устанавливаем правильные заголовки для RSS
-  if (pathname === "/rss.xml") {
+  if (pathname === "/rss.xml" || pathname === "/rss-new.xml") {
     response.headers.set(
       "Content-Type",
       "application/rss+xml; charset=windows-1251"
     );
-    response.headers.set("Cache-Control", "public, max-age=3600");
+    response.headers.set("Cache-Control", "public, max-age=60"); // Уменьшаем время кеширования до 1 минуты
 
     // Добавляем Last-Modified
     try {
-      const rssPath = path.join(process.cwd(), "public", "rss.xml");
+      const rssPath = path.join(process.cwd(), "public", pathname);
       const stats = fs.statSync(rssPath);
       response.headers.set("Last-Modified", stats.mtime.toUTCString());
     } catch (error) {
@@ -98,5 +98,6 @@ export const config = {
     "/test-telegram/:path*",
     "/admin/:path*",
     "/rss.xml",
+    "/rss-new.xml",
   ],
 };

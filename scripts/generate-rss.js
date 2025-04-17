@@ -28,19 +28,21 @@ function escapeXml(unsafe) {
     .replace(/'/g, "&apos;");
 }
 
-// Функция для удаления HTML и markdown
-function stripHtmlAndMarkdown(text) {
+// Функция для удаления HTML, markdown и приведения текста к чистому виду
+function cleanText(text) {
   if (!text) return "";
   return text
+    .replace(/```[^`]*```/g, "") // Удаляем блоки кода
+    .replace(/`[^`]+`/g, "") // Удаляем инлайн-код
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1") // Удаляем markdown ссылки
-    .replace(/[*_~`]/g, "") // Удаляем markdown форматирование
+    .replace(/[*_~`#]/g, "") // Удаляем markdown форматирование
     .replace(/<[^>]+>/g, "") // Удаляем HTML-теги
     .replace(/&nbsp;/g, " ") // Заменяем неразрывные пробелы
     .replace(/\s+/g, " ") // Заменяем множественные пробелы одним
     .trim(); // Убираем пробелы в начале и конце
 }
 
-// Функция для форматирования URL
+// Функция для форматирования URL с экранированием амперсандов
 function formatUrl(url) {
   if (!url) return "";
   try {
@@ -48,13 +50,7 @@ function formatUrl(url) {
     // Убеждаемся, что URL использует HTTPS
     formattedUrl.protocol = "https:";
     // Заменяем & на &amp; во всех параметрах
-    return formattedUrl
-      .toString()
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&apos;");
+    return formattedUrl.toString().replace(/&/g, "&amp;");
   } catch (e) {
     console.warn("Некорректный URL:", url);
     return "";
@@ -83,8 +79,10 @@ async function generateRss() {
     console.log(`Найдено ${articles?.length || 0} статей`);
 
     // Формируем XML
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:yandex="http://news.yandex.ru">
+    const xml = `<?xml version="1.0" encoding="windows-1251"?>
+<rss version="2.0" 
+     xmlns:yandex="http://news.yandex.ru"
+     xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
     <title>Блог Neuropolis.ai</title>
     <link>https://neuropolis.ai/</link>
@@ -101,7 +99,7 @@ async function generateRss() {
               );
               const pubDate = new Date(article.published_at).toUTCString();
               const imageUrl = formatUrl(article.image_url);
-              const fullText = stripHtmlAndMarkdown(article.content);
+              const fullText = cleanText(article.content);
 
               return `
     <item>
@@ -109,15 +107,16 @@ async function generateRss() {
       <link>${articleUrl}</link>
       <guid isPermaLink="true">${articleUrl}</guid>
       <description>${escapeXml(article.description || "")}</description>
-      <author>info@neuropolis.ai (Neuropolis.ai)</author>
+      <author>agent@neuropolis.ai (Neuropolis.ai)</author>
       <category>Искусственный интеллект</category>
-      <pubDate>${pubDate}</pubDate>${
-                imageUrl
-                  ? `
+      <pubDate>${pubDate}</pubDate>
+      <yandex:genre>article</yandex:genre>${
+        imageUrl
+          ? `
       <media:content url="${imageUrl}" type="image/jpeg" />
       <media:thumbnail url="${imageUrl}" />`
-                  : ""
-              }
+          : ""
+      }
       <yandex:full-text>${escapeXml(fullText)}</yandex:full-text>
     </item>`;
             })
@@ -133,9 +132,9 @@ async function generateRss() {
       fs.mkdirSync(publicDir);
     }
 
-    // Сохраняем файл в UTF-8
+    // Сохраняем файл в windows-1251
     const rssPath = path.join(publicDir, "rss.xml");
-    fs.writeFileSync(rssPath, xml, "utf8");
+    fs.writeFileSync(rssPath, xml, "windows-1251");
     console.log("RSS файл успешно сгенерирован:", rssPath);
   } catch (error) {
     console.error("Ошибка при генерации RSS:", error);

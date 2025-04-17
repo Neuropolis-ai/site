@@ -28,8 +28,7 @@ function escapeXml(unsafe) {
       case ">":
         return "&gt;";
       case "&":
-        // Не экранируем уже экранированные амперсанды
-        return unsafe.startsWith("&amp;") ? c : "&amp;";
+        return "&amp;";
       case "'":
         return "&apos;";
       case '"':
@@ -54,10 +53,8 @@ function stripHtml(html) {
 function formatImageUrl(url) {
   if (!url) return "";
   try {
-    const imageUrl = new URL(url);
-    // Удаляем параметры качества и обрезки
-    imageUrl.search = "";
-    return imageUrl.toString();
+    // Заменяем все & на &amp; в параметрах URL
+    return url.replace(/&(?!amp;)/g, "&amp;");
   } catch (e) {
     console.warn("Некорректный URL изображения:", url);
     return url;
@@ -88,11 +85,8 @@ async function generateRss() {
 
     // Формируем XML
     const xml = `<?xml version="1.0" encoding="windows-1251"?>
-<rss version="2.0" 
-     xmlns:yandex="http://news.yandex.ru"
-     xmlns:media="http://search.yahoo.com/mrss/"
-     xmlns:turbo="http://turbo.yandex.ru"
-     xmlns:dc="http://purl.org/dc/elements/1.1/">
+<!DOCTYPE rss PUBLIC "-//Netscape Communications//DTD RSS 2.0//EN" "http://my.netscape.com/publish/formats/rss-2.0.dtd">
+<rss version="2.0">
   <channel>
     <title>Блог Neuropolis.ai</title>
     <link>https://neuropolis.ai/</link>
@@ -100,7 +94,6 @@ async function generateRss() {
     <language>ru</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     <generator>Neuropolis RSS Generator</generator>
-    <docs>http://blogs.law.harvard.edu/tech/rss</docs>
     ${
       articles
         ? articles
@@ -115,28 +108,10 @@ async function generateRss() {
       <link>${articleUrl}</link>
       <guid isPermaLink="true">${articleUrl}</guid>
       <description>${escapeXml(article.description || "")}</description>
-      <dc:creator>info@neuropolis.ai (Neuropolis.ai)</dc:creator>
+      <author>info@neuropolis.ai (Neuropolis.ai)</author>
       <category>Искусственный интеллект</category>
       <pubDate>${pubDate}</pubDate>
-      <yandex:genre>article</yandex:genre>
-      <turbo:content>
-        <![CDATA[${article.content || ""}]]>
-      </turbo:content>
-      <yandex:full-text>${escapeXml(
-        stripHtml(article.content)
-      )}</yandex:full-text>
-      ${
-        imageUrl
-          ? `
-      <enclosure url="${imageUrl}" type="image/jpeg" />
-      <media:content url="${imageUrl}" type="image/jpeg" medium="image">
-        <media:title>${escapeXml(article.title)}</media:title>
-        <media:description>${escapeXml(
-          article.description || ""
-        )}</media:description>
-      </media:content>`
-          : ""
-      }
+      ${imageUrl ? `<enclosure url="${imageUrl}" type="image/jpeg" />` : ""}
     </item>`;
             })
             .join("\n")

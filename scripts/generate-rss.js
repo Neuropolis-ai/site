@@ -123,12 +123,13 @@ async function generateRss() {
       }
     }
 
-    // Формируем XML без лишних пробелов и переносов строк в шапке, с UTF-8 кодировкой
+    // Формируем XML с добавлением atom namespace и atom:link
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+<rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
 <channel>
 <title>Блог Neuropolis.ai</title>
 <link>https://neuropolis.ai/</link>
+<atom:link href="https://neuropolis.ai/rss.xml" rel="self" type="application/rss+xml" />
 <description>ИИ-агенты и автоматизация бизнес-процессов</description>
 <language>ru</language>
 <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
@@ -147,9 +148,13 @@ ${items.join("\n")}
     fs.writeFileSync(rssPath, xml, "utf8");
     console.log("RSS файл успешно сгенерирован:", rssPath);
 
-    // Создаем копию для отладки
+    // Создаем альтернативный RSS файл с другим atom:link
+    const rssNewXml = xml.replace(
+      '<atom:link href="https://neuropolis.ai/rss.xml" rel="self" type="application/rss+xml" />',
+      '<atom:link href="https://neuropolis.ai/rss-new.xml" rel="self" type="application/rss+xml" />'
+    );
     const rssNewPath = path.join(publicDir, "rss-new.xml");
-    fs.writeFileSync(rssNewPath, xml, "utf8");
+    fs.writeFileSync(rssNewPath, rssNewXml, "utf8");
     console.log("Альтернативный RSS файл успешно сгенерирован:", rssNewPath);
 
     // Проверяем размер

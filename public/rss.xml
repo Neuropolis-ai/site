@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+<rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
 <channel>
 <title>Блог Neuropolis.ai</title>
 <link>https://neuropolis.ai/</link>
+<atom:link href="https://neuropolis.ai/rss.xml" rel="self" type="application/rss+xml" />
 <description>ИИ-агенты и автоматизация бизнес-процессов</description>
 <language>ru</language>
-<lastBuildDate>Thu, 17 Apr 2025 19:16:18 GMT</lastBuildDate>
+<lastBuildDate>Thu, 17 Apr 2025 19:24:38 GMT</lastBuildDate>
 <item>
 <title>Deck привлек $12 млн, чтобы превратить любой сайт в шедевр с помощью ИИ</title>
 <link>https://neuropolis.ai/blog/deck-privlek-12-mln-chtoby-prevratit-liuboi-sait-v-shedevr-s-pomoshchiu-ii</link>

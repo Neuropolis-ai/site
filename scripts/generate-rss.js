@@ -84,48 +84,57 @@ async function generateRss() {
 
     console.log(`Найдено ${articles?.length || 0} статей`);
 
-    // Формируем XML
+    // Создаем массив для элементов item
+    const items = [];
+
+    // Обрабатываем каждую статью
+    if (articles && articles.length > 0) {
+      for (const article of articles) {
+        const articleUrl = formatUrl(
+          `https://neuropolis.ai/blog/${article.slug}`
+        );
+        const pubDate = new Date(article.published_at).toUTCString();
+        const imageUrl = formatUrl(article.image_url);
+        const fullText = cleanText(article.content);
+
+        // Формируем item без переносов строк внутри тегов
+        let item = `<item>
+<title>${escapeXml(article.title)}</title>
+<link>${articleUrl}</link>
+<guid isPermaLink="true">${articleUrl}</guid>
+<description>${escapeXml(article.description || "")}</description>
+<author>agent@neuropolis.ai (Neuropolis.ai)</author>
+<category>Искусственный интеллект</category>
+<pubDate>${pubDate}</pubDate>
+<yandex:genre>article</yandex:genre>`;
+
+        // Добавляем информацию об изображении, только если оно есть
+        if (imageUrl) {
+          item += `
+<media:content url="${imageUrl}" type="image/jpeg" />
+<media:thumbnail url="${imageUrl}" />`;
+        }
+
+        // Добавляем полный текст и закрываем item
+        item += `
+<yandex:full-text>${escapeXml(fullText)}</yandex:full-text>
+</item>`;
+
+        items.push(item);
+      }
+    }
+
+    // Формируем XML без лишних пробелов и переносов строк в шапке
     const xml = `<?xml version="1.0" encoding="windows-1251"?>
 <rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
-  <channel>
-    <title>Блог Neuropolis.ai</title>
-    <link>https://neuropolis.ai/</link>
-    <description>ИИ-агенты и автоматизация бизнес-процессов</description>
-    <language>ru</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${
-      articles
-        ? articles
-            .map((article) => {
-              const articleUrl = formatUrl(
-                `https://neuropolis.ai/blog/${article.slug}`
-              );
-              const pubDate = new Date(article.published_at).toUTCString();
-              const imageUrl = formatUrl(article.image_url);
-              const fullText = cleanText(article.content);
-
-              return `
-    <item>
-      <title>${escapeXml(article.title)}</title>
-      <link>${articleUrl}</link>
-      <guid isPermaLink="true">${articleUrl}</guid>
-      <description>${escapeXml(article.description || "")}</description>
-      <author>agent@neuropolis.ai</author>
-      <category>Искусственный интеллект</category>
-      <pubDate>${pubDate}</pubDate>
-      <yandex:genre>article</yandex:genre>${
-        imageUrl
-          ? `
-      <media:content url="${imageUrl}" type="image/jpeg" />
-      <media:thumbnail url="${imageUrl}" />`
-          : ""
-      }
-      <yandex:full-text>${escapeXml(fullText)}</yandex:full-text>
-    </item>`;
-            })
-            .join("\n")
-        : ""
-    }
-  </channel>
+<channel>
+<title>Блог Neuropolis.ai</title>
+<link>https://neuropolis.ai/</link>
+<description>ИИ-агенты и автоматизация бизнес-процессов</description>
+<language>ru</language>
+<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+${items.join("\n")}
+</channel>
 </rss>`;
 
     // Создаем директорию public, если её нет
@@ -134,11 +143,20 @@ async function generateRss() {
       fs.mkdirSync(publicDir);
     }
 
-    // Конвертируем в windows-1251 и сохраняем
+    // Сначала сохраняем UTF-8 версию для тестирования (при необходимости)
+    const utfPath = path.join(publicDir, "rss.utf8.xml");
+    fs.writeFileSync(utfPath, xml, "utf8");
+    console.log("UTF-8 версия RSS файла сгенерирована:", utfPath);
+
+    // Конвертируем в windows-1251 и сохраняем основной файл
     const rssPath = path.join(publicDir, "rss.xml");
     const buffer = iconv.encode(xml, "windows-1251");
     fs.writeFileSync(rssPath, buffer);
     console.log("RSS файл успешно сгенерирован:", rssPath);
+
+    // Проверяем размер
+    const stats = fs.statSync(rssPath);
+    console.log(`Размер RSS файла: ${Math.round(stats.size / 1024)} KB`);
   } catch (error) {
     console.error("Ошибка при генерации RSS:", error);
     process.exit(1);

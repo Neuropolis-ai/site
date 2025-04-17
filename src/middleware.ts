@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
 
 // Массив защищенных путей, которые требуют аутентификации
 const PROTECTED_PATHS = [
@@ -24,10 +26,10 @@ function isAuthenticated(request: NextRequest): boolean {
 }
 
 export function middleware(request: NextRequest) {
-  const path = request.nextUrl.pathname;
+  const pathname = request.nextUrl.pathname;
 
   // Проверяем, является ли путь защищенным
-  if (ADMIN_PATHS.some((adminPath) => path.startsWith(adminPath))) {
+  if (ADMIN_PATHS.some((adminPath) => pathname.startsWith(adminPath))) {
     // Для страницы test-telegram пропускаем запросы без дополнительной проверки,
     // так как аутентификация реализована на клиенте
 
@@ -41,7 +43,7 @@ export function middleware(request: NextRequest) {
   // Проверяем, требуется ли защита для данного пути
   const isProtectedPath = PROTECTED_PATHS.some(
     (protectedPath) =>
-      path === protectedPath || path.startsWith(`${protectedPath}/`)
+      pathname === protectedPath || pathname.startsWith(`${protectedPath}/`)
   );
 
   // Если путь защищен и пользователь не аутентифицирован
@@ -68,15 +70,18 @@ export function middleware(request: NextRequest) {
   );
 
   // Устанавливаем правильные заголовки для RSS
-  if (path === "/rss.xml") {
-    response.headers.set(
-      "Content-Type",
-      "application/rss+xml; charset=windows-1251"
-    );
-    response.headers.set(
-      "Cache-Control",
-      "public, s-maxage=3600, stale-while-revalidate=86400"
-    );
+  if (pathname === "/rss.xml") {
+    response.headers.set("Content-Type", "application/rss+xml; charset=utf-8");
+    response.headers.set("Cache-Control", "public, max-age=3600");
+
+    // Добавляем Last-Modified
+    try {
+      const rssPath = path.join(process.cwd(), "public", "rss.xml");
+      const stats = fs.statSync(rssPath);
+      response.headers.set("Last-Modified", stats.mtime.toUTCString());
+    } catch (error) {
+      console.warn("Не удалось получить дату модификации RSS файла:", error);
+    }
   }
 
   return response;

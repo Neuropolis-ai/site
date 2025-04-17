@@ -28,23 +28,27 @@ function escapeXml(unsafe) {
     .replace(/'/g, "&apos;");
 }
 
-// Функция для удаления HTML
-function stripHtml(html) {
-  if (!html) return "";
-  return html
+// Функция для удаления HTML и markdown
+function stripHtmlAndMarkdown(text) {
+  if (!text) return "";
+  return text
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1") // Удаляем markdown ссылки
+    .replace(/[*_~`]/g, "") // Удаляем markdown форматирование
     .replace(/<[^>]+>/g, "") // Удаляем HTML-теги
     .replace(/&nbsp;/g, " ") // Заменяем неразрывные пробелы
     .replace(/\s+/g, " ") // Заменяем множественные пробелы одним
     .trim(); // Убираем пробелы в начале и конце
 }
 
-// Функция для форматирования URL изображения
-function formatImageUrl(url) {
+// Функция для форматирования URL
+function formatUrl(url) {
   if (!url) return "";
   try {
-    const imageUrl = new URL(url);
-    // Очищаем URL от специальных символов
-    return imageUrl
+    const formattedUrl = new URL(url);
+    // Убеждаемся, что URL использует HTTPS
+    formattedUrl.protocol = "https:";
+    // Заменяем & на &amp; во всех параметрах
+    return formattedUrl
       .toString()
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
@@ -52,7 +56,7 @@ function formatImageUrl(url) {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&apos;");
   } catch (e) {
-    console.warn("Некорректный URL изображения:", url);
+    console.warn("Некорректный URL:", url);
     return "";
   }
 }
@@ -80,8 +84,7 @@ async function generateRss() {
 
     // Формируем XML
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE rss PUBLIC "-//Netscape Communications//DTD RSS 2.0//EN" "http://my.netscape.com/publish/formats/rss-2.0.dtd">
-<rss version="2.0">
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:yandex="http://news.yandex.ru">
   <channel>
     <title>Блог Neuropolis.ai</title>
     <link>https://neuropolis.ai/</link>
@@ -93,11 +96,12 @@ async function generateRss() {
       articles
         ? articles
             .map((article) => {
-              const articleUrl = escapeXml(
+              const articleUrl = formatUrl(
                 `https://neuropolis.ai/blog/${article.slug}`
               );
               const pubDate = new Date(article.published_at).toUTCString();
-              const imageUrl = formatImageUrl(article.image_url);
+              const imageUrl = formatUrl(article.image_url);
+              const fullText = stripHtmlAndMarkdown(article.content);
 
               return `
     <item>
@@ -110,9 +114,11 @@ async function generateRss() {
       <pubDate>${pubDate}</pubDate>${
                 imageUrl
                   ? `
-      <enclosure url="${imageUrl}" type="image/jpeg" length="0" />`
+      <media:content url="${imageUrl}" type="image/jpeg" />
+      <media:thumbnail url="${imageUrl}" />`
                   : ""
               }
+      <yandex:full-text>${escapeXml(fullText)}</yandex:full-text>
     </item>`;
             })
             .join("\n")

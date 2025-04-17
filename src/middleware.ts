@@ -71,7 +71,10 @@ export function middleware(request: NextRequest) {
 
   // Устанавливаем правильные заголовки для RSS
   if (pathname === "/rss.xml") {
-    response.headers.set("Content-Type", "application/rss+xml; charset=utf-8");
+    response.headers.set(
+      "Content-Type",
+      "application/rss+xml; charset=windows-1251"
+    );
     response.headers.set("Cache-Control", "public, max-age=3600");
 
     // Добавляем Last-Modified

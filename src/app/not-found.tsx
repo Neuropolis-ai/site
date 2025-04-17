@@ -32,7 +32,9 @@ export default function NotFound() {
           Упс! Кажется, вы наткнулись на страницу, которой не существует. Не
           волнуйтесь, это случается с лучшими из нас.
         </p>
-        <ButtonLink href="/">Вернуться на главную</ButtonLink>
+        <ButtonLink href="/" variantBtn="link">
+          Вернуться на главную
+        </ButtonLink>
       </div>
     </div>
   );

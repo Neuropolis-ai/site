@@ -2,6 +2,7 @@ require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 const { createClient } = require("@supabase/supabase-js");
+const iconv = require("iconv-lite");
 
 // Проверяем наличие необходимых переменных окружения
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -42,15 +43,20 @@ function cleanText(text) {
     .trim(); // Убираем пробелы в начале и конце
 }
 
-// Функция для форматирования URL с экранированием амперсандов
+// Функция для форматирования URL с корректным экранированием амперсандов
 function formatUrl(url) {
   if (!url) return "";
   try {
     const formattedUrl = new URL(url);
     // Убеждаемся, что URL использует HTTPS
     formattedUrl.protocol = "https:";
-    // Заменяем & на &amp; во всех параметрах
-    return formattedUrl.toString().replace(/&/g, "&amp;");
+    // Заменяем & на &amp; во всех параметрах, но только после знака ?
+    const urlString = formattedUrl.toString();
+    const [baseUrl, query] = urlString.split("?");
+    if (query) {
+      return `${baseUrl}?${query.replace(/&/g, "&amp;")}`;
+    }
+    return urlString;
   } catch (e) {
     console.warn("Некорректный URL:", url);
     return "";
@@ -80,17 +86,13 @@ async function generateRss() {
 
     // Формируем XML
     const xml = `<?xml version="1.0" encoding="windows-1251"?>
-<rss version="2.0" 
-     xmlns:yandex="http://news.yandex.ru"
-     xmlns:media="http://search.yahoo.com/mrss/">
+<rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
   <channel>
     <title>Блог Neuropolis.ai</title>
     <link>https://neuropolis.ai/</link>
-    <description>Статьи о применении ИИ в бизнесе и кейсы автоматизации</description>
+    <description>ИИ-агенты и автоматизация бизнес-процессов</description>
     <language>ru</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <generator>Neuropolis RSS Generator</generator>
-    ${
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>${
       articles
         ? articles
             .map((article) => {
@@ -132,9 +134,10 @@ async function generateRss() {
       fs.mkdirSync(publicDir);
     }
 
-    // Сохраняем файл в windows-1251
+    // Конвертируем в windows-1251 и сохраняем
     const rssPath = path.join(publicDir, "rss.xml");
-    fs.writeFileSync(rssPath, xml, "windows-1251");
+    const buffer = iconv.encode(xml, "windows-1251");
+    fs.writeFileSync(rssPath, buffer);
     console.log("RSS файл успешно сгенерирован:", rssPath);
   } catch (error) {
     console.error("Ошибка при генерации RSS:", error);

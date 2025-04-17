@@ -43,9 +43,12 @@ const Contact = () => {
       };
     }
 
+    // Форматируем сообщение для Telegram
     const text = `\n📩 Новая заявка:\n👤 Имя: ${formData.name}\n📞 Телефон: ${formData.phone}\n✉️ Email: ${formData.email}\n💬 Сообщение: ${formData.message}\n    `;
 
     try {
+      console.log("Отправка сообщения в Telegram...");
+
       const response = await fetch(
         `https://api.telegram.org/bot${botToken}/sendMessage`,
         {
@@ -56,28 +59,55 @@ const Contact = () => {
           body: JSON.stringify({
             chat_id: chatId,
             text: text,
+            // Не используем parse_mode, так как это может вызывать проблемы
           }),
         }
       );
 
-      const data = await response.json();
-
+      // Проверяем статус сетевого ответа
       if (!response.ok) {
-        console.error("Ошибка отправки в Telegram:", data);
+        const statusText = response.statusText;
+        console.error(`Ошибка HTTP: ${response.status} ${statusText}`);
         return {
           ok: false,
-          error: `Ошибка отправки в Telegram: ${
+          error: `Ошибка HTTP: ${response.status} ${statusText}`,
+        };
+      }
+
+      // Парсим JSON-ответ от API Telegram
+      let data;
+      try {
+        data = await response.json();
+      } catch (jsonError) {
+        console.error("Ошибка при парсинге JSON-ответа:", jsonError);
+        return {
+          ok: false,
+          error: "Невозможно прочитать ответ от API Telegram",
+        };
+      }
+
+      console.log("Ответ от API Telegram:", data);
+
+      // Проверяем успешность операции по данным от API
+      if (!data.ok) {
+        console.error("Ошибка API Telegram:", data);
+        return {
+          ok: false,
+          error: `Ошибка API Telegram: ${
             data.description || "Неизвестная ошибка"
           }`,
         };
       }
 
+      console.log("Сообщение успешно отправлено в Telegram!");
       return { ok: true, data };
     } catch (error) {
-      console.error("Ошибка при отправке в Telegram:", error);
+      console.error("Исключение при отправке в Telegram:", error);
       return {
         ok: false,
-        error: "Ошибка при отправке в Telegram. Проверьте соединение.",
+        error: `Исключение при отправке в Telegram: ${
+          (error as Error).message || "Неизвестная ошибка"
+        }`,
       };
     }
   };
@@ -102,16 +132,28 @@ const Contact = () => {
         );
       }
 
+      console.log("Сохраняем данные формы в Supabase:", {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message:
+          formData.message.substring(0, 20) +
+          (formData.message.length > 20 ? "..." : ""),
+      });
+
       // Сохраняем в Supabase
-      const { error } = await supabase.from("contacts").insert([
-        {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          message: formData.message,
-          created_at: new Date().toISOString(),
-        },
-      ]);
+      const { error, data } = await supabase
+        .from("contacts")
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: formData.message,
+            created_at: new Date().toISOString(),
+          },
+        ])
+        .select();
 
       if (error) {
         console.error("Ошибка сохранения в Supabase:", error);
@@ -124,8 +166,12 @@ const Contact = () => {
         throw new Error(`Ошибка сохранения данных: ${error.message}`);
       }
 
+      console.log("Данные успешно сохранены в Supabase:", data);
+
       // Отправляем в Telegram
+      console.log("Отправляем уведомление в Telegram...");
       const telegramResult = await sendToTelegram();
+      console.log("Результат отправки в Telegram:", telegramResult);
 
       // Даже если отправка в Telegram не удалась, мы всё равно считаем форму отправленной,
       // т.к. данные сохранены в базе

@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "setup-contacts": "node scripts/create-contacts-table.js",
-    "check-telegram": "node scripts/check-telegram-settings.js"
+    "check-telegram": "node scripts/check-telegram-settings.js",
+    "test-telegram": "node scripts/test-telegram-message.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
@@ -28,6 +29,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-input-mask": "^3.0.6",
+    "dotenv": "^16.5.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.24",
     "file-loader": "^6.2.0",

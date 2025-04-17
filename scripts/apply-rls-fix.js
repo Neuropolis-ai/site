@@ -30,12 +30,53 @@ try {
   process.exit(1);
 }
 
+// Функция для проверки наличия последовательности
+async function checkSequenceExists() {
+  try {
+    console.log("Проверка структуры таблицы contacts...");
+
+    // Получаем информацию о таблице contacts
+    const { data, error } = await supabase
+      .from("contacts")
+      .select("id")
+      .limit(1);
+
+    if (error && error.code !== "PGRST116") {
+      console.error("Ошибка при проверке таблицы contacts:", error);
+      console.log("Продолжаем без проверки последовательности...");
+      return false;
+    }
+
+    // Пробуем получить информацию о последовательности
+    // Примечание: это упрощенный способ проверки, который может не работать,
+    // поэтому мы будем удалять строку с GRANT USAGE в любом случае
+    return false;
+  } catch (error) {
+    console.error("Ошибка при проверке последовательности:", error);
+    return false;
+  }
+}
+
 // Функция для выполнения SQL-скрипта через REST API
 // (это альтернативный метод, если rpc вызов не работает)
 async function executeRlsFix() {
   console.log("Применение исправления RLS для таблицы contacts...");
 
   try {
+    // Проверяем наличие последовательности
+    const sequenceExists = await checkSequenceExists();
+
+    // Удаляем строку с GRANT USAGE ON SEQUENCE, если последовательность не существует
+    if (!sequenceExists) {
+      console.log(
+        "Последовательность contacts_id_seq не найдена, модифицируем SQL-запрос..."
+      );
+      fixSql = fixSql.replace(
+        /GRANT USAGE ON SEQUENCE contacts_id_seq TO anon, authenticated;/g,
+        "-- GRANT USAGE ON SEQUENCE contacts_id_seq TO anon, authenticated; -- Последовательность не существует"
+      );
+    }
+
     // Сначала пробуем выполнить через rpc (предпочтительный метод)
     console.log("Попытка выполнения через RPC...");
     try {

@@ -36,4 +36,4 @@ GRANT SELECT, INSERT ON contacts TO anon;
 GRANT SELECT, INSERT, UPDATE, DELETE ON contacts TO authenticated;
 
 -- Дополнительное исправление для ситуации, если таблица требует последовательности
-GRANT USAGE ON SEQUENCE contacts_id_seq TO anon, authenticated; 
+-- GRANT USAGE ON SEQUENCE contacts_id_seq TO anon, authenticated; 

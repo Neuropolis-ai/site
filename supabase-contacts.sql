@@ -34,4 +34,12 @@ CREATE POLICY "Authenticated users can update contacts"
 ON contacts FOR UPDATE USING (auth.role() = 'authenticated');
 
 CREATE POLICY "Authenticated users can delete contacts" 
-ON contacts FOR DELETE USING (auth.role() = 'authenticated'); 
+ON contacts FOR DELETE USING (auth.role() = 'authenticated');
+
+-- Дополнительно проверяем, что анонимные пользователи могут вставлять данные
+ALTER TABLE contacts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE contacts FORCE ROW LEVEL SECURITY;
+
+-- Убедимся, что анонимный пользователь точно может вставлять данные
+GRANT INSERT ON contacts TO anon;
+GRANT SELECT ON contacts TO anon; 

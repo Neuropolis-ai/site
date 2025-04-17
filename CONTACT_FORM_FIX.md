@@ -34,9 +34,104 @@
 
 Добавлен скрипт для проверки токена бота и ID чата: `scripts/check-telegram-settings.js`
 
+## Дополнительные проблемы и их решения
+
+### Ошибка Row-Level Security (RLS)
+
+При тестировании могла возникнуть ошибка:
+
+> Ошибка сохранения данных: new row violates row-level security policy for table "contacts"
+
+Эта ошибка указывает на проблему с политиками безопасности в Supabase, которые запрещают анонимным пользователям (неавторизованным) вставлять данные в таблицу.
+
+#### Решение:
+
+Выполните следующий SQL-запрос в интерфейсе Supabase (SQL Editor):
+
+```sql
+-- Исправление политик RLS для таблицы contacts
+
+-- Сначала удалим существующие политики
+DROP POLICY IF EXISTS "Public access to contacts" ON contacts;
+DROP POLICY IF EXISTS "Public users can create contacts" ON contacts;
+DROP POLICY IF EXISTS "Authenticated users can update contacts" ON contacts;
+DROP POLICY IF EXISTS "Authenticated users can delete contacts" ON contacts;
+
+-- Включаем Row Level Security и принудительно применяем для всех пользователей
+ALTER TABLE contacts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE contacts FORCE ROW LEVEL SECURITY;
+
+-- Создаем обновленные политики безопасности
+CREATE POLICY "Public access to contacts"
+ON contacts FOR SELECT
+TO anon, authenticated
+USING (true);
+
+CREATE POLICY "Public users can create contacts"
+ON contacts FOR INSERT
+TO anon, authenticated
+WITH CHECK (true);
+
+CREATE POLICY "Authenticated users can update contacts"
+ON contacts FOR UPDATE
+TO authenticated
+USING (auth.role() = 'authenticated');
+
+CREATE POLICY "Authenticated users can delete contacts"
+ON contacts FOR DELETE
+TO authenticated
+USING (auth.role() = 'authenticated');
+
+-- Предоставляем явные разрешения
+GRANT SELECT, INSERT ON contacts TO anon;
+GRANT SELECT, INSERT, UPDATE, DELETE ON contacts TO authenticated;
+```
+
+Этот запрос явно разрешает анонимным пользователям вставлять данные в таблицу `contacts`, что решает проблему с отправкой формы.
+
 ## Инструкция по применению исправлений
 
 1. **Создание таблицы contacts в Supabase**:
+
+   **_Вариант 1 (рекомендуется):_**
+   Выполните SQL-запрос в интерфейсе Supabase (SQL Editor):
+
+   ```sql
+   -- Активируем расширение для работы с UUID, если оно еще не активировано
+   CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+   -- Удаляем таблицу, если она существует
+   DROP TABLE IF EXISTS contacts;
+
+   -- Создаем таблицу для контактных форм
+   CREATE TABLE contacts (
+     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+     name TEXT NOT NULL,
+     email TEXT NOT NULL,
+     phone TEXT NOT NULL,
+     message TEXT NOT NULL,
+     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+   );
+
+   -- Включаем Row Level Security
+   ALTER TABLE contacts ENABLE ROW LEVEL SECURITY;
+
+   -- Создаем политики безопасности
+   CREATE POLICY "Public access to contacts"
+   ON contacts FOR SELECT USING (true);
+
+   CREATE POLICY "Public users can create contacts"
+   ON contacts FOR INSERT WITH CHECK (true);
+
+   CREATE POLICY "Authenticated users can update contacts"
+   ON contacts FOR UPDATE USING (auth.role() = 'authenticated');
+
+   CREATE POLICY "Authenticated users can delete contacts"
+   ON contacts FOR DELETE USING (auth.role() = 'authenticated');
+   ```
+
+   **_Вариант 2:_**
+   Если у вас настроена функция `pgexec` в Supabase, можно использовать скрипт:
 
    ```
    npm run setup-contacts

@@ -6,7 +6,9 @@
     "dev": "next dev -p ${PORT:-3002}",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "setup-contacts": "node scripts/create-contacts-table.js",
+    "check-telegram": "node scripts/check-telegram-settings.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",

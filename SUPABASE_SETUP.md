@@ -93,3 +93,51 @@ npm run dev
 ```
 
 Ваш блог теперь должен отображать данные из Supabase!
+
+## 7. Настройка таблицы для контактной формы
+
+Для работы контактной формы на сайте необходимо создать таблицу `contacts`. Выполните следующий SQL запрос:
+
+```sql
+-- Активируем расширение для работы с UUID, если оно еще не активировано
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Создаем таблицу для контактных форм
+CREATE TABLE contacts (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT NOT NULL,
+  message TEXT NOT NULL,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+-- Включаем Row Level Security
+ALTER TABLE contacts ENABLE ROW LEVEL SECURITY;
+
+-- Создаем политики безопасности
+CREATE POLICY "Public access to contacts"
+ON contacts FOR SELECT USING (true);
+
+CREATE POLICY "Public users can create contacts"
+ON contacts FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Authenticated users can update contacts"
+ON contacts FOR UPDATE USING (auth.role() = 'authenticated');
+
+CREATE POLICY "Authenticated users can delete contacts"
+ON contacts FOR DELETE USING (auth.role() = 'authenticated');
+```
+
+## 8. Настройка переменных окружения для Telegram
+
+Для отправки уведомлений о новых заявках в Telegram, добавьте следующие переменные в файл `.env.local`:
+
+```
+NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=ваш_токен_бота
+NEXT_PUBLIC_TELEGRAM_CHAT_ID=ваш_id_чата
+```
+
+1. Создайте бота через [@BotFather](https://t.me/BotFather) в Telegram и получите токен.
+2. Создайте чат или группу, добавьте туда своего бота.
+3. Получите ID чата, отправив сообщение в чат и затем проверив его через API: `https://api.telegram.org/bot{токен}/getUpdates`

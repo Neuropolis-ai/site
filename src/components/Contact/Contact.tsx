@@ -36,7 +36,11 @@ const Contact = () => {
     const chatId = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
 
     if (!botToken || !chatId) {
-      throw new Error("Не настроены переменные окружения для Telegram");
+      console.error("Не настроены переменные окружения для Telegram");
+      return {
+        ok: false,
+        error: "Не настроены переменные окружения для Telegram",
+      };
     }
 
     const text = `\n📩 Новая заявка:\n👤 Имя: ${formData.name}\n📞 Телефон: ${formData.phone}\n✉️ Email: ${formData.email}\n💬 Сообщение: ${formData.message}\n    `;
@@ -52,19 +56,29 @@ const Contact = () => {
           body: JSON.stringify({
             chat_id: chatId,
             text: text,
-            parse_mode: "HTML",
           }),
         }
       );
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error("Ошибка отправки в Telegram");
+        console.error("Ошибка отправки в Telegram:", data);
+        return {
+          ok: false,
+          error: `Ошибка отправки в Telegram: ${
+            data.description || "Неизвестная ошибка"
+          }`,
+        };
       }
 
-      return await response.json();
+      return { ok: true, data };
     } catch (error) {
       console.error("Ошибка при отправке в Telegram:", error);
-      throw error;
+      return {
+        ok: false,
+        error: "Ошибка при отправке в Telegram. Проверьте соединение.",
+      };
     }
   };
 
@@ -74,6 +88,20 @@ const Contact = () => {
     setSubmitStatus({ type: null, message: "" });
 
     try {
+      // Проверяем соединение с Supabase
+      const { error: connectionError } = await supabase
+        .from("contacts")
+        .select("id")
+        .limit(1);
+
+      if (connectionError && connectionError.code !== "PGRST116") {
+        // PGRST116 - это ошибка "результаты не найдены", что нормально
+        console.error("Ошибка соединения с Supabase:", connectionError);
+        throw new Error(
+          `Не удалось подключиться к базе данных: ${connectionError.message}`
+        );
+      }
+
       // Сохраняем в Supabase
       const { error } = await supabase.from("contacts").insert([
         {
@@ -85,21 +113,41 @@ const Contact = () => {
         },
       ]);
 
-      if (error) throw error;
+      if (error) {
+        console.error("Ошибка сохранения в Supabase:", error);
+        // Если ошибка связана с отсутствием таблицы
+        if (error.code === "42P01") {
+          throw new Error(
+            "Таблица 'contacts' не существует. Пожалуйста, настройте базу данных согласно инструкции."
+          );
+        }
+        throw new Error(`Ошибка сохранения данных: ${error.message}`);
+      }
 
       // Отправляем в Telegram
-      await sendToTelegram();
+      const telegramResult = await sendToTelegram();
+
+      // Даже если отправка в Telegram не удалась, мы всё равно считаем форму отправленной,
+      // т.к. данные сохранены в базе
+      if (!telegramResult.ok) {
+        console.warn(
+          "Предупреждение: данные сохранены, но уведомление не отправлено",
+          telegramResult.error
+        );
+      }
 
       setSubmitStatus({
         type: "success",
         message: "Спасибо! Ваше сообщение успешно отправлено.",
       });
       setFormData({ name: "", email: "", phone: "", message: "" });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error submitting form:", error);
       setSubmitStatus({
         type: "error",
-        message: "Произошла ошибка при отправке. Пожалуйста, попробуйте позже.",
+        message:
+          error.message ||
+          "Произошла ошибка при отправке. Пожалуйста, попробуйте позже.",
       });
     } finally {
       setIsSubmitting(false);

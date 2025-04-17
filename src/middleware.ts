@@ -71,11 +71,13 @@ export function middleware(request: NextRequest) {
 
   // Устанавливаем правильные заголовки для RSS
   if (pathname === "/rss.xml" || pathname === "/rss-new.xml") {
+    response.headers.set("Content-Type", "application/rss+xml; charset=UTF-8");
     response.headers.set(
-      "Content-Type",
-      "application/rss+xml; charset=windows-1251"
+      "Cache-Control",
+      "no-cache, no-store, must-revalidate"
     );
-    response.headers.set("Cache-Control", "public, max-age=60"); // Уменьшаем время кеширования до 1 минуты
+    response.headers.set("Pragma", "no-cache");
+    response.headers.set("Expires", "0");
 
     // Добавляем Last-Modified
     try {

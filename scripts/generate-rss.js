@@ -2,7 +2,6 @@ require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 const { createClient } = require("@supabase/supabase-js");
-const iconv = require("iconv-lite");
 
 // Проверяем наличие необходимых переменных окружения
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -124,8 +123,8 @@ async function generateRss() {
       }
     }
 
-    // Формируем XML без лишних пробелов и переносов строк в шапке
-    const xml = `<?xml version="1.0" encoding="windows-1251"?>
+    // Формируем XML без лишних пробелов и переносов строк в шапке, с UTF-8 кодировкой
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
 <channel>
 <title>Блог Neuropolis.ai</title>
@@ -143,16 +142,15 @@ ${items.join("\n")}
       fs.mkdirSync(publicDir);
     }
 
-    // Сначала сохраняем UTF-8 версию для тестирования (при необходимости)
-    const utfPath = path.join(publicDir, "rss.utf8.xml");
-    fs.writeFileSync(utfPath, xml, "utf8");
-    console.log("UTF-8 версия RSS файла сгенерирована:", utfPath);
-
-    // Конвертируем в windows-1251 и сохраняем основной файл
+    // Сохраняем в UTF-8
     const rssPath = path.join(publicDir, "rss.xml");
-    const buffer = iconv.encode(xml, "windows-1251");
-    fs.writeFileSync(rssPath, buffer);
+    fs.writeFileSync(rssPath, xml, "utf8");
     console.log("RSS файл успешно сгенерирован:", rssPath);
+
+    // Создаем копию для отладки
+    const rssNewPath = path.join(publicDir, "rss-new.xml");
+    fs.writeFileSync(rssNewPath, xml, "utf8");
+    console.log("Альтернативный RSS файл успешно сгенерирован:", rssNewPath);
 
     // Проверяем размер
     const stats = fs.statSync(rssPath);

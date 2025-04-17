@@ -66,7 +66,6 @@ export async function POST(request: Request) {
     // Вместо прямого запроса к api.telegram.org используем наш API для отправки
     const telegramUrl =
       "https://api.telegram.org/bot" + botToken + "/sendMessage";
-    const proxyUrl = "https://cors-anywhere.herokuapp.com/" + telegramUrl;
 
     console.log(
       "URL запроса:",

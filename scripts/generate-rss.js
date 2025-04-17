@@ -109,7 +109,7 @@ async function generateRss() {
       <link>${articleUrl}</link>
       <guid isPermaLink="true">${articleUrl}</guid>
       <description>${escapeXml(article.description || "")}</description>
-      <author>agent@neuropolis.ai (Neuropolis.ai)</author>
+      <author>agent@neuropolis.ai</author>
       <category>Искусственный интеллект</category>
       <pubDate>${pubDate}</pubDate>
       <yandex:genre>article</yandex:genre>${

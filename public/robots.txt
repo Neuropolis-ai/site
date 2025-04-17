@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://neuropolis.ai/sitemap.xml
+
+# RSS Feed
+Sitemap: https://neuropolis.ai/rss.xml 

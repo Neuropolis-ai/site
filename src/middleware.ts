@@ -6,6 +6,9 @@ const PROTECTED_PATHS = [
   "/cases/ai-sales-agent",
 ];
 
+// Пути, требующие доступа администратора
+const ADMIN_PATHS = ["/test-telegram", "/admin"];
+
 // Простая функция для проверки базовой аутентификации
 function isAuthenticated(request: NextRequest): boolean {
   const authHeader = request.headers.get("authorization");
@@ -21,8 +24,19 @@ function isAuthenticated(request: NextRequest): boolean {
 }
 
 export function middleware(request: NextRequest) {
-  // Получаем путь из URL
   const path = request.nextUrl.pathname;
+
+  // Проверяем, является ли путь защищенным
+  if (ADMIN_PATHS.some((adminPath) => path.startsWith(adminPath))) {
+    // Для страницы test-telegram пропускаем запросы без дополнительной проверки,
+    // так как аутентификация реализована на клиенте
+
+    // Если в будущем требуется дополнительная защита на уровне сервера,
+    // здесь можно добавить проверку cookie или заголовков
+
+    // В данный момент разрешаем доступ, но дальнейшая проверка будет на клиенте
+    return NextResponse.next();
+  }
 
   // Проверяем, требуется ли защита для данного пути
   const isProtectedPath = PROTECTED_PATHS.some(
@@ -42,7 +56,30 @@ export function middleware(request: NextRequest) {
   }
 
   // Продолжаем с запросом, если аутентификация пройдена или путь не защищен
-  return NextResponse.next();
+  const response = NextResponse.next();
+
+  // Добавляем заголовки безопасности
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set(
+    "Permissions-Policy",
+    "camera=(), microphone=(), geolocation=()"
+  );
+
+  // Устанавливаем правильные заголовки для RSS
+  if (path === "/rss.xml") {
+    response.headers.set(
+      "Content-Type",
+      "application/rss+xml; charset=windows-1251"
+    );
+    response.headers.set(
+      "Cache-Control",
+      "public, s-maxage=3600, stale-while-revalidate=86400"
+    );
+  }
+
+  return response;
 }
 
 // Указываем для каких путей будет вызываться middleware
@@ -50,5 +87,8 @@ export const config = {
   matcher: [
     "/services/autonomous-ai-agents/:path*",
     "/cases/ai-sales-agent/:path*",
+    "/test-telegram/:path*",
+    "/admin/:path*",
+    "/rss.xml",
   ],
 };

@@ -4,17 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p ${PORT:-3002}",
-    "build": "next build",
+    "build": "npm run generate-rss && next build",
     "start": "next start",
     "lint": "next lint",
     "setup-contacts": "node scripts/create-contacts-table.js",
     "check-telegram": "node scripts/check-telegram-settings.js",
     "test-telegram": "node scripts/test-telegram-message.js",
-    "fix-rls": "node scripts/apply-rls-fix.js"
+    "fix-rls": "node scripts/apply-rls-fix.js",
+    "generate-rss": "node scripts/generate-rss.js"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.4",
     "@tinymce/tinymce-react": "^6.1.0",
+    "@types/iconv-lite": "^0.0.1",
     "next": "14.2.24",
     "node-fetch": "^3.3.2",
     "react": "^18",
@@ -25,6 +26,7 @@
     "tinymce": "^7.7.2"
   },
   "devDependencies": {
+    "@supabase/supabase-js": "^2.49.4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -34,6 +36,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.24",
     "file-loader": "^6.2.0",
+    "iconv-lite": "^0.6.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"

@@ -1,11 +1,21 @@
+require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 const { createClient } = require("@supabase/supabase-js");
 const iconv = require("iconv-lite");
 
-// Инициализация Supabase клиента
+// Проверяем наличие необходимых переменных окружения
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error(
+    "Ошибка: Не найдены переменные окружения NEXT_PUBLIC_SUPABASE_URL и/или NEXT_PUBLIC_SUPABASE_ANON_KEY"
+  );
+  process.exit(1);
+}
+
+// Инициализация Supabase клиента
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Функция для экранирования XML
@@ -39,13 +49,25 @@ function stripHtml(html) {
 
 async function generateRss() {
   try {
+    console.log("Начинаем генерацию RSS...");
+
     // Получаем статьи из Supabase
     const { data: articles, error } = await supabase
       .from("articles")
       .select("*")
       .order("published_at", { ascending: false });
 
-    if (error) throw error;
+    if (error) {
+      console.error("Ошибка при получении статей:", error);
+      throw error;
+    }
+
+    if (!articles || articles.length === 0) {
+      console.log("Предупреждение: Статьи не найдены");
+      // Создаем пустой RSS даже если нет статей
+    }
+
+    console.log(`Найдено ${articles?.length || 0} статей`);
 
     // Формируем XML
     const xml = `<?xml version="1.0" encoding="windows-1251"?>
@@ -56,9 +78,11 @@ async function generateRss() {
     <description>Статьи о применении ИИ в бизнесе и кейсы автоматизации</description>
     <language>ru</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    ${articles
-      .map(
-        (article) => `
+    ${
+      articles
+        ? articles
+            .map(
+              (article) => `
     <item>
       <title>${escapeXml(article.title)}</title>
       <link>https://neuropolis.ai/blog/${article.slug}</link>
@@ -81,8 +105,10 @@ async function generateRss() {
           : ""
       }
     </item>`
-      )
-      .join("")}
+            )
+            .join("")
+        : ""
+    }
   </channel>
 </rss>`;
 
@@ -96,8 +122,9 @@ async function generateRss() {
     }
 
     // Сохраняем файл
-    fs.writeFileSync(path.join(publicDir, "rss.xml"), buffer);
-    console.log("RSS файл успешно сгенерирован");
+    const rssPath = path.join(publicDir, "rss.xml");
+    fs.writeFileSync(rssPath, buffer);
+    console.log("RSS файл успешно сгенерирован:", rssPath);
   } catch (error) {
     console.error("Ошибка при генерации RSS:", error);
     process.exit(1);

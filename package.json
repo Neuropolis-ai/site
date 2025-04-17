@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p ${PORT:-3002}",
-    "build": "npm run generate-rss && next build",
+    "build": "node scripts/generate-rss.js || echo 'RSS generation failed' && next build",
     "start": "next start",
     "lint": "next lint",
     "setup-contacts": "node scripts/create-contacts-table.js",

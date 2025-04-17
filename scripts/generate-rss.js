@@ -20,6 +20,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Функция для экранирования XML
 function escapeXml(unsafe) {
+  if (!unsafe) return "";
   return unsafe.replace(/[<>&'"]/g, (c) => {
     switch (c) {
       case "<":
@@ -27,7 +28,8 @@ function escapeXml(unsafe) {
       case ">":
         return "&gt;";
       case "&":
-        return "&amp;";
+        // Не экранируем уже экранированные амперсанды
+        return unsafe.startsWith("&amp;") ? c : "&amp;";
       case "'":
         return "&apos;";
       case '"':
@@ -40,11 +42,26 @@ function escapeXml(unsafe) {
 
 // Функция для удаления HTML
 function stripHtml(html) {
+  if (!html) return "";
   return html
-    .replace(/<[^>]+>/g, "")
-    .replace(/&nbsp;/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+    .replace(/<[^>]+>/g, "") // Удаляем HTML-теги
+    .replace(/&nbsp;/g, " ") // Заменяем неразрывные пробелы
+    .replace(/\s+/g, " ") // Заменяем множественные пробелы одним
+    .trim(); // Убираем пробелы в начале и конце
+}
+
+// Функция для форматирования URL изображения
+function formatImageUrl(url) {
+  if (!url) return "";
+  try {
+    const imageUrl = new URL(url);
+    // Удаляем параметры качества и обрезки
+    imageUrl.search = "";
+    return imageUrl.toString();
+  } catch (e) {
+    console.warn("Некорректный URL изображения:", url);
+    return url;
+  }
 }
 
 async function generateRss() {
@@ -71,42 +88,58 @@ async function generateRss() {
 
     // Формируем XML
     const xml = `<?xml version="1.0" encoding="windows-1251"?>
-<rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+<rss version="2.0" 
+     xmlns:yandex="http://news.yandex.ru"
+     xmlns:media="http://search.yahoo.com/mrss/"
+     xmlns:turbo="http://turbo.yandex.ru"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>Блог Neuropolis.ai</title>
     <link>https://neuropolis.ai/</link>
     <description>Статьи о применении ИИ в бизнесе и кейсы автоматизации</description>
     <language>ru</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <generator>Neuropolis RSS Generator</generator>
+    <docs>http://blogs.law.harvard.edu/tech/rss</docs>
     ${
       articles
         ? articles
-            .map(
-              (article) => `
+            .map((article) => {
+              const articleUrl = `https://neuropolis.ai/blog/${article.slug}`;
+              const pubDate = new Date(article.published_at).toUTCString();
+              const imageUrl = formatImageUrl(article.image_url);
+
+              return `
     <item>
       <title>${escapeXml(article.title)}</title>
-      <link>https://neuropolis.ai/blog/${article.slug}</link>
-      <pdalink>https://neuropolis.ai/blog/${article.slug}</pdalink>
+      <link>${articleUrl}</link>
+      <guid isPermaLink="true">${articleUrl}</guid>
       <description>${escapeXml(article.description || "")}</description>
-      <author>Neuropolis.ai</author>
+      <dc:creator>info@neuropolis.ai (Neuropolis.ai)</dc:creator>
       <category>Искусственный интеллект</category>
-      <pubDate>${new Date(article.published_at).toUTCString()}</pubDate>
+      <pubDate>${pubDate}</pubDate>
       <yandex:genre>article</yandex:genre>
+      <turbo:content>
+        <![CDATA[${article.content || ""}]]>
+      </turbo:content>
       <yandex:full-text>${escapeXml(
         stripHtml(article.content)
       )}</yandex:full-text>
       ${
-        article.image_url
+        imageUrl
           ? `
-      <media:group>
-        <media:content url="${article.image_url}" type="image/jpeg" />
-        <media:thumbnail url="${article.image_url}" />
-      </media:group>`
+      <enclosure url="${imageUrl}" type="image/jpeg" />
+      <media:content url="${imageUrl}" type="image/jpeg" medium="image">
+        <media:title>${escapeXml(article.title)}</media:title>
+        <media:description>${escapeXml(
+          article.description || ""
+        )}</media:description>
+      </media:content>`
           : ""
       }
-    </item>`
-            )
-            .join("")
+    </item>`;
+            })
+            .join("\n")
         : ""
     }
   </channel>

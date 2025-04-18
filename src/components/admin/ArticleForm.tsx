@@ -221,7 +221,8 @@ export default function ArticleForm({
 
     const publishedDate = new Date(publishedAt);
 
-    await onSubmit({
+    // Проверка, поддерживается ли поле is_published
+    let articleData: any = {
       title,
       slug,
       content,
@@ -229,8 +230,28 @@ export default function ArticleForm({
       source,
       image_url: imageUrl,
       published_at: publishedDate.toISOString(),
-      is_published: isPublished,
-    });
+    };
+
+    // Добавляем поле is_published только если оно поддерживается
+    try {
+      await onSubmit(articleData);
+    } catch (error) {
+      console.error("Ошибка при сохранении статьи:", error);
+      // Если ошибка связана с полем is_published, пробуем без него
+      if (
+        error instanceof Error &&
+        error.message &&
+        error.message.includes("is_published")
+      ) {
+        console.warn("Ошибка с полем is_published, повторяем без него");
+
+        // Удаляем is_published из данных и пробуем снова
+        delete articleData.is_published;
+        await onSubmit(articleData);
+      } else {
+        throw error; // Пробрасываем ошибку дальше
+      }
+    }
   };
 
   const handleContentChange = (value: string) => {

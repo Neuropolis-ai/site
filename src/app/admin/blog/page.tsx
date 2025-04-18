@@ -53,7 +53,7 @@ export default function AdminBlogPage() {
     try {
       console.log("Начинаем восстановление статьи с ID:", id);
 
-      // Сначала получаем данные статьи
+      // Сначала получаем данные статьи для UI
       const { data: articleData, error: fetchError } = await supabase
         .from("articles")
         .select("*")
@@ -68,88 +68,48 @@ export default function AdminBlogPage() {
 
       console.log("Получены данные статьи:", articleData);
 
-      // Комплексное решение для восстановления
+      // Вызываем API-эндпоинт для восстановления
       try {
-        let updateSuccess = false;
+        console.log("Отправляем запрос к API для восстановления...");
 
-        // Сначала пробуем прямой SQL запрос через RPC
-        try {
-          console.log("Пробуем восстановить через RPC...");
-          const { error: rpcError } = await supabase.rpc("restore_article", {
-            article_id: id,
-          });
+        const response = await fetch("/api/articles/restore", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id }),
+        });
 
-          if (!rpcError) {
-            console.log("Успешное восстановление через RPC");
-            updateSuccess = true;
-          } else {
-            console.warn("RPC метод не сработал:", rpcError);
-          }
-        } catch (rpcErr) {
-          console.warn("Ошибка при вызове RPC:", rpcErr);
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          console.log("API успешно восстановил статью:", result);
+
+          // Оптимистично обновляем UI
+          setArticles(
+            articles.map((article) =>
+              article.id === id
+                ? {
+                    ...articleData,
+                    is_published: true,
+                    updated_at: new Date().toISOString(),
+                  }
+                : article
+            )
+          );
+
+          console.log("Статья успешно восстановлена в UI");
+        } else {
+          console.error("API вернул ошибку:", result);
+          setError(
+            `Ошибка восстановления: ${result.error || "Неизвестная ошибка"}`
+          );
         }
-
-        // Если RPC не сработал, пробуем прямое обновление
-        if (!updateSuccess) {
-          try {
-            console.log("Пробуем прямое обновление is_published...");
-            // Указываем явно SQL для обновления через Postgres
-            const { error: sqlError } = await supabase.rpc("exec_sql", {
-              sql_query: `UPDATE articles SET is_published = TRUE WHERE id = '${id}'`,
-            });
-
-            if (!sqlError) {
-              console.log("Успешное обновление через SQL");
-              updateSuccess = true;
-            } else {
-              console.warn("SQL запрос не сработал:", sqlError);
-            }
-          } catch (sqlErr) {
-            console.warn("Ошибка при выполнении SQL:", sqlErr);
-          }
-        }
-
-        // Если всё ещё не получилось, пробуем обновить через API
-        if (!updateSuccess) {
-          console.log("Пробуем обновление через API...");
-
-          // Обновляем основные поля, чтобы обновить запись
-          const { error: updateError } = await supabase
-            .from("articles")
-            .update({
-              title: articleData.title.trim(),
-              updated_at: new Date().toISOString(),
-            })
-            .eq("id", id);
-
-          if (!updateError) {
-            console.log("Успешное обновление через API");
-            updateSuccess = true;
-          } else {
-            console.error("Ошибка при обновлении через API:", updateError);
-            setError(`Ошибка обновления: ${updateError.message}`);
-            return;
-          }
-        }
-
-        // Обновляем интерфейс
-        setArticles(
-          articles.map((article) =>
-            article.id === id
-              ? {
-                  ...articleData,
-                  is_published: true,
-                  updated_at: new Date().toISOString(),
-                }
-              : article
-          )
-        );
-        console.log("Статья успешно восстановлена в UI");
-      } catch (error) {
-        console.error("Непредвиденная ошибка при обновлении:", error);
+      } catch (apiError) {
+        console.error("Ошибка при обращении к API:", apiError);
         setError(
-          `Непредвиденная ошибка: ${
-            error instanceof Error ? error.message : "Неизвестная ошибка"
+          `Ошибка при обращении к API: ${
+            apiError instanceof Error ? apiError.message : "Неизвестная ошибка"
           }`
         );
       }

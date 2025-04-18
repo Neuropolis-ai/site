@@ -82,114 +82,36 @@ export async function getPaginatedArticles(
     console.log(
       `Запрос статей с пагинацией: страница ${page}, размер ${pageSize}`
     );
+
     // Вычисляем смещение для запроса
     const offset = (page - 1) * pageSize;
 
-    // Получаем общее количество опубликованных статей
-    const countResponse = await supabase
+    // Получаем все статьи без фильтрации, чтобы избежать проблем с is_published
+    const { data, error, count } = await supabase
       .from("articles")
-      .select("*", { count: "exact", head: true })
-      .eq("is_published", true);
-
-    if (countResponse.error) {
-      console.error(
-        "Ошибка при получении количества статей:",
-        countResponse.error
-      );
-
-      // Если ошибка связана с отсутствием колонки is_published
-      if (
-        countResponse.error.message &&
-        countResponse.error.message.includes("column") &&
-        countResponse.error.message.includes("is_published")
-      ) {
-        console.warn(
-          "Колонка is_published отсутствует, считаем все статьи опубликованными"
-        );
-
-        // Если поле is_published отсутствует, считаем общее количество без фильтрации
-        const fallbackCount = await supabase
-          .from("articles")
-          .select("*", { count: "exact", head: true });
-
-        if (!fallbackCount.error) {
-          const totalCount = fallbackCount.count || 0;
-
-          // Получаем статьи для текущей страницы без фильтрации по is_published
-          const { data, error } = await supabase
-            .from("articles")
-            .select("*")
-            .order("published_at", { ascending: false })
-            .range(offset, offset + pageSize - 1);
-
-          if (!error && data) {
-            // Симулируем наличие поля is_published
-            const articlesWithIsPublished = data.map((article) => ({
-              ...article,
-              is_published: true,
-            }));
-
-            return {
-              articles: articlesWithIsPublished,
-              total: totalCount,
-            };
-          }
-        }
-      }
-
-      return { articles: [], total: 0 };
-    }
-
-    // Получаем статьи для текущей страницы
-    const { data, error } = await supabase
-      .from("articles")
-      .select("*")
-      .eq("is_published", true)
+      .select("*", { count: "exact" })
       .order("published_at", { ascending: false })
       .range(offset, offset + pageSize - 1);
 
     if (error) {
       console.error("Ошибка при получении статей с пагинацией:", error);
-
-      // Если ошибка связана с отсутствием колонки is_published
-      if (
-        error.message &&
-        error.message.includes("column") &&
-        error.message.includes("is_published")
-      ) {
-        console.warn(
-          "Колонка is_published отсутствует, получаем все статьи без фильтрации"
-        );
-
-        // Если поле is_published отсутствует, получаем статьи без фильтрации
-        const fallbackResult = await supabase
-          .from("articles")
-          .select("*")
-          .order("published_at", { ascending: false })
-          .range(offset, offset + pageSize - 1);
-
-        if (!fallbackResult.error && fallbackResult.data) {
-          // Симулируем наличие поля is_published
-          const articlesWithIsPublished = fallbackResult.data.map(
-            (article) => ({
-              ...article,
-              is_published: true,
-            })
-          );
-
-          return {
-            articles: articlesWithIsPublished,
-            total: countResponse.count || 0,
-          };
-        }
-      }
-
-      return { articles: [], total: countResponse.count || 0 };
+      return { articles: [], total: 0 };
     }
 
+    console.log(`Получено ${data?.length || 0} статей из ${count || 0}`);
+
+    // Фильтруем статьи на стороне клиента, оставляя только опубликованные
+    const publishedArticles = (data || []).filter((article) => {
+      // Если is_published отсутствует или === true, считаем статью опубликованной
+      return article.is_published !== false;
+    });
+
+    console.log(`После фильтрации осталось ${publishedArticles.length} статей`);
+
     return {
-      articles: data || [],
-      total: countResponse.count || 0,
+      articles: publishedArticles,
+      // Уточняем общее количество с учетом фильтрации
+      total: Math.min(count || 0, data?.length || 0),
     };
   } catch (err) {
     console.error("Ошибка при получении статей с пагинацией:", err);
@@ -222,55 +144,30 @@ export async function getPublishedArticleBySlug(
   slug: string
 ): Promise<Article | null> {
   try {
-    console.log(`Запрос опубликованной статьи по slug: ${slug}`);
+    console.log(`Запрос статьи по slug: ${slug}`);
+
+    // Получаем статью без проверки is_published
     const { data, error } = await supabase
       .from("articles")
       .select("*")
       .eq("slug", slug)
-      .eq("is_published", true)
       .single();
 
     if (error) {
-      console.error(
-        `Ошибка при получении опубликованной статьи с slug ${slug}:`,
-        error
-      );
-
-      // Если ошибка связана с отсутствием колонки is_published
-      if (
-        error.message &&
-        error.message.includes("column") &&
-        error.message.includes("is_published")
-      ) {
-        console.warn(
-          `Колонка is_published отсутствует, получаем статью без проверки публикации: ${slug}`
-        );
-
-        // Если поле is_published отсутствует, получаем статью только по slug
-        const fallbackResult = await supabase
-          .from("articles")
-          .select("*")
-          .eq("slug", slug)
-          .single();
-
-        if (!fallbackResult.error && fallbackResult.data) {
-          // Симулируем наличие поля is_published
-          return {
-            ...fallbackResult.data,
-            is_published: true,
-          };
-        }
-      }
-
+      console.error(`Ошибка при получении статьи с slug ${slug}:`, error);
       return null;
     }
 
+    // Проверяем, опубликована ли статья
+    if (data && data.is_published === false) {
+      console.warn(`Статья с slug ${slug} не опубликована`);
+      return null;
+    }
+
+    console.log(`Найдена статья:`, data);
     return data;
   } catch (err) {
-    console.error(
-      `Ошибка при получении опубликованной статьи с slug ${slug}:`,
-      err
-    );
+    console.error(`Ошибка при получении статьи с slug ${slug}:`, err);
     return null;
   }
 }
@@ -281,46 +178,29 @@ export async function getPublishedArticleBySlug(
 export async function getRecentArticles(limit: number = 3): Promise<Article[]> {
   try {
     console.log(`Запрос последних ${limit} статей`);
+
+    // Получаем статьи без фильтрации
     const { data, error } = await supabase
       .from("articles")
       .select("*")
-      .eq("is_published", true)
       .order("published_at", { ascending: false })
       .limit(limit);
 
     if (error) {
       console.error("Ошибка при получении последних статей:", error);
-
-      // Если ошибка связана с отсутствием колонки is_published
-      if (
-        error.message &&
-        error.message.includes("column") &&
-        error.message.includes("is_published")
-      ) {
-        console.warn(
-          `Колонка is_published отсутствует, получаем все последние ${limit} статей`
-        );
-
-        // Если поле is_published отсутствует, получаем статьи без фильтрации
-        const fallbackResult = await supabase
-          .from("articles")
-          .select("*")
-          .order("published_at", { ascending: false })
-          .limit(limit);
-
-        if (!fallbackResult.error && fallbackResult.data) {
-          // Симулируем наличие поля is_published
-          return fallbackResult.data.map((article) => ({
-            ...article,
-            is_published: true,
-          }));
-        }
-      }
-
       return [];
     }
 
-    return data || [];
+    console.log(`Получено ${data?.length || 0} последних статей`);
+
+    // Фильтруем на стороне клиента
+    const publishedArticles = (data || []).filter(
+      (article) => article.is_published !== false
+    );
+
+    console.log(`После фильтрации осталось ${publishedArticles.length} статей`);
+
+    return publishedArticles;
   } catch (err) {
     console.error("Ошибка при получении последних статей:", err);
     return [];

@@ -54,11 +54,13 @@ export default function AdminBlogPage() {
       console.log("Начинаем восстановление статьи с ID:", id);
 
       // Сначала получаем данные статьи для UI
-      const { data: articleData, error: fetchError } = await supabase
+      const { data, error: fetchError } = await supabase
         .from("articles")
         .select("*")
         .eq("id", id)
         .single();
+
+      const articleData = data;
 
       if (fetchError) {
         console.error("Ошибка при получении данных статьи:", fetchError);

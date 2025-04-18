@@ -221,8 +221,8 @@ export default function ArticleForm({
 
     const publishedDate = new Date(publishedAt);
 
-    // Проверка, поддерживается ли поле is_published
-    let articleData: any = {
+    // Создаем данные статьи с полем is_published
+    const articleData = {
       title,
       slug,
       content,
@@ -230,11 +230,12 @@ export default function ArticleForm({
       source,
       image_url: imageUrl,
       published_at: publishedDate.toISOString(),
+      is_published: isPublished,
     };
 
-    // Добавляем поле is_published только если оно поддерживается
+    // Пробуем сохранить статью
     try {
-      await onSubmit(articleData);
+      await onSubmit(articleData as Omit<Article, "id" | "created_at">);
     } catch (error) {
       console.error("Ошибка при сохранении статьи:", error);
       // Если ошибка связана с полем is_published, пробуем без него
@@ -245,9 +246,19 @@ export default function ArticleForm({
       ) {
         console.warn("Ошибка с полем is_published, повторяем без него");
 
-        // Удаляем is_published из данных и пробуем снова
-        delete articleData.is_published;
-        await onSubmit(articleData);
+        // Создаем новый объект с нужными полями для сохранения
+        const dataWithoutPublished = {
+          title,
+          slug,
+          content,
+          description,
+          source,
+          image_url: imageUrl,
+          published_at: publishedDate.toISOString(),
+        };
+
+        // Явно указываем тип как частичный
+        await onSubmit(dataWithoutPublished as any);
       } else {
         throw error; // Пробрасываем ошибку дальше
       }

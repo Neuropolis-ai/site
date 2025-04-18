@@ -53,65 +53,29 @@ export default function AdminBlogPage() {
     try {
       console.log("Начинаем восстановление статьи с ID:", id);
 
-      // Сначала получаем данные статьи для UI
-      const { data, error: fetchError } = await supabase
-        .from("articles")
-        .select("*")
-        .eq("id", id)
-        .single();
+      // Отправляем запрос на восстановление
+      const response = await fetch("/api/articles/restore", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
 
-      const articleData = data;
+      const result = await response.json();
 
-      if (fetchError) {
-        console.error("Ошибка при получении данных статьи:", fetchError);
-        setError(`Не удалось получить данные статьи: ${fetchError.message}`);
-        return;
-      }
+      if (response.ok && result.success) {
+        console.log("Статья успешно восстановлена");
 
-      console.log("Получены данные статьи:", articleData);
-
-      // Вызываем API-эндпоинт для восстановления
-      try {
-        console.log("Отправляем запрос к API для восстановления...");
-
-        const response = await fetch("/api/articles/restore", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id }),
-        });
-
-        const result = await response.json();
-
-        if (response.ok && result.success) {
-          console.log("API успешно восстановил статью:", result);
-
-          // Оптимистично обновляем UI
-          setArticles(
-            articles.map((article) =>
-              article.id === id
-                ? {
-                    ...articleData,
-                    is_published: true,
-                    updated_at: new Date().toISOString(),
-                  }
-                : article
-            )
-          );
-
-          console.log("Статья успешно восстановлена в UI");
-        } else {
-          console.error("API вернул ошибку:", result);
-          setError(
-            `Ошибка восстановления: ${result.error || "Неизвестная ошибка"}`
-          );
-        }
-      } catch (apiError) {
-        console.error("Ошибка при обращении к API:", apiError);
+        // Обновляем список статей в интерфейсе
+        setArticles(
+          articles.map((article) =>
+            article.id === id ? { ...article, is_published: true } : article
+          )
+        );
+      } else {
+        console.error("Ошибка при восстановлении статьи:", result.error);
         setError(
-          `Ошибка при обращении к API: ${
-            apiError instanceof Error ? apiError.message : "Неизвестная ошибка"
+          `Не удалось восстановить статью: ${
+            result.error || "Неизвестная ошибка"
           }`
         );
       }

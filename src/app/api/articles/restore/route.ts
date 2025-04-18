@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
-import {
-  directUpdateArticle,
-  restApiUpdateArticle,
-} from "../../../../app/admin/blog/direct-update";
+import { directUpdateArticle, restApiUpdateArticle } from "./direct-update";
 
 // SQL-запрос для проверки наличия колонки is_published и её добавления
 async function ensureIsPublishedColumnExists(): Promise<boolean> {

@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabase";
 import {
   directUpdateArticle,
   restApiUpdateArticle,
-} from "@/app/admin/blog/direct-update";
+} from "../../../../app/admin/blog/direct-update";
 
 // SQL-запрос для проверки наличия колонки is_published и её добавления
 async function ensureIsPublishedColumnExists(): Promise<boolean> {

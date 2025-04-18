@@ -50,19 +50,30 @@ export default function AdminBlogPage() {
 
   const handleRestore = async (id: string) => {
     try {
-      const success = await updateArticle(id, { is_published: true });
-      if (success) {
+      console.log("Начинаем восстановление статьи с ID:", id);
+
+      const result = await updateArticle(id, { is_published: true });
+      console.log("Результат восстановления:", result);
+
+      if (result) {
+        // Обновляем UI оптимистично
         setArticles(
           articles.map((article) =>
             article.id === id ? { ...article, is_published: true } : article
           )
         );
+        console.log("Статья успешно восстановлена в UI");
       } else {
-        setError("Не удалось восстановить статью");
+        console.error("Ошибка: API вернул null вместо данных статьи");
+        setError("Не удалось восстановить статью. Проверьте консоль.");
       }
     } catch (err) {
-      setError("Ошибка при восстановлении статьи");
-      console.error(err);
+      console.error("Ошибка при восстановлении статьи:", err);
+      setError(
+        `Ошибка при восстановлении статьи: ${
+          err instanceof Error ? err.message : "Неизвестная ошибка"
+        }`
+      );
     }
   };
 

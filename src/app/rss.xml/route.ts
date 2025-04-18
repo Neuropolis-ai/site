@@ -4,16 +4,51 @@ import { encode } from "iconv-lite";
 
 // Функция для генерации RSS
 async function generateRss() {
-  // Получаем все статьи из Supabase
-  const { data: articles, error } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("is_published", true)
-    .order("published_at", { ascending: false });
+  try {
+    console.log("Генерация RSS-ленты");
+    // Получаем все опубликованные статьи из Supabase
+    const { data: articles, error } = await supabase
+      .from("articles")
+      .select("*")
+      .eq("is_published", true)
+      .order("published_at", { ascending: false });
 
-  if (error) throw error;
+    if (error) {
+      console.error("Ошибка при получении статей для RSS:", error);
 
-  // Формируем XML
+      // Если ошибка связана с отсутствием колонки is_published
+      if (
+        error.message &&
+        error.message.includes("column") &&
+        error.message.includes("is_published")
+      ) {
+        console.warn(
+          "Колонка is_published отсутствует, получаем все статьи для RSS"
+        );
+
+        // Если поле is_published отсутствует, получаем все статьи
+        const fallbackResult = await supabase
+          .from("articles")
+          .select("*")
+          .order("published_at", { ascending: false });
+
+        if (!fallbackResult.error) {
+          return generateRssXml(fallbackResult.data || []);
+        }
+      }
+
+      throw error;
+    }
+
+    return generateRssXml(articles || []);
+  } catch (error) {
+    console.error("Ошибка при генерации RSS:", error);
+    throw error;
+  }
+}
+
+// Функция для генерации XML из массива статей
+function generateRssXml(articles: any[]) {
   const xml = `<?xml version="1.0" encoding="windows-1251"?>
 <rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
   <channel>

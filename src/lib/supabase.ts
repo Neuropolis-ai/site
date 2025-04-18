@@ -40,6 +40,7 @@ export type Article = {
   published_at: string;
   created_at: string;
   slug: string;
+  is_published: boolean;
 };
 
 // Функции для работы с данными блога

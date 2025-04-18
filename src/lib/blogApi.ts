@@ -18,6 +18,24 @@ export async function getAllArticles(): Promise<Article[]> {
 }
 
 /**
+ * Получение опубликованных статей блога
+ */
+export async function getPublishedArticles(): Promise<Article[]> {
+  const { data, error } = await supabase
+    .from("articles")
+    .select("*")
+    .eq("is_published", true)
+    .order("published_at", { ascending: false });
+
+  if (error) {
+    console.error("Ошибка при получении опубликованных статей:", error);
+    return [];
+  }
+
+  return data || [];
+}
+
+/**
  * Получение статей блога с пагинацией
  * @param page - номер страницы (начиная с 1)
  * @param pageSize - количество статей на странице
@@ -29,10 +47,11 @@ export async function getPaginatedArticles(
   // Вычисляем смещение для запроса
   const offset = (page - 1) * pageSize;
 
-  // Получаем общее количество статей
+  // Получаем общее количество опубликованных статей
   const countResponse = await supabase
     .from("articles")
-    .select("*", { count: "exact", head: true });
+    .select("*", { count: "exact", head: true })
+    .eq("is_published", true);
 
   if (countResponse.error) {
     console.error(
@@ -46,6 +65,7 @@ export async function getPaginatedArticles(
   const { data, error } = await supabase
     .from("articles")
     .select("*")
+    .eq("is_published", true)
     .order("published_at", { ascending: false })
     .range(offset, offset + pageSize - 1);
 
@@ -79,12 +99,37 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 }
 
 /**
+ * Получение опубликованной статьи по slug
+ */
+export async function getPublishedArticleBySlug(
+  slug: string
+): Promise<Article | null> {
+  const { data, error } = await supabase
+    .from("articles")
+    .select("*")
+    .eq("slug", slug)
+    .eq("is_published", true)
+    .single();
+
+  if (error) {
+    console.error(
+      `Ошибка при получении опубликованной статьи с slug ${slug}:`,
+      error
+    );
+    return null;
+  }
+
+  return data;
+}
+
+/**
  * Получение последних N статей
  */
 export async function getRecentArticles(limit: number = 3): Promise<Article[]> {
   const { data, error } = await supabase
     .from("articles")
     .select("*")
+    .eq("is_published", true)
     .order("published_at", { ascending: false })
     .limit(limit);
 
@@ -102,9 +147,16 @@ export async function getRecentArticles(limit: number = 3): Promise<Article[]> {
 export async function createArticle(
   article: Omit<Article, "id" | "created_at">
 ): Promise<Article | null> {
+  // Установка is_published в true по умолчанию, если не задано
+  const articleData = {
+    ...article,
+    is_published:
+      article.is_published !== undefined ? article.is_published : true,
+  };
+
   const { data, error } = await supabase
     .from("articles")
-    .insert(article)
+    .insert(articleData)
     .select()
     .single();
 
@@ -139,13 +191,30 @@ export async function updateArticle(
 }
 
 /**
- * Удаление статьи
+ * "Мягкое" удаление статьи (установка is_published в false)
  */
 export async function deleteArticle(id: string): Promise<boolean> {
-  const { error } = await supabase.from("articles").delete().eq("id", id);
+  const { error } = await supabase
+    .from("articles")
+    .update({ is_published: false })
+    .eq("id", id);
 
   if (error) {
     console.error(`Ошибка при удалении статьи с id ${id}:`, error);
+    return false;
+  }
+
+  return true;
+}
+
+/**
+ * Полное удаление статьи из базы данных (используется только в админке)
+ */
+export async function hardDeleteArticle(id: string): Promise<boolean> {
+  const { error } = await supabase.from("articles").delete().eq("id", id);
+
+  if (error) {
+    console.error(`Ошибка при полном удалении статьи с id ${id}:`, error);
     return false;
   }
 

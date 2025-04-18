@@ -8,6 +8,7 @@ async function generateRss() {
   const { data: articles, error } = await supabase
     .from("articles")
     .select("*")
+    .eq("is_published", true)
     .order("published_at", { ascending: false });
 
   if (error) throw error;

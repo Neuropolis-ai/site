@@ -1,4 +1,8 @@
-import { getArticleBySlug, getAllArticles } from "@/lib/blogApi";
+import {
+  getPublishedArticleBySlug,
+  getAllArticles,
+  getPublishedArticles,
+} from "@/lib/blogApi";
 import Link from "next/link";
 import Image from "next/image";
 import { Article } from "@/lib/supabase";
@@ -33,7 +37,7 @@ function cleanContentMarkups(content: string): string {
 
 // Функция для получения соседних статей
 async function getAdjacentArticles(currentSlug: string) {
-  const allArticles = await getAllArticles();
+  const allArticles = await getPublishedArticles();
   const currentIndex = allArticles.findIndex(
     (article) => article.slug === currentSlug
   );
@@ -163,7 +167,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }) {
-  const article = await getArticleBySlug(params.slug);
+  const article = await getPublishedArticleBySlug(params.slug);
 
   if (!article) {
     return {
@@ -199,7 +203,7 @@ export default async function ArticlePage({
 }: {
   params: { slug: string };
 }) {
-  const article = await getArticleBySlug(params.slug);
+  const article = await getPublishedArticleBySlug(params.slug);
   if (!article) {
     return (
       <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black flex items-center justify-center">

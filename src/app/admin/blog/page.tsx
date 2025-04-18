@@ -1,6 +1,6 @@
 "use client";
 
-import { getAllArticles, deleteArticle } from "@/lib/blogApi";
+import { getAllArticles, deleteArticle, updateArticle } from "@/lib/blogApi";
 import { Article } from "@/lib/supabase";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -33,7 +33,11 @@ export default function AdminBlogPage() {
       try {
         const success = await deleteArticle(id);
         if (success) {
-          setArticles(articles.filter((article) => article.id !== id));
+          setArticles(
+            articles.map((article) =>
+              article.id === id ? { ...article, is_published: false } : article
+            )
+          );
         } else {
           setError("Не удалось удалить статью");
         }
@@ -41,6 +45,24 @@ export default function AdminBlogPage() {
         setError("Ошибка при удалении статьи");
         console.error(err);
       }
+    }
+  };
+
+  const handleRestore = async (id: string) => {
+    try {
+      const success = await updateArticle(id, { is_published: true });
+      if (success) {
+        setArticles(
+          articles.map((article) =>
+            article.id === id ? { ...article, is_published: true } : article
+          )
+        );
+      } else {
+        setError("Не удалось восстановить статью");
+      }
+    } catch (err) {
+      setError("Ошибка при восстановлении статьи");
+      console.error(err);
     }
   };
 
@@ -96,13 +118,23 @@ export default function AdminBlogPage() {
                     Дата публикации
                   </th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    Статус
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     Действия
                   </th>
                 </tr>
               </thead>
               <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                 {articles.map((article) => (
-                  <tr key={article.id}>
+                  <tr
+                    key={article.id}
+                    className={
+                      !article.is_published
+                        ? "bg-gray-100 dark:bg-gray-900"
+                        : ""
+                    }
+                  >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="relative h-12 w-12 rounded overflow-hidden">
                         <Image
@@ -130,26 +162,58 @@ export default function AdminBlogPage() {
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
+                      {article.is_published ? (
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100">
+                          Опубликована
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100">
+                          Скрыта
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm">
                       <div className="flex space-x-2">
-                        <Link
-                          href={`/blog/${article.slug}`}
-                          className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
-                          target="_blank"
-                        >
-                          Просмотр
-                        </Link>
-                        <Link
-                          href={`/admin/blog/edit/${article.id}`}
-                          className="text-yellow-600 hover:text-yellow-800 dark:text-yellow-400 dark:hover:text-yellow-300"
-                        >
-                          Редактировать
-                        </Link>
-                        <button
-                          onClick={() => handleDelete(article.id)}
-                          className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
-                        >
-                          Удалить
-                        </button>
+                        {article.is_published && (
+                          <>
+                            <Link
+                              href={`/blog/${article.slug}`}
+                              className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
+                              target="_blank"
+                            >
+                              Просмотр
+                            </Link>
+                            <Link
+                              href={`/admin/blog/edit/${article.id}`}
+                              className="text-yellow-600 hover:text-yellow-800 dark:text-yellow-400 dark:hover:text-yellow-300"
+                            >
+                              Редактировать
+                            </Link>
+                            <button
+                              onClick={() => handleDelete(article.id)}
+                              className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300"
+                            >
+                              Скрыть
+                            </button>
+                          </>
+                        )}
+
+                        {!article.is_published && (
+                          <>
+                            <Link
+                              href={`/admin/blog/edit/${article.id}`}
+                              className="text-yellow-600 hover:text-yellow-800 dark:text-yellow-400 dark:hover:text-yellow-300"
+                            >
+                              Редактировать
+                            </Link>
+                            <button
+                              onClick={() => handleRestore(article.id)}
+                              className="text-green-600 hover:text-green-800 dark:text-green-400 dark:hover:text-green-300"
+                            >
+                              Восстановить
+                            </button>
+                          </>
+                        )}
                       </div>
                     </td>
                   </tr>

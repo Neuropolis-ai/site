@@ -36,6 +36,7 @@ export default function ArticleForm({
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [publishedAt, setPublishedAt] = useState("");
+  const [isPublished, setIsPublished] = useState(true);
 
   // Заполнить форму данными существующей статьи при редактировании
   useEffect(() => {
@@ -46,6 +47,9 @@ export default function ArticleForm({
       setDescription(article.description || "");
       setSource(article.source || "");
       setImageUrl(article.image_url || "");
+      setIsPublished(
+        article.is_published !== undefined ? article.is_published : true
+      );
 
       // Форматирование даты для поля ввода типа datetime-local
       const date = new Date(article.published_at);
@@ -54,6 +58,7 @@ export default function ArticleForm({
       // Значения по умолчанию для новой статьи
       const now = new Date();
       setPublishedAt(now.toISOString().slice(0, 16));
+      setIsPublished(true);
     }
   }, [article]);
 
@@ -224,6 +229,7 @@ export default function ArticleForm({
       source,
       image_url: imageUrl,
       published_at: publishedDate.toISOString(),
+      is_published: isPublished,
     });
   };
 
@@ -334,6 +340,27 @@ export default function ArticleForm({
           required
           className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white"
         />
+      </div>
+
+      <div>
+        <div className="flex items-center">
+          <input
+            type="checkbox"
+            id="is_published"
+            checked={isPublished}
+            onChange={(e) => setIsPublished(e.target.checked)}
+            className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded dark:border-gray-700 dark:bg-gray-800"
+          />
+          <label
+            htmlFor="is_published"
+            className="ml-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
+            Опубликована
+          </label>
+        </div>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+          Отметьте, если статья должна быть видна посетителям
+        </p>
       </div>
 
       <div>

@@ -81,7 +81,11 @@ export function middleware(request: NextRequest) {
 
     // Добавляем Last-Modified
     try {
-      const rssPath = path.join(process.cwd(), "public", pathname);
+      const rssPath = path.join(
+        process.cwd(),
+        "public",
+        request.nextUrl.pathname
+      );
       const stats = fs.statSync(rssPath);
       response.headers.set("Last-Modified", stats.mtime.toUTCString());
     } catch (error) {

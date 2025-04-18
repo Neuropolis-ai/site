@@ -1,4 +1,5 @@
 import { supabase, Article } from "./supabase";
+import { createClient } from "@supabase/supabase-js";
 
 /**
  * Получение всех статей блога
@@ -23,46 +24,30 @@ export async function getAllArticles(): Promise<Article[]> {
 export async function getPublishedArticles(): Promise<Article[]> {
   try {
     console.log("Запрос опубликованных статей");
+
+    // Сначала пробуем получить все статьи без фильтрации
     const { data, error } = await supabase
       .from("articles")
       .select("*")
-      .eq("is_published", true)
       .order("published_at", { ascending: false });
 
     if (error) {
-      console.error("Ошибка при получении опубликованных статей:", error);
-
-      // Если ошибка связана с отсутствием колонки is_published
-      if (
-        error.message &&
-        error.message.includes("column") &&
-        error.message.includes("is_published")
-      ) {
-        console.warn("Колонка is_published отсутствует, возвращаем все статьи");
-
-        // Если поле is_published отсутствует, возвращаем все статьи
-        const fallbackResult = await supabase
-          .from("articles")
-          .select("*")
-          .order("published_at", { ascending: false });
-
-        if (!fallbackResult.error) {
-          // Симулируем наличие поля is_published для совместимости
-          const articlesWithIsPublished = (fallbackResult.data || []).map(
-            (article) => ({
-              ...article,
-              is_published: true,
-            })
-          );
-
-          return articlesWithIsPublished;
-        }
-      }
-
+      console.error("Ошибка при получении статей:", error);
       return [];
     }
 
-    return data || [];
+    console.log(`Получено ${data?.length || 0} статей`);
+
+    // Фильтруем статьи на стороне клиента
+    // Статья считается опубликованной, если is_published не равно явно false
+    const publishedArticles = (data || []).filter((article) => {
+      if (article.is_published === undefined) return true; // Если поля нет, считаем опубликованной
+      return article.is_published !== false; // Если false - скрыта, иначе опубликована
+    });
+
+    console.log(`После фильтрации осталось ${publishedArticles.length} статей`);
+
+    return publishedArticles;
   } catch (err) {
     console.error("Ошибка при получении опубликованных статей:", err);
     return [];
@@ -102,16 +87,16 @@ export async function getPaginatedArticles(
 
     // Фильтруем статьи на стороне клиента, оставляя только опубликованные
     const publishedArticles = (data || []).filter((article) => {
-      // Если is_published отсутствует или === true, считаем статью опубликованной
-      return article.is_published !== false;
+      // Статья считается опубликованной, если is_published не равно явно false
+      if (article.is_published === undefined) return true; // Если поля нет, считаем опубликованной
+      return article.is_published !== false; // Если false - скрыта, иначе опубликована
     });
 
     console.log(`После фильтрации осталось ${publishedArticles.length} статей`);
 
     return {
       articles: publishedArticles,
-      // Уточняем общее количество с учетом фильтрации
-      total: Math.min(count || 0, data?.length || 0),
+      total: count || 0,
     };
   } catch (err) {
     console.error("Ошибка при получении статей с пагинацией:", err);
@@ -351,6 +336,8 @@ export async function updateArticle(
 export async function deleteArticle(id: string): Promise<boolean> {
   try {
     console.log(`Начинаем мягкое удаление статьи с ID: ${id}`);
+
+    // Стандартная попытка обновления
     const { error } = await supabase
       .from("articles")
       .update({ is_published: false })
@@ -368,9 +355,37 @@ export async function deleteArticle(id: string): Promise<boolean> {
         console.error(
           "Ошибка: колонка is_published отсутствует в таблице articles"
         );
-        console.error(
-          "Необходимо выполнить миграцию базы данных, добавив колонку is_published"
-        );
+
+        // Пробуем повторить с сервисным ключом
+        try {
+          console.log("Пробуем удаление через сервисный ключ");
+
+          const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+          const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
+
+          if (SUPABASE_URL && SUPABASE_SERVICE_KEY) {
+            const serviceClient = createClient(
+              SUPABASE_URL,
+              SUPABASE_SERVICE_KEY
+            );
+
+            const { error: serviceError } = await serviceClient
+              .from("articles")
+              .update({ is_published: false })
+              .eq("id", id);
+
+            if (!serviceError) {
+              console.log(`Статья успешно скрыта через сервисный ключ`);
+              return true;
+            }
+          }
+        } catch (serviceErr) {
+          console.error(
+            "Ошибка при удалении через сервисный ключ:",
+            serviceErr
+          );
+        }
+
         return false;
       }
 

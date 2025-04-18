@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 
-// Простая функция для восстановления статьи - установка is_published = true
+// Самый простой вариант восстановления статьи
 export async function POST(request: NextRequest) {
   try {
     // Получаем ID статьи из запроса
@@ -16,36 +16,22 @@ export async function POST(request: NextRequest) {
 
     console.log(`Восстанавливаем статью с ID: ${id}`);
 
-    // Прямое обновление через SQL - устанавливаем is_published = true
-    const { error } = await supabase.rpc("execute_sql", {
-      sql_code: `
-        -- Добавляем колонку is_published, если её нет
-        ALTER TABLE articles ADD COLUMN IF NOT EXISTS is_published boolean DEFAULT true;
-        
-        -- Обновляем статью
-        UPDATE articles SET is_published = true, updated_at = NOW() WHERE id = '${id}';
-      `,
-    });
+    // Обновляем запись напрямую
+    const { error } = await supabase
+      .from("articles")
+      .update({ is_published: true })
+      .eq("id", id);
 
     if (error) {
       console.error("Ошибка при восстановлении статьи:", error);
-
-      // Запасной вариант - простое обновление через Supabase API
-      const { error: updateError } = await supabase
-        .from("articles")
-        .update({ is_published: true, updated_at: new Date().toISOString() })
-        .eq("id", id);
-
-      if (updateError) {
-        console.error("Ошибка при обновлении через API:", updateError);
-        return NextResponse.json(
-          { success: false, error: updateError.message },
-          { status: 500 }
-        );
-      }
+      return NextResponse.json(
+        { success: false, error: error.message },
+        { status: 500 }
+      );
     }
 
     // Возвращаем успешный результат
+    console.log("Статья успешно восстановлена");
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Непредвиденная ошибка:", err);

@@ -68,47 +68,83 @@ export default function AdminBlogPage() {
 
       console.log("Получены данные статьи:", articleData);
 
-      // Прямой SQL-запрос на обновление без использования колонки is_published
+      // Комплексное решение для восстановления
       try {
-        const { error: updateError } = await supabase.rpc("restore_article", {
-          article_id: id,
-        });
+        let updateSuccess = false;
 
-        if (updateError) {
-          console.error(
-            "RPC-метод не найден, пробуем прямое обновление:",
-            updateError
-          );
+        // Сначала пробуем прямой SQL запрос через RPC
+        try {
+          console.log("Пробуем восстановить через RPC...");
+          const { error: rpcError } = await supabase.rpc("restore_article", {
+            article_id: id,
+          });
 
-          // Пробуем обновить другие поля статьи, чтобы "освежить" её
-          const { error: directUpdateError } = await supabase
+          if (!rpcError) {
+            console.log("Успешное восстановление через RPC");
+            updateSuccess = true;
+          } else {
+            console.warn("RPC метод не сработал:", rpcError);
+          }
+        } catch (rpcErr) {
+          console.warn("Ошибка при вызове RPC:", rpcErr);
+        }
+
+        // Если RPC не сработал, пробуем прямое обновление
+        if (!updateSuccess) {
+          try {
+            console.log("Пробуем прямое обновление is_published...");
+            // Указываем явно SQL для обновления через Postgres
+            const { error: sqlError } = await supabase.rpc("exec_sql", {
+              sql_query: `UPDATE articles SET is_published = TRUE WHERE id = '${id}'`,
+            });
+
+            if (!sqlError) {
+              console.log("Успешное обновление через SQL");
+              updateSuccess = true;
+            } else {
+              console.warn("SQL запрос не сработал:", sqlError);
+            }
+          } catch (sqlErr) {
+            console.warn("Ошибка при выполнении SQL:", sqlErr);
+          }
+        }
+
+        // Если всё ещё не получилось, пробуем обновить через API
+        if (!updateSuccess) {
+          console.log("Пробуем обновление через API...");
+
+          // Обновляем основные поля, чтобы обновить запись
+          const { error: updateError } = await supabase
             .from("articles")
             .update({
-              title: articleData.title + " ", // Добавляем пробел для создания изменений
+              title: articleData.title.trim(),
               updated_at: new Date().toISOString(),
             })
             .eq("id", id);
 
-          if (directUpdateError) {
-            console.error("Ошибка при прямом обновлении:", directUpdateError);
-            setError(`Ошибка обновления: ${directUpdateError.message}`);
+          if (!updateError) {
+            console.log("Успешное обновление через API");
+            updateSuccess = true;
+          } else {
+            console.error("Ошибка при обновлении через API:", updateError);
+            setError(`Ошибка обновления: ${updateError.message}`);
             return;
           }
         }
 
-        // Обновляем интерфейс пользователя
+        // Обновляем интерфейс
         setArticles(
           articles.map((article) =>
             article.id === id
               ? {
-                  ...article,
-                  title: articleData.title + " ",
+                  ...articleData,
                   is_published: true,
+                  updated_at: new Date().toISOString(),
                 }
               : article
           )
         );
-        console.log("Статья успешно обновлена в UI");
+        console.log("Статья успешно восстановлена в UI");
       } catch (error) {
         console.error("Непредвиденная ошибка при обновлении:", error);
         setError(

@@ -16,7 +16,23 @@ const Blog = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const posts = await getRecentArticles(3);
-      setBlogPosts(posts);
+      console.log(
+        "DEBUG Blog component: получено статей:",
+        posts.map((p) => ({
+          id: p.id,
+          title: p.title,
+          is_published: p.is_published,
+        }))
+      );
+
+      // Дополнительная проверка, что статьи опубликованы
+      const visiblePosts = posts.filter((post) => post.is_published !== false);
+      console.log(
+        "DEBUG Blog component: после фильтрации:",
+        visiblePosts.length
+      );
+
+      setBlogPosts(visiblePosts);
     };
 
     fetchPosts();

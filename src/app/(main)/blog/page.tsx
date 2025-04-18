@@ -54,9 +54,25 @@ export default function BlogPage() {
           ARTICLES_PER_PAGE
         );
 
-        setArticles(articles);
+        console.log(
+          `DEBUG: Загружено ${articles.length} статей. Статьи:`,
+          articles.map((a) => ({
+            id: a.id,
+            title: a.title,
+            is_published: a.is_published,
+          }))
+        );
+
+        // Если статьи есть, но is_published отсутствует или false, явно фильтруем их
+        const visibleArticles = articles.filter(
+          (article) => article.is_published !== false
+        );
+        console.log(
+          `DEBUG: После фильтрации осталось ${visibleArticles.length} статей`
+        );
+
+        setArticles(visibleArticles);
         setTotalArticles(total);
-        console.log(`Загружено ${articles.length} статей из ${total}`);
       } catch (err) {
         console.error("Ошибка при получении статей:", err);
         setError(err instanceof Error ? err : new Error("Неизвестная ошибка"));

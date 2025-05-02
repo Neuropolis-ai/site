@@ -119,17 +119,17 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({
               strokeWidth={1.75}
             />
           </div>
-          <h3 className="ml-4 text-base font-semibold tracking-tight text-gray-900 dark:text-white">
+          <h3 className="ml-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
             {title}
           </h3>
         </div>
 
-        <p className="text-gray-600 dark:text-gray-300 text-base mb-4 flex-grow leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-300 text-lg mb-4 flex-grow leading-relaxed">
           {description}
         </p>
 
         <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
-          <p className="font-medium text-sm text-green-600 dark:text-green-400 tracking-tight">
+          <p className="font-medium text-base text-green-600 dark:text-green-400 tracking-tight">
             <span className="font-semibold text-gray-700 dark:text-gray-300">
               Выгода:
             </span>{" "}

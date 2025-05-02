@@ -102,13 +102,13 @@ const Header = () => {
       className={`fixed top-[10px] sm:top-[20px] left-0 right-0 z-50 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[800px] mx-auto 
                 bg-[var(--card-bg)]/80 backdrop-blur-sm border border-[#b4b4b4] dark:border-[#262626] rounded-[12px] 
                 transition-all duration-300 ease-in-out overflow-hidden
-                ${mobileMenuOpen ? "pb-2" : "pb-0"}`}
+                ${mobileMenuOpen ? "pb-4" : "pb-1"}`}
       style={{ backdropFilter: "blur(30px)" }}
     >
       {/* Header Main */}
-      <div className="w-full p-[8px] pr-[14px] flex items-center justify-between">
+      <div className="w-full p-[12px] pr-[18px] flex items-center justify-between">
         <Link href="/">
-          <div className="flex items-center gap-2 text-lg sm:text-xl font-medium">
+          <div className="flex items-center gap-2 text-lg sm:text-xl font-medium py-1">
             <svg
               width={18}
               height={18}
@@ -140,7 +140,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-gray-800 dark:text-white 
+                className={`text-[16px] py-[8px] px-[18px] rounded-[12px] text-gray-800 dark:text-white 
                             ${
                               pathname === "/blog"
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
@@ -154,7 +154,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-gray-800 dark:text-white 
+                className={`text-[16px] py-[8px] px-[18px] rounded-[12px] text-gray-800 dark:text-white 
                             ${
                               activeSection === item.id && isHomePage
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
@@ -170,7 +170,7 @@ const Header = () => {
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="ml-2 p-[6px] rounded-full bg-[#e0e0e0] dark:bg-[#262626] dark:text-white text-black"
+            className="ml-2 p-[8px] rounded-full bg-[#e0e0e0] dark:bg-[#262626] dark:text-white text-black"
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
@@ -182,7 +182,7 @@ const Header = () => {
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="p-[6px] rounded-full bg-[#e0e0e0] dark:bg-[#262626] text-gray-800 dark:text-white"
+            className="p-[8px] rounded-full bg-[#e0e0e0] dark:bg-[#262626] text-gray-800 dark:text-white"
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
@@ -217,7 +217,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-[18px] py-[6px] px-[16px] rounded-[12px] text-center text-gray-800 dark:text-white 
+                className={`text-[18px] py-[10px] px-[20px] rounded-[12px] text-center text-gray-800 dark:text-white 
                             ${
                               pathname === "/blog"
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
@@ -232,7 +232,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-[18px] py-[6px] px-[16px] rounded-[12px] text-center text-gray-800 dark:text-white 
+                className={`text-[18px] py-[10px] px-[20px] rounded-[12px] text-center text-gray-800 dark:text-white 
                             ${
                               activeSection === item.id && isHomePage
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"

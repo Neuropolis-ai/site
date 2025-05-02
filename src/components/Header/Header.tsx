@@ -126,7 +126,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-[14px] py-[6px] px-[16px] rounded-[12px] text-gray-800 dark:text-white 
+                className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-gray-800 dark:text-white 
                             ${
                               pathname === "/blog"
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
@@ -140,7 +140,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-[14px] py-[6px] px-[16px] rounded-[12px] text-gray-800 dark:text-white 
+                className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-gray-800 dark:text-white 
                             ${
                               activeSection === item.id && isHomePage
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
@@ -203,7 +203,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-center text-gray-800 dark:text-white 
+                className={`text-[18px] py-[6px] px-[16px] rounded-[12px] text-center text-gray-800 dark:text-white 
                             ${
                               pathname === "/blog"
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"
@@ -218,7 +218,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-[16px] py-[6px] px-[16px] rounded-[12px] text-center text-gray-800 dark:text-white 
+                className={`text-[18px] py-[6px] px-[16px] rounded-[12px] text-center text-gray-800 dark:text-white 
                             ${
                               activeSection === item.id && isHomePage
                                 ? "bg-[#e0e0e0] dark:bg-[#262626]"

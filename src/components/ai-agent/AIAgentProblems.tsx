@@ -293,7 +293,7 @@ export default function AIAgentProblems() {
                     rounded-xl flex items-center justify-center flex-shrink-0
                     bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20
                     p-2 transition-colors duration-300
-                    text-blue-600 dark:text-blue-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400
+                    text-blue-600 dark:text-blue-400 group-hover:text-blue-800 dark:group-hover:text-blue-600
                   `}
                   >
                     {card.icon}
@@ -317,7 +317,7 @@ export default function AIAgentProblems() {
                       text-base font-medium flex items-center
                       transition-colors duration-300
                       text-blue-600 dark:text-blue-400
-                      hover:text-indigo-600 dark:hover:text-indigo-400
+                      hover:text-blue-800 dark:hover:text-blue-600
                     `}
                   >
                     {expandedCard === index ? "Скрыть" : "Решение"}

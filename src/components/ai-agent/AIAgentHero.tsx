@@ -64,7 +64,7 @@ export default function AIAgentHero() {
 
         <motion.h1
           variants={itemVariants}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4 sm:mb-5 md:mb-6"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 dark:text-white mb-4 sm:mb-5 md:mb-6"
         >
           Создаем
           <span className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-transparent bg-clip-text">

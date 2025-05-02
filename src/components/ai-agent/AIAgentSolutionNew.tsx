@@ -81,7 +81,7 @@ export default function AIAgentSolutionNew() {
               </span>
               ?
             </h3>
-            <p className="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
               Это программа, использующая искусственный интеллект для
               автономного выполнения конкретных бизнес-задач. Он может
               взаимодействовать с вашими системами (CRM, ERP, Email, базы

@@ -86,7 +86,7 @@ export default function AIAgentHero() {
         <motion.a
           variants={itemVariants}
           href="#cta"
-          className="inline-block w-full sm:w-auto bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold py-3 px-6 rounded-xl text-base transition-opacity hover:opacity-90 shadow-lg"
+          className="inline-block w-full sm:w-auto bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold py-4 px-8 rounded-xl text-lg md:text-xl transition-opacity hover:opacity-90 shadow-xl"
         >
           Получить бесплатную консультацию
         </motion.a>

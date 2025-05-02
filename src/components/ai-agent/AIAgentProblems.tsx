@@ -298,12 +298,12 @@ export default function AIAgentProblems() {
                   >
                     {card.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white leading-tight mt-1">
+                  <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white leading-tight mt-1">
                     {card.title}
                   </h3>
                 </div>
 
-                <p className="text-base leading-relaxed ml-[48px] text-gray-600 dark:text-gray-300 mb-5">
+                <p className="text-lg leading-relaxed ml-[48px] text-gray-600 dark:text-gray-300 mb-5">
                   {card.description}
                 </p>
 
@@ -314,7 +314,7 @@ export default function AIAgentProblems() {
                       animationComplete && toggleCard(index);
                     }}
                     className={`
-                      text-sm font-medium flex items-center
+                      text-base font-medium flex items-center
                       transition-colors duration-300
                       text-blue-600 dark:text-blue-400
                       hover:text-indigo-600 dark:hover:text-indigo-400
@@ -361,7 +361,7 @@ export default function AIAgentProblems() {
                             clipRule="evenodd"
                           ></path>
                         </svg>
-                        <p className="text-base text-gray-700 dark:text-gray-200">
+                        <p className="text-lg text-gray-700 dark:text-gray-200">
                           {card.solution}
                         </p>
                       </div>

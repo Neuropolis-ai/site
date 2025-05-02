@@ -174,7 +174,7 @@ export default function AIAgentContactForm() {
               {/* Стандартная кнопка */}
               <motion.button
                 onClick={() => setSubmitSuccess(false)}
-                className="inline-flex items-center justify-center px-6 py-3 border-0 text-base font-semibold rounded-xl 
+                className="inline-flex items-center justify-center px-6 py-3 border-0 text-lg font-semibold rounded-xl 
                            text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:opacity-90 shadow-lg 
                            transition-opacity duration-300"
               >
@@ -289,7 +289,7 @@ export default function AIAgentContactForm() {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`inline-flex items-center justify-center px-8 py-3 border-0 text-base font-semibold rounded-xl 
+                  className={`inline-flex items-center justify-center px-8 py-3 border-0 text-lg font-semibold rounded-xl 
                     text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] shadow-lg transition-opacity duration-300 
                     ${
                       isSubmitting

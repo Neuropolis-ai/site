@@ -63,7 +63,7 @@ export default function AIAgentProcess() {
             <h3 className="text-xl md:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">
               Анализ и Консультация
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
               Глубоко погружаемся в ваши бизнес-цели, текущие процессы и
               доступные данные. Определяем ключевые метрики (KPI) для оценки
               успеха будущего ИИ-агента. Результат: четкое понимание задачи и
@@ -81,7 +81,7 @@ export default function AIAgentProcess() {
             <h3 className="text-xl md:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">
               Проектирование Решения
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
               Разрабатываем детальную архитектуру ИИ-агента. Определяем
               необходимые интеграции, источники данных, алгоритмы обработки
               информации и механизмы принятия решений. Результат: подробный план
@@ -99,7 +99,7 @@ export default function AIAgentProcess() {
             <h3 className="text-xl md:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">
               Прототипирование и Валидация
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
               Создаем минимально жизнеспособную версию ИИ-агента и тестируем его
               на реальных или смоделированных данных. Итеративно улучшаем на
               основе обратной связи. Результат: работающий прототип с базовой
@@ -117,7 +117,7 @@ export default function AIAgentProcess() {
             <h3 className="text-xl md:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">
               Полная Разработка и Интеграция
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
               Реализуем полную функциональность ИИ-агента, включая интеграции с
               вашими системами, обработку данных, пользовательский интерфейс и
               систему отчетности. Результат: полностью функциональный ИИ-агент.
@@ -134,7 +134,7 @@ export default function AIAgentProcess() {
             <h3 className="text-xl md:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">
               Тестирование и Оптимизация
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
               Проводим комплексное тестирование в условиях, максимально
               приближенных к реальным. Оптимизируем производительность, точность
               и надежность агента. Результат: стабильное и эффективное решение.
@@ -151,7 +151,7 @@ export default function AIAgentProcess() {
             <h3 className="text-xl md:text-2xl font-semibold mb-2 text-gray-800 dark:text-white">
               Внедрение и Сопровождение
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-base">
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-lg">
               Запускаем ИИ-агента в производственную среду, обучаем вашу
               команду, настраиваем мониторинг и предоставляем техническую
               поддержку. Результат: полностью работающее решение, приносящее

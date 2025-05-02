@@ -312,11 +312,11 @@ export default function AIAgentSolutionNew() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
-          className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start"
+          className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start"
         >
           <motion.div
             variants={itemVariants}
-            className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden"
+            className="md:col-span-5 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-60 h-60 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-full blur-2xl -z-0 translate-x-1/2 -translate-y-1/2 opacity-70 dark:opacity-50"></div>
             <h3 className="text-2xl md:text-3xl font-semibold mb-6 relative z-10 text-gray-800 dark:text-white">
@@ -406,7 +406,7 @@ export default function AIAgentSolutionNew() {
 
           <motion.div
             variants={itemVariants}
-            className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden"
+            className="md:col-span-7 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden"
           >
             <div className="absolute bottom-0 left-0 w-60 h-60 bg-gradient-to-tr from-indigo-500/10 to-blue-500/10 rounded-full blur-2xl -z-0 -translate-x-1/2 translate-y-1/2 opacity-70 dark:opacity-50"></div>
             <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-gray-800 dark:text-white relative z-10">

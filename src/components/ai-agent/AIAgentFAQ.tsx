@@ -116,7 +116,7 @@ export default function AIAgentFAQ() {
                   aria-expanded={openItem === index}
                   aria-controls={`faq-answer-${index}`}
                 >
-                  <span className="font-semibold text-base md:text-lg text-gray-900 dark:text-white pr-4">
+                  <span className="font-semibold text-lg md:text-xl text-gray-900 dark:text-white pr-4">
                     {faq.question}
                   </span>
                   <motion.div
@@ -156,7 +156,7 @@ export default function AIAgentFAQ() {
                       id={`faq-answer-${index}`}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                      <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                         {faq.answer}
                       </div>
                     </motion.div>

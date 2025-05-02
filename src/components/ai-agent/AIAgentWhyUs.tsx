@@ -83,11 +83,11 @@ export default function AIAgentWhyUs() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mt-1">
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
                   Специализация на Бизнес-Процессах
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                 Мы не просто технари, мы понимаем бизнес и создаем ИИ-агентов,
                 которые решают конкретные бизнес-задачи: от лидогенерации до
                 оптимизации расходов.
@@ -121,11 +121,11 @@ export default function AIAgentWhyUs() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mt-1">
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
                   Полный Цикл Разработки
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                 От анализа потребностей до внедрения и поддержки. Мы берем на
                 себя весь процесс создания ИИ-агента: консультации,
                 проектирование, разработку, тестирование и сопровождение.
@@ -159,11 +159,11 @@ export default function AIAgentWhyUs() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mt-1">
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
                   Передовые Технологии
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                 Мы используем самые современные модели ИИ (Claude, GPT-4), LLM
                 Frameworks и облачные технологии для создания
                 высокопроизводительных и масштабируемых решений, адаптированных
@@ -205,11 +205,11 @@ export default function AIAgentWhyUs() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mt-1">
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
                   Гибкость и Масштабируемость
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                 Создаем решения, которые растут вместе с вашим бизнесом. Начните
                 с небольшого проекта и расширяйте функциональность по мере
                 необходимости без необходимости переписывать код.

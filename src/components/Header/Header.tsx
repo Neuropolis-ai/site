@@ -115,7 +115,7 @@ const Header = () => {
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="text-blue-600 dark:text-blue-400"
+              className="text-[#0a2e6b] dark:text-[#2271ce]"
             >
               <path
                 opacity="0.2"
@@ -127,7 +127,9 @@ const Header = () => {
                 fill="currentColor"
               />
             </svg>
-            <span className="text-gray-800 dark:text-white">Neuropolis</span>
+            <span className="text-gray-800 dark:text-white mt-[2px]">
+              Neuropolis
+            </span>
           </div>
         </Link>
 

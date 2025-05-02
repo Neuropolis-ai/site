@@ -115,7 +115,7 @@ export default function AIAgentSolutionNew() {
                   <h4 className="font-semibold text-gray-800 dark:text-white">
                     Получение задачи
                   </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-base">
+                  <p className="text-gray-600 dark:text-gray-300 text-lg">
                     Агент получает триггер или команду (например, новое письмо,
                     запись в CRM, время по расписанию).
                   </p>
@@ -132,7 +132,7 @@ export default function AIAgentSolutionNew() {
                   <h4 className="font-semibold text-gray-800 dark:text-white">
                     Анализ и планирование
                   </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-base">
+                  <p className="text-gray-600 dark:text-gray-300 text-lg">
                     ИИ анализирует задачу, данные и определяет
                     последовательность действий.
                   </p>
@@ -149,7 +149,7 @@ export default function AIAgentSolutionNew() {
                   <h4 className="font-semibold text-gray-800 dark:text-white">
                     Взаимодействие
                   </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-base">
+                  <p className="text-gray-600 dark:text-gray-300 text-lg">
                     Агент подключается к нужным системам, извлекает или вносит
                     информацию.
                   </p>
@@ -166,7 +166,7 @@ export default function AIAgentSolutionNew() {
                   <h4 className="font-semibold text-gray-800 dark:text-white">
                     Выполнение действия
                   </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-base">
+                  <p className="text-gray-600 dark:text-gray-300 text-lg">
                     Отправляет отчет, отвечает клиенту, обновляет статус заказа
                     и т.д.
                   </p>
@@ -183,7 +183,7 @@ export default function AIAgentSolutionNew() {
                   <h4 className="font-semibold text-gray-800 dark:text-white">
                     Обучение и отчет
                   </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-base">
+                  <p className="text-gray-600 dark:text-gray-300 text-lg">
                     Запоминает результат, формирует отчет и улучшает свою работу
                     в будущем.
                   </p>
@@ -224,7 +224,7 @@ export default function AIAgentSolutionNew() {
                   <strong className="text-gray-800 dark:text-gray-100 block font-medium">
                     Автономность
                   </strong>
-                  <span className="text-base text-gray-600 dark:text-gray-300">
+                  <span className="text-lg text-gray-600 dark:text-gray-300">
                     Работают самостоятельно по заданным правилам и целям.
                   </span>
                 </div>
@@ -248,7 +248,7 @@ export default function AIAgentSolutionNew() {
                   <strong className="text-gray-800 dark:text-gray-100 block font-medium">
                     Обучаемость
                   </strong>
-                  <span className="text-base text-gray-600 dark:text-gray-300">
+                  <span className="text-lg text-gray-600 dark:text-gray-300">
                     Способны адаптироваться и улучшать производительность со
                     временем.
                   </span>
@@ -273,7 +273,7 @@ export default function AIAgentSolutionNew() {
                   <strong className="text-gray-800 dark:text-gray-100 block font-medium">
                     Интеграция
                   </strong>
-                  <span className="text-base text-gray-600 dark:text-gray-300">
+                  <span className="text-lg text-gray-600 dark:text-gray-300">
                     Подключаются к любым системам через API или прямой доступ к
                     БД.
                   </span>
@@ -298,7 +298,7 @@ export default function AIAgentSolutionNew() {
                   <strong className="text-gray-800 dark:text-gray-100 block font-medium">
                     Масштабируемость
                   </strong>
-                  <span className="text-base text-gray-600 dark:text-gray-300">
+                  <span className="text-lg text-gray-600 dark:text-gray-300">
                     Легко масштабируются под возрастающие объемы и новые задачи.
                   </span>
                 </div>
@@ -335,9 +335,7 @@ export default function AIAgentSolutionNew() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="text-base">
-                  Снижение операционных расходов
-                </span>
+                <span className="text-lg">Снижение операционных расходов</span>
               </li>
               <li className="flex items-start gap-3">
                 <svg
@@ -351,7 +349,7 @@ export default function AIAgentSolutionNew() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="text-base">
+                <span className="text-lg">
                   Освобождение времени сотрудников от рутины
                 </span>
               </li>
@@ -367,7 +365,7 @@ export default function AIAgentSolutionNew() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="text-base">
+                <span className="text-lg">
                   Ускорение ответов на запросы клиентов
                 </span>
               </li>
@@ -383,7 +381,7 @@ export default function AIAgentSolutionNew() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="text-base">
+                <span className="text-lg">
                   Автоматизация обработки данных и отчетности
                 </span>
               </li>
@@ -399,7 +397,7 @@ export default function AIAgentSolutionNew() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="text-base">
+                <span className="text-lg">
                   Повышение точности и снижение ошибок
                 </span>
               </li>
@@ -427,7 +425,7 @@ export default function AIAgentSolutionNew() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="text-base">
+                <span className="text-lg">
                   Концентрация команды на стратегических задачах
                 </span>
               </li>
@@ -443,7 +441,7 @@ export default function AIAgentSolutionNew() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="text-base">
+                <span className="text-lg">
                   Рост прибыли за счет оптимизации
                 </span>
               </li>
@@ -459,7 +457,7 @@ export default function AIAgentSolutionNew() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="text-base">
+                <span className="text-lg">
                   Повышение удовлетворенности клиентов
                 </span>
               </li>
@@ -475,7 +473,7 @@ export default function AIAgentSolutionNew() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="text-base">
+                <span className="text-lg">
                   Принятие решений на основе данных, а не интуиции
                 </span>
               </li>
@@ -491,7 +489,7 @@ export default function AIAgentSolutionNew() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="text-base">
+                <span className="text-lg">
                   Масштабирование бизнеса без роста штата
                 </span>
               </li>

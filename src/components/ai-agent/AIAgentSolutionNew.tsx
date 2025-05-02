@@ -112,7 +112,7 @@ export default function AIAgentSolutionNew() {
                   01
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-800 dark:text-white">
+                  <h4 className="font-semibold text-lg text-gray-800 dark:text-white">
                     Получение задачи
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300 text-lg">
@@ -129,7 +129,7 @@ export default function AIAgentSolutionNew() {
                   02
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-800 dark:text-white">
+                  <h4 className="font-semibold text-lg text-gray-800 dark:text-white">
                     Анализ и планирование
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300 text-lg">
@@ -146,7 +146,7 @@ export default function AIAgentSolutionNew() {
                   03
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-800 dark:text-white">
+                  <h4 className="font-semibold text-lg text-gray-800 dark:text-white">
                     Взаимодействие
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300 text-lg">
@@ -163,7 +163,7 @@ export default function AIAgentSolutionNew() {
                   04
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-800 dark:text-white">
+                  <h4 className="font-semibold text-lg text-gray-800 dark:text-white">
                     Выполнение действия
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300 text-lg">
@@ -180,7 +180,7 @@ export default function AIAgentSolutionNew() {
                   05
                 </div>
                 <div>
-                  <h4 className="font-semibold text-gray-800 dark:text-white">
+                  <h4 className="font-semibold text-lg text-gray-800 dark:text-white">
                     Обучение и отчет
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300 text-lg">
@@ -221,7 +221,7 @@ export default function AIAgentSolutionNew() {
                   ></path>
                 </svg>
                 <div>
-                  <strong className="text-gray-800 dark:text-gray-100 block font-medium">
+                  <strong className="text-gray-800 dark:text-gray-100 block text-lg font-medium">
                     Автономность
                   </strong>
                   <span className="text-lg text-gray-600 dark:text-gray-300">
@@ -245,7 +245,7 @@ export default function AIAgentSolutionNew() {
                   ></path>
                 </svg>
                 <div>
-                  <strong className="text-gray-800 dark:text-gray-100 block font-medium">
+                  <strong className="text-gray-800 dark:text-gray-100 block text-lg font-medium">
                     Обучаемость
                   </strong>
                   <span className="text-lg text-gray-600 dark:text-gray-300">
@@ -270,7 +270,7 @@ export default function AIAgentSolutionNew() {
                   ></path>
                 </svg>
                 <div>
-                  <strong className="text-gray-800 dark:text-gray-100 block font-medium">
+                  <strong className="text-gray-800 dark:text-gray-100 block text-lg font-medium">
                     Интеграция
                   </strong>
                   <span className="text-lg text-gray-600 dark:text-gray-300">
@@ -295,7 +295,7 @@ export default function AIAgentSolutionNew() {
                   ></path>
                 </svg>
                 <div>
-                  <strong className="text-gray-800 dark:text-gray-100 block font-medium">
+                  <strong className="text-gray-800 dark:text-gray-100 block text-lg font-medium">
                     Масштабируемость
                   </strong>
                   <span className="text-lg text-gray-600 dark:text-gray-300">

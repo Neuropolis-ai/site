@@ -45,7 +45,7 @@ export default function AIAgentWhyUs() {
           variants={itemVariants}
           className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center mb-16 md:mb-20 text-gray-800 dark:text-white"
         >
-          Почему Выбирают Нас?
+          Почему выбирают нас?
         </motion.h2>
 
         <div className="max-w-3xl mx-auto">
@@ -84,7 +84,7 @@ export default function AIAgentWhyUs() {
                   </svg>
                 </div>
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
-                  Специализация на Бизнес-Процессах
+                  Специализация на бизнес-процессах
                 </h3>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
@@ -122,7 +122,7 @@ export default function AIAgentWhyUs() {
                   </svg>
                 </div>
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
-                  Полный Цикл Разработки
+                  Полный цикл разработки
                 </h3>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
@@ -160,7 +160,7 @@ export default function AIAgentWhyUs() {
                   </svg>
                 </div>
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
-                  Передовые Технологии
+                  Передовые технологии
                 </h3>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
@@ -206,7 +206,7 @@ export default function AIAgentWhyUs() {
                   </svg>
                 </div>
                 <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
-                  Гибкость и Масштабируемость
+                  Гибкость и масштабируемость
                 </h3>
               </div>
               <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">

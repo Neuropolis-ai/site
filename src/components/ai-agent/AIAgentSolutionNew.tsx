@@ -60,7 +60,7 @@ export default function AIAgentSolutionNew() {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white leading-tight">
             Решение:{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
-              Ваши Персональные ИИ-Агенты
+              Ваши персональные ИИ-агенты
             </span>
           </h2>
           <p className="mt-6 text-gray-600 dark:text-gray-300 text-base md:text-xl leading-relaxed">
@@ -77,7 +77,7 @@ export default function AIAgentSolutionNew() {
             <h3 className="text-2xl md:text-3xl font-semibold mb-5 text-gray-800 dark:text-white">
               Что такое{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
-                ИИ-Агент
+                ИИ-агент
               </span>
               ?
             </h3>

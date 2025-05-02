@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowDownIcon } from "lucide-react";
 
 export default function AIAgentFAQ() {
   const [openItem, setOpenItem] = useState<number | null>(0);
@@ -56,61 +58,95 @@ export default function AIAgentFAQ() {
   return (
     <section
       id="faq"
-      className="py-16 md:py-20 px-4 bg-blue-50 dark:bg-gray-900"
+      className="relative py-24 md:py-32 px-4 bg-gradient-to-br from-[#F8F9FA] to-white dark:from-gray-900 dark:to-gray-950 overflow-hidden"
     >
-      <div className="container mx-auto max-w-4xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-white">
-          Часто Задаваемые Вопросы
-        </h2>
+      {/* Стеклянный фоновый эффект с шумом */}
+      <div className="absolute inset-0 bg-white/20 dark:bg-gray-900/20 backdrop-blur-[100px] [mask-image:url('/noise.svg')] opacity-50"></div>
 
-        <div className="space-y-4">
+      {/* Декоративные элементы */}
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#3DF5C2]/10 rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-[#4F9CFF]/10 rounded-full blur-3xl"></div>
+
+      <div className="container relative mx-auto max-w-5xl">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl md:text-5xl font-bold text-center mb-6 text-gray-800 dark:text-white tracking-tight"
+        >
+          Часто Задаваемые Вопросы
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="text-center text-gray-600 dark:text-gray-300 mb-16 max-w-2xl mx-auto text-lg tracking-[0.02em]"
+        >
+          Ответы на самые популярные вопросы о технологии ИИ-агентов и нашем
+          подходе к их разработке
+        </motion.p>
+
+        <div className="grid gap-6">
           {faqs.map((faq, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`border rounded-xl overflow-hidden transition-all duration-300 ${
-                openItem === index
-                  ? "bg-white dark:bg-gray-800 shadow-md border-blue-200 dark:border-blue-900/30"
-                  : "bg-white/50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700"
-              }`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className="group"
             >
-              <button
-                onClick={() => toggleItem(index)}
-                className="flex justify-between items-center w-full px-6 py-5 text-left focus:outline-none"
-              >
-                <span className="font-semibold text-lg text-gray-800 dark:text-white pr-4">
-                  {faq.question}
-                </span>
-                <span
-                  className={`flex-shrink-0 ml-2 transition-transform duration-300 ${
-                    openItem === index ? "rotate-180" : ""
+              <motion.div
+                whileHover={{ scale: 1.01 }}
+                transition={{ duration: 0.3 }}
+                className={`relative bg-white dark:bg-gray-800 backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300
+                  shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.12)]
+                  before:absolute before:inset-0 before:w-full before:h-full before:bg-gradient-to-r before:from-transparent 
+                  before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 
+                  before:pointer-events-none group-hover:before:opacity-100 
+                  before:group-hover:from-transparent before:group-hover:via-[#4F9CFF]/5 before:group-hover:to-transparent
+                  ${
+                    openItem === index
+                      ? "ring-1 ring-[#4F9CFF]/20 dark:ring-[#3DF5C2]/20"
+                      : ""
                   }`}
-                >
-                  <svg
-                    className="w-6 h-6 text-blue-600 dark:text-blue-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 9l-7 7-7-7"
-                    ></path>
-                  </svg>
-                </span>
-              </button>
-              <div
-                className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                  openItem === index ? "max-h-[1000px] pb-6" : "max-h-0"
-                }`}
               >
-                <div className="px-6 text-gray-600 dark:text-gray-300 text-base leading-relaxed">
-                  {faq.answer}
-                </div>
-              </div>
-            </div>
+                <button
+                  onClick={() => toggleItem(index)}
+                  className="flex justify-between items-center w-full p-6 md:p-8 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F9CFF] dark:focus-visible:ring-[#3DF5C2] rounded-2xl"
+                  aria-expanded={openItem === index}
+                  aria-controls={`faq-answer-${index}`}
+                >
+                  <span className="font-medium text-xl tracking-[0.02em] text-gray-900 dark:text-white pr-4">
+                    {faq.question}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: openItem === index ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#4F9CFF]/10 dark:bg-[#3DF5C2]/10"
+                  >
+                    <ArrowDownIcon className="w-4 h-4 text-[#4F9CFF] dark:text-[#3DF5C2]" />
+                  </motion.div>
+                </button>
+
+                <AnimatePresence>
+                  {openItem === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      id={`faq-answer-${index}`}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0 text-gray-600 dark:text-gray-300 text-base leading-relaxed tracking-[0.02em]">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            </motion.div>
           ))}
         </div>
       </div>

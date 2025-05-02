@@ -387,10 +387,10 @@ export default function AIAgentProblems() {
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-r from-indigo-400/10 to-blue-400/10 dark:from-indigo-600/10 dark:to-blue-600/10 rounded-full blur-xl -z-10"></div>
 
             <div className="relative z-10">
-              <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
+              <h3 className="text-3xl md:text-4xl font-semibold text-gray-800 dark:text-white mb-4">
                 Трансформируйте эти вызовы в возможности для роста
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 mb-8 text-xl leading-relaxed">
                 Узнайте, как ИИ-агенты решают эти задачи и освобождают ресурсы
                 для развития вашего бизнеса
               </p>
@@ -399,7 +399,7 @@ export default function AIAgentProblems() {
                 <a
                   href="#solution"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-xl
-                         bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold text-base
+                         bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold text-lg
                          hover:opacity-90 transition-opacity duration-300
                          shadow-lg"
                 >
@@ -424,7 +424,7 @@ export default function AIAgentProblems() {
                          border border-blue-200 dark:border-gray-700/30
                          text-blue-600 dark:text-blue-400
                          bg-white/50 dark:bg-gray-900/40 hover:bg-blue-500/10 dark:hover:bg-blue-500/10
-                         backdrop-blur-sm rounded-xl font-medium text-base
+                         backdrop-blur-sm rounded-xl font-medium text-lg
                          transition-colors"
                 >
                   Получить демонстрацию

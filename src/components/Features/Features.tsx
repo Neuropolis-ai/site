@@ -3,6 +3,14 @@ import { useTheme } from "@/context/ThemeContext";
 import { useEffect, useRef } from "react";
 import "../../style/icon-animations.css";
 import Container from "../ui/Container";
+import {
+  BarChart3,
+  Target,
+  MessageSquare,
+  Layers,
+  FileText,
+  Database,
+} from "lucide-react";
 
 const Features = () => {
   const { isDark } = useTheme();
@@ -32,9 +40,13 @@ const Features = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-white relative dark:bg-[#050505]">
-      {/* Background network effect */}
-      {/* Background Video */}
+    <section className="py-20 md:py-28 px-4 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
+      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+
+      {/* Dark mode video background */}
       {isDark && (
         <div className="video-container fx">
           <div className="video-content f">
@@ -46,7 +58,7 @@ const Features = () => {
       )}
 
       <Container>
-        <div className="text-center mb-16 relative z-10">
+        <div className="text-center mb-16 md:mb-20 relative z-10">
           <div
             className={`inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box ${
               !isDark && "light-switch-box"
@@ -54,876 +66,190 @@ const Features = () => {
           >
             Возможности
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold dark:text-white text-black mb-4">
-            Используйте весь потенциал ИИ
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white mb-4">
+            Используйте весь{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+              потенциал ИИ
+            </span>{" "}
+            для вашего бизнеса
           </h2>
+          <p className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
+            Наши решения помогают компаниям автоматизировать процессы,
+            оптимизировать ресурсы и принимать более обоснованные решения на
+            основе данных
+          </p>
         </div>
 
         <div
           ref={featuresRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-16 relative z-10"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative z-10"
         >
           {/* Feature 1 - Предиктивная аналитика */}
-          <div className="text-center">
+          <div className="group relative flex flex-col h-full rounded-2xl transition-all duration-300 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-lg hover:-translate-y-1 p-6">
             <div
-              className={`w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6 icon-animated ${
-                isDark ? "bg-blue-900/20" : "bg-blue-100"
+              className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${
+                isDark ? "bg-blue-900/20" : "bg-blue-500/10"
               }`}
             >
-              <svg viewBox="0 0 24 24" width="28" height="28">
-                <defs>
-                  <linearGradient
-                    id="analytics-gradient"
-                    x1="0%"
-                    y1="100%"
-                    x2="100%"
-                    y2="0%"
-                  >
-                    <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="100%" stopColor="#3b82f6" />
-                  </linearGradient>
-                </defs>
-
-                {/* Graph base */}
-                <line
-                  x1="4"
-                  y1="18"
-                  x2="20"
-                  y2="18"
-                  className="document-line"
-                  style={{ animationDelay: "0.2s" }}
-                />
-                <line
-                  x1="4"
-                  y1="18"
-                  x2="4"
-                  y2="6"
-                  className="document-line"
-                  style={{ animationDelay: "0.4s" }}
-                />
-
-                {/* Chart lines */}
-                <polyline
-                  points="4,16 8,12 12,14 16,8 20,6"
-                  className="document-line"
-                  style={{ animationDelay: "0.6s", strokeWidth: "1.5" }}
-                />
-
-                {/* Data points */}
-                <circle
-                  cx="4"
-                  cy="16"
-                  r="1"
-                  className="filled graph-point"
-                  style={{ animationDelay: "0.8s" }}
-                />
-                <circle
-                  cx="8"
-                  cy="12"
-                  r="1"
-                  className="filled graph-point"
-                  style={{ animationDelay: "1.0s" }}
-                />
-                <circle
-                  cx="12"
-                  cy="14"
-                  r="1"
-                  className="filled graph-point"
-                  style={{ animationDelay: "1.2s" }}
-                />
-                <circle
-                  cx="16"
-                  cy="8"
-                  r="1"
-                  className="filled graph-point"
-                  style={{ animationDelay: "1.4s" }}
-                />
-                <circle
-                  cx="20"
-                  cy="6"
-                  r="1"
-                  className="filled graph-point"
-                  style={{ animationDelay: "1.6s" }}
-                />
-
-                {/* Predictive trend line (dashed) */}
-                <path
-                  d="M20,6 C21,5 22,4 23,3"
-                  className="document-line"
-                  style={{ animationDelay: "1.8s", strokeDasharray: "2,2" }}
-                />
-
-                {/* AI analysis indicator */}
-                <circle
-                  cx="18"
-                  cy="10"
-                  r="0.8"
-                  className="particle"
-                  style={{ animationDelay: "0.5s" }}
-                />
-                <circle
-                  cx="14"
-                  cy="12"
-                  r="0.8"
-                  className="particle"
-                  style={{ animationDelay: "0.9s" }}
-                />
-                <circle
-                  cx="10"
-                  cy="10"
-                  r="0.8"
-                  className="particle"
-                  style={{ animationDelay: "1.3s" }}
-                />
-              </svg>
+              <BarChart3
+                className="w-8 h-8 text-blue-600 dark:text-blue-400"
+                strokeWidth={1.75}
+              />
             </div>
-            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               Предиктивная аналитика
             </h3>
-            <p
-              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
-                isDark ? "text-[#919191]" : "text-gray-600"
-              }`}
-            >
+            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
               Используйте ИИ для анализа исторических данных и прогнозирования
-              будущих трендов.
+              будущих трендов. Повышайте точность бизнес-прогнозов на 30-40%.
             </p>
+            <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
+              <p className="font-medium text-blue-600 dark:text-blue-400">
+                Принимайте решения на основе точных прогнозов
+              </p>
+            </div>
           </div>
 
           {/* Feature 2 - Персонализация маркетинга */}
-          <div className="text-center">
+          <div className="group relative flex flex-col h-full rounded-2xl transition-all duration-300 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-lg hover:-translate-y-1 p-6">
             <div
-              className={`w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6 icon-animated ${
-                isDark ? "bg-blue-900/20" : "bg-blue-100"
+              className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${
+                isDark ? "bg-blue-900/20" : "bg-blue-500/10"
               }`}
             >
-              <svg viewBox="0 0 24 24" width="28" height="28">
-                <defs>
-                  <linearGradient
-                    id="marketing-gradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="100%" stopColor="#3b82f6" />
-                  </linearGradient>
-                </defs>
-
-                {/* User profiles */}
-                <circle
-                  cx="6"
-                  cy="10"
-                  r="2.5"
-                  className="filled pulse"
-                  style={{ animationDelay: "0.2s" }}
-                />
-                <circle
-                  cx="12"
-                  cy="8"
-                  r="2.5"
-                  className="filled pulse"
-                  style={{ animationDelay: "0.4s" }}
-                />
-                <circle
-                  cx="18"
-                  cy="10"
-                  r="2.5"
-                  className="filled pulse"
-                  style={{ animationDelay: "0.6s" }}
-                />
-
-                {/* Person icons */}
-                <path
-                  d="M6,8 Q6,7 6,7.5"
-                  className="document-line"
-                  style={{ animationDelay: "0.8s" }}
-                />
-                <circle
-                  cx="6"
-                  cy="6.5"
-                  r="1.5"
-                  className="document-line"
-                  style={{ animationDelay: "1.0s" }}
-                />
-
-                <path
-                  d="M12,6 Q12,5 12,5.5"
-                  className="document-line"
-                  style={{ animationDelay: "1.1s" }}
-                />
-                <circle
-                  cx="12"
-                  cy="4.5"
-                  r="1.5"
-                  className="document-line"
-                  style={{ animationDelay: "1.3s" }}
-                />
-
-                <path
-                  d="M18,8 Q18,7 18,7.5"
-                  className="document-line"
-                  style={{ animationDelay: "1.4s" }}
-                />
-                <circle
-                  cx="18"
-                  cy="6.5"
-                  r="1.5"
-                  className="document-line"
-                  style={{ animationDelay: "1.6s" }}
-                />
-
-                {/* Personalized Content Connection */}
-                <path
-                  d="M6,12 L12,14 L18,12"
-                  className="document-line"
-                  style={{ animationDelay: "1.8s" }}
-                />
-
-                {/* Content piece with targeting */}
-                <rect
-                  x="8"
-                  y="14"
-                  width="8"
-                  height="6"
-                  rx="1"
-                  className="filled"
-                  style={{ animationDelay: "2.0s" }}
-                />
-                <path
-                  d="M10,17 L14,17"
-                  className="document-line"
-                  style={{ animationDelay: "2.2s" }}
-                />
-                <path
-                  d="M10,19 L14,19"
-                  className="document-line"
-                  style={{ animationDelay: "2.4s" }}
-                />
-
-                {/* Connection particles */}
-                <circle
-                  cx="9"
-                  cy="13"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.3s" }}
-                />
-                <circle
-                  cx="15"
-                  cy="13"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.6s" }}
-                />
-                <circle
-                  cx="12"
-                  cy="16"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.9s" }}
-                />
-              </svg>
+              <Target
+                className="w-8 h-8 text-blue-600 dark:text-blue-400"
+                strokeWidth={1.75}
+              />
             </div>
-            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               Персонализация маркетинга
             </h3>
-            <p
-              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
-                isDark ? "text-[#919191]" : "text-gray-600"
-              }`}
-            >
+            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
               Применяйте ИИ для точечного таргетинга аудитории и создания
-              персонализированного контента.
+              персонализированного контента. Увеличение конверсии до 25%.
             </p>
+            <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
+              <p className="font-medium text-blue-600 dark:text-blue-400">
+                Создавайте контент, который резонирует с вашей аудиторией
+              </p>
+            </div>
           </div>
 
           {/* Feature 3 - Служба поддержки с ИИ-агентом */}
-          <div className="text-center">
+          <div className="group relative flex flex-col h-full rounded-2xl transition-all duration-300 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-lg hover:-translate-y-1 p-6">
             <div
-              className={`w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6 icon-animated ${
-                isDark ? "bg-blue-900/20" : "bg-blue-100"
+              className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${
+                isDark ? "bg-blue-900/20" : "bg-blue-500/10"
               }`}
             >
-              <svg viewBox="0 0 24 24" width="28" height="28">
-                <defs>
-                  <linearGradient
-                    id="support-gradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="100%" stopColor="#3b82f6" />
-                  </linearGradient>
-                </defs>
-
-                {/* Chat bubble (AI Support) */}
-                <rect
-                  x="4"
-                  y="6"
-                  width="16"
-                  height="12"
-                  rx="2"
-                  className="filled"
-                  style={{ animationDelay: "0.2s" }}
-                />
-
-                {/* AI icon */}
-                <circle
-                  cx="8"
-                  cy="12"
-                  r="2"
-                  className="document-line"
-                  style={{ animationDelay: "0.4s" }}
-                />
-                <path
-                  d="M6,12 L10,12"
-                  className="document-line"
-                  style={{ animationDelay: "0.6s" }}
-                />
-                <path
-                  d="M8,10 L8,14"
-                  className="document-line"
-                  style={{ animationDelay: "0.8s" }}
-                />
-
-                {/* Chat connections */}
-                <path
-                  d="M11,10 L17,10"
-                  className="document-line"
-                  style={{ animationDelay: "1.0s" }}
-                />
-                <path
-                  d="M11,12 L17,12"
-                  className="document-line"
-                  style={{ animationDelay: "1.2s" }}
-                />
-                <path
-                  d="M11,14 L15,14"
-                  className="document-line"
-                  style={{ animationDelay: "1.4s" }}
-                />
-
-                {/* Multiple users connecting */}
-                <circle
-                  cx="6"
-                  cy="20"
-                  r="1.5"
-                  className="filled float"
-                  style={{ animationDelay: "0.3s" }}
-                />
-                <circle
-                  cx="12"
-                  cy="21"
-                  r="1.5"
-                  className="filled float"
-                  style={{ animationDelay: "0.6s" }}
-                />
-                <circle
-                  cx="18"
-                  cy="20"
-                  r="1.5"
-                  className="filled float"
-                  style={{ animationDelay: "0.9s" }}
-                />
-
-                {/* Connections to chat */}
-                <path
-                  d="M6,18.5 L8,16"
-                  className="document-line"
-                  style={{ animationDelay: "1.6s" }}
-                />
-                <path
-                  d="M12,19.5 L12,18"
-                  className="document-line"
-                  style={{ animationDelay: "1.8s" }}
-                />
-                <path
-                  d="M18,18.5 L16,16"
-                  className="document-line"
-                  style={{ animationDelay: "2.0s" }}
-                />
-
-                {/* Processing particles */}
-                <circle
-                  cx="16"
-                  cy="8"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.5s" }}
-                />
-                <circle
-                  cx="14"
-                  cy="16"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "1.0s" }}
-                />
-                <circle
-                  cx="18"
-                  cy="12"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "1.5s" }}
-                />
-              </svg>
+              <MessageSquare
+                className="w-8 h-8 text-blue-600 dark:text-blue-400"
+                strokeWidth={1.75}
+              />
             </div>
-            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               Служба поддержки с ИИ-агентом
             </h3>
-            <p
-              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
-                isDark ? "text-[#919191]" : "text-gray-600"
-              }`}
-            >
+            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
               Разрабатываем ИИ-агентов для службы поддержки, которые общаются с
-              клиентами и отвечают на сложные запросы.
+              клиентами и отвечают на сложные запросы 24/7.
             </p>
+            <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
+              <p className="font-medium text-blue-600 dark:text-blue-400">
+                Снижение нагрузки на поддержку до 60%
+              </p>
+            </div>
           </div>
 
           {/* Feature 4 - Интеграция ИИ */}
-          <div className="text-center">
+          <div className="group relative flex flex-col h-full rounded-2xl transition-all duration-300 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-lg hover:-translate-y-1 p-6">
             <div
-              className={`w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6 icon-animated ${
-                isDark ? "bg-blue-900/20" : "bg-blue-100"
+              className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${
+                isDark ? "bg-blue-900/20" : "bg-blue-500/10"
               }`}
             >
-              <svg viewBox="0 0 24 24" width="28" height="28">
-                <defs>
-                  <linearGradient
-                    id="integration-gradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="100%" stopColor="#3b82f6" />
-                  </linearGradient>
-                </defs>
-
-                {/* Central AI Hub */}
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="3"
-                  className="filled pulse"
-                  style={{ animationDelay: "0.2s" }}
-                />
-
-                {/* Connecting systems */}
-                <rect
-                  x="3"
-                  y="5"
-                  width="4"
-                  height="4"
-                  rx="1"
-                  className="filled"
-                  style={{ animationDelay: "0.4s" }}
-                />
-                <rect
-                  x="17"
-                  y="5"
-                  width="4"
-                  height="4"
-                  rx="1"
-                  className="filled"
-                  style={{ animationDelay: "0.6s" }}
-                />
-                <rect
-                  x="3"
-                  y="15"
-                  width="4"
-                  height="4"
-                  rx="1"
-                  className="filled"
-                  style={{ animationDelay: "0.8s" }}
-                />
-                <rect
-                  x="17"
-                  y="15"
-                  width="4"
-                  height="4"
-                  rx="1"
-                  className="filled"
-                  style={{ animationDelay: "1.0s" }}
-                />
-
-                {/* Integration lines */}
-                <path
-                  d="M7,7 L9,9"
-                  className="document-line"
-                  style={{ animationDelay: "1.2s" }}
-                />
-                <path
-                  d="M17,7 L15,9"
-                  className="document-line"
-                  style={{ animationDelay: "1.4s" }}
-                />
-                <path
-                  d="M7,17 L9,15"
-                  className="document-line"
-                  style={{ animationDelay: "1.6s" }}
-                />
-                <path
-                  d="M17,17 L15,15"
-                  className="document-line"
-                  style={{ animationDelay: "1.8s" }}
-                />
-
-                {/* Inner puzzle pieces */}
-                <path
-                  d="M11,10 L10,10 Q9,10 9,11 L9,12 L10,12"
-                  className="document-line"
-                  style={{ animationDelay: "2.0s" }}
-                />
-                <path
-                  d="M13,10 L14,10 Q15,10 15,11 L15,12 L14,12"
-                  className="document-line"
-                  style={{ animationDelay: "2.2s" }}
-                />
-                <path
-                  d="M11,14 L10,14 Q9,14 9,13 L9,12 L10,12"
-                  className="document-line"
-                  style={{ animationDelay: "2.4s" }}
-                />
-                <path
-                  d="M13,14 L14,14 Q15,14 15,13 L15,12 L14,12"
-                  className="document-line"
-                  style={{ animationDelay: "2.6s" }}
-                />
-
-                {/* Data Flow Particles */}
-                <circle
-                  cx="8"
-                  cy="8"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.3s" }}
-                />
-                <circle
-                  cx="16"
-                  cy="8"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.6s" }}
-                />
-                <circle
-                  cx="8"
-                  cy="16"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.9s" }}
-                />
-                <circle
-                  cx="16"
-                  cy="16"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "1.2s" }}
-                />
-              </svg>
+              <Layers
+                className="w-8 h-8 text-blue-600 dark:text-blue-400"
+                strokeWidth={1.75}
+              />
             </div>
-            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               Интеграция ИИ
             </h3>
-            <p
-              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
-                isDark ? "text-[#919191]" : "text-gray-700"
-              }`}
-            >
+            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
               Помогаем компаниям внедрять ИИ-агентов в их существующие
-              программные платформы.
+              программные платформы и бизнес-процессы без нарушения работы.
             </p>
+            <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
+              <p className="font-medium text-blue-600 dark:text-blue-400">
+                Безопасное внедрение с минимальными рисками
+              </p>
+            </div>
           </div>
 
           {/* Feature 5 - Создание контента с ИИ */}
-          <div className="text-center">
+          <div className="group relative flex flex-col h-full rounded-2xl transition-all duration-300 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-lg hover:-translate-y-1 p-6">
             <div
-              className={`w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6 icon-animated ${
-                isDark ? "bg-blue-900/20" : "bg-blue-100"
+              className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${
+                isDark ? "bg-blue-900/20" : "bg-blue-500/10"
               }`}
             >
-              <svg viewBox="0 0 24 24" width="28" height="28">
-                <defs>
-                  <linearGradient
-                    id="content-gradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="100%" stopColor="#3b82f6" />
-                  </linearGradient>
-                </defs>
-
-                {/* Document base */}
-                <rect
-                  x="5"
-                  y="4"
-                  width="14"
-                  height="16"
-                  rx="2"
-                  className="filled"
-                  style={{ animationDelay: "0.2s" }}
-                />
-
-                {/* AI writing symbol */}
-                <circle
-                  cx="12"
-                  cy="8"
-                  r="2"
-                  className="document-line"
-                  style={{ animationDelay: "0.4s" }}
-                />
-                <path
-                  d="M10,8 L14,8"
-                  className="document-line"
-                  style={{ animationDelay: "0.6s" }}
-                />
-                <path
-                  d="M12,6 L12,10"
-                  className="document-line"
-                  style={{ animationDelay: "0.8s" }}
-                />
-
-                {/* Content lines */}
-                <path
-                  d="M8,12 L16,12"
-                  className="document-line"
-                  style={{ animationDelay: "1.0s" }}
-                />
-                <path
-                  d="M8,14 L16,14"
-                  className="document-line"
-                  style={{ animationDelay: "1.2s" }}
-                />
-                <path
-                  d="M8,16 L14,16"
-                  className="document-line"
-                  style={{ animationDelay: "1.4s" }}
-                />
-
-                {/* Dynamic content generation */}
-                <path
-                  d="M5,12 C3,12 3,14 3,16"
-                  className="document-line"
-                  style={{ animationDelay: "1.6s", strokeDasharray: "2,2" }}
-                />
-                <path
-                  d="M19,12 C21,12 21,14 21,16"
-                  className="document-line"
-                  style={{ animationDelay: "1.8s", strokeDasharray: "2,2" }}
-                />
-
-                {/* Creation particles */}
-                <circle
-                  cx="8"
-                  cy="13"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.3s" }}
-                />
-                <circle
-                  cx="10"
-                  cy="15"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.6s" }}
-                />
-                <circle
-                  cx="14"
-                  cy="13"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.9s" }}
-                />
-                <circle
-                  cx="16"
-                  cy="15"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "1.2s" }}
-                />
-              </svg>
+              <FileText
+                className="w-8 h-8 text-blue-600 dark:text-blue-400"
+                strokeWidth={1.75}
+              />
             </div>
-            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
               Создание контента с ИИ
             </h3>
-            <p
-              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
-                isDark ? "text-[#919191]" : "text-gray-600"
-              }`}
-            >
-              Разработка ИИ-агентов для автоматизированного создания контента
+            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
+              Разрабатываем ИИ-решения для генерации маркетинговых материалов,
+              статей, описаний товаров и отчетов в соответствии с вашим
+              фирменным стилем.
             </p>
-          </div>
-
-          {/* Feature 6 - ИИ-поиск */}
-          <div className="text-center">
-            <div
-              className={`w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-6 icon-animated ${
-                isDark ? "bg-blue-900/20" : "bg-blue-100"
-              }`}
-            >
-              <svg viewBox="0 0 24 24" width="28" height="28">
-                <defs>
-                  <linearGradient
-                    id="search-gradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="100%" stopColor="#3b82f6" />
-                  </linearGradient>
-                </defs>
-
-                {/* Magnifying glass */}
-                <circle
-                  cx="10"
-                  cy="10"
-                  r="6"
-                  className="filled"
-                  style={{ animationDelay: "0.2s", fillOpacity: "0.2" }}
-                />
-                <circle
-                  cx="10"
-                  cy="10"
-                  r="6"
-                  className="document-line"
-                  style={{ animationDelay: "0.4s" }}
-                />
-                <path
-                  d="M14.5,14.5 L19,19"
-                  className="document-line"
-                  style={{ animationDelay: "0.6s", strokeWidth: "2" }}
-                />
-
-                {/* Web/data elements being searched */}
-                <rect
-                  x="5"
-                  y="7"
-                  width="2"
-                  height="2"
-                  className="document-line"
-                  style={{ animationDelay: "0.8s" }}
-                />
-                <rect
-                  x="9"
-                  y="7"
-                  width="2"
-                  height="2"
-                  className="document-line"
-                  style={{ animationDelay: "1.0s" }}
-                />
-                <rect
-                  x="13"
-                  y="7"
-                  width="2"
-                  height="2"
-                  className="document-line"
-                  style={{ animationDelay: "1.2s" }}
-                />
-                <rect
-                  x="5"
-                  y="11"
-                  width="2"
-                  height="2"
-                  className="document-line"
-                  style={{ animationDelay: "1.4s" }}
-                />
-                <rect
-                  x="9"
-                  y="11"
-                  width="2"
-                  height="2"
-                  className="document-line"
-                  style={{ animationDelay: "1.6s" }}
-                />
-                <rect
-                  x="13"
-                  y="11"
-                  width="2"
-                  height="2"
-                  className="document-line"
-                  style={{ animationDelay: "1.8s" }}
-                />
-
-                {/* Search beam */}
-                <path
-                  d="M10,4 L10,2"
-                  className="document-line"
-                  style={{ animationDelay: "2.0s", strokeDasharray: "1,1" }}
-                />
-                <path
-                  d="M14,6 L16,4"
-                  className="document-line"
-                  style={{ animationDelay: "2.1s", strokeDasharray: "1,1" }}
-                />
-                <path
-                  d="M16,10 L18,10"
-                  className="document-line"
-                  style={{ animationDelay: "2.2s", strokeDasharray: "1,1" }}
-                />
-                <path
-                  d="M4,10 L6,10"
-                  className="document-line"
-                  style={{ animationDelay: "2.3s", strokeDasharray: "1,1" }}
-                />
-                <path
-                  d="M6,6 L4,4"
-                  className="document-line"
-                  style={{ animationDelay: "2.4s", strokeDasharray: "1,1" }}
-                />
-
-                {/* Search particles */}
-                <circle
-                  cx="10"
-                  cy="6"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.3s" }}
-                />
-                <circle
-                  cx="14"
-                  cy="10"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.6s" }}
-                />
-                <circle
-                  cx="10"
-                  cy="14"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "0.9s" }}
-                />
-                <circle
-                  cx="6"
-                  cy="10"
-                  r="0.5"
-                  className="particle"
-                  style={{ animationDelay: "1.2s" }}
-                />
-              </svg>
+            <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
+              <p className="font-medium text-blue-600 dark:text-blue-400">
+                Ускорение создания контента в 5-10 раз
+              </p>
             </div>
-            <h3 className="text-base sm:text-lg font-medium dark:text-white text-black mb-3">
-              ИИ-поиск
-            </h3>
-            <p
-              className={`feature-description max-[425px]:text-[14px] text-sm sm:text-base ${
-                isDark ? "text-[#919191]" : "text-gray-600"
+          </div>
+
+          {/* Feature 6 - Обработка и анализ данных */}
+          <div className="group relative flex flex-col h-full rounded-2xl transition-all duration-300 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-lg hover:-translate-y-1 p-6">
+            <div
+              className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${
+                isDark ? "bg-blue-900/20" : "bg-blue-500/10"
               }`}
             >
-              Разработка ИИ-агентов для автоматизированного поиска в Интернете
+              <Database
+                className="w-8 h-8 text-blue-600 dark:text-blue-400"
+                strokeWidth={1.75}
+              />
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              Обработка и анализ данных
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
+              Создаем системы автоматической обработки и интеллектуального
+              анализа больших объемов данных для выявления закономерностей и
+              аномалий.
             </p>
+            <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
+              <p className="font-medium text-blue-600 dark:text-blue-400">
+                Извлекайте ценные инсайты из неструктурированных данных
+              </p>
+            </div>
           </div>
+        </div>
+
+        <div className="mt-16 text-center">
+          <a
+            href="/ai-agent"
+            className="inline-block py-3 px-8 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg transition-all duration-300 shadow-lg"
+          >
+            Узнать больше о наших ИИ-решениях
+          </a>
         </div>
       </Container>
     </section>

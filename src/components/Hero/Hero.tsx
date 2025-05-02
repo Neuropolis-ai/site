@@ -3,7 +3,6 @@
 import { useTheme } from "@/context/ThemeContext";
 import "@/style/hero.css";
 import "@/style/text-animations.css";
-import { BsArrowRight } from "react-icons/bs";
 import { motion } from "framer-motion";
 import ButtonLink from "../ui/buttonLink";
 
@@ -41,7 +40,7 @@ const Hero = () => {
   };
 
   return (
-    <motion.div
+    <motion.section
       id="hero"
       variants={containerVariants}
       initial="hidden"
@@ -95,7 +94,7 @@ const Hero = () => {
 
         <motion.p
           variants={itemVariants}
-          className="text-xl md:text-2xl max-w-3xl mx-auto mb-10 text-gray-600 dark:text-gray-300 leading-relaxed"
+          className="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-gray-600 dark:text-gray-300 leading-relaxed"
         >
           Повышайте эффективность, автоматизируйте процессы и снижайте издержки
           с помощью индивидуальных ИИ-решений. Освободите команду от рутины и
@@ -109,7 +108,7 @@ const Hero = () => {
           <ButtonLink
             variantBtn="btn"
             onClick={() => scrollToSection("contact")}
-            className="w-full sm:w-auto bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold py-4 px-8 rounded-xl text-lg md:text-xl transition-opacity hover:opacity-90 shadow-xl"
+            className="inline-block w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl text-lg md:text-xl transition-all duration-300 shadow-xl"
           >
             Узнать, как внедрить ИИ в мой бизнес
           </ButtonLink>
@@ -131,7 +130,9 @@ const Hero = () => {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span className="text-base">Автоматизация до 80% рутины</span>
+            <span className="text-base whitespace-nowrap">
+              Автоматизация до 80% рутины
+            </span>
           </div>
           <div className="flex items-center space-x-1.5">
             <svg
@@ -145,7 +146,9 @@ const Hero = () => {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span className="text-base">Снижение затрат на персонал</span>
+            <span className="text-base whitespace-nowrap">
+              Снижение затрат на персонал
+            </span>
           </div>
           <div className="flex items-center space-x-1.5">
             <svg
@@ -159,11 +162,13 @@ const Hero = () => {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span className="text-base">Рост эффективности процессов</span>
+            <span className="text-base whitespace-nowrap">
+              Рост эффективности процессов
+            </span>
           </div>
         </motion.div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };
 

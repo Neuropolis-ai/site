@@ -6,6 +6,7 @@ import "../../style/hero.css";
 import "../../style/services.css";
 import Container from "../ui/Container";
 import Workflow from "./Workflow";
+
 const Services = () => {
   const { isDark } = useTheme();
   const [isChartVisible, setIsChartVisible] = useState(false);
@@ -427,14 +428,14 @@ const Services = () => {
                     isDark ? "text-white" : "text-gray-800"
                   }`}
                 >
-                  Автономные ИИ-агенты
+                  Разработка ИИ-агентов
                 </h3>
                 <p
                   className={`text-sm sm:text-base ${
                     isDark ? "text-[#919191]" : "text-gray-600"
                   }`}
                 >
-                  Разработка интеллектуальных агентов, которые могут
+                  Создание интеллектуальных агентов, которые могут
                   самостоятельно выполнять задачи, анализировать данные и
                   принимать решения.
                 </p>

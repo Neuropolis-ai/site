@@ -2,6 +2,8 @@
 import { useTheme } from "@/context/ThemeContext";
 import { supabase } from "@/lib/supabase";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle, AlertTriangle, Mail, Phone, MapPin } from "lucide-react";
 import "../../style/card-line.css";
 import Container from "../ui/Container";
 import InputMask from "react-input-mask";
@@ -12,6 +14,7 @@ const Contact = () => {
     name: "",
     email: "",
     phone: "",
+    company: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,7 +27,7 @@ const Contact = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
   const resetForm = () => {
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setFormData({ name: "", email: "", phone: "", company: "", message: "" });
   };
 
   const handleChange = (
@@ -92,7 +95,9 @@ const Contact = () => {
       }
 
       // Форматируем сообщение для Telegram
-      const text = `\n📩 Новая заявка:\n👤 Имя: ${formData.name}\n📞 Телефон: ${
+      const text = `\n📩 Новая заявка:\n👤 Имя: ${
+        formData.name
+      }\n🏢 Компания: ${formData.company || "Не указана"}\n📞 Телефон: ${
         formData.phone
       }\n✉️ Email: ${formData.email || "Не указан"}\n💬 Сообщение: ${
         formData.message || "Не указано"
@@ -234,9 +239,9 @@ const Contact = () => {
       console.log("Начинаем обработку формы...");
 
       // Проверяем заполнение обязательных полей
-      if (!formData.name || !formData.phone) {
+      if (!formData.name || !formData.email) {
         console.error("Не заполнены обязательные поля");
-        setError("Пожалуйста, заполните обязательные поля (имя и телефон)");
+        setError("Пожалуйста, заполните обязательные поля (имя и email)");
         setIsLoading(false);
         setIsSubmitting(false);
         return;
@@ -250,7 +255,8 @@ const Contact = () => {
         .insert([
           {
             name: formData.name,
-            phone: formData.phone,
+            company: formData.company || null,
+            phone: formData.phone || null,
             email: formData.email || null,
             message: formData.message || null,
           },
@@ -423,191 +429,339 @@ const Contact = () => {
     );
   }
 
+  // Стандартные варианты анимации
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  // Стандартизированные классы для полей ввода
+  const inputClasses = `block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 
+    focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 bg-white/80 dark:bg-gray-800/50 
+    dark:text-white text-lg transition-colors duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500`;
+
+  const labelClasses = `block text-base font-medium text-gray-700 dark:text-gray-300 mb-1.5`;
+
   return (
-    <section className="py-20 bg-white dark:bg-black" id="contact">
+    <motion.section
+      className="relative py-20 md:py-28 px-4 overflow-hidden"
+      id="contact"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      {/* Стандартный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+
       <Container>
         {/* Микроразметка Organization */}
         <OrganizationSchema />
-        <div className="text-center mb-10">
-          <div
-            className={`inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box ${
-              !isDark && "light-switch-box"
-            }`}
-          >
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <div className="inline-block px-5 py-1.5 rounded-full text-sm font-medium mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-600 dark:from-blue-900/20 dark:to-indigo-900/20 dark:text-blue-400 border border-blue-100 dark:border-blue-800/20 shadow-sm">
             Контакты
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black dark:text-white mb-4">
-            Свяжитесь с нами
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white mb-4">
+            Готовы{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+              автоматизировать
+            </span>{" "}
+            ваш бизнес <br className="hidden md:block" />с помощью ИИ?
           </h2>
-          <p className="dark:text-[#919191] text-gray-600 max-w-2xl mx-auto max-[425px]:text-[14px]">
-            Есть вопросы о наших услугах или вы готовы преобразовать свой бизнес
-            с помощью ИИ? Мы здесь, чтобы помочь!
+          <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-3xl mx-auto">
+            Получите бесплатную консультацию по внедрению ИИ-агентов в ваши
+            бизнес-процессы. Наши эксперты помогут определить оптимальные
+            сценарии применения.
           </p>
-        </div>
-        <div
-          className={`p-[20px] border max-[425px]:p-[10px] ${
-            isDark
-              ? "contact-card border-[#00185e]!important"
-              : "bg-gray-50 border-gray-200"
-          }`}
+        </motion.div>
+
+        <motion.div
+          className="relative backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 rounded-2xl p-8 md:p-10 max-w-4xl mx-auto
+                     border border-white/20 dark:border-gray-700/30 shadow-xl"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="flex max-[1024px]:flex-col max-[1024px]:flex-col-reverse gap-10 max-[425px]:gap-[20px]">
-            <div className="md:w-1/2">
-              {submitStatus.type && (
-                <div
-                  className={`mb-4 p-3 rounded-lg ${
-                    submitStatus.type === "success"
-                      ? "bg-green-100 text-green-700 dark:bg-green-900/20 dark:text-green-400"
-                      : "bg-red-100 text-red-700 dark:bg-red-900/20 dark:text-red-400"
-                  }`}
+          {submitStatus.type === "success" ? (
+            <motion.div
+              className="text-center py-10 px-6"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 150, damping: 20 }}
+            >
+              {/* Стандартный контейнер иконки */}
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white mb-6">
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  {submitStatus.message}
-                </div>
-              )}
-              <form onSubmit={handleSubmit} className="rounded-xl">
-                <div className="flex w-full gap-[10px] max-[1024px]:flex-col mb-3">
-                  <div className="w-1/2 max-[1024px]:w-full">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Имя"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className={`w-full p-3 rounded-[10px] outline-none max-[425px]:text-[12px] ${
-                        isDark
-                          ? "bg-[#060811] border-[#262626] text-white"
-                          : "bg-white border-gray-300 text-gray-800"
-                      } border`}
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                  <div className="w-1/2 max-[1024px]:w-full">
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className={`w-full p-3 rounded-[10px] outline-none max-[425px]:text-[12px] ${
-                        isDark
-                          ? "bg-[#060811] border-[#262626] text-white"
-                          : "bg-white border-gray-300 text-gray-800"
-                      } border`}
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                </div>
-                <div className="mb-3">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2.5"
+                    d="M5 13l4 4L19 7"
+                  ></path>
+                </svg>
+              </div>
+              {/* Стандартная типографика */}
+              <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-3">
+                Спасибо за заявку!
+              </h3>
+              <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto leading-relaxed">
+                Мы свяжемся с вами в ближайшее время для обсуждения деталей и
+                бесплатной консультации.
+              </p>
+              {/* Стандартная кнопка */}
+              <motion.button
+                onClick={() => setSubmitStatus({ type: null, message: "" })}
+                className="inline-flex items-center justify-center px-6 py-3 border-0 text-lg font-semibold rounded-xl 
+                           text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:opacity-90 shadow-lg 
+                           transition-opacity duration-300"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Отправить новую заявку
+              </motion.button>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Используем общий containerVariants для stagger полей */}
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="show"
+                className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-6"
+              >
+                {/* Поле Имя */}
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="name" className={labelClasses}>
+                    Имя*
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className={inputClasses}
+                    placeholder="Иван Иванов"
+                  />
+                </motion.div>
+
+                {/* Поле Email */}
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="email" className={labelClasses}>
+                    Email*
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className={inputClasses}
+                    placeholder="ivan.ivanov@example.com"
+                  />
+                </motion.div>
+
+                {/* Поле Телефон */}
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="phone" className={labelClasses}>
+                    Телефон
+                  </label>
                   <InputMask
                     mask="+7 (999) 999-99-99"
                     type="tel"
+                    id="phone"
                     name="phone"
-                    placeholder="Телефон"
                     value={formData.phone}
                     onChange={handleChange}
-                    required
-                    className={`w-full p-3 rounded-[10px] outline-none max-[425px]:text-[12px] ${
-                      isDark
-                        ? "bg-[#060811] border-[#262626] text-white"
-                        : "bg-white border-gray-300 text-gray-800"
-                    } border`}
-                    disabled={isSubmitting}
+                    className={inputClasses}
+                    placeholder="+7 (999) 123-45-67"
                   />
-                </div>
-                <div className="mb-3">
+                </motion.div>
+
+                {/* Поле Компания */}
+                <motion.div variants={itemVariants}>
+                  <label htmlFor="company" className={labelClasses}>
+                    Компания
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className={inputClasses}
+                    placeholder="ООО 'Ромашка'"
+                  />
+                </motion.div>
+
+                {/* Поле Сообщение (на всю ширину) */}
+                <motion.div variants={itemVariants} className="md:col-span-2">
+                  <label htmlFor="message" className={labelClasses}>
+                    Ваше сообщение
+                  </label>
                   <textarea
+                    id="message"
                     name="message"
-                    placeholder="Сообщение"
+                    rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    required
-                    rows={6}
-                    className={`w-full p-3 rounded-[10px] outline-none max-[425px]:text-[12px] ${
-                      isDark
-                        ? "bg-[#060811] border-[#262626] text-white"
-                        : "bg-white border-gray-300 text-gray-800"
-                    } border`}
-                    disabled={isSubmitting}
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className={`w-full bg-[#153aa1] text-white py-[13px] px-6 rounded-[10px] hover:bg-[#102a71] transition-colors max-[425px]:text-[12px] ${
-                    isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-                  }`}
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "Отправка..." : "Отправить сообщение"}
-                </button>
-              </form>
-            </div>
+                    className={inputClasses}
+                    placeholder="Расскажите кратко о вашей задаче или вопросе..."
+                  />
+                </motion.div>
+              </motion.div>
 
-            <div
-              className={`md:w-1/2 p-8 max-[425px]:p-[15px] rounded-xl border ${
-                isDark
-                  ? "bg-[#05060a] border-[#040b23]"
-                  : "bg-white border-gray-200"
-              }`}
-            >
-              <div className="mb-8">
-                <h3
-                  className={`${
-                    isDark ? "text-[#919191]" : "text-gray-500"
-                  } mb-2`}
+              {/* Ошибка отправки */}
+              {submitStatus.type === "error" && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="p-4 rounded-xl flex items-center bg-red-50/70 text-red-700 dark:bg-red-900/20 dark:text-red-400 border border-red-200/70 dark:border-red-800/30"
                 >
-                  Email:
-                </h3>
+                  <div className="mr-3 flex-shrink-0">
+                    <AlertTriangle className="w-5 h-5" />
+                  </div>
+                  <div>{submitStatus.message}</div>
+                </motion.div>
+              )}
+
+              {/* Кнопка отправки */}
+              <motion.div variants={itemVariants} className="text-center pt-2">
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="inline-flex items-center justify-center px-8 py-3 border-0 text-lg font-semibold rounded-xl 
+                    text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] shadow-lg transition-opacity duration-300 
+                    hover:opacity-90"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Отправка...
+                    </>
+                  ) : (
+                    "Получить бесплатную консультацию"
+                  )}
+                </motion.button>
+              </motion.div>
+            </form>
+          )}
+        </motion.div>
+
+        <motion.div
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
+            <div className="flex items-center">
+              <div className="flex-shrink-0 mr-4 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-md">
+                <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Email
+                </h4>
                 <a
                   href="mailto:agent@neuropolis.ai"
-                  className={`${
-                    isDark ? "text-white" : "text-gray-800"
-                  } text-xl font-medium max-[1024px]:text-base`}
+                  className="text-blue-600 dark:text-blue-400 text-lg hover:underline transition-all"
                 >
                   agent@neuropolis.ai
                 </a>
               </div>
+            </div>
 
-              <div className="mb-8">
-                <h3
-                  className={`${
-                    isDark ? "text-[#919191]" : "text-gray-500"
-                  } mb-2`}
-                >
-                  Телефон:
-                </h3>
+            <div className="flex items-center">
+              <div className="flex-shrink-0 mr-4 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-md">
+                <Phone className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Телефон
+                </h4>
                 <a
                   href="tel:+79601078900"
-                  className={`${
-                    isDark ? "text-white" : "text-gray-800"
-                  } text-xl font-medium max-[1024px]:text-base`}
+                  className="text-blue-600 dark:text-blue-400 text-lg hover:underline transition-all"
                 >
                   +7 960 107-89-00
                 </a>
               </div>
+            </div>
 
-              <div className="mb-8">
-                <h3
-                  className={`${
-                    isDark ? "text-[#919191]" : "text-gray-500"
-                  } mb-2`}
-                >
-                  Адрес:
-                </h3>
-                <p
-                  className={`${
-                    isDark ? "text-white" : "text-gray-800"
-                  } text-xl font-medium max-[1024px]:text-base`}
-                >
+            <div className="flex items-center">
+              <div className="flex-shrink-0 mr-4 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-md">
+                <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  Адрес
+                </h4>
+                <p className="text-gray-800 dark:text-gray-200 text-lg">
                   Россия, Воронеж
                 </p>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </Container>
-    </section>
+    </motion.section>
   );
 };
 

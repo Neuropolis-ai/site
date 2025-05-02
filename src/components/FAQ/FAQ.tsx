@@ -1,7 +1,8 @@
 "use client";
 import { useTheme } from "@/context/ThemeContext";
 import { useState } from "react";
-import { BsPlus } from "react-icons/bs";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDownIcon } from "lucide-react";
 import Container from "../ui/Container";
 
 const faqData = [
@@ -60,86 +61,156 @@ function FAQSchema({ faqs }: { faqs: { question: string; answer: string }[] }) {
 
 const FAQ = () => {
   const { isDark } = useTheme();
-  const [openItems, setOpenItems] = useState<number[]>([]);
+  const [openItem, setOpenItem] = useState<number | null>(0);
 
-  const toggleFAQ = (index: number) => {
-    if (openItems.includes(index)) {
-      // If already open, close it
-      setOpenItems(openItems.filter((item) => item !== index));
-    } else {
-      // If closed, open it
-      setOpenItems([...openItems, index]);
-    }
+  const toggleItem = (index: number) => {
+    setOpenItem(openItem === index ? null : index);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeInOut",
+      },
+    },
   };
 
   return (
-    <section className="py-10 sm:py-15 md:py-20 max-[425px]:py-10 max-[425px]:px-[10px] dark:bg-black bg-white">
+    <motion.section
+      id="faq"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      className="relative py-20 md:py-28 px-4 overflow-hidden"
+    >
+      {/* Градиентный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
+      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+
       <Container>
         <FAQSchema faqs={faqData} />
-        <div className="flex flex-col md:flex-row gap-6 md:gap-10">
-          <div className="md:w-1/3">
-            <div className="max-[425px]:flex max-[425px]:justify-center">
-              <div
-                className={`inline-block px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm mb-3 sm:mb-4 switch-box ${
-                  !isDark && "light-switch-box"
-                }`}
-              >
-                FAQs
-              </div>
-            </div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold dark:text-white text-black mb-3 sm:mb-4 max-[425px]:text-center">
-              Часто задаваемые вопросы
-            </h2>
-          </div>
 
-          <div className="md:w-2/3">
-            <div className="space-y-3 sm:space-y-4">
-              {faqData.map((faq, index) => (
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            variants={itemVariants}
+            className="text-center mb-12 md:mb-16"
+          >
+            <div className="inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box light-switch-box dark:bg-gray-800/60 dark:text-gray-300">
+              FAQs
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white">
+              Часто Задаваемые{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+                Вопросы
+              </span>
+            </h2>
+
+            <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mt-6">
+              Ответы на самые популярные вопросы о наших ИИ-решениях и услугах.
+              Если вы не нашли ответ на свой вопрос, свяжитесь с нами через
+              форму обратной связи.
+            </p>
+          </motion.div>
+
+          <div className="grid gap-4">
+            {faqData.map((faq, index) => (
+              <motion.div
+                key={faq.id}
+                variants={itemVariants}
+                className="group"
+              >
                 <div
-                  key={faq.id}
-                  className={`border rounded-lg sm:rounded-xl overflow-hidden ${
-                    isDark
-                      ? "border-[#01195e] bg-[#050A1B]"
-                      : "border-gray-200 bg-gray-50"
-                  }`}
+                  className={`relative backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 rounded-2xl overflow-hidden transition-all duration-300 border border-white/20 dark:border-gray-700/30 shadow-sm hover:shadow-md`}
                 >
                   <button
-                    className={`w-full flex items-center justify-between p-3 sm:p-[15px] text-left text-sm sm:text-base font-medium ${
-                      isDark ? "text-white" : "text-gray-800"
-                    }`}
-                    onClick={() => toggleFAQ(index)}
-                    aria-expanded={openItems.includes(index)}
+                    onClick={() => toggleItem(index)}
+                    className="flex justify-between items-center w-full p-5 md:p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 rounded-2xl"
+                    aria-expanded={openItem === index}
+                    aria-controls={`faq-answer-${index}`}
                   >
-                    {faq.question}
-                    <BsPlus
-                      className={`min-w-[24px] min-h-[24px] text-xl sm:text-2xl transition-transform duration-300 ${
-                        openItems.includes(index) ? "rotate-45" : ""
-                      } ${isDark ? "text-white" : "text-gray-700"}`}
-                    />
+                    <span className="font-semibold text-lg md:text-xl text-gray-900 dark:text-white pr-4">
+                      {faq.question}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: openItem === index ? 180 : 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-blue-500/10 dark:bg-blue-900/20"
+                    >
+                      <ChevronDownIcon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                    </motion.div>
                   </button>
 
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                      openItems.includes(index) ? "max-h-96" : "max-h-0"
-                    }`}
-                  >
-                    <span className="accordion-card-line"></span>
-
-                    <div
-                      className={`px-3 sm:px-[15px] pt-3 sm:pt-[15px] pb-4 sm:pb-6 text-sm sm:text-base faq-answer ${
-                        isDark ? "text-[#919191]" : "text-gray-600"
-                      }`}
-                    >
-                      {faq.answer}
-                    </div>
-                  </div>
+                  <AnimatePresence initial={false}>
+                    {openItem === index && (
+                      <motion.div
+                        key="content"
+                        initial="collapsed"
+                        animate="open"
+                        exit="collapsed"
+                        variants={{
+                          open: {
+                            opacity: 1,
+                            height: "auto",
+                            transition: {
+                              duration: 0.3,
+                              ease: [0.04, 0.62, 0.23, 0.98],
+                            },
+                          },
+                          collapsed: {
+                            opacity: 0,
+                            height: 0,
+                            transition: {
+                              duration: 0.2,
+                              ease: [0.04, 0.62, 0.23, 0.98],
+                            },
+                          },
+                        }}
+                        id={`faq-answer-${index}`}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-              ))}
-            </div>
+              </motion.div>
+            ))}
           </div>
+
+          <motion.div
+            variants={itemVariants}
+            className="mt-12 md:mt-16 text-center"
+          >
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl 
+              bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:from-[#0157D3] hover:to-[#2988E8]
+              text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+            >
+              Получить консультацию
+            </a>
+          </motion.div>
         </div>
       </Container>
-    </section>
+    </motion.section>
   );
 };
 

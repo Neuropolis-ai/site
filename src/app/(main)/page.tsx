@@ -30,31 +30,52 @@ export default async function Home() {
 
       {/* Recent Blog Posts Section */}
       {recentArticles.length > 0 && (
-        <section className="py-20 bg-white dark:bg-black">
-          <div className="container mx-auto max-w-[1280px] px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-                Последние публикации
+        <section className="py-20 md:py-28 px-4 relative overflow-hidden">
+          {/* Градиентный фон */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
+          <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
+          <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+
+          <div className="container mx-auto max-w-[1280px] relative z-10">
+            <div className="text-center mb-16">
+              <div className="inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box light-switch-box dark:bg-gray-800/60 dark:text-gray-300">
+                Блог
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white mb-4">
+                Последние{" "}
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+                  публикации
+                </span>
               </h2>
-              <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
                 Узнайте о последних тенденциях и инновациях в области
                 искусственного интеллекта и цифровой трансформации.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {recentArticles.map((post) => (
-                <BlogCard key={post.id} post={post} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+              {recentArticles.map((post, index) => (
+                <div
+                  key={post.id}
+                  className="group transition-all duration-300 hover:-translate-y-1"
+                  style={{
+                    transitionDelay: `${index * 100}ms`,
+                  }}
+                >
+                  <BlogCard post={post} />
+                </div>
               ))}
             </div>
 
-            <div className="text-center mt-10">
+            <div className="text-center mt-12">
               <Link
                 href="/blog"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-[12px] border border-gray-300 text-gray-800 hover:bg-gray-100 dark:border-[#363636] dark:text-[#F2F2F2] dark:bg-[#050505] dark:hover:bg-[#111111] font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl 
+                bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:from-[#0157D3] hover:to-[#2988E8]
+                text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
               >
                 Все статьи
-                <BsArrowRight />
+                <BsArrowRight className="ml-2" />
               </Link>
             </div>
           </div>

@@ -115,7 +115,7 @@ const Header = () => {
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="text-[#0a2e6b] dark:text-[#2271ce]"
+              className="text-[#0167F3] dark:text-[#399AFC]"
             >
               <path
                 opacity="0.2"

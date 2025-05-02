@@ -109,7 +109,7 @@ const UseCaseCard: React.FC<UseCaseCardProps> = ({
         <div className="flex items-center mb-4">
           <div
             className={cn(
-              "p-2 rounded-lg backdrop-blur-md",
+              "p-2 rounded-xl backdrop-blur-md",
               "bg-blue-500/10 dark:bg-blue-900/20",
               "transition-colors duration-300 group-hover:saturate-150"
             )}

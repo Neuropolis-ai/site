@@ -66,12 +66,12 @@ export default function AIAgentHero() {
           variants={itemVariants}
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4 sm:mb-5 md:mb-6"
         >
-          Создаем Кастомных
+          Создаем
           <span className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-transparent bg-clip-text">
             {" "}
-            ИИ-Агентов
+            ИИ-агентов
           </span>
-          , которые Автоматизируют Рутину и Увеличивают Прибыль Вашего Бизнеса
+          , которые автоматизируют рутину и увеличивают прибыль вашего бизнеса
         </motion.h1>
 
         <motion.p
@@ -93,11 +93,11 @@ export default function AIAgentHero() {
 
         <motion.div
           variants={itemVariants}
-          className="mt-12 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-10 text-gray-700 dark:text-gray-300 text-sm md:text-base"
+          className="mt-12 flex flex-row justify-center items-center gap-y-3 gap-x-6 sm:gap-x-8 md:gap-x-10 text-gray-700 dark:text-gray-300 text-sm md:text-base"
         >
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1.5">
             <svg
-              className="w-5 h-5 text-blue-600 dark:text-blue-400"
+              className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -107,11 +107,13 @@ export default function AIAgentHero() {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span className="text-base">Автоматизация до 80% рутины</span>
+            <span className="text-base whitespace-nowrap">
+              Автоматизация до 80% рутины
+            </span>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1.5">
             <svg
-              className="w-5 h-5 text-blue-600 dark:text-blue-400"
+              className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -121,11 +123,13 @@ export default function AIAgentHero() {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span className="text-base">Снижение затрат на персонал</span>
+            <span className="text-base whitespace-nowrap">
+              Снижение затрат на персонал
+            </span>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1.5">
             <svg
-              className="w-5 h-5 text-blue-600 dark:text-blue-400"
+              className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -135,7 +139,9 @@ export default function AIAgentHero() {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span className="text-base">Рост эффективности процессов</span>
+            <span className="text-base whitespace-nowrap">
+              Рост эффективности процессов
+            </span>
           </div>
         </motion.div>
       </div>

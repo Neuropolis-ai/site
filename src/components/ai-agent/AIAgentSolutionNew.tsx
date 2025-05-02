@@ -108,7 +108,7 @@ export default function AIAgentSolutionNew() {
                 variants={itemVariants}
                 className="flex gap-4 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
               >
-                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-lg bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
+                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
                   01
                 </div>
                 <div>
@@ -125,7 +125,7 @@ export default function AIAgentSolutionNew() {
                 variants={itemVariants}
                 className="flex gap-4 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
               >
-                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-lg bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
+                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
                   02
                 </div>
                 <div>
@@ -142,7 +142,7 @@ export default function AIAgentSolutionNew() {
                 variants={itemVariants}
                 className="flex gap-4 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
               >
-                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-lg bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
+                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
                   03
                 </div>
                 <div>
@@ -159,7 +159,7 @@ export default function AIAgentSolutionNew() {
                 variants={itemVariants}
                 className="flex gap-4 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
               >
-                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-lg bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
+                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
                   04
                 </div>
                 <div>
@@ -176,7 +176,7 @@ export default function AIAgentSolutionNew() {
                 variants={itemVariants}
                 className="flex gap-4 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
               >
-                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-lg bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
+                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
                   05
                 </div>
                 <div>
@@ -316,16 +316,16 @@ export default function AIAgentSolutionNew() {
         >
           <motion.div
             variants={itemVariants}
-            className="bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden"
+            className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-60 h-60 bg-gradient-to-br from-white/10 to-white/5 rounded-full blur-2xl -z-0 translate-x-1/2 -translate-y-1/2 opacity-70"></div>
-            <h3 className="text-2xl md:text-3xl font-semibold mb-6 relative z-10">
+            <div className="absolute top-0 right-0 w-60 h-60 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-full blur-2xl -z-0 translate-x-1/2 -translate-y-1/2 opacity-70 dark:opacity-50"></div>
+            <h3 className="text-2xl md:text-3xl font-semibold mb-6 relative z-10 text-gray-800 dark:text-white">
               Проблемы, которые решают ИИ-агенты
             </h3>
-            <ul className="space-y-4 relative z-10 text-white/90">
+            <ul className="space-y-4 relative z-10 text-gray-700 dark:text-gray-300">
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-white/80 mt-1 flex-shrink-0"
+                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -341,7 +341,7 @@ export default function AIAgentSolutionNew() {
               </li>
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-white/80 mt-1 flex-shrink-0"
+                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -357,7 +357,7 @@ export default function AIAgentSolutionNew() {
               </li>
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-white/80 mt-1 flex-shrink-0"
+                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -373,7 +373,7 @@ export default function AIAgentSolutionNew() {
               </li>
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-white/80 mt-1 flex-shrink-0"
+                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -389,7 +389,7 @@ export default function AIAgentSolutionNew() {
               </li>
               <li className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-white/80 mt-1 flex-shrink-0"
+                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -408,12 +408,13 @@ export default function AIAgentSolutionNew() {
 
           <motion.div
             variants={itemVariants}
-            className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 rounded-2xl p-8 md:p-10"
+            className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden"
           >
-            <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-gray-800 dark:text-white">
+            <div className="absolute bottom-0 left-0 w-60 h-60 bg-gradient-to-tr from-indigo-500/10 to-blue-500/10 rounded-full blur-2xl -z-0 -translate-x-1/2 translate-y-1/2 opacity-70 dark:opacity-50"></div>
+            <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-gray-800 dark:text-white relative z-10">
               Возможности для вашего бизнеса
             </h3>
-            <ul className="space-y-4 text-gray-700 dark:text-gray-300">
+            <ul className="space-y-4 text-gray-700 dark:text-gray-300 relative z-10">
               <li className="flex items-start gap-3">
                 <svg
                   className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
@@ -459,7 +460,7 @@ export default function AIAgentSolutionNew() {
                   ></path>
                 </svg>
                 <span className="text-base">
-                  Повышение удовлетворенности клиентов (быстрые ответы)
+                  Повышение удовлетворенности клиентов
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -491,7 +492,7 @@ export default function AIAgentSolutionNew() {
                   ></path>
                 </svg>
                 <span className="text-base">
-                  Масштабирование бизнеса без пропорционального роста штата
+                  Масштабирование бизнеса без роста штата
                 </span>
               </li>
             </ul>

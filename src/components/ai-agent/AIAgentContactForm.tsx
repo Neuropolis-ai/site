@@ -254,48 +254,24 @@ export default function AIAgentContactForm() {
                     value={formData.company}
                     onChange={handleChange}
                     className={inputClasses}
-                    placeholder="Название вашей компании"
+                    placeholder="ООО 'Ромашка'"
                   />
                 </motion.div>
 
-                {/* Поле Отрасль (Col Span 2) */}
-                <motion.div variants={itemVariants} className="md:col-span-2">
-                  <label htmlFor="industry" className={labelClasses}>
-                    Отрасль
-                  </label>
-                  <select
-                    id="industry"
-                    name="industry"
-                    value={formData.industry}
-                    onChange={handleChange}
-                    className={inputClasses}
-                  >
-                    <option value="">Выберите отрасль</option>
-                    <option value="ecommerce">E-commerce</option>
-                    <option value="finance">Финансы</option>
-                    <option value="healthcare">Здравоохранение</option>
-                    <option value="logistics">Логистика</option>
-                    <option value="marketing">Маркетинг</option>
-                    <option value="retail">Ритейл</option>
-                    <option value="hr">HR</option>
-                    <option value="other">Другое</option>
-                  </select>
-                </motion.div>
-
-                {/* Поле Сообщение (Col Span 2) */}
+                {/* Поле Сообщение (на всю ширину) */}
                 <motion.div variants={itemVariants} className="md:col-span-2">
                   <label htmlFor="message" className={labelClasses}>
-                    Сообщение
+                    Ваше сообщение
                   </label>
                   <textarea
                     id="message"
                     name="message"
-                    rows={4}
+                    rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className={`${inputClasses} min-h-[100px]`}
-                    placeholder="Опишите вашу задачу или вопрос..."
-                  ></textarea>
+                    className={inputClasses}
+                    placeholder="Расскажите кратко о вашей задаче или вопросе..."
+                  />
                 </motion.div>
               </motion.div>
               {/* Ошибка отправки */}

@@ -48,44 +48,24 @@ export default function AIAgentWhyUs() {
           Почему Выбирают Нас?
         </motion.h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          <motion.div
-            variants={itemVariants}
-            className="relative rounded-2xl overflow-hidden h-[400px] shadow-xl border border-white/20 dark:border-gray-700/30"
-          >
-            <Image
-              src="/assets/images/team.jpg"
-              alt="Команда экспертов Нейрополис"
-              fill
-              style={{ objectFit: "cover" }}
-              className="transition-transform duration-700 hover:scale-105"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex flex-col justify-end p-6">
-              <h3 className="text-white text-xl md:text-2xl font-semibold mb-1">
-                Команда Экспертов
-              </h3>
-              <p className="text-gray-100 text-base md:text-lg leading-relaxed">
-                Инженеры ИИ с практическим опытом разработки и внедрения
-                интеллектуальных решений
-              </p>
-            </div>
-          </motion.div>
-
+        <div className="max-w-3xl mx-auto">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.1 }}
             className="space-y-6"
           >
             <motion.div
               variants={itemVariants}
-              className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md"
+              whileHover={{
+                y: -4,
+                transition: { type: "spring", stiffness: 300, damping: 15 },
+              }}
+              className="group backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <div className="flex items-start gap-4 mb-3">
-                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-lg shadow-md">
+                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-xl shadow-md w-10 h-10 flex items-center justify-center">
                   <svg
                     width="20"
                     height="20"
@@ -107,7 +87,7 @@ export default function AIAgentWhyUs() {
                   Специализация на Бизнес-Процессах
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed ml-12">
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                 Мы не просто технари, мы понимаем бизнес и создаем ИИ-агентов,
                 которые решают конкретные бизнес-задачи: от лидогенерации до
                 оптимизации расходов.
@@ -116,10 +96,14 @@ export default function AIAgentWhyUs() {
 
             <motion.div
               variants={itemVariants}
-              className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md"
+              whileHover={{
+                y: -4,
+                transition: { type: "spring", stiffness: 300, damping: 15 },
+              }}
+              className="group backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <div className="flex items-start gap-4 mb-3">
-                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-lg shadow-md">
+                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-xl shadow-md w-10 h-10 flex items-center justify-center">
                   <svg
                     width="20"
                     height="20"
@@ -141,7 +125,7 @@ export default function AIAgentWhyUs() {
                   Полный Цикл Разработки
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed ml-12">
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                 От анализа потребностей до внедрения и поддержки. Мы берем на
                 себя весь процесс создания ИИ-агента: консультации,
                 проектирование, разработку, тестирование и сопровождение.
@@ -150,10 +134,14 @@ export default function AIAgentWhyUs() {
 
             <motion.div
               variants={itemVariants}
-              className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md"
+              whileHover={{
+                y: -4,
+                transition: { type: "spring", stiffness: 300, damping: 15 },
+              }}
+              className="group backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <div className="flex items-start gap-4 mb-3">
-                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-lg shadow-md">
+                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-xl shadow-md w-10 h-10 flex items-center justify-center">
                   <svg
                     width="20"
                     height="20"
@@ -175,7 +163,7 @@ export default function AIAgentWhyUs() {
                   Передовые Технологии
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed ml-12">
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                 Мы используем самые современные модели ИИ (Claude, GPT-4), LLM
                 Frameworks и облачные технологии для создания
                 высокопроизводительных и масштабируемых решений, адаптированных
@@ -185,10 +173,14 @@ export default function AIAgentWhyUs() {
 
             <motion.div
               variants={itemVariants}
-              className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md"
+              whileHover={{
+                y: -4,
+                transition: { type: "spring", stiffness: 300, damping: 15 },
+              }}
+              className="group backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <div className="flex items-start gap-4 mb-3">
-                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-lg shadow-md">
+                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-xl shadow-md w-10 h-10 flex items-center justify-center">
                   <svg
                     width="20"
                     height="20"
@@ -217,7 +209,7 @@ export default function AIAgentWhyUs() {
                   Гибкость и Масштабируемость
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed ml-12">
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                 Создаем решения, которые растут вместе с вашим бизнесом. Начните
                 с небольшого проекта и расширяйте функциональность по мере
                 необходимости без необходимости переписывать код.

@@ -290,7 +290,7 @@ export default function AIAgentProblems() {
                 <div className="flex items-start gap-4 mb-4">
                   <div
                     className={`
-                    rounded-lg flex items-center justify-center
+                    rounded-xl flex items-center justify-center flex-shrink-0
                     bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20
                     p-2 transition-colors duration-300
                     text-blue-600 dark:text-blue-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400

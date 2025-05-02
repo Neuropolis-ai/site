@@ -8,10 +8,9 @@ export default function AIAgentProblems() {
   const [animationComplete, setAnimationComplete] = useState(false);
 
   useEffect(() => {
-    // Устанавливаем завершение анимации через короткую задержку
     const timer = setTimeout(() => {
       setAnimationComplete(true);
-    }, 1500);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -173,19 +172,17 @@ export default function AIAgentProblems() {
     },
   ];
 
-  // Варианты для анимации контейнера
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.07,
+        staggerChildren: 0.1,
         delayChildren: 0.2,
       },
     },
   };
 
-  // Варианты для анимации карточек
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     show: {
@@ -193,16 +190,16 @@ export default function AIAgentProblems() {
       y: 0,
       transition: {
         type: "spring",
-        stiffness: 260,
-        damping: 20,
+        stiffness: 150,
+        damping: 25,
       },
     },
     hover: {
       y: -5,
       transition: {
         type: "spring",
-        stiffness: 400,
-        damping: 10,
+        stiffness: 300,
+        damping: 15,
       },
     },
     tap: {
@@ -210,12 +207,11 @@ export default function AIAgentProblems() {
       transition: {
         type: "spring",
         stiffness: 400,
-        damping: 10,
+        damping: 15,
       },
     },
   };
 
-  // Анимация для решения
   const solutionVariants = {
     hidden: { opacity: 0, height: 0 },
     visible: {
@@ -224,10 +220,10 @@ export default function AIAgentProblems() {
       transition: {
         height: {
           type: "spring",
-          stiffness: 300,
-          damping: 20,
+          stiffness: 200,
+          damping: 25,
         },
-        opacity: { duration: 0.2 },
+        opacity: { duration: 0.3, ease: "easeInOut" },
       },
     },
   };
@@ -237,7 +233,6 @@ export default function AIAgentProblems() {
       id="problems"
       className="py-20 md:py-28 px-4 relative overflow-hidden"
     >
-      {/* Glassmorphism background elements */}
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
       <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
       <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
@@ -245,15 +240,16 @@ export default function AIAgentProblems() {
       <div className="container mx-auto max-w-[1280px] relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
           className="text-center mb-16 md:mb-20"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-800 dark:text-white leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-6 text-gray-800 dark:text-white leading-tight">
             Эти проблемы сдерживают
             <br className="hidden md:block" /> ваш бизнес?
           </h2>
-          <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto text-lg md:text-xl">
+          <p className="text-gray-600 dark:text-gray-300 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
             Большинство компаний сталкиваются с похожими вызовами.
             <br className="hidden md:block" />
             Мы помогаем превратить их в возможности для роста.
@@ -263,7 +259,8 @@ export default function AIAgentProblems() {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="show"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
         >
           {problemCards.map((card, index) => (
@@ -279,47 +276,46 @@ export default function AIAgentProblems() {
               `}
               onClick={() => animationComplete && toggleCard(index)}
             >
-              {/* Glassmorphism card background */}
-              <div className="absolute inset-0 bg-white/70 dark:bg-gray-900/60 -z-10"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent dark:from-gray-800/30 -z-10"></div>
+              <div className="absolute inset-0 bg-white/60 dark:bg-gray-900/50 -z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent dark:from-gray-800/20 -z-10"></div>
               <div className="absolute inset-0 border border-white/20 dark:border-gray-700/30 rounded-2xl -z-10"></div>
               <div
                 className={`
-                absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-indigo-500
+                absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0167F3] to-[#399AFC]
                 translate-y-full group-hover:translate-y-0 transition-transform duration-300
               `}
               ></div>
 
-              <div className="p-6 md:p-7">
+              <div className="p-6">
                 <div className="flex items-start gap-4 mb-4">
                   <div
                     className={`
-                    rounded-xl flex items-center justify-center
+                    rounded-lg flex items-center justify-center
                     bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20
-                    p-3 transition-colors duration-300
-                    text-blue-500 dark:text-blue-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400
+                    p-2 transition-colors duration-300
+                    text-blue-600 dark:text-blue-400 group-hover:text-indigo-600 dark:group-hover:text-indigo-400
                   `}
                   >
                     {card.icon}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white leading-tight mt-1">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white leading-tight mt-1">
                     {card.title}
                   </h3>
                 </div>
 
-                <p className="text-[15px] leading-relaxed ml-[52px] text-gray-600 dark:text-gray-300 mb-5">
+                <p className="text-base leading-relaxed ml-[48px] text-gray-600 dark:text-gray-300 mb-5">
                   {card.description}
                 </p>
 
-                <div className="ml-[52px] flex justify-between items-center mt-auto">
+                <div className="ml-[48px] flex justify-between items-center mt-auto">
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       animationComplete && toggleCard(index);
                     }}
                     className={`
-                      text-[15px] font-medium flex items-center 
-                      transition-all duration-300
+                      text-sm font-medium flex items-center
+                      transition-colors duration-300
                       text-blue-600 dark:text-blue-400
                       hover:text-indigo-600 dark:hover:text-indigo-400
                     `}
@@ -349,13 +345,13 @@ export default function AIAgentProblems() {
                       initial="hidden"
                       animate="visible"
                       exit="hidden"
-                      className="mt-4 ml-[52px] bg-gradient-to-br from-blue-50/80 to-indigo-50/80 
-                                dark:from-blue-900/20 dark:to-indigo-900/20 
-                                p-4 rounded-xl border border-blue-100/30 dark:border-blue-800/30"
+                      className="mt-4 ml-[48px] bg-gradient-to-br from-blue-50/60 to-indigo-50/60
+                                dark:from-blue-900/30 dark:to-indigo-900/30
+                                p-4 rounded-xl border border-blue-100/50 dark:border-blue-800/40"
                     >
                       <div className="flex">
                         <svg
-                          className="w-5 h-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5"
+                          className="w-5 h-5 text-blue-600 dark:text-blue-400 mr-2 flex-shrink-0 mt-0.5"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -365,7 +361,7 @@ export default function AIAgentProblems() {
                             clipRule="evenodd"
                           ></path>
                         </svg>
-                        <p className="text-[15px] text-gray-700 dark:text-gray-200">
+                        <p className="text-base text-gray-700 dark:text-gray-200">
                           {card.solution}
                         </p>
                       </div>
@@ -379,22 +375,22 @@ export default function AIAgentProblems() {
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: "easeInOut", delay: 0.3 }}
           className="mt-20 text-center"
         >
-          <div className="max-w-3xl mx-auto px-8 py-10 rounded-2xl relative overflow-hidden backdrop-blur-md">
-            {/* CTA card background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-indigo-600/10 dark:from-blue-900/20 dark:to-indigo-900/20 -z-10"></div>
+          <div className="max-w-3xl mx-auto px-8 py-10 rounded-2xl relative overflow-hidden backdrop-blur-lg">
+            <div className="absolute inset-0 bg-white/60 dark:bg-gray-900/50 -z-10"></div>
             <div className="absolute inset-0 border border-white/20 dark:border-gray-700/30 rounded-2xl -z-10"></div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-blue-400/20 to-indigo-400/20 dark:from-blue-600/20 dark:to-indigo-600/20 rounded-full blur-xl -z-10"></div>
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-r from-indigo-400/20 to-blue-400/20 dark:from-indigo-600/20 dark:to-blue-600/20 rounded-full blur-xl -z-10"></div>
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 dark:from-blue-600/10 dark:to-indigo-600/10 rounded-full blur-xl -z-10"></div>
+            <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-r from-indigo-400/10 to-blue-400/10 dark:from-indigo-600/10 dark:to-blue-600/10 rounded-full blur-xl -z-10"></div>
 
             <div className="relative z-10">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4">
+              <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-4">
                 Трансформируйте эти вызовы в возможности для роста
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg">
+              <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
                 Узнайте, как ИИ-агенты решают эти задачи и освобождают ресурсы
                 для развития вашего бизнеса
               </p>
@@ -403,9 +399,9 @@ export default function AIAgentProblems() {
                 <a
                   href="#solution"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-xl
-                         bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium 
-                         hover:from-blue-700 hover:to-indigo-700 transition-all duration-300
-                         shadow-md hover:shadow-lg"
+                         bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold text-base
+                         hover:opacity-90 transition-opacity duration-300
+                         shadow-lg"
                 >
                   Узнать о решении
                   <svg
@@ -424,11 +420,11 @@ export default function AIAgentProblems() {
                 </a>
                 <a
                   href="#cta"
-                  className="inline-flex items-center justify-center px-6 py-3 
-                         border border-blue-200 dark:border-blue-800 
-                         text-blue-600 dark:text-blue-400 
-                         backdrop-blur-sm rounded-xl font-medium 
-                         hover:bg-blue-50 dark:hover:bg-blue-900/20 
+                  className="inline-flex items-center justify-center px-6 py-3
+                         border border-blue-200 dark:border-gray-700/30
+                         text-blue-600 dark:text-blue-400
+                         bg-white/50 dark:bg-gray-900/40 hover:bg-blue-500/10 dark:hover:bg-blue-500/10
+                         backdrop-blur-sm rounded-xl font-medium text-base
                          transition-colors"
                 >
                   Получить демонстрацию

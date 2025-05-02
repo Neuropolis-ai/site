@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useState } from "react";
 // Remove unused imports Image, Link if they are not used elsewhere after refactoring
 // import Image from "next/image";
@@ -14,12 +15,27 @@ import AIAgentFAQ from "./AIAgentFAQ"; // Import FAQ
 import AIAgentContactForm from "./AIAgentContactForm"; // Import Contact Form
 
 export default function AIAgentPage() {
-  console.log("AIAgentPage component rendering with individual components"); // Updated log
+  // console.log("AIAgentPage component rendering with individual components"); // Updated log
   // Remove useState for mobileMenuOpen if it's no longer used
   // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Вариант для плавной анимации появления всей страницы
+  const pageFadeIn = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeInOut" },
+    },
+  };
+
   return (
-    <div className="bg-gray-50 text-gray-800 font-sans dark:bg-black dark:text-white">
+    // Оборачиваем все в motion.div для общей анимации
+    <motion.div
+      className="bg-gray-50 text-gray-800 font-sans dark:bg-black dark:text-white"
+      variants={pageFadeIn}
+      initial="hidden"
+      animate="show"
+    >
       <AIAgentHero />
       <AIAgentProblems />
       <AIAgentSolutionNew />
@@ -28,24 +44,7 @@ export default function AIAgentPage() {
       <AIAgentWhyUs /> {/* Render the Why Us component */}
       <AIAgentFAQ /> {/* Render the FAQ component */}
       <AIAgentContactForm /> {/* Render the Contact Form component */}
-      {/* Remove the old inline sections below */}
-      {/* 
-      // ... existing code ...
-      <section id="use-cases" ... > ... </section> 
-      // ... existing code ...
-      <section id="process" ... > ... </section>
-      // ... existing code ...
-      <section id="why-us" ... > ... </section>
-      // ... existing code ...
-      <section id="faq" ... > ... </section>
-      // ... existing code ...
-      <section id="contact" ... > ... </section>
-      // ... existing code ...
-      <footer ... > ... </footer> 
-      // NOTE: Ensure the footer is kept if it wasn't part of a specific component being replaced. 
-      // If the footer should remain, remove it from the removal comments above.
-      // I'll assume for now the footer is handled elsewhere or not needed in this specific refactor.
-      */}
-    </div>
+      {/* Удаленные секции остаются удаленными */}
+    </motion.div>
   );
 }

@@ -2,42 +2,93 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function AIAgentWhyUs() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
-    <section id="why-us" className="py-16 md:py-20 px-4 bg-white dark:bg-black">
-      <div className="container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-800 dark:text-white">
+    <motion.section
+      id="why-us"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      className="py-20 md:py-28 px-4 relative overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+
+      <div className="container mx-auto relative z-10">
+        <motion.h2
+          variants={itemVariants}
+          className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center mb-16 md:mb-20 text-gray-800 dark:text-white"
+        >
           Почему Выбирают Нас?
-        </h2>
+        </motion.h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          <div className="relative rounded-xl overflow-hidden h-[400px] shadow-xl">
+          <motion.div
+            variants={itemVariants}
+            className="relative rounded-2xl overflow-hidden h-[400px] shadow-xl border border-white/20 dark:border-gray-700/30"
+          >
             <Image
               src="/assets/images/team.jpg"
               alt="Команда экспертов Нейрополис"
               fill
               style={{ objectFit: "cover" }}
               className="transition-transform duration-700 hover:scale-105"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
-              <h3 className="text-white text-2xl font-bold mb-2">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex flex-col justify-end p-6">
+              <h3 className="text-white text-xl md:text-2xl font-semibold mb-1">
                 Команда Экспертов
               </h3>
-              <p className="text-gray-100 text-lg">
+              <p className="text-gray-100 text-base md:text-lg leading-relaxed">
                 Инженеры ИИ с практическим опытом разработки и внедрения
                 интеллектуальных решений
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="space-y-8">
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-900/30">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="bg-blue-600 p-3 rounded-lg shadow-md">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            className="space-y-6"
+          >
+            <motion.div
+              variants={itemVariants}
+              className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md"
+            >
+              <div className="flex items-start gap-4 mb-3">
+                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-lg shadow-md">
                   <svg
-                    width="24"
-                    height="24"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -52,23 +103,26 @@ export default function AIAgentWhyUs() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mt-1">
                   Специализация на Бизнес-Процессах
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed ml-12">
                 Мы не просто технари, мы понимаем бизнес и создаем ИИ-агентов,
                 которые решают конкретные бизнес-задачи: от лидогенерации до
                 оптимизации расходов.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-900/30">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="bg-blue-600 p-3 rounded-lg shadow-md">
+            <motion.div
+              variants={itemVariants}
+              className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md"
+            >
+              <div className="flex items-start gap-4 mb-3">
+                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-lg shadow-md">
                   <svg
-                    width="24"
-                    height="24"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -83,23 +137,26 @@ export default function AIAgentWhyUs() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mt-1">
                   Полный Цикл Разработки
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed ml-12">
                 От анализа потребностей до внедрения и поддержки. Мы берем на
                 себя весь процесс создания ИИ-агента: консультации,
                 проектирование, разработку, тестирование и сопровождение.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-900/30">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="bg-blue-600 p-3 rounded-lg shadow-md">
+            <motion.div
+              variants={itemVariants}
+              className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md"
+            >
+              <div className="flex items-start gap-4 mb-3">
+                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-lg shadow-md">
                   <svg
-                    width="24"
-                    height="24"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -114,58 +171,61 @@ export default function AIAgentWhyUs() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mt-1">
                   Передовые Технологии
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed ml-12">
                 Мы используем самые современные модели ИИ (Claude, GPT-4), LLM
                 Frameworks и облачные технологии для создания
                 высокопроизводительных и масштабируемых решений, адаптированных
                 под ваши уникальные потребности.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-900/30">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="bg-blue-600 p-3 rounded-lg shadow-md">
+            <motion.div
+              variants={itemVariants}
+              className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md"
+            >
+              <div className="flex items-start gap-4 mb-3">
+                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-lg shadow-md">
                   <svg
-                    width="24"
-                    height="24"
+                    width="20"
+                    height="20"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                     className="text-white"
                   >
                     <path
-                      d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                      d="M19.13 16.58C19.459 16.1441 19.9466 15.8861 20.4822 15.8568C21.0179 15.8275 21.5421 16.0311 21.91 16.42L22 16.5C22.3788 16.9078 22.5966 17.4388 22.5966 17.99C22.5966 18.5412 22.3788 19.0722 22 19.48L21.91 19.58C21.5823 19.9865 21.0971 20.2498 20.5649 20.3145C20.0327 20.3792 19.4957 20.2382 19.09 19.93L19 19.87C18.5404 19.4656 17.9027 19.2771 17.26 19.35C16.6173 19.4229 16.0596 19.7488 15.73 20.24L15.69 20.31C15.361 20.7459 14.8734 21.0039 14.3378 21.0332C13.8021 21.0625 13.2779 20.8589 12.91 20.47L12.83 20.37C12.4512 19.9622 12.2334 19.4312 12.2334 18.88C12.2334 18.3288 12.4512 17.7978 12.83 17.39L12.91 17.29C13.2377 16.8835 13.7229 16.6202 14.2551 16.5555C14.7873 16.4908 15.3243 16.6318 15.73 16.94L15.81 17C16.2696 17.4044 16.9073 17.5929 17.55 17.51C18.1927 17.4371 18.7504 17.1112 19.07 16.61L19.13 16.58Z M4.87 7.42C4.54096 7.85594 4.0534 8.11388 3.51777 8.14318C2.98214 8.17248 2.45794 7.96889 2.09 7.58L2 7.5C1.62122 7.09215 1.40338 6.56115 1.40338 6.01C1.40338 5.45879 1.62122 4.92779 2 4.52L2.09 4.42C2.41769 4.01352 2.9029 3.75019 3.43508 3.6855C3.96726 3.62081 4.5043 3.76182 4.91 4.07L5 4.13C5.45955 4.53436 6.09729 4.72289 6.74 4.65C7.38271 4.57711 7.94036 4.25118 8.27 3.76L8.31 3.69C8.63904 3.25406 9.1266 2.99612 9.66223 2.96682C10.1979 2.93752 10.7221 3.14111 11.09 3.53L11.17 3.63C11.5488 4.03779 11.7666 4.56879 11.7666 5.12C11.7666 5.67121 11.5488 6.20221 11.17 6.61L11.09 6.71C10.7623 7.11648 10.2771 7.37981 9.74492 7.4445C9.21274 7.50919 8.6757 7.36818 8.27 7.06L8.19 7C7.73045 6.59564 7.09271 6.40711 6.45 6.48C5.80729 6.55289 5.24964 6.87882 4.93 7.37L4.87 7.42Z"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                     <path
-                      d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5291C20.3248 17.7719 20.3766 18.0322 20.3766 18.295C20.3766 18.5578 20.3248 18.8181 20.2241 19.0609C20.1235 19.3037 19.976 19.5243 19.79 19.71C19.6043 19.896 19.3837 20.0435 19.1409 20.1441C18.8981 20.2448 18.6378 20.2966 18.375 20.2966C18.1122 20.2966 17.8519 20.2448 17.6091 20.1441C17.3663 20.0435 17.1457 19.896 16.96 19.71L16.9 19.65C16.6643 19.4195 16.365 19.2648 16.0406 19.206C15.7162 19.1472 15.3816 19.1869 15.08 19.32C14.7842 19.4468 14.532 19.6572 14.3543 19.9255C14.1766 20.1938 14.0813 20.5082 14.08 20.83V21C14.08 21.5304 13.8693 22.0391 13.4942 22.4142C13.1191 22.7893 12.6104 23 12.08 23C11.5496 23 11.0409 22.7893 10.6658 22.4142C10.2907 22.0391 10.08 21.5304 10.08 21V20.91C10.0723 20.579 9.96512 20.258 9.77251 19.9887C9.5799 19.7194 9.31074 19.5143 9 19.4C8.69838 19.2669 8.36381 19.2272 8.03941 19.286C7.71502 19.3448 7.41568 19.4995 7.18 19.73L7.12 19.79C6.93425 19.976 6.71368 20.1235 6.47088 20.2241C6.22808 20.3248 5.96783 20.3766 5.705 20.3766C5.44217 20.3766 5.18192 20.3248 4.93912 20.2241C4.69632 20.1235 4.47575 19.976 4.29 19.79C4.10405 19.6043 3.95653 19.3837 3.85588 19.1409C3.75523 18.8981 3.70343 18.6378 3.70343 18.375C3.70343 18.1122 3.75523 17.8519 3.85588 17.6091C3.95653 17.3663 4.10405 17.1457 4.29 16.96L4.35 16.9C4.58054 16.6643 4.73519 16.365 4.794 16.0406C4.85282 15.7162 4.81312 15.3816 4.68 15.08C4.55324 14.7842 4.34276 14.532 4.07447 14.3543C3.80618 14.1766 3.49179 14.0813 3.17 14.08H3C2.46957 14.08 1.96086 13.8693 1.58579 13.4942C1.21071 13.1191 1 12.6104 1 12.08C1 11.5496 1.21071 11.0409 1.58579 10.6658C1.96086 10.2907 2.46957 10.08 3 10.08H3.09C3.42099 10.0723 3.742 9.96512 4.0113 9.77251C4.28059 9.5799 4.48572 9.31074 4.6 9C4.73312 8.69838 4.77282 8.36381 4.714 8.03941C4.65519 7.71502 4.50054 7.41568 4.27 7.18L4.21 7.12C4.02405 6.93425 3.87653 6.71368 3.77588 6.47088C3.67523 6.22808 3.62343 5.96783 3.62343 5.705C3.62343 5.44217 3.67523 5.18192 3.77588 4.93912C3.87653 4.69632 4.02405 4.47575 4.21 4.29C4.39575 4.10405 4.61632 3.95653 4.85912 3.85588C5.10192 3.75523 5.36217 3.70343 5.625 3.70343C5.88783 3.70343 6.14808 3.75523 6.39088 3.85588C6.63368 3.95653 6.85425 4.10405 7.04 4.29L7.1 4.35C7.33568 4.58054 7.63502 4.73519 7.95941 4.794C8.28381 4.85282 8.61838 4.81312 8.92 4.68H9C9.29577 4.55324 9.54802 4.34276 9.72569 4.07447C9.90337 3.80618 9.99872 3.49179 10 3.17V3C10 2.46957 10.2107 1.96086 10.5858 1.58579C10.9609 1.21071 11.4696 1 12 1C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V3.09C14.0013 3.41179 14.0966 3.72618 14.2743 3.99447C14.452 4.26276 14.7042 4.47324 15 4.6C15.3016 4.73312 15.6362 4.77282 15.9606 4.714C16.285 4.65519 16.5843 4.50054 16.82 4.27L16.88 4.21C17.0657 4.02405 17.2863 3.87653 17.5291 3.77588C17.7719 3.67523 18.0322 3.62343 18.295 3.62343C18.5578 3.62343 18.8181 3.67523 19.0609 3.77588C19.3037 3.87653 19.5243 4.02405 19.71 4.21C19.896 4.39575 20.0435 4.61632 20.1441 4.85912C20.2448 5.10192 20.2966 5.36217 20.2966 5.625C20.2966 5.88783 20.2448 6.14808 20.1441 6.39088C20.0435 6.63368 19.896 6.85425 19.71 7.04L19.65 7.1C19.4195 7.33568 19.2648 7.63502 19.206 7.95941C19.1472 8.28381 19.1869 8.61838 19.32 8.92V9C19.4468 9.29577 19.6572 9.54802 19.9255 9.72569C20.1938 9.90337 20.5082 9.99872 20.83 10H21C21.5304 10 22.0391 10.2107 22.4142 10.5858C22.7893 10.9609 23 11.4696 23 12C23 12.5304 22.7893 13.0391 22.4142 13.4142C22.0391 13.7893 21.5304 14 21 14H20.91C20.5882 14.0013 20.2738 14.0966 20.0055 14.2743C19.7372 14.452 19.5268 14.7042 19.4 15Z"
+                      d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth="1.5"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mt-1">
                   Гибкость и Масштабируемость
                 </h3>
               </div>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed ml-12">
                 Создаем решения, которые растут вместе с вашим бизнесом. Начните
                 с небольшого проекта и расширяйте функциональность по мере
                 необходимости без необходимости переписывать код.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

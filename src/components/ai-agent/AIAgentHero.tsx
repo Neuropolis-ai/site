@@ -1,30 +1,52 @@
 "use client";
 
-import "@/style/hero.css";
-import "@/style/text-animations.css";
-import "@/style/card-line.css";
+import { motion } from "framer-motion";
 
 export default function AIAgentHero() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
-    <section className="relative flex items-center justify-center overflow-hidden pt-[120px] sm:pt-[150px] md:pt-[180px] lg:pt-[200px] pb-16 md:pb-24 bg-gradient-to-br from-blue-50 via-indigo-50 to-violet-50 dark:from-[#050505] dark:via-[#101010] dark:to-[#151515]">
-      {/* Декоративные элементы для светлой темы */}
-      <div className="absolute inset-0 z-0 opacity-30 dark:opacity-0">
-        <div className="absolute top-20 left-[10%] w-64 h-64 rounded-full bg-gradient-to-r from-blue-200 to-indigo-200 blur-3xl"></div>
-        <div className="absolute bottom-10 right-[5%] w-72 h-72 rounded-full bg-gradient-to-r from-indigo-200 to-purple-200 blur-3xl"></div>
-        <div className="absolute top-40 right-[15%] w-48 h-48 rounded-full bg-gradient-to-r from-sky-200 to-blue-200 blur-3xl"></div>
+    <motion.section
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+      className="relative flex items-center justify-center overflow-hidden pt-[120px] sm:pt-[150px] md:pt-[180px] lg:pt-[200px] pb-16 md:pb-24 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900"
+    >
+      <div className="absolute inset-0 z-0 opacity-40 dark:opacity-20">
+        <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl"></div>
       </div>
 
-      {/* Content */}
       <div className="relative z-20 text-center max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-[900px] mx-auto px-4">
-        <div>
-          <span className="inline-flex items-center justify-center border border-blue-500 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-[rgba(1,103,243,0.1)] text-blue-700 dark:text-white">
+        <motion.div variants={itemVariants}>
+          <span className="inline-flex items-center justify-center border border-blue-300 dark:border-blue-800 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400">
             <svg
               width={15}
               height={15}
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="text-blue-700 dark:text-white"
+              className="text-blue-600 dark:text-blue-400"
             >
               <path
                 opacity="0.2"
@@ -38,34 +60,44 @@ export default function AIAgentHero() {
             </svg>{" "}
             Neuropolis.ai
           </span>
-        </div>
+        </motion.div>
 
-        <h1 className="text-[28px] sm:text-[36px] md:text-[42px] lg:text-[50px] font-bold text-gray-800 dark:text-white mb-4 sm:mb-5 md:mb-6 blur-reveal anim-delay-1">
+        <motion.h1
+          variants={itemVariants}
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4 sm:mb-5 md:mb-6"
+        >
           Создаем Кастомных
           <span className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-transparent bg-clip-text">
             {" "}
             ИИ-Агентов
           </span>
           , которые Автоматизируют Рутину и Увеличивают Прибыль Вашего Бизнеса
-        </h1>
+        </motion.h1>
 
-        <p className="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-gray-600 dark:text-[#e0e0e0] leading-relaxed blur-reveal anim-delay-2">
+        <motion.p
+          variants={itemVariants}
+          className="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-gray-600 dark:text-gray-300 leading-relaxed"
+        >
           Разрабатываем интеллектуальных помощников на базе ИИ, которые берут на
           себя повторяющиеся задачи, оптимизируют процессы и высвобождают время
           ваших сотрудников для стратегических целей.
-        </p>
+        </motion.p>
 
-        <a
+        <motion.a
+          variants={itemVariants}
           href="#cta"
-          className="button-appear button-appear-delay-1 w-full sm:w-auto bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-bold py-3 px-10 rounded-[10px] text-lg transition-opacity hover:opacity-90 shadow-lg"
+          className="inline-block w-full sm:w-auto bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold py-3 px-6 rounded-xl text-base transition-opacity hover:opacity-90 shadow-lg"
         >
           Получить Бесплатную Консультацию
-        </a>
+        </motion.a>
 
-        <div className="mt-12 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-10 blur-reveal anim-delay-4">
+        <motion.div
+          variants={itemVariants}
+          className="mt-12 flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-10 text-gray-700 dark:text-gray-300 text-sm md:text-base"
+        >
           <div className="flex items-center space-x-2">
             <svg
-              className="w-6 h-6 text-[#0167F3]"
+              className="w-5 h-5 text-blue-600 dark:text-blue-400"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -75,11 +107,11 @@ export default function AIAgentHero() {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span>Автоматизация до 80% рутины</span>
+            <span className="text-base">Автоматизация до 80% рутины</span>
           </div>
           <div className="flex items-center space-x-2">
             <svg
-              className="w-6 h-6 text-[#0167F3]"
+              className="w-5 h-5 text-blue-600 dark:text-blue-400"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -89,11 +121,11 @@ export default function AIAgentHero() {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span>Снижение затрат на персонал</span>
+            <span className="text-base">Снижение затрат на персонал</span>
           </div>
           <div className="flex items-center space-x-2">
             <svg
-              className="w-6 h-6 text-[#0167F3]"
+              className="w-5 h-5 text-blue-600 dark:text-blue-400"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -103,10 +135,10 @@ export default function AIAgentHero() {
                 clipRule="evenodd"
               ></path>
             </svg>
-            <span>Рост эффективности процессов</span>
+            <span className="text-base">Рост эффективности процессов</span>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowDownIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 
 export default function AIAgentFAQ() {
   const [openItem, setOpenItem] = useState<number | null>(0);
@@ -55,101 +55,118 @@ export default function AIAgentFAQ() {
     },
   ];
 
-  return (
-    <section
-      id="faq"
-      className="relative py-24 md:py-32 px-4 bg-gradient-to-br from-[#F8F9FA] to-white dark:from-gray-900 dark:to-gray-950 overflow-hidden"
-    >
-      {/* Стеклянный фоновый эффект с шумом */}
-      <div className="absolute inset-0 bg-white/20 dark:bg-gray-900/20 backdrop-blur-[100px] [mask-image:url('/noise.svg')] opacity-50"></div>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
 
-      {/* Декоративные элементы */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#3DF5C2]/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-[#4F9CFF]/10 rounded-full blur-3xl"></div>
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  return (
+    <motion.section
+      id="faq"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      className="relative py-20 md:py-28 px-4 overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
 
       <div className="container relative mx-auto max-w-5xl">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl font-bold text-center mb-6 text-gray-800 dark:text-white tracking-tight"
+        <motion.div
+          variants={itemVariants}
+          className="text-center mb-16 md:mb-20"
         >
-          Часто Задаваемые Вопросы
-        </motion.h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center mb-6 text-gray-800 dark:text-white tracking-tight">
+            Часто Задаваемые Вопросы
+          </h2>
+          <p className="text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
+            Ответы на самые популярные вопросы о технологии ИИ-агентов и нашем
+            подходе к их разработке
+          </p>
+        </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-center text-gray-600 dark:text-gray-300 mb-16 max-w-2xl mx-auto text-lg tracking-[0.02em]"
-        >
-          Ответы на самые популярные вопросы о технологии ИИ-агентов и нашем
-          подходе к их разработке
-        </motion.p>
-
-        <div className="grid gap-6">
+        <div className="grid gap-4">
           {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="group"
-            >
-              <motion.div
-                whileHover={{ scale: 1.01 }}
-                transition={{ duration: 0.3 }}
-                className={`relative bg-white dark:bg-gray-800 backdrop-blur-md rounded-2xl overflow-hidden transition-all duration-300
-                  shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.12)]
-                  before:absolute before:inset-0 before:w-full before:h-full before:bg-gradient-to-r before:from-transparent 
-                  before:to-transparent before:opacity-0 before:transition-opacity before:duration-300 
-                  before:pointer-events-none group-hover:before:opacity-100 
-                  before:group-hover:from-transparent before:group-hover:via-[#4F9CFF]/5 before:group-hover:to-transparent
-                  ${
-                    openItem === index
-                      ? "ring-1 ring-[#4F9CFF]/20 dark:ring-[#3DF5C2]/20"
-                      : ""
-                  }`}
+            <motion.div key={index} variants={itemVariants} className="group">
+              <div
+                className={`relative backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 rounded-2xl overflow-hidden transition-all duration-300 border border-white/20 dark:border-gray-700/30 shadow-md`}
               >
                 <button
                   onClick={() => toggleItem(index)}
-                  className="flex justify-between items-center w-full p-6 md:p-8 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F9CFF] dark:focus-visible:ring-[#3DF5C2] rounded-2xl"
+                  className="flex justify-between items-center w-full p-5 md:p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 rounded-2xl"
                   aria-expanded={openItem === index}
                   aria-controls={`faq-answer-${index}`}
                 >
-                  <span className="font-medium text-xl tracking-[0.02em] text-gray-900 dark:text-white pr-4">
+                  <span className="font-semibold text-base md:text-lg text-gray-900 dark:text-white pr-4">
                     {faq.question}
                   </span>
                   <motion.div
                     animate={{ rotate: openItem === index ? 180 : 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-[#4F9CFF]/10 dark:bg-[#3DF5C2]/10"
+                    className="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-blue-500/10 dark:bg-blue-900/20"
                   >
-                    <ArrowDownIcon className="w-4 h-4 text-[#4F9CFF] dark:text-[#3DF5C2]" />
+                    <ChevronDownIcon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   </motion.div>
                 </button>
 
-                <AnimatePresence>
+                <AnimatePresence initial={false}>
                   {openItem === index && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      key="content"
+                      initial="collapsed"
+                      animate="open"
+                      exit="collapsed"
+                      variants={{
+                        open: {
+                          opacity: 1,
+                          height: "auto",
+                          transition: {
+                            duration: 0.3,
+                            ease: [0.04, 0.62, 0.23, 0.98],
+                          },
+                        },
+                        collapsed: {
+                          opacity: 0,
+                          height: 0,
+                          transition: {
+                            duration: 0.2,
+                            ease: [0.04, 0.62, 0.23, 0.98],
+                          },
+                        },
+                      }}
                       id={`faq-answer-${index}`}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0 text-gray-600 dark:text-gray-300 text-base leading-relaxed tracking-[0.02em]">
+                      <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 text-gray-600 dark:text-gray-300 text-base leading-relaxed">
                         {faq.answer}
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

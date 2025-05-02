@@ -4,7 +4,8 @@ import path from "path";
 
 // Массив защищенных путей, которые требуют аутентификации
 const PROTECTED_PATHS = [
-  "/services/autonomous-ai-agents",
+  // Временно убрано для разработки
+  // "/services/autonomous-ai-agents",
   "/cases/ai-sales-agent",
 ];
 
@@ -49,10 +50,10 @@ export function middleware(request: NextRequest) {
   // Если путь защищен и пользователь не аутентифицирован
   if (isProtectedPath && !isAuthenticated(request)) {
     // Возвращаем ответ с запросом базовой аутентификации
-    return new NextResponse("Требуется аутентификация", {
+    return new NextResponse("Authentication Required", {
       status: 401,
       headers: {
-        "WWW-Authenticate": 'Basic realm="Защищенный раздел Neuropolis.ai"',
+        "WWW-Authenticate": 'Basic realm="Neuropolis.ai Protected Area"',
       },
     });
   }
@@ -89,7 +90,7 @@ export function middleware(request: NextRequest) {
       const stats = fs.statSync(rssPath);
       response.headers.set("Last-Modified", stats.mtime.toUTCString());
     } catch (error) {
-      console.warn("Не удалось получить дату модификации RSS файла:", error);
+      console.warn("Could not get RSS file modification date:", error);
     }
   }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { getAllArticles, deleteArticle, updateArticle } from "@/lib/blogApi";
+import { getAllArticles, updateArticle } from "@/lib/blogApi";
 import { Article } from "@/lib/supabase";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -30,20 +30,36 @@ export default function AdminBlogPage() {
   };
 
   const handleDelete = async (id: string) => {
-    if (window.confirm("Вы уверены, что хотите удалить эту статью?")) {
+    if (window.confirm("Вы уверены, что хотите скрыть эту статью?")) {
       try {
-        const success = await deleteArticle(id);
-        if (success) {
+        console.log("Начинаем скрытие статьи с ID:", id);
+
+        // Отправляем запрос на скрытие
+        const response = await fetch("/api/articles/delete", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          console.log("Статья успешно скрыта");
+
+          // Обновляем список статей в интерфейсе
           setArticles(
             articles.map((article) =>
               article.id === id ? { ...article, is_published: false } : article
             )
           );
         } else {
-          setError("Не удалось удалить статью");
+          console.error("Ошибка при скрытии статьи:", result.error);
+          setError(
+            `Не удалось скрыть статью: ${result.error || "Неизвестная ошибка"}`
+          );
         }
       } catch (err) {
-        setError("Ошибка при удалении статьи");
+        setError("Ошибка при скрытии статьи");
         console.error(err);
       }
     }

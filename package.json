@@ -14,9 +14,11 @@
     "generate-rss": "node scripts/generate-rss.js"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.8",
     "@tinymce/tinymce-react": "^6.1.0",
     "@types/iconv-lite": "^0.0.1",
-    "framer-motion": "^12.9.2",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.9.4",
     "lucide-react": "^0.506.0",
     "next": "14.2.24",
     "node-fetch": "^3.3.2",
@@ -25,6 +27,8 @@
     "react-icons": "^5.5.0",
     "react-input-mask": "^2.0.4",
     "react-quill": "^2.0.0",
+    "tailwind-merge": "^3.2.0",
+    "tailwindcss-animate": "^1.0.7",
     "tinymce": "^7.7.2"
   },
   "devDependencies": {

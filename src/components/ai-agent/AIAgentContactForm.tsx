@@ -92,9 +92,9 @@ export default function AIAgentContactForm() {
   // Стандартизированные классы для полей ввода
   const inputClasses = `block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 
     focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 bg-white dark:bg-gray-800/50 
-    dark:text-white text-base transition-colors duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500`;
+    dark:text-white text-lg transition-colors duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500`;
 
-  const labelClasses = `block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5`; // Уменьшен mb
+  const labelClasses = `block text-base font-medium text-gray-700 dark:text-gray-300 mb-1.5`; // Уменьшен mb
 
   return (
     <motion.section // Анимируем всю секцию

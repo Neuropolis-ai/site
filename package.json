@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p ${PORT:-3002}",
+    "dev": "next dev -p ${PORT:-3003}",
     "build": "node scripts/generate-rss.js || echo 'RSS generation failed' && next build",
     "start": "next start",
     "lint": "next lint",

@@ -279,7 +279,7 @@ export default function CaseSolution({
                           ? "0 12px 24px rgba(0, 0, 0, 0.4)"
                           : "0 12px 24px rgba(0, 0, 0, 0.08)",
                       }}
-                      className={`flex items-start p-5 rounded-xl transform transition-all duration-300 ${
+                      className={`flex items-center p-5 rounded-xl transform transition-all duration-300 ${
                         isDark
                           ? "bg-gray-800/40 border border-blue-800/20 hover:border-blue-700/40"
                           : "bg-white/50 border border-blue-200/50 hover:border-blue-300/70"
@@ -287,7 +287,7 @@ export default function CaseSolution({
                     >
                       <div className="flex-shrink-0 mr-4">
                         <div
-                          className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
+                          className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${
                             isDark
                               ? "bg-gradient-to-br from-blue-800/40 to-blue-900/40 text-blue-300"
                               : "bg-gradient-to-br from-blue-100 to-blue-200/80 text-blue-600"
@@ -297,15 +297,6 @@ export default function CaseSolution({
                         </div>
                       </div>
                       <div className="flex-1">
-                        <div
-                          className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold mb-1 ${
-                            isDark
-                              ? "bg-blue-800/30 text-blue-300"
-                              : "bg-blue-100 text-blue-600"
-                          }`}
-                        >
-                          {index + 1}
-                        </div>
                         <span
                           className={`block ${
                             isDark ? "text-gray-200" : "text-gray-700"

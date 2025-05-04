@@ -48,10 +48,10 @@ export default function CaseTestimonial({
         <FaQuoteLeft
           className={`absolute top-4 left-4 w-10 h-10 ${
             isDark ? "text-blue-700/30" : "text-blue-200/60"
-          } opacity-50`}
+          } opacity-50 z-0`}
         />
         <blockquote
-          className={`relative z-10 italic text-lg md:text-xl leading-relaxed mb-6 ${
+          className={`relative z-10 italic text-lg md:text-xl leading-relaxed mb-6 pl-8 ${
             isDark ? "text-gray-200" : "text-gray-700"
           }`}
         >

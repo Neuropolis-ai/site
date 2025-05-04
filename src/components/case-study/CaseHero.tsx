@@ -45,11 +45,13 @@ export default function CaseHero({
       <div className="container mx-auto px-4 max-w-screen-lg relative z-10">
         <motion.header
           variants={itemVariants}
-          className="text-center mb-12 md:mb-16"
+          className="text-center pt-20 mb-12 md:mb-16"
         >
           <div
-            className={`inline-block px-4 py-1 rounded-full text-sm mb-4 ${
-              isDark ? "bg-[#0d1635] text-blue-400" : "bg-blue-50 text-blue-600"
+            className={`inline-block px-4 py-1 rounded-full text-sm mb-4 border ${
+              isDark
+                ? "bg-[#0d1635] text-blue-400 border-blue-700"
+                : "bg-blue-50 text-blue-600 border-blue-200"
             }`}
           >
             Кейс
@@ -75,7 +77,6 @@ export default function CaseHero({
           variants={itemVariants}
           className="mb-16 rounded-xl overflow-hidden relative h-80 md:h-[500px] shadow-lg"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-transparent z-10"></div>
           <Image src={imagePath} alt={imageAlt} fill className="object-cover" />
         </motion.div>
       </div>

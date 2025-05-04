@@ -7,7 +7,10 @@ import { useTheme } from "@/context/ThemeContext";
 
 interface CaseTaskProps {
   description: string;
-  challenges: string[];
+  challenges: Array<{
+    text: string;
+    className?: string;
+  }>;
 }
 
 const containerVariants = {
@@ -67,14 +70,14 @@ export default function CaseTask({ description, challenges }: CaseTaskProps) {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className={`p-6 rounded-2xl flex items-start space-x-4 transition-all duration-300 ${
+                className={`p-6 rounded-2xl flex items-center space-x-4 transition-all duration-300 ${
                   isDark
                     ? "bg-gradient-to-br from-gray-800/50 to-gray-900/70 border border-gray-700/50 shadow-lg hover:shadow-blue-900/20 hover:border-blue-700/60"
                     : "bg-gradient-to-br from-white to-gray-50/90 border border-gray-200/80 shadow-md hover:shadow-lg hover:border-gray-300"
                 }`}
               >
                 <div
-                  className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center mt-1 ${
+                  className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
                     isDark
                       ? "bg-blue-900/50 text-blue-400"
                       : "bg-blue-100/80 text-blue-600"
@@ -82,8 +85,12 @@ export default function CaseTask({ description, challenges }: CaseTaskProps) {
                 >
                   <FiAlertTriangle className="w-5 h-5" />
                 </div>
-                <span className={isDark ? "text-gray-300" : "text-gray-700"}>
-                  {challenge}
+                <span
+                  className={`flex-1 ${
+                    isDark ? "text-gray-300" : "text-gray-700"
+                  } ${challenge.className || ""}`}
+                >
+                  {challenge.text}
                 </span>
               </motion.div>
             ))}

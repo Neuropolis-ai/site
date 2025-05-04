@@ -42,67 +42,57 @@ export default function CaseProblem({
 
   return (
     <CaseSection title="🔍 Анализ проблемы">
-      <motion.p
-        variants={itemVariants}
+      <motion.div
+        variants={containerVariants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.1 }}
-        className="mb-8 text-lg leading-relaxed"
       >
-        {description}
-      </motion.p>
-
-      {problemPoints.length > 0 && (
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+        <motion.p
+          variants={itemVariants}
+          className="mb-8 text-lg leading-relaxed"
         >
+          {description}
+        </motion.p>
+
+        <motion.ul className="space-y-4 mb-8">
           {problemPoints.map((point, index) => (
-            <motion.div
+            <motion.li
               key={index}
               variants={itemVariants}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className={`p-6 rounded-2xl flex items-start space-x-4 transition-all duration-300 border shadow-sm ${
-                isDark
-                  ? "bg-gray-800/30 border-gray-700/40 hover:border-indigo-700/60 hover:bg-gray-800/50"
-                  : "bg-white/40 border-gray-200/70 hover:border-gray-300 hover:bg-white/60"
-              }`}
+              className="flex items-start"
             >
               <div
-                className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center mt-1 ${
+                className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-sm ${
                   isDark
-                    ? "bg-indigo-900/50 text-indigo-400"
-                    : "bg-indigo-100/80 text-indigo-600"
+                    ? "bg-gradient-to-br from-blue-800/40 to-blue-900/40 text-blue-300 border border-blue-700/20"
+                    : "bg-gradient-to-br from-blue-100 to-blue-200/70 text-blue-600 border border-blue-200/50"
                 }`}
               >
                 <FiCheckCircle className="w-5 h-5" />
               </div>
-              <span className={isDark ? "text-gray-300" : "text-gray-700"}>
+              <span
+                className={`flex-1 text-base leading-relaxed mt-1.5 ${
+                  isDark ? "text-gray-300" : "text-gray-700"
+                }`}
+              >
                 {point}
               </span>
-            </motion.div>
+            </motion.li>
           ))}
-        </motion.div>
-      )}
+        </motion.ul>
 
-      {conclusion && (
-        <motion.p
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          className={`mt-6 p-4 rounded-xl text-base border ${
-            isDark
-              ? "bg-indigo-900/30 border-indigo-800/50 text-indigo-200"
-              : "bg-indigo-50/80 border-indigo-200/80 text-indigo-800"
-          }`}
-        >
-          {conclusion}
-        </motion.p>
-      )}
+        {conclusion && (
+          <motion.p
+            variants={itemVariants}
+            className={`text-base leading-relaxed ${
+              isDark ? "text-gray-300" : "text-gray-700"
+            }`}
+          >
+            {conclusion}
+          </motion.p>
+        )}
+      </motion.div>
     </CaseSection>
   );
 }

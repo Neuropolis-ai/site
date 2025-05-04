@@ -2,6 +2,8 @@
 
 import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { BsArrowRight } from "react-icons/bs";
 
 // Импортируем стандартные компоненты
 import Header from "@/components/Header/Header";
@@ -18,7 +20,10 @@ import CaseTechnologies from "@/components/case-study/CaseTechnologies";
 import CaseTestimonial from "@/components/case-study/CaseTestimonial";
 import CaseLongTermImpact from "@/components/case-study/CaseLongTermImpact";
 import CaseActionButtons from "@/components/case-study/CaseActionButtons";
-import CaseRelated from "@/components/case-study/CaseRelated";
+
+// Импортируем компоненты призыва к действию
+import CostReduceCTA from "@/components/CTASection/CostReduceCTA";
+import AutomationCTA from "@/components/CTASection/AutomationCTA";
 
 import {
   FiGlobe,
@@ -54,11 +59,26 @@ export default function CasePage() {
     description:
       "Крупный e-commerce маркетплейс с ассортиментом более 500,000 товаров и ежемесячной аудиторией более 2 миллионов уникальных посетителей столкнулся с серьезными вызовами в обслуживании клиентов:",
     challenges: [
-      "Среднее время ожидания ответа на запрос составляло 24 часа",
-      "Команда из 30 операторов не справлялась с потоком из 5000+ обращений в день",
-      "Высокая текучка кадров из-за рутинных и однотипных запросов",
-      "Низкие оценки удовлетворенности (NPS 34 из 100)",
-      "Упущенные продажи из-за медленных ответов на предпродажные вопросы",
+      {
+        text: "Среднее время ожидания ответа на запрос составляло 24 часа",
+        className: "text-base",
+      },
+      {
+        text: "Команда из 30 операторов не справлялась с потоком из 5000+ обращений в день",
+        className: "text-base",
+      },
+      {
+        text: "Высокая текучка кадров из-за рутинных и однотипных запросов",
+        className: "text-base",
+      },
+      {
+        text: "Низкие оценки удовлетворенности (NPS 34 из 100)",
+        className: "text-base",
+      },
+      {
+        text: "Упущенные продажи из-за медленных ответов на предпродажные вопросы",
+        className: "text-base",
+      },
     ],
   };
 
@@ -103,7 +123,8 @@ export default function CasePage() {
         icon: FiSettings,
       },
     ],
-    technicalDetails: "Ключевые технические особенности решения:",
+    technicalDetails:
+      "Под капотом — экосистема ИИ‑модулей: RAG‑ядро, семантический поиск, многоуровневое NLU и глубокие CRM/ERP‑интеграции, которые вместе обеспечивают мгновенные точные ответы и умную эскалацию сложных запросов.",
     techPoints: [
       "<strong>RAG-система</strong> на основе базы знаний о товарах и FAQ",
       "<strong>Интеграция с CRM и ERP</strong> для доступа к актуальным данным о заказах и клиентах",
@@ -209,29 +230,6 @@ export default function CasePage() {
         url: "/contact",
         isPrimary: true,
       },
-      {
-        text: "Другие кейсы",
-        url: "/cases",
-        isPrimary: false,
-      },
-    ],
-  };
-
-  // Данные для связанных кейсов
-  const relatedCasesData = {
-    cases: [
-      {
-        title: "AI-агент в отделе продаж",
-        description:
-          "Как мы сократили время отклика с 2 часов до 15 секунд и повысили конверсию на 27%",
-        url: "/cases/ai-sales-agent",
-      },
-      {
-        title: "Узнать больше о ИИ-агентах",
-        description:
-          "Подробное описание возможностей ИИ-агентов и как они могут помочь вашему бизнесу",
-        url: "/ai-agent",
-      },
     ],
   };
 
@@ -258,7 +256,7 @@ export default function CasePage() {
         <CaseHero
           title="ИИ-ассистент для службы поддержки клиентов"
           subtitle="Как мы сократили время ожидания ответа с 24 часов до 3 минут и повысили удовлетворенность клиентов на 68%"
-          imagePath="/assets/images/ai-customer-support.jpg"
+          imagePath="/assets/images/ai-customer-support-new.jpg"
           imageAlt="ИИ-ассистент поддержки клиентов в действии"
         />
 
@@ -309,6 +307,54 @@ export default function CasePage() {
         <SectionWrapper
           className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
         >
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeInOut", delay: 0.3 }}
+            className="container mx-auto px-4 max-w-screen-xl mb-16"
+          >
+            <div className="max-w-4xl mx-auto px-8 py-10 rounded-2xl relative overflow-hidden backdrop-blur-lg">
+              <div className="absolute inset-0 bg-white/60 dark:bg-gray-900/50 -z-10"></div>
+              <div className="absolute inset-0 border border-white/20 dark:border-gray-700/30 rounded-2xl -z-10"></div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 dark:from-blue-600/10 dark:to-indigo-600/10 rounded-full blur-xl -z-10"></div>
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-r from-indigo-400/10 to-blue-400/10 dark:from-indigo-600/10 dark:to-blue-600/10 rounded-full blur-xl -z-10"></div>
+
+              <div className="relative z-10 text-center">
+                <h3
+                  className={`text-[30px] font-semibold mb-4 ${
+                    isDark
+                      ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300"
+                      : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"
+                  }`}
+                >
+                  Сократите затраты на поддержку и увеличьте лояльность
+                </h3>
+                <p
+                  className={`text-base md:text-lg mb-8 max-w-3xl mx-auto ${
+                    isDark ? "text-gray-300" : "text-gray-600"
+                  }`}
+                >
+                  ИИ-ассистент сокращает время ответа клиентам в десятки раз и
+                  улучшает качество обслуживания. Агент никогда не устаёт, не
+                  болеет и всегда доступен 24/7 для вашего бизнеса.
+                </p>
+                <div className="flex justify-center">
+                  <Link
+                    href="/contact"
+                    className={`inline-flex items-center justify-center px-8 py-4 rounded-xl
+                         bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold text-[18px]
+                         hover:opacity-90 transition-all duration-300 hover:-translate-y-0.5
+                         shadow-lg`}
+                  >
+                    Узнать стоимость внедрения
+                    <BsArrowRight className="ml-2 w-5 h-5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           <CaseTechnologies technologies={technologiesData.technologies} />
         </SectionWrapper>
 
@@ -332,7 +378,6 @@ export default function CasePage() {
 
         {/* Кнопки и связанные кейсы - фон и центрирование внутри */}
         <CaseActionButtons buttons={actionButtonsData.buttons} />
-        <CaseRelated cases={relatedCasesData.cases} />
       </motion.div>
       <Footer />
     </>

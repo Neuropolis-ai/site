@@ -95,17 +95,8 @@ export default function CaseImplementation({
                   <Icon className="w-6 h-6" />
                 </div>
               </div>
-              <div
-                className={`inline-flex items-center justify-center w-10 h-10 rounded-full text-sm font-bold mb-4 mx-auto shadow-inner ${
-                  isDark
-                    ? "bg-gray-800/40 text-blue-300 border border-blue-800/20"
-                    : "bg-blue-50/70 text-blue-700 border border-blue-100/50"
-                }`}
-              >
-                {stage.number}
-              </div>
               <h3
-                className={`font-bold text-xl mb-2 ${
+                className={`font-bold text-xl mb-3 ${
                   isDark
                     ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300"
                     : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"
@@ -122,8 +113,8 @@ export default function CaseImplementation({
               </p>
               {stage.details && (
                 <p
-                  className={`text-sm flex-grow ${
-                    isDark ? "text-gray-400" : "text-gray-500"
+                  className={`text-base flex-grow ${
+                    isDark ? "text-gray-400" : "text-gray-600"
                   }`}
                 >
                   {stage.details}
@@ -154,7 +145,7 @@ export default function CaseImplementation({
           }`}
         >
           <div
-            className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center shadow-md ${
+            className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center shadow-md ${
               isDark
                 ? "bg-gradient-to-br from-blue-700/40 to-blue-800/40 text-blue-200 border border-blue-600/30"
                 : "bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 border border-blue-200/50"

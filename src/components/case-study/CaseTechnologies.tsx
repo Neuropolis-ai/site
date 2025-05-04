@@ -99,7 +99,7 @@ export default function CaseTechnologies({
               >
                 {/* ... иконка и текст ... */}
                 <div
-                  className={`flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center shadow-sm ${
+                  className={`flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center shadow-sm ${
                     isDark
                       ? "bg-gradient-to-br from-blue-700/40 to-blue-800/40 text-blue-300 border border-blue-700/20"
                       : "bg-gradient-to-br from-blue-100 to-blue-200/70 text-blue-600 border border-blue-200/50"

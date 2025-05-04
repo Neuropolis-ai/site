@@ -55,25 +55,63 @@ export default function CaseActionButtons({ buttons }: CaseActionButtonsProps) {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center"
+          className="relative p-8 md:p-10 rounded-2xl text-center backdrop-blur-sm"
         >
-          {buttons.map((button, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Link
-                href={button.url}
-                className={`flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-lg font-semibold transition-all duration-300 ease-in-out shadow-md hover:shadow-lg ${
-                  button.isPrimary
-                    ? `text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:from-[#015ae0] hover:to-[#2a8ce7] hover:-translate-y-0.5`
-                    : isDark
-                    ? "text-blue-300 bg-gray-800/60 border border-blue-800/70 hover:bg-gray-700/80 hover:border-blue-700/80 hover:-translate-y-0.5"
-                    : "text-blue-700 bg-white border border-blue-200 hover:bg-blue-50/80 hover:border-blue-300 hover:-translate-y-0.5"
-                }`}
-              >
-                {button.text}
-                {button.isPrimary && <BsArrowRight className="ml-1 w-5 h-5" />}
-              </Link>
-            </motion.div>
-          ))}
+          <div className="absolute inset-0 border border-white/20 dark:border-gray-700/30 rounded-2xl -z-10"></div>
+          <div
+            className={`absolute inset-0 -z-10 ${
+              isDark ? "bg-gray-900/50" : "bg-white/60"
+            } rounded-2xl`}
+          ></div>
+          <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 dark:from-blue-600/10 dark:to-indigo-600/10 rounded-full blur-xl -z-10"></div>
+          <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-r from-indigo-400/10 to-blue-400/10 dark:from-indigo-600/10 dark:to-blue-600/10 rounded-full blur-xl -z-10"></div>
+
+          <motion.h3
+            variants={itemVariants}
+            className={`text-2xl md:text-3xl font-bold mb-4 ${
+              isDark
+                ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300"
+                : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"
+            }`}
+          >
+            Готовы автоматизировать клиентскую поддержку?
+          </motion.h3>
+
+          <motion.p
+            variants={itemVariants}
+            className={`text-base md:text-lg max-w-2xl mx-auto mb-8 ${
+              isDark ? "text-gray-300" : "text-gray-600"
+            }`}
+          >
+            Современный ИИ-ассистент может обрабатывать до 82% запросов без
+            участия оператора. Увеличьте NPS и сократите расходы уже через 2
+            месяца после внедрения.
+          </motion.p>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center"
+          >
+            {buttons.map((button, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <Link
+                  href={button.url}
+                  className={`flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl text-lg font-semibold transition-all duration-300 ease-in-out ${
+                    button.isPrimary
+                      ? `text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] shadow-lg hover:opacity-90 hover:-translate-y-0.5`
+                      : isDark
+                      ? "text-blue-300 bg-gray-800/60 border border-blue-800/70 hover:bg-gray-700/80 hover:border-blue-700/80 hover:-translate-y-0.5"
+                      : "text-blue-700 bg-white border border-blue-200 hover:bg-blue-50/80 hover:border-blue-300 hover:-translate-y-0.5"
+                  }`}
+                >
+                  {button.text}
+                  {button.isPrimary && (
+                    <BsArrowRight className="ml-2 w-5 h-5" />
+                  )}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
     </div>

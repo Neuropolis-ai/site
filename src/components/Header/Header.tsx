@@ -4,7 +4,6 @@ import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FiMoon, FiSun } from "react-icons/fi";
 import { HiMenu, HiX } from "react-icons/hi";
 import blackLogo from "../../app/assets/svg/black-logo.svg";
 import logo from "../../app/assets/svg/logo.svg";
@@ -13,7 +12,7 @@ import { usePathname, useRouter } from "next/navigation";
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
-  const { theme, isDark, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === "/";
@@ -21,8 +20,7 @@ const Header = () => {
   // Log theme information for debugging
   useEffect(() => {
     console.log("Header component - Current theme:", theme);
-    console.log("Header component - isDark:", isDark);
-  }, [theme, isDark]);
+  }, [theme]);
 
   // Функция для перехода к секции
   const navigateToSection = (sectionId: string) => {
@@ -100,7 +98,7 @@ const Header = () => {
   return (
     <header
       className={`fixed top-[10px] sm:top-[20px] left-0 right-0 z-50 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[800px] mx-auto 
-                bg-[var(--card-bg)]/80 backdrop-blur-sm border border-[#b4b4b4] dark:border-[#262626] rounded-[12px] 
+                bg-[var(--card-bg)]/80 backdrop-blur-sm border border-[#b4b4b4] rounded-[12px] 
                 transition-all duration-300 ease-in-out overflow-hidden
                 ${mobileMenuOpen ? "pb-4" : "pb-1"}`}
       style={{ backdropFilter: "blur(30px)" }}
@@ -115,7 +113,7 @@ const Header = () => {
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="text-[#0167F3] dark:text-[#399AFC]"
+              className="text-[#0167F3]"
             >
               <path
                 opacity="0.2"
@@ -127,9 +125,7 @@ const Header = () => {
                 fill="currentColor"
               />
             </svg>
-            <span className="text-gray-800 dark:text-white mt-[2px]">
-              Neuropolis
-            </span>
+            <span className="text-gray-800 mt-[2px]">Neuropolis</span>
           </div>
         </Link>
 
@@ -140,13 +136,9 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-[16px] py-[8px] px-[18px] rounded-[12px] text-gray-800 dark:text-white 
-                            ${
-                              pathname === "/blog"
-                                ? "bg-[#e0e0e0] dark:bg-[#262626]"
-                                : ""
-                            } 
-                            hover:text-[#0a2e6b] dark:hover:text-[var(--text-primary)] transition-colors`}
+                className={`text-[16px] py-[8px] px-[18px] rounded-[12px] text-gray-800
+                            ${pathname === "/blog" ? "bg-[#e0e0e0]" : ""} 
+                            hover:text-[#0a2e6b] transition-colors`}
               >
                 {item.label}
               </Link>
@@ -154,43 +146,25 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-[16px] py-[8px] px-[18px] rounded-[12px] text-gray-800 dark:text-white 
+                className={`text-[16px] py-[8px] px-[18px] rounded-[12px] text-gray-800
                             ${
                               activeSection === item.id && isHomePage
-                                ? "bg-[#e0e0e0] dark:bg-[#262626]"
+                                ? "bg-[#e0e0e0]"
                                 : ""
                             } 
-                            hover:text-[#0a2e6b] dark:hover:text-[var(--text-primary)] transition-colors`}
+                            hover:text-[#0a2e6b] transition-colors`}
               >
                 {item.label}
               </button>
             )
           )}
-
-          {/* Theme Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            className="ml-2 p-[8px] rounded-full bg-[#e0e0e0] dark:bg-[#262626] dark:text-white text-black"
-            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
-          </button>
         </nav>
 
-        {/* Mobile Menu Button and Theme Toggle */}
-        <div className="md:hidden flex items-center gap-2">
-          {/* Theme Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            className="p-[8px] rounded-full bg-[#e0e0e0] dark:bg-[#262626] text-gray-800 dark:text-white"
-            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {isDark ? <FiSun size={18} /> : <FiMoon size={18} />}
-          </button>
-
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center">
           {/* Mobile Menu Toggle */}
           <button
-            className="text-gray-800 p-2 dark:text-white"
+            className="text-gray-800 p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
@@ -217,13 +191,13 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-[18px] py-[10px] px-[20px] rounded-[12px] text-center text-gray-800 dark:text-white 
+                className={`text-[18px] py-[10px] px-[20px] rounded-[12px] text-center text-gray-800
                             ${
                               pathname === "/blog"
-                                ? "bg-[#e0e0e0] dark:bg-[#262626]"
+                                ? "bg-[#e0e0e0]"
                                 : "bg-transparent"
                             } 
-                            hover:text-[#0a2e6b] dark:hover:bg-[#262626] transition-colors`}
+                            hover:text-[#0a2e6b] transition-colors`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
@@ -232,13 +206,13 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-[18px] py-[10px] px-[20px] rounded-[12px] text-center text-gray-800 dark:text-white 
+                className={`text-[18px] py-[10px] px-[20px] rounded-[12px] text-center text-gray-800
                             ${
                               activeSection === item.id && isHomePage
-                                ? "bg-[#e0e0e0] dark:bg-[#262626]"
+                                ? "bg-[#e0e0e0]"
                                 : "bg-transparent"
                             } 
-                            hover:text-[#0a2e6b] dark:hover:bg-[#262626] transition-colors`}
+                            hover:text-[#0a2e6b] transition-colors`}
               >
                 {item.label}
               </button>

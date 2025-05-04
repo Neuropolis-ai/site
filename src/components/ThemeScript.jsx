@@ -55,15 +55,9 @@ export function ThemeScript() {
               // Сначала устанавливаем базовую тему для избежания мерцания
               document.documentElement.classList.add('no-transition');
               
-              const storedTheme = localStorage.getItem('theme');
-              if (storedTheme) {
-                document.documentElement.setAttribute('data-theme', storedTheme);
-              } else {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const initialTheme = prefersDark ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', initialTheme);
-                localStorage.setItem('theme', initialTheme);
-              }
+              // Всегда устанавливаем светлую тему
+              document.documentElement.setAttribute('data-theme', 'light');
+              localStorage.setItem('theme', 'light');
               
               // Удаляем класс после короткой задержки, чтобы CSS-переходы заработали снова
               setTimeout(function() {

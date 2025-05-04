@@ -65,16 +65,16 @@ export default function CaseTechnologies({
 
   return (
     <CaseSection title="🧩 Используемые технологии">
-      <div // Убираем motion с внешнего div, оставляем только стили
-        className={`p-8 rounded-3xl shadow-xl border backdrop-blur-md ${
+      <div // Внешний div без motion, убираем фон и тень
+        className={`p-8 rounded-3xl border backdrop-blur-md ${
           isDark
-            ? "bg-gradient-to-br from-gray-900/60 to-[#121929]/60 border-gray-700/40"
-            : "bg-gradient-to-br from-white/80 to-gray-50/70 border-gray-200/70"
+            ? "border-gray-700/40" // Оставляем только рамку
+            : "border-gray-200/70" // Оставляем только рамку
         }`}
       >
         <motion.div
           className="flex flex-wrap justify-center gap-4" // Центрируем плашки
-          variants={containerVariants} // Применяем анимацию контейнера сюда
+          variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
@@ -84,7 +84,7 @@ export default function CaseTechnologies({
             return (
               <motion.div
                 key={index}
-                variants={itemVariants} // Анимация для каждой плашки
+                variants={itemVariants}
                 whileHover={{
                   y: -5,
                   scale: 1.05,

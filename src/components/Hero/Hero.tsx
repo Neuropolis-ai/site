@@ -4,7 +4,6 @@ import { useTheme } from "@/context/ThemeContext";
 import "@/style/hero.css";
 import "@/style/text-animations.css";
 import { motion } from "framer-motion";
-import ButtonLink from "../ui/buttonLink";
 
 // Helper function for smooth scrolling
 const scrollToSection = (sectionId: string) => {
@@ -105,13 +104,12 @@ const Hero = () => {
           variants={itemVariants}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <ButtonLink
-            variantBtn="btn"
+          <button
             onClick={() => scrollToSection("contact")}
-            className="inline-block w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-8 rounded-xl text-lg md:text-xl transition-all duration-300 shadow-xl"
+            className="inline-block w-full sm:w-auto bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold py-4 px-8 rounded-xl text-lg md:text-xl transition-opacity hover:opacity-90 shadow-xl"
           >
             Узнать, как внедрить ИИ в мой бизнес
-          </ButtonLink>
+          </button>
         </motion.div>
 
         <motion.div

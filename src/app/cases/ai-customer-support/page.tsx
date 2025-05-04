@@ -4,8 +4,8 @@ import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 
 // Импортируем стандартные компоненты
-// import Navbar from "@/components/layout/Navbar";
-// import Footer from "@/components/layout/Footer";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 // Импортируем компоненты кейса
 import CaseHero from "@/components/case-study/CaseHero";
@@ -239,7 +239,7 @@ export default function CasePage() {
 
   return (
     <>
-      {/* <Navbar /> */}
+      <Header />
       <motion.div
         className={`bg-gradient-to-b ${
           isDark ? "from-black to-gray-900" : "from-white to-gray-50"
@@ -328,7 +328,7 @@ export default function CasePage() {
         <CaseActionButtons buttons={actionButtonsData.buttons} />
         <CaseRelated cases={relatedCasesData.cases} />
       </motion.div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

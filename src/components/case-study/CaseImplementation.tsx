@@ -74,31 +74,31 @@ export default function CaseImplementation({
                 y: -8,
                 transition: { duration: 0.3 },
                 boxShadow: isDark
-                  ? "0 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(21, 101, 192, 0.3)"
-                  : "0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(66, 153, 225, 0.2)",
+                  ? "0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(21, 101, 192, 0.2)"
+                  : "0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(66, 153, 225, 0.15)",
               }}
-              className={`p-6 rounded-2xl flex flex-col text-center transition-all duration-300 border shadow-md h-full ${
+              className={`p-6 rounded-2xl flex flex-col text-center transition-all duration-300 border shadow-lg h-full backdrop-blur-sm ${
                 isDark
-                  ? "bg-gradient-to-br from-gray-800/60 to-gray-900/60 border-gray-700/40 hover:border-blue-600/50"
-                  : "bg-gradient-to-br from-white to-gray-50/90 border-gray-200/70 hover:border-blue-300"
+                  ? "bg-blue-900/10 border-blue-800/30 hover:border-blue-700/50"
+                  : "bg-blue-500/5 border-blue-100/60 hover:border-blue-200/80"
               }`}
             >
               <div className="mb-5 flex justify-center">
                 <div
-                  className={`w-14 h-14 rounded-xl flex items-center justify-center transform transition-all duration-500 ${
+                  className={`w-14 h-14 rounded-xl flex items-center justify-center transform transition-all duration-500 shadow-md ${
                     isDark
-                      ? "bg-gradient-to-br from-blue-800/70 to-blue-900/70 text-blue-300"
-                      : "bg-gradient-to-br from-blue-100 to-blue-200/80 text-blue-600"
+                      ? "bg-gradient-to-br from-blue-700/50 to-blue-800/50 text-blue-200 border border-blue-600/30"
+                      : "bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 border border-blue-200/50"
                   }`}
                 >
                   <Icon className="w-6 h-6" />
                 </div>
               </div>
               <div
-                className={`inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold mb-3 mx-auto ${
+                className={`inline-flex items-center justify-center w-10 h-10 rounded-full text-sm font-bold mb-4 mx-auto shadow-inner ${
                   isDark
-                    ? "bg-blue-800/30 text-blue-300"
-                    : "bg-blue-100 text-blue-600"
+                    ? "bg-gray-800/40 text-blue-300 border border-blue-800/20"
+                    : "bg-blue-50/70 text-blue-700 border border-blue-100/50"
                 }`}
               >
                 {stage.number}
@@ -113,8 +113,8 @@ export default function CaseImplementation({
                 {stage.title}
               </h3>
               <p
-                className={`text-base ${
-                  isDark ? "text-gray-300" : "text-gray-600"
+                className={`text-base flex-grow ${
+                  isDark ? "text-gray-400" : "text-gray-500"
                 }`}
               >
                 {stage.duration}
@@ -134,35 +134,35 @@ export default function CaseImplementation({
             y: -5,
             transition: { duration: 0.2 },
             boxShadow: isDark
-              ? "0 12px 24px rgba(0, 0, 0, 0.4), 0 0 15px rgba(21, 101, 192, 0.2)"
-              : "0 12px 24px rgba(0, 0, 0, 0.08), 0 0 15px rgba(66, 153, 225, 0.1)",
+              ? "0 12px 24px rgba(0, 0, 0, 0.3), 0 0 12px rgba(21, 101, 192, 0.15)"
+              : "0 12px 24px rgba(0, 0, 0, 0.06), 0 0 12px rgba(66, 153, 225, 0.1)",
           }}
-          className={`mt-6 p-6 rounded-xl flex items-start space-x-4 border transform transition-all duration-300 ${
+          className={`mt-12 p-6 rounded-2xl flex items-start space-x-5 border transform transition-all duration-300 shadow-md backdrop-blur-sm ${
             isDark
-              ? "bg-gradient-to-r from-gray-800/80 to-gray-900/80 border-blue-900/30 hover:border-blue-700/40"
-              : "bg-gradient-to-r from-blue-50/60 to-indigo-50/40 border-blue-200/60 hover:border-blue-300/70"
+              ? "bg-gray-800/50 border-gray-700/40 hover:border-blue-700/50"
+              : "bg-white/70 border-gray-200/70 hover:border-blue-300/60"
           }`}
         >
           <div
-            className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center ${
+            className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center shadow-md ${
               isDark
-                ? "bg-gradient-to-br from-blue-800/40 to-blue-900/40 text-blue-300"
-                : "bg-gradient-to-br from-blue-100 to-blue-200/80 text-blue-600"
+                ? "bg-gradient-to-br from-blue-700/40 to-blue-800/40 text-blue-200 border border-blue-600/30"
+                : "bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 border border-blue-200/50"
             }`}
           >
             <FiInfo className="w-6 h-6" />
           </div>
           <div>
             <h4
-              className={`font-semibold text-lg mb-2 ${
+              className={`font-semibold text-lg mb-1 ${
                 isDark ? "text-blue-300" : "text-blue-700"
               }`}
             >
               Интересный факт
             </h4>
             <p
-              className={`text-base ${
-                isDark ? "text-gray-200" : "text-gray-700"
+              className={`text-base leading-relaxed ${
+                isDark ? "text-gray-300" : "text-gray-600"
               }`}
             >
               {additionalInfo}

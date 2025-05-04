@@ -10,6 +10,7 @@ interface ImplementationStage {
   title: string;
   duration: string;
   icon: React.ComponentType<{ className?: string }>;
+  details?: string;
 }
 
 interface CaseImplementationProps {
@@ -104,7 +105,7 @@ export default function CaseImplementation({
                 {stage.number}
               </div>
               <h3
-                className={`font-bold text-xl mb-3 ${
+                className={`font-bold text-xl mb-2 ${
                   isDark
                     ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300"
                     : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"
@@ -113,12 +114,21 @@ export default function CaseImplementation({
                 {stage.title}
               </h3>
               <p
-                className={`text-base flex-grow ${
-                  isDark ? "text-gray-400" : "text-gray-500"
+                className={`text-sm font-medium mb-3 ${
+                  isDark ? "text-gray-500" : "text-gray-400"
                 }`}
               >
                 {stage.duration}
               </p>
+              {stage.details && (
+                <p
+                  className={`text-sm flex-grow ${
+                    isDark ? "text-gray-400" : "text-gray-500"
+                  }`}
+                >
+                  {stage.details}
+                </p>
+              )}
             </motion.div>
           );
         })}

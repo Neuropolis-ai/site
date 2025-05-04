@@ -65,15 +65,12 @@ export default function CaseTechnologies({
 
   return (
     <CaseSection title="🧩 Используемые технологии">
-      <div // Внешний div без motion, убираем фон и тень
-        className={`p-8 rounded-3xl border backdrop-blur-md ${
-          isDark
-            ? "border-gray-700/40" // Оставляем только рамку
-            : "border-gray-200/70" // Оставляем только рамку
-        }`}
+      <div // Внешний div: убрана рамка (border)
+        className={`p-8 rounded-3xl backdrop-blur-md`}
+        // Убраны классы border и связанные с ним цвета
       >
         <motion.div
-          className="flex flex-wrap justify-center gap-4" // Центрируем плашки
+          className="flex flex-wrap justify-start gap-4" // Изменено: justify-center -> justify-start
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -93,12 +90,14 @@ export default function CaseTechnologies({
                     ? "0 10px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(21, 101, 192, 0.15)"
                     : "0 10px 20px rgba(0, 0, 0, 0.08), 0 0 10px rgba(66, 153, 225, 0.1)",
                 }}
+                // Стили для плашек технологий остаются прежними
                 className={`px-5 py-2.5 rounded-xl flex items-center space-x-2.5 text-base transition-all duration-300 border shadow-md transform ${
                   isDark
                     ? "bg-gray-800/50 border-blue-800/30 hover:border-blue-700/50 text-gray-200"
                     : "bg-white/60 border-blue-100/70 hover:border-blue-300/70 text-gray-700"
                 }`}
               >
+                {/* ... иконка и текст ... */}
                 <div
                   className={`flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center shadow-sm ${
                     isDark

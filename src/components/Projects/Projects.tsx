@@ -14,7 +14,7 @@ const projectsData = [
     title: "Улучшение клиентского сервиса с ИИ-агентами",
     description:
       "Разработали чат-бот на основе ИИ, который автоматизирует обработку запросов от клиентов. Чат-бот 24/7 решает 70% запросов без участия человека, сокращая время ожидания и повышая удовлетворенность клиентов на 40%.",
-    image: "/assets/images/callcenter.jpg",
+    image: "/assets/images/ai-customer-support-new.jpg",
     link: "/cases/ai-customer-support",
     metrics: [
       { number: "3 мин", label: "Среднее время ответа" },
@@ -28,8 +28,7 @@ const projectsData = [
     title: "AI-агент в отделе продаж",
     description:
       "Внедрили ИИ-агента для квалификации и первичной обработки лидов в B2B SaaS-компании. Это позволило сократить время отклика с 2 часов до 15 секунд и повысить конверсию на 27%.",
-    image:
-      "https://framerusercontent.com/images/ZpI3KG6axlIk98Y3TLt8CBGEJ0.jpg",
+    image: "/assets/images/cases/ai-sales-agent-cover.jpg",
     link: "/cases/ai-sales-agent",
     metrics: [
       { number: "15 сек", label: "Время отклика" },
@@ -43,7 +42,7 @@ const projectsData = [
     title: "ИИ-ассистент для создания контента",
     description:
       "Разработали ИИ-агента для блогера с аудиторией 500K+ подписчиков, который анализирует стиль, исследует актуальные темы и генерирует тексты контента. Это увеличило регулярность публикаций на 230% и повысило вовлеченность аудитории на 45%.",
-    image: "/assets/images/ai-consultation.jpg",
+    image: "/assets/images/cases/ai-content-assistant-cover.jpg",
     link: "/cases/ai-content-assistant",
     metrics: [
       { number: "230%", label: "Рост частоты публикаций" },
@@ -191,53 +190,48 @@ const Projects = () => {
                   key={project.id}
                   variants={cardVariants}
                   whileHover="hover"
-                  className="relative flex-shrink-0 w-full rounded-2xl overflow-hidden backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 shadow-md transition-all duration-300"
+                  className="relative flex-shrink-0 w-full rounded-3xl overflow-hidden bg-white/95 dark:bg-gray-900/90 border border-gray-100 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
-                  <div className="flex flex-col md:flex-row">
-                    <div className="relative h-[240px] md:h-auto md:w-2/5">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="flex flex-col justify-between p-6 md:w-3/5">
-                      <div>
-                        <div className="inline-block px-3 py-1 rounded-full text-xs mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400 font-medium">
-                          {project.category}
-                        </div>
-                        <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-3">
-                          {project.title}
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-6">
-                          {project.description}
-                        </p>
+                  <Link href={project.link} className="block">
+                    <div className="flex flex-col">
+                      <div className="relative w-full h-[300px]">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                          priority
+                        />
+                      </div>
+                      <div className="flex flex-col justify-between p-6">
+                        <div>
+                          <div className="inline-block px-4 py-1 rounded-full text-sm mb-4 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-medium">
+                            {project.category}
+                          </div>
+                          <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-6">
+                            {project.description}
+                          </p>
 
-                        {/* Метрики */}
-                        <div className="grid grid-cols-3 gap-4 mb-6">
-                          {project.metrics.map((metric, i) => (
-                            <div key={i} className="text-center">
-                              <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
-                                {metric.number}
+                          {/* Метрики */}
+                          <div className="grid grid-cols-3 gap-6 mb-6">
+                            {project.metrics.map((metric, i) => (
+                              <div key={i} className="text-center">
+                                <div className="text-xl md:text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">
+                                  {metric.number}
+                                </div>
+                                <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                                  {metric.label}
+                                </div>
                               </div>
-                              <div className="text-sm text-gray-500 dark:text-gray-400">
-                                {metric.label}
-                              </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
                       </div>
-                      <motion.div whileHover={{ x: 5 }}>
-                        <Link
-                          href={project.link}
-                          className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium"
-                        >
-                          Подробнее <ArrowRight className="ml-2 w-4 h-4" />
-                        </Link>
-                      </motion.div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>

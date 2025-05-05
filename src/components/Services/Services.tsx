@@ -1,3 +1,7 @@
+/*
+ * Компонент Services с обновленной стилизацией и текстом сообщения ИИ-агента
+ * Ветка: 050525-4
+ */
 "use client";
 import { useTheme } from "@/context/ThemeContext";
 import { useEffect, useRef, useState } from "react";

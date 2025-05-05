@@ -5,7 +5,8 @@ import { useEffect, useRef } from "react";
 import "../../style/card-line.css";
 import "../../style/icon-animations.css";
 import Container from "../ui/Container";
-import { Brain, Settings, BarChart3 } from "lucide-react";
+import { Brain, Settings, BarChart3, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Process = () => {
   const { isDark } = useTheme();
@@ -134,12 +135,13 @@ const Process = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <a
-            href="/ai-agent"
-            className="inline-block py-4 px-8 rounded-xl bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold text-lg transition-all duration-300 shadow-lg"
+          <motion.a
+            href="/cases"
+            whileHover={{ x: 5 }}
+            className="inline-flex items-center mt-6 text-blue-600 dark:text-blue-400 font-medium text-lg"
           >
-            Узнать больше о наших ИИ-решениях
-          </a>
+            Подробнее о решениях <ArrowRight className="ml-2 w-5 h-5" />
+          </motion.a>
         </div>
       </Container>
     </section>

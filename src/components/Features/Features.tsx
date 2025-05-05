@@ -10,7 +10,9 @@ import {
   Layers,
   FileText,
   Database,
+  ArrowRight,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Features = () => {
   const { isDark } = useTheme();
@@ -244,12 +246,13 @@ const Features = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <a
-            href="/ai-agent"
-            className="inline-block py-3 px-8 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg transition-all duration-300 shadow-lg"
+          <motion.a
+            href="/cases"
+            whileHover={{ x: 5 }}
+            className="inline-flex items-center mt-6 text-blue-600 dark:text-blue-400 font-medium text-lg"
           >
-            Узнать больше о наших ИИ-решениях
-          </a>
+            Подробнее о решениях <ArrowRight className="ml-2 w-5 h-5" />
+          </motion.a>
         </div>
       </Container>
     </section>

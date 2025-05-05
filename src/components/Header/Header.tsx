@@ -90,7 +90,7 @@ const Header = () => {
   // Menu items
   const menuItems = [
     { id: "services", label: "Услуги" },
-    { id: "projects", label: "Проекты" },
+    { id: "cases", label: "Кейсы" },
     { id: "blog", label: "Блог" },
     { id: "contact", label: "Контакты" },
   ];
@@ -138,6 +138,16 @@ const Header = () => {
                 href="/blog"
                 className={`text-[16px] py-[8px] px-[18px] rounded-[12px] text-gray-800
                             ${pathname === "/blog" ? "bg-[#e0e0e0]" : ""} 
+                            hover:text-[#0a2e6b] transition-colors`}
+              >
+                {item.label}
+              </Link>
+            ) : item.id === "cases" ? (
+              <Link
+                key={item.id}
+                href="/cases"
+                className={`text-[16px] py-[8px] px-[18px] rounded-[12px] text-gray-800
+                            ${pathname === "/cases" ? "bg-[#e0e0e0]" : ""} 
                             hover:text-[#0a2e6b] transition-colors`}
               >
                 {item.label}
@@ -194,6 +204,21 @@ const Header = () => {
                 className={`text-[18px] py-[10px] px-[20px] rounded-[12px] text-center text-gray-800
                             ${
                               pathname === "/blog"
+                                ? "bg-[#e0e0e0]"
+                                : "bg-transparent"
+                            } 
+                            hover:text-[#0a2e6b] transition-colors`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ) : item.id === "cases" ? (
+              <Link
+                key={item.id}
+                href="/cases"
+                className={`text-[18px] py-[10px] px-[20px] rounded-[12px] text-center text-gray-800
+                            ${
+                              pathname === "/cases"
                                 ? "bg-[#e0e0e0]"
                                 : "bg-transparent"
                             } 

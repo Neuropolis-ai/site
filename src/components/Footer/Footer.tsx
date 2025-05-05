@@ -116,13 +116,12 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#projects"
+                  <Link
+                    href="/cases"
                     className="text-gray-600 dark:text-gray-300 hover:text-[#0167F3] dark:hover:text-[#399AFC] transition-colors"
-                    onClick={(e) => navigateToSection("projects", e)}
                   >
-                    Проекты
-                  </a>
+                    Кейсы
+                  </Link>
                 </li>
                 <li>
                   <a
@@ -152,10 +151,10 @@ const Footer = () => {
               <ul className="space-y-3">
                 <li>
                   <Link
-                    href="/ai-agent"
-                    className="text-gray-600 dark:text-gray-300 hover:text-[#0167F3] dark:hover:text-[#399AFC] transition-colors"
+                    href="/cases"
+                    className="transition duration-300 ease-in-out text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
                   >
-                    ИИ-агенты
+                    Кейсы
                   </Link>
                 </li>
                 <li>

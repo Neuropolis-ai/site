@@ -3,10 +3,10 @@ import fs from "fs";
 import path from "path";
 
 // Массив защищенных путей, которые требуют аутентификации
-const PROTECTED_PATHS = [
+const PROTECTED_PATHS: string[] = [
   // Временно убрано для разработки
   // "/services/autonomous-ai-agents",
-  "/cases/ai-sales-agent",
+  // "/cases/ai-sales-agent", // Убрана защита с кейса
 ];
 
 // Пути, требующие доступа администратора
@@ -101,7 +101,7 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/services/autonomous-ai-agents/:path*",
-    "/cases/ai-sales-agent/:path*",
+    // "/cases/ai-sales-agent/:path*", // Убран из matcher
     "/test-telegram/:path*",
     "/admin/:path*",
     "/rss.xml",

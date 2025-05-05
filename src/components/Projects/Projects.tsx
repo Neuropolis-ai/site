@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Container from "../ui/Container";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const projectsData = [
   {
@@ -14,27 +15,41 @@ const projectsData = [
     description:
       "Разработали чат-бот на основе ИИ, который автоматизирует обработку запросов от клиентов. Чат-бот 24/7 решает 70% запросов без участия человека, сокращая время ожидания и повышая удовлетворенность клиентов на 40%.",
     image: "/assets/images/callcenter.jpg",
-    link: "/ai-agent",
+    link: "/cases/ai-customer-support",
+    metrics: [
+      { number: "3 мин", label: "Среднее время ответа" },
+      { number: "68%", label: "Рост NPS" },
+      { number: "82%", label: "Автоматизация обращений" },
+    ],
   },
   {
     id: 2,
-    category: "Маркетинг",
-    title: "Оптимизация маркетинговых кампаний с ИИ",
+    category: "Продажи",
+    title: "AI-агент в отделе продаж",
     description:
-      "Внедрили инструмент на основе ИИ для маркетингового агентства, который анализирует данные о вовлеченности пользователей и автоматизирует размещение рекламы. Это привело к увеличению CTR на 25% и снижению рекламных расходов на 20%.",
+      "Внедрили ИИ-агента для квалификации и первичной обработки лидов в B2B SaaS-компании. Это позволило сократить время отклика с 2 часов до 15 секунд и повысить конверсию на 27%.",
     image:
       "https://framerusercontent.com/images/ZpI3KG6axlIk98Y3TLt8CBGEJ0.jpg",
-    link: "/ai-agent",
+    link: "/cases/ai-sales-agent",
+    metrics: [
+      { number: "15 сек", label: "Время отклика" },
+      { number: "27%", label: "Рост конверсии" },
+      { number: "24/7", label: "Доступность" },
+    ],
   },
   {
     id: 3,
-    category: "Недвижимость",
-    title: "Предиктивная оценка недвижимости",
+    category: "Контент-маркетинг",
+    title: "ИИ-ассистент для создания контента",
     description:
-      "Разработали ИИ-агента для прогнозирования стоимости недвижимости для инвесторов, учитывающую местоположение, рыночные тренды и характеристики объектов. Этот инструмент ИИ повысил точность инвестиций на 20% и сократил время на исследования в два раза.",
-    image:
-      "https://framerusercontent.com/images/T7Yu7NzZ7KQKKMl69DSkuj0ME.jpeg",
-    link: "/ai-agent",
+      "Разработали ИИ-агента для блогера с аудиторией 500K+ подписчиков, который анализирует стиль, исследует актуальные темы и генерирует тексты контента. Это увеличило регулярность публикаций на 230% и повысило вовлеченность аудитории на 45%.",
+    image: "/assets/images/ai-consultation.jpg",
+    link: "/cases/ai-content-assistant",
+    metrics: [
+      { number: "230%", label: "Рост частоты публикаций" },
+      { number: "45%", label: "Увеличение вовлеченности" },
+      { number: "5x", label: "Ускорение работы" },
+    ],
   },
 ];
 
@@ -155,7 +170,7 @@ const Projects = () => {
                 пользу бизнесу.
               </p>
               <motion.a
-                href="/ai-agent"
+                href="/cases"
                 whileHover={{ x: 5 }}
                 className="inline-flex items-center mt-6 text-blue-600 dark:text-blue-400 font-medium text-lg"
               >
@@ -195,17 +210,32 @@ const Projects = () => {
                         <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-3">
                           {project.title}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-4">
+                        <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-6">
                           {project.description}
                         </p>
+
+                        {/* Метрики */}
+                        <div className="grid grid-cols-3 gap-4 mb-6">
+                          {project.metrics.map((metric, i) => (
+                            <div key={i} className="text-center">
+                              <div className="text-xl font-bold text-blue-600 dark:text-blue-400">
+                                {metric.number}
+                              </div>
+                              <div className="text-sm text-gray-500 dark:text-gray-400">
+                                {metric.label}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                      <motion.a
-                        href={project.link}
-                        className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium"
-                        whileHover={{ x: 5 }}
-                      >
-                        Подробнее <ArrowRight className="ml-2 w-4 h-4" />
-                      </motion.a>
+                      <motion.div whileHover={{ x: 5 }}>
+                        <Link
+                          href={project.link}
+                          className="inline-flex items-center text-blue-600 dark:text-blue-400 font-medium"
+                        >
+                          Подробнее <ArrowRight className="ml-2 w-4 h-4" />
+                        </Link>
+                      </motion.div>
                     </div>
                   </div>
                 </motion.div>

@@ -119,7 +119,7 @@ const Services = () => {
             </svg>
             Neuropolis.ai
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 dark:text-white mb-4">
+          <h2 className="text-[48px] font-bold text-gray-800 dark:text-white mb-4">
             Как{" "}
             <span className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-transparent bg-clip-text">
               ИИ может автоматизировать
@@ -288,16 +288,7 @@ const Services = () => {
                           – Генерировать тексты и отчёты,
                           <br />
                           – Собирать и анализировать информацию,
-                          <br />
-                          – Автоматизировать рутинные задачи.
-                          <br />
-                          <br />
-                          В итоге — вы экономите время, деньги и ресурсы, а
-                          процессы работают быстрее и стабильнее.
-                          <br />
-                          <br />
-                          Хотите — можем за 7 дней показать, как это будет
-                          работать у вас.
+                          <br />– Автоматизировать рутинные задачи.
                         </p>
                       </div>
                     </div>

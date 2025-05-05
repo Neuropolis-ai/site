@@ -370,11 +370,11 @@ const Services = () => {
                   : "bg-gray-50 border-gray-200 hover:border-blue-200"
               }`}
             >
-              <a href="/ai-agent" className="block">
+              <a href="/workflow-automation" className="block">
                 <div
-                  className={` flex items-center justify-center h-[341px] sm:h-[341px]  ${
+                  className={`flex items-center justify-center h-[341px] sm:h-[341px] ${
                     isDark
-                      ? "ai-card ai-agent"
+                      ? "ai-card"
                       : "bg-white rounded-xl border border-gray-100 mb-[20px]"
                   }`}
                   style={
@@ -387,41 +387,41 @@ const Services = () => {
                         }
                   }
                 >
-                  {/* AI Agent Animation Box */}
-                  <div
-                    ref={aiAgentRef}
-                    className={`ai-agent-container relative ${
-                      aiLinesVisible ? "ai-line-animated" : ""
-                    }`}
-                  >
-                    <div className="ai-agent-box w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] relative z-10">
-                      <span className="ai-agent-text text-[28px] sm:text-[36px]">
-                        AI
-                      </span>
+                  <div className="text-center">
+                    <div
+                      className={`inline-flex items-center justify-center w-20 h-20 rounded-full mb-4 ${
+                        isDark ? "bg-purple-900/30" : "bg-purple-100"
+                      }`}
+                    >
+                      <svg
+                        className="w-10 h-10 text-purple-600 dark:text-purple-400"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                        <path d="M8 12h8" />
+                        <path d="M12 16V8" />
+                      </svg>
                     </div>
-
-                    {/* Анимированные линии */}
-                    <div className="ai-animated-lines">
-                      {/* Верхняя линия */}
-                      <div className="ai-line ai-line-top">
-                        <div className="ai-line-glow"></div>
-                      </div>
-
-                      {/* Правая линия */}
-                      <div className="ai-line ai-line-right">
-                        <div className="ai-line-glow"></div>
-                      </div>
-
-                      {/* Нижняя линия */}
-                      <div className="ai-line ai-line-bottom">
-                        <div className="ai-line-glow"></div>
-                      </div>
-
-                      {/* Левая линия */}
-                      <div className="ai-line ai-line-left">
-                        <div className="ai-line-glow"></div>
-                      </div>
-                    </div>
+                    <h4
+                      className={`text-xl font-medium mb-2 ${
+                        isDark ? "text-white" : "text-gray-800"
+                      }`}
+                    >
+                      Автоматизация рабочих процессов
+                    </h4>
+                    <p
+                      className={`text-sm max-w-xs mx-auto ${
+                        isDark ? "text-gray-300" : "text-gray-600"
+                      }`}
+                    >
+                      Интегрируем ИИ в ваши существующие программные платформы,
+                      CRM-системы и маркетинговые каналы
+                    </p>
                   </div>
                 </div>
 
@@ -431,16 +431,15 @@ const Services = () => {
                       isDark ? "text-white" : "text-gray-800"
                     }`}
                   >
-                    Разработка ИИ-агентов
+                    Автоматизация рабочих процессов
                   </h3>
                   <p
                     className={`text-sm sm:text-base ${
                       isDark ? "text-[#919191]" : "text-gray-600"
                     }`}
                   >
-                    Создание интеллектуальных агентов, которые могут
-                    самостоятельно выполнять задачи, анализировать данные и
-                    принимать решения.
+                    Интеграция инструментов ИИ в существующие программные
+                    платформы, CRM-системы и маркетинговые каналы.
                   </p>
                 </div>
               </a>
@@ -517,7 +516,59 @@ const Services = () => {
         </div>
 
         {/* Компонент аналитики (График) */}
-        <div className="max-[425px]:mt-[17px] flex flex-col items-center">
+        <div className="max-[425px]:mt-[17px] flex flex-col gap-4 items-center">
+          {/* Карточка автоматизации рабочих процессов */}
+          <div
+            className={`service-card w-full px-6 py-5 rounded-xl relative overflow-hidden ${
+              isDark
+                ? "bg-[#050A1B] border border-[#152559]"
+                : "bg-white border border-gray-200"
+            }`}
+          >
+            <div className="flex justify-between items-start mb-4">
+              <div className="max-[425px]:mt-[5px]">
+                <h3
+                  className={`text-xl max-[425px]:text-lg font-semibold max-[425px]:mb-1 ${
+                    isDark ? "text-white" : "text-gray-800"
+                  }`}
+                >
+                  Автоматизация рабочих процессов
+                </h3>
+                <p
+                  className={`text-[14px] max-[425px]:text-[12px] ${
+                    isDark ? "text-[#919191]" : "text-gray-500"
+                  }`}
+                >
+                  Оптимизируем бизнес-процессы с помощью интеграции ИИ
+                </p>
+              </div>
+              <a
+                href="/workflow-automation"
+                className={`text-[13px] flex items-center gap-1 btn-hover ${
+                  isDark ? "text-purple-400" : "text-purple-600"
+                }`}
+              >
+                Подробнее
+                <svg
+                  width={14}
+                  height={14}
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.16699 10.0003H15.8337M15.8337 10.0003L10.0003 4.16699M15.8337 10.0003L10.0003 15.8337"
+                    stroke={isDark ? "#C4B5FD" : "#7C3AED"}
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          {/* Карточка чат-ботов */}
           <div
             className={`service-card w-full px-6 py-5 rounded-xl relative overflow-hidden ${
               isDark
@@ -560,6 +611,58 @@ const Services = () => {
                   <path
                     d="M4.16699 10.0003H15.8337M15.8337 10.0003L10.0003 4.16699M15.8337 10.0003L10.0003 15.8337"
                     stroke={isDark ? "#38BDF8" : "#2563EB"}
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          {/* Карточка ИИ-агентов */}
+          <div
+            className={`service-card w-full px-6 py-5 rounded-xl relative overflow-hidden ${
+              isDark
+                ? "bg-[#050A1B] border border-[#152559]"
+                : "bg-white border border-gray-200"
+            }`}
+          >
+            <div className="flex justify-between items-start mb-4">
+              <div className="max-[425px]:mt-[5px]">
+                <h3
+                  className={`text-xl max-[425px]:text-lg font-semibold max-[425px]:mb-1 ${
+                    isDark ? "text-white" : "text-gray-800"
+                  }`}
+                >
+                  Разработка ИИ-агентов
+                </h3>
+                <p
+                  className={`text-[14px] max-[425px]:text-[12px] ${
+                    isDark ? "text-[#919191]" : "text-gray-500"
+                  }`}
+                >
+                  Создаем интеллектуальных агентов для автоматизации сложных
+                  задач
+                </p>
+              </div>
+              <a
+                href="/ai-agent"
+                className={`text-[13px] flex items-center gap-1 btn-hover ${
+                  isDark ? "text-indigo-400" : "text-indigo-600"
+                }`}
+              >
+                Подробнее
+                <svg
+                  width={14}
+                  height={14}
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M4.16699 10.0003H15.8337M15.8337 10.0003L10.0003 4.16699M15.8337 10.0003L10.0003 15.8337"
+                    stroke={isDark ? "#818CF8" : "#4F46E5"}
                     strokeWidth={2}
                     strokeLinecap="round"
                     strokeLinejoin="round"

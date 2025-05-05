@@ -149,7 +149,7 @@ const Services = () => {
             >
               <a href="/chat-bots" className="block">
                 <div
-                  className={`p-6  relative ${
+                  className={`px-6 py-4 relative ${
                     isDark
                       ? "ai-card"
                       : "bg-white rounded-xl border border-gray-100"

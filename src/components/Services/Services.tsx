@@ -121,7 +121,7 @@ const Services = () => {
                 fill="currentColor"
               />
             </svg>
-            Neuropolis.ai
+            Услуги
           </div>
           <h2 className="text-[48px] font-bold text-gray-800 dark:text-white mb-4">
             Как{" "}
@@ -208,7 +208,7 @@ const Services = () => {
 
                   {/* Сообщение AI с анимацией печати */}
                   <div
-                    className={`flex gap-3 mt-2 h-[160px] transition-opacity duration-500 items-start ${
+                    className={`flex gap-3 mt-2 transition-opacity duration-500 items-start ${
                       isChatVisible ? "opacity-100" : "opacity-0"
                     }`}
                     style={{ transitionDelay: "800ms" }}
@@ -222,7 +222,7 @@ const Services = () => {
                     >
                       AI
                     </div>
-                    <div className="flex flex-col">
+                    <div className="flex flex-col flex-grow max-w-full">
                       <div
                         className={`text-[14px] font-medium mb-2 max-[425px]:text-[12px] ${
                           isDark ? "text-[#a8a8a8]" : "text-gray-500"
@@ -277,7 +277,7 @@ const Services = () => {
                         style={{ transitionDelay: isTyping ? "0ms" : "1500ms" }}
                       >
                         <p
-                          className={`max-w-[400px] text-[14px] max-[425px]:text-[11px] ai-message ${
+                          className={`w-full text-[14px] max-[425px]:text-[11px] ai-message ${
                             isDark ? "text-gray-300" : "text-gray-700"
                           }`}
                         >

@@ -61,38 +61,44 @@
   align-items: center;
   justify-content: center;
   --border-bottom-width: 1px;
-  --border-color: rgb(21, 58, 161);
+  --border-color: rgb(57, 154, 252);
   --border-left-width: 1px;
   --border-right-width: 1px;
   --border-style: solid;
   --border-top-width: 1px;
-  background: linear-gradient(180deg, rgb(0, 24, 94) 0%, rgb(5, 5, 5) 100%);
+  background: linear-gradient(
+    180deg,
+    rgb(1, 103, 243) 0%,
+    rgb(57, 154, 252) 100%
+  );
   border-radius: 10px;
-  box-shadow: rgba(0, 2, 128, 0.016) 0px 0.602187px 3.01094px 0px,
-    rgba(0, 2, 128, 0.06) 0px 2.28853px 11.4427px 0px,
-    rgba(0, 2, 128, 0.25) 0px 10px 50px 0px;
+  box-shadow: rgba(1, 103, 243, 0.016) 0px 0.602187px 3.01094px 0px,
+    rgba(1, 103, 243, 0.06) 0px 2.28853px 11.4427px 0px,
+    rgba(1, 103, 243, 0.25) 0px 10px 50px 0px,
+    0 0 15px 2px rgba(57, 154, 252, 0.5);
   opacity: 1;
-  border: 1px solid rgb(21, 58, 161);
+  border: 1px solid rgb(57, 154, 252);
 }
 
 @media (max-width: 639px) {
   .ai-agent-box {
     box-shadow: rgba(0, 2, 128, 0.016) 0px 0.4px 2px 0px,
       rgba(0, 2, 128, 0.06) 0px 1.5px 8px 0px,
-      rgba(0, 2, 128, 0.25) 0px 7px 35px 0px;
+      rgba(0, 2, 128, 0.25) 0px 7px 35px 0px,
+      0 0 10px 2px rgba(21, 58, 161, 0.5);
   }
 }
 
 .ai-agent-text {
   background-image: linear-gradient(
     0deg,
-    rgb(242, 242, 242) 0%,
-    rgb(105, 105, 105) 100%
+    rgb(255, 255, 255) 0%,
+    rgb(220, 230, 255) 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .icon-box {
@@ -132,7 +138,7 @@
 .circle {
   width: 4px;
   height: 4px;
-  background-color: #153aa1;
+  background-color: #0167f3;
   border-radius: 50%;
   display: inline-block;
 }
@@ -140,7 +146,7 @@
 .line {
   width: 15px;
   height: 2px;
-  background: linear-gradient(90deg, rgb(21, 58, 161) 0%, rgb(0, 24, 94) 100%);
+  background: linear-gradient(90deg, #0167f3 0%, #399afc 100%);
   display: inline-block;
 }
 
@@ -159,11 +165,11 @@
   border-radius: 15px 15px 0 0;
   width: 12px;
   height: 291px;
-  border-left: 1px solid #153aa1;
-  border-right: 1px solid #153aa1;
-  border-top: 1px solid #153aa1;
+  border-left: 1px solid #0167f3;
+  border-right: 1px solid #0167f3;
+  border-top: 1px solid #0167f3;
   border-radius: 15px 15px 0 0;
-  background: linear-gradient(180deg, #153aa1 0%, #050505 100%);
+  background: linear-gradient(180deg, #0167f3 0%, #399afc 100%);
 }
 
 .chart-line-gradient {
@@ -387,7 +393,7 @@
 
 .ai-line {
   position: absolute;
-  background: rgba(21, 58, 161, 0.3);
+  background: rgba(1, 103, 243, 0.3);
   overflow: hidden;
   transition: all 1.2s cubic-bezier(0.17, 0.67, 0.4, 1);
   opacity: 0;
@@ -435,9 +441,9 @@
   position: absolute;
   background: linear-gradient(
     90deg,
-    rgba(21, 58, 161, 0),
-    rgba(21, 58, 161, 1),
-    rgba(21, 58, 161, 0)
+    rgba(1, 103, 243, 0),
+    rgba(57, 154, 252, 1),
+    rgba(1, 103, 243, 0)
   );
   width: 100%;
   height: 100%;
@@ -452,9 +458,9 @@
 .ai-line-bottom .ai-line-glow {
   background: linear-gradient(
     0deg,
-    rgba(21, 58, 161, 0),
-    rgba(21, 58, 161, 1),
-    rgba(21, 58, 161, 0)
+    rgba(1, 103, 243, 0),
+    rgba(57, 154, 252, 1),
+    rgba(1, 103, 243, 0)
   );
   width: 100%;
   height: 200%;
@@ -513,34 +519,39 @@
   align-items: center;
   justify-content: center;
   --border-bottom-width: 1px;
-  --border-color: rgb(21, 58, 161);
+  --border-color: rgb(57, 154, 252);
   --border-left-width: 1px;
   --border-right-width: 1px;
   --border-style: solid;
   --border-top-width: 1px;
-  background: linear-gradient(180deg, rgb(0, 24, 94) 0%, rgb(5, 5, 5) 100%);
+  background: linear-gradient(
+    180deg,
+    rgb(1, 103, 243) 0%,
+    rgb(57, 154, 252) 100%
+  );
   border-radius: 10px;
-  box-shadow: rgba(0, 2, 128, 0.016) 0px 0.602187px 3.01094px 0px,
-    rgba(0, 2, 128, 0.06) 0px 2.28853px 11.4427px 0px,
-    rgba(0, 2, 128, 0.25) 0px 10px 50px 0px, 0 0 15px 2px rgba(21, 58, 161, 0.5);
+  box-shadow: rgba(1, 103, 243, 0.016) 0px 0.602187px 3.01094px 0px,
+    rgba(1, 103, 243, 0.06) 0px 2.28853px 11.4427px 0px,
+    rgba(1, 103, 243, 0.25) 0px 10px 50px 0px,
+    0 0 15px 2px rgba(57, 154, 252, 0.5);
   opacity: 1;
-  border: 1px solid rgb(21, 58, 161);
+  border: 1px solid rgb(57, 154, 252);
   animation: aiBoxGlow 3s infinite alternate;
 }
 
 @keyframes aiBoxGlow {
   0% {
-    box-shadow: rgba(0, 2, 128, 0.016) 0px 0.602187px 3.01094px 0px,
-      rgba(0, 2, 128, 0.06) 0px 2.28853px 11.4427px 0px,
-      rgba(0, 2, 128, 0.25) 0px 10px 50px 0px,
-      0 0 8px 2px rgba(21, 58, 161, 0.3);
+    box-shadow: rgba(1, 103, 243, 0.016) 0px 0.602187px 3.01094px 0px,
+      rgba(1, 103, 243, 0.06) 0px 2.28853px 11.4427px 0px,
+      rgba(1, 103, 243, 0.25) 0px 10px 50px 0px,
+      0 0 8px 2px rgba(57, 154, 252, 0.3);
   }
 
   100% {
-    box-shadow: rgba(0, 2, 128, 0.016) 0px 0.602187px 3.01094px 0px,
-      rgba(0, 2, 128, 0.06) 0px 2.28853px 11.4427px 0px,
-      rgba(0, 2, 128, 0.25) 0px 10px 50px 0px,
-      0 0 20px 5px rgba(21, 58, 161, 0.7);
+    box-shadow: rgba(1, 103, 243, 0.016) 0px 0.602187px 3.01094px 0px,
+      rgba(1, 103, 243, 0.06) 0px 2.28853px 11.4427px 0px,
+      rgba(1, 103, 243, 0.25) 0px 10px 50px 0px,
+      0 0 20px 5px rgba(57, 154, 252, 0.7);
   }
 }
 
@@ -583,7 +594,7 @@
 /* Анимированные линии с плавным появлением */
 .ai-line {
   position: absolute;
-  background: rgba(21, 58, 161, 0.3);
+  background: rgba(1, 103, 243, 0.3);
   overflow: hidden;
   transition: all 1.2s cubic-bezier(0.17, 0.67, 0.4, 1);
   opacity: 0;
@@ -650,9 +661,9 @@
   position: absolute;
   background: linear-gradient(
     90deg,
-    rgba(21, 58, 161, 0),
-    rgba(21, 58, 161, 1),
-    rgba(21, 58, 161, 0)
+    rgba(1, 103, 243, 0),
+    rgba(57, 154, 252, 1),
+    rgba(1, 103, 243, 0)
   );
   width: 100%;
   height: 100%;
@@ -673,9 +684,9 @@
 .ai-line-bottom .ai-line-glow {
   background: linear-gradient(
     0deg,
-    rgba(21, 58, 161, 0),
-    rgba(21, 58, 161, 1),
-    rgba(21, 58, 161, 0)
+    rgba(1, 103, 243, 0),
+    rgba(57, 154, 252, 1),
+    rgba(1, 103, 243, 0)
   );
   width: 100%;
   height: 200%;

@@ -105,14 +105,14 @@ const Services = () => {
           >
             Услуги
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold dark:text-white text-black mb-4">
-            Как ИИ может автоматизировать ваш бизнес
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold dark:text-white text-gray-900 mb-4">
+            Как{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]">
+              ИИ может автоматизировать
+            </span>{" "}
+            ваш бизнес
           </h2>
-          <p
-            className={`max-w-2xl mx-auto leading-relaxed ${
-              isDark ? "text-[#919191]" : "text-gray-600"
-            }`}
-          >
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Наши решения на базе ИИ оптимизируют эффективность, повышают
             продуктивность и обеспечивают измеримые результаты для вашего
             бизнеса.

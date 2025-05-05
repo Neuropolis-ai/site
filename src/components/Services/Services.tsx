@@ -370,7 +370,7 @@ const Services = () => {
                   : "bg-gray-50 border-gray-200 hover:border-blue-200"
               }`}
             >
-              <a href="/workflow-automation" className="block">
+              <a href="/ai-agent" className="block">
                 <div
                   className={`flex items-center justify-center h-[341px] sm:h-[341px] ${
                     isDark
@@ -386,15 +386,16 @@ const Services = () => {
                           mask: "linear-gradient(rgb(0, 0, 0) 80%, rgba(0, 0, 0, 0) 100%)",
                         }
                   }
+                  ref={aiAgentRef}
                 >
                   <div className="text-center">
                     <div
                       className={`inline-flex items-center justify-center w-20 h-20 rounded-full mb-4 ${
-                        isDark ? "bg-purple-900/30" : "bg-purple-100"
+                        isDark ? "bg-indigo-900/30" : "bg-indigo-100"
                       }`}
                     >
                       <svg
-                        className="w-10 h-10 text-purple-600 dark:text-purple-400"
+                        className="w-10 h-10 text-indigo-600 dark:text-indigo-400"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -402,9 +403,9 @@ const Services = () => {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       >
-                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-                        <path d="M8 12h8" />
-                        <path d="M12 16V8" />
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <path d="M12 8L12 16" />
+                        <path d="M8 12L16 12" />
                       </svg>
                     </div>
                     <h4
@@ -412,15 +413,15 @@ const Services = () => {
                         isDark ? "text-white" : "text-gray-800"
                       }`}
                     >
-                      Автоматизация рабочих процессов
+                      Разработка ИИ-агентов
                     </h4>
                     <p
                       className={`text-sm max-w-xs mx-auto ${
                         isDark ? "text-gray-300" : "text-gray-600"
                       }`}
                     >
-                      Интегрируем ИИ в ваши существующие программные платформы,
-                      CRM-системы и маркетинговые каналы
+                      Создаем интеллектуальных агентов для автоматизации сложных
+                      бизнес-задач и оптимизации процессов
                     </p>
                   </div>
                 </div>
@@ -431,15 +432,16 @@ const Services = () => {
                       isDark ? "text-white" : "text-gray-800"
                     }`}
                   >
-                    Автоматизация рабочих процессов
+                    Разработка ИИ-агентов
                   </h3>
                   <p
                     className={`text-sm sm:text-base ${
                       isDark ? "text-[#919191]" : "text-gray-600"
                     }`}
                   >
-                    Интеграция инструментов ИИ в существующие программные
-                    платформы, CRM-системы и маркетинговые каналы.
+                    Создаем интеллектуальных агентов, которые автоматизируют
+                    сложные бизнес-процессы и работают автономно для решения
+                    конкретных задач.
                   </p>
                 </div>
               </a>

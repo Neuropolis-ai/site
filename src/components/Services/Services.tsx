@@ -423,6 +423,78 @@ const Services = () => {
                       Создаем интеллектуальных агентов для автоматизации сложных
                       бизнес-задач и оптимизации процессов
                     </p>
+
+                    {/* AI Agent Box с анимированными линиями */}
+                    <div className="ai-agent-container mt-6 relative">
+                      <div className="ai-animated-lines">
+                        <div
+                          className={`ai-line ai-line-top ${
+                            aiLinesVisible ? "opacity-100 !transform-none" : ""
+                          }`}
+                          style={{ transitionDelay: "0.2s" }}
+                        >
+                          <div
+                            className="ai-line-glow"
+                            style={{
+                              animationPlayState: aiLinesVisible
+                                ? "running"
+                                : "paused",
+                            }}
+                          ></div>
+                        </div>
+                        <div
+                          className={`ai-line ai-line-right ${
+                            aiLinesVisible ? "opacity-100 !transform-none" : ""
+                          }`}
+                          style={{ transitionDelay: "0.4s" }}
+                        >
+                          <div
+                            className="ai-line-glow"
+                            style={{
+                              animationPlayState: aiLinesVisible
+                                ? "running"
+                                : "paused",
+                            }}
+                          ></div>
+                        </div>
+                        <div
+                          className={`ai-line ai-line-bottom ${
+                            aiLinesVisible ? "opacity-100 !transform-none" : ""
+                          }`}
+                          style={{ transitionDelay: "0.6s" }}
+                        >
+                          <div
+                            className="ai-line-glow"
+                            style={{
+                              animationPlayState: aiLinesVisible
+                                ? "running"
+                                : "paused",
+                            }}
+                          ></div>
+                        </div>
+                        <div
+                          className={`ai-line ai-line-left ${
+                            aiLinesVisible ? "opacity-100 !transform-none" : ""
+                          }`}
+                          style={{ transitionDelay: "0.8s" }}
+                        >
+                          <div
+                            className="ai-line-glow"
+                            style={{
+                              animationPlayState: aiLinesVisible
+                                ? "running"
+                                : "paused",
+                            }}
+                          ></div>
+                        </div>
+                      </div>
+
+                      <div className="ai-agent-box p-4 sm:p-5 relative z-10">
+                        <p className="ai-agent-text text-[14px] sm:text-[16px]">
+                          ИИ-агент
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 

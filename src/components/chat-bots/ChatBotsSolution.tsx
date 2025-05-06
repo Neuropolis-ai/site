@@ -62,42 +62,42 @@ export default function ChatBotsSolution() {
       title: "Круглосуточная работа",
       description:
         "Чат-боты обеспечивают мгновенную поддержку клиентам 24/7/365 без выходных и праздников.",
-      gradient: "from-blue-400 to-indigo-500",
+      gradient: "from-[#0167F3] to-[#399AFC]",
     },
     {
       icon: <MessageSquare className="w-6 h-6" />,
       title: "Одновременная обработка",
       description:
         "Одновременное обслуживание тысяч клиентов без снижения качества и скорости ответов.",
-      gradient: "from-indigo-400 to-purple-500",
+      gradient: "from-[#0167F3]/90 to-[#399AFC]/90",
     },
     {
       icon: <Users className="w-6 h-6" />,
       title: "Персонализация",
       description:
         "Индивидуальный подход к каждому клиенту на основе истории взаимодействия и предпочтений.",
-      gradient: "from-purple-400 to-pink-500",
+      gradient: "from-[#0167F3]/80 to-[#399AFC]/80",
     },
     {
       icon: <Database className="w-6 h-6" />,
       title: "Интеграция с CRM",
       description:
         "Бесшовная интеграция с CRM-системами и другими бизнес-инструментами для полной автоматизации.",
-      gradient: "from-pink-400 to-rose-500",
+      gradient: "from-[#0167F3]/70 to-[#399AFC]/70",
     },
     {
       icon: <DollarSign className="w-6 h-6" />,
       title: "Снижение затрат",
       description:
         "Экономия до 70% расходов на поддержку клиентов по сравнению с традиционными методами.",
-      gradient: "from-amber-400 to-orange-500",
+      gradient: "from-[#0167F3]/60 to-[#399AFC]/60",
     },
     {
       icon: <BarChart2 className="w-6 h-6" />,
       title: "Аналитика и отчеты",
       description:
         "Подробная аналитика всех взаимодействий для улучшения бизнес-процессов и обслуживания.",
-      gradient: "from-emerald-400 to-teal-500",
+      gradient: "from-[#0167F3]/50 to-[#399AFC]/50",
     },
   ];
 
@@ -106,8 +106,8 @@ export default function ChatBotsSolution() {
     {
       name: "Telegram",
       icon: <MessageSquare className="w-6 h-6" />,
-      color: "text-blue-500",
-      gradient: "from-blue-500 to-blue-600",
+      color: "text-[#0167F3]",
+      gradient: "from-[#0167F3] to-[#399AFC]",
       capabilities: [
         "Обработка текстовых сообщений и медиафайлов",
         "Интерактивные кнопки и встроенные клавиатуры",
@@ -118,8 +118,8 @@ export default function ChatBotsSolution() {
     {
       name: "WhatsApp",
       icon: <Globe className="w-6 h-6" />,
-      color: "text-green-500",
-      gradient: "from-green-500 to-green-600",
+      color: "text-[#0167F3]",
+      gradient: "from-[#0167F3] to-[#399AFC]",
       capabilities: [
         "Коммуникация через официальное API WhatsApp Business",
         "Отправка текстовых сообщений, изображений и файлов",
@@ -130,8 +130,8 @@ export default function ChatBotsSolution() {
     {
       name: "Веб-сайт",
       icon: <Globe className="w-6 h-6" />,
-      color: "text-indigo-500",
-      gradient: "from-indigo-500 to-indigo-600",
+      color: "text-[#0167F3]",
+      gradient: "from-[#0167F3] to-[#399AFC]",
       capabilities: [
         "Интерактивные виджеты для веб-сайта в соответствии с дизайном",
         "Многоязычная поддержка для международных сайтов",
@@ -180,7 +180,7 @@ export default function ChatBotsSolution() {
         >
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 bg-[#0167F3]/10 text-[#0167F3] dark:text-[#399AFC] border border-[#0167F3]/20 dark:border-[#399AFC]/50 backdrop-blur-sm"
           >
             <svg
               width={15}
@@ -188,7 +188,7 @@ export default function ChatBotsSolution() {
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="text-blue-600 dark:text-blue-400"
+              className="text-[#0167F3] dark:text-[#399AFC]"
             >
               <path
                 opacity="0.2"
@@ -210,7 +210,7 @@ export default function ChatBotsSolution() {
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] via-[#2C81F6] to-[#399AFC] relative">
               автоматизации коммуникаций
               <svg
-                className="absolute -bottom-2 left-0 w-full h-2 text-blue-500/20"
+                className="absolute -bottom-2 left-0 w-full h-2 text-[#0167F3]/20"
                 viewBox="0 0 100 15"
                 preserveAspectRatio="none"
               >
@@ -240,12 +240,12 @@ export default function ChatBotsSolution() {
           viewport={{ once: true, amount: 0.1 }}
           className="relative mb-24 p-8 rounded-2xl overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-indigo-600/10 dark:from-blue-800/20 dark:to-indigo-800/20 backdrop-blur-sm border border-blue-200/30 dark:border-blue-700/30 rounded-2xl"></div>
-          <div className="absolute -right-20 -top-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0167F3]/10 to-[#399AFC]/10 dark:from-[#0167F3]/20 dark:to-[#399AFC]/20 backdrop-blur-sm border border-[#0167F3]/20 dark:border-[#399AFC]/30 rounded-2xl"></div>
+          <div className="absolute -right-20 -top-20 w-64 h-64 bg-[#0167F3]/10 rounded-full blur-3xl"></div>
+          <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-[#399AFC]/10 rounded-full blur-3xl"></div>
 
           <div className="relative z-10 flex flex-col md:flex-row items-center gap-8">
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg">
+            <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center bg-gradient-to-br from-[#0167F3] to-[#399AFC] shadow-lg">
               <BrainCircuit className="w-10 h-10 md:w-12 md:h-12 text-white" />
             </div>
             <div className="flex-1 text-center md:text-left">
@@ -259,19 +259,19 @@ export default function ChatBotsSolution() {
                 работы, становясь умнее с каждым взаимодействием.
               </p>
               <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#0167F3]/10 text-[#0167F3] dark:bg-[#0167F3]/20 dark:text-[#399AFC]">
                   <Sparkles className="w-3.5 h-3.5 mr-1.5" />
                   GPT-4 Turbo
                 </span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-300">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#0167F3]/15 text-[#0167F3] dark:bg-[#0167F3]/25 dark:text-[#399AFC]">
                   <Sparkles className="w-3.5 h-3.5 mr-1.5" />
                   Gemini Pro
                 </span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#0167F3]/20 text-[#0167F3] dark:bg-[#0167F3]/30 dark:text-[#399AFC]">
                   <Sparkles className="w-3.5 h-3.5 mr-1.5" />
                   Claude 3
                 </span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300">
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#0167F3]/25 text-[#0167F3] dark:bg-[#0167F3]/35 dark:text-[#399AFC]">
                   <Sparkles className="w-3.5 h-3.5 mr-1.5" />
                   Собственные модели
                 </span>
@@ -305,15 +305,15 @@ export default function ChatBotsSolution() {
               ></div>
 
               {/* Декоративный элемент */}
-              <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-gray-100 dark:bg-gray-700 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-[#0167F3]/5 dark:bg-[#399AFC]/10 opacity-0 group-hover:opacity-40 transition-opacity duration-500"></div>
 
               <div className="relative z-10">
                 <div
-                  className={`w-14 h-14 rounded-xl mb-5 flex items-center justify-center bg-gradient-to-br ${benefit.gradient} text-white shadow-md`}
+                  className={`w-14 h-14 rounded-xl mb-5 flex items-center justify-center bg-gradient-to-br ${benefit.gradient} text-white shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-105`}
                 >
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-[#0167F3] dark:group-hover:text-[#399AFC] transition-colors duration-300">
                   {benefit.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -346,17 +346,17 @@ export default function ChatBotsSolution() {
                 variants={itemVariants}
                 className={`relative overflow-hidden p-7 rounded-2xl transition-all duration-300 ${
                   isDark
-                    ? "bg-gray-800/50 border border-gray-700/50 hover:border-gray-600"
-                    : "bg-white border border-gray-200 hover:border-gray-300"
-                } hover:shadow-lg`}
+                    ? "bg-gray-800/50 border border-gray-700/50 hover:border-[#399AFC]/50"
+                    : "bg-white border border-gray-200 hover:border-[#0167F3]/50"
+                } hover:shadow-lg hover:shadow-[#0167F3]/5 dark:hover:shadow-[#399AFC]/5`}
               >
                 {/* Градиент фона */}
                 <div
-                  className={`absolute left-0 top-0 h-1 w-full bg-gradient-to-r ${platform.gradient}`}
+                  className={`absolute left-0 top-0 h-2 w-full bg-gradient-to-r ${platform.gradient}`}
                 ></div>
                 <div className="flex items-center gap-3 mb-5">
                   <div
-                    className={`w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br ${platform.gradient} text-white`}
+                    className={`w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${platform.gradient} text-white shadow-md transform transition-transform duration-300 hover:scale-105`}
                   >
                     {platform.icon}
                   </div>
@@ -367,7 +367,7 @@ export default function ChatBotsSolution() {
                 <ul className="space-y-3.5">
                   {platform.capabilities.map((capability, i) => (
                     <li key={i} className="flex items-start">
-                      <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-[#0167F3] dark:text-[#399AFC] mr-2 mt-0.5 flex-shrink-0" />
                       <span className="text-gray-700 dark:text-gray-300">
                         {capability}
                       </span>
@@ -378,7 +378,7 @@ export default function ChatBotsSolution() {
                 <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700/50">
                   <a
                     href="#chatbots-cases"
-                    className="inline-flex items-center text-sm font-medium group text-blue-600 dark:text-blue-400"
+                    className="inline-flex items-center text-sm font-medium group text-[#0167F3] dark:text-[#399AFC] hover:text-[#399AFC] dark:hover:text-[#0167F3] transition-colors duration-300"
                   >
                     Посмотреть примеры
                     <ArrowRight className="ml-1.5 w-4 h-4 transition-transform group-hover:translate-x-1" />

@@ -10,6 +10,9 @@ import {
   FiDollarSign,
   FiBarChart2,
   FiTrendingUp,
+  FiZap,
+  FiShield,
+  FiActivity,
 } from "react-icons/fi";
 
 export default function WorkflowAutomationSolution() {
@@ -44,7 +47,22 @@ export default function WorkflowAutomationSolution() {
     },
     hover: {
       y: -5,
+      boxShadow: isDark
+        ? "0 10px 30px rgba(30, 64, 175, 0.2)"
+        : "0 10px 30px rgba(59, 130, 246, 0.15)",
       transition: { duration: 0.3 },
+    },
+  };
+
+  const floatingVariants = {
+    initial: { y: 0 },
+    animate: {
+      y: [0, -10, 0],
+      transition: {
+        duration: 5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
     },
   };
 
@@ -91,6 +109,7 @@ export default function WorkflowAutomationSolution() {
   // Типы интеграций
   const integrationTypes = [
     {
+      icon: <FiZap />,
       name: "CRM-системы",
       capabilities: [
         "Автоматизация процессов продаж и маркетинга",
@@ -100,6 +119,7 @@ export default function WorkflowAutomationSolution() {
       ],
     },
     {
+      icon: <FiActivity />,
       name: "Маркетинговые платформы",
       capabilities: [
         "Автоматизация создания и запуска рекламных кампаний",
@@ -109,6 +129,7 @@ export default function WorkflowAutomationSolution() {
       ],
     },
     {
+      icon: <FiShield />,
       name: "ERP и бухгалтерия",
       capabilities: [
         "Автоматизация финансовых операций и отчетности",
@@ -125,11 +146,38 @@ export default function WorkflowAutomationSolution() {
       className="py-16 md:py-24 relative overflow-hidden"
     >
       {/* Градиентный фон */}
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-50 to-white dark:from-purple-950/10 dark:to-black -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white dark:from-blue-950/10 dark:to-black -z-10"></div>
+
+      {/* Сетка-фон */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: "url('/grid-pattern.svg')",
+            backgroundSize: "24px 24px",
+            backgroundRepeat: "repeat",
+          }}
+        ></div>
+      </div>
 
       {/* Декоративные элементы */}
-      <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-purple-200/20 to-purple-400/20 dark:from-purple-500/10 dark:to-purple-700/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
+      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-gradient-to-tr from-sky-200/30 to-sky-400/30 dark:from-sky-500/10 dark:to-sky-700/10 rounded-full blur-3xl -z-5"></div>
+
+      {/* Анимированные элементы */}
+      <motion.div
+        variants={floatingVariants}
+        initial="initial"
+        animate="animate"
+        className="absolute top-[5%] right-[15%] w-12 h-12 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
+      ></motion.div>
+      <motion.div
+        variants={floatingVariants}
+        initial="initial"
+        animate="animate"
+        className="absolute bottom-[10%] left-[12%] w-16 h-16 bg-sky-400/20 dark:bg-sky-600/30 rounded-full backdrop-blur-md z-0"
+        style={{ animationDelay: "1.5s" }}
+      ></motion.div>
 
       <Container>
         <motion.div
@@ -141,18 +189,16 @@ export default function WorkflowAutomationSolution() {
         >
           <motion.div
             variants={itemVariants}
-            className={`inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box ${
-              !isDark && "light-switch-box"
-            }`}
+            className="inline-flex items-center justify-center border border-blue-300 dark:border-blue-800 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400"
           >
             Решение
           </motion.div>
           <motion.h2
             variants={itemVariants}
-            className="text-3xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-4"
+            className="text-3xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-4 tracking-tight"
           >
             Интеллектуальная автоматизация{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">
               рабочих процессов
             </span>
           </motion.h2>
@@ -181,16 +227,16 @@ export default function WorkflowAutomationSolution() {
               whileHover="hover"
               className={`p-6 rounded-xl transition-all ${
                 isDark
-                  ? "bg-gray-800/50 hover:bg-gray-800/80 border border-gray-700"
-                  : "bg-white hover:shadow-lg border border-gray-200"
+                  ? "bg-gray-800/50 hover:bg-gray-800/80 border border-gray-700 backdrop-blur-sm"
+                  : "bg-white hover:shadow-xl border border-gray-200 hover:border-blue-200"
               }`}
             >
               <div
                 className={`w-14 h-14 rounded-xl mb-4 flex items-center justify-center text-xl ${
-                  isDark ? "bg-purple-900/30" : "bg-purple-50"
+                  isDark ? "bg-blue-900/30" : "bg-blue-50"
                 }`}
               >
-                <span className="text-purple-600 dark:text-purple-400">
+                <span className="text-blue-600 dark:text-blue-400">
                   {benefit.icon}
                 </span>
               </div>
@@ -224,19 +270,37 @@ export default function WorkflowAutomationSolution() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className={`p-6 rounded-xl ${
+                whileHover={{
+                  y: -5,
+                  transition: { duration: 0.3 },
+                  boxShadow: isDark
+                    ? "0 10px 30px rgba(30, 64, 175, 0.2)"
+                    : "0 10px 30px rgba(59, 130, 246, 0.15)",
+                }}
+                className={`p-6 rounded-xl transition-all ${
                   isDark
-                    ? "bg-gray-800/50 border border-gray-700"
-                    : "bg-white border border-gray-200"
+                    ? "bg-gray-800/50 border border-gray-700 backdrop-blur-sm"
+                    : "bg-white border border-gray-200 hover:border-blue-200"
                 }`}
               >
-                <h4 className="text-xl font-semibold text-purple-600 dark:text-purple-400 mb-4">
-                  {platform.name}
-                </h4>
-                <ul className="space-y-2">
+                <div className="flex items-start gap-3 mb-4">
+                  <div
+                    className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
+                      isDark ? "bg-blue-900/30" : "bg-blue-50"
+                    }`}
+                  >
+                    <span className="text-blue-600 dark:text-blue-400">
+                      {platform.icon}
+                    </span>
+                  </div>
+                  <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400">
+                    {platform.name}
+                  </h4>
+                </div>
+                <ul className="space-y-2 ml-2">
                   {platform.capabilities.map((capability, i) => (
                     <li key={i} className="flex items-start">
-                      <span className="text-green-500 mr-2 mt-1">✓</span>
+                      <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
                       <span className="text-gray-600 dark:text-gray-300">
                         {capability}
                       </span>
@@ -262,95 +326,230 @@ export default function WorkflowAutomationSolution() {
             Сравнение с ручными процессами
           </motion.h3>
 
-          <motion.div variants={itemVariants} className="overflow-x-auto">
+          <motion.div
+            variants={itemVariants}
+            className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg"
+          >
             <table
               className={`w-full border-collapse ${
                 isDark ? "text-gray-300" : "text-gray-700"
               }`}
             >
               <thead>
-                <tr className={`${isDark ? "bg-gray-800" : "bg-gray-100"}`}>
-                  <th className="p-4 text-left border-b border-r">Параметр</th>
-                  <th className="p-4 text-left border-b border-r bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400">
+                <tr className={`${isDark ? "bg-gray-800" : "bg-gray-50"}`}>
+                  <th className="p-4 text-left border-b dark:border-gray-700">
+                    Параметр
+                  </th>
+                  <th className="p-4 text-left border-b dark:border-gray-700 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
                     Автоматизированные процессы
                   </th>
-                  <th className="p-4 text-left border-b">Ручные процессы</th>
+                  <th className="p-4 text-left border-b dark:border-gray-700">
+                    Ручные процессы
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr
                   className={`${
-                    isDark ? "border-gray-700" : "border-gray-200"
-                  }`}
+                    isDark ? "hover:bg-gray-800/70" : "hover:bg-blue-50/30"
+                  } transition-colors`}
                 >
-                  <td className="p-4 border-b border-r">Скорость выполнения</td>
-                  <td className="p-4 border-b border-r bg-purple-50/50 dark:bg-purple-900/20">
-                    <span className="text-green-500">В 5-10 раз быстрее</span>
+                  <td className="p-4 border-b dark:border-gray-700">
+                    Скорость выполнения
                   </td>
-                  <td className="p-4 border-b">
-                    <span className="text-red-500">
+                  <td className="p-4 border-b dark:border-gray-700 bg-blue-50/50 dark:bg-blue-900/20">
+                    <span className="text-green-500 flex items-center">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                      В 5-10 раз быстрее
+                    </span>
+                  </td>
+                  <td className="p-4 border-b dark:border-gray-700">
+                    <span className="text-red-500 flex items-center">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
                       Зависит от нагрузки и скорости сотрудника
                     </span>
                   </td>
                 </tr>
                 <tr
                   className={`${
-                    isDark ? "border-gray-700" : "border-gray-200"
-                  }`}
+                    isDark ? "hover:bg-gray-800/70" : "hover:bg-blue-50/30"
+                  } transition-colors`}
                 >
-                  <td className="p-4 border-b border-r">Точность данных</td>
-                  <td className="p-4 border-b border-r bg-purple-50/50 dark:bg-purple-900/20">
-                    <span className="text-green-500">99.9%</span>
+                  <td className="p-4 border-b dark:border-gray-700">
+                    Точность данных
                   </td>
-                  <td className="p-4 border-b">
-                    <span className="text-red-500">
+                  <td className="p-4 border-b dark:border-gray-700 bg-blue-50/50 dark:bg-blue-900/20">
+                    <span className="text-green-500 flex items-center">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                      99.9%
+                    </span>
+                  </td>
+                  <td className="p-4 border-b dark:border-gray-700">
+                    <span className="text-red-500 flex items-center">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
                       60-90% (зависит от сложности задачи)
                     </span>
                   </td>
                 </tr>
                 <tr
                   className={`${
-                    isDark ? "border-gray-700" : "border-gray-200"
-                  }`}
+                    isDark ? "hover:bg-gray-800/70" : "hover:bg-blue-50/30"
+                  } transition-colors`}
                 >
-                  <td className="p-4 border-b border-r">Масштабируемость</td>
-                  <td className="p-4 border-b border-r bg-purple-50/50 dark:bg-purple-900/20">
-                    <span className="text-green-500">Неограниченная</span>
+                  <td className="p-4 border-b dark:border-gray-700">
+                    Масштабируемость
                   </td>
-                  <td className="p-4 border-b">
-                    <span className="text-red-500">
+                  <td className="p-4 border-b dark:border-gray-700 bg-blue-50/50 dark:bg-blue-900/20">
+                    <span className="text-green-500 flex items-center">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                      Неограниченная
+                    </span>
+                  </td>
+                  <td className="p-4 border-b dark:border-gray-700">
+                    <span className="text-red-500 flex items-center">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
                       Требует пропорционального увеличения персонала
                     </span>
                   </td>
                 </tr>
                 <tr
                   className={`${
-                    isDark ? "border-gray-700" : "border-gray-200"
-                  }`}
+                    isDark ? "hover:bg-gray-800/70" : "hover:bg-blue-50/30"
+                  } transition-colors`}
                 >
-                  <td className="p-4 border-b border-r">
+                  <td className="p-4 border-b dark:border-gray-700">
                     Стоимость обработки одной операции
                   </td>
-                  <td className="p-4 border-b border-r bg-purple-50/50 dark:bg-purple-900/20">
-                    <span className="text-green-500">от $0.05 до $0.5</span>
+                  <td className="p-4 border-b dark:border-gray-700 bg-blue-50/50 dark:bg-blue-900/20">
+                    <span className="text-green-500 flex items-center">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                      от $0.05 до $0.5
+                    </span>
                   </td>
-                  <td className="p-4 border-b">
-                    <span className="text-red-500">от $2 до $15</span>
+                  <td className="p-4 border-b dark:border-gray-700">
+                    <span className="text-red-500 flex items-center">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                      от $2 до $15
+                    </span>
                   </td>
                 </tr>
                 <tr
                   className={`${
-                    isDark ? "border-gray-700" : "border-gray-200"
-                  }`}
+                    isDark ? "hover:bg-gray-800/70" : "hover:bg-blue-50/30"
+                  } transition-colors`}
                 >
-                  <td className="p-4 border-b border-r">Аналитика процессов</td>
-                  <td className="p-4 border-b border-r bg-purple-50/50 dark:bg-purple-900/20">
-                    <span className="text-green-500">
+                  <td className="p-4 border-b dark:border-gray-700">
+                    Аналитика процессов
+                  </td>
+                  <td className="p-4 border-b dark:border-gray-700 bg-blue-50/50 dark:bg-blue-900/20">
+                    <span className="text-green-500 flex items-center">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
                       Полная, в реальном времени
                     </span>
                   </td>
-                  <td className="p-4 border-b">
-                    <span className="text-red-500">
+                  <td className="p-4 border-b dark:border-gray-700">
+                    <span className="text-red-500 flex items-center">
+                      <svg
+                        className="w-4 h-4 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
                       Ограниченная, с задержкой
                     </span>
                   </td>

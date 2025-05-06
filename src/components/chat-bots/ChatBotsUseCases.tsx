@@ -574,7 +574,6 @@ export default function ChatBotsUseCases() {
                       <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white tracking-tight">
                         {useCase.title}
                       </h3>
-                      {/* Убираем кнопку "Подробнее" */}
                     </div>
                   </div>
 
@@ -582,34 +581,49 @@ export default function ChatBotsUseCases() {
                     {useCase.description}
                   </p>
 
-                  {/* Стильные метрики с квадратными иконками */}
-                  <div className="grid grid-cols-3 gap-3">
-                    {useCase.stats.map((stat, i) => (
-                      <div
-                        key={i}
-                        className={`p-3 rounded-xl 
-                          ${
-                            isDark
-                              ? "bg-blue-900/30 backdrop-blur-sm border border-blue-800/30"
-                              : "bg-blue-50/70 backdrop-blur-sm border border-blue-100/60"
-                          } 
-                          flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all group/stat`}
+                  {/* Модернизированная статистика с квадратными иконками */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
+                    {useCases[activeTab].stats.map((stat, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
+                        className={`flex flex-col p-5 md:p-6 rounded-xl ${
+                          isDark
+                            ? "bg-gradient-to-b from-blue-900/30 to-blue-800/20 backdrop-blur-sm border border-blue-800/30"
+                            : "bg-gradient-to-b from-blue-50/90 to-blue-100/50 backdrop-blur-sm border border-blue-100/60"
+                        } shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden group`}
                       >
-                        <div
-                          className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
-                            isDark ? "bg-blue-800/50" : "bg-blue-100"
-                          } ${BRAND_COLORS.primary.text.light} dark:${
-                            BRAND_COLORS.primary.text.dark
-                          } group-hover/stat:scale-110 transition-transform mb-4`}
-                        >
-                          {stat.icon}
+                        {/* Блики и эффекты */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div className="absolute bottom-0 left-0 h-2 w-full bg-gradient-to-r from-blue-500 to-blue-600 opacity-50"></div>
+                        <div className="absolute -right-20 -top-20 w-40 h-40 bg-blue-500/5 rounded-full blur-2xl transform rotate-12 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+                        <div className="flex items-center gap-4 mb-4">
+                          <div
+                            className={`flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center ${
+                              isDark
+                                ? "bg-gradient-to-br from-blue-800/80 to-blue-700/80"
+                                : "bg-gradient-to-br from-blue-100 to-blue-200/80"
+                            } shadow-sm group-hover:shadow-md transition-all duration-300`}
+                          >
+                            <div
+                              className={`${BRAND_COLORS.primary.text.light} dark:text-white scale-110`}
+                            >
+                              {stat.icon}
+                            </div>
+                          </div>
+                          <p className="text-base font-medium text-gray-700 dark:text-blue-100">
+                            {stat.label}
+                          </p>
                         </div>
-                        <div
-                          className={`text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient}`}
+                        <p
+                          className={`text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient} mt-2`}
                         >
                           {stat.value}
-                        </div>
-                      </div>
+                        </p>
+                      </motion.div>
                     ))}
                   </div>
                 </div>
@@ -678,12 +692,6 @@ export default function ChatBotsUseCases() {
                       <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight whitespace-nowrap">
                         {useCases[activeTab].title}
                       </h3>
-                      <div
-                        className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-medium bg-blue-100 dark:bg-blue-900/30 ${BRAND_COLORS.primary.text.light} dark:${BRAND_COLORS.primary.text.dark}`}
-                      >
-                        <Sparkles className="w-3.5 h-3.5" />
-                        <span>Оптимальное решение</span>
-                      </div>
                     </div>
                   </div>
 
@@ -896,117 +904,47 @@ export default function ChatBotsUseCases() {
                     </div>
                   </div>
 
-                  {/* Модернизированная статистика с квадратными иконками */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-                    {useCases[activeTab].stats.map((stat, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
-                        className={`flex flex-col p-4 md:p-5 rounded-xl ${
-                          isDark
-                            ? "bg-gradient-to-b from-blue-900/30 to-blue-800/20 backdrop-blur-sm border border-blue-800/30"
-                            : "bg-gradient-to-b from-blue-50/90 to-blue-100/50 backdrop-blur-sm border border-blue-100/60"
-                        } shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden`}
+                  {/* Модернизированные фичи с квадратными элементами */}
+                  <div
+                    className={`rounded-xl ${
+                      isDark
+                        ? "bg-gradient-to-b from-blue-900/30 to-blue-800/20 backdrop-blur-sm border border-blue-800/30"
+                        : "bg-gradient-to-b from-blue-50/90 to-blue-100/50 backdrop-blur-sm border border-blue-100/60"
+                    } p-7 shadow-xl`}
+                  >
+                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-3">
+                      <div
+                        className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient} text-white/90 shadow-md relative overflow-hidden`}
                       >
-                        {/* Блик */}
-                        <div className="absolute -inset-1 bg-gradient-to-tr from-transparent via-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-                        <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-blue-600 opacity-50"></div>
-
-                        <div className="flex items-center gap-3 mb-4">
+                        <BrainCircuit className="w-5 h-5 text-white relative z-10 scale-110" />
+                        <div className="absolute inset-0 bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+                        <div className="absolute inset-0 animate-shine opacity-30"></div>
+                      </div>
+                      Ключевые особенности решения
+                    </h4>
+                    <ul className="space-y-4">
+                      {useCases[activeTab].features.map((feature, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.1, duration: 0.5 }}
+                          className="flex items-start gap-3 group"
+                        >
                           <div
-                            className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
-                              isDark ? "bg-blue-800/50" : "bg-blue-100"
-                            }`}
+                            className={`p-1.5 rounded-xl mt-0.5 bg-blue-50 dark:bg-blue-900/20 group-hover:bg-blue-600 dark:group-hover:bg-blue-600 transition-colors`}
                           >
-                            <div
-                              className={`${BRAND_COLORS.primary.text.light} dark:${BRAND_COLORS.primary.text.dark} scale-110`}
-                            >
-                              {stat.icon}
-                            </div>
+                            <CheckCircle
+                              className={`w-5 h-5 ${BRAND_COLORS.primary.text.light} dark:${BRAND_COLORS.primary.text.dark} group-hover:text-white transition-colors`}
+                            />
                           </div>
-                          <p className="text-sm text-gray-600 dark:text-blue-200 font-medium">
-                            {stat.label}
-                          </p>
-                        </div>
-                        <p
-                          className={`text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient}`}
-                        >
-                          {stat.value}
-                        </p>
-                      </motion.div>
-                    ))}
+                          <span className="text-gray-700 dark:text-gray-300 text-base leading-relaxed font-normal">
+                            {feature}
+                          </span>
+                        </motion.li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
-
-                {/* Модернизированные фичи с квадратными элементами */}
-                <div
-                  className={`rounded-xl ${
-                    isDark
-                      ? "bg-gradient-to-b from-blue-900/30 to-blue-800/20 backdrop-blur-sm border border-blue-800/30"
-                      : "bg-gradient-to-b from-blue-50/90 to-blue-100/50 backdrop-blur-sm border border-blue-100/60"
-                  } p-7 shadow-xl`}
-                >
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-3">
-                    <div
-                      className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient} text-white/90 shadow-md relative overflow-hidden`}
-                    >
-                      <BrainCircuit className="w-5 h-5 text-white relative z-10 scale-110" />
-                      <div className="absolute inset-0 bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
-                      <div className="absolute inset-0 animate-shine opacity-30"></div>
-                    </div>
-                    Ключевые особенности решения
-                  </h4>
-                  <ul className="space-y-4">
-                    {useCases[activeTab].features.map((feature, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.1, duration: 0.5 }}
-                        className="flex items-start gap-3 group"
-                      >
-                        <div
-                          className={`p-1.5 rounded-xl mt-0.5 bg-blue-50 dark:bg-blue-900/20 group-hover:bg-blue-600 dark:group-hover:bg-blue-600 transition-colors`}
-                        >
-                          <CheckCircle
-                            className={`w-5 h-5 ${BRAND_COLORS.primary.text.light} dark:${BRAND_COLORS.primary.text.dark} group-hover:text-white transition-colors`}
-                          />
-                        </div>
-                        <span className="text-gray-700 dark:text-gray-300 text-base leading-relaxed font-normal">
-                          {feature}
-                        </span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Кнопки действия */}
-                <div className="mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start">
-                  <motion.a
-                    variants={staggerButtonAnimation}
-                    initial="initial"
-                    animate="animate"
-                    custom={0}
-                    href="#contact"
-                    className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:brightness-110 shadow-lg hover:shadow-xl shadow-blue-700/20 transition-all duration-300 text-white font-semibold text-base w-full sm:w-auto"
-                  >
-                    <span>Получить демо</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
-                  </motion.a>
-                  <motion.a
-                    variants={staggerButtonAnimation}
-                    initial="initial"
-                    animate="animate"
-                    custom={1}
-                    href="#features"
-                    className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 backdrop-blur-md shadow-sm hover:shadow-md transition-all duration-300 text-white dark:text-white text-white/90 font-semibold text-base border border-blue-500/30 w-full sm:w-auto"
-                  >
-                    <span>Возможности</span>
-                    <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                  </motion.a>
                 </div>
               </div>
             </div>

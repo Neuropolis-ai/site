@@ -581,49 +581,34 @@ export default function ChatBotsUseCases() {
                     {useCase.description}
                   </p>
 
-                  {/* Модернизированная статистика с квадратными иконками */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-                    {useCases[activeTab].stats.map((stat, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
-                        className={`flex flex-col p-5 md:p-6 rounded-xl ${
-                          isDark
-                            ? "bg-gradient-to-b from-blue-900/30 to-blue-800/20 backdrop-blur-sm border border-blue-800/30"
-                            : "bg-gradient-to-b from-blue-50/90 to-blue-100/50 backdrop-blur-sm border border-blue-100/60"
-                        } shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden group`}
+                  {/* Стильные метрики с квадратными иконками */}
+                  <div className="grid grid-cols-3 gap-3">
+                    {useCase.stats.map((stat, i) => (
+                      <div
+                        key={i}
+                        className={`p-3 rounded-xl 
+                          ${
+                            isDark
+                              ? "bg-blue-900/30 backdrop-blur-sm border border-blue-800/30"
+                              : "bg-blue-50/70 backdrop-blur-sm border border-blue-100/60"
+                          } 
+                          flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all group/stat`}
                       >
-                        {/* Блики и эффекты */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div className="absolute bottom-0 left-0 h-2 w-full bg-gradient-to-r from-blue-500 to-blue-600 opacity-50"></div>
-                        <div className="absolute -right-20 -top-20 w-40 h-40 bg-blue-500/5 rounded-full blur-2xl transform rotate-12 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-                        <div className="flex items-center gap-4 mb-4">
-                          <div
-                            className={`flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center ${
-                              isDark
-                                ? "bg-gradient-to-br from-blue-800/80 to-blue-700/80"
-                                : "bg-gradient-to-br from-blue-100 to-blue-200/80"
-                            } shadow-sm group-hover:shadow-md transition-all duration-300`}
-                          >
-                            <div
-                              className={`${BRAND_COLORS.primary.text.light} dark:text-white scale-110`}
-                            >
-                              {stat.icon}
-                            </div>
-                          </div>
-                          <p className="text-base font-medium text-gray-700 dark:text-blue-100">
-                            {stat.label}
-                          </p>
+                        <div
+                          className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
+                            isDark ? "bg-blue-800/50" : "bg-blue-100"
+                          } ${BRAND_COLORS.primary.text.light} dark:${
+                            BRAND_COLORS.primary.text.dark
+                          } group-hover/stat:scale-110 transition-transform mb-4`}
+                        >
+                          {stat.icon}
                         </div>
-                        <p
-                          className={`text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient} mt-2`}
+                        <div
+                          className={`text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient}`}
                         >
                           {stat.value}
-                        </p>
-                      </motion.div>
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -902,6 +887,52 @@ export default function ChatBotsUseCases() {
                         )}
                       </ul>
                     </div>
+                  </div>
+
+                  {/* Модернизированная статистика с квадратными иконками в открытой карточке */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
+                    {useCases[activeTab].stats.map((stat, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
+                        className={`flex flex-col p-5 md:p-6 rounded-xl ${
+                          isDark
+                            ? "bg-gradient-to-b from-blue-900/30 to-blue-800/20 backdrop-blur-sm border border-blue-800/30"
+                            : "bg-gradient-to-b from-blue-50/90 to-blue-100/50 backdrop-blur-sm border border-blue-100/60"
+                        } shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden group`}
+                      >
+                        {/* Блики и эффекты */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        <div className="absolute bottom-0 left-0 h-2 w-full bg-gradient-to-r from-blue-500 to-blue-600 opacity-50"></div>
+                        <div className="absolute -right-20 -top-20 w-40 h-40 bg-blue-500/5 rounded-full blur-2xl transform rotate-12 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+                        <div className="flex items-center gap-4 mb-4">
+                          <div
+                            className={`flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center ${
+                              isDark
+                                ? "bg-gradient-to-br from-blue-800/80 to-blue-700/80"
+                                : "bg-gradient-to-br from-blue-100 to-blue-200/80"
+                            } shadow-sm group-hover:shadow-md transition-all duration-300`}
+                          >
+                            <div
+                              className={`${BRAND_COLORS.primary.text.light} dark:text-white scale-110`}
+                            >
+                              {stat.icon}
+                            </div>
+                          </div>
+                          <p className="text-base font-medium text-gray-700 dark:text-blue-100">
+                            {stat.label}
+                          </p>
+                        </div>
+                        <p
+                          className={`text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient} mt-2`}
+                        >
+                          {stat.value}
+                        </p>
+                      </motion.div>
+                    ))}
                   </div>
 
                   {/* Модернизированные фичи с квадратными элементами */}

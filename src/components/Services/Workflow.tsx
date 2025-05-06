@@ -2,6 +2,7 @@
 
 import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 const Workflow = () => {
@@ -125,97 +126,103 @@ const Workflow = () => {
     <div>
       {/* Workflow Automation Card */}
       <div
-        className={`w-full lg:w-[523px] p-[20px] rounded-xl border border-[#262626] overflow-hidden ${
-          isDark ? "process-card" : "bg-gray-50 border-gray-200"
+        className={`w-full lg:w-[523px] p-[20px] rounded-xl border border-[#262626] overflow-hidden transition-all duration-300 hover:shadow-lg ${
+          isDark
+            ? "process-card hover:bg-[#0A1029]"
+            : "bg-gray-50 border-gray-200 hover:border-blue-200"
         }`}
       >
-        {/* Icons container */}
-        <div
-          ref={workflowRef}
-          className={`py-[30px] sm:py-[50px] flex flex-col items-center gap-[20px] sm:gap-[30px] overflow-hidden w-full ${
-            isDark ? "ai-card" : "bg-white rounded-xl border border-gray-100"
-          } ${isWorkflowVisible ? "workflow-animation workflow-visible" : ""}`}
-        >
-          {/* Top row scrolling left */}
+        <Link href="/workflow-automation" className="block">
+          {/* Icons container */}
           <div
-            className="w-full overflow-hidden"
-            style={{
-              mask: "linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%)",
-            }}
+            ref={workflowRef}
+            className={`py-[30px] sm:py-[50px] flex flex-col items-center gap-[20px] sm:gap-[30px] overflow-hidden w-full ${
+              isDark ? "ai-card" : "bg-white rounded-xl border border-gray-100"
+            } ${
+              isWorkflowVisible ? "workflow-animation workflow-visible" : ""
+            }`}
           >
+            {/* Top row scrolling left */}
             <div
-              className={`scroll-container-left workflow-row ${
-                !isWorkflowVisible ? "pause-animation" : ""
-              }`}
+              className="w-full overflow-hidden"
+              style={{
+                mask: "linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%)",
+              }}
             >
-              {/* First set of icons for seamless scrolling */}
-              <div className="scroll-content">
-                {Array(5)
-                  .fill(0)
-                  .map((_, setIndex) =>
-                    topRowIcons.map((icon, index) =>
-                      renderIcon(icon, `top-${setIndex}-${index}`)
-                    )
-                  )}
+              <div
+                className={`scroll-container-left workflow-row ${
+                  !isWorkflowVisible ? "pause-animation" : ""
+                }`}
+              >
+                {/* First set of icons for seamless scrolling */}
+                <div className="scroll-content">
+                  {Array(5)
+                    .fill(0)
+                    .map((_, setIndex) =>
+                      topRowIcons.map((icon, index) =>
+                        renderIcon(icon, `top-${setIndex}-${index}`)
+                      )
+                    )}
+                </div>
+                {/* Duplicated set for continuous loop */}
+                <div className="scroll-content">
+                  {Array(5)
+                    .fill(0)
+                    .map((_, setIndex) =>
+                      topRowIcons.map((icon, index) =>
+                        renderIcon(icon, `top-dup-${setIndex}-${index}`)
+                      )
+                    )}
+                </div>
               </div>
-              {/* Duplicated set for continuous loop */}
-              <div className="scroll-content">
-                {Array(5)
-                  .fill(0)
-                  .map((_, setIndex) =>
-                    topRowIcons.map((icon, index) =>
-                      renderIcon(icon, `top-dup-${setIndex}-${index}`)
-                    )
-                  )}
+            </div>
+
+            {/* Bottom row scrolling right */}
+            <div
+              className="w-full overflow-hidden"
+              style={{
+                mask: "linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%)",
+              }}
+            >
+              <div
+                className={`scroll-container-right workflow-row ${
+                  !isWorkflowVisible ? "pause-animation" : ""
+                }`}
+              >
+                {/* First set of icons for seamless scrolling */}
+                <div className="scroll-content">
+                  {Array(5)
+                    .fill(0)
+                    .map((_, setIndex) =>
+                      bottomRowIcons.map((icon, index) =>
+                        renderIcon(icon, `bottom-${setIndex}-${index}`)
+                      )
+                    )}
+                </div>
+                {/* Duplicated set for continuous loop */}
+                <div className="scroll-content">
+                  {Array(5)
+                    .fill(0)
+                    .map((_, setIndex) =>
+                      bottomRowIcons.map((icon, index) =>
+                        renderIcon(icon, `bottom-dup-${setIndex}-${index}`)
+                      )
+                    )}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Bottom row scrolling right */}
-          <div
-            className="w-full overflow-hidden"
-            style={{
-              mask: "linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%)",
-            }}
-          >
-            <div
-              className={`scroll-container-right workflow-row ${
-                !isWorkflowVisible ? "pause-animation" : ""
-              }`}
-            >
-              {/* First set of icons for seamless scrolling */}
-              <div className="scroll-content">
-                {Array(5)
-                  .fill(0)
-                  .map((_, setIndex) =>
-                    bottomRowIcons.map((icon, index) =>
-                      renderIcon(icon, `bottom-${setIndex}-${index}`)
-                    )
-                  )}
-              </div>
-              {/* Duplicated set for continuous loop */}
-              <div className="scroll-content">
-                {Array(5)
-                  .fill(0)
-                  .map((_, setIndex) =>
-                    bottomRowIcons.map((icon, index) =>
-                      renderIcon(icon, `bottom-dup-${setIndex}-${index}`)
-                    )
-                  )}
-              </div>
-            </div>
+          <div className="mt-[30px]">
+            <h4 className="font-medium text-base sm:text-lg mb-1 sm:mb-2 dark:text-white text-gray-800">
+              Автоматизация рабочих процессов
+            </h4>
+            <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
+              Мы помогаем компаниям интегрировать инструменты ИИ в существующие
+              программные платформы, CRM-системы или маркетинговые каналы.
+            </p>
           </div>
-        </div>
-
-        <div className="mt-[30px]">
-          <h4 className="font-medium text-base sm:text-lg mb-1 sm:mb-2 dark:text-white text-gray-800">
-            Автоматизация рабочих процессов
-          </h4>
-          <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
-            Мы помогаем компаниям интегрировать инструменты ИИ в существующие
-            программные платформы, CRM-системы или маркетинговые каналы.
-          </p>
-        </div>
+        </Link>
       </div>
     </div>
   );

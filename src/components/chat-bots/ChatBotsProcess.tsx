@@ -219,7 +219,7 @@ export default function ChatBotsProcess() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="relative"
+          className="relative max-w-5xl mx-auto"
         >
           {/* Стильная вертикальная линия с градиентной анимацией */}
           <motion.div
@@ -239,15 +239,13 @@ export default function ChatBotsProcess() {
               variants={itemVariants}
               custom={index}
               transition={{ delay: step.animationDelay }}
-              className={`relative mb-16 md:mb-24 last:mb-0 md:w-full mx-auto ${
-                index % 2 === 0 ? "md:pr-8 lg:pr-12" : "md:pl-8 lg:pl-12"
+              className={`relative mb-16 md:mb-24 last:mb-0 ${
+                index % 2 === 0
+                  ? "md:pr-8 lg:pr-12 md:ml-auto md:mr-[calc(50%+20px)]"
+                  : "md:pl-8 lg:pl-12 md:ml-[calc(50%+20px)] md:mr-auto"
               }`}
             >
-              <div
-                className={`grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-center ${
-                  index % 2 === 0 ? "md:text-right" : ""
-                }`}
-              >
+              <div className="md:max-w-[calc(100%-30px)]">
                 {/* Для четных индексов контент слева */}
                 {index % 2 === 0 ? (
                   <motion.div
@@ -261,9 +259,29 @@ export default function ChatBotsProcess() {
                     {/* Градиентный фон при наведении */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/5 dark:from-blue-500/10 dark:to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
 
-                    {/* Номер с градиентом */}
-                    <div className="flex items-center justify-end gap-4 mb-4">
-                      <div className="inline-block px-3 py-1 rounded-full text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                    {/* Мобильная версия */}
+                    <div className="md:hidden flex items-center gap-4 mb-5">
+                      <motion.div
+                        initial="initial"
+                        animate="animate"
+                        variants={floatAnimation}
+                        className={`w-14 h-14 flex-shrink-0 rounded-full bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20 dark:shadow-blue-500/10`}
+                      >
+                        {step.number}
+                      </motion.div>
+                      <div className="flex flex-col">
+                        <div className="text-xl font-bold text-gray-900 dark:text-white mb-1.5">
+                          {step.title}
+                        </div>
+                        <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 self-start">
+                          {step.duration}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Десктопная версия - номер и продолжительность */}
+                    <div className="hidden md:flex items-center justify-end gap-3 mb-5">
+                      <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
                         {step.duration}
                       </div>
                       <motion.div
@@ -276,31 +294,65 @@ export default function ChatBotsProcess() {
                       </motion.div>
                     </div>
 
-                    <div className="flex items-center justify-end gap-3 mb-2">
+                    {/* Десктопная версия - заголовок и иконка */}
+                    <div className="hidden md:flex items-center justify-end gap-3 mb-4">
                       <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
                         {step.title}
                       </h4>
                       <div
-                        className={`w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br ${step.gradient} text-white shadow-md`}
+                        className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br ${step.gradient} text-white shadow-md`}
                       >
                         {step.icon}
                       </div>
                     </div>
 
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                    {/* Описание */}
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed md:text-right">
                       {step.description}
                     </p>
 
-                    {/* Декоративный элемент */}
-                    {step.secondaryIcon}
-
-                    {/* Обновленный круг на временной линии */}
+                    {/* Круг на временной линии */}
                     <div className="absolute top-1/2 right-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full transform translate-x-1/2 -translate-y-1/2 border-4 border-white dark:border-gray-900 hidden md:flex items-center justify-center text-white shadow-md">
                       <div className="w-2 h-2 bg-white rounded-full"></div>
                     </div>
                   </motion.div>
                 ) : (
-                  <div></div>
+                  <motion.div
+                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                    className={`relative group overflow-hidden ${
+                      isDark ? "bg-gray-900/70" : "bg-white"
+                    } p-6 md:p-8 rounded-2xl shadow-lg border ${
+                      isDark ? "border-gray-800" : "border-gray-100"
+                    } transition-all duration-300 hover:shadow-xl hover:border-blue-300/50 dark:hover:border-blue-700/50 md:hidden`}
+                  >
+                    {/* Градиентный фон при наведении */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/5 dark:from-blue-500/10 dark:to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
+
+                    {/* Мобильная версия */}
+                    <div className="flex items-center gap-4 mb-5">
+                      <motion.div
+                        initial="initial"
+                        animate="animate"
+                        variants={floatAnimation}
+                        className={`w-14 h-14 flex-shrink-0 rounded-full bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-blue-500/20 dark:shadow-blue-500/10`}
+                      >
+                        {step.number}
+                      </motion.div>
+                      <div className="flex flex-col">
+                        <div className="text-xl font-bold text-gray-900 dark:text-white mb-1.5">
+                          {step.title}
+                        </div>
+                        <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 self-start">
+                          {step.duration}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Описание */}
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </motion.div>
                 )}
 
                 {/* Для нечетных индексов контент справа */}
@@ -311,13 +363,13 @@ export default function ChatBotsProcess() {
                       isDark ? "bg-gray-900/70" : "bg-white"
                     } p-6 md:p-8 rounded-2xl shadow-lg border ${
                       isDark ? "border-gray-800" : "border-gray-100"
-                    } transition-all duration-300 hover:shadow-xl hover:border-blue-300/50 dark:hover:border-blue-700/50`}
+                    } transition-all duration-300 hover:shadow-xl hover:border-blue-300/50 dark:hover:border-blue-700/50 hidden md:block`}
                   >
                     {/* Градиентный фон при наведении */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/5 dark:from-blue-500/10 dark:to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
 
-                    {/* Номер с градиентом */}
-                    <div className="flex items-center gap-4 mb-4">
+                    {/* Номер с градиентом и продолжительность */}
+                    <div className="flex items-center gap-3 mb-5">
                       <motion.div
                         initial="initial"
                         animate="animate"
@@ -326,14 +378,15 @@ export default function ChatBotsProcess() {
                       >
                         {step.number}
                       </motion.div>
-                      <div className="inline-block px-3 py-1 rounded-full text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                      <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
                         {step.duration}
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 mb-2">
+                    {/* Заголовок и иконка */}
+                    <div className="flex items-center gap-3 mb-4">
                       <div
-                        className={`w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br ${step.gradient} text-white shadow-md`}
+                        className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br ${step.gradient} text-white shadow-md`}
                       >
                         {step.icon}
                       </div>
@@ -342,20 +395,18 @@ export default function ChatBotsProcess() {
                       </h4>
                     </div>
 
+                    {/* Описание */}
                     <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                       {step.description}
                     </p>
 
-                    {/* Декоративный элемент */}
-                    {step.secondaryIcon}
-
-                    {/* Обновленный круг на временной линии */}
+                    {/* Круг на временной линии */}
                     <div className="absolute top-1/2 left-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full transform -translate-x-1/2 -translate-y-1/2 border-4 border-white dark:border-gray-900 hidden md:flex items-center justify-center text-white shadow-md">
                       <div className="w-2 h-2 bg-white rounded-full"></div>
                     </div>
                   </motion.div>
                 ) : (
-                  <div></div>
+                  <div className="hidden md:block"></div>
                 )}
               </div>
             </motion.div>

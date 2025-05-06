@@ -675,11 +675,11 @@ export default function ChatBotsUseCases() {
                       <div className="absolute -inset-1.5 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 animate-shine"></div>
                     </motion.div>
                     <div>
-                      <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+                      <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight whitespace-nowrap">
                         {useCases[activeTab].title}
                       </h3>
                       <div
-                        className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-lg text-xs font-medium bg-blue-100 dark:bg-blue-900/30 ${BRAND_COLORS.primary.text.light} dark:${BRAND_COLORS.primary.text.dark}`}
+                        className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-medium bg-blue-100 dark:bg-blue-900/30 ${BRAND_COLORS.primary.text.light} dark:${BRAND_COLORS.primary.text.dark}`}
                       >
                         <Sparkles className="w-3.5 h-3.5" />
                         <span>Оптимальное решение</span>

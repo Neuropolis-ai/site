@@ -50,7 +50,7 @@ export default function ChatBotsHero() {
   };
 
   return (
-    <section className="relative overflow-hidden pt-[120px] sm:pt-[150px] md:pt-[180px] lg:pt-[200px] pb-16 md:pb-24 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900">
+    <section className="relative overflow-hidden pt-[100px] sm:pt-[120px] md:pt-[140px] lg:pt-[160px] pb-16 md:pb-24 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900">
       {/* Улучшенный фон с эффектами морфинга */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white via-blue-50 to-indigo-50 dark:from-gray-950 dark:via-blue-950/10 dark:to-indigo-950/10 -z-10 overflow-hidden">
         <div className="absolute top-0 right-0 w-full h-full bg-[url('/assets/images/grid-pattern.svg')] opacity-[0.03] dark:opacity-[0.07]"></div>
@@ -78,7 +78,7 @@ export default function ChatBotsHero() {
           >
             <motion.div
               variants={fadeIn}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-0.5 bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-3 bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50 backdrop-blur-sm"
             >
               <svg
                 width={15}
@@ -98,12 +98,12 @@ export default function ChatBotsHero() {
                   fill="currentColor"
                 />
               </svg>{" "}
-              Разработка чат-ботов нового поколения
+              Чат-боты на основе ИИ
             </motion.div>
 
             <motion.h1
               variants={fadeIn}
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight -mt-[15px]"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 dark:text-white mb-8 leading-tight"
             >
               Интеллектуальные{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] via-[#2C81F6] to-[#399AFC] relative">
@@ -126,7 +126,7 @@ export default function ChatBotsHero() {
 
             <motion.p
               variants={fadeIn}
-              className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed"
+              className="text-xl text-gray-600 dark:text-gray-300 mb-12 leading-relaxed"
             >
               Автоматизируйте рутинные процессы и выстраивайте
               персонализированный диалог с клиентами 24/7 с помощью ИИ-ботов.
@@ -164,10 +164,16 @@ export default function ChatBotsHero() {
             >
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center mr-3 shadow-sm">
-                  <MessageSquare
-                    size={18}
-                    className="text-blue-600 dark:text-blue-400"
-                  />
+                  {/* Telegram logo - официальный логотип */}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-[#2AABEE]"
+                  >
+                    <path d="M9.78 18.65l.28-4.23 7.5-6.74c.25-.28-.05-.42-.38-.25L8.7 11.7l-3.14-.8c-.67-.18-.65-.71.15-.99l12.44-4.86c.5-.2.95.13.79.78l-2.15 10.31c-.14.68-.56.84-1.14.52L12 14.1l-1.76 1.69c-.2.21-.37.39-.76.39-.37 0-.35-.15-.5-.56z" />
+                  </svg>
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
                   Telegram
@@ -175,10 +181,16 @@ export default function ChatBotsHero() {
               </div>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center mr-3 shadow-sm">
-                  <MessageSquare
-                    size={18}
-                    className="text-blue-600 dark:text-blue-400"
-                  />
+                  {/* WhatsApp logo - официальный логотип */}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-[#25D366]"
+                  >
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884" />
+                  </svg>
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
                   WhatsApp
@@ -186,7 +198,22 @@ export default function ChatBotsHero() {
               </div>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center mr-3 shadow-sm">
-                  <Zap size={18} className="text-blue-600 dark:text-blue-400" />
+                  {/* Web-сайты logo (Globe) */}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="text-blue-600 dark:text-blue-400"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
                   Web-сайты
@@ -194,10 +221,16 @@ export default function ChatBotsHero() {
               </div>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center mr-3 shadow-sm">
-                  <MessageSquare
-                    size={18}
-                    className="text-blue-600 dark:text-blue-400"
-                  />
+                  {/* VK logo - официальный логотип */}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-[#4A76A8]"
+                  >
+                    <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 16.615h-1.744c-.66 0-.864-.525-2.04-1.74-1.033-1.017-1.483-1.158-1.74-1.158-.354 0-.458.102-.458.6v1.583c0 .424-.135.677-1.253.677-1.846 0-3.896-1.12-5.335-3.197-2.164-3.09-2.76-5.403-2.76-5.88 0-.255.102-.491.6-.491h1.744c.44 0 .61.203.78.677.863 2.47 2.303 4.63 2.896 4.63.22 0 .322-.102.322-.662V9.753c-.068-1.186-.695-1.287-.695-1.71 0-.204.17-.407.44-.407h2.743c.372 0 .507.203.507.643v3.473c0 .372.17.508.271.508.22 0 .407-.136.814-.542 1.27-1.42 2.183-3.606 2.183-3.606.119-.237.322-.457.763-.457h1.744c.525 0 .644.27.525.643-.22 1.017-2.336 4.01-2.336 4.01-.186.305-.254.44 0 .78.186.254.796.779 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.744-.576.744z" />
+                  </svg>
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
                   VK
@@ -205,10 +238,16 @@ export default function ChatBotsHero() {
               </div>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center mr-3 shadow-sm">
-                  <MessageSquare
-                    size={18}
-                    className="text-blue-600 dark:text-blue-400"
-                  />
+                  {/* Viber logo - официальный логотип */}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-[#7360F2]"
+                  >
+                    <path d="M11.398 0C5.06 0 0 5.06 0 11.398c0 1.733.405 3.38 1.118 4.84L0 24l7.945-1.012a11.35 11.35 0 004.687 1.01h.695c6.252 0 11.398-5.06 11.398-11.398 0-6.338-5.06-11.4-11.398-11.4h-.929zm.522 2.193c4.58 0 8.348 3.683 8.348 8.348 0 4.752-3.853 8.34-8.348 8.34h-.523c-1.44 0-2.88-.347-4.147-1.127l-.55-.292-3.913.464.638-3.683-.347-.61a8.55 8.55 0 01-1.127-4.235c-.085-4.578 3.597-8.176 8.177-8.176h1.822zm-1.822 1.822c-3.482 0-6.427 2.86-6.427 6.427 0 1.24.347 2.453.986 3.482l.232.29.638 1.067-.347 1.733 1.733-.347 1.068.696a6.59 6.59 0 003.367.928c3.368 0 6.252-2.86 6.252-6.427 0-3.567-2.884-6.427-6.427-6.427h-1.075zm0 1.01c2.424 0 4.78 1.735 4.78 4.738 0 .52.174 1.102-.464 1.592l-.464.232c-.405.175-.695.35-.405.87l.985 2.452c.058.117.058.234.058.35-.117.232-.29.29-.522.232h-.755c-.117 0-.29 0-.405-.116-.638-.696-1.274-1.334-1.797-2.106-.29-.405-.696-.347-1.068-.232-.405.232-.87.35-1.302.464-.405.116-.638-.059-.813-.406-.232-.58-.348-1.16-.348-1.74 0-2.105 1.45-4.147 3.597-5.01.406-.116.87-.116 1.275-.116h.638z" />
+                  </svg>
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
                   Viber
@@ -216,10 +255,30 @@ export default function ChatBotsHero() {
               </div>
               <div className="flex items-center">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center mr-3 shadow-sm">
-                  <BarChart
-                    size={18}
+                  {/* CRM logo (database/users icon) */}
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     className="text-blue-600 dark:text-blue-400"
-                  />
+                  >
+                    <rect
+                      x="2"
+                      y="3"
+                      width="20"
+                      height="18"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <line x1="2" y1="8" x2="22" y2="8"></line>
+                    <line x1="8" y1="14" x2="16" y2="14"></line>
+                    <line x1="8" y1="18" x2="16" y2="18"></line>
+                  </svg>
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
                   CRM

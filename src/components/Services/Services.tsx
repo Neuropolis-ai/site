@@ -99,7 +99,7 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="services" className="services-section pt-20 pb-14">
+    <section id="services" className="services-section pt-24 md:pt-32 pb-14">
       <Container>
         <div className="text-center mb-16 relative z-10">
           <div className="inline-flex items-center justify-center border border-blue-300 dark:border-blue-800 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400">

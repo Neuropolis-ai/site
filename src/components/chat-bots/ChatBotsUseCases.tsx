@@ -657,9 +657,9 @@ export default function ChatBotsUseCases() {
             </div>
 
             {/* Основной контент */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 p-7 md:p-10 lg:p-12">
-              {/* Левая колонка - Текст и статистика */}
-              <div className="flex flex-col h-full justify-between">
+            <div className="p-7 md:p-10 lg:p-12">
+              {/* Расширенный контент на всю ширину */}
+              <div className="flex flex-col">
                 <div>
                   <div className="flex items-center gap-5 mb-8">
                     <motion.div
@@ -690,6 +690,211 @@ export default function ChatBotsUseCases() {
                   <p className="text-gray-700 dark:text-gray-300 mb-8 text-lg leading-relaxed font-normal">
                     {useCases[activeTab].description}
                   </p>
+
+                  {/* Расширенное описание - дополнительный контент */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                    <div className="bg-blue-50/50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-100/70 dark:border-blue-800/30 shadow-sm">
+                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <MessageSquareHeart className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                        Преимущества для бизнеса
+                      </h4>
+                      <ul className="space-y-3">
+                        {activeTab === 0 && (
+                          <>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Сокращение расходов на клиентскую поддержку до
+                                40%
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Уменьшение времени ожидания клиентов на 80%
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Рост удовлетворенности клиентов на 25%
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Оптимизация рабочего времени операторов для
+                                решения сложных задач
+                              </span>
+                            </li>
+                          </>
+                        )}
+                        {activeTab === 1 && (
+                          <>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Увеличение конверсии потенциальных клиентов до
+                                35%
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Сокращение цикла продаж на 20%
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Точная сегментация лидов по потенциалу и
+                                интересам
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Персонализированное сопровождение клиентов на
+                                всех этапах
+                              </span>
+                            </li>
+                          </>
+                        )}
+                        {activeTab === 2 && (
+                          <>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Повышение продуктивности сотрудников на 30%
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Снижение времени на поиск информации на 75%
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Оптимизация обмена знаниями между отделами
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Улучшение адаптации новых сотрудников на 40%
+                              </span>
+                            </li>
+                          </>
+                        )}
+                      </ul>
+                    </div>
+
+                    <div className="bg-blue-50/50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-100/70 dark:border-blue-800/30 shadow-sm">
+                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                        <BrainCircuit className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                        Технологические возможности
+                      </h4>
+                      <ul className="space-y-3">
+                        {activeTab === 0 && (
+                          <>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Обработка естественного языка с пониманием
+                                контекста разговора
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Интеграция с CRM и другими корпоративными
+                                системами
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Многоязычная поддержка с высокой точностью
+                                перевода
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Алгоритмы машинного обучения для постоянного
+                                улучшения ответов
+                              </span>
+                            </li>
+                          </>
+                        )}
+                        {activeTab === 1 && (
+                          <>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Анализ поведения пользователей для выявления
+                                намерений
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Алгоритмы предиктивной аналитики для
+                                квалификации лидов
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Автоматизированная интеграция с системами продаж
+                                и CRM
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Продвинутая система скоринга для оценки
+                                потенциала клиентов
+                              </span>
+                            </li>
+                          </>
+                        )}
+                        {activeTab === 2 && (
+                          <>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Семантический поиск по корпоративной базе знаний
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Интеграция с документооборотом и корпоративными
+                                приложениями
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Персонализированные уведомления на основе
+                                приоритетов
+                              </span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 dark:text-gray-300">
+                                Расширенная аналитика для оптимизации рабочих
+                                процессов
+                              </span>
+                            </li>
+                          </>
+                        )}
+                      </ul>
+                    </div>
+                  </div>
 
                   {/* Модернизированная статистика с квадратными иконками */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
@@ -777,54 +982,31 @@ export default function ChatBotsUseCases() {
                     ))}
                   </ul>
                 </div>
-              </div>
 
-              {/* Правая колонка - Модернизированная иллюстрация */}
-              <div className="flex items-center justify-center">
-                <div className="relative w-full h-[400px] lg:h-[550px] rounded-xl overflow-hidden shadow-2xl group/image">
-                  {/* Эффекты наложения */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10"></div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-blue-700/20 dark:from-blue-600/30 dark:to-blue-700/30 mix-blend-overlay z-20"></div>
-
-                  {/* Современная рамка с эффектом свечения */}
-                  <div className="absolute inset-0 border border-white/30 rounded-xl z-30 pointer-events-none group-hover/image:border-blue-500/30 transition-colors duration-500"></div>
-
-                  <Image
-                    src={useCases[activeTab].image}
-                    alt={useCases[activeTab].title}
-                    fill
-                    className="object-cover transition-transform duration-700 ease-out group-hover/image:scale-105"
-                  />
-
-                  <div className="absolute bottom-8 left-8 right-8 z-40 text-center md:text-left">
-                    <p className="text-white text-xl font-semibold mb-4 drop-shadow-lg">
-                      Узнайте, как это работает
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-3 items-center justify-center md:justify-start">
-                      <motion.a
-                        variants={staggerButtonAnimation}
-                        initial="initial"
-                        animate="animate"
-                        custom={0}
-                        href="#contact"
-                        className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:brightness-110 shadow-lg hover:shadow-xl shadow-blue-700/20 transition-all duration-300 text-white font-semibold text-base w-full sm:w-auto"
-                      >
-                        <span>Получить демо</span>
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
-                      </motion.a>
-                      <motion.a
-                        variants={staggerButtonAnimation}
-                        initial="initial"
-                        animate="animate"
-                        custom={1}
-                        href="#features"
-                        className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 backdrop-blur-md shadow-sm hover:shadow-md transition-all duration-300 text-white font-semibold text-base border border-blue-500/30 w-full sm:w-auto"
-                      >
-                        <span>Возможности</span>
-                        <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                      </motion.a>
-                    </div>
-                  </div>
+                {/* Кнопки действия */}
+                <div className="mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center md:justify-start">
+                  <motion.a
+                    variants={staggerButtonAnimation}
+                    initial="initial"
+                    animate="animate"
+                    custom={0}
+                    href="#contact"
+                    className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:brightness-110 shadow-lg hover:shadow-xl shadow-blue-700/20 transition-all duration-300 text-white font-semibold text-base w-full sm:w-auto"
+                  >
+                    <span>Получить демо</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
+                  </motion.a>
+                  <motion.a
+                    variants={staggerButtonAnimation}
+                    initial="initial"
+                    animate="animate"
+                    custom={1}
+                    href="#features"
+                    className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 backdrop-blur-md shadow-sm hover:shadow-md transition-all duration-300 text-white dark:text-white text-white/90 font-semibold text-base border border-blue-500/30 w-full sm:w-auto"
+                  >
+                    <span>Возможности</span>
+                    <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  </motion.a>
                 </div>
               </div>
             </div>

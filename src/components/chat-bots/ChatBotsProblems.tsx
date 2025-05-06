@@ -41,7 +41,7 @@ export default function ChatBotsProblems() {
   // Данные о проблемах
   const problems = [
     {
-      icon: <Clock className="w-6 h-6 text-red-500" />,
+      icon: <Clock className="w-6 h-6 text-[#0167F3]" />,
       title: "Длительное время ожидания ответа",
       description:
         "Клиенты ждут ответа часами или днями, что приводит к снижению удовлетворенности и потере потенциальных сделок",
@@ -49,7 +49,7 @@ export default function ChatBotsProblems() {
       statDesc: "клиентов ожидают ответ менее 10 минут",
     },
     {
-      icon: <TrendingDown className="w-6 h-6 text-red-500" />,
+      icon: <TrendingDown className="w-6 h-6 text-[#0167F3]" />,
       title: "Низкая конверсия посетителей в клиентов",
       description:
         "Отсутствие моментального ответа на вопросы потенциальных клиентов снижает вероятность совершения покупки",
@@ -57,7 +57,7 @@ export default function ChatBotsProblems() {
       statDesc: "посетителей уходят без ответа",
     },
     {
-      icon: <Users className="w-6 h-6 text-red-500" />,
+      icon: <Users className="w-6 h-6 text-[#0167F3]" />,
       title: "Высокая нагрузка на службу поддержки",
       description:
         "Операторы тратят большую часть времени на однотипные вопросы вместо решения сложных задач",
@@ -65,7 +65,7 @@ export default function ChatBotsProblems() {
       statDesc: "вопросов - типовые",
     },
     {
-      icon: <AlertCircle className="w-6 h-6 text-red-500" />,
+      icon: <AlertCircle className="w-6 h-6 text-[#0167F3]" />,
       title: "Человеческий фактор",
       description:
         "Усталость и эмоциональное выгорание операторов приводят к ошибкам и снижению качества обслуживания",
@@ -73,7 +73,7 @@ export default function ChatBotsProblems() {
       statDesc: "снижение эффективности к концу дня",
     },
     {
-      icon: <DollarSign className="w-6 h-6 text-red-500" />,
+      icon: <DollarSign className="w-6 h-6 text-[#0167F3]" />,
       title: "Высокие затраты на персонал",
       description:
         "Содержание штата специалистов поддержки требует значительных расходов на зарплату, обучение и рабочие места",
@@ -81,7 +81,7 @@ export default function ChatBotsProblems() {
       statDesc: "экономии на персонале",
     },
     {
-      icon: <BarChart2 className="w-6 h-6 text-red-500" />,
+      icon: <BarChart2 className="w-6 h-6 text-[#0167F3]" />,
       title: "Отсутствие аналитики обращений",
       description:
         "Сложно отследить и проанализировать типичные проблемы клиентов, тренды и качество обслуживания",
@@ -100,12 +100,12 @@ export default function ChatBotsProblems() {
 
       {/* Декоративные элементы */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-5">
-        <div className="absolute -top-24 -right-24 w-64 h-64 bg-red-200/20 dark:bg-red-900/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-24 -left-24 w-80 h-80 bg-blue-200/20 dark:bg-blue-900/10 rounded-full blur-3xl"></div>
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#0167F3]/10 dark:bg-[#0167F3]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-24 -left-24 w-80 h-80 bg-[#399AFC]/10 dark:bg-[#399AFC]/5 rounded-full blur-3xl"></div>
 
         {/* Абстрактные линии */}
         <svg
-          className="absolute top-1/4 right-0 w-full h-48 text-gray-200 dark:text-gray-800 opacity-20"
+          className="absolute top-1/4 right-0 w-full h-48 text-[#0167F3]/10 dark:text-[#0167F3]/5 opacity-20"
           viewBox="0 0 1200 200"
           preserveAspectRatio="none"
         >
@@ -134,7 +134,7 @@ export default function ChatBotsProblems() {
         >
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 bg-red-500/10 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800/50 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 bg-[#0167F3]/10 text-[#0167F3] dark:text-[#399AFC] border border-[#0167F3]/20 dark:border-[#399AFC]/50 backdrop-blur-sm"
           >
             <svg
               width={15}
@@ -142,7 +142,7 @@ export default function ChatBotsProblems() {
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="text-red-600 dark:text-red-400"
+              className="text-[#0167F3] dark:text-[#399AFC]"
             >
               <path
                 d="M7.5 15C11.6421 15 15 11.6421 15 7.5C15 3.35786 11.6421 0 7.5 0C3.35786 0 0 3.35786 0 7.5C0 11.6421 3.35786 15 7.5 15ZM6.5 4C6.5 3.44772 6.94772 3 7.5 3C8.05228 3 8.5 3.44772 8.5 4V8C8.5 8.55228 8.05228 9 7.5 9C6.94772 9 6.5 8.55228 6.5 8V4ZM8.5 11C8.5 11.5523 8.05228 12 7.5 12C6.94772 12 6.5 11.5523 6.5 11C6.5 10.4477 6.94772 10 7.5 10C8.05228 10 8.5 10.4477 8.5 11Z"
@@ -156,10 +156,10 @@ export default function ChatBotsProblems() {
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6"
           >
             С какими проблемами сталкивается ваш бизнес{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-600 relative">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC] relative">
               прямо сейчас?
               <svg
-                className="absolute -bottom-1 left-0 w-full h-1.5 text-red-500/20"
+                className="absolute -bottom-1 left-0 w-full h-1.5 text-[#0167F3]/20"
                 viewBox="0 0 100 10"
                 preserveAspectRatio="none"
               >
@@ -199,15 +199,15 @@ export default function ChatBotsProblems() {
               }`}
             >
               {/* Градиентный фон при наведении */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-red-500/5 to-red-600/5 dark:from-red-500/10 dark:to-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#0167F3]/5 to-[#399AFC]/5 dark:from-[#0167F3]/10 dark:to-[#399AFC]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
 
               {/* Декоративный элемент */}
-              <div className="absolute -right-8 -bottom-8 w-24 h-24 rounded-full bg-red-100 dark:bg-red-900/20 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+              <div className="absolute -right-8 -bottom-8 w-24 h-24 rounded-full bg-[#0167F3]/10 dark:bg-[#0167F3]/20 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
 
               <div className="flex flex-col relative z-10">
                 <div
                   className={`w-14 h-14 rounded-xl mb-5 flex items-center justify-center ${
-                    isDark ? "bg-red-900/30" : "bg-red-50"
+                    isDark ? "bg-[#0167F3]/30" : "bg-[#0167F3]/10"
                   }`}
                 >
                   {problem.icon}
@@ -219,7 +219,7 @@ export default function ChatBotsProblems() {
                   {problem.description}
                 </p>
                 <div className="flex items-center space-x-3 pt-3 border-t border-gray-200 dark:border-gray-700/50">
-                  <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-red-600">
+                  <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
                     {problem.stat}
                   </span>
                   <span className="text-sm text-gray-500 dark:text-gray-400">
@@ -240,14 +240,14 @@ export default function ChatBotsProblems() {
         >
           <motion.div
             variants={itemVariants}
-            className="relative overflow-hidden p-8 rounded-2xl max-w-4xl mx-auto bg-gradient-to-r from-blue-500/10 to-blue-600/10 dark:from-blue-500/20 dark:to-blue-600/20 backdrop-blur-sm border border-blue-200/50 dark:border-blue-700/30"
+            className="relative overflow-hidden p-8 rounded-2xl max-w-4xl mx-auto bg-gradient-to-r from-[#0167F3]/10 to-[#399AFC]/10 dark:from-[#0167F3]/20 dark:to-[#399AFC]/20 backdrop-blur-sm border border-[#0167F3]/20 dark:border-[#399AFC]/30"
           >
             {/* Декоративные элементы */}
-            <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-400/40 dark:bg-blue-400/20 rounded-full blur-3xl opacity-30"></div>
-            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-blue-300/40 dark:bg-blue-500/20 rounded-full blur-3xl opacity-30"></div>
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#0167F3]/40 dark:bg-[#0167F3]/20 rounded-full blur-3xl opacity-30"></div>
+            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#399AFC]/40 dark:bg-[#399AFC]/20 rounded-full blur-3xl opacity-30"></div>
 
             <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 text-left">
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-blue-600 flex-shrink-0 flex items-center justify-center">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-r from-[#0167F3] to-[#399AFC] flex-shrink-0 flex items-center justify-center">
                 <BrainCircuit className="w-8 h-8 md:w-10 md:h-10 text-white" />
               </div>
               <div className="flex-grow">
@@ -262,7 +262,7 @@ export default function ChatBotsProblems() {
                 </p>
                 <a
                   href="#chatbots-solution"
-                  className="inline-flex items-center group text-blue-600 dark:text-blue-400 font-medium"
+                  className="inline-flex items-center group text-[#0167F3] dark:text-[#399AFC] font-medium"
                 >
                   Узнать подробнее
                   <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />

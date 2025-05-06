@@ -79,7 +79,7 @@ export default function AIAgentFAQ() {
 
   return (
     <motion.section
-      id="faq"
+      id="ai-faq"
       variants={containerVariants}
       initial="hidden"
       whileInView="show"
@@ -95,21 +95,25 @@ export default function AIAgentFAQ() {
           variants={itemVariants}
           className="text-center mb-16 md:mb-20"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center mb-6 text-gray-800 dark:text-white tracking-tight">
-            Часто Задаваемые Вопросы
-          </h2>
-          <p className="text-center text-gray-600 dark:text-gray-300 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
+          <div className="inline-block px-4 py-1 rounded-full text-sm mb-4 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+            FAQ
+          </div>
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white mb-6 tracking-tight">
+            Часто задаваемые{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+              вопросы
+            </span>
+          </motion.h2>
+          <motion.p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Ответы на самые популярные вопросы о технологии ИИ-агентов и нашем
             подходе к их разработке
-          </p>
+          </motion.p>
         </motion.div>
 
         <div className="grid gap-4">
           {faqs.map((faq, index) => (
             <motion.div key={index} variants={itemVariants} className="group">
-              <div
-                className={`relative backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 rounded-2xl overflow-hidden transition-all duration-300 border border-white/20 dark:border-gray-700/30 shadow-md`}
-              >
+              <div className="relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md">
                 <button
                   onClick={() => toggleItem(index)}
                   className="flex justify-between items-center w-full p-5 md:p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 rounded-2xl"
@@ -119,53 +123,53 @@ export default function AIAgentFAQ() {
                   <span className="font-semibold text-lg md:text-xl text-gray-900 dark:text-white pr-4">
                     {faq.question}
                   </span>
-                  <motion.div
-                    animate={{ rotate: openItem === index ? 180 : 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-blue-500/10 dark:bg-blue-900/20"
+                  <div
+                    className={`flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full ${
+                      openItem === index
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400"
+                    }`}
                   >
-                    <ChevronDownIcon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  </motion.div>
+                    <ChevronDownIcon
+                      className={`w-5 h-5 transition-transform duration-300 ${
+                        openItem === index ? "transform rotate-180" : ""
+                      }`}
+                    />
+                  </div>
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {openItem === index && (
-                    <motion.div
-                      key="content"
-                      initial="collapsed"
-                      animate="open"
-                      exit="collapsed"
-                      variants={{
-                        open: {
-                          opacity: 1,
-                          height: "auto",
-                          transition: {
-                            duration: 0.3,
-                            ease: [0.04, 0.62, 0.23, 0.98],
-                          },
-                        },
-                        collapsed: {
-                          opacity: 0,
-                          height: 0,
-                          transition: {
-                            duration: 0.2,
-                            ease: [0.04, 0.62, 0.23, 0.98],
-                          },
-                        },
-                      }}
-                      id={`faq-answer-${index}`}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-5 md:px-6 pb-5 md:pb-6 pt-0 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                {openItem === index && (
+                  <div
+                    id={`faq-answer-${index}`}
+                    className="px-5 md:px-6 pb-5 md:pb-6 text-gray-600 dark:text-gray-300 text-base md:text-lg"
+                  >
+                    {faq.answer}
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Дополнительная информация */}
+        <motion.div variants={itemVariants} className="mt-16 text-center">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden p-6 max-w-3xl mx-auto border border-gray-200 dark:border-gray-800 shadow-md">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              Остались вопросы?
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
+              Свяжитесь с нами для получения бесплатной консультации. Наши
+              эксперты подробно расскажут о возможностях ИИ-агентов для вашего
+              бизнеса.
+            </p>
+            <a
+              href="/contact"
+              className="inline-block bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold py-2 px-6 rounded-lg transition-transform hover:-translate-y-1"
+            >
+              Получить консультацию
+            </a>
+          </div>
+        </motion.div>
       </div>
     </motion.section>
   );

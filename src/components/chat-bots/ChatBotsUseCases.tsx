@@ -54,12 +54,12 @@ export default function ChatBotsUseCases() {
       transition: {
         duration: 3,
         repeat: Infinity,
-        repeatType: "loop",
+        repeatType: "loop" as const,
       },
     },
   };
 
-  // Улучшенные данные о кейсах использования чат-ботов
+  // Улучшенные данные о кейсах использования чат-ботов с единой синей цветовой схемой
   const useCases = [
     {
       title: "Автоматизация клиентской поддержки",
@@ -123,9 +123,9 @@ export default function ChatBotsUseCases() {
       ],
       image: "/assets/images/callcenter.jpg",
       icon: <TrendingUp />,
-      color: "green",
-      gradient: "from-green-500 to-green-600",
-      darkGradient: "from-green-600/20 to-green-800/20",
+      color: "blue",
+      gradient: "from-blue-500 to-blue-600",
+      darkGradient: "from-blue-600/20 to-blue-800/20",
     },
     {
       title: "Внутренние коммуникации",
@@ -156,9 +156,9 @@ export default function ChatBotsUseCases() {
       ],
       image: "/assets/images/ai-consultation.jpg",
       icon: <Building2 />,
-      color: "purple",
-      gradient: "from-purple-500 to-purple-600",
-      darkGradient: "from-purple-600/20 to-purple-800/20",
+      color: "blue",
+      gradient: "from-blue-500 to-blue-600",
+      darkGradient: "from-blue-600/20 to-blue-800/20",
     },
   ];
 
@@ -172,15 +172,15 @@ export default function ChatBotsUseCases() {
 
       {/* Трехмерные градиентные элементы */}
       <div
-        className="absolute -top-20 right-20 w-96 h-96 bg-gradient-to-br from-blue-200/10 to-indigo-300/10 dark:from-blue-500/10 dark:to-indigo-600/10 rounded-full blur-3xl -z-5 animate-pulse"
+        className="absolute -top-20 right-20 w-96 h-96 bg-gradient-to-br from-blue-200/10 to-blue-300/10 dark:from-blue-500/10 dark:to-blue-600/10 rounded-full blur-3xl -z-5 animate-pulse"
         style={{ animationDuration: "15s" }}
       ></div>
       <div
-        className="absolute top-1/3 left-0 w-72 h-72 bg-gradient-to-tr from-purple-200/10 to-blue-300/10 dark:from-purple-500/10 dark:to-blue-600/10 rounded-full blur-3xl -z-5 animate-pulse"
+        className="absolute top-1/3 left-0 w-72 h-72 bg-gradient-to-tr from-blue-200/10 to-blue-300/10 dark:from-blue-500/10 dark:to-blue-600/10 rounded-full blur-3xl -z-5 animate-pulse"
         style={{ animationDuration: "20s", animationDelay: "3s" }}
       ></div>
       <div
-        className="absolute bottom-20 right-0 w-80 h-80 bg-gradient-to-tl from-blue-200/10 to-purple-300/10 dark:from-blue-500/10 dark:to-purple-600/10 rounded-full blur-3xl -z-5 animate-pulse"
+        className="absolute bottom-20 right-0 w-80 h-80 bg-gradient-to-tl from-blue-200/10 to-blue-300/10 dark:from-blue-500/10 dark:to-blue-600/10 rounded-full blur-3xl -z-5 animate-pulse"
         style={{ animationDuration: "18s", animationDelay: "5s" }}
       ></div>
 
@@ -223,7 +223,7 @@ export default function ChatBotsUseCases() {
           {/* Бейдж с улучшенной типографикой */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-4 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-700/50 backdrop-blur-sm shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-4 bg-gradient-to-r from-blue-500/10 to-blue-600/10 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-700/50 backdrop-blur-sm shadow-sm"
           >
             <div className="flex items-center justify-center w-5 h-5 rounded-full bg-blue-500 dark:bg-blue-600 text-white">
               <Search className="w-3 h-3" />
@@ -391,7 +391,7 @@ export default function ChatBotsUseCases() {
 
           {/* Линии градиентного разделителя */}
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 md:p-8 lg:p-10">
             {/* Левая колонка - Текст и статистика */}

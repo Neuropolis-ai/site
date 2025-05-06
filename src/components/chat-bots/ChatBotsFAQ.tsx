@@ -1,33 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Container from "@/components/ui/Container";
-import { useTheme } from "@/context/ThemeContext";
-import { useState } from "react";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDownIcon } from "lucide-react";
 
 export default function ChatBotsFAQ() {
-  const { isDark } = useTheme();
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openItem, setOpenItem] = useState<number | null>(0);
 
-  // Анимации
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
+  const toggleItem = (index: number) => {
+    setOpenItem(openItem === index ? null : index);
   };
 
   // Вопросы и ответы
@@ -66,124 +47,105 @@ export default function ChatBotsFAQ() {
     },
   ];
 
-  const toggleQuestion = (index: number) => {
-    if (openIndex === index) {
-      setOpenIndex(null);
-    } else {
-      setOpenIndex(index);
-    }
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeInOut",
+      },
+    },
   };
 
   return (
-    <section
+    <motion.section
       id="chatbots-faq"
-      className="py-16 md:py-24 relative overflow-hidden"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      className="relative py-20 md:py-28 px-4 overflow-hidden"
     >
-      {/* Градиентный фон */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-black -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
 
-      {/* Декоративные элементы */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
-
-      <Container>
+      <div className="container relative mx-auto max-w-5xl">
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="text-center mb-16"
+          variants={itemVariants}
+          className="text-center mb-16 md:mb-20"
         >
-          <motion.div
-            variants={itemVariants}
-            className={`inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box ${
-              !isDark && "light-switch-box"
-            }`}
-          >
+          <div className="inline-block px-4 py-1 rounded-full text-sm mb-4 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
             FAQ
-          </motion.div>
-          <motion.h2
-            variants={itemVariants}
-            className="text-3xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-4"
-          >
+          </div>
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white mb-6 tracking-tight">
             Часто задаваемые{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
               вопросы
             </span>
           </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
-          >
+          <motion.p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Ответы на самые распространенные вопросы о разработке и внедрении
             чат-ботов
           </motion.p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="max-w-3xl mx-auto"
-        >
-          {faqItems.map((item, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className={`mb-4 rounded-xl overflow-hidden border ${
-                openIndex === index
-                  ? isDark
-                    ? "bg-gray-800/70 border-gray-700"
-                    : "bg-white border-gray-200 shadow-md"
-                  : isDark
-                  ? "bg-gray-800/30 border-gray-700"
-                  : "bg-white border-gray-200"
-              }`}
-            >
-              <button
-                onClick={() => toggleQuestion(index)}
-                className="w-full px-6 py-4 text-left flex justify-between items-center"
-              >
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                  {item.question}
-                </h3>
-                {openIndex === index ? (
-                  <FiChevronUp className="text-blue-600 dark:text-blue-400 ml-2 flex-shrink-0" />
-                ) : (
-                  <FiChevronDown className="text-gray-600 dark:text-gray-400 ml-2 flex-shrink-0" />
-                )}
-              </button>
+        <div className="grid gap-4">
+          {faqItems.map((faq, index) => (
+            <motion.div key={index} variants={itemVariants} className="group">
+              <div className="relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md">
+                <button
+                  onClick={() => toggleItem(index)}
+                  className="flex justify-between items-center w-full p-5 md:p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 rounded-2xl"
+                  aria-expanded={openItem === index}
+                  aria-controls={`faq-answer-${index}`}
+                >
+                  <span className="font-semibold text-lg md:text-xl text-gray-900 dark:text-white pr-4">
+                    {faq.question}
+                  </span>
+                  <div
+                    className={`flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full ${
+                      openItem === index
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400"
+                    }`}
+                  >
+                    <ChevronDownIcon
+                      className={`w-5 h-5 transition-transform duration-300 ${
+                        openItem === index ? "transform rotate-180" : ""
+                      }`}
+                    />
+                  </div>
+                </button>
 
-              <div
-                className={`px-6 transition-all duration-300 ease-in-out overflow-hidden ${
-                  openIndex === index ? "pb-6 max-h-96" : "max-h-0"
-                }`}
-              >
-                <p className="text-gray-600 dark:text-gray-300">
-                  {item.answer}
-                </p>
+                {openItem === index && (
+                  <div
+                    id={`faq-answer-${index}`}
+                    className="px-5 md:px-6 pb-5 md:pb-6 text-gray-600 dark:text-gray-300 text-base md:text-lg"
+                  >
+                    {faq.answer}
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Дополнительная информация */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="mt-16 text-center"
-        >
-          <motion.div
-            variants={itemVariants}
-            className={`p-6 rounded-xl max-w-3xl mx-auto ${
-              isDark
-                ? "bg-blue-900/20 border border-blue-800/30"
-                : "bg-blue-50 border border-blue-100"
-            }`}
-          >
+        <motion.div variants={itemVariants} className="mt-16 text-center">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden p-6 max-w-3xl mx-auto border border-gray-200 dark:border-gray-800 shadow-md">
             <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
               Остались вопросы?
             </h3>
@@ -198,9 +160,9 @@ export default function ChatBotsFAQ() {
             >
               Получить консультацию
             </a>
-          </motion.div>
+          </div>
         </motion.div>
-      </Container>
-    </section>
+      </div>
+    </motion.section>
   );
 }

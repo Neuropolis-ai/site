@@ -63,7 +63,7 @@ export default function ChatBotsProcess() {
     },
   };
 
-  // Улучшенные этапы процесса с новыми градиентами и иконками
+  // Обновленные этапы процесса с фирменными цветами Neuropolis
   const processSteps = [
     {
       number: "01",
@@ -75,9 +75,9 @@ export default function ChatBotsProcess() {
       secondaryIcon: (
         <Sparkles className="w-14 h-14 opacity-10 absolute top-2 right-2" />
       ),
-      gradient: "from-indigo-500 to-violet-600",
-      bgGradient: "from-indigo-50/10 via-violet-50/5 to-indigo-50/10",
-      darkBgGradient: "from-indigo-950/20 via-violet-950/15 to-indigo-950/20",
+      gradient: "from-[#8B5CF6] to-[#4F46E5]",
+      bgGradient: "from-purple-50/10 via-blue-50/5 to-purple-50/10",
+      darkBgGradient: "from-purple-950/20 via-blue-950/15 to-purple-950/20",
       animationDelay: 0,
     },
     {
@@ -90,7 +90,7 @@ export default function ChatBotsProcess() {
       secondaryIcon: (
         <Layers className="w-14 h-14 opacity-10 absolute top-2 right-2" />
       ),
-      gradient: "from-blue-500 to-cyan-500",
+      gradient: "from-[#4F46E5] to-[#0EA5E9]",
       bgGradient: "from-blue-50/10 via-cyan-50/5 to-blue-50/10",
       darkBgGradient: "from-blue-950/20 via-cyan-950/15 to-blue-950/20",
       animationDelay: 0.2,
@@ -105,9 +105,9 @@ export default function ChatBotsProcess() {
       secondaryIcon: (
         <Code className="w-14 h-14 opacity-10 absolute top-2 right-2" />
       ),
-      gradient: "from-teal-500 to-emerald-500",
-      bgGradient: "from-teal-50/10 via-emerald-50/5 to-teal-50/10",
-      darkBgGradient: "from-teal-950/20 via-emerald-950/15 to-teal-950/20",
+      gradient: "from-[#0EA5E9] to-[#8B5CF6]",
+      bgGradient: "from-cyan-50/10 via-purple-50/5 to-cyan-50/10",
+      darkBgGradient: "from-cyan-950/20 via-purple-950/15 to-cyan-950/20",
       animationDelay: 0.4,
     },
     {
@@ -120,9 +120,9 @@ export default function ChatBotsProcess() {
       secondaryIcon: (
         <Settings2 className="w-14 h-14 opacity-10 absolute top-2 right-2" />
       ),
-      gradient: "from-amber-500 to-orange-500",
-      bgGradient: "from-amber-50/10 via-orange-50/5 to-amber-50/10",
-      darkBgGradient: "from-amber-950/20 via-orange-950/15 to-amber-950/20",
+      gradient: "from-[#8B5CF6] to-[#0EA5E9]",
+      bgGradient: "from-purple-50/10 via-blue-50/5 to-purple-50/10",
+      darkBgGradient: "from-purple-950/20 via-blue-950/15 to-purple-950/20",
       animationDelay: 0.6,
     },
     {
@@ -135,9 +135,9 @@ export default function ChatBotsProcess() {
       secondaryIcon: (
         <Zap className="w-14 h-14 opacity-10 absolute top-2 right-2" />
       ),
-      gradient: "from-fuchsia-500 to-pink-600",
-      bgGradient: "from-fuchsia-50/10 via-pink-50/5 to-fuchsia-50/10",
-      darkBgGradient: "from-fuchsia-950/20 via-pink-950/15 to-fuchsia-950/20",
+      gradient: "from-[#4F46E5] to-[#0EA5E9]",
+      bgGradient: "from-blue-50/10 via-cyan-50/5 to-blue-50/10",
+      darkBgGradient: "from-blue-950/20 via-cyan-950/15 to-blue-950/20",
       animationDelay: 0.8,
     },
   ];
@@ -150,9 +150,9 @@ export default function ChatBotsProcess() {
       {/* Улучшенный градиентный фон с коническим градиентом */}
       <div className="absolute inset-0 bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-white via-gray-50 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 -z-10"></div>
 
-      {/* Декоративные графические элементы */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/10 to-indigo-300/10 dark:from-blue-500/10 dark:to-indigo-600/10 rounded-full blur-3xl -z-5 animate-pulse"></div>
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-violet-200/10 to-fuchsia-300/10 dark:from-violet-500/10 dark:to-fuchsia-600/10 rounded-full blur-3xl -z-5 animate-pulse"></div>
+      {/* Декоративные графические элементы в фирменных цветах */}
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-[#8B5CF6]/10 to-[#4F46E5]/10 dark:from-[#8B5CF6]/10 dark:to-[#4F46E5]/10 rounded-full blur-3xl -z-5 animate-pulse"></div>
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-[#4F46E5]/10 to-[#0EA5E9]/10 dark:from-[#4F46E5]/10 dark:to-[#0EA5E9]/10 rounded-full blur-3xl -z-5 animate-pulse"></div>
 
       {/* Современный SVG паттерн для фона */}
       <div className="absolute inset-0 overflow-hidden opacity-5 dark:opacity-10 pointer-events-none">
@@ -192,18 +192,18 @@ export default function ChatBotsProcess() {
           viewport={{ once: true, amount: 0.1 }}
           className="text-center mb-16 md:mb-20"
         >
-          {/* Улучшенный бейдж */}
+          {/* Улучшенный бейдж в фирменных цветах */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-4 bg-gradient-to-r from-indigo-500/10 to-violet-600/10 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-700/50 backdrop-blur-sm shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-4 bg-gradient-to-r from-[#8B5CF6]/10 to-[#0EA5E9]/10 text-[#8B5CF6] dark:text-[#8B5CF6] border border-[#8B5CF6]/50 dark:border-[#8B5CF6]/50 backdrop-blur-sm shadow-sm"
           >
-            <div className="flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 text-white">
+            <div className="flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#0EA5E9] text-white">
               <Layers className="w-3 h-3" />
             </div>
             Процесс создания
           </motion.div>
 
-          {/* Улучшенный заголовок с 3D-эффектом и современным градиентом */}
+          {/* Улучшенный заголовок с фирменным градиентом */}
           <motion.h2
             variants={itemVariants}
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
@@ -214,10 +214,10 @@ export default function ChatBotsProcess() {
               </span>
             </span>
             <span className="relative inline-block">
-              <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-blue-600 to-violet-600 dark:from-indigo-400 dark:via-blue-400 dark:to-violet-400">
+              <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-[#8B5CF6] via-[#4F46E5] to-[#0EA5E9] dark:from-[#8B5CF6] dark:via-[#4F46E5] dark:to-[#0EA5E9]">
                 создаем интеллектуальных ботов
               </span>
-              <span className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-indigo-500/20 via-blue-400/20 to-violet-500/20 blur-sm -z-10"></span>
+              <span className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#8B5CF6]/20 via-[#4F46E5]/20 to-[#0EA5E9]/20 blur-sm -z-10"></span>
             </span>
           </motion.h2>
 
@@ -239,18 +239,17 @@ export default function ChatBotsProcess() {
           viewport={{ once: true, amount: 0.1 }}
           className="relative max-w-5xl mx-auto"
         >
-          {/* Улучшенная стильная вертикальная линия с градиентом цепи */}
+          {/* Улучшенная стильная вертикальная линия с фирменным градиентом */}
           <motion.div
             initial="initial"
             animate="animate"
             variants={gradientPulse}
-            className="absolute left-1/2 top-8 bottom-8 w-0.5 bg-gradient-to-b from-indigo-500 via-blue-500 to-violet-600 dark:from-indigo-500 dark:via-blue-600 dark:to-violet-700 transform -translate-x-1/2 hidden md:block"
+            className="absolute left-1/2 top-8 bottom-8 w-0.5 bg-gradient-to-b from-[#8B5CF6] via-[#4F46E5] to-[#0EA5E9] dark:from-[#8B5CF6] dark:via-[#4F46E5] dark:to-[#0EA5E9] transform -translate-x-1/2 hidden md:block"
             style={{
               backgroundSize: "200% 200%",
             }}
           ></motion.div>
 
-          {/* Этапы процесса с улучшенной визуализацией */}
           {processSteps.map((step, index) => (
             <motion.div
               key={index}
@@ -276,20 +275,18 @@ export default function ChatBotsProcess() {
                       isDark ? "bg-gray-900/60" : "bg-white/80"
                     } backdrop-blur-md p-6 md:p-8 rounded-2xl shadow-xl border ${
                       isDark ? "border-gray-800/50" : "border-gray-100/50"
-                    } transition-all duration-300 hover:shadow-2xl hover:border-${step.gradient
-                      .split(" ")[1]
-                      .replace("to-", "")}/50`}
+                    } transition-all duration-300 hover:shadow-2xl hover:border-[#8B5CF6]/50`}
                   >
                     {/* Градиентный фон при наведении */}
                     <div
-                      className="absolute inset-0 bg-gradient-to-br dark:bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5
-                      ${isDark ? step.darkBgGradient : step.bgGradient}"
+                      className={`absolute inset-0 bg-gradient-to-br dark:bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5
+                      ${isDark ? step.darkBgGradient : step.bgGradient}`}
                     ></div>
 
                     {/* Декоративные элементы */}
                     <div
-                      className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br opacity-10 dark:opacity-20 blur-xl -z-10
-                      ${step.gradient}"
+                      className={`absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br opacity-10 dark:opacity-20 blur-xl -z-10
+                      ${step.gradient}`}
                     ></div>
                     {step.secondaryIcon}
 
@@ -299,13 +296,7 @@ export default function ChatBotsProcess() {
                         initial="initial"
                         animate="animate"
                         variants={floatAnimation}
-                        className={`w-14 h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br ${
-                          step.gradient
-                        } flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-${step.gradient
-                          .split(" ")[1]
-                          .replace("to-", "")}/20 dark:shadow-${step.gradient
-                          .split(" ")[1]
-                          .replace("to-", "")}/10`}
+                        className={`w-14 h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-[#8B5CF6]/20 dark:shadow-[#8B5CF6]/10`}
                       >
                         {step.number}
                       </motion.div>
@@ -313,7 +304,7 @@ export default function ChatBotsProcess() {
                         <div className="text-xl font-bold text-gray-900 dark:text-white mb-1.5">
                           {step.title}
                         </div>
-                        <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-gradient-to-r from-${step.gradient.split(' ')[0].replace('from-', '')}/10 to-${step.gradient.split(' ')[1].replace('to-', '')}/10 text-${step.gradient.split(' ')[1].replace('to-', '')}/90 dark:text-${step.gradient.split(' ')[1].replace('to-', '')}/70 font-medium">
+                        <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-gradient-to-r from-[#8B5CF6]/10 to-[#0EA5E9]/10 text-[#8B5CF6] dark:text-[#8B5CF6]/70 font-medium">
                           {step.duration}
                         </div>
                       </div>
@@ -321,20 +312,14 @@ export default function ChatBotsProcess() {
 
                     {/* Десктопная версия - номер и продолжительность */}
                     <div className="hidden md:flex items-center justify-end gap-3 mb-5">
-                      <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-gradient-to-r from-${step.gradient.split(' ')[0].replace('from-', '')}/10 to-${step.gradient.split(' ')[1].replace('to-', '')}/10 text-${step.gradient.split(' ')[1].replace('to-', '')}/90 dark:text-${step.gradient.split(' ')[1].replace('to-', '')}/70 font-medium">
+                      <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-gradient-to-r from-[#8B5CF6]/10 to-[#0EA5E9]/10 text-[#8B5CF6] dark:text-[#8B5CF6]/70 font-medium">
                         {step.duration}
                       </div>
                       <motion.div
                         initial="initial"
                         animate="animate"
                         variants={floatAnimation}
-                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${
-                          step.gradient
-                        } flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-${step.gradient
-                          .split(" ")[1]
-                          .replace("to-", "")}/20 dark:shadow-${step.gradient
-                          .split(" ")[1]
-                          .replace("to-", "")}/10`}
+                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-[#8B5CF6]/20 dark:shadow-[#8B5CF6]/10`}
                       >
                         {step.number}
                       </motion.div>
@@ -358,7 +343,7 @@ export default function ChatBotsProcess() {
                     </p>
 
                     {/* Улучшенный круг на временной линии */}
-                    <div className="absolute top-1/2 right-0 w-9 h-9 bg-gradient-to-br ${step.gradient} rounded-full transform translate-x-1/2 -translate-y-1/2 border-4 border-white dark:border-gray-900 hidden md:flex items-center justify-center text-white shadow-md">
+                    <div className="absolute top-1/2 right-0 w-9 h-9 bg-gradient-to-br from-[#8B5CF6] to-[#0EA5E9] rounded-full transform translate-x-1/2 -translate-y-1/2 border-4 border-white dark:border-gray-900 hidden md:flex items-center justify-center text-white shadow-md">
                       <div className="w-2.5 h-2.5 bg-white rounded-full"></div>
                     </div>
                   </motion.div>
@@ -373,20 +358,18 @@ export default function ChatBotsProcess() {
                       isDark ? "bg-gray-900/60" : "bg-white/80"
                     } backdrop-blur-md p-6 md:p-8 rounded-2xl shadow-xl border ${
                       isDark ? "border-gray-800/50" : "border-gray-100/50"
-                    } transition-all duration-300 hover:shadow-2xl hover:border-${step.gradient
-                      .split(" ")[1]
-                      .replace("to-", "")}/50 md:hidden`}
+                    } transition-all duration-300 hover:shadow-2xl hover:border-[#8B5CF6]/50 md:hidden`}
                   >
                     {/* Градиентный фон при наведении */}
                     <div
-                      className="absolute inset-0 bg-gradient-to-br dark:bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5
-                      ${isDark ? step.darkBgGradient : step.bgGradient}"
+                      className={`absolute inset-0 bg-gradient-to-br dark:bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5
+                      ${isDark ? step.darkBgGradient : step.bgGradient}`}
                     ></div>
 
                     {/* Декоративные элементы */}
                     <div
-                      className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br opacity-10 dark:opacity-20 blur-xl -z-10
-                      ${step.gradient}"
+                      className={`absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br opacity-10 dark:opacity-20 blur-xl -z-10
+                      ${step.gradient}`}
                     ></div>
                     {step.secondaryIcon}
 
@@ -396,13 +379,7 @@ export default function ChatBotsProcess() {
                         initial="initial"
                         animate="animate"
                         variants={floatAnimation}
-                        className={`w-14 h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br ${
-                          step.gradient
-                        } flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-${step.gradient
-                          .split(" ")[1]
-                          .replace("to-", "")}/20 dark:shadow-${step.gradient
-                          .split(" ")[1]
-                          .replace("to-", "")}/10`}
+                        className={`w-14 h-14 flex-shrink-0 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-[#8B5CF6]/20 dark:shadow-[#8B5CF6]/10`}
                       >
                         {step.number}
                       </motion.div>
@@ -410,21 +387,21 @@ export default function ChatBotsProcess() {
                         <div className="text-xl font-bold text-gray-900 dark:text-white mb-1.5">
                           {step.title}
                         </div>
-                        <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-gradient-to-r from-${step.gradient.split(' ')[0].replace('from-', '')}/10 to-${step.gradient.split(' ')[1].replace('to-', '')}/10 text-${step.gradient.split(' ')[1].replace('to-', '')}/90 dark:text-${step.gradient.split(' ')[1].replace('to-', '')}/70 font-medium">
+                        <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-gradient-to-r from-[#8B5CF6]/10 to-[#0EA5E9]/10 text-[#8B5CF6] dark:text-[#8B5CF6]/70 font-medium">
                           {step.duration}
                         </div>
                       </div>
                     </div>
 
                     {/* Описание */}
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed font-medium tracking-wide">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed font-medium tracking-wide">
                       {step.description}
                     </p>
                   </motion.div>
                 )}
 
-                {/* Для нечетных индексов контент справа */}
-                {index % 2 !== 0 ? (
+                {/* Для нечетных индексов контент справа - только на десктопе */}
+                {index % 2 !== 0 && (
                   <motion.div
                     whileHover={{
                       y: -5,
@@ -435,40 +412,32 @@ export default function ChatBotsProcess() {
                       isDark ? "bg-gray-900/60" : "bg-white/80"
                     } backdrop-blur-md p-6 md:p-8 rounded-2xl shadow-xl border ${
                       isDark ? "border-gray-800/50" : "border-gray-100/50"
-                    } transition-all duration-300 hover:shadow-2xl hover:border-${step.gradient
-                      .split(" ")[1]
-                      .replace("to-", "")}/50 hidden md:block`}
+                    } transition-all duration-300 hover:shadow-2xl hover:border-[#8B5CF6]/50 hidden md:block`}
                   >
                     {/* Градиентный фон при наведении */}
                     <div
-                      className="absolute inset-0 bg-gradient-to-br dark:bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5
-                      ${isDark ? step.darkBgGradient : step.bgGradient}"
+                      className={`absolute inset-0 bg-gradient-to-br dark:bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5
+                      ${isDark ? step.darkBgGradient : step.bgGradient}`}
                     ></div>
 
                     {/* Декоративные элементы */}
                     <div
-                      className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-gradient-to-br opacity-10 dark:opacity-20 blur-xl -z-10
-                      ${step.gradient}"
+                      className={`absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br opacity-10 dark:opacity-20 blur-xl -z-10
+                      ${step.gradient}`}
                     ></div>
                     {step.secondaryIcon}
 
-                    {/* Номер с градиентом и продолжительность */}
+                    {/* Десктоп - номер и продолжительность */}
                     <div className="flex items-center gap-3 mb-5">
                       <motion.div
                         initial="initial"
                         animate="animate"
                         variants={floatAnimation}
-                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${
-                          step.gradient
-                        } flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-${step.gradient
-                          .split(" ")[1]
-                          .replace("to-", "")}/20 dark:shadow-${step.gradient
-                          .split(" ")[1]
-                          .replace("to-", "")}/10`}
+                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${step.gradient} flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-[#8B5CF6]/20 dark:shadow-[#8B5CF6]/10`}
                       >
                         {step.number}
                       </motion.div>
-                      <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-gradient-to-r from-${step.gradient.split(' ')[0].replace('from-', '')}/10 to-${step.gradient.split(' ')[1].replace('to-', '')}/10 text-${step.gradient.split(' ')[1].replace('to-', '')}/90 dark:text-${step.gradient.split(' ')[1].replace('to-', '')}/70 font-medium">
+                      <div className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs bg-gradient-to-r from-[#8B5CF6]/10 to-[#0EA5E9]/10 text-[#8B5CF6] dark:text-[#8B5CF6]/70 font-medium">
                         {step.duration}
                       </div>
                     </div>
@@ -486,40 +455,19 @@ export default function ChatBotsProcess() {
                     </div>
 
                     {/* Описание */}
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed font-medium tracking-wide">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed font-medium tracking-wide">
                       {step.description}
                     </p>
 
                     {/* Улучшенный круг на временной линии */}
-                    <div className="absolute top-1/2 left-0 w-9 h-9 bg-gradient-to-br ${step.gradient} rounded-full transform -translate-x-1/2 -translate-y-1/2 border-4 border-white dark:border-gray-900 hidden md:flex items-center justify-center text-white shadow-md">
+                    <div className="absolute top-1/2 left-0 w-9 h-9 bg-gradient-to-br from-[#8B5CF6] to-[#0EA5E9] rounded-full transform -translate-x-1/2 -translate-y-1/2 border-4 border-white dark:border-gray-900 hidden md:flex items-center justify-center text-white shadow-md">
                       <div className="w-2.5 h-2.5 bg-white rounded-full"></div>
                     </div>
                   </motion.div>
-                ) : (
-                  <div className="hidden md:block"></div>
                 )}
               </div>
             </motion.div>
           ))}
-
-          {/* Финальный элемент */}
-          <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 hidden md:block">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0.5 }}
-              animate={{
-                scale: [0.8, 1.2, 0.8],
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatType: "loop",
-              }}
-              className="w-14 h-14 bg-gradient-to-br from-indigo-500 via-blue-600 to-violet-600 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/20 dark:shadow-indigo-500/10"
-            >
-              <Zap className="w-7 h-7 text-white" strokeWidth={2.5} />
-            </motion.div>
-          </div>
         </motion.div>
       </Container>
     </section>

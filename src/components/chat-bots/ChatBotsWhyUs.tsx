@@ -74,10 +74,10 @@ export default function ChatBotsWhyUs() {
       title: "Индивидуальный подход",
       description:
         "Разрабатываем решения под конкретные задачи вашего бизнеса с учетом отраслевой специфики и требований",
-      gradient: "from-[#8B5CF6] to-[#4F46E5]",
-      darkGradient: "from-[#8B5CF6] to-[#4F46E5]",
-      bgGradient: "from-purple-50/10 via-blue-50/5 to-purple-50/10",
-      darkBgGradient: "from-purple-950/20 via-blue-950/15 to-purple-950/20",
+      gradient: "from-[#0167F3] to-[#399AFC]",
+      darkGradient: "from-[#0167F3] to-[#399AFC]",
+      bgGradient: "from-[#0167F3]/5 via-[#399AFC]/3 to-[#0167F3]/5",
+      darkBgGradient: "from-[#0167F3]/10 via-[#399AFC]/8 to-[#0167F3]/10",
     },
     {
       icon: <Code2 className="w-6 h-6" strokeWidth={2.5} />,
@@ -87,10 +87,10 @@ export default function ChatBotsWhyUs() {
       title: "Опытная команда разработчиков",
       description:
         "Наши специалисты имеют 5+ лет опыта в создании интеллектуальных чат-ботов для различных отраслей",
-      gradient: "from-[#4F46E5] to-[#0EA5E9]",
-      darkGradient: "from-[#4F46E5] to-[#0EA5E9]",
-      bgGradient: "from-blue-50/10 via-cyan-50/5 to-blue-50/10",
-      darkBgGradient: "from-blue-950/20 via-cyan-950/15 to-blue-950/20",
+      gradient: "from-[#0167F3]/90 to-[#399AFC]/90",
+      darkGradient: "from-[#0167F3]/90 to-[#399AFC]/90",
+      bgGradient: "from-[#0167F3]/5 via-[#399AFC]/3 to-[#0167F3]/5",
+      darkBgGradient: "from-[#0167F3]/10 via-[#399AFC]/8 to-[#0167F3]/10",
     },
     {
       icon: <Database className="w-6 h-6" strokeWidth={2.5} />,
@@ -100,10 +100,10 @@ export default function ChatBotsWhyUs() {
       title: "Работа с любыми объемами данных",
       description:
         "Создаем решения, способные обрабатывать большие массивы информации и эффективно использовать базы знаний",
-      gradient: "from-[#0EA5E9] to-[#4F46E5]",
-      darkGradient: "from-[#0EA5E9] to-[#4F46E5]",
-      bgGradient: "from-cyan-50/10 via-blue-50/5 to-cyan-50/10",
-      darkBgGradient: "from-cyan-950/20 via-blue-950/15 to-cyan-950/20",
+      gradient: "from-[#399AFC]/90 to-[#0167F3]/90",
+      darkGradient: "from-[#399AFC]/90 to-[#0167F3]/90",
+      bgGradient: "from-[#399AFC]/5 via-[#0167F3]/3 to-[#399AFC]/5",
+      darkBgGradient: "from-[#399AFC]/10 via-[#0167F3]/8 to-[#399AFC]/10",
     },
     {
       icon: <Users className="w-6 h-6" strokeWidth={2.5} />,
@@ -113,10 +113,10 @@ export default function ChatBotsWhyUs() {
       title: "Обучение и поддержка персонала",
       description:
         "Проводим полное обучение сотрудников работе с чат-ботом и обеспечиваем техническую поддержку 24/7",
-      gradient: "from-[#8B5CF6] to-[#0EA5E9]",
-      darkGradient: "from-[#8B5CF6] to-[#0EA5E9]",
-      bgGradient: "from-purple-50/10 via-blue-50/5 to-purple-50/10",
-      darkBgGradient: "from-purple-950/20 via-blue-950/15 to-purple-950/20",
+      gradient: "from-[#0167F3]/80 to-[#399AFC]/80",
+      darkGradient: "from-[#0167F3]/80 to-[#399AFC]/80",
+      bgGradient: "from-[#0167F3]/5 via-[#399AFC]/3 to-[#0167F3]/5",
+      darkBgGradient: "from-[#0167F3]/10 via-[#399AFC]/8 to-[#0167F3]/10",
     },
     {
       icon: <Cpu className="w-6 h-6" strokeWidth={2.5} />,
@@ -126,10 +126,10 @@ export default function ChatBotsWhyUs() {
       title: "Современные технологии ИИ",
       description:
         "Используем передовые нейросетевые модели и алгоритмы машинного обучения для создания интеллектуальных решений",
-      gradient: "from-[#4F46E5] to-[#8B5CF6]",
-      darkGradient: "from-[#4F46E5] to-[#8B5CF6]",
-      bgGradient: "from-blue-50/10 via-purple-50/5 to-blue-50/10",
-      darkBgGradient: "from-blue-950/20 via-purple-950/15 to-blue-950/20",
+      gradient: "from-[#0167F3]/70 to-[#399AFC]/70",
+      darkGradient: "from-[#0167F3]/70 to-[#399AFC]/70",
+      bgGradient: "from-[#0167F3]/5 via-[#399AFC]/3 to-[#0167F3]/5",
+      darkBgGradient: "from-[#0167F3]/10 via-[#399AFC]/8 to-[#0167F3]/10",
     },
     {
       icon: <ShieldCheck className="w-6 h-6" strokeWidth={2.5} />,
@@ -139,10 +139,10 @@ export default function ChatBotsWhyUs() {
       title: "Безопасность и надежность",
       description:
         "Обеспечиваем высокий уровень защиты данных, соответствие требованиям GDPR и российскому законодательству",
-      gradient: "from-[#0EA5E9] to-[#8B5CF6]",
-      darkGradient: "from-[#0EA5E9] to-[#8B5CF6]",
-      bgGradient: "from-cyan-50/10 via-purple-50/5 to-cyan-50/10",
-      darkBgGradient: "from-cyan-950/20 via-purple-950/15 to-cyan-950/20",
+      gradient: "from-[#399AFC]/70 to-[#0167F3]/70",
+      darkGradient: "from-[#399AFC]/70 to-[#0167F3]/70",
+      bgGradient: "from-[#399AFC]/5 via-[#0167F3]/3 to-[#399AFC]/5",
+      darkBgGradient: "from-[#399AFC]/10 via-[#0167F3]/8 to-[#399AFC]/10",
     },
   ];
 
@@ -152,25 +152,25 @@ export default function ChatBotsWhyUs() {
       value: "5+",
       label: "Лет опыта разработки чат-ботов",
       icon: <BadgeCheck className="w-6 h-6" strokeWidth={2.5} />,
-      gradient: "from-[#8B5CF6] to-[#4F46E5]",
+      gradient: "from-[#0167F3] to-[#399AFC]",
     },
     {
       value: "50+",
       label: "Успешно реализованных проектов",
       icon: <Lightbulb className="w-6 h-6" strokeWidth={2.5} />,
-      gradient: "from-[#4F46E5] to-[#0EA5E9]",
+      gradient: "from-[#0167F3]/90 to-[#399AFC]/90",
     },
     {
       value: "15",
       label: "Экспертов в команде",
       icon: <Users className="w-6 h-6" strokeWidth={2.5} />,
-      gradient: "from-[#8B5CF6] to-[#0EA5E9]",
+      gradient: "from-[#0167F3]/80 to-[#399AFC]/80",
     },
     {
       value: "97%",
       label: "Удовлетворенность клиентов",
       icon: <Rocket className="w-6 h-6" strokeWidth={2.5} />,
-      gradient: "from-[#0EA5E9] to-[#8B5CF6]",
+      gradient: "from-[#399AFC]/80 to-[#0167F3]/80",
     },
   ];
 
@@ -183,8 +183,8 @@ export default function ChatBotsWhyUs() {
       <div className="absolute inset-0 bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-white via-gray-50 to-white dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 -z-10"></div>
 
       {/* Декоративные графические элементы в фирменных цветах */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-[#8B5CF6]/10 to-[#4F46E5]/10 dark:from-[#8B5CF6]/10 dark:to-[#4F46E5]/10 rounded-full blur-3xl -z-5 animate-pulse"></div>
-      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-tr from-[#4F46E5]/10 to-[#0EA5E9]/10 dark:from-[#4F46E5]/10 dark:to-[#0EA5E9]/10 rounded-full blur-3xl -z-5 animate-pulse"></div>
+      <div className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-[#0167F3]/10 to-[#399AFC]/10 dark:from-[#0167F3]/10 dark:to-[#399AFC]/10 rounded-full blur-3xl -z-5 animate-pulse"></div>
+      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-tr from-[#0167F3]/10 to-[#399AFC]/10 dark:from-[#0167F3]/10 dark:to-[#399AFC]/10 rounded-full blur-3xl -z-5 animate-pulse"></div>
 
       {/* Современный SVG паттерн для фона */}
       <div className="absolute inset-0 overflow-hidden opacity-5 dark:opacity-10 pointer-events-none">
@@ -227,9 +227,9 @@ export default function ChatBotsWhyUs() {
           {/* Улучшенный бейдж в фирменных цветах */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-4 bg-gradient-to-r from-[#8B5CF6]/10 to-[#0EA5E9]/10 text-[#8B5CF6] dark:text-[#8B5CF6] border border-[#8B5CF6]/50 dark:border-[#8B5CF6]/50 backdrop-blur-sm shadow-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-medium mb-4 bg-gradient-to-r from-[#0167F3]/10 to-[#399AFC]/10 text-[#0167F3] dark:text-[#399AFC] border border-[#0167F3]/20 dark:border-[#399AFC]/50 backdrop-blur-sm shadow-sm"
           >
-            <div className="flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#0EA5E9] text-white">
+            <div className="flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white">
               <Sparkles className="w-3 h-3" />
             </div>
             Преимущества
@@ -246,10 +246,10 @@ export default function ChatBotsWhyUs() {
               </span>
             </span>
             <span className="relative inline-block">
-              <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-[#8B5CF6] via-[#4F46E5] to-[#0EA5E9] dark:from-[#8B5CF6] dark:via-[#4F46E5] dark:to-[#0EA5E9]">
+              <span className="relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] via-[#2C81F6] to-[#399AFC] dark:from-[#0167F3] dark:via-[#2C81F6] dark:to-[#399AFC]">
                 выбирают нас
               </span>
-              <span className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#8B5CF6]/20 via-[#4F46E5]/20 to-[#0EA5E9]/20 blur-sm -z-10"></span>
+              <span className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#0167F3]/20 via-[#2C81F6]/20 to-[#399AFC]/20 blur-sm -z-10"></span>
             </span>
           </motion.h2>
 
@@ -288,7 +288,7 @@ export default function ChatBotsWhyUs() {
                     ? "bg-gray-900/60 border-gray-800/50"
                     : "bg-white/80 border-gray-100/50"
                 }
-                transition-all duration-300 hover:shadow-2xl hover:border-[#8B5CF6]/50`}
+                transition-all duration-300 hover:shadow-2xl hover:border-[#0167F3]/50`}
             >
               {/* Градиентный фон при наведении */}
               <div
@@ -308,14 +308,14 @@ export default function ChatBotsWhyUs() {
                 initial="initial"
                 animate="animate"
                 variants={iconFloatAnimation}
-                className={`w-16 h-16 rounded-2xl mb-5 flex items-center justify-center shadow-lg shadow-[#8B5CF6]/20 dark:shadow-[#8B5CF6]/10 bg-gradient-to-br ${advantage.gradient} text-white group-hover:shadow-xl transition-all duration-300`}
+                className={`w-16 h-16 rounded-2xl mb-5 flex items-center justify-center shadow-lg shadow-[#0167F3]/20 dark:shadow-[#399AFC]/10 bg-gradient-to-br ${advantage.gradient} text-white group-hover:shadow-xl transition-all duration-300`}
               >
                 {advantage.icon}
                 <div className="absolute inset-0 rounded-2xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </motion.div>
 
               {/* Заголовок */}
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#8B5CF6] group-hover:to-[#0EA5E9] transition-all duration-500">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#0167F3] group-hover:to-[#399AFC] transition-all duration-500">
                 {advantage.title}
               </h3>
 
@@ -350,11 +350,11 @@ export default function ChatBotsWhyUs() {
                     ? "bg-gray-900/60 border-gray-800/50"
                     : "bg-white/80 border-gray-100/50"
                 }
-                transition-all duration-300 hover:shadow-2xl hover:border-[#8B5CF6]/50`}
+                transition-all duration-300 hover:shadow-2xl hover:border-[#0167F3]/50`}
             >
               {/* Градиентный фон при наведении */}
               <div
-                className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-[#8B5CF6]/5 to-[#0EA5E9]/5 dark:from-[#8B5CF6]/10 dark:to-[#0EA5E9]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                className={`absolute inset-0 rounded-2xl bg-gradient-to-br from-[#0167F3]/5 to-[#399AFC]/5 dark:from-[#0167F3]/10 dark:to-[#399AFC]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
               ></div>
 
               {/* Иконка */}
@@ -362,7 +362,7 @@ export default function ChatBotsWhyUs() {
                 initial="initial"
                 animate="animate"
                 variants={pulseAnimation}
-                className={`w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center bg-gradient-to-br ${stat.gradient} text-white shadow-lg shadow-[#8B5CF6]/20 dark:shadow-[#8B5CF6]/10`}
+                className={`w-12 h-12 mx-auto mb-4 rounded-full flex items-center justify-center bg-gradient-to-br ${stat.gradient} text-white shadow-lg shadow-[#0167F3]/20 dark:shadow-[#399AFC]/10`}
               >
                 {stat.icon}
               </motion.div>
@@ -380,6 +380,29 @@ export default function ChatBotsWhyUs() {
               </p>
             </motion.div>
           ))}
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="mt-16 text-center md:grid md:grid-cols-2 md:gap-4"
+        >
+          <div className="p-8 bg-gradient-to-r from-[#0167F3]/10 to-[#399AFC]/10 dark:from-[#0167F3]/10 dark:to-[#399AFC]/10 rounded-2xl border border-[#0167F3]/20 dark:border-[#399AFC]/20 backdrop-blur-sm shadow-lg md:col-span-2">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              Готовы обсудить ваш проект?
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-xl mx-auto">
+              Закажите бесплатную консультацию с нашими экспертами, чтобы
+              узнать, как чат-боты могут помочь вашему бизнесу.
+            </p>
+            <div className="inline-block p-0.5 rounded-lg bg-gradient-to-r from-[#0167F3] to-[#399AFC] shadow-md">
+              <button className="px-6 py-3 bg-white dark:bg-gray-900 rounded-md text-[#0167F3] hover:text-[#399AFC] font-medium transition-colors duration-300">
+                Обсудить ваш проект
+              </button>
+            </div>
+          </div>
         </motion.div>
       </Container>
     </section>

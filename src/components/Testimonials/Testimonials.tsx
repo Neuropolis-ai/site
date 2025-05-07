@@ -220,10 +220,10 @@ const Testimonials = () => {
 
           <div
             ref={scrollContainerRef}
-            className="flex overflow-x-auto pb-10 relative hide-scrollbar bg-transparent"
+            className="flex overflow-x-auto pb-10 pt-4 px-4 relative hide-scrollbar bg-transparent"
             style={{ scrollBehavior: "smooth" }}
           >
-            <div className="flex space-x-6 sm:space-x-8 md:space-x-10 pl-10 sm:pl-14 md:pl-16 pr-10 sm:pr-14 md:pr-16">
+            <div className="flex space-x-6 sm:space-x-8 md:space-x-10 pl-10 sm:pl-14 md:pl-16 pr-10 sm:pr-14 md:pr-16 py-4">
               {testimonialData.map((testimonial) => (
                 <motion.div
                   key={testimonial.id}

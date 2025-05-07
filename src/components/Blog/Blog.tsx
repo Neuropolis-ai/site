@@ -79,8 +79,8 @@ const Blog = () => {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <div
               className="inline-block px-4 py-1 rounded-full text-sm mb-4 font-medium tracking-wide
-              bg-blue-50 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300
-              border border-blue-100 dark:border-blue-800/60"
+              bg-gradient-to-r from-[#0167F3]/10 to-[#399AFC]/10 text-[#0167F3] dark:from-[#0167F3]/20 dark:to-[#399AFC]/20 dark:text-[#399AFC]
+              border border-[#0167F3]/20 dark:border-[#399AFC]/30"
             >
               Блог
             </div>

@@ -99,13 +99,10 @@ export default function BaseFAQ({
           variants={itemVariants}
           className="text-center mb-16 md:mb-20"
         >
-          <div className="inline-block px-4 py-1 rounded-full text-sm mb-4 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+          <div className="inline-block px-4 py-1 rounded-full text-sm mb-4 bg-gradient-to-r from-[#0167F3]/10 to-[#399AFC]/10 text-[#0167F3] dark:from-[#0167F3]/20 dark:to-[#399AFC]/20 dark:text-[#399AFC] border border-[#0167F3]/20 dark:border-[#399AFC]/30">
             FAQ
           </div>
-          <motion.h2
-            className="text-4xl font-semibold text-gray-900 dark:text-white mb-6 tracking-tight"
-            style={{ fontSize: "36px" }}
-          >
+          <motion.h2 className="homepage-heading text-gray-900 dark:text-white mb-6 tracking-tight">
             {title.includes("вопросы") ? (
               <>
                 {title.split("вопросы")[0]}
@@ -117,15 +114,12 @@ export default function BaseFAQ({
               title
             )}
           </motion.h2>
-          <motion.p
-            className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
-            style={{ fontSize: "18px" }}
-          >
+          <motion.p className="homepage-subheading text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {subtitle}
           </motion.p>
         </motion.div>
 
-        <div className="grid gap-4">
+        <div className="grid gap-3">
           {faqItems.map((faq, index) => (
             <motion.div
               key={faq.id || index}
@@ -135,7 +129,7 @@ export default function BaseFAQ({
               <div className="relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md">
                 <button
                   onClick={() => toggleItem(index)}
-                  className="flex justify-between items-center w-full p-5 md:p-6 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 rounded-2xl"
+                  className="flex justify-between items-center w-full p-4 md:p-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 rounded-2xl"
                   aria-expanded={openItem === index}
                   aria-controls={`faq-answer-${index}`}
                 >
@@ -146,14 +140,14 @@ export default function BaseFAQ({
                     {faq.question}
                   </span>
                   <div
-                    className={`flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full ${
+                    className={`flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full ${
                       openItem === index
                         ? "bg-blue-500 text-white"
                         : "bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400"
                     }`}
                   >
                     <ChevronDownIcon
-                      className={`w-5 h-5 transition-transform duration-300 ${
+                      className={`w-4 h-4 transition-transform duration-300 ${
                         openItem === index ? "transform rotate-180" : ""
                       }`}
                     />
@@ -163,7 +157,7 @@ export default function BaseFAQ({
                 {openItem === index && (
                   <div
                     id={`faq-answer-${index}`}
-                    className="px-5 md:px-6 pb-5 md:pb-6 text-gray-600 dark:text-gray-300 text-base"
+                    className="px-4 md:px-5 pb-4 md:pb-5 text-gray-600 dark:text-gray-300 text-base"
                     style={{ fontSize: "16px" }}
                   >
                     {faq.answer}

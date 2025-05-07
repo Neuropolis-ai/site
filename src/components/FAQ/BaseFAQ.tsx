@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDownIcon } from "lucide-react";
+import Badge from "@/components/ui/Badge";
 
 export interface FAQItem {
   id?: number;
@@ -99,21 +100,21 @@ export default function BaseFAQ({
           variants={itemVariants}
           className="text-center mb-16 md:mb-20"
         >
-          <div className="inline-block px-4 py-1 rounded-full text-sm mb-4 bg-gradient-to-r from-[#0167F3]/10 to-[#399AFC]/10 text-[#0167F3] dark:from-[#0167F3]/20 dark:to-[#399AFC]/20 dark:text-[#399AFC] border border-[#0167F3]/20 dark:border-[#399AFC]/30">
-            FAQ
+          <div className="text-center mb-16">
+            <Badge>FAQ</Badge>
+            <h2 className="text-[36px] font-bold text-gray-900 dark:text-white mb-4">
+              {title.includes("вопросы") ? (
+                <>
+                  {title.split("вопросы")[0]}
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+                    вопросы
+                  </span>
+                </>
+              ) : (
+                title
+              )}
+            </h2>
           </div>
-          <motion.h2 className="homepage-heading text-gray-900 dark:text-white mb-6 tracking-tight">
-            {title.includes("вопросы") ? (
-              <>
-                {title.split("вопросы")[0]}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
-                  вопросы
-                </span>
-              </>
-            ) : (
-              title
-            )}
-          </motion.h2>
           <motion.p className="homepage-subheading text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             {subtitle}
           </motion.p>
@@ -167,31 +168,6 @@ export default function BaseFAQ({
             </motion.div>
           ))}
         </div>
-
-        {/* Дополнительная информация */}
-        <motion.div variants={itemVariants} className="mt-16 text-center">
-          <div className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden p-6 max-w-3xl mx-auto border border-gray-200 dark:border-gray-800 shadow-md">
-            <h3
-              className="text-lg font-semibold text-gray-900 dark:text-white mb-2"
-              style={{ fontSize: "18px" }}
-            >
-              Остались вопросы?
-            </h3>
-            <p
-              className="text-base text-gray-600 dark:text-gray-300 mb-4"
-              style={{ fontSize: "16px" }}
-            >
-              Свяжитесь с нами для получения бесплатной консультации. Наши
-              эксперты подробно расскажут о возможностях для вашего бизнеса.
-            </p>
-            <a
-              href={contactLink}
-              className="inline-block bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold py-2 px-6 rounded-lg transition-transform hover:-translate-y-1"
-            >
-              {contactText}
-            </a>
-          </div>
-        </motion.div>
       </div>
     </motion.section>
   );

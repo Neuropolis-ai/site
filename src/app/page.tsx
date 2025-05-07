@@ -13,6 +13,7 @@ import FAQ from "@/components/FAQ/FAQ";
 import { BsArrowRight } from "react-icons/bs";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import Badge from "@/components/ui/Badge";
 
 // Отключаем кеширование данных для этой страницы
 export const dynamic = "force-dynamic";
@@ -42,16 +43,14 @@ export default async function Home() {
 
             <div className="container mx-auto max-w-[1280px] relative z-10">
               <div className="text-center mb-16">
-                <div className="inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box light-switch-box dark:bg-gray-800/60 dark:text-gray-300">
-                  Блог
-                </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white mb-4">
+                <Badge>Блог</Badge>
+                <h2 className="text-[36px] font-semibold text-gray-900 dark:text-white mb-4">
                   Последние{" "}
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
                     публикации
                   </span>
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
+                <p className="homepage-subheading max-w-2xl mx-auto">
                   Узнайте о последних тенденциях и инновациях в области
                   искусственного интеллекта и цифровой трансформации.
                 </p>

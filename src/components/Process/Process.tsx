@@ -1,150 +1,111 @@
 "use client";
 
-import { useTheme } from "@/context/ThemeContext";
-import { useEffect, useRef } from "react";
-import "../../style/card-line.css";
-import "../../style/icon-animations.css";
-import Container from "../ui/Container";
-import { Brain, Settings, BarChart3, ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
+import ProcessSection from "@/components/ui/ProcessSection";
+import { FiClock } from "react-icons/fi";
+import {
+  FiSearch,
+  FiCode,
+  FiSettings,
+  FiServer,
+  FiUsers,
+  FiBarChart2,
+} from "react-icons/fi";
 
 const Process = () => {
-  const { isDark } = useTheme();
-  const processRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    const currentRef = processRef.current;
-
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
+  // Этапы процесса внедрения ИИ-решений
+  const processSteps = [
+    {
+      number: "01",
+      title: "Анализ и исследование",
+      description:
+        "Исследуем ваш бизнес, выявляем задачи, которые можно оптимизировать с помощью ИИ, и определяем ключевые цели проекта.",
+      details: [
+        "Интервью с ключевыми сотрудниками",
+        "Аудит существующих процессов",
+        "Выявление узких мест в работе",
+        "Определение приоритетных задач",
+      ],
+      icon: <FiSearch className="w-6 h-6" />,
+    },
+    {
+      number: "02",
+      title: "Разработка стратегии",
+      description:
+        "Создаем детальный план внедрения ИИ-решений, включающий выбор технологий, определение необходимых интеграций и оценку ресурсов.",
+      details: [
+        "Проектирование архитектуры решения",
+        "Выбор подходящих ИИ-технологий",
+        "Расчет ROI от внедрения ИИ",
+        "Формирование дорожной карты проекта",
+      ],
+      icon: <FiSettings className="w-6 h-6" />,
+    },
+    {
+      number: "03",
+      title: "Разработка и кастомизация",
+      description:
+        "Разрабатываем и настраиваем ИИ-решения, адаптированные под уникальные потребности вашего бизнеса и существующие системы.",
+      details: [
+        "Настройка ИИ-алгоритмов",
+        "Создание интерфейсов взаимодействия",
+        "Разработка автоматизированных процессов",
+        "Настройка интеграций с вашими системами",
+      ],
+      icon: <FiCode className="w-6 h-6" />,
+    },
+    {
+      number: "04",
+      title: "Тестирование и оптимизация",
+      description:
+        "Проводим тщательное тестирование созданных ИИ-решений и оптимизируем их работу для достижения максимальной производительности.",
+      details: [
+        "Функциональное тестирование",
+        "Проверка точности ИИ-моделей",
+        "Оптимизация производительности",
+        "Настройка безопасности данных",
+      ],
+      icon: <FiBarChart2 className="w-6 h-6" />,
+    },
+    {
+      number: "05",
+      title: "Внедрение и обучение",
+      description:
+        "Внедряем ИИ-решения в вашу рабочую среду и обучаем ваших сотрудников эффективному использованию новых инструментов.",
+      details: [
+        "Поэтапное внедрение ИИ-систем",
+        "Проведение тренингов для персонала",
+        "Подготовка документации и инструкций",
+        "Сопровождение на начальном этапе использования",
+      ],
+      icon: <FiUsers className="w-6 h-6" />,
+    },
+    {
+      number: "06",
+      title: "Поддержка и развитие",
+      description:
+        "Обеспечиваем постоянную поддержку, мониторинг работы и дальнейшее развитие ИИ-решений с учетом меняющихся потребностей вашего бизнеса.",
+      details: [
+        "Техническая поддержка 24/7",
+        "Мониторинг и обновление ИИ-моделей",
+        "Анализ эффективности внедрения",
+        "Масштабирование решений по мере роста бизнеса",
+      ],
+      icon: <FiServer className="w-6 h-6" />,
+    },
+  ];
 
   return (
-    <section className="py-20 px-4 relative overflow-hidden">
-      {/* Градиентный фон */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
-      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
-
-      <Container>
-        <div className="text-center mb-16">
-          <div
-            className={`inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box ${
-              !isDark && "light-switch-box"
-            }`}
-          >
-            Процесс
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white mb-4">
-            Автономные ИИ-решения
-          </h2>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
-            С нами ИИ становится простым, масштабируемым и всегда работает на
-            улучшение вашего бизнеса.
-          </p>
-        </div>
-
-        <div
-          ref={processRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
-        >
-          {/* Card 1 - Исследование и кастомизация */}
-          <div className="group relative flex flex-col h-full rounded-2xl transition-all duration-300 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-lg hover:-translate-y-1 p-6">
-            <div className="w-16 h-16 rounded-xl flex items-center justify-center mb-6 bg-blue-500/10 dark:bg-blue-900/20">
-              <Brain
-                className="w-8 h-8 text-blue-600 dark:text-blue-400"
-                strokeWidth={1.75}
-              />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-              Исследование и кастомизация
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
-              Мы начинаем с анализа потребностей вашего бизнеса и постановки
-              целей, адаптируя ИИ-решения под уникальные требования вашей
-              компании для достижения максимальных результатов.
-            </p>
-            <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
-              <p className="font-medium text-blue-600 dark:text-blue-400">
-                Точные решения для ваших задач
-              </p>
-            </div>
-          </div>
-
-          {/* Card 2 - Бесшовная Интеграция ИИ */}
-          <div className="group relative flex flex-col h-full rounded-2xl transition-all duration-300 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-lg hover:-translate-y-1 p-6">
-            <div className="w-16 h-16 rounded-xl flex items-center justify-center mb-6 bg-blue-500/10 dark:bg-blue-900/20">
-              <Settings
-                className="w-8 h-8 text-blue-600 dark:text-blue-400"
-                strokeWidth={1.75}
-              />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-              Бесшовная Интеграция ИИ
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
-              Наши инженеры и разработчики ИИ интегрируют решения в вашу
-              существующую инфраструктуру, обеспечивая бесшовное взаимодействие
-              систем и максимальную автоматизацию.
-            </p>
-            <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
-              <p className="font-medium text-blue-600 dark:text-blue-400">
-                Минимальное нарушение рабочих процессов
-              </p>
-            </div>
-          </div>
-
-          {/* Card 3 - Оптимизация и Поддержка */}
-          <div className="group relative flex flex-col h-full rounded-2xl transition-all duration-300 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 overflow-hidden hover:shadow-lg hover:-translate-y-1 p-6">
-            <div className="w-16 h-16 rounded-xl flex items-center justify-center mb-6 bg-blue-500/10 dark:bg-blue-900/20">
-              <BarChart3
-                className="w-8 h-8 text-blue-600 dark:text-blue-400"
-                strokeWidth={1.75}
-              />
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-              Оптимизация и Поддержка
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
-              После внедрения мы продолжаем мониторить и оптимизировать ИИ,
-              обеспечивая его постоянное обучение и улучшение на основе новых
-              данных и результатов работы.
-            </p>
-            <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
-              <p className="font-medium text-blue-600 dark:text-blue-400">
-                Постоянное улучшение и развитие
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-12 text-center">
-          <motion.a
-            href="/cases"
-            whileHover={{ x: 5 }}
-            className="inline-flex items-center mt-6 text-blue-600 dark:text-blue-400 font-medium text-lg"
-          >
-            Подробнее о решениях <ArrowRight className="ml-2 w-5 h-5" />
-          </motion.a>
-        </div>
-      </Container>
-    </section>
+    <ProcessSection
+      processSteps={processSteps}
+      title="Процесс создания автономных ИИ-решений"
+      subtitle="Мы следуем структурированному подходу к созданию и внедрению ИИ-решений, обеспечивая максимальную эффективность и быструю адаптацию для вашего бизнеса."
+      badge="Процесс"
+      sectionId="process"
+      resultTitle="Результат нашей работы"
+      resultIcon={<FiClock className="w-12 h-12 text-white" />}
+      resultText="Благодаря нашему подходу вы получаете интеллектуальную автоматизацию, которая берет на себя рутинные задачи и повышает эффективность работы. Ваши сотрудники освобождаются от монотонной работы и могут сосредоточиться на стратегических задачах, требующих человеческого интеллекта и творческого подхода."
+      gradientTitlePart="автономных ИИ-решений"
+    />
   );
 };
 

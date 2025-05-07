@@ -8,6 +8,7 @@ import { Inter } from "next/font/google";
 import "../style/normalize.css";
 import "./globals.css";
 import "../style/animations-fix.css";
+import BadgeRenderer from "@/components/ui/BadgeRenderer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -75,6 +76,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased bg-[#ffffff] dark:bg-[#050505] text-foreground min-h-screen transition-colors duration-300`}
       >
         <ThemeProvider>
+          <BadgeRenderer />
           {children}
           <YandexMetrika />
         </ThemeProvider>

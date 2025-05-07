@@ -216,11 +216,11 @@ const Testimonials = () => {
 
         <div className="relative">
           {/* Left shadow overlay - улучшенный градиент */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-16 md:w-20 z-10 bg-gradient-to-r dark:from-gray-900 from-white to-transparent pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-16 md:w-20 z-10 bg-gradient-to-r dark:from-gray-900 from-transparent to-transparent pointer-events-none"></div>
 
           <div
             ref={scrollContainerRef}
-            className="flex overflow-x-auto pb-10 relative hide-scrollbar"
+            className="flex overflow-x-auto pb-10 relative hide-scrollbar bg-transparent"
             style={{ scrollBehavior: "smooth" }}
           >
             <div className="flex space-x-6 sm:space-x-8 md:space-x-10 pl-10 sm:pl-14 md:pl-16 pr-10 sm:pr-14 md:pr-16">
@@ -230,8 +230,8 @@ const Testimonials = () => {
                   variants={cardVariants}
                   whileHover="hover"
                   className="flex flex-col justify-between min-w-[280px] sm:min-w-[320px] md:min-w-[380px] rounded-3xl overflow-hidden p-6 sm:p-7 md:p-8
-                  backdrop-blur-sm bg-white/95 dark:bg-gray-900/95 
-                  border border-white/30 dark:border-gray-700/40 
+                  backdrop-blur-none bg-white dark:bg-gray-900 
+                  border border-gray-100 dark:border-gray-800 
                   shadow-lg transition-all duration-300"
                 >
                   <div>
@@ -280,7 +280,7 @@ const Testimonials = () => {
           </div>
 
           {/* Right shadow overlay - улучшенный градиент */}
-          <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 md:w-20 z-10 bg-gradient-to-l dark:from-gray-900 from-white to-transparent pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 md:w-20 z-10 bg-gradient-to-l dark:from-gray-900 from-transparent to-transparent pointer-events-none"></div>
         </div>
 
         <motion.div variants={itemVariants} className="mt-12 text-center">

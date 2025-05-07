@@ -1,6 +1,4 @@
-import { useTheme } from "@/context/ThemeContext";
-import "@/style/hero.css";
-import "@/style/text-animations.css";
+// Серверный компонент (без "use client" директивы)
 import ClientHero from "./ClientHero";
 
 // Серверный компонент Hero

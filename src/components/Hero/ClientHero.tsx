@@ -18,7 +18,7 @@ const ClientHero = () => {
   return (
     <section
       id="hero"
-      className="animate-fadeIn relative flex items-center justify-center overflow-hidden pt-[100px] sm:pt-[130px] md:pt-[150px] lg:pt-[170px] pb-16 md:pb-24 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900"
+      className="relative flex items-center justify-center overflow-hidden pt-[100px] sm:pt-[130px] md:pt-[150px] lg:pt-[170px] pb-16 md:pb-24 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900"
     >
       {/* Декоративные элементы */}
       <div className="absolute inset-0 z-0 opacity-40 dark:opacity-20">
@@ -28,7 +28,7 @@ const ClientHero = () => {
 
       {/* Content */}
       <div className="relative z-20 text-center max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-[900px] mx-auto px-4">
-        <div className="animate-slideUp opacity-0 [animation-delay:200ms] [animation-fill-mode:forwards]">
+        <div>
           <span className="inline-flex items-center justify-center border border-blue-300 dark:border-blue-800 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400">
             <svg
               width={15}
@@ -52,7 +52,7 @@ const ClientHero = () => {
           </span>
         </div>
 
-        <h1 className="animate-slideUp opacity-0 [animation-delay:400ms] [animation-fill-mode:forwards] text-[60px] font-bold text-gray-800 dark:text-white mb-4 sm:mb-5 md:mb-6">
+        <h1 className="text-[60px] font-bold text-gray-800 dark:text-white mb-4 sm:mb-5 md:mb-6">
           Автоматизация и разработка
           <span className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-transparent bg-clip-text">
             {" "}
@@ -62,13 +62,13 @@ const ClientHero = () => {
           для бизнеса
         </h1>
 
-        <p className="animate-slideUp opacity-0 [animation-delay:600ms] [animation-fill-mode:forwards] text-[18px] homepage-subheading mb-10 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-[18px] homepage-subheading mb-10 max-w-3xl mx-auto leading-relaxed">
           Повышайте эффективность, автоматизируйте процессы и снижайте издержки
           с помощью индивидуальных ИИ-решений. Освободите команду от рутины и
           направьте фокус на ключевые стратегические цели.
         </p>
 
-        <div className="animate-slideUp opacity-0 [animation-delay:800ms] [animation-fill-mode:forwards] flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={() => scrollToSection("contact")}
             className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:from-[#0157D3] hover:to-[#2988E8] text-white shadow-lg hover:shadow-blue-500/20 dark:hover:shadow-blue-700/10 font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 px-8 py-4 text-lg"
@@ -77,7 +77,7 @@ const ClientHero = () => {
           </button>
         </div>
 
-        <div className="animate-slideUp opacity-0 [animation-delay:1000ms] [animation-fill-mode:forwards] mt-12 flex flex-row justify-center items-center gap-y-3 gap-x-6 sm:gap-x-8 md:gap-x-10 text-gray-700 dark:text-gray-300 text-sm md:text-base">
+        <div className="mt-12 flex flex-row justify-center items-center gap-y-3 gap-x-6 sm:gap-x-8 md:gap-x-10 text-gray-700 dark:text-gray-300 text-sm md:text-base">
           <div className="flex items-center space-x-1.5">
             <svg
               className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0"

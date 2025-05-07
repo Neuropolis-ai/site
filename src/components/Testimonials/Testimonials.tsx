@@ -192,7 +192,9 @@ const Testimonials = () => {
 
       <Container>
         <TestimonialSchema testimonials={testimonialData} />
-        <motion.div variants={itemVariants} className="text-center mb-20">
+
+        {/* Заголовок и подзаголовок */}
+        <div className="text-center mb-16">
           <div
             className="inline-block px-4 py-1 rounded-full text-sm mb-4 font-medium tracking-wide
             bg-blue-50 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300
@@ -210,7 +212,7 @@ const Testimonials = () => {
             Истории успеха наших клиентов из разных отраслей, демонстрирующие
             реальную ценность ИИ-решений для бизнеса.
           </p>
-        </motion.div>
+        </div>
 
         <div className="relative">
           {/* Left shadow overlay - улучшенный градиент */}
@@ -246,7 +248,7 @@ const Testimonials = () => {
                           />
                         ))}
                       </div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">
                         {testimonial.quote.replace(/^"|"$/g, "")}
                       </h3>
                       <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">

@@ -152,12 +152,12 @@ export default function ProcessSection({
                   {step.details.map((detail, detailIndex) => (
                     <div
                       key={detailIndex}
-                      className="flex items-start space-x-3"
+                      className="flex items-center space-x-3"
                     >
-                      <div className="mt-2 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#0167F3] to-[#399AFC] flex-shrink-0"></div>
+                      <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-[#0167F3] to-[#399AFC] flex-shrink-0"></div>
                       <span
                         className="text-gray-600 dark:text-gray-300"
-                        style={{ fontSize: "16px" }}
+                        style={{ fontSize: "14px" }}
                       >
                         {detail}
                       </span>

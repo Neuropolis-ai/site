@@ -3,7 +3,7 @@
 import { useTheme } from "@/context/ThemeContext";
 import "@/style/hero.css";
 import "@/style/text-animations.css";
-import { motion } from "framer-motion";
+import Button from "@/components/ui/button";
 
 // Helper function for smooth scrolling
 const scrollToSection = (sectionId: string) => {
@@ -16,35 +16,10 @@ const scrollToSection = (sectionId: string) => {
 const Hero = () => {
   const { isDark } = useTheme();
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeInOut",
-      },
-    },
-  };
-
   return (
-    <motion.section
+    <section
       id="hero"
-      variants={containerVariants}
-      initial="hidden"
-      animate="show"
-      className="relative flex items-center justify-center overflow-hidden pt-[120px] sm:pt-[150px] md:pt-[180px] lg:pt-[200px] pb-16 md:pb-24 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900"
+      className="animate-fadeIn relative flex items-center justify-center overflow-hidden pt-[100px] sm:pt-[130px] md:pt-[150px] lg:pt-[170px] pb-16 md:pb-24 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900"
     >
       {/* Декоративные элементы */}
       <div className="absolute inset-0 z-0 opacity-40 dark:opacity-20">
@@ -54,7 +29,7 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-20 text-center max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-[900px] mx-auto px-4">
-        <motion.div variants={itemVariants}>
+        <div className="animate-slideUp opacity-0 [animation-delay:200ms] [animation-fill-mode:forwards]">
           <span className="inline-flex items-center justify-center border border-blue-300 dark:border-blue-800 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400">
             <svg
               width={15}
@@ -76,12 +51,9 @@ const Hero = () => {
             </svg>{" "}
             Neuropolis.ai
           </span>
-        </motion.div>
+        </div>
 
-        <motion.h1
-          variants={itemVariants}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 dark:text-white mb-4 sm:mb-5 md:mb-6"
-        >
+        <h1 className="animate-slideUp opacity-0 [animation-delay:400ms] [animation-fill-mode:forwards] text-[60px] font-bold text-gray-800 dark:text-white mb-4 sm:mb-5 md:mb-6">
           Автоматизация и разработка
           <span className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-transparent bg-clip-text">
             {" "}
@@ -89,33 +61,25 @@ const Hero = () => {
           </span>
           <br />
           для бизнеса
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          variants={itemVariants}
-          className="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-gray-600 dark:text-gray-300 leading-relaxed"
-        >
+        <p className="animate-slideUp opacity-0 [animation-delay:600ms] [animation-fill-mode:forwards] text-[18px] homepage-subheading mb-10 max-w-3xl mx-auto leading-relaxed">
           Повышайте эффективность, автоматизируйте процессы и снижайте издержки
           с помощью индивидуальных ИИ-решений. Освободите команду от рутины и
           направьте фокус на ключевые стратегические цели.
-        </motion.p>
+        </p>
 
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <button
+        <div className="animate-slideUp opacity-0 [animation-delay:800ms] [animation-fill-mode:forwards] flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Button
             onClick={() => scrollToSection("contact")}
-            className="inline-block w-full sm:w-auto bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold py-4 px-8 rounded-xl text-lg md:text-xl transition-opacity hover:opacity-90 shadow-xl"
+            variant="primary"
+            size="lg"
           >
             Узнать, как внедрить ИИ в мой бизнес
-          </button>
-        </motion.div>
+          </Button>
+        </div>
 
-        <motion.div
-          variants={itemVariants}
-          className="mt-12 flex flex-row justify-center items-center gap-y-3 gap-x-6 sm:gap-x-8 md:gap-x-10 text-gray-700 dark:text-gray-300 text-sm md:text-base"
-        >
+        <div className="animate-slideUp opacity-0 [animation-delay:1000ms] [animation-fill-mode:forwards] mt-12 flex flex-row justify-center items-center gap-y-3 gap-x-6 sm:gap-x-8 md:gap-x-10 text-gray-700 dark:text-gray-300 text-sm md:text-base">
           <div className="flex items-center space-x-1.5">
             <svg
               className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0"
@@ -164,9 +128,9 @@ const Hero = () => {
               Рост эффективности процессов
             </span>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

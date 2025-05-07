@@ -97,19 +97,19 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-[10px] sm:top-[20px] left-0 right-0 z-50 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[800px] mx-auto 
+      className={`fixed top-[8px] sm:top-[15px] left-0 right-0 z-50 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[800px] mx-auto 
                 bg-[var(--card-bg)]/80 backdrop-blur-sm border border-[#b4b4b4] rounded-[12px] 
                 transition-all duration-300 ease-in-out overflow-hidden
-                ${mobileMenuOpen ? "pb-4" : "pb-1"}`}
+                ${mobileMenuOpen ? "pb-3" : "pb-0.5"}`}
       style={{ backdropFilter: "blur(30px)" }}
     >
       {/* Header Main */}
-      <div className="w-full p-[12px] pr-[18px] flex items-center justify-between">
+      <div className="w-full p-[8px] pr-[15px] flex items-center justify-between">
         <Link href="/">
-          <div className="flex items-center gap-2 text-lg sm:text-xl font-medium py-1">
+          <div className="flex items-center gap-1.5 text-base sm:text-lg font-medium py-0.5">
             <svg
-              width={18}
-              height={18}
+              width={16}
+              height={16}
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -125,18 +125,20 @@ const Header = () => {
                 fill="currentColor"
               />
             </svg>
-            <span className="text-gray-800 mt-[2px]">Neuropolis</span>
+            <span className="text-gray-800 mt-[1px] text-sm sm:text-base">
+              Neuropolis
+            </span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-2 lg:gap-4">
+        <nav className="hidden md:flex items-center gap-1.5 lg:gap-3">
           {menuItems.map((item) =>
             item.id === "blog" ? (
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-[16px] py-[8px] px-[18px] rounded-[12px] text-gray-800
+                className={`text-[14px] py-[6px] px-[14px] rounded-[10px] text-gray-800
                             ${pathname === "/blog" ? "bg-[#e0e0e0]" : ""} 
                             hover:text-[#0a2e6b] transition-colors`}
               >
@@ -146,7 +148,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/cases"
-                className={`text-[16px] py-[8px] px-[18px] rounded-[12px] text-gray-800
+                className={`text-[14px] py-[6px] px-[14px] rounded-[10px] text-gray-800
                             ${pathname === "/cases" ? "bg-[#e0e0e0]" : ""} 
                             hover:text-[#0a2e6b] transition-colors`}
               >
@@ -156,7 +158,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-[16px] py-[8px] px-[18px] rounded-[12px] text-gray-800
+                className={`text-[14px] py-[6px] px-[14px] rounded-[10px] text-gray-800
                             ${
                               activeSection === item.id && isHomePage
                                 ? "bg-[#e0e0e0]"
@@ -174,10 +176,10 @@ const Header = () => {
         <div className="md:hidden flex items-center">
           {/* Mobile Menu Toggle */}
           <button
-            className="text-gray-800 p-2"
+            className="text-gray-800 p-1.5"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+            {mobileMenuOpen ? <HiX size={20} /> : <HiMenu size={20} />}
           </button>
         </div>
       </div>
@@ -187,7 +189,7 @@ const Header = () => {
         className={`w-full transition-all duration-300 ease-in-out md:hidden
                     ${
                       mobileMenuOpen
-                        ? "max-h-[240px] opacity-100"
+                        ? "max-h-[200px] opacity-100"
                         : "max-h-0 opacity-0"
                     }`}
       >
@@ -201,7 +203,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-[18px] py-[10px] px-[20px] rounded-[12px] text-center text-gray-800
+                className={`text-[15px] py-[8px] px-[16px] rounded-[10px] text-center text-gray-800
                             ${
                               pathname === "/blog"
                                 ? "bg-[#e0e0e0]"
@@ -216,7 +218,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/cases"
-                className={`text-[18px] py-[10px] px-[20px] rounded-[12px] text-center text-gray-800
+                className={`text-[15px] py-[8px] px-[16px] rounded-[10px] text-center text-gray-800
                             ${
                               pathname === "/cases"
                                 ? "bg-[#e0e0e0]"
@@ -231,7 +233,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-[18px] py-[10px] px-[20px] rounded-[12px] text-center text-gray-800
+                className={`text-[15px] py-[8px] px-[16px] rounded-[10px] text-center text-gray-800
                             ${
                               activeSection === item.id && isHomePage
                                 ? "bg-[#e0e0e0]"

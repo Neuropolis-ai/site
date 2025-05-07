@@ -228,16 +228,13 @@ const Testimonials = () => {
                   variants={cardVariants}
                   whileHover="hover"
                   className="flex flex-col justify-between min-w-[280px] sm:min-w-[320px] md:min-w-[380px] rounded-3xl overflow-hidden p-6 sm:p-7 md:p-8
-                  backdrop-blur-xl bg-white/80 dark:bg-gray-900/60 
+                  backdrop-blur-sm bg-white/95 dark:bg-gray-900/95 
                   border border-white/30 dark:border-gray-700/40 
-                  shadow-xl transition-all duration-300"
+                  shadow-lg transition-all duration-300"
                 >
                   <div>
                     <div className="relative mb-6">
-                      <div className="absolute -left-2 -top-2 text-blue-500/20 dark:text-blue-400/30">
-                        <Quote size={40} strokeWidth={1} />
-                      </div>
-                      <div className="flex mb-5 mt-6 ml-1">
+                      <div className="flex mb-5">
                         {[...Array(5)].map((_, i) => (
                           <BsStarFill
                             key={i}
@@ -250,7 +247,7 @@ const Testimonials = () => {
                         ))}
                       </div>
                       <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">
-                        {testimonial.quote}
+                        {testimonial.quote.replace(/^"|"$/g, "")}
                       </h3>
                       <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
                         {testimonial.text}

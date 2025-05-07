@@ -194,19 +194,19 @@ const Testimonials = () => {
         <TestimonialSchema testimonials={testimonialData} />
         <motion.div variants={itemVariants} className="text-center mb-20">
           <div
-            className="inline-block px-5 py-1.5 rounded-full text-sm mb-5 font-medium tracking-wide
+            className="inline-block px-4 py-1 rounded-full text-sm mb-4 font-medium tracking-wide
             bg-blue-50 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300
             border border-blue-100 dark:border-blue-800/60"
           >
             Отзывы
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-5 tracking-tight leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">
             Отзывы наших{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
               клиентов
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Истории успеха наших клиентов из разных отраслей, демонстрирующие
             реальную ценность ИИ-решений для бизнеса.
           </p>
@@ -221,23 +221,23 @@ const Testimonials = () => {
             className="flex overflow-x-auto pb-10 relative hide-scrollbar"
             style={{ scrollBehavior: "smooth" }}
           >
-            <div className="flex space-x-8 sm:space-x-10 md:space-x-12 pl-12 sm:pl-16 md:pl-20 pr-12 sm:pr-16 md:pr-20">
+            <div className="flex space-x-6 sm:space-x-8 md:space-x-10 pl-10 sm:pl-14 md:pl-16 pr-10 sm:pr-14 md:pr-16">
               {testimonialData.map((testimonial) => (
                 <motion.div
                   key={testimonial.id}
                   variants={cardVariants}
                   whileHover="hover"
-                  className="flex flex-col justify-between min-w-[300px] sm:min-w-[340px] md:min-w-[420px] rounded-3xl overflow-hidden p-7 sm:p-8 md:p-10
+                  className="flex flex-col justify-between min-w-[280px] sm:min-w-[320px] md:min-w-[380px] rounded-3xl overflow-hidden p-6 sm:p-7 md:p-8
                   backdrop-blur-xl bg-white/80 dark:bg-gray-900/60 
                   border border-white/30 dark:border-gray-700/40 
                   shadow-xl transition-all duration-300"
                 >
                   <div>
-                    <div className="relative mb-8">
+                    <div className="relative mb-6">
                       <div className="absolute -left-2 -top-2 text-blue-500/20 dark:text-blue-400/30">
-                        <Quote size={48} strokeWidth={1} />
+                        <Quote size={40} strokeWidth={1} />
                       </div>
-                      <div className="flex mb-6">
+                      <div className="flex mb-5">
                         {[...Array(5)].map((_, i) => (
                           <BsStarFill
                             key={i}
@@ -245,32 +245,32 @@ const Testimonials = () => {
                               i < testimonial.stars
                                 ? "text-yellow-400"
                                 : "text-gray-300"
-                            } mr-1.5 text-lg sm:text-xl`}
+                            } mr-1 text-base sm:text-lg`}
                           />
                         ))}
                       </div>
-                      <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-5 tracking-tight leading-tight">
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">
                         {testimonial.quote}
                       </h3>
-                      <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg leading-relaxed">
+                      <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
                         {testimonial.text}
                       </p>
                     </div>
                   </div>
 
-                  <div className="pt-6 border-t border-blue-100/50 dark:border-blue-800/40">
+                  <div className="pt-5 border-t border-blue-100/50 dark:border-blue-800/40">
                     <div className="flex items-center">
                       <div
-                        className={`w-12 h-12 rounded-full bg-gradient-to-r ${testimonial.avatarColor} flex items-center justify-center text-white font-bold text-lg mr-4 shadow-lg`}
+                        className={`w-10 h-10 rounded-full bg-gradient-to-r ${testimonial.avatarColor} flex items-center justify-center text-white font-bold text-base mr-3 shadow-lg`}
                       >
                         {testimonial.name.charAt(0)}
                       </div>
                       <div>
-                        <h6 className="font-bold text-lg text-gray-900 dark:text-white">
+                        <h6 className="font-bold text-base text-gray-900 dark:text-white">
                           {testimonial.name}
                         </h6>
                         <p className="text-sm text-gray-600 dark:text-gray-400">
-                          {testimonial.position}, {testimonial.company}
+                          {testimonial.position}
                         </p>
                       </div>
                     </div>
@@ -284,12 +284,12 @@ const Testimonials = () => {
           <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-16 md:w-20 z-10 bg-gradient-to-l dark:from-gray-900 from-white to-transparent pointer-events-none"></div>
         </div>
 
-        <motion.div variants={itemVariants} className="mt-16 text-center">
+        <motion.div variants={itemVariants} className="mt-12 text-center">
           <a
             href="#contact"
-            className="inline-flex items-center justify-center py-4 px-10 rounded-full 
+            className="inline-flex items-center justify-center py-3 px-8 rounded-full 
             bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 
-            text-white font-semibold text-lg tracking-wide transition-all duration-300 
+            text-white font-semibold text-base tracking-wide transition-all duration-300 
             shadow-lg shadow-blue-500/20 hover:shadow-blue-600/30 transform hover:-translate-y-1"
           >
             Стать следующей историей успеха

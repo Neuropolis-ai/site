@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import Container from "../ui/Container";
 import BlogCard from "../BlogCard";
+import { motion } from "framer-motion";
 
 const Blog = () => {
   const { isDark } = useTheme();
@@ -38,45 +39,87 @@ const Blog = () => {
     fetchPosts();
   }, []);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <section id="blog" className="py-20 bg-white dark:bg-black">
+    <section id="blog" className="py-24 relative overflow-hidden">
+      {/* Градиентный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-white dark:from-black dark:via-gray-900 dark:to-black -z-10"></div>
+
+      {/* Декоративные элементы */}
+      <div className="absolute -top-40 left-0 w-[600px] h-[600px] bg-gradient-to-br from-purple-200/10 via-purple-400/5 to-purple-600/5 dark:from-purple-500/5 dark:via-purple-700/5 dark:to-purple-900/5 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-40 right-0 w-[500px] h-[500px] bg-gradient-to-tr from-blue-200/10 via-blue-400/5 to-blue-600/5 dark:from-blue-500/5 dark:via-blue-700/5 dark:to-blue-900/5 rounded-full blur-3xl -z-10"></div>
+
       <Container>
-        <div className="text-center mb-16">
-          <div
-            className={`inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box ${
-              !isDark && "light-switch-box"
-            }`}
-          >
-            Блог
-          </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold dark:text-white text-black mb-4">
-            Последние статьи из нашего блога
-          </h2>
-          <p className="dark:text-[#919191] text-gray-600 max-w-2xl mx-auto max-[425px]:text-[14px]">
-            Будьте в курсе последних трендов, советов и инноваций в области ИИ и
-            автоматизации.
-          </p>
-        </div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <div
+              className="inline-block px-4 py-1 rounded-full text-sm mb-4 font-medium tracking-wide
+              bg-blue-50 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300
+              border border-blue-100 dark:border-blue-800/60"
+            >
+              Блог
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">
+              Последние статьи из нашего блога
+            </h2>
+            <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+              Будьте в курсе последних трендов, советов и инноваций в области ИИ
+              и автоматизации.
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {blogPosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
-          ))}
-        </div>
-
-        <div className="flex justify-center mt-12">
-          <Link
-            href="/blog"
-            className={`w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 rounded-[12px] transition-colors ${
-              isDark
-                ? "border border-[#363636] text-[#F2F2F2] bg-[#050505] hover:bg-[#111111]"
-                : "border border-gray-300 text-gray-800 hover:bg-gray-100"
-            }`}
+          <motion.div
+            variants={itemVariants}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
-            Все статьи
-            <BsArrowRight />
-          </Link>
-        </div>
+            {blogPosts.map((post) => (
+              <motion.div key={post.id} variants={itemVariants}>
+                <BlogCard post={post} />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex justify-center mt-12"
+          >
+            <Link
+              href="/blog"
+              className="inline-flex items-center justify-center py-3 px-8 rounded-xl 
+              bg-blue-600 hover:bg-blue-700 
+              text-white font-medium text-base transition-all duration-300 
+              shadow-md hover:shadow-lg border border-blue-500"
+            >
+              Все статьи
+              <BsArrowRight className="ml-2" />
+            </Link>
+          </motion.div>
+        </motion.div>
       </Container>
     </section>
   );

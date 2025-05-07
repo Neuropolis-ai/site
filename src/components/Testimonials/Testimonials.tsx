@@ -286,10 +286,10 @@ const Testimonials = () => {
         <motion.div variants={itemVariants} className="mt-12 text-center">
           <a
             href="#contact"
-            className="inline-flex items-center justify-center py-3 px-8 rounded-full 
-            bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 
-            text-white font-semibold text-base tracking-wide transition-all duration-300 
-            shadow-lg shadow-blue-500/20 hover:shadow-blue-600/30 transform hover:-translate-y-1"
+            className="inline-flex items-center justify-center py-3 px-8 rounded-xl 
+            bg-blue-600 hover:bg-blue-700 
+            text-white font-medium text-base transition-all duration-300 
+            shadow-md hover:shadow-lg border border-blue-500"
           >
             Стать следующей историей успеха
           </a>

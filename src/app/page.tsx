@@ -15,7 +15,7 @@ import Footer from "@/components/Footer/Footer";
 import Badge from "@/components/ui/Badge";
 import WorkflowAutomationContactForm from "@/components/workflow-automation/WorkflowAutomationContactForm";
 import { FiUsers, FiLayers, FiTrendingUp } from "react-icons/fi";
-import { Button } from "@/components/ui/button";
+import CustomButton from "@/components/ui/CustomButton";
 
 // Отключаем кеширование данных для этой страницы
 export const dynamic = "force-dynamic";
@@ -70,9 +70,13 @@ export default async function Home() {
               </div>
 
               <div className="text-center mt-12">
-                <Button href="/blog" size="lg" iconRight={<BsArrowRight />}>
+                <CustomButton
+                  href="/blog"
+                  size="lg"
+                  iconRight={<BsArrowRight />}
+                >
                   Все статьи
-                </Button>
+                </CustomButton>
               </div>
             </div>
           </section>

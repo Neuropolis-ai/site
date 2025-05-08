@@ -8,6 +8,7 @@ import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { supabase } from "@/lib/supabase";
+import WorkflowAutomationContactForm from "@/components/workflow-automation/WorkflowAutomationContactForm";
 
 export default function ContactPage() {
   const { isDark } = useTheme();
@@ -263,7 +264,7 @@ export default function ContactPage() {
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="flex-grow"
+        className="flex-grow bg-gradient-to-b from-blue-50/50 to-white dark:from-blue-950/10 dark:to-gray-950"
       >
         {/* Hero section */}
         <motion.section
@@ -271,11 +272,6 @@ export default function ContactPage() {
           animate="show"
           className="relative pt-32 md:pt-36 pb-16 md:pb-20 overflow-hidden"
         >
-          <div className="absolute inset-0 z-0 opacity-40 dark:opacity-20">
-            <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl"></div>
-          </div>
-
           <div className="container mx-auto px-4 max-w-screen-lg relative z-10">
             <motion.header
               variants={itemVariants}
@@ -302,216 +298,80 @@ export default function ContactPage() {
 
         {/* Contact section */}
         <div className="relative pb-20 overflow-hidden">
-          <div className="absolute inset-0 -z-10 opacity-50 dark:opacity-100">
-            <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-blue-400/15 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl"></div>
-            <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/15 to-indigo-400/15 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl"></div>
-          </div>
+          {/* Вставляем компонент формы для автоматизации вместо стандартной формы */}
+          <WorkflowAutomationContactForm
+            title="Готовы начать проект вместе с нами?"
+            subtitle="Оставьте заявку, и наши эксперты свяжутся с вами в течение одного рабочего дня для обсуждения вашего проекта и предоставления консультации."
+            submitButtonText="Отправить заявку"
+            showCompanyField={true}
+            showPhoneField={true}
+            showFeatures={true}
+            showConfidentiality={true}
+            useContainer={false}
+            fullWidth={true}
+            formId="workflow-contact-form"
+            features={[
+              {
+                icon: <FiMail />,
+                title: "Быстрый ответ",
+                description:
+                  "Мы реагируем на все запросы в течение 24 часов и готовы ответить на любые ваши вопросы.",
+              },
+              {
+                icon: <FiPhone />,
+                title: "Персональная консультация",
+                description:
+                  "Получите индивидуальную консультацию от наших экспертов по разработке и внедрению AI-решений.",
+              },
+              {
+                icon: <FiMapPin />,
+                title: "Гибкий подход",
+                description:
+                  "Мы адаптируем наши решения под ваши конкретные потребности и существующую инфраструктуру.",
+              },
+            ]}
+            confidentialityText="Мы гарантируем конфиденциальность всей информации, которую вы предоставляете. Ваши данные надежно защищены и не будут переданы третьим лицам."
+            onSubmitSuccess={(formData) => {
+              console.log("Форма успешно отправлена:", formData);
+              // Можно добавить дополнительную логику после успешной отправки
+            }}
+            customSubmit={async (formData) => {
+              // Имитация отправки с задержкой
+              await new Promise((resolve) => setTimeout(resolve, 1500));
 
-          <div className="container mx-auto px-4 max-w-screen-lg">
+              // Отправка данных в Supabase
+              const { error: supabaseError } = await supabase
+                .from("contacts")
+                .insert([
+                  {
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone || null,
+                    company: formData.company || null,
+                    message: formData.message || null,
+                    created_at: new Date().toISOString(),
+                  },
+                ]);
+
+              if (supabaseError) {
+                console.error("Ошибка сохранения в Supabase:", supabaseError);
+                throw new Error(`Ошибка сохранения: ${supabaseError.message}`);
+              }
+
+              // Отправка в Telegram можно добавить при необходимости
+              // Сейчас не добавляем, чтобы избежать дублирования сообщений
+            }}
+            backgroundColor={
+              isDark ? "rgba(15, 23, 42, 0.5)" : "rgba(255, 255, 255, 0.7)"
+            }
+          />
+
+          {/* Контактная информация */}
+          <div className="container mx-auto px-4 max-w-screen-lg mt-24">
             <motion.div
               variants={containerVariants}
               className="grid grid-cols-1 lg:grid-cols-12 gap-12"
             >
-              {/* Колонка с формой обратной связи */}
-              <motion.div variants={itemVariants} className="lg:col-span-12">
-                <div className="rounded-2xl p-8 backdrop-blur-lg relative overflow-hidden">
-                  <div className="absolute inset-0 border border-white/20 dark:border-gray-700/30 rounded-2xl -z-10"></div>
-                  <div
-                    className={`absolute inset-0 -z-10 ${
-                      isDark ? "bg-gray-900/50" : "bg-white/60"
-                    } rounded-2xl`}
-                  ></div>
-                  <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 dark:from-blue-600/10 dark:to-indigo-600/10 rounded-full blur-xl -z-10"></div>
-                  <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-r from-indigo-400/10 to-blue-400/10 dark:from-indigo-600/10 dark:to-blue-600/10 rounded-full blur-xl -z-10"></div>
-
-                  <h2
-                    className={`text-2xl font-bold mb-6 ${
-                      isDark ? "text-white" : "text-gray-800"
-                    }`}
-                  >
-                    Отправить сообщение
-                  </h2>
-
-                  {/* Статус отправки - ошибка */}
-                  {submitStatus.type === "error" && (
-                    <div className="mb-6 p-4 rounded-lg flex items-start bg-red-100 text-red-800 dark:bg-red-800/20 dark:text-red-300">
-                      <svg
-                        className="flex-shrink-0 w-5 h-5 mt-0.5 mr-3"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>{submitStatus.message}</span>
-                    </div>
-                  )}
-
-                  {/* Статус отправки - успех */}
-                  {submitStatus.type === "success" ? (
-                    <motion.div
-                      className="text-center py-10 px-6"
-                      initial="hidden"
-                      animate="visible"
-                      variants={successAnimation}
-                    >
-                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white mb-6">
-                        <BsCheck2Circle className="w-8 h-8" />
-                      </div>
-                      <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-3">
-                        Спасибо за заявку!
-                      </h3>
-                      <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto leading-relaxed">
-                        {submitStatus.message}
-                      </p>
-                      <motion.button
-                        onClick={() =>
-                          setSubmitStatus({ type: null, message: "" })
-                        }
-                        className="inline-flex items-center justify-center px-6 py-3 border-0 text-lg font-semibold rounded-xl 
-                                text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:opacity-90 shadow-lg 
-                                transition-opacity duration-300"
-                      >
-                        Отправить новую заявку
-                      </motion.button>
-                    </motion.div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                          <label htmlFor="name" className={labelClasses}>
-                            Имя <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            required
-                            value={formData.name}
-                            onChange={handleChange}
-                            className={inputClasses}
-                            placeholder="Ваше имя"
-                          />
-                        </div>
-
-                        <div>
-                          <label htmlFor="email" className={labelClasses}>
-                            Email <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            required
-                            value={formData.email}
-                            onChange={handleChange}
-                            className={inputClasses}
-                            placeholder="Ваш email"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                          <label htmlFor="phone" className={labelClasses}>
-                            Телефон
-                          </label>
-                          <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            className={inputClasses}
-                            placeholder="+7 (___) ___-__-__"
-                          />
-                        </div>
-
-                        <div>
-                          <label htmlFor="company" className={labelClasses}>
-                            Компания
-                          </label>
-                          <input
-                            type="text"
-                            id="company"
-                            name="company"
-                            value={formData.company}
-                            onChange={handleChange}
-                            className={inputClasses}
-                            placeholder="Название компании"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label htmlFor="message" className={labelClasses}>
-                          Сообщение
-                        </label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          rows={5}
-                          value={formData.message}
-                          onChange={handleChange}
-                          className={inputClasses}
-                          placeholder="Опишите ваш запрос или проект..."
-                        />
-                      </div>
-
-                      <div className="text-center">
-                        <button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className={`inline-flex items-center justify-center px-8 py-4 rounded-xl
-                            bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold text-xl
-                            hover:opacity-90 transition-all duration-300 hover:-translate-y-0.5
-                            shadow-lg ${
-                              isSubmitting
-                                ? "opacity-70 cursor-not-allowed"
-                                : ""
-                            }`}
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <svg
-                                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                              >
-                                <circle
-                                  className="opacity-25"
-                                  cx="12"
-                                  cy="12"
-                                  r="10"
-                                  stroke="currentColor"
-                                  strokeWidth="4"
-                                ></circle>
-                                <path
-                                  className="opacity-75"
-                                  fill="currentColor"
-                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                ></path>
-                              </svg>
-                              Отправка...
-                            </>
-                          ) : (
-                            <>
-                              Отправить сообщение
-                              <BsArrowRight className="ml-2 w-6 h-6" />
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    </form>
-                  )}
-                </div>
-              </motion.div>
-
-              {/* Колонка с контактной информацией */}
               <motion.div variants={itemVariants} className="lg:col-span-12">
                 <div className="rounded-2xl p-8 backdrop-blur-lg relative overflow-hidden">
                   <div className="absolute inset-0 border border-white/20 dark:border-gray-700/30 rounded-2xl -z-10"></div>
@@ -534,11 +394,12 @@ export default function ContactPage() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="flex items-start">
                       <div
-                        className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mr-4 shadow-sm ${
+                        className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center mr-4 shadow-sm ${
                           isDark
                             ? "bg-gradient-to-br from-blue-800/40 to-blue-900/40 text-blue-300 border border-blue-700/20"
                             : "bg-gradient-to-br from-blue-100 to-blue-200/70 text-blue-600 border border-blue-200/50"
                         }`}
+                        style={{ aspectRatio: "1/1" }}
                       >
                         <FiMail className="w-6 h-6" />
                       </div>
@@ -563,11 +424,12 @@ export default function ContactPage() {
 
                     <div className="flex items-start">
                       <div
-                        className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mr-4 shadow-sm ${
+                        className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center mr-4 shadow-sm ${
                           isDark
                             ? "bg-gradient-to-br from-blue-800/40 to-blue-900/40 text-blue-300 border border-blue-700/20"
                             : "bg-gradient-to-br from-blue-100 to-blue-200/70 text-blue-600 border border-blue-200/50"
                         }`}
+                        style={{ aspectRatio: "1/1" }}
                       >
                         <FiPhone className="w-6 h-6" />
                       </div>
@@ -599,11 +461,12 @@ export default function ContactPage() {
 
                     <div className="flex items-start">
                       <div
-                        className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mr-4 shadow-sm ${
+                        className={`flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center mr-4 shadow-sm ${
                           isDark
                             ? "bg-gradient-to-br from-blue-800/40 to-blue-900/40 text-blue-300 border border-blue-700/20"
                             : "bg-gradient-to-br from-blue-100 to-blue-200/70 text-blue-600 border border-blue-200/50"
                         }`}
+                        style={{ aspectRatio: "1/1" }}
                       >
                         <FiMapPin className="w-6 h-6" />
                       </div>

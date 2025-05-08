@@ -32,6 +32,16 @@
   --card-bg: rgba(240, 240, 240, 0.7);
   --shadow-color: rgba(0, 0, 0, 0.1);
   --border-color: #e0e0e0;
+
+  /* Основной цвет и его варианты */
+  --primary: 213, 94%, 48%; /* #0167F3 */
+  --primary-light: 213, 92%, 54%; /* #399AFC */
+  --primary-dark: 213, 96%, 42%; /* #0157D3 */
+
+  /* Радиусы скругления */
+  --radius-lg: 0.75rem; /* 12px */
+  --radius-md: 0.5rem; /* 8px */
+  --radius-sm: 0.25rem; /* 4px */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -44,6 +54,11 @@
     --card-bg: rgba(30, 30, 30, 0.7);
     --shadow-color: rgba(0, 0, 0, 0.2);
     --border-color: #262626;
+
+    /* Основной цвет и его варианты (немного ярче для темной темы) */
+    --primary: 213, 94%, 52%; /* #0579FF */
+    --primary-light: 213, 92%, 58%; /* #4DA6FF */
+    --primary-dark: 213, 96%, 46%; /* #0464D6 */
   }
 }
 

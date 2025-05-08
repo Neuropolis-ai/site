@@ -47,7 +47,7 @@ export default async function Home() {
                 <Badge>Блог</Badge>
                 <h2 className="text-[36px] font-semibold text-gray-900 dark:text-white mb-4">
                   Последние{" "}
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light">
                     публикации
                   </span>
                 </h2>
@@ -62,9 +62,6 @@ export default async function Home() {
                   <div
                     key={post.id}
                     className="group transition-all duration-300 hover:-translate-y-1"
-                    style={{
-                      transitionDelay: `${index * 100}ms`,
-                    }}
                   >
                     <BlogCard post={post} />
                   </div>
@@ -75,7 +72,7 @@ export default async function Home() {
                 <Link
                   href="/blog"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl 
-                  bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:from-[#0157D3] hover:to-[#2988E8]
+                  bg-gradient-to-r from-primary to-primary-light hover:from-primary-dark hover:to-primary
                   text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   Все статьи

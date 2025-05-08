@@ -2,82 +2,81 @@
 
 /* Text blur reveal animation */
 .blur-reveal {
-    filter: blur(20px);
-    opacity: 0;
-    transform: scale(1.05);
-    animation: blur-reveal 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
 }
 
 @keyframes blur-reveal {
-    0% {
-        opacity: 0;
-        filter: blur(20px);
-        transform: scale(1.05);
-    }
+  0% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
 
-    100% {
-        opacity: 1;
-        filter: blur(0);
-        transform: scale(1);
-    }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
 }
 
 /* Floating animation for subtle movement */
 .float-animation {
-    animation: float 3s ease-in-out infinite;
+  animation: none;
 }
 
 @keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
+  0% {
+    transform: translateY(0px);
+  }
 
-    50% {
-        transform: translateY(-8px);
-    }
+  50% {
+    transform: translateY(0px);
+  }
 
-    100% {
-        transform: translateY(0px);
-    }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 /* Custom delays for animations */
 .anim-delay-1 {
-    animation-delay: 0.1s;
+  animation-delay: 0s;
 }
 
 .anim-delay-2 {
-    animation-delay: 0.2s;
+  animation-delay: 0s;
 }
 
 .anim-delay-3 {
-    animation-delay: 0.3s;
+  animation-delay: 0s;
 }
 
 .anim-delay-4 {
-    animation-delay: 0.4s;
+  animation-delay: 0s;
 }
 
 .anim-delay-5 {
-    animation-delay: 0.5s;
+  animation-delay: 0s;
 }
 
 .anim-delay-6 {
-    animation-delay: 0.6s;
+  animation-delay: 0s;
 }
 
 .anim-delay-7 {
-    animation-delay: 0.7s;
+  animation-delay: 0s;
 }
 
 .anim-delay-8 {
-    animation-delay: 0.8s;
+  animation-delay: 0s;
 }
 
 .anim-delay-9 {
-    animation-delay: 0.9s;
+  animation-delay: 0s;
 }
 
 .anim-delay-10 {
-    animation-delay: 1s;
+  animation-delay: 0s;
 }

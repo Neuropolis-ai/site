@@ -20,7 +20,7 @@ const AutomationCTA: React.FC<AutomationCTAProps> = ({ className = "" }) => {
 
       <div className="relative z-10 text-center">
         <h3
-          className={`text-[30px] ${
+          className={`text-h2 ${
             isDark
               ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300"
               : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"
@@ -40,7 +40,7 @@ const AutomationCTA: React.FC<AutomationCTAProps> = ({ className = "" }) => {
         <div className="flex justify-center">
           <Link
             href="/contact"
-            className={`inline-flex items-center justify-center px-8 py-4 rounded-full text-[18px] ${
+            className={`inline-flex items-center justify-center px-8 py-4 rounded-full text-lg ${
               isDark
                 ? "bg-white/10 text-white border-2 border-blue-400 hover:bg-white/20"
                 : "bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50"

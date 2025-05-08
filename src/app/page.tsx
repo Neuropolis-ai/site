@@ -15,7 +15,7 @@ import Footer from "@/components/Footer/Footer";
 import Badge from "@/components/ui/Badge";
 import WorkflowAutomationContactForm from "@/components/workflow-automation/WorkflowAutomationContactForm";
 import { FiUsers, FiLayers, FiTrendingUp } from "react-icons/fi";
-import CustomButton from "@/components/ui/CustomButton";
+import { Button } from "@/components/ui/button";
 
 // Отключаем кеширование данных для этой страницы
 export const dynamic = "force-dynamic";
@@ -45,14 +45,16 @@ export default async function Home() {
 
             <div className="container mx-auto max-w-[1280px] relative z-10">
               <div className="text-center mb-16">
-                <Badge>Блог</Badge>
-                <h2 className="text-[36px] font-semibold text-gray-900 dark:text-white mb-4">
+                <div className="inline-flex items-center px-4 py-1.5 rounded-full text-sm mb-4 bg-[#0167F3]/10 text-[#0167F3]">
+                  Блог
+                </div>
+                <h2 className="text-h1 font-semibold text-gray-900 dark:text-white mb-4">
                   Последние{" "}
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light">
                     публикации
                   </span>
                 </h2>
-                <p className="homepage-subheading max-w-2xl mx-auto">
+                <p className="text-h5 text-muted-foreground max-w-2xl mx-auto">
                   Узнайте о последних тенденциях и инновациях в области
                   искусственного интеллекта и цифровой трансформации.
                 </p>
@@ -70,13 +72,12 @@ export default async function Home() {
               </div>
 
               <div className="text-center mt-12">
-                <CustomButton
+                <a
                   href="/blog"
-                  size="lg"
-                  iconRight={<BsArrowRight />}
+                  className="inline-flex items-center justify-center px-8 py-4 text-lg rounded-lg bg-gradient-to-r from-primary-light to-primary text-white hover:from-primary hover:to-primary-dark shadow"
                 >
-                  Все статьи
-                </CustomButton>
+                  Все статьи <BsArrowRight className="ml-2" />
+                </a>
               </div>
             </div>
           </section>

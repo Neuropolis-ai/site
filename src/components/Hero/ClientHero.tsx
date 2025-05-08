@@ -52,7 +52,7 @@ const ClientHero = () => {
           </span>
         </div>
 
-        <h1 className="text-[60px] font-bold text-gray-800 dark:text-white mb-4 sm:mb-5 md:mb-6">
+        <h1 className="text-display font-bold text-gray-800 dark:text-white mb-4 sm:mb-5 md:mb-6">
           Автоматизация и разработка
           <span className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-transparent bg-clip-text">
             {" "}
@@ -62,7 +62,7 @@ const ClientHero = () => {
           для бизнеса
         </h1>
 
-        <p className="text-[18px] homepage-subheading mb-10 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-h5 text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
           Повышайте эффективность, автоматизируйте процессы и снижайте издержки
           с помощью индивидуальных ИИ-решений. Освободите команду от рутины и
           направьте фокус на ключевые стратегические цели.

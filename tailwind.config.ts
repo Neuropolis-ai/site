@@ -39,6 +39,15 @@ const config: Config = {
         "2xl": "1.5rem", // 24 px
         "3xl": "1.875rem", // 30 px
         "4xl": "2.25rem", // 36 px
+        display: ["2.75rem", { lineHeight: "1.1", fontWeight: "700" }], // 44 px
+        h1: ["2.25rem", { lineHeight: "1.15", fontWeight: "700" }], // 36 px
+        h2: ["1.875rem", { lineHeight: "1.2", fontWeight: "700" }], // 30 px
+        h3: ["1.5rem", { lineHeight: "1.25", fontWeight: "600" }], // 24 px
+        h4: ["1.25rem", { lineHeight: "1.3", fontWeight: "600" }], // 20 px
+        h5: ["1.125rem", { lineHeight: "1.35", fontWeight: "600" }], // 18 px
+        h6: ["1rem", { lineHeight: "1.4", fontWeight: "600" }], // 16 px
+        body: ["1rem", { lineHeight: "1.6", fontWeight: "400" }],
+        "body-sm": ["0.875rem", { lineHeight: "1.6", fontWeight: "400" }],
       },
       spacing: {
         18: "4.5rem", // 72 px — для крупного вертикального ритма

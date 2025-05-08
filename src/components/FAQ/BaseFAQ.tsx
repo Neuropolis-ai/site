@@ -102,7 +102,7 @@ export default function BaseFAQ({
         >
           <div className="text-center mb-16">
             <Badge>FAQ</Badge>
-            <h2 className="text-[36px] font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-h1 font-bold text-gray-900 dark:text-white mb-4">
               {title.includes("вопросы") ? (
                 <>
                   {title.split("вопросы")[0]}
@@ -115,7 +115,7 @@ export default function BaseFAQ({
               )}
             </h2>
           </div>
-          <motion.p className="homepage-subheading text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <motion.p className="text-h5 text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             {subtitle}
           </motion.p>
         </motion.div>

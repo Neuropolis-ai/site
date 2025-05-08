@@ -8,12 +8,13 @@ import Features from "@/components/Features/Features";
 import Process from "@/components/Process/Process";
 import Projects from "@/components/Projects/Projects";
 import Testimonials from "@/components/Testimonials/Testimonials";
-import Contact from "@/components/Contact/Contact";
 import FAQ from "@/components/FAQ/FAQ";
 import { BsArrowRight } from "react-icons/bs";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import Badge from "@/components/ui/Badge";
+import WorkflowAutomationContactForm from "@/components/workflow-automation/WorkflowAutomationContactForm";
+import { FiUsers, FiLayers, FiTrendingUp } from "react-icons/fi";
 
 // Отключаем кеширование данных для этой страницы
 export const dynamic = "force-dynamic";
@@ -86,7 +87,15 @@ export default async function Home() {
         )}
 
         <FAQ />
-        <Contact />
+
+        <WorkflowAutomationContactForm
+          title="Начните цифровую трансформацию сегодня"
+          subtitle="Свяжитесь с нами, чтобы узнать, как наши решения по автоматизации могут улучшить ваш бизнес"
+          showCompanyField={true}
+          showPhoneField={true}
+          formId="workflow-contact-form-2"
+          className="bg-gradient-to-b from-blue-100/90 to-blue-50/80 dark:from-blue-900/20 dark:to-blue-800/10"
+        />
       </main>
       <Footer />
     </>

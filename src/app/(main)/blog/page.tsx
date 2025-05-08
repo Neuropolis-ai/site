@@ -141,8 +141,8 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black">
-      <div className="container mx-auto max-w-[1280px] px-4">
+    <div className="min-h-screen pt-30 pb-20 bg-white dark:bg-black">
+      <div className="container mx-auto max-w-1280 px-4">
         {/* Page Header */}
         <div className="text-center mb-16">
           <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">

@@ -42,7 +42,7 @@ export default function WorkflowAutomationHero() {
       variants={containerVariants}
       initial="hidden"
       animate="show"
-      className="relative flex items-center justify-center overflow-hidden pt-[120px] sm:pt-[150px] md:pt-[180px] lg:pt-[200px] pb-16 md:pb-24 bg-gradient-to-b from-white to-blue-50 dark:from-gray-950 dark:to-gray-900"
+      className="relative flex items-center justify-center overflow-hidden pt-30 sm:pt-[150px] md:pt-[180px] lg:pt-[200px] pb-16 md:pb-24 bg-gradient-to-b from-white to-blue-50 dark:from-gray-950 dark:to-gray-900"
     >
       <div className="absolute inset-0 z-0 opacity-40 dark:opacity-20">
         <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl"></div>
@@ -74,7 +74,7 @@ export default function WorkflowAutomationHero() {
         style={{ animationDelay: "1s" }}
       ></motion.div>
 
-      <div className="relative z-20 text-center max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-[900px] mx-auto px-4">
+      <div className="relative z-20 text-center max-w-90p sm:max-w-[85%] md:max-w-[80%] lg:max-w-[900px] mx-auto px-4">
         <motion.div variants={itemVariants}>
           <span className="inline-flex items-center justify-center border border-blue-300 dark:border-blue-800 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400">
             <svg

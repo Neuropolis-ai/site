@@ -103,7 +103,7 @@ const Workflow = () => {
   // Функция для создания элемента иконки с соединительными линиями
   const renderIcon = (src: string, index: number | string) => (
     <React.Fragment key={`icon-${index}`}>
-      <div className="flex items-center gap-[10px] ml-[10px]">
+      <div className="flex items-center gap-2.5 ml-[10px]">
         <div className="flex-shrink-0 w-[40px] h-[40px] sm:w-[52px] sm:h-[52px] icon-box">
           <Image
             src={src}
@@ -126,7 +126,7 @@ const Workflow = () => {
     <div>
       {/* Workflow Automation Card */}
       <div
-        className={`w-full lg:w-[523px] p-[20px] rounded-xl border border-[#262626] overflow-hidden transition-all duration-300 hover:shadow-lg ${
+        className={`w-full lg:w-[523px] p-5 rounded-xl border border-[#262626] overflow-hidden transition-all duration-300 hover:shadow-lg ${
           isDark
             ? "process-card hover:bg-[#0A1029]"
             : "bg-gray-50 border-gray-200 hover:border-blue-200"
@@ -136,7 +136,7 @@ const Workflow = () => {
           {/* Icons container */}
           <div
             ref={workflowRef}
-            className={`py-[30px] sm:py-[50px] flex flex-col items-center gap-[20px] sm:gap-[30px] overflow-hidden w-full ${
+            className={`py-7.5 sm:py-[50px] flex flex-col items-center gap-[20px] sm:gap-[30px] overflow-hidden w-full ${
               isDark ? "ai-card" : "bg-white rounded-xl border border-gray-100"
             } ${
               isWorkflowVisible ? "workflow-animation workflow-visible" : ""
@@ -213,7 +213,7 @@ const Workflow = () => {
             </div>
           </div>
 
-          <div className="mt-[30px]">
+          <div className="mt-7.5">
             <h4 className="font-medium text-base sm:text-lg mb-1 sm:mb-2 dark:text-white text-gray-800">
               Автоматизация рабочих процессов
             </h4>

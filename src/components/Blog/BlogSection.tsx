@@ -17,7 +17,7 @@ const BlogSection = ({ recentArticles }: BlogSectionProps) => (
     <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
     <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
 
-    <div className="container mx-auto max-w-[1280px] relative z-10">
+    <div className="container mx-auto max-w-1280 relative z-10">
       <div className="text-center mb-16">
         <Badge>Блог</Badge>
         <h2 className="text-h1 font-semibold text-gray-900 dark:text-white mb-4">

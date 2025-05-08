@@ -206,7 +206,7 @@ export default async function ArticlePage({
   const article = await getPublishedArticleBySlug(params.slug);
   if (!article) {
     return (
-      <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black flex items-center justify-center">
+      <div className="min-h-screen pt-30 pb-20 bg-white dark:bg-black flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             Статья не найдена
@@ -230,7 +230,7 @@ export default async function ArticlePage({
     <>
       {/* Структурированные данные JSON-LD */}
       <JsonLd article={article} url={articleUrl} />
-      <div className="min-h-screen pt-[120px] pb-20 bg-white dark:bg-black">
+      <div className="min-h-screen pt-30 pb-20 bg-white dark:bg-black">
         <div className="container mx-auto max-w-4xl px-4">
           {/* Хлебные крошки */}
           <BreadcrumbNav slug={params.slug} title={article.title} />

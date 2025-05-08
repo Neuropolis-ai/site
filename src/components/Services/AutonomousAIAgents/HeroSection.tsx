@@ -19,7 +19,7 @@ const HeroSection = () => {
   return (
     <div
       id="hero"
-      className="relative flex items-center justify-center overflow-hidden pt-[120px] sm:pt-[150px] md:pt-[180px] lg:pt-[200px] pb-16 md:pb-24"
+      className="relative flex items-center justify-center overflow-hidden pt-30 sm:pt-[150px] md:pt-[180px] lg:pt-[200px] pb-16 md:pb-24"
     >
       {/* Background Video */}
       <div className="video-container o">
@@ -32,7 +32,7 @@ const HeroSection = () => {
 
       {/* Content */}
       <Container>
-        <div className="relative z-20 text-center max-w-[90%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-[900px] mx-auto px-4">
+        <div className="relative z-20 text-center max-w-90p sm:max-w-[85%] md:max-w-[80%] lg:max-w-[900px] mx-auto px-4">
           <div>
             <span
               className={`inline-flex items-center justify-center border border-blue-500 gap-2 px-4 py-1 rounded-full switch-box ${

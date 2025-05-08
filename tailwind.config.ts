@@ -51,6 +51,14 @@ const config: Config = {
       },
       spacing: {
         18: "4.5rem", // 72 px — для крупного вертикального ритма
+        22: "5.5rem", // 88 px
+        30: "7.5rem", // 120 px
+        2.5: "0.625rem", // 10 px
+        7.5: "1.875rem", // 30 px
+      },
+      maxWidth: {
+        "1280": "80rem", // 1280 px контейнер
+        "90p": "90%", // класс max-w-90p
       },
       colors: {
         background: "hsl(var(--background))",

@@ -123,7 +123,7 @@ const Services = () => {
             </svg>
             Услуги
           </div>
-          <h2 className="text-[48px] font-bold text-gray-800 dark:text-white mb-4">
+          <h2 className="text-display-lg font-bold text-gray-800 dark:text-white mb-4">
             Как{" "}
             <span className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-transparent bg-clip-text">
               ИИ может автоматизировать
@@ -141,7 +141,7 @@ const Services = () => {
           <div className="flex flex-col lg:flex-row gap-6 w-full">
             {/* AI Assistant Card */}
             <div
-              className={`w-full lg:w-[732px] p-[20px] max-[425px]:p-[12px] rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg ${
+              className={`w-full lg:w-[732px] p-5 max-[425px]:p-[12px] rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg ${
                 isDark
                   ? "bg-[#050A1B] process-card hover:bg-[#0A1029]"
                   : "bg-gray-50 border border-gray-200 hover:border-blue-200"
@@ -301,14 +301,14 @@ const Services = () => {
 
                 {/* Панель инструментов чата */}
                 <div
-                  className={`p-[12px] sm:p-[15px] mt-[10px] mb-[15px] sm:mb-[20px] rounded-lg ${
+                  className={`p-5 sm:p-[15px] mt-7.5 mb-[15px] sm:mb-[20px] rounded-lg ${
                     !isDark
                       ? " bg-white border border-gray-200"
                       : "chat-box  bg-[#030712]/40"
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex gap-[8px] sm:gap-[10px]">
+                    <div className="flex gap-[8px] sm:gap-2.5">
                       <svg
                         width={14}
                         height={14}
@@ -390,7 +390,7 @@ const Services = () => {
 
             {/* Machine Learning Models Card */}
             <div
-              className={`w-full lg:w-[523px] p-[20px] rounded-xl border overflow-hidden transition-all duration-300 hover:shadow-lg ${
+              className={`w-full lg:w-[523px] p-5 rounded-xl border overflow-hidden transition-all duration-300 hover:shadow-lg ${
                 isDark
                   ? "bg-[#050A1B] border-[#262626] process-card hover:bg-[#0A1029]"
                   : "bg-gray-50 border-gray-200 hover:border-blue-200"
@@ -416,7 +416,7 @@ const Services = () => {
                 >
                   <div className="ai-agent-container relative ai-line-animated">
                     <div className="ai-agent-box w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] relative z-10">
-                      <span className="ai-agent-text text-[28px] sm:text-[36px]">
+                      <span className="ai-agent-text text-h2-sm sm:text-h1">
                         AI
                       </span>
                     </div>
@@ -437,7 +437,7 @@ const Services = () => {
                   </div>
                 </div>
 
-                <div className="mt-[30px]">
+                <div className="mt-7.5">
                   <h3
                     className={`font-medium text-base sm:text-lg mb-1 sm:mb-2 ${
                       isDark ? "text-white" : "text-gray-800"
@@ -464,7 +464,7 @@ const Services = () => {
 
             {/* Strategy Consulting Card */}
             <div
-              className={`w-full lg:w-[732px] p-[20px] rounded-xl border border-[#262626] overflow-hidden  ${
+              className={`w-full lg:w-[732px] p-5 rounded-xl border border-[#262626] overflow-hidden  ${
                 isDark ? "process-card" : "bg-gray-50 border-gray-200"
               }`}
             >
@@ -515,7 +515,7 @@ const Services = () => {
                 </div>
               </div>
 
-              <div className="mt-[30px]">
+              <div className="mt-7.5">
                 <h3 className="dark:text-white text-gray-800 font-medium text-base sm:text-lg mb-1 sm:mb-2">
                   Стратегический консалтинг
                 </h3>

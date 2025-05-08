@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import "../../style/hero.css";
 import Container from "../ui/Container";
 import { FiMail, FiMapPin, FiPhone } from "react-icons/fi";
-import { FaTelegram } from "react-icons/fa";
+import { BsTelegram } from "react-icons/bs";
 
 const Footer = () => {
   const { isDark } = useTheme();
@@ -89,7 +89,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-[#0167F3] dark:text-gray-400 dark:hover:text-[#399AFC] transition-colors"
                 >
-                  <FaTelegram size={20} />
+                  <BsTelegram size={20} />
                 </a>
                 <a
                   href="mailto:info@neuropolis.ai"

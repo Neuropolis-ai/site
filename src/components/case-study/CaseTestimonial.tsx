@@ -3,7 +3,7 @@
 import { useTheme } from "@/context/ThemeContext";
 import CaseSection from "./CaseSection";
 import { motion } from "framer-motion";
-import { FaQuoteLeft } from "react-icons/fa";
+import { FiMessageSquare } from "react-icons/fi";
 
 interface CaseTestimonialProps {
   text: string;
@@ -45,7 +45,7 @@ export default function CaseTestimonial({
             : "bg-white/40 border-gray-200/70"
         }`}
       >
-        <FaQuoteLeft
+        <FiMessageSquare
           className={`absolute top-4 left-4 w-10 h-10 ${
             isDark ? "text-blue-700/30" : "text-blue-200/60"
           } opacity-50 z-0`}

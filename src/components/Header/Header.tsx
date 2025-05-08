@@ -4,7 +4,7 @@ import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { HiMenu, HiX } from "react-icons/hi";
+import { FiMenu, FiX } from "react-icons/fi";
 import blackLogo from "../../app/assets/svg/black-logo.svg";
 import logo from "../../app/assets/svg/logo.svg";
 import { usePathname, useRouter } from "next/navigation";
@@ -138,7 +138,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-[14px] py-[6px] px-[14px] rounded-[10px] text-gray-800
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-gray-800
                             ${pathname === "/blog" ? "bg-[#e0e0e0]" : ""} 
                             hover:text-[#0a2e6b] transition-colors`}
               >
@@ -148,7 +148,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/cases"
-                className={`text-[14px] py-[6px] px-[14px] rounded-[10px] text-gray-800
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-gray-800
                             ${pathname === "/cases" ? "bg-[#e0e0e0]" : ""} 
                             hover:text-[#0a2e6b] transition-colors`}
               >
@@ -158,7 +158,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-[14px] py-[6px] px-[14px] rounded-[10px] text-gray-800
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-gray-800
                             ${
                               activeSection === item.id && isHomePage
                                 ? "bg-[#e0e0e0]"
@@ -179,7 +179,7 @@ const Header = () => {
             className="text-gray-800 p-1.5"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            {mobileMenuOpen ? <HiX size={20} /> : <HiMenu size={20} />}
+            {mobileMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
           </button>
         </div>
       </div>
@@ -203,7 +203,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-[15px] py-[8px] px-[16px] rounded-[10px] text-center text-gray-800
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-center text-gray-800
                             ${
                               pathname === "/blog"
                                 ? "bg-[#e0e0e0]"
@@ -218,7 +218,7 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/cases"
-                className={`text-[15px] py-[8px] px-[16px] rounded-[10px] text-center text-gray-800
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-center text-gray-800
                             ${
                               pathname === "/cases"
                                 ? "bg-[#e0e0e0]"
@@ -233,7 +233,7 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-[15px] py-[8px] px-[16px] rounded-[10px] text-center text-gray-800
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-center text-gray-800
                             ${
                               activeSection === item.id && isHomePage
                                 ? "bg-[#e0e0e0]"

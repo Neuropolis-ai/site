@@ -5,17 +5,17 @@ import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import { useState, useEffect } from "react";
 import {
-  RiUser3Line,
-  RiMailLine,
-  RiPhoneLine,
-  RiBuildingLine,
-  RiMessage2Line,
-  RiShieldLine,
-  RiCheckboxCircleLine,
-  RiFileSearchLine,
-  RiSettings4Line,
-  RiTeamLine,
-} from "react-icons/ri";
+  FiUser,
+  FiMail,
+  FiPhone,
+  FiHome,
+  FiMessageSquare,
+  FiShield,
+  FiCheckCircle,
+  FiSearch,
+  FiSettings,
+  FiUsers,
+} from "react-icons/fi";
 
 // Функция для форматирования номера телефона
 const formatPhoneNumber = (value: string): string => {
@@ -294,7 +294,7 @@ export default function ContactForm({
                 <motion.div variants={itemVariants} className="space-y-6">
                   <div className="flex items-start gap-4">
                     <div className={iconContainerStyle}>
-                      <RiFileSearchLine className={iconStyle} />
+                      <FiSearch className={iconStyle} />
                     </div>
                     <div>
                       <h3 className="text-[18px] font-medium text-gray-900 dark:text-white">
@@ -309,7 +309,7 @@ export default function ContactForm({
 
                   <div className="flex items-start gap-4">
                     <div className={iconContainerStyle}>
-                      <RiSettings4Line className={iconStyle} />
+                      <FiSettings className={iconStyle} />
                     </div>
                     <div>
                       <h3 className="text-[18px] font-medium text-gray-900 dark:text-white">
@@ -324,7 +324,7 @@ export default function ContactForm({
 
                   <div className="flex items-start gap-4">
                     <div className={iconContainerStyle}>
-                      <RiTeamLine className={iconStyle} />
+                      <FiUsers className={iconStyle} />
                     </div>
                     <div>
                       <h3 className="text-[18px] font-medium text-gray-900 dark:text-white">
@@ -346,7 +346,7 @@ export default function ContactForm({
                   className="mt-10 p-6 rounded-xl border border-blue-100 dark:border-blue-800/30 bg-gradient-to-br from-blue-50/50 to-white dark:from-blue-900/20 dark:to-blue-800/10 backdrop-blur-sm shadow-sm"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <RiShieldLine className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+                    <FiShield className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                     <span className="text-[16px] font-medium text-gray-900 dark:text-white">
                       Гарантия конфиденциальности
                     </span>
@@ -385,7 +385,7 @@ export default function ContactForm({
                 className="text-center py-10"
               >
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 text-white mb-6 shadow-lg shadow-blue-500/30">
-                  <RiCheckboxCircleLine className="w-10 h-10" />
+                  <FiCheckCircle className="w-10 h-10" />
                 </div>
                 <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
                   Спасибо за заявку!
@@ -399,7 +399,7 @@ export default function ContactForm({
               <>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                   <span className="inline-block p-1.5 rounded-full bg-blue-500/20 dark:bg-blue-400/20">
-                    <RiMessage2Line className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+                    <FiMessageSquare className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                   </span>
                   Заполните форму
                 </h3>
@@ -409,7 +409,7 @@ export default function ContactForm({
                       htmlFor={`${formId}-name`}
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
                     >
-                      <RiUser3Line className="w-4 h-4 text-blue-500 dark:text-blue-400" />
+                      <FiUser className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                       Ваше имя <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -429,7 +429,7 @@ export default function ContactForm({
                       htmlFor={`${formId}-email`}
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
                     >
-                      <RiMailLine className="w-4 h-4 text-blue-500 dark:text-blue-400" />
+                      <FiMail className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                       Email <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -455,7 +455,7 @@ export default function ContactForm({
                           htmlFor={`${formId}-phone`}
                           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
                         >
-                          <RiPhoneLine className="w-4 h-4 text-blue-500 dark:text-blue-400" />
+                          <FiPhone className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                           Телефон
                         </label>
                         <input
@@ -476,7 +476,7 @@ export default function ContactForm({
                           htmlFor={`${formId}-company`}
                           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
                         >
-                          <RiBuildingLine className="w-4 h-4 text-blue-500 dark:text-blue-400" />
+                          <FiHome className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                           Компания
                         </label>
                         <input
@@ -497,7 +497,7 @@ export default function ContactForm({
                       htmlFor={`${formId}-message`}
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
                     >
-                      <RiMessage2Line className="w-4 h-4 text-blue-500 dark:text-blue-400" />
+                      <FiMessageSquare className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                       Сообщение
                     </label>
                     <textarea

@@ -154,6 +154,7 @@ export default function AIAgentContactForm() {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
+                  strokeWidth={2}
                 >
                   <path
                     strokeLinecap="round"
@@ -304,6 +305,7 @@ export default function AIAgentContactForm() {
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
+                        strokeWidth={2}
                       >
                         <circle
                           className="opacity-25"

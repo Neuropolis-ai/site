@@ -13,6 +13,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { Heading } from "@/components/ui/heading";
+import Subheading from "@/components/ui/subheading";
 
 const Features = () => {
   const { isDark } = useTheme();
@@ -68,18 +70,25 @@ const Features = () => {
           >
             Возможности
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white mb-4">
+          <Heading
+            level={2}
+            align="center"
+            className="text-gray-900 dark:text-white mb-4"
+          >
             Используйте весь{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
               потенциал ИИ
             </span>{" "}
             для вашего бизнеса
-          </h2>
-          <p className="mt-6 text-lg md:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
+          </Heading>
+          <Subheading
+            align="center"
+            className="mt-6 md:text-xl max-w-3xl mx-auto leading-relaxed"
+          >
             Наши решения помогают компаниям автоматизировать процессы,
             оптимизировать ресурсы и принимать более обоснованные решения на
             основе данных
-          </p>
+          </Subheading>
         </div>
 
         <div
@@ -98,13 +107,13 @@ const Features = () => {
                 strokeWidth={1.75}
               />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+            <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Предиктивная аналитика
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
+            </Heading>
+            <Subheading className="mb-4 leading-relaxed">
               Используйте ИИ для анализа исторических данных и прогнозирования
               будущих трендов. Повышайте точность бизнес-прогнозов на 30-40%.
-            </p>
+            </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
               <p className="font-medium text-blue-600 dark:text-blue-400">
                 Принимайте решения на основе точных прогнозов
@@ -124,13 +133,13 @@ const Features = () => {
                 strokeWidth={1.75}
               />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+            <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Персонализация маркетинга
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
+            </Heading>
+            <Subheading className="mb-4 leading-relaxed">
               Применяйте ИИ для точечного таргетинга аудитории и создания
               персонализированного контента. Увеличение конверсии до 25%.
-            </p>
+            </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
               <p className="font-medium text-blue-600 dark:text-blue-400">
                 Создавайте контент, который резонирует с вашей аудиторией
@@ -150,13 +159,13 @@ const Features = () => {
                 strokeWidth={1.75}
               />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+            <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Служба поддержки с ИИ-агентом
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
+            </Heading>
+            <Subheading className="mb-4 leading-relaxed">
               Разрабатываем ИИ-агентов для службы поддержки, которые общаются с
               клиентами и отвечают на сложные запросы 24/7.
-            </p>
+            </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
               <p className="font-medium text-blue-600 dark:text-blue-400">
                 Снижение нагрузки на поддержку до 60%
@@ -176,13 +185,13 @@ const Features = () => {
                 strokeWidth={1.75}
               />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+            <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Интеграция ИИ
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
+            </Heading>
+            <Subheading className="mb-4 leading-relaxed">
               Помогаем компаниям внедрять ИИ-агентов в их существующие
               программные платформы и бизнес-процессы без нарушения работы.
-            </p>
+            </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
               <p className="font-medium text-blue-600 dark:text-blue-400">
                 Безопасное внедрение с минимальными рисками
@@ -202,14 +211,14 @@ const Features = () => {
                 strokeWidth={1.75}
               />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+            <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Создание контента с ИИ
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
+            </Heading>
+            <Subheading className="mb-4 leading-relaxed">
               Разрабатываем ИИ-решения для генерации маркетинговых материалов,
               статей, описаний товаров и отчетов в соответствии с вашим
               фирменным стилем.
-            </p>
+            </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
               <p className="font-medium text-blue-600 dark:text-blue-400">
                 Ускорение создания контента в 5-10 раз
@@ -229,14 +238,14 @@ const Features = () => {
                 strokeWidth={1.75}
               />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+            <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Обработка и анализ данных
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-4">
+            </Heading>
+            <Subheading className="mb-4 leading-relaxed">
               Создаем системы автоматической обработки и интеллектуального
               анализа больших объемов данных для выявления закономерностей и
               аномалий.
-            </p>
+            </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
               <p className="font-medium text-blue-600 dark:text-blue-400">
                 Извлекайте ценные инсайты из неструктурированных данных
@@ -246,13 +255,13 @@ const Features = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <motion.a
+          <a
             href="/cases"
-            whileHover={{ x: 5 }}
-            className="inline-flex items-center mt-6 text-blue-600 dark:text-blue-400 font-medium text-lg"
+            className="inline-flex items-center justify-center text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-colors"
           >
-            Подробнее о решениях <ArrowRight className="ml-2 w-5 h-5" />
-          </motion.a>
+            Ознакомьтесь с нашими кейсами
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </a>
         </div>
       </Container>
     </section>

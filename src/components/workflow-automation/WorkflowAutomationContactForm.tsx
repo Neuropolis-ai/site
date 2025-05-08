@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
-import { useState } from "react";
 import {
   FiUser,
   FiMail,
@@ -16,7 +15,11 @@ import {
   FiSearch,
   FiSettings,
   FiUsers,
+  FiBriefcase,
+  FiSend,
 } from "react-icons/fi";
+import { Heading } from "@/components/ui/heading";
+import Subheading from "@/components/ui/subheading";
 
 // Функция для форматирования номера телефона
 const formatPhoneNumber = (value: string): string => {
@@ -351,22 +354,25 @@ export default function ContactForm({
                       Связаться с нами
                     </motion.div>
                     {title && (
-                      <motion.h2
-                        variants={itemVariants}
-                        className="text-[36px] font-semibold text-gray-900 dark:text-white mb-4"
-                      >
-                        {title.includes("автоматизировать") ? (
-                          <>
-                            Готовы{" "}
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">
-                              автоматизировать
-                            </span>{" "}
-                            ваш бизнес?
-                          </>
-                        ) : (
-                          title
-                        )}
-                      </motion.h2>
+                      <motion.div variants={itemVariants}>
+                        <Heading
+                          level={2}
+                          align="center"
+                          className="font-semibold text-gray-900 dark:text-white mb-4"
+                        >
+                          {title.includes("автоматизировать") ? (
+                            <>
+                              Готовы{" "}
+                              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">
+                                автоматизировать
+                              </span>{" "}
+                              ваш бизнес?
+                            </>
+                          ) : (
+                            title
+                          )}
+                        </Heading>
+                      </motion.div>
                     )}
                     {subtitle && (
                       <motion.p
@@ -374,7 +380,7 @@ export default function ContactForm({
                         className="text-[18px] text-gray-600 dark:text-gray-300"
                       >
                         {subtitle}
-                      </motion.p>
+                      </Subheading></motion.div>
                     )}
                   </div>
                 )}
@@ -396,9 +402,12 @@ export default function ContactForm({
                           )}
                         </div>
                         <div>
-                          <h3 className="text-[18px] font-medium text-gray-900 dark:text-white">
+                          <Heading
+                            level={3}
+                            className="font-medium text-gray-900 dark:text-white"
+                          >
                             {feature.title}
-                          </h3>
+                          </Heading>
                           <p className="text-base text-gray-600 dark:text-gray-300 mt-1">
                             {feature.description}
                           </p>
@@ -441,7 +450,7 @@ export default function ContactForm({
               className={`p-8 rounded-2xl backdrop-blur-sm ${
                 isDark
                   ? "bg-gray-800/50 border border-gray-700"
-                  : "bg-white/90 border border-gray-200 shadow-xl shadow-blue-100/50"
+                  : "bg-white/90 border border-gray-200 shadow-lg shadow-blue-100/50"
               }`}
             >
               {isSubmitted ? (
@@ -453,21 +462,27 @@ export default function ContactForm({
                   <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 text-white mb-6 shadow-lg shadow-blue-500/30">
                     <FiCheckCircle className="w-10 h-10" />
                   </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                  <Heading
+                    level={3}
+                    className="font-semibold text-gray-900 dark:text-white mb-4"
+                  >
                     {successMessage.title}
-                  </h3>
+                  </Heading>
                   <p className="text-base text-gray-600 dark:text-gray-300 mb-8">
                     {successMessage.text}
                   </p>
                 </motion.div>
               ) : (
                 <>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                  <Heading
+                    level={3}
+                    className="font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2"
+                  >
                     <span className="inline-block p-1.5 rounded-full bg-blue-500/20 dark:bg-blue-400/20">
                       <FiMessageSquare className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                     </span>
                     Заполните форму
-                  </h3>
+                  </Heading>
                   <form
                     onSubmit={handleSubmit}
                     id={formId}
@@ -624,7 +639,7 @@ export default function ContactForm({
                       disabled={isSubmitting}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className={`w-full mt-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold py-3.5 px-6 rounded-xl transition-all hover:shadow-lg hover:shadow-blue-500/30 dark:hover:shadow-blue-600/30 flex items-center justify-center ${
+                      className={`w-full mt-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold py-3.5 px-6 rounded-xl transition-all hover:shadow-lg hover:shadow-primary/30 dark:hover:shadow-primary/30 flex items-center justify-center ${
                         isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                       }`}
                     >

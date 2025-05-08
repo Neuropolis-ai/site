@@ -1,3 +1,4 @@
+import Subheading from "@/components/ui/subheading";
 "use client";
 
 import React from "react";
@@ -5,6 +6,7 @@ import Link from "next/link";
 import { Article } from "@/lib/supabase";
 import BlogCard from "@/components/BlogCard";
 import Badge from "@/components/ui/Badge";
+import { Heading } from "@/components/ui/heading";
 
 interface BlogSectionProps {
   recentArticles: Article[];
@@ -20,16 +22,16 @@ const BlogSection = ({ recentArticles }: BlogSectionProps) => (
     <div className="container mx-auto max-w-1280 relative z-10">
       <div className="text-center mb-16">
         <Badge>Блог</Badge>
-        <h2 className="text-h1 font-semibold text-gray-900 dark:text-white mb-4">
+        <Heading level={1} className="text-gray-900 dark:text-white mb-4">
           Последние{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
             публикации
           </span>
-        </h2>
-        <p className="text-h5 text-muted-foreground max-w-2xl mx-auto">
+        </Heading>
+        <Subheading align="center" className="max-w-2xl mx-auto">
           Узнайте о последних тенденциях и инновациях в области искусственного
           интеллекта и цифровой трансформации.
-        </p>
+        </Subheading>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
@@ -49,7 +51,7 @@ const BlogSection = ({ recentArticles }: BlogSectionProps) => (
       <div className="text-center mt-12">
         <Link
           href="/blog"
-          className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:from-[#0157D3] hover:to-[#2988E8] text-white shadow-lg hover:shadow-blue-500/20 dark:hover:shadow-blue-700/10 font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 px-8 py-4 text-lg inline-flex"
+          className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:from-[#0157D3] hover:to-[#2988E8] text-white shadow-lg hover:shadow-primary/20 dark:hover:shadow-primary/10 font-semibold rounded-xl transition-all duration-300 flex items-center justify-center gap-2 px-8 py-4 text-lg inline-flex"
         >
           Все статьи
         </Link>

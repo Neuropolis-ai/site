@@ -16,6 +16,7 @@ import Badge from "@/components/ui/Badge";
 import WorkflowAutomationContactForm from "@/components/workflow-automation/WorkflowAutomationContactForm";
 import { FiUsers, FiLayers, FiTrendingUp } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
 
 // Отключаем кеширование данных для этой страницы
 export const dynamic = "force-dynamic";
@@ -48,16 +49,20 @@ export default async function Home() {
                 <div className="inline-flex items-center px-4 py-1.5 rounded-full text-sm mb-4 bg-[#0167F3]/10 text-[#0167F3]">
                   Блог
                 </div>
-                <h2 className="text-h1 font-semibold text-gray-900 dark:text-white mb-4">
+                <Heading
+                  level={2}
+                  align="center"
+                  className="text-gray-900 dark:text-white mb-4"
+                >
                   Последние{" "}
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light">
                     публикации
                   </span>
-                </h2>
-                <p className="text-h5 text-muted-foreground max-w-2xl mx-auto">
+                </Heading>
+                <Subheading align="center" className="max-w-2xl mx-auto">
                   Узнайте о последних тенденциях и инновациях в области
                   искусственного интеллекта и цифровой трансформации.
-                </p>
+                </Subheading>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">

@@ -2,11 +2,13 @@
 import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { BsStarFill } from "react-icons/bs";
 import { Quote } from "lucide-react";
 import "../../style/card-line.css";
 import Container from "../ui/Container";
+import { Heading } from "@/components/ui/heading";
+import Subheading from "@/components/ui/subheading";
 
 const testimonialData = [
   {
@@ -202,16 +204,23 @@ const Testimonials = () => {
           >
             Отзывы
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">
+          <Heading
+            level={2}
+            align="center"
+            className="text-gray-900 dark:text-white mb-4 tracking-tight leading-tight"
+          >
             Отзывы наших{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
               клиентов
             </span>
-          </h2>
-          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          </Heading>
+          <Subheading
+            align="center"
+            className="max-w-2xl mx-auto leading-relaxed"
+          >
             Истории успеха наших клиентов из разных отраслей, демонстрирующие
             реальную ценность ИИ-решений для бизнеса.
-          </p>
+          </Subheading>
         </div>
 
         <div className="relative">
@@ -248,9 +257,12 @@ const Testimonials = () => {
                           />
                         ))}
                       </div>
-                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight leading-tight">
+                      <Heading
+                        level={3}
+                        className="text-gray-900 dark:text-white mb-4 tracking-tight leading-tight"
+                      >
                         {testimonial.quote.replace(/^"|"$/g, "")}
-                      </h3>
+                      </Heading>
                       <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
                         {testimonial.text}
                       </p>

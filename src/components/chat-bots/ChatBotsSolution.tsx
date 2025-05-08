@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
@@ -18,6 +19,8 @@ import {
   BrainCircuit,
   Sparkles,
 } from "lucide-react";
+import { Heading } from "@/components/ui/heading";
+import Subheading from "@/components/ui/subheading";
 
 export default function ChatBotsSolution() {
   const { isDark } = useTheme();
@@ -202,34 +205,39 @@ export default function ChatBotsSolution() {
             </svg>
             Neuropolis.ai
           </motion.div>
-          <motion.h2
-            variants={itemVariants}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6"
-          >
-            Интеллектуальные чат-боты для{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] via-[#2C81F6] to-[#399AFC] relative">
-              автоматизации коммуникаций
-              <svg
-                className="absolute -bottom-2 left-0 w-full h-2 text-[#0167F3]/20"
-                viewBox="0 0 100 15"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M0,5 Q25,0 50,5 T100,5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                />
-              </svg>
-            </span>
-          </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
-          >
-            Мы создаем современных ИИ-чат-ботов, которые автоматизируют общение
-            с клиентами, сотрудниками и партнерами на любых платформах.
-          </motion.p>
+          <motion.div variants={itemVariants}>
+            <Heading
+              level={2}
+              className="lg:text-h1 text-gray-900 dark:text-white mb-6"
+            >
+              Интеллектуальные чат-боты для{" "}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] via-[#2C81F6] to-[#399AFC] relative">
+                автоматизации коммуникаций
+                <svg
+                  className="absolute -bottom-2 left-0 w-full h-2 text-[#0167F3]/20"
+                  viewBox="0 0 100 15"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M0,5 Q25,0 50,5 T100,5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                </svg>
+              </span>
+            </Heading>
+          </motion.div>
+          <motion.div variants={itemVariants}>
+            <Subheading
+              align="center"
+              className="md:text-xl max-w-3xl mx-auto leading-relaxed"
+            >
+              Мы создаем современных ИИ-чат-ботов, которые автоматизируют
+              общение с клиентами, сотрудниками и партнерами на любых
+              платформах.
+            </Subheading>
+          </motion.div>
         </motion.div>
 
         {/* Вдохновляющий блок о технологиях */}
@@ -252,12 +260,12 @@ export default function ChatBotsSolution() {
               <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
                 Чат-боты будущего на базе нейросетей
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 text-lg leading-relaxed max-w-3xl">
+              <Subheading className="mb-6 max-w-3xl leading-relaxed">
                 Мы используем передовые технологии искусственного интеллекта и
                 нейронных сетей, чтобы создавать чат-боты, которые понимают
                 естественный язык, распознают контекст и обучаются в процессе
                 работы, становясь умнее с каждым взаимодействием.
-              </p>
+              </Subheading>
               <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                 <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#0167F3]/10 text-[#0167F3] dark:bg-[#0167F3]/20 dark:text-[#399AFC]">
                   <Sparkles className="w-3.5 h-3.5 mr-1.5" />
@@ -296,7 +304,7 @@ export default function ChatBotsSolution() {
               className={`group relative p-7 rounded-2xl transition-all duration-300 overflow-hidden ${
                 isDark
                   ? "bg-gray-800/50 hover:bg-gray-800/70 border border-gray-700/50"
-                  : "bg-white hover:shadow-xl border border-gray-200/70"
+                  : "bg-white hover:shadow-lg border border-gray-200/70"
               }`}
             >
               {/* Градиентный фон при наведении */}
@@ -348,7 +356,7 @@ export default function ChatBotsSolution() {
                   isDark
                     ? "bg-gray-800/50 border border-gray-700/50 hover:border-[#399AFC]/50"
                     : "bg-white border border-gray-200 hover:border-[#0167F3]/50"
-                } hover:shadow-lg hover:shadow-[#0167F3]/5 dark:hover:shadow-[#399AFC]/5`}
+                } hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/5`}
               >
                 {/* Градиент фона */}
                 <div

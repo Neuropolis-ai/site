@@ -2,6 +2,8 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { Heading } from "@/components/ui/heading";
+import Subheading from "@/components/ui/subheading";
 
 interface ServicesHeadingProps {
   title: string;
@@ -49,21 +51,22 @@ const ServicesHeading: React.FC<ServicesHeadingProps> = ({
         </span>
       </motion.div>
 
-      <motion.h2
-        variants={itemVariants}
-        className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
-      >
-        <span className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] bg-clip-text text-transparent">
-          {title}
-        </span>
-      </motion.h2>
+      <motion.div variants={itemVariants}>
+        <Heading level={2} className="mb-6">
+          <span className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] bg-clip-text text-transparent">
+            {title}
+          </span>
+        </Heading>
+      </motion.div>
 
-      <motion.p
-        variants={itemVariants}
-        className="text-lg md:text-xl max-w-3xl mx-auto text-gray-600 leading-relaxed"
-      >
-        {subtitle}
-      </motion.p>
+      <motion.div variants={itemVariants}>
+        <Subheading
+          align="center"
+          className="md:text-xl max-w-3xl mx-auto leading-relaxed"
+        >
+          {subtitle}
+        </Subheading>
+      </motion.div>
     </motion.div>
   );
 };

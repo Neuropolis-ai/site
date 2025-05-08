@@ -7,6 +7,8 @@ import { IconType } from "react-icons";
 import { ReactNode } from "react";
 import "../../style/dot-grid.css";
 import { ArrowDown, ArrowDownRight, ArrowRight } from "lucide-react";
+import { Heading } from "@/components/ui/heading";
+import Subheading from "@/components/ui/subheading";
 
 export interface ProcessStep {
   number: string;
@@ -100,15 +102,22 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 bg-[#0167F3]/10 text-[#0167F3] dark:text-[#399AFC] border border-[#0167F3]/20 dark:border-[#399AFC]/50 backdrop-blur-sm">
             {badge}
           </div>
-          <h2 className="text-h1 font-bold text-gray-900 dark:text-white mb-6 tracking-tight leading-tight">
+          <Heading
+            level={2}
+            align="center"
+            className="text-gray-900 dark:text-white mb-6 tracking-tight leading-tight"
+          >
             Процесс{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
               {gradientTitlePart}
             </span>
-          </h2>
-          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          </Heading>
+          <Subheading
+            align="center"
+            className="max-w-3xl mx-auto leading-relaxed"
+          >
             {subtitle}
-          </p>
+          </Subheading>
         </div>
 
         <motion.div
@@ -122,7 +131,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
               className={`relative group p-7 rounded-2xl transition-all duration-500 overflow-hidden ${
                 isDark
                   ? "bg-gray-800/50 hover:bg-gray-800/70 border border-gray-700/50"
-                  : "bg-white hover:shadow-xl border border-gray-200"
+                  : "bg-white hover:shadow-lg border border-gray-200"
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-[#0167F3]/5 to-[#399AFC]/5 dark:from-[#0167F3]/10 dark:to-[#399AFC]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
@@ -141,9 +150,12 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
                   <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
                     {step.number}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <Heading
+                    level={3}
+                    className="font-semibold text-gray-900 dark:text-white"
+                  >
                     {step.title}
-                  </h3>
+                  </Heading>
                 </div>
                 <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
                   {step.description}
@@ -181,9 +193,12 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
               {resultIcon}
             </div>
             <div className="flex-grow text-center md:text-left">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+              <Heading
+                level={3}
+                className="font-bold text-gray-900 dark:text-white mb-3"
+              >
                 {resultTitle}
-              </h3>
+              </Heading>
               <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                 {resultText}
               </p>

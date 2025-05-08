@@ -10,6 +10,10 @@ import "../../style/hero.css";
 import "../../style/services.css";
 import Container from "../ui/Container";
 import Workflow from "./Workflow";
+import { Heading } from "@/components/ui/heading";
+import Badge from "@/components/ui/Badge";
+import { motion, useInView, useSpring } from "framer-motion";
+import Subheading from "@/components/ui/subheading";
 
 const Services = () => {
   const { isDark } = useTheme();
@@ -124,18 +128,25 @@ const Services = () => {
             </svg>
             Услуги
           </div>
-          <h2 className="text-display-lg font-bold text-gray-800 dark:text-white mb-4">
+          <Heading
+            level={2}
+            align="center"
+            className="text-gray-800 dark:text-white mb-4"
+          >
             Как{" "}
             <span className="bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-transparent bg-clip-text">
               ИИ может автоматизировать
             </span>{" "}
             ваш бизнес
-          </h2>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300 leading-relaxed">
+          </Heading>
+          <Subheading
+            align="center"
+            className="md:text-xl max-w-3xl mx-auto leading-relaxed"
+          >
             Наши решения на базе ИИ оптимизируют эффективность, повышают
             продуктивность и обеспечивают измеримые результаты для вашего
             бизнеса.
-          </p>
+          </Subheading>
         </div>
 
         <div className="flex relative flex-wrap gap-6 z-10">
@@ -373,13 +384,14 @@ const Services = () => {
                 </div>
 
                 <div>
-                  <h3
+                  <Heading
+                    level={3}
                     className={`font-medium text-base sm:text-lg mb-1 sm:mb-2 ${
                       isDark ? "text-white" : "text-gray-800"
                     }`}
                   >
                     Чат-боты для поддержки клиентов
-                  </h3>
+                  </Heading>
                   <p
                     className={`text-sm sm:text-base ${
                       isDark ? "text-[#919191]" : "text-gray-600"
@@ -443,13 +455,14 @@ const Services = () => {
                 </div>
 
                 <div className="mt-7.5">
-                  <h3
+                  <Heading
+                    level={3}
                     className={`font-medium text-base sm:text-lg mb-1 sm:mb-2 ${
                       isDark ? "text-white" : "text-gray-800"
                     }`}
                   >
                     Разработка ИИ-агентов
-                  </h3>
+                  </Heading>
                   <p
                     className={`text-sm sm:text-base ${
                       isDark ? "text-[#919191]" : "text-gray-600"
@@ -473,7 +486,7 @@ const Services = () => {
                 isDark ? "process-card" : "bg-gray-50 border-gray-200"
               }`}
             >
-              <div>
+              <a href="/strategy-consulting" className="block">
                 <div
                   ref={chartRef}
                   className={`flex items-end justify-center h-[235.23px] sm:h-[235.23px] ${
@@ -518,17 +531,20 @@ const Services = () => {
                     )}
                   </div>
                 </div>
-              </div>
 
-              <div className="mt-7.5">
-                <h3 className="dark:text-white text-gray-800 font-medium text-base sm:text-lg mb-1 sm:mb-2">
-                  Стратегический консалтинг
-                </h3>
-                <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
-                  Мы оцениваем ваш бизнес и отрасль, определяем, где ИИ может
-                  принести наибольшую пользу с учетом ваших целей и ресурсов.
-                </p>
-              </div>
+                <div className="mt-7.5">
+                  <Heading
+                    level={3}
+                    className="font-medium text-base sm:text-lg mb-1 sm:mb-2 dark:text-white text-gray-800"
+                  >
+                    Стратегический консалтинг
+                  </Heading>
+                  <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
+                    Мы оцениваем ваш бизнес и отрасль, определяем, где ИИ может
+                    принести наибольшую пользу с учетом ваших целей и ресурсов.
+                  </p>
+                </div>
+              </a>
             </div>
           </div>
         </div>

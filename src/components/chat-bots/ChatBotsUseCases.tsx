@@ -1,10 +1,16 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useAnimation,
+  useInView,
+} from "framer-motion";
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { Heading } from "@/components/ui/heading";
 import {
   CheckCircle,
   ChevronRight,
@@ -23,6 +29,7 @@ import {
   Search,
   ExternalLink,
 } from "lucide-react";
+import Subheading from "@/components/ui/subheading";
 
 // Набор фирменных цветов в формате Tailwind классов
 const BRAND_COLORS = {
@@ -323,7 +330,7 @@ export default function ChatBotsUseCases() {
   ];
 
   return (
-    <section
+    <div
       id="chatbots-cases"
       className="py-24 md:py-32 relative overflow-hidden font-sans"
     >
@@ -451,9 +458,9 @@ export default function ChatBotsUseCases() {
 
       {/* Нейтральные световые эффекты */}
       <div className="absolute inset-0 -z-30">
-        <div className="absolute -top-20 left-1/3 w-1 h-1 bg-blue-400 rounded-full shadow-[0_0_100px_40px_rgba(59,130,246,0.15)] opacity-10 dark:opacity-15"></div>
-        <div className="absolute top-1/2 right-10 w-1 h-1 bg-blue-400 rounded-full shadow-[0_0_150px_60px_rgba(59,130,246,0.15)] opacity-10 dark:opacity-15"></div>
-        <div className="absolute bottom-40 left-1/4 w-1 h-1 bg-blue-400 rounded-full shadow-[0_0_120px_50px_rgba(59,130,246,0.15)] opacity-10 dark:opacity-15"></div>
+        <div className="absolute -top-20 left-1/3 w-1 h-1 bg-blue-400 rounded-full shadow-lg opacity-10 dark:opacity-15"></div>
+        <div className="absolute top-1/2 right-10 w-1 h-1 bg-blue-400 rounded-full shadow-lg opacity-10 dark:opacity-15"></div>
+        <div className="absolute bottom-40 left-1/4 w-1 h-1 bg-blue-400 rounded-full shadow-lg opacity-10 dark:opacity-15"></div>
       </div>
 
       <Container>
@@ -484,32 +491,39 @@ export default function ChatBotsUseCases() {
             <span className="tracking-wide">Примеры внедрения</span>
           </motion.div>
 
-          {/* Заголовок с современными эффектами */}
-          <motion.h2
+          {/* Заголовок */}
+          <motion.div
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 tracking-tight leading-tight"
+            className="mb-6 tracking-tight leading-tight"
           >
-            Как чат-боты{" "}
-            <span className="relative inline-block">
-              <span
-                className={`relative z-10 bg-clip-text text-transparent bg-gradient-to-r ${BRAND_COLORS.primary.grad.from} ${BRAND_COLORS.primary.grad.via} ${BRAND_COLORS.primary.grad.to}`}
-              >
-                трансформируют бизнес
+            <Heading
+              level={2}
+              className="text-gray-900 dark:text-white tracking-tight leading-tight"
+            >
+              Как чат-боты{" "}
+              <span className="relative inline-block">
+                <span
+                  className={`relative z-10 bg-clip-text text-transparent bg-gradient-to-r ${BRAND_COLORS.primary.grad.from} ${BRAND_COLORS.primary.grad.via} ${BRAND_COLORS.primary.grad.to}`}
+                >
+                  трансформируют бизнес
+                </span>
+                <span
+                  className={`absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-r ${BRAND_COLORS.primary.grad.from}/10 ${BRAND_COLORS.primary.grad.via}/10 ${BRAND_COLORS.primary.grad.to}/10 blur-lg -z-10`}
+                ></span>
               </span>
-              <span
-                className={`absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-r ${BRAND_COLORS.primary.grad.from}/10 ${BRAND_COLORS.primary.grad.via}/10 ${BRAND_COLORS.primary.grad.to}/10 blur-lg -z-10`}
-              ></span>
-            </span>
-          </motion.h2>
+            </Heading>
+          </motion.div>
 
           {/* Подзаголовок */}
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed font-normal"
-          >
-            Изучите реальные примеры внедрения нейросетевых чат-ботов и
-            результаты, которые достигают наши клиенты в разных отраслях.
-          </motion.p>
+          <motion.div variants={itemVariants}>
+            <Subheading
+              align="center"
+              className="md:text-xl max-w-3xl mx-auto leading-relaxed font-normal"
+            >
+              Изучите реальные примеры внедрения нейросетевых чат-ботов и
+              результаты, которые достигают наши клиенты в разных отраслях.
+            </Subheading>
+          </motion.div>
         </motion.div>
 
         {/* Современные карточки кейсов - с нейтральным фоном */}
@@ -534,10 +548,10 @@ export default function ChatBotsUseCases() {
                           isDark
                             ? "bg-gray-800/90 border border-gray-700 backdrop-blur-md"
                             : "bg-white border border-gray-200/80 backdrop-blur-md"
-                        } ring-1 ring-blue-500/30 shadow-xl`
+                        } ring-1 ring-blue-500/30 shadow-lg`
                       : isDark
-                      ? `bg-gray-900/40 hover:bg-gray-800/60 backdrop-blur-sm border border-gray-700/60 hover:border-gray-600/70 shadow-md hover:shadow-lg`
-                      : `bg-white/80 hover:bg-white/90 backdrop-blur-md border border-gray-200/40 hover:border-gray-300/60 shadow-md hover:shadow-lg`
+                      ? `bg-gray-900/40 hover:bg-gray-800/60 backdrop-blur-sm border border-gray-700/60 hover:border-gray-600/70 shadow-lg`
+                      : `bg-white/80 hover:bg-white/90 backdrop-blur-md border border-gray-200/40 hover:border-gray-300/60 shadow-lg`
                   }`}
               >
                 {/* Тонкий градиентный бордер при активности */}
@@ -571,9 +585,12 @@ export default function ChatBotsUseCases() {
                       {useCase.icon}
                     </div>
                     <div>
-                      <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white tracking-tight">
+                      <Heading
+                        level={3}
+                        className="text-gray-900 dark:text-white tracking-tight"
+                      >
                         {useCase.title}
-                      </h3>
+                      </Heading>
                     </div>
                   </div>
 
@@ -634,354 +651,76 @@ export default function ChatBotsUseCases() {
               isDark
                 ? "bg-gray-900/40 backdrop-blur-lg border border-blue-900/40"
                 : "bg-white/90 backdrop-blur-lg border border-blue-200/40"
-            } shadow-2xl`}
+            } shadow-lg`}
           >
             {/* Тонкий градиентный фон */}
             <div
               className={`absolute inset-0 bg-gradient-to-br ${
                 isDark
                   ? `from-blue-900/10 to-blue-800/5`
-                  : `from-blue-50/30 to-blue-100/10`
-              } -z-10`}
+                  : `from-blue-200/10 to-blue-100/5`
+              }`}
             ></div>
 
-            {/* Футуристический LED индикатор */}
-            <div
-              className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient}`}
-            >
-              <div
-                className="absolute inset-0 animate-pulse opacity-60"
-                style={{ animationDuration: "2s" }}
-              ></div>
-            </div>
-
-            {/* Основной контент */}
-            <div className="p-7 md:p-10 lg:p-12">
-              {/* Расширенный контент на всю ширину */}
-              <div className="flex flex-col">
-                <div>
-                  <div className="flex items-center gap-5 mb-8">
-                    <motion.div
-                      initial="initial"
-                      animate="animate"
-                      variants={pulseAnimation}
-                      className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient} text-white/90 shadow-md relative overflow-hidden`}
-                    >
-                      <div className="relative z-10 scale-110">
-                        {useCases[activeTab].icon}
-                      </div>
-                      <div className="absolute inset-0 bg-white/25 origin-bottom-right -rotate-12"></div>
-                      <div className="absolute -inset-1.5 bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 animate-shine"></div>
-                    </motion.div>
-                    <div>
-                      <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight whitespace-nowrap">
-                        {useCases[activeTab].title}
-                      </h3>
-                    </div>
-                  </div>
-
-                  <p className="text-gray-700 dark:text-gray-300 mb-8 text-lg leading-relaxed font-normal">
-                    {useCases[activeTab].description}
-                  </p>
-
-                  {/* Расширенное описание - дополнительный контент */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-                    <div className="bg-blue-50/50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-100/70 dark:border-blue-800/30 shadow-sm">
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                        <MessageSquareHeart className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                        Преимущества для бизнеса
-                      </h4>
-                      <ul className="space-y-3">
-                        {activeTab === 0 && (
-                          <>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Сокращение расходов на клиентскую поддержку до
-                                40%
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Уменьшение времени ожидания клиентов на 80%
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Рост удовлетворенности клиентов на 25%
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Оптимизация рабочего времени операторов для
-                                решения сложных задач
-                              </span>
-                            </li>
-                          </>
-                        )}
-                        {activeTab === 1 && (
-                          <>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Увеличение конверсии потенциальных клиентов до
-                                35%
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Сокращение цикла продаж на 20%
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Точная сегментация лидов по потенциалу и
-                                интересам
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Персонализированное сопровождение клиентов на
-                                всех этапах
-                              </span>
-                            </li>
-                          </>
-                        )}
-                        {activeTab === 2 && (
-                          <>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Повышение продуктивности сотрудников на 30%
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Снижение времени на поиск информации на 75%
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Оптимизация обмена знаниями между отделами
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Улучшение адаптации новых сотрудников на 40%
-                              </span>
-                            </li>
-                          </>
-                        )}
-                      </ul>
-                    </div>
-
-                    <div className="bg-blue-50/50 dark:bg-blue-900/20 rounded-xl p-6 border border-blue-100/70 dark:border-blue-800/30 shadow-sm">
-                      <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                        <BrainCircuit className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                        Технологические возможности
-                      </h4>
-                      <ul className="space-y-3">
-                        {activeTab === 0 && (
-                          <>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Обработка естественного языка с пониманием
-                                контекста разговора
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Интеграция с CRM и другими корпоративными
-                                системами
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Многоязычная поддержка с высокой точностью
-                                перевода
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Алгоритмы машинного обучения для постоянного
-                                улучшения ответов
-                              </span>
-                            </li>
-                          </>
-                        )}
-                        {activeTab === 1 && (
-                          <>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Анализ поведения пользователей для выявления
-                                намерений
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Алгоритмы предиктивной аналитики для
-                                квалификации лидов
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Автоматизированная интеграция с системами продаж
-                                и CRM
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Продвинутая система скоринга для оценки
-                                потенциала клиентов
-                              </span>
-                            </li>
-                          </>
-                        )}
-                        {activeTab === 2 && (
-                          <>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Семантический поиск по корпоративной базе знаний
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Интеграция с документооборотом и корпоративными
-                                приложениями
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Персонализированные уведомления на основе
-                                приоритетов
-                              </span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 dark:text-gray-300">
-                                Расширенная аналитика для оптимизации рабочих
-                                процессов
-                              </span>
-                            </li>
-                          </>
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Модернизированная статистика с квадратными иконками в открытой карточке */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
-                    {useCases[activeTab].stats.map((stat, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
-                        className={`flex flex-col p-5 md:p-6 rounded-xl ${
-                          isDark
-                            ? "bg-gradient-to-b from-blue-900/30 to-blue-800/20 backdrop-blur-sm border border-blue-800/30"
-                            : "bg-gradient-to-b from-blue-50/90 to-blue-100/50 backdrop-blur-sm border border-blue-100/60"
-                        } shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden group`}
-                      >
-                        {/* Блики и эффекты */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div className="absolute bottom-0 left-0 h-2 w-full bg-gradient-to-r from-blue-500 to-blue-600 opacity-50"></div>
-                        <div className="absolute -right-20 -top-20 w-40 h-40 bg-blue-500/5 rounded-full blur-2xl transform rotate-12 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-                        <div className="flex items-center gap-4 mb-4">
-                          <div
-                            className={`flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center ${
-                              isDark
-                                ? "bg-gradient-to-br from-blue-800/80 to-blue-700/80"
-                                : "bg-gradient-to-br from-blue-100 to-blue-200/80"
-                            } shadow-sm group-hover:shadow-md transition-all duration-300`}
-                          >
-                            <div
-                              className={`${BRAND_COLORS.primary.text.light} dark:text-white scale-110`}
-                            >
-                              {stat.icon}
-                            </div>
-                          </div>
-                          <p className="text-base font-medium text-gray-700 dark:text-blue-100">
-                            {stat.label}
-                          </p>
-                        </div>
-                        <p
-                          className={`text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient} mt-2`}
-                        >
-                          {stat.value}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Модернизированные фичи с квадратными элементами */}
-                  <div
-                    className={`rounded-xl ${
-                      isDark
-                        ? "bg-gradient-to-b from-blue-900/30 to-blue-800/20 backdrop-blur-sm border border-blue-800/30"
-                        : "bg-gradient-to-b from-blue-50/90 to-blue-100/50 backdrop-blur-sm border border-blue-100/60"
-                    } p-7 shadow-xl`}
-                  >
-                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-5 flex items-center gap-3">
-                      <div
-                        className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient} text-white/90 shadow-md relative overflow-hidden`}
-                      >
-                        <BrainCircuit className="w-5 h-5 text-white relative z-10 scale-110" />
-                        <div className="absolute inset-0 bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
-                        <div className="absolute inset-0 animate-shine opacity-30"></div>
-                      </div>
-                      Ключевые особенности решения
-                    </h4>
-                    <ul className="space-y-4">
-                      {useCases[activeTab].features.map((feature, i) => (
-                        <motion.li
-                          key={i}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: i * 0.1, duration: 0.5 }}
-                          className="flex items-start gap-3 group"
-                        >
-                          <div
-                            className={`p-1.5 rounded-xl mt-0.5 bg-blue-50 dark:bg-blue-900/20 group-hover:bg-blue-600 dark:group-hover:bg-blue-600 transition-colors`}
-                          >
-                            <CheckCircle
-                              className={`w-5 h-5 ${BRAND_COLORS.primary.text.light} dark:${BRAND_COLORS.primary.text.dark} group-hover:text-white transition-colors`}
-                            />
-                          </div>
-                          <span className="text-gray-700 dark:text-gray-300 text-base leading-relaxed font-normal">
-                            {feature}
-                          </span>
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
+            <div className="relative p-6 md:p-7 z-10">
+              <div className="flex items-center gap-4 mb-5">
+                <div
+                  className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
+                    isDark ? "bg-blue-800/50" : "bg-blue-100"
+                  } ${BRAND_COLORS.primary.text.light} dark:${
+                    BRAND_COLORS.primary.text.dark
+                  } group-hover/stat:scale-110 transition-transform`}
+                >
+                  {useCases[activeTab].icon}
                 </div>
+                <div>
+                  <Heading
+                    level={3}
+                    className="text-gray-900 dark:text-white tracking-tight"
+                  >
+                    {useCases[activeTab].title}
+                  </Heading>
+                </div>
+              </div>
+
+              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed line-clamp-2 mb-6 font-normal">
+                {useCases[activeTab].description}
+              </p>
+
+              {/* Стильные метрики с квадратными иконками */}
+              <div className="grid grid-cols-3 gap-3">
+                {useCases[activeTab].stats.map((stat, i) => (
+                  <div
+                    key={i}
+                    className={`p-3 rounded-xl 
+                      ${
+                        isDark
+                          ? "bg-blue-900/30 backdrop-blur-sm border border-blue-800/30"
+                          : "bg-blue-50/70 backdrop-blur-sm border border-blue-100/60"
+                      } 
+                      flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all group/stat`}
+                  >
+                    <div
+                      className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
+                        isDark ? "bg-blue-800/50" : "bg-blue-100"
+                      } ${BRAND_COLORS.primary.text.light} dark:${
+                        BRAND_COLORS.primary.text.dark
+                      } group-hover/stat:scale-110 transition-transform mb-4`}
+                    >
+                      {stat.icon}
+                    </div>
+                    <div
+                      className={`text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient}`}
+                    >
+                      {stat.value}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
       </Container>
-    </section>
+    </div>
   );
 }

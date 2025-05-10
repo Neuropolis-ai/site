@@ -28,9 +28,29 @@ import {
   Shield,
   Search,
   ExternalLink,
+  DollarSign,
 } from "lucide-react";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
+
+// Определяем интерфейс для структуры данных useCases
+interface UseCaseItem {
+  title: string;
+  description: string;
+  stats: { value: string; label: string }[];
+  detailedDescription: string[];
+  features: string[];
+  icon: React.ReactNode;
+  colorBg: string;
+  colorText: string;
+  colorLight: string;
+  gradientFrom: string;
+  gradientTo: string;
+  bgDark: string;
+  borderDark: string;
+  bgLight: string;
+  borderLight: string;
+}
 
 export default function ChatBotsUseCases() {
   const { isDark } = useTheme();
@@ -154,28 +174,22 @@ export default function ChatBotsUseCases() {
     }),
   };
 
-  // Улучшенные данные о кейсах использования чат-ботов
-  const useCases = [
+  // Данные о кейсах использования чат-ботов
+  const useCases: UseCaseItem[] = [
     {
       title: "Автоматизация клиентской поддержки",
       description:
         "Интеллектуальный чат-бот мгновенно отвечает на запросы клиентов 24/7, повышая удовлетворенность и снижая нагрузку на операторов.",
       stats: [
-        {
-          value: "24/7",
-          label: "Непрерывная работа",
-          icon: <Clock className="w-5 h-5" />,
-        },
-        {
-          value: "3 сек",
-          label: "Время ответа",
-          icon: <Zap className="w-5 h-5" />,
-        },
-        {
-          value: "70%",
-          label: "Автоматизация",
-          icon: <BarChart2 className="w-5 h-5" />,
-        },
+        { value: "24/7", label: "Непрерывная работа" },
+        { value: "3 сек", label: "Время ответа" },
+        { value: "70%", label: "Автоматизация" },
+      ],
+      detailedDescription: [
+        "Мгновенные ответы на типовые вопросы клиентов в любое время суток",
+        "Интеллектуальная маршрутизация сложных запросов к профильным специалистам",
+        "Автоматический сбор и анализ обратной связи от клиентов",
+        "Проактивное информирование о статусе заказов и обращений"
       ],
       features: [
         "Глубокая интеграция с CRM для персонализированного обслуживания",
@@ -183,32 +197,31 @@ export default function ChatBotsUseCases() {
         "Аналитическая панель с метриками эффективности в реальном времени",
         "Мультиязычность и адаптация к региональным особенностям",
       ],
-      image: "/assets/images/ai-customer-support.jpg",
-      icon: <MessageSquareHeart />,
-      color: "primary",
-      iconGradient: "from-primary via-primary to-primary-light",
-      accentGradient: "from-primary to-primary-light",
+      icon: <MessageSquareHeart className="w-5 h-5" />,
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
     },
     {
       title: "Генерация и квалификация лидов",
       description:
         "Конверсионный бот проактивно взаимодействует с посетителями, собирает данные и квалифицирует потенциальных клиентов для вашего отдела продаж.",
       stats: [
-        {
-          value: "35%",
-          label: "Рост конверсии",
-          icon: <TrendingUp className="w-5 h-5" />,
-        },
-        {
-          value: "300+",
-          label: "Лидов ежемесячно",
-          icon: <Users className="w-5 h-5" />,
-        },
-        {
-          value: "45%",
-          label: "Экономия времени",
-          icon: <Clock className="w-5 h-5" />,
-        },
+        { value: "35%", label: "Рост конверсии" },
+        { value: "300+", label: "Лидов ежемесячно" },
+        { value: "45%", label: "Экономия времени" },
+      ],
+      detailedDescription: [
+        "Проактивное взаимодействие с посетителями сайта в момент проявления интереса",
+        "Интеллектуальный сбор и анализ данных о потенциальных клиентах",
+        "Автоматическая квалификация лидов по заданным критериям",
+        "Бесшовная передача данных в CRM-систему отдела продаж"
       ],
       features: [
         "Прогностический анализ для оценки потенциала клиента",
@@ -216,32 +229,31 @@ export default function ChatBotsUseCases() {
         "Интерактивные опросы для сбора квалификационной информации",
         "Автоматическая сегментация лидов на основе интересов",
       ],
-      image: "/assets/images/callcenter.jpg",
-      icon: <TrendingUp />,
-      color: "primary",
-      iconGradient: "from-primary via-primary to-primary-light",
-      accentGradient: "from-primary to-primary-light",
+      icon: <TrendingUp className="w-5 h-5" />,
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
     },
     {
       title: "Внутренние коммуникации",
       description:
         "Корпоративный ассистент-бот оптимизирует внутренние процессы, предоставляет мгновенный доступ к документации и автоматизирует рабочие процессы.",
       stats: [
-        {
-          value: "60%",
-          label: "Снижение нагрузки",
-          icon: <Shield className="w-5 h-5" />,
-        },
-        {
-          value: "85%",
-          label: "Удовлетворенность",
-          icon: <Users className="w-5 h-5" />,
-        },
-        {
-          value: "5ч",
-          label: "Экономия в неделю",
-          icon: <Clock className="w-5 h-5" />,
-        },
+        { value: "60%", label: "Снижение нагрузки" },
+        { value: "85%", label: "Удовлетворенность" },
+        { value: "5ч", label: "Экономия в неделю" },
+      ],
+      detailedDescription: [
+        "Мгновенный доступ к корпоративной информации через естественные запросы",
+        "Автоматизация рутинных задач и внутренних бизнес-процессов",
+        "Упрощение коммуникации между отделами и сотрудниками",
+        "Ускорение адаптации новых сотрудников и обучения персонала"
       ],
       features: [
         "Единая база знаний с самообучающимся рекомендательным алгоритмом",
@@ -249,13 +261,67 @@ export default function ChatBotsUseCases() {
         "Интеграция с корпоративными системами документооборота",
         "Проактивные уведомления о важных событиях и дедлайнах",
       ],
-      image: "/assets/images/ai-consultation.jpg",
-      icon: <Building2 />,
-      color: "primary",
-      iconGradient: "from-primary via-primary to-primary-light",
-      accentGradient: "from-primary to-primary-light",
+      icon: <Building2 className="w-5 h-5" />,
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+    },
+    {
+      title: "Омниканальное обслуживание",
+      description:
+        "Единый чат-бот работает на всех платформах: сайт, мессенджеры, социальные сети, мобильные приложения, обеспечивая целостный клиентский опыт.",
+      stats: [
+        { value: "8+", label: "Каналов связи" },
+        { value: "90%", label: "Единый опыт" },
+        { value: "50%", label: "Рост охвата" },
+      ],
+      detailedDescription: [
+        "Единая точка контакта для клиентов на всех цифровых платформах",
+        "Бесшовный переход между каналами коммуникации без потери контекста",
+        "Персонализированное взаимодействие на основе истории клиента",
+        "Автоматическое масштабирование под нагрузку в пиковые периоды"
+      ],
+      features: [
+        "Интеграция со всеми популярными мессенджерами и социальными сетями",
+        "Сохранение контекста диалога при смене канала коммуникации",
+        "Адаптивный интерфейс для разных платформ и устройств",
+        "Единая аналитика эффективности по всем каналам",
+      ],
+      icon: <Globe className="w-5 h-5" />,
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
     },
   ];
+
+  const getTabClassName = (index: number): string => {
+    if (activeTab === index) {
+      return `${useCases[index].colorBg} text-white shadow-lg ${
+        isDark ? "shadow-blue-900/30" : "shadow-blue-500/30"
+      }`;
+    }
+    return isDark
+      ? "bg-gray-800/80 backdrop-blur-sm text-gray-300 hover:bg-gray-800 border border-gray-700 hover:border-blue-800/30"
+      : "bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-blue-50 border border-gray-200 hover:border-blue-200";
+  };
+
+  const getStatClassName = (index: number): string => {
+    return isDark
+      ? `${useCases[activeTab].bgDark} border ${useCases[activeTab].borderDark} backdrop-blur-sm`
+      : `${useCases[activeTab].bgLight} border ${useCases[activeTab].borderLight}`;
+  };
 
   return (
     <div
@@ -528,11 +594,13 @@ export default function ChatBotsUseCases() {
                         <div
                           className={`mb-2 p-2 rounded-lg ${
                             activeTab === index
-                              ? "bg-gradient-to-br from-primary to-primary-light text-white shadow-md"
-                              : "bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                              ? "bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white shadow-md"
+                              : "bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400"
                           } transition-colors duration-300`}
                         >
-                          {stat.icon}
+                          {index === 0 && <Clock className="w-5 h-5" />}
+                          {index === 1 && <Zap className="w-5 h-5" />}
+                          {index === 2 && <BarChart2 className="w-5 h-5" />}
                         </div>
                         <div
                           className={`text-xl font-bold ${

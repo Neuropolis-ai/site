@@ -29,6 +29,12 @@ function isAuthenticated(request: NextRequest): boolean {
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
+  // Редирект с /ai-agents на /ai-agent
+  if (pathname === "/ai-agents" || pathname.startsWith("/ai-agents/")) {
+    const newPath = pathname.replace("/ai-agents", "/ai-agent");
+    return NextResponse.redirect(new URL(newPath, request.url));
+  }
+
   // Проверяем, является ли путь защищенным
   if (ADMIN_PATHS.some((adminPath) => pathname.startsWith(adminPath))) {
     // Для страницы test-telegram пропускаем запросы без дополнительной проверки,
@@ -101,6 +107,8 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     "/services/autonomous-ai-agents/:path*",
+    "/ai-agents",
+    "/ai-agents/:path*",
     // "/cases/ai-sales-agent/:path*", // Убран из matcher
     "/test-telegram/:path*",
     "/admin/:path*",

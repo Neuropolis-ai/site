@@ -251,7 +251,7 @@ export default function ContactForm({
     ? { backgroundColor }
     : className && className.includes("from-") 
       ? className
-      : "bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900";
+      : "bg-gradient-to-b from-white/80 to-gray-50/90 dark:from-gray-900 dark:to-gray-950";
 
   const content = (
     <section
@@ -265,9 +265,10 @@ export default function ContactForm({
         className={`absolute inset-0 ${bgStyle} -z-10`}
       ></div>
 
-      {/* Декоративные элементы, как в остальных секциях */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+      {/* Декоративные элементы, как в секции Contact */}
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/20 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/30 dark:from-indigo-500/10 dark:to-indigo-700/20 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-blue-300/5 to-indigo-300/10 dark:from-blue-600/5 dark:to-indigo-600/10 rounded-full blur-3xl -z-10"></div>
 
       <div className="w-full mx-auto relative z-10">
         <div className="container mx-auto">

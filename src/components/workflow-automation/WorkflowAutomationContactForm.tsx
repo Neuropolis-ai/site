@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import {
@@ -15,7 +14,6 @@ import {
   FiSearch,
   FiSettings,
   FiUsers,
-  FiBriefcase,
   FiSend,
 } from "react-icons/fi";
 import { Heading } from "@/components/ui/heading";
@@ -161,38 +159,6 @@ export default function ContactForm({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Анимации
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
-  const floatingVariants = {
-    initial: { y: 0 },
-    animate: {
-      y: [0, -10, 0],
-      transition: {
-        duration: 5,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -263,131 +229,94 @@ export default function ContactForm({
     }
   };
 
-  // Стили для иконок
-  const iconStyle = `w-6 h-6 ${isDark ? "text-blue-400" : "text-blue-500"}`;
+  // Стили для иконок, соответствующие основному дизайну сайта
+  const iconStyle = `w-6 h-6 ${isDark ? "text-[#399AFC]" : "text-[#0167F3]"}`;
 
   // Стили для контейнеров иконок
-  const iconContainerStyle = `w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 shadow-sm ${
+  const iconContainerStyle = `w-12 h-12 rounded-lg flex items-center justify-center ${
     isDark
-      ? "bg-gradient-to-br from-blue-600/30 to-sky-600/30 text-blue-400 shadow-blue-900/10"
-      : "bg-gradient-to-br from-blue-100 to-sky-100 text-blue-500 shadow-blue-200/50"
+      ? "bg-gray-800 text-[#399AFC]"
+      : "bg-blue-50 text-[#0167F3]"
   }`;
 
   // Стили для полей ввода
-  const inputStyle = `w-full px-4 py-3 rounded-xl border transition-all duration-200 ${
+  const inputStyle = `w-full px-4 py-3 rounded-lg border ${
     isDark
-      ? "bg-gray-700/80 border-gray-600 text-white focus:border-blue-500 focus:bg-gray-700 placeholder-gray-400"
-      : "bg-white/80 border-gray-300 text-gray-900 focus:border-blue-400 focus:bg-white placeholder-gray-400"
-  } focus:ring-3 focus:ring-blue-500/40 focus:outline-none`;
+      ? "bg-gray-800 border-gray-700 text-white focus:border-[#399AFC] focus:outline-none placeholder-gray-400"
+      : "bg-white border-gray-200 text-gray-900 focus:border-[#0167F3] focus:outline-none placeholder-gray-400"
+  }`;
 
+  // Основной фон, соответствующий дизайну сайта
   const bgStyle = backgroundColor
     ? { backgroundColor }
-    : `bg-gradient-to-b from-blue-50/80 to-white dark:from-blue-950/10 dark:to-gray-950`;
+    : className && className.includes("from-") 
+      ? className
+      : "bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900";
 
   const content = (
     <section
       id="contact"
-      className={`py-16 md:py-24 relative overflow-hidden ${
-        fullWidth ? "w-screen" : "w-full"
-      } ${className}`}
+      className={`py-16 md:py-20 relative ${
+        fullWidth ? "w-full" : "w-full"
+      }`}
     >
-      {/* Градиентный фон */}
+      {/* Фон, соответствующий стилю сайта */}
       <div
-        className={`absolute inset-0 ${
-          fullWidth ? "w-screen" : "w-full"
-        } ${bgStyle} -z-10`}
+        className={`absolute inset-0 ${bgStyle} -z-10`}
       ></div>
 
-      {/* Сетка-фон */}
-      <div
-        className={`absolute inset-0 ${
-          fullWidth ? "w-screen" : "w-full"
-        } opacity-[0.03] dark:opacity-[0.02] -z-10`}
-      >
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: "url('/grid-pattern.svg')",
-            backgroundSize: "24px 24px",
-            backgroundRepeat: "repeat",
-          }}
-        ></div>
-      </div>
-
-      {/* Декоративные элементы */}
-      <div className="absolute -top-24 -right-24 w-[120vw] h-[120vw] max-w-[800px] max-h-[800px] bg-gradient-to-br from-blue-200/40 to-blue-400/40 dark:from-blue-500/15 dark:to-blue-700/15 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-24 -left-24 w-[120vw] h-[120vw] max-w-[800px] max-h-[800px] bg-gradient-to-tr from-sky-200/40 to-sky-400/40 dark:from-sky-500/15 dark:to-sky-700/15 rounded-full blur-3xl -z-10"></div>
-
-      {/* Анимированные элементы */}
-      <motion.div
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        className="absolute top-[15%] right-[10%] w-14 h-14 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md -z-5"
-      ></motion.div>
-      <motion.div
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        className="absolute bottom-[15%] left-[7%] w-18 h-18 bg-sky-400/20 dark:bg-sky-600/30 rounded-full backdrop-blur-md -z-5"
-        style={{ animationDelay: "1.5s" }}
-      ></motion.div>
+      {/* Декоративные элементы, как в остальных секциях */}
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
 
       <div className="w-full mx-auto relative z-10">
         <div className="container mx-auto">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center px-4 md:px-6 relative z-10"
+          <div
+            className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start px-4 md:px-6 relative z-10"
           >
             {/* Левая колонка - Текст */}
             {(showFeatures || title || subtitle) && (
-              <motion.div variants={itemVariants}>
+              <div>
                 {(title || subtitle) && (
                   <div className="mb-10">
-                    <motion.div
-                      variants={itemVariants}
-                      className="inline-flex items-center justify-center border border-blue-300 dark:border-blue-800 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400"
+                    <div
+                      className="inline-block px-4 py-1 rounded-full text-sm mb-4 bg-[#0167F3]/10 text-[#0167F3] dark:bg-blue-900/30 dark:text-blue-400"
                     >
                       Связаться с нами
-                    </motion.div>
+                    </div>
                     {title && (
-                      <motion.div variants={itemVariants}>
+                      <div>
                         <Heading
                           level={2}
-                          align="center"
-                          className="font-semibold text-gray-900 dark:text-white mb-4"
+                          className="text-left font-bold text-gray-900 dark:text-white mb-4 text-3xl md:text-4xl"
                         >
                           {title.includes("автоматизировать") ? (
                             <>
-                              Готовы{" "}
-                              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">
-                                автоматизировать
+                              Начните{" "}
+                              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+                                цифровую
                               </span>{" "}
-                              ваш бизнес?
+                              трансформацию сегодня
                             </>
                           ) : (
                             title
                           )}
                         </Heading>
-                      </motion.div>
+                      </div>
                     )}
                     {subtitle && (
-                      <motion.p
-                        variants={itemVariants}
-                        className="text-[18px] text-gray-600 dark:text-gray-300"
+                      <p
+                        className="text-lg text-gray-600 dark:text-gray-300"
                       >
                         {subtitle}
-                      </Subheading></motion.div>
+                      </p>
                     )}
                   </div>
                 )}
 
                 {/* Преимущества обращения */}
                 {showFeatures && features && features.length > 0 && (
-                  <motion.div variants={itemVariants} className="space-y-6">
+                  <div className="space-y-6">
                     {features.map((feature, index) => (
                       <div key={index} className="flex items-start gap-4">
                         <div
@@ -402,280 +331,264 @@ export default function ContactForm({
                           )}
                         </div>
                         <div>
-                          <Heading
-                            level={3}
-                            className="font-medium text-gray-900 dark:text-white"
-                          >
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                             {feature.title}
-                          </Heading>
+                          </h3>
                           <p className="text-base text-gray-600 dark:text-gray-300 mt-1">
                             {feature.description}
                           </p>
                         </div>
                       </div>
                     ))}
-                  </motion.div>
+                  </div>
                 )}
 
                 {/* Дополнительная информация */}
                 {showConfidentiality && (
-                  <motion.div
-                    variants={itemVariants}
-                    className="mt-10 p-6 rounded-xl border border-blue-100 dark:border-blue-800/30 bg-gradient-to-br from-blue-50/50 to-white dark:from-blue-900/20 dark:to-blue-800/10 backdrop-blur-sm shadow-sm"
+                  <div
+                    className="mt-10 p-6 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700"
                   >
                     <div className="flex items-center gap-3 mb-3">
-                      <FiShield className="w-5 h-5 text-blue-500 dark:text-blue-400" />
-                      <span className="text-[16px] font-medium text-gray-900 dark:text-white">
+                      <div className="p-1.5 rounded-full bg-[#0167F3]/10 dark:bg-blue-900/30">
+                        <FiShield className="w-5 h-5 text-[#0167F3] dark:text-[#399AFC]" />
+                      </div>
+                      <span className="text-base font-medium text-gray-900 dark:text-white">
                         Гарантия конфиденциальности
                       </span>
                     </div>
                     <p className="text-base text-gray-600 dark:text-gray-300">
                       {confidentialityText}
                     </p>
-                  </motion.div>
+                  </div>
                 )}
-              </motion.div>
+              </div>
             )}
 
             {/* Правая колонка - Форма */}
-            <motion.div
-              variants={itemVariants}
-              whileHover={{
-                y: -5,
-                transition: { duration: 0.3 },
-                boxShadow: isDark
-                  ? "0 20px 40px rgba(30, 64, 175, 0.25)"
-                  : "0 20px 40px rgba(59, 130, 246, 0.15)",
-              }}
-              className={`p-8 rounded-2xl backdrop-blur-sm ${
+            <div
+              className={`p-8 rounded-lg ${
                 isDark
-                  ? "bg-gray-800/50 border border-gray-700"
-                  : "bg-white/90 border border-gray-200 shadow-lg shadow-blue-100/50"
+                  ? "bg-gray-800 border border-gray-700"
+                  : "bg-white border border-gray-200 shadow-sm"
               }`}
             >
               {isSubmitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                <div
                   className="text-center py-10"
                 >
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 text-white mb-6 shadow-lg shadow-blue-500/30">
-                    <FiCheckCircle className="w-10 h-10" />
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#0167F3] dark:bg-[#399AFC] text-white mb-6">
+                    <FiCheckCircle className="w-8 h-8" />
                   </div>
-                  <Heading
-                    level={3}
-                    className="font-semibold text-gray-900 dark:text-white mb-4"
-                  >
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                     {successMessage.title}
-                  </Heading>
-                  <p className="text-base text-gray-600 dark:text-gray-300 mb-8">
+                  </h3>
+                  <p className="text-base text-gray-600 dark:text-gray-300 mb-8 max-w-md mx-auto">
                     {successMessage.text}
                   </p>
-                </motion.div>
+                </div>
               ) : (
                 <>
-                  <Heading
-                    level={3}
-                    className="font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2"
-                  >
-                    <span className="inline-block p-1.5 rounded-full bg-blue-500/20 dark:bg-blue-400/20">
-                      <FiMessageSquare className="w-5 h-5 text-blue-500 dark:text-blue-400" />
-                    </span>
-                    Заполните форму
-                  </Heading>
-                  <form
-                    onSubmit={handleSubmit}
-                    id={formId}
-                    className="space-y-5"
-                  >
-                    <div>
-                      <label
-                        htmlFor={`${formId}-name`}
-                        className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
-                      >
-                        <FiUser className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                        {formLabels.name}{" "}
-                        <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        id={`${formId}-name`}
-                        name="name"
-                        type="text"
-                        value={formState.name}
-                        onChange={handleChange}
-                        required
-                        className={inputStyle}
-                        placeholder={placeholders.name}
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor={`${formId}-email`}
-                        className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
-                      >
-                        <FiMail className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                        {formLabels.email}{" "}
-                        <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        id={`${formId}-email`}
-                        name="email"
-                        type="email"
-                        value={formState.email}
-                        onChange={handleChange}
-                        required
-                        className={inputStyle}
-                        placeholder={placeholders.email}
-                      />
-                    </div>
-
-                    <div
-                      className={`grid grid-cols-1 ${
-                        showPhoneField && showCompanyField
-                          ? "md:grid-cols-2"
-                          : ""
-                      } gap-5`}
+                  <div className="relative">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
+                      <span className="inline-block p-1.5 rounded-full bg-[#0167F3]/10 dark:bg-blue-900/30">
+                        <FiMessageSquare className="w-5 h-5 text-[#0167F3] dark:text-[#399AFC]" />
+                      </span>
+                      Заполните форму
+                    </h3>
+                    <form
+                      onSubmit={handleSubmit}
+                      id={formId}
+                      className="space-y-5"
                     >
-                      {showPhoneField && (
-                        <div>
-                          <label
-                            htmlFor={`${formId}-phone`}
-                            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
-                          >
-                            <FiPhone className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                            {formLabels.phone}
-                          </label>
-                          <input
-                            id={`${formId}-phone`}
-                            name="phone"
-                            type="tel"
-                            value={formState.phone}
-                            onChange={handleChange}
-                            className={inputStyle}
-                            placeholder={placeholders.phone}
-                          />
-                        </div>
-                      )}
-
-                      {showCompanyField && (
-                        <div>
-                          <label
-                            htmlFor={`${formId}-company`}
-                            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
-                          >
-                            <FiHome className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                            {formLabels.company}
-                          </label>
-                          <input
-                            id={`${formId}-company`}
-                            name="company"
-                            type="text"
-                            value={formState.company}
-                            onChange={handleChange}
-                            className={inputStyle}
-                            placeholder={placeholders.company}
-                          />
-                        </div>
-                      )}
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor={`${formId}-message`}
-                        className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
-                      >
-                        <FiMessageSquare className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                        {formLabels.message}
-                      </label>
-                      <textarea
-                        id={`${formId}-message`}
-                        name="message"
-                        rows={4}
-                        value={formState.message}
-                        onChange={handleChange}
-                        className={inputStyle}
-                        placeholder={placeholders.message}
-                      ></textarea>
-                    </div>
-
-                    <div className="flex items-start pt-2">
-                      <div className="flex h-5">
+                      <div>
+                        <label
+                          htmlFor={`${formId}-name`}
+                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
+                        >
+                          <FiUser className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
+                          {formLabels.name}{" "}
+                          <span className="text-red-500">*</span>
+                        </label>
                         <input
-                          id={`${formId}-agreement`}
-                          name="agreement"
-                          type="checkbox"
-                          checked={formState.agreement}
-                          onChange={handleCheckboxChange}
+                          id={`${formId}-name`}
+                          name="name"
+                          type="text"
+                          value={formState.name}
+                          onChange={handleChange}
                           required
-                          className="h-5 w-5 rounded text-blue-600 focus:ring-blue-500 border-gray-300 focus:ring-2 focus:ring-offset-1 transition-colors"
+                          className={inputStyle}
+                          placeholder={placeholders.name}
                         />
                       </div>
-                      <label
-                        htmlFor={`${formId}-agreement`}
-                        className="ml-3 block text-sm text-gray-600 dark:text-gray-300"
+
+                      <div>
+                        <label
+                          htmlFor={`${formId}-email`}
+                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
+                        >
+                          <FiMail className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
+                          {formLabels.email}{" "}
+                          <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                          id={`${formId}-email`}
+                          name="email"
+                          type="email"
+                          value={formState.email}
+                          onChange={handleChange}
+                          required
+                          className={inputStyle}
+                          placeholder={placeholders.email}
+                        />
+                      </div>
+
+                      <div
+                        className={`grid grid-cols-1 ${
+                          showPhoneField && showCompanyField
+                            ? "md:grid-cols-2"
+                            : ""
+                        } gap-5`}
                       >
-                        {formLabels.agreement?.includes(
-                          "политикой конфиденциальности"
-                        ) ? (
-                          <>
-                            Я согласен с{" "}
-                            <a
-                              href={privacyPolicyUrl}
-                              className="text-blue-600 dark:text-blue-400 hover:underline"
+                        {showPhoneField && (
+                          <div>
+                            <label
+                              htmlFor={`${formId}-phone`}
+                              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
                             >
-                              политикой конфиденциальности
-                            </a>{" "}
-                            и обработкой персональных данных
+                              <FiPhone className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
+                              {formLabels.phone}
+                            </label>
+                            <input
+                              id={`${formId}-phone`}
+                              name="phone"
+                              type="tel"
+                              value={formState.phone}
+                              onChange={handleChange}
+                              className={inputStyle}
+                              placeholder={placeholders.phone}
+                            />
+                          </div>
+                        )}
+
+                        {showCompanyField && (
+                          <div>
+                            <label
+                              htmlFor={`${formId}-company`}
+                              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
+                            >
+                              <FiHome className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
+                              {formLabels.company}
+                            </label>
+                            <input
+                              id={`${formId}-company`}
+                              name="company"
+                              type="text"
+                              value={formState.company}
+                              onChange={handleChange}
+                              className={inputStyle}
+                              placeholder={placeholders.company}
+                            />
+                          </div>
+                        )}
+                      </div>
+
+                      <div>
+                        <label
+                          htmlFor={`${formId}-message`}
+                          className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
+                        >
+                          <FiMessageSquare className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
+                          {formLabels.message}
+                        </label>
+                        <textarea
+                          id={`${formId}-message`}
+                          name="message"
+                          rows={4}
+                          value={formState.message}
+                          onChange={handleChange}
+                          className={inputStyle}
+                          placeholder={placeholders.message}
+                        ></textarea>
+                      </div>
+
+                      <div className="flex items-start pt-2">
+                        <div className="flex h-5">
+                          <input
+                            id={`${formId}-agreement`}
+                            name="agreement"
+                            type="checkbox"
+                            checked={formState.agreement}
+                            onChange={handleCheckboxChange}
+                            required
+                            className="h-5 w-5 rounded text-[#0167F3] focus:ring-[#0167F3] border-gray-300"
+                          />
+                        </div>
+                        <label
+                          htmlFor={`${formId}-agreement`}
+                          className="ml-3 block text-sm text-gray-600 dark:text-gray-300"
+                        >
+                          {formLabels.agreement?.includes(
+                            "политикой конфиденциальности"
+                          ) ? (
+                            <>
+                              Я согласен с{" "}
+                              <a
+                                href={privacyPolicyUrl}
+                                className="text-[#0167F3] dark:text-[#399AFC] hover:underline"
+                              >
+                                политикой конфиденциальности
+                              </a>{" "}
+                              и обработкой персональных данных
+                            </>
+                          ) : (
+                            formLabels.agreement
+                          )}
+                        </label>
+                      </div>
+
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className={`w-full mt-4 bg-[#0167F3] dark:bg-[#399AFC] text-white font-semibold py-3 px-6 rounded-lg transition-opacity ${
+                          isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                        }`}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <svg
+                              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              ></path>
+                            </svg>
+                            Отправка...
                           </>
                         ) : (
-                          formLabels.agreement
+                          <span className="flex items-center justify-center">
+                            {submitButtonText} <FiSend className="ml-2 w-5 h-5" />
+                          </span>
                         )}
-                      </label>
-                    </div>
-
-                    <motion.button
-                      type="submit"
-                      disabled={isSubmitting}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className={`w-full mt-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold py-3.5 px-6 rounded-xl transition-all hover:shadow-lg hover:shadow-primary/30 dark:hover:shadow-primary/30 flex items-center justify-center ${
-                        isSubmitting ? "opacity-70 cursor-not-allowed" : ""
-                      }`}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <svg
-                            className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                          >
-                            <circle
-                              className="opacity-25"
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                            ></circle>
-                            <path
-                              className="opacity-75"
-                              fill="currentColor"
-                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                            ></path>
-                          </svg>
-                          Отправка...
-                        </>
-                      ) : (
-                        submitButtonText
-                      )}
-                    </motion.button>
-                  </form>
+                      </button>
+                    </form>
+                  </div>
                 </>
               )}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

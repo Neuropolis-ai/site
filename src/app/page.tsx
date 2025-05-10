@@ -17,6 +17,7 @@ import WorkflowAutomationContactForm from "@/components/workflow-automation/Work
 import { FiUsers, FiLayers, FiTrendingUp } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
+import Subheading from "@/components/ui/subheading";
 
 // Отключаем кеширование данных для этой страницы
 export const dynamic = "force-dynamic";

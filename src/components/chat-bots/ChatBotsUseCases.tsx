@@ -30,79 +30,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import Subheading from "@/components/ui/subheading";
-
-// Набор фирменных цветов в формате Tailwind классов
-const BRAND_COLORS = {
-  primary: {
-    base: "blue-600",
-    light: "blue-500",
-    dark: "blue-700",
-    brightest: "blue-400",
-    subtle: "blue-50",
-    grad: {
-      from: "from-blue-600",
-      via: "via-blue-500",
-      to: "to-blue-700",
-    },
-    text: {
-      light: "text-blue-600",
-      dark: "text-blue-400",
-      hover: "hover:text-blue-500",
-    },
-    bg: {
-      default: "bg-blue-600",
-      hover: "hover:bg-blue-700",
-      light: "bg-blue-500",
-      gradient: "bg-gradient-to-r from-blue-600 to-blue-700",
-      subtle: "bg-blue-50",
-      dark: "bg-blue-700",
-    },
-    border: {
-      light: "border-blue-200",
-      default: "border-blue-600",
-      dark: "border-blue-700",
-      hover: "hover:border-blue-500",
-    },
-    ring: {
-      default: "ring-blue-600",
-      offset: "ring-offset-blue-100",
-    },
-    shadow: {
-      sm: "shadow-blue-500/10",
-      md: "shadow-blue-600/20",
-      lg: "shadow-blue-700/30",
-    },
-  },
-  accent: {
-    base: "indigo-600",
-    grad: {
-      from: "from-indigo-600",
-      to: "to-violet-700",
-    },
-    bg: {
-      default: "bg-indigo-600",
-      hover: "hover:bg-indigo-700",
-      gradient: "bg-gradient-to-r from-indigo-600 to-violet-700",
-    },
-    text: {
-      default: "text-indigo-600",
-      dark: "text-indigo-400",
-    },
-  },
-  success: {
-    base: "emerald-500",
-    grad: {
-      from: "from-emerald-500",
-      to: "to-teal-600",
-    },
-  },
-  glass: {
-    bg: {
-      light: "bg-white/70 backdrop-blur-lg border border-white/20",
-      dark: "bg-gray-900/60 backdrop-blur-lg border border-gray-800/20",
-    },
-  },
-};
+import Badge from "@/components/ui/Badge";
 
 export default function ChatBotsUseCases() {
   const { isDark } = useTheme();
@@ -257,9 +185,9 @@ export default function ChatBotsUseCases() {
       ],
       image: "/assets/images/ai-customer-support.jpg",
       icon: <MessageSquareHeart />,
-      color: "blue",
-      iconGradient: `${BRAND_COLORS.primary.grad.from} ${BRAND_COLORS.primary.grad.via} ${BRAND_COLORS.primary.grad.to}`,
-      accentGradient: `${BRAND_COLORS.primary.grad.from} ${BRAND_COLORS.primary.grad.to}`,
+      color: "primary",
+      iconGradient: "from-primary via-primary to-primary-light",
+      accentGradient: "from-primary to-primary-light",
     },
     {
       title: "Генерация и квалификация лидов",
@@ -290,9 +218,9 @@ export default function ChatBotsUseCases() {
       ],
       image: "/assets/images/callcenter.jpg",
       icon: <TrendingUp />,
-      color: "blue",
-      iconGradient: `${BRAND_COLORS.primary.grad.from} ${BRAND_COLORS.primary.grad.via} ${BRAND_COLORS.primary.grad.to}`,
-      accentGradient: `${BRAND_COLORS.primary.grad.from} ${BRAND_COLORS.primary.grad.to}`,
+      color: "primary",
+      iconGradient: "from-primary via-primary to-primary-light",
+      accentGradient: "from-primary to-primary-light",
     },
     {
       title: "Внутренние коммуникации",
@@ -323,9 +251,9 @@ export default function ChatBotsUseCases() {
       ],
       image: "/assets/images/ai-consultation.jpg",
       icon: <Building2 />,
-      color: "blue",
-      iconGradient: `${BRAND_COLORS.primary.grad.from} ${BRAND_COLORS.primary.grad.via} ${BRAND_COLORS.primary.grad.to}`,
-      accentGradient: `${BRAND_COLORS.primary.grad.from} ${BRAND_COLORS.primary.grad.to}`,
+      color: "primary",
+      iconGradient: "from-primary via-primary to-primary-light",
+      accentGradient: "from-primary to-primary-light",
     },
   ];
 
@@ -471,24 +399,8 @@ export default function ChatBotsUseCases() {
           className="text-center mb-16 md:mb-20"
         >
           {/* Современный бейдж с нейтральным фоном */}
-          <motion.div
-            variants={itemVariants}
-            className={`inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-sm font-medium mb-6 
-              ${
-                isDark
-                  ? `bg-gray-800/80 border border-gray-700/50 backdrop-blur-md`
-                  : `bg-white/90 border border-gray-200 backdrop-blur-sm`
-              } 
-              ${BRAND_COLORS.primary.text.light} dark:${
-              BRAND_COLORS.primary.text.dark
-            } shadow-lg`}
-          >
-            <div
-              className={`flex items-center justify-center w-6 h-6 rounded-full ${BRAND_COLORS.primary.bg.gradient} text-white/90 shadow-md`}
-            >
-              <Search className="w-3.5 h-3.5" />
-            </div>
-            <span className="tracking-wide">Примеры внедрения</span>
+          <motion.div variants={itemVariants}>
+            <Badge>Примеры внедрения</Badge>
           </motion.div>
 
           {/* Заголовок */}
@@ -498,17 +410,18 @@ export default function ChatBotsUseCases() {
           >
             <Heading
               level={2}
+              align="center"
               className="text-gray-900 dark:text-white tracking-tight leading-tight"
             >
               Как чат-боты{" "}
               <span className="relative inline-block">
                 <span
-                  className={`relative z-10 bg-clip-text text-transparent bg-gradient-to-r ${BRAND_COLORS.primary.grad.from} ${BRAND_COLORS.primary.grad.via} ${BRAND_COLORS.primary.grad.to}`}
+                  className={`relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light`}
                 >
                   трансформируют бизнес
                 </span>
                 <span
-                  className={`absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-r ${BRAND_COLORS.primary.grad.from}/10 ${BRAND_COLORS.primary.grad.via}/10 ${BRAND_COLORS.primary.grad.to}/10 blur-lg -z-10`}
+                  className={`absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-r from-primary/10 to-primary-light/10 blur-lg -z-10`}
                 ></span>
               </span>
             </Heading>
@@ -531,9 +444,9 @@ export default function ChatBotsUseCases() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="mb-16 md:mb-20"
+          className="mb-12 md:mb-16 lg:mb-20"
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-7">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-7">
             {useCases.map((useCase, index) => (
               <motion.div
                 key={index}
@@ -541,92 +454,112 @@ export default function ChatBotsUseCases() {
                 whileHover="hover"
                 whileTap="tap"
                 onClick={() => setActiveTab(index)}
-                className={`relative group rounded-xl transition-all duration-300 overflow-hidden cursor-pointer
-                  ${
-                    activeTab === index
-                      ? `${
-                          isDark
-                            ? "bg-gray-800/90 border border-gray-700 backdrop-blur-md"
-                            : "bg-white border border-gray-200/80 backdrop-blur-md"
-                        } ring-1 ring-blue-500/30 shadow-lg`
-                      : isDark
-                      ? `bg-gray-900/40 hover:bg-gray-800/60 backdrop-blur-sm border border-gray-700/60 hover:border-gray-600/70 shadow-lg`
-                      : `bg-white/80 hover:bg-white/90 backdrop-blur-md border border-gray-200/40 hover:border-gray-300/60 shadow-lg`
-                  }`}
+                className={`relative group rounded-2xl transition-all duration-500 overflow-hidden cursor-pointer ${
+                  activeTab === index
+                    ? `${
+                        isDark
+                          ? "bg-gray-800/70 border-2 border-primary/50 shadow-lg shadow-primary/10"
+                          : "bg-white border-2 border-primary/30 shadow-lg shadow-primary/5"
+                      }`
+                    : isDark
+                    ? `bg-gray-900/40 hover:bg-gray-800/60 border border-gray-700/50 hover:border-primary/30`
+                    : `bg-white hover:shadow-xl border border-gray-200/70 hover:border-primary/20`
+                }`}
               >
-                {/* Тонкий градиентный бордер при активности */}
-                {activeTab === index && (
-                  <div className="absolute inset-0 rounded-xl p-px -z-10 bg-gradient-to-b from-blue-500/20 via-blue-500/5 to-transparent"></div>
-                )}
-
-                {/* Эффект свечения при наведении */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-blue-50/5 to-blue-100/5 dark:from-blue-900/5 dark:to-blue-800/5 rounded-xl transition-opacity duration-300 -z-10"></div>
-
-                {/* Индикатор активного таба */}
+                {/* Градиентная полоса при активности */}
                 <div
-                  className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${
-                    useCase.accentGradient
-                  } ${
+                  className={`absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-primary to-primary-light ${
                     activeTab === index
                       ? "opacity-100"
-                      : "opacity-0 group-hover:opacity-50"
+                      : "opacity-0 group-hover:opacity-70"
                   } transition-opacity duration-300`}
                 ></div>
 
-                <div className="relative p-6 md:p-7 z-10">
+                {/* Эффект свечения при наведении */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary-light/5 dark:from-primary/10 dark:to-primary-light/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+
+                {/* Декоративные элементы */}
+                <div className="absolute -right-16 -bottom-16 w-48 h-48 bg-gradient-to-br from-primary/5 to-primary-light/5 dark:from-primary/10 dark:to-primary-light/10 rounded-full opacity-0 group-hover:opacity-80 blur-2xl transition-opacity duration-500"></div>
+
+                <div className="relative p-5 md:p-6 lg:p-7 z-10">
                   <div className="flex items-center gap-4 mb-5">
                     <div
-                      className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
-                        isDark ? "bg-blue-800/50" : "bg-blue-100"
-                      } ${BRAND_COLORS.primary.text.light} dark:${
-                        BRAND_COLORS.primary.text.dark
-                      } group-hover/stat:scale-110 transition-transform`}
+                      className={`relative w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-r from-primary to-primary-light text-white shadow-lg group-hover:shadow-xl transition-all duration-300 transform ${
+                        activeTab === index ? "scale-110" : "group-hover:scale-105"
+                      }`}
                     >
                       {useCase.icon}
+                      <div className="absolute inset-0 rounded-xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                     <div>
                       <Heading
                         level={3}
-                        className="text-gray-900 dark:text-white tracking-tight"
+                        className={`text-lg md:text-xl lg:text-2xl tracking-tight font-bold ${
+                          activeTab === index
+                            ? "text-primary dark:text-primary-light"
+                            : "text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary-light"
+                        } transition-colors duration-300`}
                       >
                         {useCase.title}
                       </Heading>
                     </div>
                   </div>
 
-                  <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed line-clamp-2 mb-6 font-normal">
+                  <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed mb-6 font-normal line-clamp-3">
                     {useCase.description}
                   </p>
 
-                  {/* Стильные метрики с квадратными иконками */}
+                  {/* Улучшенные метрики */}
                   <div className="grid grid-cols-3 gap-3">
                     {useCase.stats.map((stat, i) => (
                       <div
                         key={i}
-                        className={`p-3 rounded-xl 
-                          ${
-                            isDark
-                              ? "bg-blue-900/30 backdrop-blur-sm border border-blue-800/30"
-                              : "bg-blue-50/70 backdrop-blur-sm border border-blue-100/60"
-                          } 
-                          flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all group/stat`}
+                        className={`p-3 rounded-xl ${
+                          isDark
+                            ? activeTab === index 
+                              ? "bg-gray-700/70 border border-primary/20" 
+                              : "bg-gray-800/50 border border-gray-700/50 group-hover:border-primary/10"
+                            : activeTab === index 
+                              ? "bg-gray-50 border border-primary/20" 
+                              : "bg-white border border-gray-200 group-hover:border-primary/10"
+                        } 
+                        hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center text-center`}
                       >
                         <div
-                          className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
-                            isDark ? "bg-blue-800/50" : "bg-blue-100"
-                          } ${BRAND_COLORS.primary.text.light} dark:${
-                            BRAND_COLORS.primary.text.dark
-                          } group-hover/stat:scale-110 transition-transform mb-4`}
+                          className={`mb-2 p-2 rounded-lg ${
+                            activeTab === index
+                              ? "bg-gradient-to-br from-primary to-primary-light text-white shadow-md"
+                              : "bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-light"
+                          } transition-colors duration-300`}
                         >
                           {stat.icon}
                         </div>
                         <div
-                          className={`text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient}`}
+                          className={`text-xl font-bold ${
+                            activeTab === index
+                              ? "text-primary dark:text-primary-light"
+                              : "bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light"
+                          } transition-colors duration-300`}
                         >
                           {stat.value}
                         </div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 font-medium">
+                          {stat.label}
+                        </div>
                       </div>
                     ))}
+                  </div>
+
+                  {/* Индикатор выбора */}
+                  <div className={`mt-5 pt-4 border-t border-gray-100 dark:border-gray-700/50 flex justify-end ${
+                    activeTab === index ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                  } transition-opacity duration-300`}>
+                    <button className="inline-flex items-center text-sm font-medium text-primary dark:text-primary-light">
+                      {activeTab === index ? "Выбрано" : "Выбрать"}
+                      <ArrowRight className={`ml-1.5 w-4 h-4 transition-all duration-300 ${
+                        activeTab === index ? "translate-x-1" : "group-hover:translate-x-1"
+                      }`} />
+                    </button>
                   </div>
                 </div>
               </motion.div>
@@ -635,91 +568,32 @@ export default function ChatBotsUseCases() {
         </motion.div>
 
         {/* Расширенная информация об активном кейсе */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 30, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -30, scale: 0.98 }}
-            transition={{
-              duration: 0.5,
-              type: "spring",
-              stiffness: 100,
-              damping: 20,
-            }}
-            className={`relative overflow-hidden rounded-xl ${
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -30, scale: 0.98 }}
+          transition={{
+            duration: 0.5,
+            type: "spring",
+            stiffness: 100,
+            damping: 20,
+          }}
+          className={`relative overflow-hidden rounded-xl ${
+            isDark
+              ? "bg-gray-900/40 backdrop-blur-lg border border-blue-900/40"
+              : "bg-white/90 backdrop-blur-lg border border-blue-200/40"
+          } shadow-lg`}
+        >
+          {/* Тонкий градиентный фон */}
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${
               isDark
-                ? "bg-gray-900/40 backdrop-blur-lg border border-blue-900/40"
-                : "bg-white/90 backdrop-blur-lg border border-blue-200/40"
-            } shadow-lg`}
-          >
-            {/* Тонкий градиентный фон */}
-            <div
-              className={`absolute inset-0 bg-gradient-to-br ${
-                isDark
-                  ? `from-blue-900/10 to-blue-800/5`
-                  : `from-blue-200/10 to-blue-100/5`
-              }`}
-            ></div>
-
-            <div className="relative p-6 md:p-7 z-10">
-              <div className="flex items-center gap-4 mb-5">
-                <div
-                  className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
-                    isDark ? "bg-blue-800/50" : "bg-blue-100"
-                  } ${BRAND_COLORS.primary.text.light} dark:${
-                    BRAND_COLORS.primary.text.dark
-                  } group-hover/stat:scale-110 transition-transform`}
-                >
-                  {useCases[activeTab].icon}
-                </div>
-                <div>
-                  <Heading
-                    level={3}
-                    className="text-gray-900 dark:text-white tracking-tight"
-                  >
-                    {useCases[activeTab].title}
-                  </Heading>
-                </div>
-              </div>
-
-              <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed line-clamp-2 mb-6 font-normal">
-                {useCases[activeTab].description}
-              </p>
-
-              {/* Стильные метрики с квадратными иконками */}
-              <div className="grid grid-cols-3 gap-3">
-                {useCases[activeTab].stats.map((stat, i) => (
-                  <div
-                    key={i}
-                    className={`p-3 rounded-xl 
-                      ${
-                        isDark
-                          ? "bg-blue-900/30 backdrop-blur-sm border border-blue-800/30"
-                          : "bg-blue-50/70 backdrop-blur-sm border border-blue-100/60"
-                      } 
-                      flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all group/stat`}
-                  >
-                    <div
-                      className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
-                        isDark ? "bg-blue-800/50" : "bg-blue-100"
-                      } ${BRAND_COLORS.primary.text.light} dark:${
-                        BRAND_COLORS.primary.text.dark
-                      } group-hover/stat:scale-110 transition-transform mb-4`}
-                    >
-                      {stat.icon}
-                    </div>
-                    <div
-                      className={`text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${BRAND_COLORS.primary.bg.gradient}`}
-                    >
-                      {stat.value}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+                ? `from-blue-900/10 to-blue-800/5`
+                : `from-blue-200/10 to-blue-100/5`
+            }`}
+          ></div>
+        </motion.div>
       </Container>
     </div>
   );

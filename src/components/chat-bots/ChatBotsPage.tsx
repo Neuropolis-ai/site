@@ -8,7 +8,7 @@ import ChatBotsUseCases from "./ChatBotsUseCases";
 import ChatBotsProcess from "./ChatBotsProcess";
 import ChatBotsWhyUs from "./ChatBotsWhyUs";
 import ChatBotsFAQ from "./ChatBotsFAQ";
-import ChatBotsContactForm from "./ChatBotsContactForm";
+import ChatBotsContactEnhanced from "./ChatBotsContactEnhanced";
 
 export default function ChatBotsPage() {
   // Анимация для плавного появления страницы
@@ -34,7 +34,7 @@ export default function ChatBotsPage() {
       <ChatBotsProcess />
       <ChatBotsWhyUs />
       <ChatBotsFAQ />
-      <ChatBotsContactForm />
+      <ChatBotsContactEnhanced />
     </motion.div>
   );
 }

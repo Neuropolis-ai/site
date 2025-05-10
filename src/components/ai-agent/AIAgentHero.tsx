@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import { ArrowRight, Bot, Brain, Zap, BarChart } from "lucide-react";
+import { ArrowRight, Bot, Brain, Zap, BarChart, MessageSquare, Search, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
@@ -82,10 +82,10 @@ export default function AIAgentHero() {
                 className="text-gray-900 dark:text-white mb-8 leading-tight"
               >
                 Создаем{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light relative">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-500 relative">
                   ИИ-агентов
                   <svg
-                    className="absolute -bottom-2 left-0 w-full h-2 text-primary/20"
+                    className="absolute -bottom-2 left-0 w-full h-2 text-blue-500/20"
                     viewBox="0 0 100 15"
                     preserveAspectRatio="none"
                     strokeWidth={2}
@@ -117,7 +117,7 @@ export default function AIAgentHero() {
             >
               <Link
                 href="#cta"
-                className="group relative bg-gradient-to-r from-primary to-primary-light text-white font-semibold py-3.5 px-7 rounded-lg flex items-center justify-center overflow-hidden"
+                className="group relative bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold py-3.5 px-7 rounded-lg flex items-center justify-center overflow-hidden"
               >
                 <span className="absolute inset-0 w-full h-full bg-white/10 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
                 <span className="relative flex items-center">
@@ -140,24 +140,24 @@ export default function AIAgentHero() {
               className="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-4"
             >
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center mr-3 shadow-sm">
-                  <Zap size={20} className="text-blue-600 dark:text-blue-400" />
+                <div className="flex-shrink-0 w-12 h-12 aspect-square rounded-full bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 dark:from-blue-900/40 dark:via-blue-800/40 dark:to-blue-900/40 flex items-center justify-center mr-3 shadow-md">
+                  <Zap size={20} strokeWidth={2.5} className="text-blue-600 dark:text-blue-400" />
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
                   Автоматизация до 80% рутины
                 </p>
               </div>
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center mr-3 shadow-sm">
-                  <BarChart size={20} className="text-blue-600 dark:text-blue-400" />
+                <div className="flex-shrink-0 w-12 h-12 aspect-square rounded-full bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 dark:from-blue-900/40 dark:via-blue-800/40 dark:to-blue-900/40 flex items-center justify-center mr-3 shadow-md">
+                  <BarChart size={20} strokeWidth={2.5} className="text-blue-600 dark:text-blue-400" />
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
                   Снижение затрат на персонал
                 </p>
               </div>
               <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center mr-3 shadow-sm">
-                  <Brain size={20} className="text-blue-600 dark:text-blue-400" />
+                <div className="flex-shrink-0 w-12 h-12 aspect-square rounded-full bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 dark:from-blue-900/40 dark:via-blue-800/40 dark:to-blue-900/40 flex items-center justify-center mr-3 shadow-md">
+                  <Brain size={20} strokeWidth={2.5} className="text-blue-600 dark:text-blue-400" />
                 </div>
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
                   Рост эффективности процессов
@@ -187,7 +187,7 @@ export default function AIAgentHero() {
                 {/* Интерфейс ИИ-агента */}
                 <div className="relative w-[360px] h-[460px] rounded-2xl bg-white dark:bg-gray-800 shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700">
                   {/* Заголовок агента */}
-                  <div className="w-full h-14 bg-gradient-to-r from-primary to-primary-light flex items-center px-5">
+                  <div className="w-full h-14 bg-gradient-to-r from-blue-600 to-blue-500 flex items-center px-5">
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
                         <Bot size={24} className="text-white" />
@@ -200,75 +200,94 @@ export default function AIAgentHero() {
 
                   {/* Область рабочего стола агента */}
                   <div className="p-4 h-[calc(460px-56px)] bg-gray-50 dark:bg-gray-850 overflow-y-auto">
-                    {/* Задачи агента */}
-                    <div className="flex flex-col space-y-4">
-                      <div className="bg-white dark:bg-gray-700 rounded-xl p-4 shadow-sm">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="text-green-500">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                              </svg>
-                            </div>
-                            <span className="font-medium text-gray-800 dark:text-white">Задача выполнена</span>
-                          </div>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">10:15</span>
-                        </div>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm">
-                          Создан отчет по продажам за последний квартал. Найдены перспективные направления.
-                        </p>
+                    {/* Визуализация работы ИИ-агента */}
+                    <div className="flex flex-col space-y-6">
+                      {/* Заголовок */}
+                      <div className="text-center py-2">
+                        <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Возможности ИИ-агента</div>
+                        <div className="text-lg font-semibold text-gray-800 dark:text-white">Автоматизация бизнес-задач</div>
                       </div>
-
-                      <div className="bg-white dark:bg-gray-700 rounded-xl p-4 shadow-sm">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="text-blue-500">
-                                <circle cx="12" cy="12" r="10"></circle>
-                                <polyline points="12 6 12 12 16 14"></polyline>
-                              </svg>
-                            </div>
-                            <span className="font-medium text-gray-800 dark:text-white">Задача в процессе</span>
+                      
+                      {/* Основные функции */}
+                      <div className="relative">
+                        {/* Вертикальная линия */}
+                        <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-blue-200 dark:bg-blue-800"></div>
+                        
+                        {/* Функция 1 */}
+                        <div className="relative pl-12 pb-8">
+                          <div className="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold z-10">
+                            <MessageSquare size={16} />
                           </div>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">11:30</span>
-                        </div>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm">
-                          Анализ обращений клиентов и формирование рекомендаций по улучшению сервиса.
-                        </p>
-                      </div>
-
-                      <div className="bg-white dark:bg-gray-700 rounded-xl p-4 shadow-sm">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center">
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="text-orange-500">
-                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                                <line x1="12" y1="9" x2="12" y2="13"></line>
-                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                              </svg>
+                          <div className="bg-white dark:bg-gray-700 rounded-xl p-4 shadow-sm border border-blue-100 dark:border-blue-800">
+                            <div className="flex justify-between items-start mb-2">
+                              <span className="font-medium text-gray-800 dark:text-white">Коммуникация с клиентами</span>
+                              <div className="flex items-center">
+                                <span className="text-xs text-green-500 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded-full">
+                                  Активно
+                                </span>
+                              </div>
                             </div>
-                            <span className="font-medium text-gray-800 dark:text-white">Требует внимания</span>
+                            <p className="text-gray-600 dark:text-gray-300 text-sm">
+                              Отвечает на типовые вопросы клиентов в чатах и соцсетях 24/7
+                            </p>
                           </div>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">12:45</span>
                         </div>
-                        <p className="text-gray-700 dark:text-gray-300 text-sm">
-                          Найдены аномалии в данных по расходам на рекламу. Требуется проверка человеком.
-                        </p>
+                        
+                        {/* Функция 2 */}
+                        <div className="relative pl-12 pb-8">
+                          <div className="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold z-10">
+                            <Search size={16} />
+                          </div>
+                          <div className="bg-white dark:bg-gray-700 rounded-xl p-4 shadow-sm border border-blue-100 dark:border-blue-800">
+                            <div className="flex justify-between items-start mb-2">
+                              <span className="font-medium text-gray-800 dark:text-white">Анализ данных</span>
+                              <div className="flex items-center">
+                                <span className="text-xs text-blue-500 bg-blue-100 dark:bg-blue-900/30 px-2 py-1 rounded-full">
+                                  ИИ
+                                </span>
+                              </div>
+                            </div>
+                            <p className="text-gray-600 dark:text-gray-300 text-sm">
+                              Обрабатывает большие объёмы информации и выявляет закономерности
+                            </p>
+                          </div>
+                        </div>
+                        
+                        {/* Функция 3 */}
+                        <div className="relative pl-12">
+                          <div className="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold z-10">
+                            <Bot size={16} />
+                          </div>
+                          <div className="bg-white dark:bg-gray-700 rounded-xl p-4 shadow-sm border border-blue-100 dark:border-blue-800">
+                            <div className="flex justify-between items-start mb-2">
+                              <span className="font-medium text-gray-800 dark:text-white">Автоматизация задач</span>
+                              <div className="flex items-center">
+                                <RefreshCw size={16} className="text-amber-500 animate-spin mr-1" />
+                                <span className="text-xs text-amber-500">В процессе</span>
+                              </div>
+                            </div>
+                            <p className="text-gray-600 dark:text-gray-300 text-sm">
+                              Автоматически планирует встречи, отправляет напоминания и создаёт отчёты
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Декоративные элементы вокруг карточки */}
-                <div className="absolute top-10 -right-4 w-20 h-20 bg-blue-400/10 dark:bg-blue-500/20 rounded-full backdrop-blur-md z-20 flex items-center justify-center">
+                <div className="absolute top-10 -right-4 w-20 h-20 aspect-square rounded-full bg-gradient-to-br from-blue-400/10 via-blue-500/20 to-blue-400/10 dark:from-blue-500/10 dark:via-blue-600/20 dark:to-blue-500/10 backdrop-blur-md z-20 flex items-center justify-center shadow-lg">
                   <Bot
-                    size={24}
+                    size={28}
+                    strokeWidth={2}
                     className="text-blue-500/80 dark:text-blue-400"
                   />
                 </div>
-                <div className="absolute bottom-20 -left-5 w-16 h-16 bg-indigo-400/10 dark:bg-indigo-500/20 rounded-full backdrop-blur-md z-20 flex items-center justify-center">
+                <div className="absolute bottom-20 -left-5 w-16 h-16 aspect-square rounded-full bg-gradient-to-br from-indigo-400/10 via-indigo-500/20 to-indigo-400/10 dark:from-indigo-500/10 dark:via-indigo-600/20 dark:to-indigo-500/10 backdrop-blur-md z-20 flex items-center justify-center shadow-lg">
                   <Brain
-                    size={20}
+                    size={22}
+                    strokeWidth={2}
                     className="text-indigo-500/80 dark:text-indigo-400"
                   />
                 </div>

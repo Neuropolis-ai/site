@@ -461,57 +461,22 @@ const Contact = () => {
   const labelClasses = `block text-base font-medium text-gray-700 dark:text-gray-300 mb-1.5`;
 
   return (
-    <motion.section
-      className="relative py-24 md:py-32 px-4 overflow-hidden"
-      id="contact"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-    >
-      {/* Улучшенный фон с градиентами */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-gray-50/90 dark:from-gray-900 dark:to-gray-950 -z-10"></div>
-      
-      {/* Декоративные элементы фона */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/20 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/30 dark:from-indigo-500/10 dark:to-indigo-700/20 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-blue-300/5 to-indigo-300/10 dark:from-blue-600/5 dark:to-indigo-600/10 rounded-full blur-3xl -z-10"></div>
-
-      <Container>
-        {/* Микроразметка Organization */}
-        <OrganizationSchema />
-        
-        {/* Заголовок секции с выравниванием по левому краю в стиле других заголовков */}
-        <motion.div
-          className="max-w-4xl mx-auto mb-16 md:mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <div className="mb-6">
-            <div className="inline-block px-5 py-1.5 rounded-full text-sm font-medium 
-                           bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-600 
-                           dark:from-blue-900/30 dark:to-indigo-900/30 dark:text-blue-400 
-                           border border-blue-100 dark:border-blue-800/30 shadow-sm">
-              Контакты
-            </div>
-          </div>
-          
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
-            Готовы{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
-              автоматизировать
-            </span>{" "}
-            ваш бизнес с помощью ИИ?
+    <>
+      <section
+        id="contact"
+        className="container mx-auto py-16 md:py-24 px-4 md:px-6"
+      >
+        <div className="flex flex-col items-center justify-center mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+            Автоматизируйте коммуникации с{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-light">
+              ИИ-чат-ботами
+            </span>
           </h2>
-          
-          <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl leading-relaxed">
-            Получите бесплатную консультацию по внедрению ИИ-агентов в ваши
-            бизнес-процессы. Наши эксперты помогут определить оптимальные
-            сценарии применения.
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl leading-relaxed">
+            Оставьте заявку, и наши эксперты помогут выбрать оптимальное решение для автоматизации коммуникаций в вашем бизнесе и повышения эффективности всей команды.
           </p>
-        </motion.div>
+        </div>
 
         {/* Улучшенная форма контактов с эффектом стекла */}
         <motion.div
@@ -823,8 +788,8 @@ const Contact = () => {
             </motion.div>
           </div>
         </motion.div>
-      </Container>
-    </motion.section>
+      </section>
+    </>
   );
 };
 

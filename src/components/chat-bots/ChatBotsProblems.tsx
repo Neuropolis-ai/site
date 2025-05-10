@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
@@ -11,56 +12,44 @@ import {
   DollarSign,
   BarChart2,
   ArrowRight,
-  Shield,
   BrainCircuit,
 } from "lucide-react";
 
 export default function ChatBotsProblems() {
   const { isDark } = useTheme();
+  const [animationComplete, setAnimationComplete] = useState(false);
 
-  // Анимации
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimationComplete(true);
+    }, 500);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
+    return () => clearTimeout(timer);
+  }, []);
 
   // Данные о проблемах
   const problems = [
     {
       icon: <Clock className="w-6 h-6 text-[#0167F3]" />,
-      title: "Длительное время ожидания ответа",
+      title: "Ограниченная доступность",
       description:
-        "Клиенты ждут ответа часами или днями, что приводит к снижению удовлетворенности и потере потенциальных сделок",
-      stat: "80%",
-      statDesc: "клиентов ожидают ответ менее 10 минут",
+        "Клиентам приходится ждать ответа в рабочие часы, что приводит к потере потенциальных клиентов в нерабочее время",
+      stat: "25%",
+      statDesc: "потерянных обращений",
     },
     {
       icon: <TrendingDown className="w-6 h-6 text-[#0167F3]" />,
-      title: "Низкая конверсия посетителей в клиентов",
+      title: "Низкая скорость ответа",
       description:
-        "Отсутствие моментального ответа на вопросы потенциальных клиентов снижает вероятность совершения покупки",
-      stat: "67%",
-      statDesc: "посетителей уходят без ответа",
+        "Долгое время ожидания ответа от операторов негативно влияет на удовлетворенность клиентов",
+      stat: "15 мин",
+      statDesc: "среднее время ожидания",
     },
     {
       icon: <Users className="w-6 h-6 text-[#0167F3]" />,
-      title: "Высокая нагрузка на службу поддержки",
+      title: "Нагрузка на операторов",
       description:
-        "Операторы тратят большую часть времени на однотипные вопросы вместо решения сложных задач",
+        "Операторы тратят много времени на повторяющиеся вопросы вместо решения сложных запросов",
       stat: "70%",
       statDesc: "вопросов - типовые",
     },
@@ -90,20 +79,36 @@ export default function ChatBotsProblems() {
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
     <section
       id="chatbots-problems"
       className="py-20 md:py-28 relative overflow-hidden"
     >
-      {/* Современные градиенты и фоновые элементы */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-900/90 -z-10"></div>
 
-      {/* Декоративные элементы */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-5">
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#0167F3]/10 dark:bg-[#0167F3]/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-24 -left-24 w-80 h-80 bg-[#399AFC]/10 dark:bg-[#399AFC]/5 rounded-full blur-3xl"></div>
 
-        {/* Абстрактные линии */}
         <svg
           className="absolute top-1/4 right-0 w-full h-48 text-[#0167F3]/10 dark:text-[#0167F3]/5 opacity-20"
           viewBox="0 0 1200 200"
@@ -155,9 +160,9 @@ export default function ChatBotsProblems() {
             variants={itemVariants}
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6"
           >
-            С какими проблемами сталкивается ваш бизнес{" "}
+            Эти проблемы сдерживают{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC] relative">
-              прямо сейчас?
+              ваш бизнес?
               <svg
                 className="absolute -bottom-1 left-0 w-full h-1.5 text-[#0167F3]/20"
                 viewBox="0 0 100 10"
@@ -198,10 +203,8 @@ export default function ChatBotsProblems() {
                   : "bg-white hover:shadow-xl border border-gray-200"
               }`}
             >
-              {/* Градиентный фон при наведении */}
               <div className="absolute inset-0 bg-gradient-to-tr from-[#0167F3]/5 to-[#399AFC]/5 dark:from-[#0167F3]/10 dark:to-[#399AFC]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
 
-              {/* Декоративный элемент */}
               <div className="absolute -right-8 -bottom-8 w-24 h-24 rounded-full bg-[#0167F3]/10 dark:bg-[#0167F3]/20 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
 
               <div className="flex flex-col relative z-10">
@@ -236,42 +239,37 @@ export default function ChatBotsProblems() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="mt-20"
+          className="mt-16 text-center"
         >
           <motion.div
             variants={itemVariants}
-            className="relative overflow-hidden p-8 rounded-2xl max-w-4xl mx-auto bg-gradient-to-r from-[#0167F3]/10 to-[#399AFC]/10 dark:from-[#0167F3]/20 dark:to-[#399AFC]/20 backdrop-blur-sm border border-[#0167F3]/20 dark:border-[#399AFC]/30"
+            className="p-8 rounded-xl max-w-4xl mx-auto transition-all bg-gradient-to-br from-[#0167F3]/10 to-[#399AFC]/10 dark:from-[#0167F3]/20 dark:to-[#399AFC]/20 border border-[#0167F3]/20 dark:border-[#399AFC]/30 backdrop-blur-sm"
           >
-            {/* Декоративные элементы */}
-            <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#0167F3]/40 dark:bg-[#0167F3]/20 rounded-full blur-3xl opacity-30"></div>
-            <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#399AFC]/40 dark:bg-[#399AFC]/20 rounded-full blur-3xl opacity-30"></div>
-
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 text-left">
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-r from-[#0167F3] to-[#399AFC] flex-shrink-0 flex items-center justify-center">
-                <BrainCircuit className="w-8 h-8 md:w-10 md:h-10 text-white" />
-              </div>
-              <div className="flex-grow">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-                  Решение есть!
-                </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-300 mb-5 leading-relaxed">
-                  Современные чат-боты на базе искусственного интеллекта
-                  способны решить все эти проблемы, обеспечивая круглосуточную
-                  поддержку, моментальные ответы и значительную экономию
-                  ресурсов.
-                </p>
-                <a
-                  href="#chatbots-solution"
-                  className="inline-flex items-center group text-[#0167F3] dark:text-[#399AFC] font-medium"
-                >
-                  Узнать подробнее
-                  <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </a>
-              </div>
+            <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center bg-gradient-to-r from-[#0167F3] to-[#399AFC] shadow-lg shadow-[#0167F3]/20">
+              <BrainCircuit className="w-8 h-8 text-white" />
             </div>
+
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Решение есть!
+            </h3>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto">
+              Современные чат-боты на базе искусственного интеллекта
+              способны решить все эти проблемы, обеспечивая круглосуточную
+              поддержку и глубокую аналитику коммуникаций.
+            </p>
+
+            <motion.a
+              whileHover={{ scale: 1.03, y: -3 }}
+              whileTap={{ scale: 0.98 }}
+              href="#chatbots-solution"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-medium py-3 px-6 rounded-lg transition-all hover:shadow-lg hover:shadow-[#0167F3]/20"
+            >
+              Узнать о решении
+              <ArrowRight className="w-5 h-5 ml-1" />
+            </motion.a>
           </motion.div>
         </motion.div>
       </Container>
     </section>
   );
-}
+} 

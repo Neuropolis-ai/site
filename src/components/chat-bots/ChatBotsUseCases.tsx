@@ -9,7 +9,7 @@ import {
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Heading } from "@/components/ui/heading";
 import {
   CheckCircle,
@@ -56,6 +56,7 @@ export default function ChatBotsUseCases() {
   const { isDark } = useTheme();
   const [activeTab, setActiveTab] = useState(0);
   const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   // Эффект для плавной анимации входа при скроллинге
   useEffect(() => {
@@ -68,7 +69,7 @@ export default function ChatBotsUseCases() {
       { threshold: 0.1 }
     );
 
-    const section = document.getElementById("chatbots-cases");
+    const section = sectionRef.current;
     if (section) {
       observer.observe(section);
     }
@@ -80,14 +81,13 @@ export default function ChatBotsUseCases() {
     };
   }, []);
 
-  // Расширенные анимации с учетом трендов 2025
+  // Анимации
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   };
@@ -97,81 +97,20 @@ export default function ChatBotsUseCases() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] }, // Cubic bezier для плавности
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 60,
-        damping: 20,
-        delay: 0.1,
-      },
-    },
-    hover: {
-      y: -8,
-      scale: 1.02,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 20,
-      },
-    },
-    tap: {
-      scale: 0.98,
-      transition: {
-        duration: 0.15,
-      },
-    },
-  };
-
-  const pulseAnimation = {
-    initial: { scale: 1, opacity: 0.9 },
+  const floatingVariants = {
+    initial: { y: 0 },
     animate: {
-      scale: [1, 1.03, 1],
-      opacity: [0.9, 1, 0.9],
+      y: [0, -10, 0],
       transition: {
-        duration: 4,
+        duration: 5,
         repeat: Infinity,
-        repeatType: "loop" as const,
         ease: "easeInOut",
       },
     },
-  };
-
-  // Плавное движение фоновых элементов
-  const floatingAnimation = {
-    initial: { y: 0, x: 0 },
-    animate: (i: number) => ({
-      y: [0, i % 2 === 0 ? 15 : -15, 0],
-      x: [0, i % 2 === 0 ? -10 : 10, 0],
-      transition: {
-        duration: 8 + i * 2,
-        repeat: Infinity,
-        repeatType: "reverse" as const,
-        ease: "easeInOut",
-      },
-    }),
-  };
-
-  // Анимация появления для CTA кнопок
-  const staggerButtonAnimation = {
-    initial: { opacity: 0, y: 20 },
-    animate: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.3 + i * 0.15,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    }),
   };
 
   // Данные о кейсах использования чат-ботов
@@ -324,345 +263,290 @@ export default function ChatBotsUseCases() {
   };
 
   return (
-    <div
+    <section
+      ref={sectionRef}
       id="chatbots-cases"
-      className="py-24 md:py-32 relative overflow-hidden font-sans"
+      className="py-20 md:py-24 relative overflow-hidden"
     >
-      {/* CSS для дополнительных анимаций */}
-      <style jsx global>{`
-        @keyframes shine {
-          0% {
-            left: -100%;
-            opacity: 0;
-          }
-          50% {
-            opacity: 0.3;
-          }
-          100% {
-            left: 100%;
-            opacity: 0;
-          }
-        }
+      {/* Градиентный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
 
-        .animate-shine {
-          overflow: hidden;
-          position: relative;
-        }
-
-        .animate-shine::after {
-          content: "";
-          position: absolute;
-          top: -100%;
-          left: -100%;
-          width: 50%;
-          height: 300%;
-          background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.3) 50%,
-            rgba(255, 255, 255, 0) 100%
-          );
-          transform: rotate(25deg);
-          animation: shine 6s infinite;
-        }
-
-        @keyframes float-slow {
-          0%,
-          100% {
-            transform: translateY(0) translateX(0);
-          }
-          50% {
-            transform: translateY(-10px) translateX(5px);
-          }
-        }
-
-        .animate-float-slow {
-          animation: float-slow 8s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-          0%,
-          100% {
-            filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.5));
-          }
-          50% {
-            filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.8));
-          }
-        }
-
-        .animate-glow {
-          animation: glow 4s ease-in-out infinite;
-        }
-      `}</style>
-
-      {/* Фон секции */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${
-          isDark
-            ? "from-gray-950 via-gray-950 to-gray-950"
-            : "from-gray-50 via-white to-gray-50"
-        } -z-50`}
-      ></div>
-
-      {/* Современные 3D фоновые элементы с нейтральными оттенками */}
-      <div className="absolute inset-0 overflow-hidden -z-40">
-        {/* Анимированная сетка */}
-        <div className="absolute inset-0 opacity-5 dark:opacity-10">
-          <svg width="100%" height="100%" className="opacity-30">
-            <defs>
-              <pattern
-                id="grid-pattern-dots"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-                className="text-gray-300 dark:text-gray-700"
-              >
-                <circle cx="2" cy="2" r="1" fill="currentColor" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid-pattern-dots)" />
-          </svg>
-        </div>
-
-        {/* 3D градиентные формы - более нейтральные */}
-        <motion.div
-          initial="initial"
-          animate="animate"
-          custom={1}
-          variants={floatingAnimation}
-          className="absolute top-20 left-10 w-80 h-80 rounded-full bg-gradient-to-br from-gray-100/40 to-gray-200/40 dark:from-gray-800/20 dark:to-gray-700/20 blur-3xl"
-        ></motion.div>
-
-        <motion.div
-          initial="initial"
-          animate="animate"
-          custom={2}
-          variants={floatingAnimation}
-          className="absolute top-1/4 right-0 w-96 h-96 rounded-full bg-gradient-to-tl from-gray-200/40 to-blue-100/30 dark:from-gray-800/20 dark:to-blue-900/10 blur-3xl"
-        ></motion.div>
-
-        <motion.div
-          initial="initial"
-          animate="animate"
-          custom={3}
-          variants={floatingAnimation}
-          className="absolute bottom-20 -left-20 w-72 h-72 rounded-full bg-gradient-to-tr from-blue-50/30 to-gray-100/40 dark:from-blue-900/10 dark:to-gray-800/20 blur-3xl"
-        ></motion.div>
+      {/* Сетка-фон */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: "url('/grid-pattern.svg')",
+            backgroundSize: "24px 24px",
+            backgroundRepeat: "repeat",
+          }}
+        ></div>
       </div>
 
-      {/* Нейтральные световые эффекты */}
-      <div className="absolute inset-0 -z-30">
-        <div className="absolute -top-20 left-1/3 w-1 h-1 bg-blue-400 rounded-full shadow-lg opacity-10 dark:opacity-15"></div>
-        <div className="absolute top-1/2 right-10 w-1 h-1 bg-blue-400 rounded-full shadow-lg opacity-10 dark:opacity-15"></div>
-        <div className="absolute bottom-40 left-1/4 w-1 h-1 bg-blue-400 rounded-full shadow-lg opacity-10 dark:opacity-15"></div>
-      </div>
+      {/* Декоративные элементы */}
+      <div className="absolute -top-24 -left-24 w-72 h-72 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
+      <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
+
+      {/* Анимированные элементы */}
+      <motion.div
+        variants={floatingVariants}
+        initial="initial"
+        animate="animate"
+        className="absolute top-[35%] left-[10%] w-14 h-14 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
+      ></motion.div>
+      <motion.div
+        variants={floatingVariants}
+        initial="initial"
+        animate="animate"
+        className="absolute bottom-[25%] right-[7%] w-20 h-20 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
+        style={{ animationDelay: "1.5s" }}
+      ></motion.div>
 
       <Container>
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-16 md:mb-20"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="text-center mb-14"
         >
-          {/* Современный бейдж с нейтральным фоном */}
           <motion.div variants={itemVariants}>
             <Badge>Примеры внедрения</Badge>
           </motion.div>
-
-          {/* Заголовок */}
-          <motion.div
+          <motion.h2
             variants={itemVariants}
-            className="mb-6 tracking-tight leading-tight"
+            className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
           >
-            <Heading
-              level={2}
-              align="center"
-              className="text-gray-900 dark:text-white tracking-tight leading-tight"
-            >
-              Как чат-боты{" "}
-              <span className="relative inline-block">
-                <span
-                  className={`relative z-10 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light`}
-                >
-                  трансформируют бизнес
-                </span>
-                <span
-                  className={`absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-r from-primary/10 to-primary-light/10 blur-lg -z-10`}
-                ></span>
-              </span>
-            </Heading>
-          </motion.div>
-
-          {/* Подзаголовок */}
-          <motion.div variants={itemVariants}>
-            <Subheading
-              align="center"
-              className="md:text-xl max-w-3xl mx-auto leading-relaxed font-normal"
-            >
-              Изучите реальные примеры внедрения нейросетевых чат-ботов и
-              результаты, которые достигают наши клиенты в разных отраслях.
-            </Subheading>
-          </motion.div>
+            Как чат-боты{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+              трансформируют
+            </span>{" "}
+            бизнес
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+          >
+            Изучите реальные примеры внедрения нейросетевых чат-ботов и
+            результаты, которые достигают наши клиенты в разных отраслях.
+          </motion.p>
         </motion.div>
 
-        {/* Современные карточки кейсов - с нейтральным фоном */}
+        {/* Табы для переключения между кейсами */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="mb-12 md:mb-16 lg:mb-20"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mb-10"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-7">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-4 sm:px-0">
             {useCases.map((useCase, index) => (
-              <motion.div
+              <motion.button
                 key={index}
-                variants={cardVariants}
-                whileHover="hover"
-                whileTap="tap"
+                variants={itemVariants}
                 onClick={() => setActiveTab(index)}
-                className={`relative group rounded-2xl transition-all duration-500 overflow-hidden cursor-pointer ${
-                  activeTab === index
-                    ? `${
-                        isDark
-                          ? "bg-gray-800/70 border-2 border-primary/50 shadow-lg shadow-primary/10"
-                          : "bg-white border-2 border-primary/30 shadow-lg shadow-primary/5"
-                      }`
-                    : isDark
-                    ? `bg-gray-900/40 hover:bg-gray-800/60 border border-gray-700/50 hover:border-primary/30`
-                    : `bg-white hover:shadow-xl border border-gray-200/70 hover:border-primary/20`
-                }`}
+                whileHover={{
+                  y: -2,
+                  transition: { duration: 0.2 },
+                }}
+                className={`px-4 py-3 sm:py-2.5 rounded-lg text-sm font-medium transition-all w-full sm:w-auto ${getTabClassName(
+                  index
+                )}`}
               >
-                {/* Градиентная полоса при активности */}
-                <div
-                  className={`absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-primary to-primary-light ${
-                    activeTab === index
-                      ? "opacity-100"
-                      : "opacity-0 group-hover:opacity-70"
-                  } transition-opacity duration-300`}
-                ></div>
-
-                {/* Эффект свечения при наведении */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary-light/5 dark:from-primary/10 dark:to-primary-light/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-
-                {/* Декоративные элементы */}
-                <div className="absolute -right-16 -bottom-16 w-48 h-48 bg-gradient-to-br from-primary/5 to-primary-light/5 dark:from-primary/10 dark:to-primary-light/10 rounded-full opacity-0 group-hover:opacity-80 blur-2xl transition-opacity duration-500"></div>
-
-                <div className="relative p-5 md:p-6 lg:p-7 z-10">
-                  <div className="flex items-center gap-4 mb-5">
-                    <div
-                      className={`relative w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-r from-primary to-primary-light text-white shadow-lg group-hover:shadow-xl transition-all duration-300 transform ${
-                        activeTab === index ? "scale-110" : "group-hover:scale-105"
-                      }`}
-                    >
-                      {useCase.icon}
-                      <div className="absolute inset-0 rounded-xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div>
-                      <Heading
-                        level={3}
-                        className={`text-lg md:text-xl lg:text-2xl tracking-tight font-bold ${
-                          activeTab === index
-                            ? "text-primary dark:text-primary-light"
-                            : "text-gray-900 dark:text-white group-hover:text-primary dark:group-hover:text-primary-light"
-                        } transition-colors duration-300`}
-                      >
-                        {useCase.title}
-                      </Heading>
-                    </div>
+                <div className="flex items-center justify-start gap-2">
+                  <div className="flex items-center justify-center">
+                    {useCase.icon}
                   </div>
-
-                  <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-relaxed mb-6 font-normal line-clamp-3">
-                    {useCase.description}
-                  </p>
-
-                  {/* Улучшенные метрики */}
-                  <div className="grid grid-cols-3 gap-3">
-                    {useCase.stats.map((stat, i) => (
-                      <div
-                        key={i}
-                        className={`p-3 rounded-xl ${
-                          isDark
-                            ? activeTab === index 
-                              ? "bg-gray-700/70 border border-primary/20" 
-                              : "bg-gray-800/50 border border-gray-700/50 group-hover:border-primary/10"
-                            : activeTab === index 
-                              ? "bg-gray-50 border border-primary/20" 
-                              : "bg-white border border-gray-200 group-hover:border-primary/10"
-                        } 
-                        hover:shadow-lg transition-all duration-300 flex flex-col items-center justify-center text-center`}
-                      >
-                        <div
-                          className={`mb-2 p-2 rounded-lg ${
-                            activeTab === index
-                              ? "bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white shadow-md"
-                              : "bg-blue-500/10 text-blue-600 dark:bg-blue-500/20 dark:text-blue-400"
-                          } transition-colors duration-300`}
-                        >
-                          {index === 0 && <Clock className="w-5 h-5" />}
-                          {index === 1 && <Zap className="w-5 h-5" />}
-                          {index === 2 && <BarChart2 className="w-5 h-5" />}
-                        </div>
-                        <div
-                          className={`text-xl font-bold ${
-                            activeTab === index
-                              ? "text-primary dark:text-primary-light"
-                              : "bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light"
-                          } transition-colors duration-300`}
-                        >
-                          {stat.value}
-                        </div>
-                        <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 font-medium">
-                          {stat.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Индикатор выбора */}
-                  <div className={`mt-5 pt-4 border-t border-gray-100 dark:border-gray-700/50 flex justify-end ${
-                    activeTab === index ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-                  } transition-opacity duration-300`}>
-                    <button className="inline-flex items-center text-sm font-medium text-primary dark:text-primary-light">
-                      {activeTab === index ? "Выбрано" : "Выбрать"}
-                      <ArrowRight className={`ml-1.5 w-4 h-4 transition-all duration-300 ${
-                        activeTab === index ? "translate-x-1" : "group-hover:translate-x-1"
-                      }`} />
-                    </button>
-                  </div>
+                  <span className="translate-y-[1px]">{useCase.title}</span>
                 </div>
-              </motion.div>
+              </motion.button>
             ))}
           </div>
         </motion.div>
 
-        {/* Расширенная информация об активном кейсе */}
+        {/* Контент активного кейса */}
         <motion.div
           key={activeTab}
-          initial={{ opacity: 0, y: 30, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: -30, scale: 0.98 }}
-          transition={{
-            duration: 0.5,
-            type: "spring",
-            stiffness: 100,
-            damping: 20,
-          }}
-          className={`relative overflow-hidden rounded-xl ${
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className={`rounded-xl overflow-hidden shadow-lg ${
             isDark
-              ? "bg-gray-900/40 backdrop-blur-lg border border-blue-900/40"
-              : "bg-white/90 backdrop-blur-lg border border-blue-200/40"
-          } shadow-lg`}
+              ? "bg-gray-800/50 border border-gray-700 shadow-blue-900/10"
+              : "bg-white/90 backdrop-blur-sm border border-gray-200 shadow-blue-200/30"
+          }`}
         >
-          {/* Тонкий градиентный фон */}
-          <div
-            className={`absolute inset-0 bg-gradient-to-br ${
-              isDark
-                ? `from-blue-900/10 to-blue-800/5`
-                : `from-blue-200/10 to-blue-100/5`
-            }`}
-          ></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch">
+            {/* Левая колонка - Текст */}
+            <div className="p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div
+                  className={`w-12 h-12 rounded-lg flex items-center justify-center 
+                  ${
+                    isDark
+                      ? `bg-gradient-to-br ${useCases[activeTab].gradientFrom}/20 ${useCases[activeTab].gradientTo}/20 ${useCases[activeTab].colorLight}`
+                      : `bg-gradient-to-br ${useCases[activeTab].gradientFrom}/10 ${useCases[activeTab].gradientTo}/10 ${useCases[activeTab].colorText}`
+                  }`}
+                >
+                  {useCases[activeTab].icon}
+                </div>
+                <h3
+                  className={`text-xl md:text-2xl font-semibold ${useCases[activeTab].colorText}`}
+                >
+                  {useCases[activeTab].title}
+                </h3>
+              </div>
+
+              <div className="mb-8">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                  {useCases[activeTab].description}
+                </p>
+              </div>
+
+              {/* Статистика */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                {useCases[activeTab].stats.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                    className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(
+                      index
+                    )} transition-all duration-300`}
+                  >
+                    <div
+                      className={`text-2xl md:text-3xl font-bold ${useCases[activeTab].colorText} mb-1`}
+                    >
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Детали реализации */}
+              <div
+                className={`p-5 rounded-lg backdrop-blur-sm ${
+                  isDark
+                    ? `${useCases[activeTab].bgDark} border ${useCases[activeTab].borderDark}`
+                    : `${useCases[activeTab].bgLight} border ${useCases[activeTab].borderLight}`
+                }`}
+              >
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
+                  Ключевые интеграции
+                </h4>
+                <ul className="space-y-3">
+                  {useCases[activeTab].features.slice(0, 3).map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <span
+                        className={`${useCases[activeTab].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                      >
+                        <CheckCircle className="w-4 h-4" />
+                      </span>
+                      <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Правая колонка - Подробное описание процесса автоматизации */}
+            <div
+              className={`${
+                isDark ? "bg-gray-800/70" : "bg-blue-50/50"
+              } p-6 md:p-8 flex flex-col justify-center`}
+            >
+              <div className="mb-5">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span className="inline-block p-1.5 rounded-lg bg-blue-500/20 dark:bg-blue-400/20">
+                    <Clock className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                  </span>
+                  <span className="translate-y-[1px]">Как работает чат-бот</span>
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 text-base">
+                  Внедрение нейросетевых чат-ботов позволяет автоматизировать коммуникацию с клиентами, 
+                  повышая качество обслуживания и оптимизируя бизнес-процессы.
+                </p>
+              </div>
+              
+              {/* Подробное описание процесса */}
+              <div className="space-y-5">
+                {useCases[activeTab].detailedDescription.map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                      {index === 0 && <Users className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 1 && <BarChart2 className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 2 && <Clock className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 3 && <DollarSign className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                    </div>
+                    <div>
+                      <p className="text-gray-700 dark:text-gray-300 translate-y-[1px]">{item}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Преимущества */}
+              <div className="mt-8 p-4 rounded-lg bg-white/70 dark:bg-gray-800/70 border border-blue-100 dark:border-blue-800/30">
+                <h5 className="font-medium text-gray-900 dark:text-white mb-3">
+                  Ключевые преимущества
+                </h5>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Экономия времени</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Снижение ошибок</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Масштабируемость</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Круглосуточная работа</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Призыв к действию */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-12 text-center"
+        >
+          <motion.div variants={itemVariants} className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-5 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-medium shadow-lg shadow-blue-500/20 dark:shadow-blue-600/20 flex items-center justify-center gap-2 w-full sm:w-auto"
+              href="#contact"
+            >
+              <span>Обсудить ваш проект</span>
+              <ArrowRight className="w-4 h-4" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-5 sm:px-6 py-3 rounded-lg border border-blue-300 dark:border-blue-700 text-blue-600 dark:text-blue-400 font-medium w-full sm:w-auto"
+              href="#chatbot-solution"
+            >
+              Узнать больше
+            </motion.a>
+          </motion.div>
         </motion.div>
       </Container>
-    </div>
+    </section>
   );
 }

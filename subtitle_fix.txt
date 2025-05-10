@@ -1,0 +1,1 @@
+{subtitle && (<motion.div variants={itemVariants}><Subheading align="center">{subtitle}</Subheading></motion.div>)}

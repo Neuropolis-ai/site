@@ -171,13 +171,6 @@ export default function WorkflowAutomationSolution() {
         animate="animate"
         className="absolute top-[5%] right-[15%] w-12 h-12 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
       ></motion.div>
-      <motion.div
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        className="absolute bottom-[10%] left-[12%] w-16 h-16 bg-sky-400/20 dark:bg-sky-600/30 rounded-full backdrop-blur-md z-0"
-        style={{ animationDelay: "1.5s" }}
-      ></motion.div>
 
       <Container>
         <motion.div

@@ -2,49 +2,225 @@
 
 import { motion } from "framer-motion";
 import React from "react";
+import Container from "@/components/ui/Container";
+import { useTheme } from "@/context/ThemeContext";
+import {
+  Clock,
+  Users,
+  Database,
+  DollarSign,
+  BarChart2,
+  MessageSquare,
+  Zap,
+  CheckCircle,
+  ArrowRight,
+  Globe,
+  BrainCircuit,
+  Sparkles,
+  Shield,
+  Activity,
+  Book,
+  Bot,
+  FileText,
+  Briefcase,
+  Layers,
+  Settings,
+  RefreshCw,
+} from "lucide-react";
+import { Heading } from "@/components/ui/heading";
+import Subheading from "@/components/ui/subheading";
+import Badge from "@/components/ui/Badge";
+import Link from "next/link";
 
 export default function AIAgentSolutionNew() {
+  const { isDark } = useTheme();
+
+  // Анимации
   const containerVariants = {
     hidden: { opacity: 0 },
-    show: {
+    visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    show: {
+    visible: {
       opacity: 1,
       y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const benefitCardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+    hover: {
+      y: -5,
+      boxShadow: isDark
+        ? "0 10px 30px rgba(30, 64, 175, 0.2)"
+        : "0 10px 30px rgba(59, 130, 246, 0.15)",
+      transition: { duration: 0.3 },
+    },
+  };
+
+  const floatingVariants = {
+    initial: { y: 0 },
+    animate: {
+      y: [0, -10, 0],
       transition: {
-        duration: 0.6,
+        duration: 5,
+        repeat: Infinity,
         ease: "easeInOut",
       },
     },
   };
 
-  const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeInOut",
-      },
+  // Данные о преимуществах ИИ-агентов
+  const agentBenefits = [
+    {
+      icon: <Clock className="w-6 h-6" />,
+      title: "Экономия времени",
+      description:
+        "Автоматизация рутинных задач освобождает до 40% рабочего времени сотрудников для выполнения более важных стратегических задач.",
     },
-  };
+    {
+      icon: <Bot className="w-6 h-6" />,
+      title: "Автономность",
+      description:
+        "Агенты работают самостоятельно по заданным правилам и целям, не требуя постоянного контроля со стороны человека.",
+    },
+    {
+      icon: <RefreshCw className="w-6 h-6" />,
+      title: "Обучаемость",
+      description:
+        "Алгоритмы машинного обучения позволяют агентам адаптироваться и улучшать свою производительность со временем.",
+    },
+    {
+      icon: <Database className="w-6 h-6" />,
+      title: "Интеграция с системами",
+      description:
+        "Бесшовное подключение к любым бизнес-системам через API или прямой доступ к базам данных.",
+    },
+    {
+      icon: <DollarSign className="w-6 h-6" />,
+      title: "Снижение затрат",
+      description:
+        "Уменьшение операционных расходов на 30-50% за счет оптимизации процессов и сокращения ручного труда.",
+    },
+    {
+      icon: <Layers className="w-6 h-6" />,
+      title: "Масштабируемость",
+      description:
+        "Легко масштабируются под возрастающие объемы задач без необходимости пропорционального увеличения штата.",
+    },
+  ];
+
+  // Типы ИИ-агентов
+  const agentTypes = [
+    {
+      icon: <MessageSquare className="w-6 h-6" />,
+      name: "Коммуникационные агенты",
+      capabilities: [
+        "Автоматические ответы на запросы клиентов",
+        "Обработка входящей корреспонденции",
+        "Рассылка персонализированных сообщений",
+        "Модерация комментариев и обратной связи",
+      ],
+    },
+    {
+      icon: <FileText className="w-6 h-6" />,
+      name: "Аналитические агенты",
+      capabilities: [
+        "Сбор и обработка данных из различных источников",
+        "Автоматическое создание отчетов и дашбордов",
+        "Выявление аномалий и трендов в данных",
+        "Прогнозирование на основе исторических данных",
+      ],
+    },
+    {
+      icon: <Briefcase className="w-6 h-6" />,
+      name: "Операционные агенты",
+      capabilities: [
+        "Автоматизация бизнес-процессов и документооборота",
+        "Управление задачами и проектами",
+        "Координация между отделами и системами",
+        "Мониторинг и контроль выполнения задач",
+      ],
+    },
+  ];
+
+  // Сравнение с традиционными методами
+  const comparisonTable = [
+    {
+      parameter: "Скорость выполнения",
+      agents: "В 5-10 раз быстрее человека",
+      traditional: "Зависит от загруженности и опыта сотрудника",
+    },
+    {
+      parameter: "Доступность",
+      agents: "24/7/365 без перерывов",
+      traditional: "Ограничена рабочим графиком",
+    },
+    {
+      parameter: "Масштабируемость",
+      agents: "Неограниченная",
+      traditional: "Требует найма и обучения новых сотрудников",
+    },
+    {
+      parameter: "Стоимость операции",
+      agents: "от $0.1 до $0.5 за операцию",
+      traditional: "от $5 до $25 за операцию",
+    },
+    {
+      parameter: "Точность выполнения",
+      agents: "99.9% при правильной настройке",
+      traditional: "60-90% (зависит от сложности и человеческого фактора)",
+    },
+  ];
+
+  // Процесс работы агента
+  const agentWorkflow = [
+    {
+      step: "01",
+      title: "Получение задачи",
+      description: "Агент получает триггер или команду (например, новое письмо, запись в CRM, время по расписанию)."
+    },
+    {
+      step: "02",
+      title: "Анализ и планирование",
+      description: "ИИ анализирует задачу, данные и определяет последовательность действий."
+    },
+    {
+      step: "03",
+      title: "Взаимодействие",
+      description: "Агент подключается к нужным системам, извлекает или вносит информацию."
+    },
+    {
+      step: "04",
+      title: "Выполнение действия",
+      description: "Отправляет отчет, отвечает клиенту, обновляет статус заказа и т.д."
+    },
+    {
+      step: "05",
+      title: "Обучение и отчет",
+      description: "Запоминает результат, формирует отчет и улучшает свою работу в будущем."
+    }
+  ];
 
   return (
     <motion.section
       id="solution"
       variants={containerVariants}
       initial="hidden"
-      whileInView="show"
+      whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
       className="py-20 md:py-28 px-4 relative overflow-hidden"
     >
@@ -52,352 +228,279 @@ export default function AIAgentSolutionNew() {
       <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
       <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
 
-      <div className="container mx-auto max-w-1280 relative z-10 space-y-16 md:space-y-20">
-        <motion.div
-          variants={itemVariants}
-          className="text-center max-w-4xl mx-auto"
-        >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white leading-tight">
-            Решение:{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
-              Ваши персональные ИИ-агенты
-            </span>
-          </h2>
-          <p className="mt-6 text-gray-600 dark:text-gray-300 text-base md:text-xl leading-relaxed">
-            Автоматизируйте рутинные задачи и увеличьте эффективность с помощью
-            интеллектуальных ассистентов
-          </p>
-        </motion.div>
+      <motion.div
+        variants={floatingVariants}
+        initial="initial"
+        animate="animate"
+        className="absolute top-[5%] right-[15%] w-12 h-12 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
+      ></motion.div>
 
-        <motion.div
-          variants={itemVariants}
-          className="max-w-6xl mx-auto rounded-2xl border border-white/20 dark:border-gray-700/30 backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-8 md:p-12 space-y-10"
-        >
-          <div>
-            <h3 className="text-2xl md:text-3xl font-semibold mb-5 text-gray-800 dark:text-white">
-              Что такое{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
-                ИИ-агент
-              </span>
-              ?
-            </h3>
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-              Это программа, использующая искусственный интеллект для
-              автономного выполнения конкретных бизнес-задач. Он может
-              взаимодействовать с вашими системами (CRM, ERP, Email, базы
-              данных), общаться с клиентами или сотрудниками, анализировать
-              данные и обучаться на основе полученного опыта для повышения
-              эффективности.
-            </p>
-          </div>
-
-          <hr className="border-blue-100/50 dark:border-blue-800/40" />
-
-          <div>
-            <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-gray-800 dark:text-white">
-              Как это работает:
-            </h3>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-              className="space-y-5"
-            >
-              <motion.div
-                variants={itemVariants}
-                className="flex gap-4 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
-              >
-                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
-                  01
-                </div>
-                <div>
-                  <h4 className="font-semibold text-lg text-gray-800 dark:text-white">
-                    Получение задачи
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-lg">
-                    Агент получает триггер или команду (например, новое письмо,
-                    запись в CRM, время по расписанию).
-                  </p>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex gap-4 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
-              >
-                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
-                  02
-                </div>
-                <div>
-                  <h4 className="font-semibold text-lg text-gray-800 dark:text-white">
-                    Анализ и планирование
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-lg">
-                    ИИ анализирует задачу, данные и определяет
-                    последовательность действий.
-                  </p>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex gap-4 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
-              >
-                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
-                  03
-                </div>
-                <div>
-                  <h4 className="font-semibold text-lg text-gray-800 dark:text-white">
-                    Взаимодействие
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-lg">
-                    Агент подключается к нужным системам, извлекает или вносит
-                    информацию.
-                  </p>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex gap-4 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
-              >
-                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
-                  04
-                </div>
-                <div>
-                  <h4 className="font-semibold text-lg text-gray-800 dark:text-white">
-                    Выполнение действия
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-lg">
-                    Отправляет отчет, отвечает клиенту, обновляет статус заказа
-                    и т.д.
-                  </p>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex gap-4 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
-              >
-                <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-[#0167F3] to-[#399AFC] text-white font-semibold text-sm shadow-md">
-                  05
-                </div>
-                <div>
-                  <h4 className="font-semibold text-lg text-gray-800 dark:text-white">
-                    Обучение и отчет
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-lg">
-                    Запоминает результат, формирует отчет и улучшает свою работу
-                    в будущем.
-                  </p>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-
-          <hr className="border-blue-100/50 dark:border-blue-800/40" />
-
-          <div>
-            <h3 className="text-2xl md:text-3xl font-semibold mb-6 text-gray-800 dark:text-white">
-              Ключевые характеристики:
-            </h3>
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, amount: 0.2 }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-            >
-              <motion.div
-                variants={itemVariants}
-                className="flex items-start gap-3 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
-              >
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <div>
-                  <strong className="text-gray-800 dark:text-gray-100 block text-lg font-medium">
-                    Автономность
-                  </strong>
-                  <span className="text-lg text-gray-600 dark:text-gray-300">
-                    Работают самостоятельно по заданным правилам и целям.
-                  </span>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex items-start gap-3 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
-              >
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <div>
-                  <strong className="text-gray-800 dark:text-gray-100 block text-lg font-medium">
-                    Обучаемость
-                  </strong>
-                  <span className="text-lg text-gray-600 dark:text-gray-300">
-                    Способны адаптироваться и улучшать производительность со
-                    временем.
-                  </span>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex items-start gap-3 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
-              >
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <div>
-                  <strong className="text-gray-800 dark:text-gray-100 block text-lg font-medium">
-                    Интеграция
-                  </strong>
-                  <span className="text-lg text-gray-600 dark:text-gray-300">
-                    Подключаются к любым системам через API или прямой доступ к
-                    БД.
-                  </span>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={itemVariants}
-                className="flex items-start gap-3 p-4 rounded-xl bg-blue-500/5 dark:bg-blue-900/20 border border-blue-100/50 dark:border-blue-800/40"
-              >
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <div>
-                  <strong className="text-gray-800 dark:text-gray-100 block text-lg font-medium">
-                    Масштабируемость
-                  </strong>
-                  <span className="text-lg text-gray-600 dark:text-gray-300">
-                    Легко масштабируются под возрастающие объемы и новые задачи.
-                  </span>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </motion.div>
-
+      <Container>
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
-          className="w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="text-center mb-16"
         >
           <motion.div
             variants={itemVariants}
-            className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 rounded-2xl p-6 md:p-8 shadow-lg relative overflow-hidden"
+            className="inline-flex items-center justify-center border border-blue-300 dark:border-blue-800 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400"
           >
-            <div className="absolute top-0 right-0 w-60 h-60 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-full blur-2xl -z-0 translate-x-1/2 -translate-y-1/2 opacity-70 dark:opacity-50"></div>
-            <h3 className="text-xl md:text-2xl font-semibold mb-4 relative z-10 text-gray-800 dark:text-white">
+            Решение
+          </motion.div>
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-4 tracking-tight"
+          >
+            Интеллектуальные ИИ-агенты{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">
+              для вашего бизнеса
+            </span>
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+          >
+            Автоматизируйте рутинные задачи и увеличьте эффективность с помощью
+            интеллектуальных ассистентов, работающих 24/7
+          </motion.p>
+        </motion.div>
+
+        {/* Улучшенный блок о технологиях */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="relative mb-20 p-10 rounded-3xl overflow-hidden"
+        >
+          {/* Улучшенный фон с более выраженным глассморфизмом */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-sky-400/10 dark:from-blue-500/20 dark:to-sky-400/20 backdrop-blur-xl border border-blue-300/30 dark:border-blue-400/30 rounded-3xl shadow-xl"></div>
+          
+          {/* Модернизированные декоративные эффекты */}
+          <div className="absolute -right-20 -top-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl opacity-60"></div>
+          <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-sky-400/20 rounded-full blur-3xl opacity-60"></div>
+
+          <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
+            {/* Обновленный контейнер для иконки с 3D-эффектом */}
+            <div className="w-24 h-24 md:w-28 md:h-28 rounded-2xl flex items-center justify-center bg-gradient-to-br from-blue-500 to-sky-400 shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-500 group relative">
+              {/* Блик для 3D-эффекта */}
+              <div className="absolute inset-0 bg-white opacity-20 rounded-2xl transform translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
+              <div className="w-12 h-12 md:w-14 md:h-14 text-white relative z-10">
+                <Bot className="w-full h-full" />
+              </div>
+              
+              {/* Декоративный элемент */}
+              <div className="absolute -right-3 -bottom-3 w-8 h-8 bg-yellow-400/70 rounded-full blur-sm"></div>
+            </div>
+            
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
+                Что такое <br/>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">ИИ-агент</span>
+              </h3>
+              
+              <Subheading className="mb-8 max-w-3xl leading-relaxed">
+                Это программа, использующая искусственный интеллект для автономного выполнения 
+                конкретных бизнес-задач. Она может взаимодействовать с вашими системами, общаться 
+                с клиентами или сотрудниками, анализировать данные и обучаться на основе полученного опыта.
+              </Subheading>
+              
+              {/* Обновленные теги */}
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/15 text-blue-600 dark:bg-blue-500/25 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Нейронные сети
+                </span>
+                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Машинное обучение
+                </span>
+                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/25 text-blue-600 dark:bg-blue-500/35 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Обработка языка
+                </span>
+                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/30 text-blue-600 dark:bg-blue-500/40 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  API интеграции
+                </span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Основные преимущества */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20"
+        >
+          {agentBenefits.map((benefit, index) => (
+            <motion.div
+              key={index}
+              variants={benefitCardVariants}
+              whileHover="hover"
+              className={`p-6 rounded-xl transition-all ${
+                isDark
+                  ? "bg-gray-800/50 hover:bg-gray-800/80 border border-gray-700 backdrop-blur-sm"
+                  : "bg-white hover:shadow-xl border border-gray-200 hover:border-blue-200"
+              }`}
+            >
+              <div
+                className={`w-14 h-14 rounded-xl mb-4 flex items-center justify-center text-xl ${
+                  isDark ? "bg-blue-900/30" : "bg-blue-50"
+                }`}
+              >
+                <span className="text-blue-600 dark:text-blue-400">
+                  {benefit.icon}
+                </span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                {benefit.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {benefit.description}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Сравнение с традиционными методами */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <motion.h3
+            variants={itemVariants}
+            className="text-2xl font-semibold text-gray-900 dark:text-white mb-8 text-center"
+          >
+            Сравнение с традиционными методами
+          </motion.h3>
+
+          <motion.div
+            variants={itemVariants}
+            className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg mb-20"
+          >
+            <table
+              className={`w-full border-collapse ${
+                isDark ? "text-gray-300" : "text-gray-700"
+              }`}
+            >
+              <thead>
+                <tr className={`${isDark ? "bg-gray-800" : "bg-gray-50"}`}>
+                  <th className="p-4 text-left border-b dark:border-gray-700">
+                    Параметр
+                  </th>
+                  <th className="p-4 text-left border-b dark:border-gray-700 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+                    ИИ-агенты
+                  </th>
+                  <th className="p-4 text-left border-b dark:border-gray-700">
+                    Традиционные методы
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonTable.map((row, index) => (
+                  <tr
+                    key={index}
+                    className={`${
+                      isDark ? "hover:bg-gray-800/70" : "hover:bg-blue-50/30"
+                    } transition-colors`}
+                  >
+                    <td className="p-4 border-b dark:border-gray-700">
+                      {row.parameter}
+                    </td>
+                    <td className="p-4 border-b dark:border-gray-700 bg-blue-50/50 dark:bg-blue-900/20">
+                      <span className="text-green-500 flex items-center">
+                        <svg
+                          className="w-4 h-4 mr-1"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                        {row.agents}
+                      </span>
+                    </td>
+                    <td className="p-4 border-b dark:border-gray-700">
+                      <span className="text-red-500 flex items-center">
+                        <svg
+                          className="w-4 h-4 mr-1"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                        {row.traditional}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </motion.div>
+        </motion.div>
+
+        {/* Блок с преимуществами для бизнеса */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20"
+        >
+          <motion.div
+            variants={itemVariants}
+            className={`p-6 rounded-xl transition-all ${
+              isDark
+                ? "bg-gray-800/50 border border-gray-700 backdrop-blur-sm"
+                : "bg-white border border-gray-200"
+            }`}
+          >
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
               Проблемы, которые решают ИИ-агенты
             </h3>
-            <ul className="space-y-4 relative z-10 text-gray-700 dark:text-gray-300">
+            <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-lg">Снижение операционных расходов</span>
+                <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
+                <span className="text-gray-600 dark:text-gray-300">
+                  Снижение операционных расходов
+                </span>
               </li>
               <li className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-lg">
+                <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
+                <span className="text-gray-600 dark:text-gray-300">
                   Освобождение времени сотрудников от рутины
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-lg">
+                <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
+                <span className="text-gray-600 dark:text-gray-300">
                   Ускорение ответов на запросы клиентов
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-lg">
+                <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
+                <span className="text-gray-600 dark:text-gray-300">
                   Автоматизация обработки данных и отчетности
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-lg">
+                <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
+                <span className="text-gray-600 dark:text-gray-300">
                   Повышение точности и снижение ошибок
                 </span>
               </li>
@@ -406,97 +509,94 @@ export default function AIAgentSolutionNew() {
 
           <motion.div
             variants={itemVariants}
-            className="backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 border border-white/20 dark:border-gray-700/30 rounded-2xl p-6 md:p-8 shadow-lg relative overflow-hidden"
+            className={`p-6 rounded-xl transition-all ${
+              isDark
+                ? "bg-gray-800/50 border border-gray-700 backdrop-blur-sm"
+                : "bg-white border border-gray-200"
+            }`}
           >
-            <div className="absolute bottom-0 left-0 w-60 h-60 bg-gradient-to-tr from-indigo-500/10 to-blue-500/10 rounded-full blur-2xl -z-0 -translate-x-1/2 translate-y-1/2 opacity-70 dark:opacity-50"></div>
-            <h3 className="text-xl md:text-2xl font-semibold mb-4 text-gray-800 dark:text-white relative z-10">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
               Возможности для вашего бизнеса
             </h3>
-            <ul className="space-y-4 text-gray-700 dark:text-gray-300 relative z-10">
+            <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-lg">
+                <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
+                <span className="text-gray-600 dark:text-gray-300">
                   Концентрация команды на стратегических задачах
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-lg">
+                <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
+                <span className="text-gray-600 dark:text-gray-300">
                   Рост прибыли за счет оптимизации
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-lg">
+                <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
+                <span className="text-gray-600 dark:text-gray-300">
                   Повышение удовлетворенности клиентов
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-lg">
+                <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
+                <span className="text-gray-600 dark:text-gray-300">
                   Принятие решений на основе данных, а не интуиции
                 </span>
               </li>
               <li className="flex items-start gap-3">
-                <svg
-                  className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-1 flex-shrink-0"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-lg">
+                <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
+                <span className="text-gray-600 dark:text-gray-300">
                   Масштабирование бизнеса без роста штата
                 </span>
               </li>
             </ul>
           </motion.div>
         </motion.div>
-      </div>
+
+        {/* Призыв к действию */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="max-w-4xl mx-auto mt-20"
+        >
+          <motion.div
+            variants={itemVariants}
+            className="relative overflow-hidden p-10 rounded-3xl bg-gradient-to-r from-blue-500/10 to-sky-400/10 dark:from-blue-500/20 dark:to-sky-400/20 backdrop-blur-xl border border-blue-300/30 dark:border-blue-400/30 shadow-xl"
+          >
+            <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue-500/30 dark:bg-blue-500/20 rounded-full blur-3xl opacity-40"></div>
+            <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-sky-400/30 dark:bg-sky-400/20 rounded-full blur-3xl opacity-40"></div>
+            
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 text-left">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0 flex items-center justify-center transform rotate-3 hover:rotate-0 transition-all duration-500 shadow-2xl group">
+                <div className="absolute inset-0 bg-white opacity-20 rounded-2xl transform translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
+                <Bot className="w-10 h-10 md:w-12 md:h-12 text-white relative z-10" />
+                <div className="absolute -right-3 -bottom-3 w-8 h-8 bg-yellow-400/70 rounded-full blur-sm"></div>
+              </div>
+              
+              <div className="flex-grow">
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                  Автоматизируйте бизнес-процессы уже сегодня!
+                </h3>
+                <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                  Современные ИИ-агенты способны взять на себя до 40% рутинных задач, освобождая ваших сотрудников
+                  для более важной работы и увеличивая эффективность бизнеса.
+                </p>
+                <Link
+                  href="#ai-agent-cases"
+                  className="group inline-flex items-center bg-gradient-to-r from-blue-500 to-sky-400 text-white font-medium py-3.5 px-7 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 dark:hover:shadow-blue-400/20 transform hover:-translate-y-1"
+                >
+                  <span className="relative flex items-center">
+                    Посмотреть примеры внедрений
+                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1.5 duration-300" />
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      </Container>
     </motion.section>
   );
 }

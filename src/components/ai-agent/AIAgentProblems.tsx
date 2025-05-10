@@ -189,7 +189,7 @@ export default function AIAgentProblems() {
           </motion.div>
           <motion.h2
             variants={itemVariants}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+            className="text-3xl font-bold text-gray-900 dark:text-white mb-6"
           >
             Эти проблемы сдерживают{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC] relative">
@@ -210,7 +210,7 @@ export default function AIAgentProblems() {
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
             Большинство компаний сталкиваются с похожими вызовами. Мы помогаем
             превратить их в возможности для роста с помощью ИИ-агентов.

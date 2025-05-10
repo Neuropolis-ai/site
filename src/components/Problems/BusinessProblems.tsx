@@ -20,7 +20,7 @@ export default function BusinessProblems() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 dark:border-blue-400/20 backdrop-blur-sm">
             Проблемы бизнеса
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
             С какими вызовами сталкивается{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 relative">
               ваш бизнес?
@@ -38,7 +38,7 @@ export default function BusinessProblems() {
               </svg>
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Современные ИИ-решения помогают преодолеть типичные проблемы бизнеса и повысить эффективность
           </p>
         </div>

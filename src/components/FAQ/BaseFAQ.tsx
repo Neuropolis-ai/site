@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDownIcon } from "lucide-react";
 import Badge from "@/components/ui/Badge";
+import { Heading } from "@/components/ui/heading";
 
 export interface FAQItem {
   id?: number;
@@ -102,7 +103,11 @@ export default function BaseFAQ({
         >
           <div className="text-center mb-16">
             <Badge>FAQ</Badge>
-            <h2 className="text-h1 font-bold text-gray-900 dark:text-white mb-4">
+            <Heading
+              level={2}
+              align="center"
+              className="text-gray-900 dark:text-white mb-4"
+            >
               {title.includes("вопросы") ? (
                 <>
                   {title.split("вопросы")[0]}
@@ -111,11 +116,16 @@ export default function BaseFAQ({
                   </span>
                 </>
               ) : (
-                title
+                <>
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+                    FAQ
+                  </span>{" "}
+                  {title.replace(/FAQ/i, "")}
+                </>
               )}
-            </h2>
+            </Heading>
           </div>
-          <motion.p className="text-h5 text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <motion.p className="section-subtitle text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             {subtitle}
           </motion.p>
         </motion.div>
@@ -158,10 +168,19 @@ export default function BaseFAQ({
                 {openItem === index && (
                   <div
                     id={`faq-answer-${index}`}
-                    className="px-4 md:px-5 pb-4 md:pb-5 text-gray-600 dark:text-gray-300 text-base"
-                    style={{ fontSize: "16px" }}
+                    className={`px-4 md:px-5 pb-4 md:pb-5 ${
+                      openItem === index ? "max-h-[1000px]" : "max-h-0"
+                    }`}
                   >
-                    {faq.answer}
+                    <div
+                      className={`answer mt-2 card-text ${
+                        openItem === index
+                          ? "text-gray-600 dark:text-gray-300"
+                          : "text-gray-600 dark:text-gray-300"
+                      }`}
+                    >
+                      {faq.answer}
+                    </div>
                   </div>
                 )}
               </div>

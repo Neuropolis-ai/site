@@ -67,6 +67,47 @@ body {
   color: var(--foreground);
 }
 
+/* Единые стили типографики */
+.card-text {
+  font-size: 16px !important;
+  line-height: 1.3 !important;
+}
+
+.small-text {
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+}
+
+.section-subtitle {
+  font-size: 18px !important;
+  line-height: 29.3px !important;
+  color: #4b5563;
+}
+
+.dark .section-subtitle {
+  color: #9ca3af;
+}
+
+.feature-card-text {
+  font-size: 16px !important;
+  line-height: 26px !important;
+  color: #4b5563;
+}
+
+.dark .feature-card-text {
+  color: #9ca3af;
+}
+
+.feature-card-action {
+  font-size: 16px !important;
+  line-height: 26px !important;
+  font-weight: 500;
+}
+
+p {
+  line-height: 1.3;
+}
+
 /* Стили для prose в темном режиме */
 .dark .prose {
   color: #e0e0e0;
@@ -103,7 +144,3 @@ body {
   background-color: #1f2937;
   color: #f9fafb;
 }
-
-/* p {
-    color: #919191;
-} */

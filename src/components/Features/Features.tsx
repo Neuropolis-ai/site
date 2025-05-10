@@ -83,7 +83,7 @@ const Features = () => {
           </Heading>
           <Subheading
             align="center"
-            className="mt-6 md:text-xl max-w-3xl mx-auto leading-relaxed"
+            className="mt-6 md:text-xl max-w-3xl mx-auto section-subtitle"
           >
             Наши решения помогают компаниям автоматизировать процессы,
             оптимизировать ресурсы и принимать более обоснованные решения на
@@ -110,12 +110,12 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Предиктивная аналитика
             </Heading>
-            <Subheading className="mb-4 leading-relaxed">
+            <Subheading className="mb-4 feature-card-text">
               Используйте ИИ для анализа исторических данных и прогнозирования
               будущих трендов. Повышайте точность бизнес-прогнозов на 30-40%.
             </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
-              <p className="font-medium text-blue-600 dark:text-blue-400">
+              <p className="font-medium text-blue-600 dark:text-blue-400 feature-card-action">
                 Принимайте решения на основе точных прогнозов
               </p>
             </div>
@@ -136,12 +136,12 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Персонализация маркетинга
             </Heading>
-            <Subheading className="mb-4 leading-relaxed">
+            <Subheading className="mb-4 feature-card-text">
               Применяйте ИИ для точечного таргетинга аудитории и создания
               персонализированного контента. Увеличение конверсии до 25%.
             </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
-              <p className="font-medium text-blue-600 dark:text-blue-400">
+              <p className="font-medium text-blue-600 dark:text-blue-400 feature-card-action">
                 Создавайте контент, который резонирует с вашей аудиторией
               </p>
             </div>
@@ -162,12 +162,12 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Служба поддержки с ИИ-агентом
             </Heading>
-            <Subheading className="mb-4 leading-relaxed">
+            <Subheading className="mb-4 feature-card-text">
               Разрабатываем ИИ-агентов для службы поддержки, которые общаются с
               клиентами и отвечают на сложные запросы 24/7.
             </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
-              <p className="font-medium text-blue-600 dark:text-blue-400">
+              <p className="font-medium text-blue-600 dark:text-blue-400 feature-card-action">
                 Снижение нагрузки на поддержку до 60%
               </p>
             </div>
@@ -188,12 +188,12 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Интеграция ИИ
             </Heading>
-            <Subheading className="mb-4 leading-relaxed">
+            <Subheading className="mb-4 feature-card-text">
               Помогаем компаниям внедрять ИИ-агентов в их существующие
               программные платформы и бизнес-процессы без нарушения работы.
             </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
-              <p className="font-medium text-blue-600 dark:text-blue-400">
+              <p className="font-medium text-blue-600 dark:text-blue-400 feature-card-action">
                 Безопасное внедрение с минимальными рисками
               </p>
             </div>
@@ -214,13 +214,13 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Создание контента с ИИ
             </Heading>
-            <Subheading className="mb-4 leading-relaxed">
+            <Subheading className="mb-4 feature-card-text">
               Разрабатываем ИИ-решения для генерации маркетинговых материалов,
               статей, описаний товаров и отчетов в соответствии с вашим
               фирменным стилем.
             </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
-              <p className="font-medium text-blue-600 dark:text-blue-400">
+              <p className="font-medium text-blue-600 dark:text-blue-400 feature-card-action">
                 Ускорение создания контента в 5-10 раз
               </p>
             </div>
@@ -241,13 +241,13 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Обработка и анализ данных
             </Heading>
-            <Subheading className="mb-4 leading-relaxed">
+            <Subheading className="mb-4 feature-card-text">
               Создаем системы автоматической обработки и интеллектуального
               анализа больших объемов данных для выявления закономерностей и
               аномалий.
             </Subheading>
             <div className="mt-auto pt-3 border-t border-blue-100/50 dark:border-blue-800/40">
-              <p className="font-medium text-blue-600 dark:text-blue-400">
+              <p className="font-medium text-blue-600 dark:text-blue-400 feature-card-action">
                 Извлекайте ценные инсайты из неструктурированных данных
               </p>
             </div>

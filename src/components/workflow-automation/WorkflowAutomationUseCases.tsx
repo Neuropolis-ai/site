@@ -318,13 +318,8 @@ export default function WorkflowAutomationUseCases() {
                     : `${useCases[activeTab].bgLight} border ${useCases[activeTab].borderLight}`
                 }`}
               >
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                  <span className="inline-block p-1 rounded-full bg-blue-500/20 dark:bg-blue-400/20">
-                    <FiCheckCircle
-                      className={`w-4 h-4 ${useCases[activeTab].colorText}`}
-                    />
-                  </span>
-                  <span className="translate-y-[1px]">Ключевые интеграции</span>
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
+                  Ключевые интеграции
                 </h4>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">

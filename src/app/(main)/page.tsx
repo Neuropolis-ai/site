@@ -11,6 +11,7 @@ import Testimonials from "@/components/Testimonials/Testimonials";
 import Contact from "@/components/Contact/Contact";
 import FAQ from "@/components/FAQ/FAQ";
 import { BsArrowRight } from "react-icons/bs";
+import BusinessProblems from "@/components/Problems/BusinessProblems";
 
 // Отключаем кеширование данных для этой страницы
 export const dynamic = "force-dynamic";
@@ -22,6 +23,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen">
       <Hero />
+      <BusinessProblems />
       <Services />
       <Features />
       <Process />

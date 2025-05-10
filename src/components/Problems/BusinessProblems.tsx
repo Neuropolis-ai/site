@@ -1,0 +1,275 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Container from "@/components/ui/Container";
+import { useTheme } from "@/context/ThemeContext";
+import {
+  Clock,
+  Coins,
+  FileSearch,
+  UserX,
+  Target,
+  BrainCircuit,
+  ArrowRight,
+  Bot,
+} from "lucide-react";
+
+export default function BusinessProblems() {
+  const { isDark } = useTheme();
+  const [animationComplete, setAnimationComplete] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimationComplete(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Данные о проблемах
+  const problems = [
+    {
+      icon: <Clock className="w-6 h-6 text-[#0167F3]" />,
+      title: "Потеря времени на рутине",
+      description:
+        "Квалифицированные сотрудники тратят до 60% рабочего времени на повторяющиеся задачи вместо стратегических инициатив",
+      stat: "60%",
+      statDesc: "потеря продуктивности",
+    },
+    {
+      icon: <Coins className="w-6 h-6 text-[#0167F3]" />,
+      title: "Высокие операционные затраты",
+      description:
+        "Ручная обработка данных и поддержка клиентов требуют постоянного расширения штата и увеличения бюджета",
+      stat: "35%",
+      statDesc: "рост затрат ежегодно",
+    },
+    {
+      icon: <Target className="w-6 h-6 text-[#0167F3]" />,
+      title: "Упущенные клиенты",
+      description:
+        "Отсутствие круглосуточного обслуживания и медленные ответы на запросы приводят к потере потенциальных клиентов",
+      stat: "40%",
+      statDesc: "упущенных лидов",
+    },
+    {
+      icon: <FileSearch className="w-6 h-6 text-[#0167F3]" />,
+      title: "Неиспользуемые данные",
+      description:
+        "Огромные массивы информации не анализируются должным образом, из-за чего компании упускают ценные инсайты",
+      stat: "80%",
+      statDesc: "данных остаются без анализа",
+    },
+    {
+      icon: <UserX className="w-6 h-6 text-[#0167F3]" />,
+      title: "Человеческий фактор",
+      description:
+        "Ошибки, вызванные усталостью и эмоциональным выгоранием сотрудников, приводят к снижению качества работы",
+      stat: "55%",
+      statDesc: "ошибок из-за человеческого фактора",
+    },
+    {
+      icon: <Bot className="w-6 h-6 text-[#0167F3]" />,
+      title: "Отставание от конкурентов",
+      description:
+        "Компании, не внедряющие ИИ-решения, теряют конкурентное преимущество и долю рынка",
+      stat: "72%",
+      statDesc: "бизнесов уже используют ИИ",
+    },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  return (
+    <section
+      id="business-problems"
+      className="py-20 md:py-28 relative overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-900/90 -z-10"></div>
+
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-5">
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#0167F3]/10 dark:bg-[#0167F3]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-24 -left-24 w-80 h-80 bg-[#399AFC]/10 dark:bg-[#399AFC]/5 rounded-full blur-3xl"></div>
+
+        <svg
+          className="absolute top-1/4 right-0 w-full h-48 text-[#0167F3]/10 dark:text-[#0167F3]/5 opacity-20"
+          viewBox="0 0 1200 200"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,50 Q300,100 600,50 T1200,100"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          ></path>
+          <path
+            d="M0,100 Q300,50 600,100 T1200,50"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          ></path>
+        </svg>
+      </div>
+
+      <Container>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="text-center mb-16"
+        >
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 bg-[#0167F3]/10 text-[#0167F3] dark:text-[#399AFC] border border-[#0167F3]/20 dark:border-[#399AFC]/50 backdrop-blur-sm"
+          >
+            <svg
+              width={15}
+              height={15}
+              viewBox="0 0 15 15"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="text-[#0167F3] dark:text-[#399AFC]"
+            >
+              <path
+                d="M7.5 15C11.6421 15 15 11.6421 15 7.5C15 3.35786 11.6421 0 7.5 0C3.35786 0 0 3.35786 0 7.5C0 11.6421 3.35786 15 7.5 15ZM6.5 4C6.5 3.44772 6.94772 3 7.5 3C8.05228 3 8.5 3.44772 8.5 4V8C8.5 8.55228 8.05228 9 7.5 9C6.94772 9 6.5 8.55228 6.5 8V4ZM8.5 11C8.5 11.5523 8.05228 12 7.5 12C6.94772 12 6.5 11.5523 6.5 11C6.5 10.4477 6.94772 10 7.5 10C8.05228 10 8.5 10.4477 8.5 11Z"
+                fill="currentColor"
+              />
+            </svg>
+            Проблемы современного бизнеса
+          </motion.div>
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+          >
+            С какими вызовами сталкивается{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC] relative">
+              ваш бизнес?
+              <svg
+                className="absolute -bottom-1 left-0 w-full h-1.5 text-[#0167F3]/20"
+                viewBox="0 0 100 10"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M0,5 Q25,0 50,5 T100,5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+              </svg>
+            </span>
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
+          >
+            Современные ИИ-решения помогают преодолеть типичные проблемы бизнеса, 
+            оптимизировать процессы и повысить эффективность вашей компании.
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7"
+        >
+          {problems.map((problem, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              className={`relative group p-7 rounded-2xl transition-all duration-500 overflow-hidden ${
+                isDark
+                  ? "bg-gray-800/50 hover:bg-gray-800/70 border border-gray-700/50"
+                  : "bg-white hover:shadow-xl border border-gray-200"
+              }`}
+            >
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#0167F3]/5 to-[#399AFC]/5 dark:from-[#0167F3]/10 dark:to-[#399AFC]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
+
+              <div className="absolute -right-8 -bottom-8 w-24 h-24 rounded-full bg-[#0167F3]/10 dark:bg-[#0167F3]/20 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+
+              <div className="flex flex-col relative z-10">
+                <div
+                  className={`w-14 h-14 rounded-xl mb-5 flex items-center justify-center ${
+                    isDark ? "bg-[#0167F3]/30" : "bg-[#0167F3]/10"
+                  }`}
+                >
+                  {problem.icon}
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                  {problem.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
+                  {problem.description}
+                </p>
+                <div className="flex items-center space-x-3 pt-3 border-t border-gray-200 dark:border-gray-700/50">
+                  <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+                    {problem.stat}
+                  </span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                    {problem.statDesc}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="mt-16 text-center"
+        >
+          <motion.div
+            variants={itemVariants}
+            className="p-8 rounded-xl max-w-4xl mx-auto transition-all bg-gradient-to-br from-[#0167F3]/10 to-[#399AFC]/10 dark:from-[#0167F3]/20 dark:to-[#399AFC]/20 border border-[#0167F3]/20 dark:border-[#399AFC]/30 backdrop-blur-sm"
+          >
+            <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center bg-gradient-to-r from-[#0167F3] to-[#399AFC] shadow-lg shadow-[#0167F3]/20">
+              <BrainCircuit className="w-8 h-8 text-white" />
+            </div>
+
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              Трансформируйте бизнес с помощью ИИ
+            </h3>
+            <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-3xl mx-auto">
+              Наши индивидуальные ИИ-решения автоматизируют рутинные процессы, 
+              анализируют данные и повышают эффективность работы, 
+              давая вашей компании конкурентное преимущество.
+            </p>
+
+            <motion.a
+              whileHover={{ scale: 1.03, y: -3 }}
+              whileTap={{ scale: 0.98 }}
+              href="#solutions"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-medium py-3 px-6 rounded-lg transition-all hover:shadow-lg hover:shadow-[#0167F3]/20"
+            >
+              Узнать о наших решениях
+              <ArrowRight className="w-5 h-5 ml-1" />
+            </motion.a>
+          </motion.div>
+        </motion.div>
+      </Container>
+    </section>
+  );
+} 

@@ -6,6 +6,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { useState } from "react";
 import { FiBarChart, FiCheckCircle, FiTrendingUp, FiArrowRight, FiClock, FiUsers, FiDollarSign } from "react-icons/fi";
 import Image from "next/image";
+import Badge from "@/components/ui/Badge";
 
 export default function WorkflowAutomationUseCases() {
   const { isDark } = useTheme();
@@ -192,11 +193,8 @@ export default function WorkflowAutomationUseCases() {
           viewport={{ once: true, amount: 0.1 }}
           className="text-center mb-14"
         >
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center justify-center border border-blue-300 dark:border-blue-800 gap-2 px-4 py-1 rounded-full text-sm font-medium mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400"
-          >
-            Примеры использования
+          <motion.div variants={itemVariants}>
+            <Badge>Примеры использования</Badge>
           </motion.div>
           <motion.h2
             variants={itemVariants}

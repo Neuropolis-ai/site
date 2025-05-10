@@ -18,6 +18,7 @@ import { FiUsers, FiLayers, FiTrendingUp } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
+import BusinessProblems from "@/components/Problems/BusinessProblems";
 
 // Отключаем кеширование данных для этой страницы
 export const dynamic = "force-dynamic";
@@ -31,6 +32,7 @@ export default async function Home() {
       <Header />
       <main className="min-h-screen">
         <Hero />
+        <BusinessProblems />
         <Services />
         <Features />
         <Process />

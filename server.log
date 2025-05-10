@@ -1,0 +1,18 @@
+
+> noctis_ai@0.1.0 dev
+> next dev -p ${PORT:-3003}
+
+  ▲ Next.js 14.2.24
+  - Local:        http://localhost:3000
+  - Environments: .env
+  - Experiments (use with caution):
+    · scrollRestoration
+
+ ✓ Starting...
+ ✓ Ready in 3.2s
+ ○ Compiling / ...
+ ✓ Compiled / in 22.8s (1660 modules)
+ GET / 200 in 24868ms
+ ✓ Compiled in 2.2s (714 modules)
+ GET / 200 in 226ms
+ ✓ Compiled in 2.9s (1536 modules)

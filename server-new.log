@@ -1,0 +1,51 @@
+
+> noctis_ai@0.1.0 dev
+> next dev -p ${PORT:-3003} --port 3003
+
+  ▲ Next.js 14.2.24
+  - Local:        http://localhost:3003
+  - Environments: .env
+  - Experiments (use with caution):
+    · scrollRestoration
+
+ ✓ Starting...
+ ✓ Ready in 3.2s
+ ○ Compiling / ...
+ ✓ Compiled / in 9.6s (1375 modules)
+Запрос последних 3 статей
+Запрос последних 3 статей
+ ✓ Compiled in 1091ms (644 modules)
+Получено 3 последних статей
+После фильтрации осталось 3 статей
+ GET / 200 in 11498ms
+Получено 3 последних статей
+После фильтрации осталось 3 статей
+ GET / 200 in 2691ms
+ ✓ Compiled in 954ms (644 modules)
+Запрос последних 3 статей
+Получено 3 последних статей
+После фильтрации осталось 3 статей
+ ✓ Compiled in 1392ms (1375 modules)
+Запрос последних 3 статей
+Получено 3 последних статей
+После фильтрации осталось 3 статей
+ ○ Compiling / ...
+ ✓ Compiled / in 1302ms (732 modules)
+Запрос последних 3 статей
+Получено 3 последних статей
+После фильтрации осталось 3 статей
+ GET / 200 in 2705ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 567ms (1364 modules)
+ GET /_next/static/chunks/main-app.js?v=1746726266931 404 in 987ms
+ GET /_next/static/chunks/webpack.js?v=1746726266931 404 in 1033ms
+ GET /_next/static/css/app/page.css?v=1746726266931 404 in 1039ms
+ GET /_next/static/css/app/layout.css?v=1746726266931 404 in 1051ms
+ GET /_next/static/chunks/app/layout.js 404 in 1074ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 1075ms
+ GET /_next/static/chunks/app/not-found.js 404 in 504ms
+ GET /_next/static/chunks/app/page.js 404 in 506ms
+Запрос последних 3 статей
+Получено 3 последних статей
+После фильтрации осталось 3 статей
+ GET / 200 in 1052ms

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Font Rendering Test</title>
+    <style>
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 1rem;
+        line-height: 1.5;
+        padding: 40px;
+        background-color: #f9f9f9;
+      }
+
+      .box {
+        background: white;
+        padding: 20px;
+        border: 1px solid #ddd;
+        width: 400px;
+        margin: 0 auto;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h1>Font Rendering Test</h1>
+      <p>
+        This is a paragraph using system fonts. Compare this text size in Safari
+        and Chrome.
+      </p>
+      <p>
+        It uses <code>-apple-system</code>, <code>BlinkMacSystemFont</code>, and
+        other fallbacks.
+      </p>
+    </div>
+  </body>
+</html>

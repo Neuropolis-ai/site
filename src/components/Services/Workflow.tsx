@@ -9,8 +9,6 @@ const Workflow = () => {
   const { isDark } = useTheme();
   const [isWorkflowVisible, setIsWorkflowVisible] = useState(false);
   const workflowRef = useRef(null);
-  const chatRef = useRef(null);
-  const aiAgentRef = useRef(null);
 
   // Workflow animation visibility
   useEffect(() => {
@@ -25,54 +23,6 @@ const Workflow = () => {
     );
 
     const currentRef = workflowRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
-
-  // Чат-анимация
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Когда чат становится видимым, запускаем анимацию
-        if (entry.isIntersecting) {
-          // Implementation handled separately
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    const currentRef = chatRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
-
-  // AI линии анимация
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Когда AI-агент становится видимым, запускаем анимацию линий
-        if (entry.isIntersecting) {
-          // Implementation handled separately
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    const currentRef = aiAgentRef.current;
     if (currentRef) {
       observer.observe(currentRef);
     }
@@ -139,7 +89,9 @@ const Workflow = () => {
             className={`py-7.5 sm:py-[50px] flex flex-col items-center gap-[20px] sm:gap-[30px] overflow-hidden w-full ${
               isDark ? "ai-card" : "bg-white rounded-xl border border-gray-100"
             } ${
-              isWorkflowVisible ? "workflow-animation workflow-visible" : ""
+              isWorkflowVisible
+                ? "workflow-animation workflow-visible"
+                : "workflow-animation"
             }`}
           >
             {/* Top row scrolling left */}

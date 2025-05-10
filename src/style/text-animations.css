@@ -1,4 +1,4 @@
-/* Blur animation effects for hero section */
+/* Отключенные blur animation effects для hero section */
 
 /* Text blur reveal animation */
 .blur-reveal {
@@ -40,7 +40,7 @@
   }
 }
 
-/* Custom delays for animations */
+/* Custom delays for animations - все задержки установлены на 0 */
 .anim-delay-1 {
   animation-delay: 0s;
 }

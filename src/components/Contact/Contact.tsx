@@ -3,7 +3,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { supabase } from "@/lib/supabase";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, AlertTriangle, Mail, Phone, MapPin } from "lucide-react";
+import { CheckCircle, AlertTriangle, Mail, Phone, MapPin, MessageSquare } from "lucide-react";
 import "../../style/card-line.css";
 import Container from "../ui/Container";
 import InputMask from "react-input-mask";
@@ -429,96 +429,114 @@ const Contact = () => {
     );
   }
 
-  // Стандартные варианты анимации
+  // Обновленные стандартные варианты анимации
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.12,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: "easeInOut",
+        duration: 0.4,
+        ease: "easeOut",
       },
     },
   };
 
-  // Стандартизированные классы для полей ввода
-  const inputClasses = `block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 
-    focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 bg-white/80 dark:bg-gray-800/50 
-    dark:text-white text-lg transition-colors duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500`;
+  // Обновленные стили полей ввода с улучшенным визуальным эффектом
+  const inputClasses = `block w-full px-4 py-3.5 rounded-xl border-[1.5px] border-gray-200 dark:border-gray-700 
+    focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 bg-white/90 dark:bg-gray-800/60 
+    dark:text-white text-lg transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500
+    shadow-sm hover:border-blue-200 dark:hover:border-blue-800/40`;
 
   const labelClasses = `block text-base font-medium text-gray-700 dark:text-gray-300 mb-1.5`;
 
   return (
     <motion.section
-      className="relative py-20 md:py-28 px-4 overflow-hidden"
+      className="relative py-24 md:py-32 px-4 overflow-hidden"
       id="contact"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
     >
-      {/* Стандартный фон */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+      {/* Улучшенный фон с градиентами */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-gray-50/90 dark:from-gray-900 dark:to-gray-950 -z-10"></div>
+      
+      {/* Декоративные элементы фона */}
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/20 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/30 dark:from-indigo-500/10 dark:to-indigo-700/20 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-blue-300/5 to-indigo-300/10 dark:from-blue-600/5 dark:to-indigo-600/10 rounded-full blur-3xl -z-10"></div>
 
       <Container>
         {/* Микроразметка Organization */}
         <OrganizationSchema />
+        
+        {/* Заголовок секции с выравниванием по левому краю в стиле других заголовков */}
         <motion.div
-          className="text-center mb-16"
+          className="max-w-4xl mx-auto mb-16 md:mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <div className="inline-block px-5 py-1.5 rounded-full text-sm font-medium mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-600 dark:from-blue-900/20 dark:to-indigo-900/20 dark:text-blue-400 border border-blue-100 dark:border-blue-800/20 shadow-sm">
-            Контакты
+          <div className="mb-6">
+            <div className="inline-block px-5 py-1.5 rounded-full text-sm font-medium 
+                           bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-600 
+                           dark:from-blue-900/30 dark:to-indigo-900/30 dark:text-blue-400 
+                           border border-blue-100 dark:border-blue-800/30 shadow-sm">
+              Контакты
+            </div>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white mb-4">
+          
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
             Готовы{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
               автоматизировать
             </span>{" "}
-            ваш бизнес <br className="hidden md:block" />с помощью ИИ?
+            ваш бизнес с помощью ИИ?
           </h2>
-          <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-3xl mx-auto">
+          
+          <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl leading-relaxed">
             Получите бесплатную консультацию по внедрению ИИ-агентов в ваши
             бизнес-процессы. Наши эксперты помогут определить оптимальные
             сценарии применения.
           </p>
         </motion.div>
 
+        {/* Улучшенная форма контактов с эффектом стекла */}
         <motion.div
-          className="relative backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 rounded-2xl p-8 md:p-10 max-w-4xl mx-auto
-                     border border-white/20 dark:border-gray-700/30 shadow-xl"
+          className="relative backdrop-blur-lg bg-white/70 dark:bg-gray-900/40 rounded-2xl p-8 md:p-10 max-w-4xl mx-auto
+                     border border-white/60 dark:border-gray-700/40 shadow-xl overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
+          {/* Декоративный элемент внутри формы */}
+          <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-blue-400/10 to-indigo-400/10 dark:from-blue-400/20 dark:to-indigo-400/20 rounded-full blur-2xl"></div>
+          <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-gradient-to-tr from-indigo-400/10 to-blue-400/10 dark:from-indigo-400/20 dark:to-blue-400/20 rounded-full blur-2xl"></div>
+
           {submitStatus.type === "success" ? (
             <motion.div
               className="text-center py-10 px-6"
-              initial={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", stiffness: 150, damping: 20 }}
             >
-              {/* Стандартный контейнер иконки */}
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white mb-6">
+              {/* Улучшенный контейнер иконки успеха */}
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white mb-8 shadow-lg shadow-blue-500/20 dark:shadow-blue-700/30">
                 <svg
-                  className="w-8 h-8"
+                  className="w-10 h-10"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -532,125 +550,159 @@ const Contact = () => {
                   ></path>
                 </svg>
               </div>
-              {/* Стандартная типографика */}
-              <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-3">
+              
+              {/* Улучшенная типографика */}
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4">
                 Спасибо за заявку!
               </h3>
+              
               <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto leading-relaxed">
                 Мы свяжемся с вами в ближайшее время для обсуждения деталей и
                 бесплатной консультации.
               </p>
-              {/* Стандартная кнопка */}
+              
+              {/* Улучшенная кнопка */}
               <motion.button
                 onClick={() => setSubmitStatus({ type: null, message: "" })}
-                className="inline-flex items-center justify-center px-6 py-3 border-0 text-lg font-semibold rounded-xl 
+                className="inline-flex items-center justify-center px-6 py-3.5 text-lg font-semibold rounded-xl 
                            text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:opacity-90 shadow-lg 
-                           transition-opacity duration-300"
-                whileHover={{ scale: 1.01 }}
+                           shadow-blue-500/20 dark:shadow-blue-700/30 transition-all duration-300"
+                whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(1, 103, 243, 0.3)" }}
                 whileTap={{ scale: 0.98 }}
               >
                 Отправить новую заявку
               </motion.button>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Используем общий containerVariants для stagger полей */}
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+              {/* Используем обновленный containerVariants для stagger полей */}
               <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"
                 className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-6"
               >
-                {/* Поле Имя */}
+                {/* Поле Имя с иконкой */}
                 <motion.div variants={itemVariants}>
                   <label htmlFor="name" className={labelClasses}>
                     Имя*
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className={inputClasses}
-                    placeholder="Иван Иванов"
-                  />
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className={`${inputClasses} pl-11`}
+                      placeholder="Иван Иванов"
+                    />
+                    <div className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-blue-500 dark:text-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M18 20a6 6 0 0 0-12 0"></path>
+                        <circle cx="12" cy="10" r="4"></circle>
+                      </svg>
+                    </div>
+                  </div>
                 </motion.div>
 
-                {/* Поле Email */}
+                {/* Поле Email с иконкой */}
                 <motion.div variants={itemVariants}>
                   <label htmlFor="email" className={labelClasses}>
                     Email*
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className={inputClasses}
-                    placeholder="ivan.ivanov@example.com"
-                  />
+                  <div className="relative">
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className={`${inputClasses} pl-11`}
+                      placeholder="ivan.ivanov@example.com"
+                    />
+                    <div className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-blue-500 dark:text-blue-400">
+                      <Mail className="h-5 w-5" />
+                    </div>
+                  </div>
                 </motion.div>
 
-                {/* Поле Телефон */}
+                {/* Поле Телефон с иконкой */}
                 <motion.div variants={itemVariants}>
                   <label htmlFor="phone" className={labelClasses}>
                     Телефон
                   </label>
-                  <InputMask
-                    mask="+7 (999) 999-99-99"
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className={inputClasses}
-                    placeholder="+7 (999) 123-45-67"
-                  />
+                  <div className="relative">
+                    <InputMask
+                      mask="+7 (999) 999-99-99"
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className={`${inputClasses} pl-11`}
+                      placeholder="+7 (999) 123-45-67"
+                    />
+                    <div className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-blue-500 dark:text-blue-400">
+                      <Phone className="h-5 w-5" />
+                    </div>
+                  </div>
                 </motion.div>
 
-                {/* Поле Компания */}
+                {/* Поле Компания с иконкой */}
                 <motion.div variants={itemVariants}>
                   <label htmlFor="company" className={labelClasses}>
                     Компания
                   </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className={inputClasses}
-                    placeholder="ООО 'Ромашка'"
-                  />
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className={`${inputClasses} pl-11`}
+                      placeholder="ООО 'Ромашка'"
+                    />
+                    <div className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-blue-500 dark:text-blue-400">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                      </svg>
+                    </div>
+                  </div>
                 </motion.div>
 
-                {/* Поле Сообщение (на всю ширину) */}
+                {/* Поле Сообщение (на всю ширину) с иконкой */}
                 <motion.div variants={itemVariants} className="md:col-span-2">
                   <label htmlFor="message" className={labelClasses}>
                     Ваше сообщение
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className={inputClasses}
-                    placeholder="Расскажите кратко о вашей задаче или вопросе..."
-                  />
+                  <div className="relative">
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
+                      className={`${inputClasses} pl-11`}
+                      placeholder="Расскажите кратко о вашей задаче или вопросе..."
+                    />
+                    <div className="absolute left-3.5 top-6 text-blue-500 dark:text-blue-400">
+                      <MessageSquare className="h-5 w-5" />
+                    </div>
+                  </div>
                 </motion.div>
               </motion.div>
 
-              {/* Ошибка отправки */}
+              {/* Ошибка отправки с улучшенным стилем */}
               {submitStatus.type === "error" && (
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="p-4 rounded-xl flex items-center bg-red-50/70 text-red-700 dark:bg-red-900/20 dark:text-red-400 border border-red-200/70 dark:border-red-800/30"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 rounded-xl flex items-center bg-red-50/80 text-red-700 dark:bg-red-900/20 dark:text-red-400 border border-red-200/70 dark:border-red-800/30 shadow-sm"
                 >
                   <div className="mr-3 flex-shrink-0">
                     <AlertTriangle className="w-5 h-5" />
@@ -659,15 +711,15 @@ const Contact = () => {
                 </motion.div>
               )}
 
-              {/* Кнопка отправки */}
+              {/* Кнопка отправки с улучшенным стилем */}
               <motion.div variants={itemVariants} className="text-center pt-2">
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center justify-center px-8 py-3 border-0 text-lg font-semibold rounded-xl 
-                    text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] shadow-lg transition-opacity duration-300 
-                    hover:opacity-90"
-                  whileHover={{ scale: 1.01 }}
+                  className="inline-flex items-center justify-center px-8 py-3.5 text-lg font-semibold rounded-xl 
+                    text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] shadow-lg shadow-blue-500/20 dark:shadow-blue-700/30 
+                    transition-all duration-300 hover:shadow-blue-500/30 dark:hover:shadow-blue-700/50"
+                  whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(1, 103, 243, 0.3)" }}
                   whileTap={{ scale: 0.98 }}
                 >
                   {isSubmitting ? (
@@ -703,61 +755,72 @@ const Contact = () => {
           )}
         </motion.div>
 
+        {/* Подзаголовок с выравниванием по левому краю */}
         <motion.div
-          className="mt-16 text-center"
+          className="mt-20 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
-            <div className="flex items-center">
-              <div className="flex-shrink-0 mr-4 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-md">
-                <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8">
+            Свяжитесь с нами напрямую
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Email */}
+            <motion.div 
+              className="flex flex-col items-center p-6 rounded-2xl bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm border border-gray-100/80 dark:border-gray-800/40 shadow-lg shadow-blue-500/5 dark:shadow-blue-900/10 hover:shadow-blue-500/10 dark:hover:shadow-blue-900/20 transition-all duration-300"
+              whileHover={{ y: -5, boxShadow: "0 15px 30px rgba(1, 103, 243, 0.1)" }}
+            >
+              <div className="flex-shrink-0 mb-5 w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 flex items-center justify-center shadow-md shadow-blue-500/10 dark:shadow-blue-700/20">
+                <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <div>
-                <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  Email
-                </h4>
-                <a
-                  href="mailto:agent@neuropolis.ai"
-                  className="text-blue-600 dark:text-blue-400 text-lg hover:underline transition-all"
-                >
-                  agent@neuropolis.ai
-                </a>
-              </div>
-            </div>
+              <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                Email
+              </h4>
+              <a
+                href="mailto:agent@neuropolis.ai"
+                className="text-blue-600 dark:text-blue-400 text-lg hover:underline transition-all font-medium"
+              >
+                agent@neuropolis.ai
+              </a>
+            </motion.div>
 
-            <div className="flex items-center">
-              <div className="flex-shrink-0 mr-4 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-md">
-                <Phone className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            {/* Телефон */}
+            <motion.div 
+              className="flex flex-col items-center p-6 rounded-2xl bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm border border-gray-100/80 dark:border-gray-800/40 shadow-lg shadow-blue-500/5 dark:shadow-blue-900/10 hover:shadow-blue-500/10 dark:hover:shadow-blue-900/20 transition-all duration-300"
+              whileHover={{ y: -5, boxShadow: "0 15px 30px rgba(1, 103, 243, 0.1)" }}
+            >
+              <div className="flex-shrink-0 mb-5 w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 flex items-center justify-center shadow-md shadow-blue-500/10 dark:shadow-blue-700/20">
+                <Phone className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <div>
-                <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  Телефон
-                </h4>
-                <a
-                  href="tel:+79601078900"
-                  className="text-blue-600 dark:text-blue-400 text-lg hover:underline transition-all"
-                >
-                  +7 960 107-89-00
-                </a>
-              </div>
-            </div>
+              <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                Телефон
+              </h4>
+              <a
+                href="tel:+79601078900"
+                className="text-blue-600 dark:text-blue-400 text-lg hover:underline transition-all font-medium"
+              >
+                +7 960 107-89-00
+              </a>
+            </motion.div>
 
-            <div className="flex items-center">
-              <div className="flex-shrink-0 mr-4 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-md">
-                <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            {/* Адрес */}
+            <motion.div 
+              className="flex flex-col items-center p-6 rounded-2xl bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm border border-gray-100/80 dark:border-gray-800/40 shadow-lg shadow-blue-500/5 dark:shadow-blue-900/10 hover:shadow-blue-500/10 dark:hover:shadow-blue-900/20 transition-all duration-300"
+              whileHover={{ y: -5, boxShadow: "0 15px 30px rgba(1, 103, 243, 0.1)" }}
+            >
+              <div className="flex-shrink-0 mb-5 w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 flex items-center justify-center shadow-md shadow-blue-500/10 dark:shadow-blue-700/20">
+                <MapPin className="w-6 h-6 text-blue-600 dark:text-blue-400" />
               </div>
-              <div>
-                <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
-                  Адрес
-                </h4>
-                <p className="text-gray-800 dark:text-gray-200 text-lg">
-                  Россия, Воронеж
-                </p>
-              </div>
-            </div>
+              <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                Адрес
+              </h4>
+              <p className="text-gray-800 dark:text-gray-200 text-lg font-medium">
+                Россия, Воронеж
+              </p>
+            </motion.div>
           </div>
         </motion.div>
       </Container>

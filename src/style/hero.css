@@ -1,167 +1,174 @@
 .video-container {
-    -webkit-filter: hue-rotate(320deg);
-    /* -webkit-mask: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 100%) add; */
-    align-content: center;
-    align-items: center;
-    display: flex;
-    filter: hue-rotate(320deg);
-    flex: none;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    gap: 0px;
-    justify-content: center;
-    inset: 0 0 700px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    z-index: 1;
-    height: 100%;
+  -webkit-filter: hue-rotate(320deg);
+  /* -webkit-mask: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 100%) add; */
+  align-content: center;
+  align-items: center;
+  display: flex;
+  filter: hue-rotate(320deg);
+  flex: none;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0px;
+  justify-content: center;
+  inset: 0 0 700px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  height: 100%;
 }
 
 .video-content {
-    flex: 1 0 0px;
-    height: 100%;
-    position: relative;
-    width: 1px;
+  flex: 1 0 0px;
+  height: 100%;
+  position: relative;
+  width: 1px;
 }
 
 .video-one {
-    cursor: auto;
-    width: 100%;
-    height: 100%;
-    border-radius: 0px;
-    display: block;
-    object-fit: cover;
-    background-color: rgba(0, 0, 0, 1);
-    object-position: 50% 50%;
+  cursor: auto;
+  width: 100%;
+  height: 100%;
+  border-radius: 0px;
+  display: block;
+  object-fit: cover;
+  background-color: rgba(0, 0, 0, 1);
+  object-position: 50% 50%;
 }
 
 .oval-blur {
-    width: 100%;
-    height: 100%;
-    /* background: linear-gradient(to bottom, black 0%, transparent 40%, transparent 60%, black 100%); */
-    filter: blur(200px);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+  width: 100%;
+  height: 100%;
+  /* background: linear-gradient(to bottom, black 0%, transparent 40%, transparent 60%, black 100%); */
+  filter: blur(200px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .video-over-black {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(360deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4) 100%);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    360deg,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
 }
 
 .v {
-    mask: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0) 100%);
+  mask: linear-gradient(
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.45) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 .o {
-    mask: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .5) 50%, rgba(0, 0, 0, 0) 100%) add;
+  mask: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    add;
 }
 
 .f {
-    mask: radial-gradient(50% 57.99999999999999% at 50% 50%, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 100%) add;
+  mask: radial-gradient(
+      50% 57.99999999999999% at 50% 50%,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0) 100%
+    )
+    add;
 }
 
-/* Text animation classes */
+/* Text animation classes - анимации отключены */
 .text-blur-in {
-    filter: blur(25px);
-    opacity: 0;
-    animation: blur-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  filter: blur(0);
+  opacity: 1;
+  animation: none;
 }
 
 .text-blur-in-delay-1 {
-    animation-delay: 0.4s;
+  animation-delay: 0s;
 }
 
 .text-blur-in-delay-2 {
-    animation-delay: 0.4s;
+  animation-delay: 0s;
 }
 
 .text-blur-in-delay-3 {
-    animation-delay: 0.8s;
+  animation-delay: 0s;
 }
 
 .text-blur-in-delay-4 {
-    animation-delay: 1.2s;
+  animation-delay: 0s;
 }
 
-/* Animation for the hero text */
+/* Animation for the hero text - отключена */
 @keyframes blur-in {
-    0% {
-        filter: blur(25px);
-        opacity: 0;
-        transform: translateY(15px) scale(1.05);
-    }
+  0% {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 
-    70% {
-        filter: blur(5px);
-        opacity: 0.8;
-    }
-
-    100% {
-        filter: blur(0);
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-/* Special animation for the icon box */
+/* Special animation for the icon box - отключена */
 
 @keyframes fade-in-down {
-    0% {
-        opacity: 0;
-        transform: translateY(-20px);
-        filter: blur(15px);
-    }
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 
-    70% {
-        filter: blur(3px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
-/* Button animations */
+/* Button animations - отключены */
 .button-appear {
-    transform: scale(0.9);
-    opacity: 0;
-    filter: blur(10px);
-    animation: button-scale-in 0.7s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
+  transform: scale(1);
+  opacity: 1;
+  filter: blur(0);
+  animation: none;
 }
 
 .button-appear-delay-1 {
-    animation-delay: 1.3s;
+  animation-delay: 0s;
 }
 
 .button-appear-delay-2 {
-    animation-delay: 1.5s;
+  animation-delay: 0s;
 }
 
 @keyframes button-scale-in {
-    0% {
-        transform: scale(0.9);
-        opacity: 0;
-        filter: blur(10px);
-    }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
 
-    70% {
-        filter: blur(2px);
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-        filter: blur(0);
-    }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
 }

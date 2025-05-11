@@ -1,24 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "framerusercontent.com",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-      {
-        protocol: "https",
-        hostname: "techcrunch.com",
-      },
-      {
-        protocol: "https",
-        hostname: "**",
+        hostname: "cdn.sanity.io",
+        port: "",
       },
     ],
+    domains: ['cdn.sanity.io'],
     unoptimized: false,
   },
   poweredByHeader: false,

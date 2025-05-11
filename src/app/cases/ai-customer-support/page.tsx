@@ -176,7 +176,7 @@ const ReadingProgressBar = () => {
 };
 
 export default function CasePage() {
-  const { isDark } = useTheme();
+  const { theme: _ } = useTheme();
   const [activeHeadline, setActiveHeadline] = useState<string | null>(null);
   const [headlineVariantIndex, setHeadlineVariantIndex] = useState<number | null>(null);
   
@@ -410,7 +410,7 @@ export default function CasePage() {
       <ReadingProgressBar />
       <motion.div
         className={`bg-gradient-to-b ${
-          isDark ? "from-black to-gray-900" : "from-white to-gray-50"
+          false ? "from-black to-gray-900" : "from-white to-gray-50"
         } text-gray-800 dark:text-white`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -442,7 +442,7 @@ export default function CasePage() {
             {/* Задача клиента */}
             <section itemProp="hasPart" itemScope itemType="https://schema.org/WebPageElement">
               <meta itemProp="name" content="Задача клиента" />
-              <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"} id="task">
+              <SectionWrapper className={false ? "bg-black/30" : "bg-white/50"} id="task">
                 <div className="container mx-auto px-4 max-w-screen-lg">
                   <CaseTask 
                     description={taskData.description}
@@ -455,7 +455,7 @@ export default function CasePage() {
             {/* Анализ проблемы */}
             <section itemProp="hasPart" itemScope itemType="https://schema.org/WebPageElement">
               <meta itemProp="name" content="Анализ проблемы" />
-              <SectionWrapper className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"} id="problem">
+              <SectionWrapper className={false ? "bg-gray-900/40" : "bg-gray-100/60"} id="problem">
                 <div className="container mx-auto px-4 max-w-screen-lg">
                   <CaseProblem
                     description={problemData.description}
@@ -469,7 +469,7 @@ export default function CasePage() {
             {/* Решение */}
             <section itemProp="hasPart" itemScope itemType="https://schema.org/WebPageElement">
               <meta itemProp="name" content="Предложенное решение" />
-              <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"} id="solution">
+              <SectionWrapper className={false ? "bg-black/30" : "bg-white/50"} id="solution">
                 <div className="container mx-auto px-4 max-w-screen-lg">
                   <CaseSolution
                     description={solutionData.description}
@@ -484,7 +484,7 @@ export default function CasePage() {
             {/* Процесс внедрения */}
             <section itemProp="hasPart" itemScope itemType="https://schema.org/WebPageElement">
               <meta itemProp="name" content="Процесс внедрения" />
-              <SectionWrapper className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"} id="implementation">
+              <SectionWrapper className={false ? "bg-gray-900/40" : "bg-gray-100/60"} id="implementation">
                 <div className="container mx-auto px-4 max-w-screen-lg">
                   <CaseImplementation
                     stages={implementationData.stages}
@@ -497,7 +497,7 @@ export default function CasePage() {
             {/* Результаты */}
             <section itemProp="hasPart" itemScope itemType="https://schema.org/WebPageElement">
               <meta itemProp="name" content="Достигнутые результаты" />
-              <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"} id="results">
+              <SectionWrapper className={false ? "bg-black/30" : "bg-white/50"} id="results">
                 <div className="container mx-auto px-4 max-w-screen-lg">
                   <CaseResults
                     metrics={resultsData.metrics}
@@ -553,7 +553,7 @@ export default function CasePage() {
             {/* Технологии */}
             <section itemProp="hasPart" itemScope itemType="https://schema.org/WebPageElement">
               <meta itemProp="name" content="Используемые технологии" />
-              <SectionWrapper className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"} id="technologies">
+              <SectionWrapper className={false ? "bg-gray-900/40" : "bg-gray-100/60"} id="technologies">
                 <div className="container mx-auto px-4 max-w-screen-lg">
                   <CaseTechnologies technologies={technologiesData.technologies} />
                 </div>
@@ -563,7 +563,7 @@ export default function CasePage() {
             {/* Отзыв клиента */}
             <section itemProp="hasPart" itemScope itemType="https://schema.org/WebPageElement">
               <meta itemProp="name" content="Отзыв клиента" />
-              <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"} id="testimonial">
+              <SectionWrapper className={false ? "bg-black/30" : "bg-white/50"} id="testimonial">
                 <div className="container mx-auto px-4 max-w-screen-lg">
                   <CaseTestimonial
                     text={testimonialData.text}
@@ -578,7 +578,7 @@ export default function CasePage() {
             {/* Долгосрочное влияние */}
             <section itemProp="hasPart" itemScope itemType="https://schema.org/WebPageElement">
               <meta itemProp="name" content="Долгосрочное влияние" />
-              <SectionWrapper className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"} id="long-term-impact">
+              <SectionWrapper className={false ? "bg-gray-900/40" : "bg-gray-100/60"} id="long-term-impact">
                 <div className="container mx-auto px-4 max-w-screen-lg">
                   <CaseLongTermImpact
                     description={longTermImpactData.description}
@@ -591,7 +591,7 @@ export default function CasePage() {
             {/* FAQ раздел */}
             <section itemProp="hasPart" itemScope itemType="https://schema.org/WebPageElement">
               <meta itemProp="name" content="Часто задаваемые вопросы" />
-              <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"} id="faq">
+              <SectionWrapper className={false ? "bg-black/30" : "bg-white/50"} id="faq">
                 <div className="container mx-auto px-4 max-w-screen-lg">
                   <div className="mb-16 text-center">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">Часто задаваемые вопросы</h2>
@@ -671,7 +671,7 @@ export default function CasePage() {
 
           {/* Похожие кейсы */}
           <aside>
-            <SectionWrapper className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"} id="related-cases">
+            <SectionWrapper className={false ? "bg-gray-900/40" : "bg-gray-100/60"} id="related-cases">
               <div className="container mx-auto px-4 max-w-screen-lg">
                 <RelatedCases 
                   title="Похожие кейсы"
@@ -705,7 +705,7 @@ export default function CasePage() {
           </aside>
 
           {/* Кнопки социальных сетей */}
-          <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"} id="share">
+          <SectionWrapper className={false ? "bg-black/30" : "bg-white/50"} id="share">
             <div className="container mx-auto px-4 max-w-screen-lg">
               <SocialShareButtons 
                 title="ИИ-ассистент для поддержки клиентов: сокращение времени ответа с 24 часов до 3 минут"

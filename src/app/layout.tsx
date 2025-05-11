@@ -7,7 +7,14 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../style/normalize.css";
 import "./globals.css";
+import "./styles.css";
 import "../style/animations-fix.css";
+import "../style/hero.css";
+import "../style/services.css";
+import "../style/card-line.css";
+import "../style/dot-grid.css";
+import "../style/icon-animations.css";
+import "../style/text-animations.css";
 import BadgeRenderer from "@/components/ui/BadgeRenderer";
 const inter = Inter({ subsets: ["latin"] });
 

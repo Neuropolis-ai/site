@@ -21,10 +21,6 @@ import CaseTestimonial from "@/components/case-study/CaseTestimonial";
 import CaseLongTermImpact from "@/components/case-study/CaseLongTermImpact";
 import CaseActionButtons from "@/components/case-study/CaseActionButtons";
 
-// Импортируем компоненты призыва к действию
-import CostReduceCTA from "@/components/CTASection/CostReduceCTA";
-import AutomationCTA from "@/components/CTASection/AutomationCTA";
-
 import {
   FiGlobe,
   FiSettings,
@@ -263,7 +259,7 @@ export default function CasePage() {
       <CaseHero
         title="ИИ-ассистент для поддержки клиентов"
         subtitle="Как мы автоматизировали 82% обращений в службу поддержки e-commerce площадки и сократили время ответа в 480 раз"
-        imagePath="/assets/images/cases/ai-customer-support/hero.jpg"
+        imagePath="/assets/images/ai-customer-support-new.jpg"
         imageAlt="ИИ-ассистент для поддержки клиентов"
       />
 
@@ -329,15 +325,6 @@ export default function CasePage() {
 
       <SectionWrapper className="pb-24 md:pb-32">
         <CaseActionButtons buttons={actionButtonsData.buttons} />
-      </SectionWrapper>
-
-      {/* Блоки CTA */}
-      <SectionWrapper isAlternate={true}>
-        <CostReduceCTA />
-      </SectionWrapper>
-
-      <SectionWrapper>
-        <AutomationCTA />
       </SectionWrapper>
 
       <Footer />

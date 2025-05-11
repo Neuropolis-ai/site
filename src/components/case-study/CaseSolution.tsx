@@ -102,7 +102,7 @@ export default function CaseSolution({
     <CaseSection title="🤖 Предложенное решение">
       <motion.p
         animate={{ opacity: 1 }}
-        className="mb-12 text-lg leading-relaxed max-w-4xl mx-auto"
+        className="mb-12 text-lg leading-relaxed max-w-4xl"
       >
         {description}
       </motion.p>
@@ -139,8 +139,12 @@ export default function CaseSolution({
                   <div
                     className={`flex-shrink-0 w-16 h-16 rounded-xl flex items-center justify-center mr-5 transform transition-all duration-500 shadow-md ${
                       isDark
-                        ? `bg-gradient-to-br from-[${brandColors.primary}]/60 to-[${brandColors.secondary}]/40 text-white border border-[${brandColors.primary}]/40`
-                        : `bg-gradient-to-br from-[${brandColors.primary}]/20 to-[${brandColors.secondary}]/20 text-[${brandColors.primary}] border border-[${brandColors.primary}]/30`
+                        ? index === 0 
+                          ? "bg-gradient-to-br from-blue-500/60 to-indigo-600/40 text-white border border-blue-500/40"
+                          : "bg-gradient-to-br from-cyan-500/60 to-blue-600/40 text-white border border-cyan-500/40"
+                        : index === 0
+                          ? "bg-gradient-to-br from-blue-500/20 to-indigo-600/20 text-blue-600 border border-blue-500/30"
+                          : "bg-gradient-to-br from-cyan-500/20 to-blue-600/20 text-cyan-600 border border-cyan-500/30"
                     }`}
                   >
                     <Icon className="w-8 h-8" />
@@ -148,8 +152,12 @@ export default function CaseSolution({
                   <h3
                     className={`font-bold text-2xl ${
                       isDark 
-                        ? `text-transparent bg-clip-text bg-gradient-to-r from-[${brandColors.primary}]/90 to-[${brandColors.secondary}]` 
-                        : `text-transparent bg-clip-text bg-gradient-to-r from-[${brandColors.primary}] to-[${brandColors.secondary}]`
+                        ? index === 0 
+                          ? "text-blue-300"
+                          : "text-cyan-300"
+                        : index === 0 
+                          ? "text-blue-600" 
+                          : "text-cyan-600"
                     }`}
                   >
                     {feature.title}
@@ -165,8 +173,12 @@ export default function CaseSolution({
                       <div
                         className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center mr-4 transform transition-all shadow-sm ${
                           isDark 
-                            ? `bg-[${brandColors.primary}]/20 text-[${brandColors.secondary}] group-hover:bg-[${brandColors.primary}]/40`
-                            : `bg-[${brandColors.primary}]/10 text-[${brandColors.primary}] group-hover:bg-[${brandColors.primary}]/20`
+                            ? index === 0
+                              ? "bg-blue-500/20 text-blue-300 group-hover:bg-blue-500/40"
+                              : "bg-cyan-500/20 text-cyan-300 group-hover:bg-cyan-500/40"
+                            : index === 0
+                              ? "bg-blue-500/10 text-blue-600 group-hover:bg-blue-500/20"
+                              : "bg-cyan-500/10 text-cyan-600 group-hover:bg-cyan-500/20"
                         }`}
                       >
                         <svg
@@ -232,14 +244,16 @@ export default function CaseSolution({
               <div
                 className={`inline-flex w-18 h-18 rounded-xl items-center justify-center ${
                   isDark
-                    ? `bg-gradient-to-br from-[${brandColors.primary}]/30 to-[${brandColors.secondary}]/20 text-[${brandColors.secondary}]`
-                    : `bg-gradient-to-br from-[${brandColors.primary}]/20 to-[${brandColors.secondary}]/20 text-[${brandColors.primary}]`
+                    ? "bg-gradient-to-br from-blue-500/30 to-cyan-500/20 text-cyan-300 border border-blue-500/30"
+                    : "bg-gradient-to-br from-blue-500/20 to-cyan-500/20 text-blue-600 border border-blue-500/30"
                 }`}
               >
                 <FiServer className="w-9 h-9" />
               </div>
               <h3
-                className={`text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[${brandColors.primary}] to-[${brandColors.secondary}]`}
+                className={`text-4xl font-bold ${
+                  isDark ? "text-blue-300" : "text-blue-600"
+                }`}
               >
                 Ключевые технические особенности
               </h3>
@@ -262,6 +276,16 @@ export default function CaseSolution({
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {techPoints.map((point, index) => {
                   const IconComponent = techIconMap[index % techIconMap.length];
+                  const colors = [
+                    { icon: "text-blue-400", bg: "from-blue-500/40 to-blue-600/30", border: "border-blue-500/30" },
+                    { icon: "text-cyan-400", bg: "from-cyan-500/40 to-cyan-600/30", border: "border-cyan-500/30" },
+                    { icon: "text-indigo-400", bg: "from-indigo-500/40 to-indigo-600/30", border: "border-indigo-500/30" },
+                    { icon: "text-purple-400", bg: "from-purple-500/40 to-purple-600/30", border: "border-purple-500/30" },
+                    { icon: "text-sky-400", bg: "from-sky-500/40 to-sky-600/30", border: "border-sky-500/30" }
+                  ];
+                  
+                  const colorIndex = index % colors.length;
+                  
                   return (
                     <motion.div
                       key={index}
@@ -275,15 +299,15 @@ export default function CaseSolution({
                       }}
                       className={`p-7 rounded-xl border shadow-md flex items-start ${
                         isDark
-                          ? `bg-gray-800/60 border-gray-700/50 hover:border-[${brandColors.primary}]/60`
-                          : `bg-white/90 border-gray-200/70 hover:border-[${brandColors.primary}]/40`
+                          ? `bg-gray-800/60 border-gray-700/50 hover:border-${colors[colorIndex].border}`
+                          : `bg-white/90 border-gray-200/70 hover:${colors[colorIndex].border}`
                       }`}
                     >
                       <div
                         className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mr-5 ${
                           isDark
-                            ? `bg-gradient-to-br from-[${brandColors.primary}]/40 to-[${brandColors.secondary}]/30 text-[${brandColors.secondary}] border border-[${brandColors.primary}]/30`
-                            : `bg-gradient-to-br from-[${brandColors.primary}]/15 to-[${brandColors.secondary}]/15 text-[${brandColors.primary}] border border-[${brandColors.primary}]/30`
+                            ? `bg-gradient-to-br ${colors[colorIndex].bg} ${colors[colorIndex].icon} ${colors[colorIndex].border}`
+                            : `bg-gradient-to-br ${colors[colorIndex].bg.replace(/\/40/g, '/15').replace(/\/30/g, '/10')} ${colors[colorIndex].icon.replace(/400/g, '600')} ${colors[colorIndex].border}`
                         }`}
                       >
                         <IconComponent className="w-6 h-6" />

@@ -1,64 +1,42 @@
 "use client";
 
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useContext, ReactNode, useEffect } from "react";
 
+// Упрощенный тип темы - только светлая тема
 export type Theme = "light";
 
 interface ThemeContextType {
   theme: Theme;
-  isDark: boolean;
 }
 
+// Создаем контекст только со светлой темой
 export const ThemeContext = createContext<ThemeContextType>({
-  theme: "light",
-  isDark: false,
+  theme: "light"
 });
 
-function getInitialThemeVal(): Theme {
-  return "light";
-}
+// Хук для доступа к контексту
+export const useTheme = () => useContext(ThemeContext);
 
-// Светлая тема по умолчанию для первоначальной загрузки
+// Провайдер для оборачивания приложения
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [theme, setTheme] = useState<Theme>("light");
-  const [isInitialized, setIsInitialized] = useState(false);
+  // Всегда используем светлую тему
+  const theme: Theme = "light";
 
+  // Эффект для установки светлой темы при загрузке
   useEffect(() => {
-    try {
-      // Устанавливаем светлую тему
-      setTheme("light");
-      document.documentElement.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
-      setIsInitialized(true);
-    } catch (e) {
-      console.error("Error setting initial theme:", e);
-      setTheme("light");
-      document.documentElement.setAttribute("data-theme", "light");
-      setIsInitialized(true);
-    }
+    // Установка светлой темы в HTML
+    document.documentElement.setAttribute("data-theme", "light");
+    
+    // Добавляем классы для принудительного применения светлой темы
+    document.documentElement.classList.add("light-theme");
+    document.documentElement.classList.add("forced-light-theme");
   }, []);
 
-  const isDark = false;
-
   return (
-    <ThemeContext.Provider value={{ theme, isDark }}>
+    <ThemeContext.Provider value={{ theme }}>
       {children}
     </ThemeContext.Provider>
   );
 };
-
-export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error("useTheme must be used within a ThemeProvider");
-  }
-  return context;
-}

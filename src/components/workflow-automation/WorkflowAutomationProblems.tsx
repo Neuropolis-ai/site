@@ -24,24 +24,24 @@ interface ProblemCardProps {
 
 function ProblemCard({ icon, title, description, stat, statDesc }: ProblemCardProps) {
   return (
-    <div className="relative group p-7 rounded-2xl transition-all duration-500 overflow-hidden bg-white dark:bg-gray-800/50 hover:shadow-xl border border-gray-200 dark:border-gray-700/50">
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#0167F3]/5 to-[#399AFC]/5 dark:from-[#0167F3]/10 dark:to-[#399AFC]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
-      <div className="absolute -right-8 -bottom-8 w-24 h-24 rounded-full bg-[#0167F3]/10 dark:bg-[#0167F3]/20 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
+    <div className="relative group p-7 rounded-2xl transition-all duration-500 overflow-hidden bg-white hover:shadow-xl border border-gray-200">
+      <div className="absolute inset-0 bg-gradient-to-tr from-[#0167F3]/5 to-[#399AFC]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
+      <div className="absolute -right-8 -bottom-8 w-24 h-24 rounded-full bg-[#0167F3]/10 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
       
       <div className="flex flex-col relative z-10">
-        <h3 className="text-[18px] font-semibold text-gray-900 dark:text-white mb-3">
+        <h3 className="text-[18px] font-semibold text-gray-900 mb-3">
           {title}
         </h3>
         
-        <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
+        <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
           {description}
         </p>
         
-        <div className="flex items-center space-x-3 pt-3 border-t border-gray-200 dark:border-gray-700/50">
+        <div className="flex items-center space-x-3 pt-3 border-t border-gray-200">
           <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
             {stat}
           </span>
-          <span className="text-sm text-gray-500 dark:text-gray-400">
+          <span className="text-sm text-gray-500">
             {statDesc}
           </span>
         </div>
@@ -51,7 +51,7 @@ function ProblemCard({ icon, title, description, stat, statDesc }: ProblemCardPr
 }
 
 export default function WorkflowAutomationProblems() {
-  const { isDark } = useTheme();
+  const { theme } = useTheme();
 
   // Данные о проблемах
   const problems = [
@@ -129,14 +129,14 @@ export default function WorkflowAutomationProblems() {
       id="workflow-problems"
       className="py-20 md:py-28 relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-900/90 -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-gray-50 to-gray-100 -z-10"></div>
 
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-5">
-        <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#0167F3]/10 dark:bg-[#0167F3]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-24 -left-24 w-80 h-80 bg-[#399AFC]/10 dark:bg-[#399AFC]/5 rounded-full blur-3xl"></div>
+        <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#0167F3]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-24 -left-24 w-80 h-80 bg-[#399AFC]/10 rounded-full blur-3xl"></div>
 
         <svg
-          className="absolute top-1/4 right-0 w-full h-48 text-[#0167F3]/10 dark:text-[#0167F3]/5 opacity-20"
+          className="absolute top-1/4 right-0 w-full h-48 text-[#0167F3]/10 opacity-20"
           viewBox="0 0 1200 200"
           preserveAspectRatio="none"
         >
@@ -165,7 +165,7 @@ export default function WorkflowAutomationProblems() {
         >
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 bg-[#0167F3]/10 text-[#0167F3] dark:text-[#399AFC] border border-[#0167F3]/20 dark:border-[#399AFC]/50 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 bg-[#0167F3]/10 text-[#0167F3] border border-[#0167F3]/20 backdrop-blur-sm"
           >
             <svg
               width={15}
@@ -173,7 +173,7 @@ export default function WorkflowAutomationProblems() {
               viewBox="0 0 15 15"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="text-[#0167F3] dark:text-[#399AFC]"
+              className="text-[#0167F3]"
             >
               <path
                 d="M7.5 15C11.6421 15 15 11.6421 15 7.5C15 3.35786 11.6421 0 7.5 0C3.35786 0 0 3.35786 0 7.5C0 11.6421 3.35786 15 7.5 15ZM6.5 4C6.5 3.44772 6.94772 3 7.5 3C8.05228 3 8.5 3.44772 8.5 4V8C8.5 8.55228 8.05228 9 7.5 9C6.94772 9 6.5 8.55228 6.5 8V4ZM8.5 11C8.5 11.5523 8.05228 12 7.5 12C6.94772 12 6.5 11.5523 6.5 11C6.5 10.4477 6.94772 10 7.5 10C8.05228 10 8.5 10.4477 8.5 11Z"
@@ -184,7 +184,7 @@ export default function WorkflowAutomationProblems() {
           </motion.div>
           <motion.h2
             variants={itemVariants}
-            className="text-[36px] font-bold text-gray-900 dark:text-white mb-6"
+            className="text-[36px] font-bold text-gray-900 mb-6"
           >
             С какими проблемами сталкивается{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC] relative">
@@ -205,7 +205,7 @@ export default function WorkflowAutomationProblems() {
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed"
           >
             Узнайте, как интеллектуальная автоматизация рабочих процессов
             помогает решить типичные проблемы современного бизнеса и повысить

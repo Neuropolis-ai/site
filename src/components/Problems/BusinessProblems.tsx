@@ -20,7 +20,7 @@ export default function BusinessProblems() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 dark:border-blue-400/20 backdrop-blur-sm">
             Проблемы бизнеса
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+          <h2 className="text-[36px] font-bold text-gray-900 dark:text-white mb-6">
             С какими вызовами сталкивается{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 relative">
               ваш бизнес?
@@ -49,13 +49,7 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 dark:from-blue-500/10 dark:to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <div className="w-14 h-14 rounded-xl mb-5 flex items-center justify-center bg-blue-500/10 dark:bg-blue-500/30">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-[18px] font-semibold text-gray-900 dark:text-white mb-3">
                 Потеря времени на рутине
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
@@ -77,13 +71,7 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 dark:from-blue-500/10 dark:to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <div className="w-14 h-14 rounded-xl mb-5 flex items-center justify-center bg-blue-500/10 dark:bg-blue-500/30">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500">
-                  <line x1="12" y1="1" x2="12" y2="23"></line>
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-[18px] font-semibold text-gray-900 dark:text-white mb-3">
                 Высокие операционные затраты
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
@@ -105,15 +93,7 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 dark:from-blue-500/10 dark:to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <div className="w-14 h-14 rounded-xl mb-5 flex items-center justify-center bg-blue-500/10 dark:bg-blue-500/30">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-[18px] font-semibold text-gray-900 dark:text-white mb-3">
                 Упущенные клиенты
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
@@ -135,16 +115,7 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 dark:from-blue-500/10 dark:to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <div className="w-14 h-14 rounded-xl mb-5 flex items-center justify-center bg-blue-500/10 dark:bg-blue-500/30">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500">
-                  <path d="M16 3h5v5"></path>
-                  <path d="M21 3l-8 8"></path>
-                  <path d="M8 12l-2 2"></path>
-                  <path d="M19 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4"></path>
-                  <path d="m3 21 4-4"></path>
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-[18px] font-semibold text-gray-900 dark:text-white mb-3">
                 Потеря контрактов из-за медлительности
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
@@ -166,15 +137,7 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 dark:from-blue-500/10 dark:to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <div className="w-14 h-14 rounded-xl mb-5 flex items-center justify-center bg-blue-500/10 dark:bg-blue-500/30">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500">
-                  <path d="M5.5 8.5 9 12l-3.5 3.5L2 12l3.5-3.5Z"></path>
-                  <path d="m12 2 3.5 3.5L12 9 8.5 5.5 12 2Z"></path>
-                  <path d="M18.5 8.5 22 12l-3.5 3.5L15 12l3.5-3.5Z"></path>
-                  <path d="m12 15 3.5 3.5L12 22l-3.5-3.5L12 15Z"></path>
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-[18px] font-semibold text-gray-900 dark:text-white mb-3">
                 Разрозненные данные и хаос в информации
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">
@@ -196,16 +159,7 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 dark:from-blue-500/10 dark:to-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <div className="w-14 h-14 rounded-xl mb-5 flex items-center justify-center bg-blue-500/10 dark:bg-blue-500/30">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500">
-                  <path d="M9 12H4.5a2.5 2.5 0 0 1 0-5H9"></path>
-                  <path d="M15 12h4.5a2.5 2.5 0 0 0 0-5H15"></path>
-                  <path d="M9 17h6"></path>
-                  <path d="M12 12v5"></path>
-                  <path d="M12 2v5"></path>
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-[18px] font-semibold text-gray-900 dark:text-white mb-3">
                 Невозможность масштабирования процессов
               </h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed flex-grow">

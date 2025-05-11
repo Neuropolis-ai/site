@@ -136,12 +136,6 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-primary-light/5 dark:from-primary/10 dark:to-primary-light/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
               <div className="absolute -right-8 -bottom-8 w-24 h-24 rounded-full bg-primary/10 dark:bg-primary/20 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
               <div className="flex flex-col relative z-10">
-                <div
-                  className={`w-14 h-14 rounded-xl mb-5 flex items-center justify-center ${
-                    isDark ? "bg-primary/30" : "bg-primary/10"
-                  }`}
-                >
-                </div>
                 <div className="flex items-center gap-3 mb-3">
                   <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light">
                     {step.number}

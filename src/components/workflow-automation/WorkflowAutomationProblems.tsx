@@ -29,11 +29,7 @@ function ProblemCard({ icon, title, description, stat, statDesc }: ProblemCardPr
       <div className="absolute -right-8 -bottom-8 w-24 h-24 rounded-full bg-[#0167F3]/10 dark:bg-[#0167F3]/20 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></div>
       
       <div className="flex flex-col relative z-10">
-        <div className="w-14 h-14 rounded-xl mb-5 flex items-center justify-center bg-[#0167F3]/10 dark:bg-[#0167F3]/20">
-          {icon}
-        </div>
-        
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+        <h3 className="text-[18px] font-semibold text-gray-900 dark:text-white mb-3">
           {title}
         </h3>
         
@@ -188,7 +184,7 @@ export default function WorkflowAutomationProblems() {
           </motion.div>
           <motion.h2
             variants={itemVariants}
-            className="text-3xl font-bold text-gray-900 dark:text-white mb-6"
+            className="text-[36px] font-bold text-gray-900 dark:text-white mb-6"
           >
             С какими проблемами сталкивается{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC] relative">

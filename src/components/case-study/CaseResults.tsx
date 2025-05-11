@@ -12,6 +12,7 @@ import {
   FiDollarSign,
   FiBarChart2,
 } from "react-icons/fi"; // Иконки для результатов
+import { brandColors } from "./CaseHero"; // Импортируем фирменные цвета
 
 interface Metric {
   number: string;
@@ -101,13 +102,13 @@ export default function CaseResults({
                 y: -8,
                 transition: { duration: 0.3 },
                 boxShadow: isDark
-                  ? "0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(21, 101, 192, 0.2)"
-                  : "0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(66, 153, 225, 0.15)",
+                  ? `0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(${parseInt(brandColors.primary.substring(1, 3), 16)}, ${parseInt(brandColors.primary.substring(3, 5), 16)}, ${parseInt(brandColors.primary.substring(5, 7), 16)}, 0.2)`
+                  : `0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(${parseInt(brandColors.primary.substring(1, 3), 16)}, ${parseInt(brandColors.primary.substring(3, 5), 16)}, ${parseInt(brandColors.primary.substring(5, 7), 16)}, 0.15)`,
               }}
               className={`p-6 rounded-2xl text-center transition-all duration-300 border shadow-lg backdrop-blur-sm ${
                 isDark
-                  ? "bg-gradient-to-br from-blue-900/20 to-indigo-900/20 border-blue-800/30 hover:border-blue-700/50"
-                  : "bg-gradient-to-br from-blue-50/70 to-indigo-50/50 border-blue-100/60 hover:border-blue-200/80"
+                  ? "bg-gradient-to-br from-blue-900/20 to-blue-800/20 border-blue-800/30 hover:border-blue-700/50"
+                  : "bg-gradient-to-br from-blue-50/70 to-blue-50/50 border-blue-100/60 hover:border-blue-200/80"
               }`}
             >
               <div
@@ -120,11 +121,7 @@ export default function CaseResults({
                 <FiBarChart2 className="w-6 h-6" />
               </div>
               <div
-                className={`text-3xl md:text-4xl font-bold mb-1 ${
-                  isDark
-                    ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300"
-                    : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"
-                }`}
+                className={`text-3xl md:text-4xl font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-[${brandColors.primary}] to-[${brandColors.secondary}]`}
               >
                 {metric.number}
               </div>

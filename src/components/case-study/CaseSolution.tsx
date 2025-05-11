@@ -18,11 +18,17 @@ import {
   FiDatabase,
   FiCpu,
 } from "react-icons/fi"; // Иконки
+import { brandColors } from "./CaseHero"; // Импортируем фирменные цвета
 
 interface SolutionFeature {
   title: string;
   items: string[];
   icon: React.ComponentType<{ className?: string }>; // Тип для иконки
+}
+
+interface TechPoint {
+  title: string;
+  description: string;
 }
 
 interface CaseSolutionProps {
@@ -37,8 +43,8 @@ const containerVariants = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
 };
@@ -49,23 +55,19 @@ const itemVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.4,
       ease: "easeOut",
     },
   },
 };
 
-// Вариант анимации для технической секции
 const techSectionVariants = {
-  hidden: { opacity: 0, scale: 0.95 },
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    scale: 1,
     transition: {
-      duration: 0.6,
-      ease: "easeOut",
-      delayChildren: 0.2,
-      staggerChildren: 0.12,
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
     },
   },
 };
@@ -142,8 +144,8 @@ export default function CaseSolution({
                   <div
                     className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mr-4 transform transition-all duration-500 ${
                       isDark
-                        ? "bg-gradient-to-br from-blue-800/70 to-blue-900/70 text-blue-300"
-                        : "bg-gradient-to-br from-blue-100 to-blue-200/80 text-blue-600"
+                        ? `bg-gradient-to-br from-[${brandColors.primary}]/50 to-[${brandColors.secondary}]/30 text-[${brandColors.secondary}]`
+                        : `bg-gradient-to-br from-[${brandColors.primary}]/10 to-[${brandColors.secondary}]/10 text-[${brandColors.primary}]`
                     }`}
                   >
                     <Icon className="w-6 h-6" />
@@ -165,7 +167,7 @@ export default function CaseSolution({
                     <li key={idx} className="flex items-start">
                       <div
                         className={`mr-3 mt-1 text-xs ${
-                          isDark ? "text-blue-400" : "text-blue-600"
+                          isDark ? `text-[${brandColors.secondary}]` : `text-[${brandColors.primary}]`
                         }`}
                       >
                         <svg
@@ -209,20 +211,20 @@ export default function CaseSolution({
           viewport={{ once: true, amount: 0.1 }}
           className={`relative mt-20 mb-16 overflow-hidden rounded-3xl shadow-xl border ${
             isDark
-              ? "bg-gradient-to-br from-[#121929] to-[#0d1117] border-blue-900/30"
-              : "bg-gradient-to-br from-blue-50/90 to-indigo-50/80 border-blue-200/60"
+              ? `bg-gradient-to-br from-[#121929] to-[#0d1117] border-[${brandColors.primary}]/30`
+              : `bg-gradient-to-br from-[${brandColors.primary}]/5 to-[${brandColors.secondary}]/5 border-[${brandColors.primary}]/20`
           }`}
         >
           {/* Декоративные элементы фона */}
           <div className="absolute inset-0 overflow-hidden -z-10">
             <div
               className={`absolute w-96 h-96 rounded-full blur-3xl ${
-                isDark ? "bg-blue-800/5" : "bg-blue-200/30"
+                isDark ? `bg-[${brandColors.primary}]/5` : `bg-[${brandColors.primary}]/10`
               } -top-20 -right-20`}
             ></div>
             <div
               className={`absolute w-96 h-96 rounded-full blur-3xl ${
-                isDark ? "bg-indigo-800/5" : "bg-indigo-200/30"
+                isDark ? `bg-[${brandColors.secondary}]/5` : `bg-[${brandColors.secondary}]/10`
               } -bottom-20 -left-20`}
             ></div>
           </div>
@@ -233,18 +235,14 @@ export default function CaseSolution({
               <div
                 className={`inline-flex w-14 h-14 rounded-xl items-center justify-center ${
                   isDark
-                    ? "bg-gradient-to-br from-blue-600/20 to-blue-800/20 text-blue-400"
-                    : "bg-gradient-to-br from-blue-400/15 to-blue-600/15 text-blue-600"
+                    ? `bg-gradient-to-br from-[${brandColors.primary}]/20 to-[${brandColors.secondary}]/20 text-[${brandColors.secondary}]`
+                    : `bg-gradient-to-br from-[${brandColors.primary}]/15 to-[${brandColors.secondary}]/15 text-[${brandColors.primary}]`
                 }`}
               >
                 <FiServer className="w-7 h-7" />
               </div>
               <h3
-                className={`text-3xl font-bold ${
-                  isDark
-                    ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300"
-                    : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"
-                }`}
+                className={`text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[${brandColors.primary}] to-[${brandColors.secondary}]`}
               >
                 Ключевые технические особенности
               </h3>
@@ -271,38 +269,29 @@ export default function CaseSolution({
                     <motion.div
                       key={index}
                       variants={itemVariants}
-                      whileHover={{
-                        y: -5,
-                        x: 0,
-                        transition: { duration: 0.2 },
-                        boxShadow: isDark
-                          ? "0 12px 24px rgba(0, 0, 0, 0.4)"
-                          : "0 12px 24px rgba(0, 0, 0, 0.08)",
-                      }}
-                      className={`flex items-center p-5 rounded-xl transform transition-all duration-300 ${
+                      className={`p-5 rounded-xl border shadow-md flex items-start ${
                         isDark
-                          ? "bg-gray-800/40 border border-blue-800/20 hover:border-blue-700/40"
-                          : "bg-white/50 border border-blue-200/50 hover:border-blue-300/70"
+                          ? `bg-gray-800/40 border-gray-700/50 hover:border-[${brandColors.primary}]/50`
+                          : `bg-white/80 border-gray-200/70 hover:border-[${brandColors.primary}]/30`
                       }`}
                     >
-                      <div className="flex-shrink-0 mr-4">
-                        <div
-                          className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center ${
-                            isDark
-                              ? "bg-gradient-to-br from-blue-800/40 to-blue-900/40 text-blue-300"
-                              : "bg-gradient-to-br from-blue-100 to-blue-200/80 text-blue-600"
-                          }`}
-                        >
-                          <IconComponent className="w-5 h-5" />
-                        </div>
+                      <div
+                        className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mr-4 ${
+                          isDark
+                            ? `bg-gradient-to-br from-[${brandColors.primary}]/30 to-[${brandColors.secondary}]/20 text-[${brandColors.secondary}] border border-[${brandColors.primary}]/20`
+                            : `bg-gradient-to-br from-[${brandColors.primary}]/10 to-[${brandColors.secondary}]/10 text-[${brandColors.primary}] border border-[${brandColors.primary}]/20`
+                        }`}
+                      >
+                        <IconComponent className="w-5 h-5" />
                       </div>
                       <div className="flex-1">
-                        <span
-                          className={`block ${
-                            isDark ? "text-gray-200" : "text-gray-700"
-                          } text-base`}
-                          dangerouslySetInnerHTML={{ __html: point }}
-                        />
+                        <p
+                          className={`text-base leading-relaxed ${
+                            isDark ? "text-gray-300" : "text-gray-700"
+                          }`}
+                        >
+                          {point}
+                        </p>
                       </div>
                     </motion.div>
                   );

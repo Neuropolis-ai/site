@@ -12,6 +12,7 @@ import {
   FiServer,
   FiLayers,
 } from "react-icons/fi"; // Расширенный набор иконок
+import { brandColors } from "./CaseHero"; // Импортируем фирменные цвета
 
 interface CaseTechnologiesProps {
   technologies: string[];
@@ -87,22 +88,22 @@ export default function CaseTechnologies({
                   scale: 1.05,
                   transition: { duration: 0.2 },
                   boxShadow: isDark
-                    ? "0 10px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(21, 101, 192, 0.15)"
-                    : "0 10px 20px rgba(0, 0, 0, 0.08), 0 0 10px rgba(66, 153, 225, 0.1)",
+                    ? `0 10px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(${parseInt(brandColors.primary.substring(1, 3), 16)}, ${parseInt(brandColors.primary.substring(3, 5), 16)}, ${parseInt(brandColors.primary.substring(5, 7), 16)}, 0.15)`
+                    : `0 10px 20px rgba(0, 0, 0, 0.08), 0 0 10px rgba(${parseInt(brandColors.primary.substring(1, 3), 16)}, ${parseInt(brandColors.primary.substring(3, 5), 16)}, ${parseInt(brandColors.primary.substring(5, 7), 16)}, 0.1)`,
                 }}
                 // Стили для плашек технологий остаются прежними
                 className={`px-5 py-2.5 rounded-xl flex items-center space-x-2.5 text-base transition-all duration-300 border shadow-md transform ${
                   isDark
-                    ? "bg-gray-800/50 border-blue-800/30 hover:border-blue-700/50 text-gray-200"
-                    : "bg-white/60 border-blue-100/70 hover:border-blue-300/70 text-gray-700"
+                    ? `bg-gray-800/50 border-[${brandColors.primary}]/30 hover:border-[${brandColors.primary}]/50 text-gray-200`
+                    : `bg-white/60 border-[${brandColors.primary}]/20 hover:border-[${brandColors.primary}]/40 text-gray-700`
                 }`}
               >
                 {/* ... иконка и текст ... */}
                 <div
                   className={`flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center shadow-sm ${
                     isDark
-                      ? "bg-gradient-to-br from-blue-700/40 to-blue-800/40 text-blue-300 border border-blue-700/20"
-                      : "bg-gradient-to-br from-blue-100 to-blue-200/70 text-blue-600 border border-blue-200/50"
+                      ? `bg-gradient-to-br from-[${brandColors.primary}]/40 to-[${brandColors.secondary}]/30 text-[${brandColors.secondary}] border border-[${brandColors.primary}]/20`
+                      : `bg-gradient-to-br from-[${brandColors.primary}]/10 to-[${brandColors.secondary}]/10 text-[${brandColors.primary}] border border-[${brandColors.primary}]/20`
                   }`}
                 >
                   <Icon className="w-4 h-4" />

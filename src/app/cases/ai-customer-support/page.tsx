@@ -10,7 +10,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
 // Импортируем компоненты кейса
-import CaseHero from "@/components/case-study/CaseHero";
+import CaseHero, { gradientBackgroundStyles, brandColors } from "@/components/case-study/CaseHero";
 import CaseTask from "@/components/case-study/CaseTask";
 import CaseProblem from "@/components/case-study/CaseProblem";
 import CaseSolution from "@/components/case-study/CaseSolution";
@@ -37,19 +37,41 @@ import {
 const SectionWrapper = ({
   children,
   className,
+  isAlternate = false,
 }: {
   children: React.ReactNode;
   className?: string;
-}) => (
-  <div className={`relative py-16 md:py-20 overflow-hidden ${className || ""}`}>
-    {/* Фоновые элементы */}
-    <div className="absolute inset-0 -z-10 opacity-50 dark:opacity-100">
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-blue-400/15 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/15 to-indigo-400/15 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl"></div>
+  isAlternate?: boolean;
+}) => {
+  const { isDark } = useTheme();
+  return (
+    <div className={`relative py-16 md:py-20 overflow-hidden ${className || ""} 
+      ${isAlternate 
+        ? `${gradientBackgroundStyles.lightGradient} ${gradientBackgroundStyles.darkGradient}` 
+        : isDark 
+          ? "bg-gradient-to-b from-gray-900 to-gray-950"
+          : "bg-gradient-to-b from-gray-50 to-white"
+      }`}>
+      {/* Улучшенный фоновый эффект */}
+      <div className={`absolute inset-0 ${gradientBackgroundStyles.overlay} -z-10 overflow-hidden`}>
+        <div className={`absolute top-0 right-0 w-full h-full ${gradientBackgroundStyles.grid}`}></div>
+      </div>
+      
+      {/* Градиентные пятна */}
+      <div className={`absolute -top-40 -right-40 w-96 h-96 ${gradientBackgroundStyles.glowEffects}`}></div>
+      <div
+        className={`absolute top-1/3 left-1/4 w-80 h-80 ${gradientBackgroundStyles.secondaryGlowEffects}`}
+        style={{ animationDelay: "2s" }}
+      ></div>
+      <div
+        className={`absolute -bottom-40 -left-40 w-96 h-96 ${gradientBackgroundStyles.secondaryGlowEffects}`}
+        style={{ animationDelay: "4s" }}
+      ></div>
+      
+      {children}
     </div>
-    {children} {/* Убрали внутренний div.container */}
-  </div>
-);
+  );
+};
 
 export default function CasePage() {
   const { isDark } = useTheme();
@@ -233,153 +255,92 @@ export default function CasePage() {
     ],
   };
 
-  const pageVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { duration: 0.5, ease: "easeInOut" },
-    },
-  };
-
   return (
-    <>
+    <div className={`${gradientBackgroundStyles.lightGradient} ${gradientBackgroundStyles.darkGradient} min-h-screen`}>
       <Header />
-      <motion.div
-        className={`bg-gradient-to-b ${
-          isDark ? "from-black to-gray-900" : "from-white to-gray-50"
-        } text-gray-800 dark:text-white`}
-        variants={pageVariants}
-        initial="hidden"
-        animate="show"
-      >
-        {/* Обложка (Hero) - фон и центрирование внутри компонента */}
-        <CaseHero
-          title="ИИ-ассистент для службы поддержки клиентов"
-          subtitle="Как мы сократили время ожидания ответа с 24 часов до 3 минут и повысили удовлетворенность клиентов на 68%"
-          imagePath="/assets/images/ai-customer-support-new.jpg"
-          imageAlt="ИИ-ассистент поддержки клиентов в действии"
+      
+      {/* Hero секция */}
+      <CaseHero
+        title="ИИ-ассистент для поддержки клиентов"
+        subtitle="Как мы автоматизировали 82% обращений в службу поддержки e-commerce площадки и сократили время ответа в 480 раз"
+        imagePath="/assets/images/cases/ai-customer-support/hero.jpg"
+        imageAlt="ИИ-ассистент для поддержки клиентов"
+      />
+
+      {/* Основные секции кейса с чередующимся фоном */}
+      <SectionWrapper>
+        <CaseTask
+          description={taskData.description}
+          challenges={taskData.challenges}
         />
+      </SectionWrapper>
 
-        {/* Оборачиваем остальные секции в SectionWrapper с чередующимися фонами */}
-        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <CaseTask
-            description={taskData.description}
-            challenges={taskData.challenges}
-          />
-        </SectionWrapper>
+      <SectionWrapper isAlternate={true}>
+        <CaseProblem
+          description={problemData.description}
+          problemPoints={problemData.problemPoints}
+          conclusion={problemData.conclusion}
+        />
+      </SectionWrapper>
 
-        <SectionWrapper
-          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
-        >
-          <CaseProblem
-            description={problemData.description}
-            problemPoints={problemData.problemPoints}
-            conclusion={problemData.conclusion}
-          />
-        </SectionWrapper>
+      <SectionWrapper>
+        <CaseSolution
+          description={solutionData.description}
+          features={solutionData.features}
+          technicalDetails={solutionData.technicalDetails}
+          techPoints={solutionData.techPoints}
+        />
+      </SectionWrapper>
 
-        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <CaseSolution
-            description={solutionData.description}
-            features={solutionData.features}
-            technicalDetails={solutionData.technicalDetails}
-            techPoints={solutionData.techPoints}
-          />
-        </SectionWrapper>
+      <SectionWrapper isAlternate={true}>
+        <CaseImplementation
+          stages={implementationData.stages}
+          additionalInfo={implementationData.additionalInfo}
+        />
+      </SectionWrapper>
 
-        <SectionWrapper
-          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
-        >
-          <CaseImplementation
-            stages={implementationData.stages}
-            additionalInfo={implementationData.additionalInfo}
-          />
-        </SectionWrapper>
+      <SectionWrapper>
+        <CaseResults
+          metrics={resultsData.metrics}
+          intro={resultsData.intro}
+          results={resultsData.results}
+        />
+      </SectionWrapper>
 
-        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <CaseResults
-            metrics={resultsData.metrics}
-            intro={resultsData.intro}
-            results={resultsData.results}
-          />
-        </SectionWrapper>
+      <SectionWrapper isAlternate={true}>
+        <CaseTechnologies technologies={technologiesData.technologies} />
+      </SectionWrapper>
 
-        <SectionWrapper
-          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeInOut", delay: 0.3 }}
-            className="container mx-auto px-4 max-w-screen-xl mb-16"
-          >
-            <div className="max-w-4xl mx-auto px-8 py-10 rounded-2xl relative overflow-hidden backdrop-blur-lg">
-              <div className="absolute inset-0 bg-white/60 dark:bg-gray-900/50 -z-10"></div>
-              <div className="absolute inset-0 border border-white/20 dark:border-gray-700/30 rounded-2xl -z-10"></div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 dark:from-blue-600/10 dark:to-indigo-600/10 rounded-full blur-xl -z-10"></div>
-              <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-r from-indigo-400/10 to-blue-400/10 dark:from-indigo-600/10 dark:to-blue-600/10 rounded-full blur-xl -z-10"></div>
+      <SectionWrapper>
+        <CaseTestimonial
+          text={testimonialData.text}
+          authorName={testimonialData.authorName}
+          authorPosition={testimonialData.authorPosition}
+          authorInitials={testimonialData.authorInitials}
+        />
+      </SectionWrapper>
 
-              <div className="relative z-10 text-center">
-                <h3
-                  className={`text-[30px] font-semibold mb-4 ${
-                    isDark
-                      ? "text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-300"
-                      : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"
-                  }`}
-                >
-                  Сократите затраты на поддержку и увеличьте лояльность
-                </h3>
-                <p
-                  className={`text-base md:text-lg mb-8 max-w-3xl mx-auto ${
-                    isDark ? "text-gray-300" : "text-gray-600"
-                  }`}
-                >
-                  ИИ-ассистент сокращает время ответа клиентам в десятки раз и
-                  улучшает качество обслуживания. Агент никогда не устаёт, не
-                  болеет и всегда доступен 24/7 для вашего бизнеса.
-                </p>
-                <div className="flex justify-center">
-                  <Link
-                    href="/contact"
-                    className={`inline-flex items-center justify-center px-8 py-4 rounded-xl
-                         bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold text-[18px]
-                         hover:opacity-90 transition-all duration-300 hover:-translate-y-0.5
-                         shadow-lg`}
-                  >
-                    Узнать стоимость внедрения
-                    <BsArrowRight className="ml-2 w-5 h-5" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+      <SectionWrapper isAlternate={true}>
+        <CaseLongTermImpact
+          description={longTermImpactData.description}
+          impactPoints={longTermImpactData.impactPoints}
+        />
+      </SectionWrapper>
 
-          <CaseTechnologies technologies={technologiesData.technologies} />
-        </SectionWrapper>
-
-        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <CaseTestimonial
-            text={testimonialData.text}
-            authorName={testimonialData.authorName}
-            authorPosition={testimonialData.authorPosition}
-            authorInitials={testimonialData.authorInitials}
-          />
-        </SectionWrapper>
-
-        <SectionWrapper
-          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
-        >
-          <CaseLongTermImpact
-            description={longTermImpactData.description}
-            impactPoints={longTermImpactData.impactPoints}
-          />
-        </SectionWrapper>
-
-        {/* Кнопки и связанные кейсы - фон и центрирование внутри */}
+      <SectionWrapper className="pb-24 md:pb-32">
         <CaseActionButtons buttons={actionButtonsData.buttons} />
-      </motion.div>
+      </SectionWrapper>
+
+      {/* Блоки CTA */}
+      <SectionWrapper isAlternate={true}>
+        <CostReduceCTA />
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <AutomationCTA />
+      </SectionWrapper>
+
       <Footer />
-    </>
+    </div>
   );
 }

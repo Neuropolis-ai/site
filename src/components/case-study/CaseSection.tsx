@@ -3,6 +3,7 @@
 import { useTheme } from "@/context/ThemeContext";
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
+import { brandColors } from "./CaseHero";
 
 interface CaseSectionProps {
   title: string;
@@ -10,18 +11,6 @@ interface CaseSectionProps {
   customBackground?: boolean;
   className?: string;
 }
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  },
-};
 
 export default function CaseSection({
   title,
@@ -33,17 +22,16 @@ export default function CaseSection({
   return (
     <motion.div
       className={`container mx-auto px-4 max-w-screen-xl ${className}`}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.1 }}
-      variants={sectionVariants}
+      animate={{ opacity: 1 }}
     >
       <h2
         className={`text-2xl md:text-3xl font-semibold mb-6 md:mb-8 ${
           isDark ? "text-white" : "text-gray-800"
         }`}
       >
-        {title}
+        <span className={`bg-clip-text text-transparent bg-gradient-to-r from-[${brandColors.primary}] to-[${brandColors.secondary}] relative inline-block`}>
+          {title}
+        </span>
       </h2>
       <div
         className={`text-base md:text-lg ${

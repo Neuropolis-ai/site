@@ -129,7 +129,7 @@ export default function ChatBotsSolution() {
       ],
     },
     {
-      icon: <Globe className="w-6 h-6" />,
+      icon: <MessageSquare className="w-6 h-6" />,
       name: "WhatsApp",
       capabilities: [
         "Коммуникация через официальное API WhatsApp Business",
@@ -216,7 +216,7 @@ export default function ChatBotsSolution() {
   return (
     <section
       id="chatbots-solution"
-      className="py-16 md:py-24 relative overflow-hidden"
+      className="py-12 md:py-16 relative overflow-hidden"
     >
       {/* Градиентный фон */}
       <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white -z-10"></div>
@@ -283,7 +283,7 @@ export default function ChatBotsSolution() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
         >
           {botBenefits.map((benefit, index) => (
             <motion.div
@@ -319,7 +319,7 @@ export default function ChatBotsSolution() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="relative mb-20 p-10 rounded-3xl overflow-hidden"
+          className="relative mb-12 p-10 rounded-3xl overflow-hidden"
         >
           {/* Улучшенный фон с более выраженным глассморфизмом */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-sky-400/10 backdrop-blur-xl border border-blue-300/30 rounded-3xl shadow-xl"></div>
@@ -382,7 +382,7 @@ export default function ChatBotsSolution() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="mb-20"
+          className="mb-12"
         >
           <motion.h3
             variants={itemVariants}
@@ -405,7 +405,7 @@ export default function ChatBotsSolution() {
                   "bg-white border border-gray-200 hover:border-blue-200"
                 }`}
               >
-                <div className="flex items-start gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-4">
                   <div
                     className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
                       "bg-blue-50"
@@ -440,7 +440,7 @@ export default function ChatBotsSolution() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="mb-20"
+          className="mb-12"
         >
           <motion.h3
             variants={itemVariants}
@@ -463,7 +463,7 @@ export default function ChatBotsSolution() {
                   "bg-white border border-gray-200 hover:border-blue-200"
                 }`}
               >
-                <div className="flex items-start gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-4">
                   <div
                     className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
                       "bg-blue-50"

@@ -92,7 +92,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
-      className="py-24 md:py-32 relative overflow-hidden"
+      className="py-16 md:py-24 relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 -z-10"></div>
       <div className="absolute -top-40 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 rounded-full blur-3xl -z-10"></div>

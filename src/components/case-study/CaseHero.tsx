@@ -7,6 +7,7 @@ import Container from "@/components/ui/Container";
 import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
+import { ReactNode } from "react";
 
 // Общие стили градиентного фона, которые можно применить к любому компоненту
 export const gradientBackgroundStyles = {
@@ -25,7 +26,7 @@ export const brandColors = {
 };
 
 interface CaseHeroProps {
-  title: string;
+  title: string | ReactNode;
   subtitle: string;
   imagePath: string;
   imageAlt: string;
@@ -40,7 +41,11 @@ export default function CaseHero({
   const { isDark } = useTheme();
 
   return (
-    <section className={`relative overflow-hidden pt-[100px] sm:pt-30 md:pt-[140px] lg:pt-[160px] pb-16 md:pb-24 ${gradientBackgroundStyles.lightGradient} ${gradientBackgroundStyles.darkGradient}`}>
+    <section 
+      className={`relative overflow-hidden pt-[100px] sm:pt-30 md:pt-[140px] lg:pt-[160px] pb-16 md:pb-24 ${gradientBackgroundStyles.lightGradient} ${gradientBackgroundStyles.darkGradient}`}
+      itemScope
+      itemType="https://schema.org/WebPageElement"
+    >
       {/* Улучшенный фон с эффектами морфинга */}
       <div className={`absolute inset-0 ${gradientBackgroundStyles.overlay} -z-10 overflow-hidden`}>
         <div className={`absolute top-0 right-0 w-full h-full ${gradientBackgroundStyles.grid}`}></div>
@@ -67,33 +72,38 @@ export default function CaseHero({
           </motion.div>
 
           <motion.div animate={{ opacity: 1 }}>
-            <Heading
-              level={1}
-              align="center"
-              className="text-gray-900 dark:text-white mb-8 leading-tight"
-            >
-              <span className={`bg-clip-text text-transparent bg-gradient-to-r from-[${brandColors.primary}] to-[${brandColors.secondary}] relative`}>
-                {title}
-                <svg
-                  className={`absolute -bottom-2 left-0 w-full h-2 text-[${brandColors.primary}]/20`}
-                  viewBox="0 0 100 15"
-                  preserveAspectRatio="none"
-                  strokeWidth={2}
-                >
-                  <path
-                    d="M0,5 Q25,0 50,5 T100,5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-            </Heading>
+            {typeof title === 'string' ? (
+              <Heading
+                level={1}
+                align="center"
+                className="text-gray-900 dark:text-white mb-8 leading-tight"
+                itemProp="headline"
+              >
+                <span className={`${isDark ? "text-gray-100" : "text-gray-900"} relative`}>
+                  {title}
+                  <svg
+                    className="absolute -bottom-2 left-0 w-full h-2 text-[#0167F3]/20"
+                    viewBox="0 0 100 15"
+                    preserveAspectRatio="none"
+                    strokeWidth={2}
+                  >
+                    <path
+                      d="M0,5 Q25,0 50,5 T100,5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </span>
+              </Heading>
+            ) : (
+              title
+            )}
           </motion.div>
 
           <motion.div animate={{ opacity: 1 }}>
-            <Subheading align="center" className="max-w-3xl mx-auto">
+            <Subheading align="center" className="max-w-3xl mx-auto" itemProp="description">
               {subtitle}
             </Subheading>
           </motion.div>
@@ -103,7 +113,13 @@ export default function CaseHero({
         <motion.div
           animate={{ opacity: 1 }}
           className="relative rounded-2xl overflow-hidden shadow-[0_15px_30px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_15px_30px_-15px_rgba(0,0,0,0.5)] max-w-4xl mx-auto"
+          itemProp="image"
+          itemScope
+          itemType="https://schema.org/ImageObject"
         >
+          <meta itemProp="url" content={imagePath} />
+          <meta itemProp="contentUrl" content={imagePath} />
+          <meta itemProp="caption" content={imageAlt} />
           <div className="relative h-[200px] sm:h-[280px] md:h-[350px] lg:h-[400px] w-full">
             <Image 
               src={imagePath} 
@@ -111,6 +127,7 @@ export default function CaseHero({
               fill 
               className="object-cover" 
               priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
           </div>

@@ -26,10 +26,10 @@ export default function CaseSection({
     >
       <h2
         className={`text-2xl md:text-3xl font-semibold mb-6 md:mb-8 ${
-          isDark ? "text-white" : "text-gray-800"
+          isDark ? "text-gray-100" : "text-gray-900"
         }`}
       >
-        <span className={`bg-clip-text text-transparent bg-gradient-to-r from-[${brandColors.primary}] to-[${brandColors.secondary}] relative inline-block`}>
+        <span className={`relative inline-block ${isDark ? "text-gray-100" : "text-gray-900"}`}>
           {title}
         </span>
       </h2>

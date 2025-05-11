@@ -53,6 +53,17 @@ const getResultIcon = (
   return FiCheck; // Иконка по умолчанию
 };
 
+// Функция для преобразования HEX-цвета в RGB компоненты
+const hexToRgb = (hex: string) => {
+  const r = parseInt(hex.substring(1, 3), 16);
+  const g = parseInt(hex.substring(3, 5), 16);
+  const b = parseInt(hex.substring(5, 7), 16);
+  return { r, g, b };
+};
+
+// RGB-компоненты для основного цвета бренда
+const primaryRGB = hexToRgb("#0167F3");
+
 export default function CaseResults({
   metrics,
   intro,
@@ -76,8 +87,8 @@ export default function CaseResults({
                 y: -8,
                 transition: { duration: 0.3 },
                 boxShadow: isDark
-                  ? `0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(${parseInt(brandColors.primary.substring(1, 3), 16)}, ${parseInt(brandColors.primary.substring(3, 5), 16)}, ${parseInt(brandColors.primary.substring(5, 7), 16)}, 0.2)`
-                  : `0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(${parseInt(brandColors.primary.substring(1, 3), 16)}, ${parseInt(brandColors.primary.substring(3, 5), 16)}, ${parseInt(brandColors.primary.substring(5, 7), 16)}, 0.15)`,
+                  ? `0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.2)`
+                  : `0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.15)`,
               }}
               className={`p-6 rounded-2xl text-center transition-all duration-300 border shadow-lg backdrop-blur-sm ${
                 isDark
@@ -95,7 +106,7 @@ export default function CaseResults({
                 <FiBarChart2 className="w-6 h-6" />
               </div>
               <div
-                className={`text-3xl md:text-4xl font-bold mb-1 text-transparent bg-clip-text bg-gradient-to-r from-[${brandColors.primary}] to-[${brandColors.secondary}]`}
+                className={`text-3xl md:text-4xl font-bold mb-1 ${isDark ? "text-gray-100" : "text-gray-900"}`}
               >
                 {metric.number}
               </div>

@@ -55,6 +55,13 @@ export default function CaseImplementation({
   additionalInfo,
 }: CaseImplementationProps) {
   const { isDark } = useTheme();
+  
+  // Преобразуем hex-цвет в RGB для использования в тенях
+  const primaryRGB = {
+    r: parseInt("01", 16), 
+    g: parseInt("67", 16), 
+    b: parseInt("F3", 16)
+  };
 
   return (
     <CaseSection title="⚙️ Процесс внедрения">
@@ -73,28 +80,28 @@ export default function CaseImplementation({
                 y: -8,
                 transition: { duration: 0.3 },
                 boxShadow: isDark
-                  ? `0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(${parseInt(brandColors.primary.substring(1, 3), 16)}, ${parseInt(brandColors.primary.substring(3, 5), 16)}, ${parseInt(brandColors.primary.substring(5, 7), 16)}, 0.2)`
-                  : `0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(${parseInt(brandColors.primary.substring(1, 3), 16)}, ${parseInt(brandColors.primary.substring(3, 5), 16)}, ${parseInt(brandColors.primary.substring(5, 7), 16)}, 0.15)`,
+                  ? `0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.2)`
+                  : `0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.15)`,
               }}
               className={`p-6 rounded-2xl flex flex-col text-center transition-all duration-300 border shadow-lg h-full backdrop-blur-sm ${
                 isDark
-                  ? `bg-[${brandColors.primary}]/10 border-[${brandColors.primary}]/30 hover:border-[${brandColors.primary}]/50`
-                  : `bg-[${brandColors.primary}]/5 border-[${brandColors.primary}]/10 hover:border-[${brandColors.primary}]/20`
+                  ? "bg-[#0167F3]/10 border-[#0167F3]/30 hover:border-[#0167F3]/50"
+                  : "bg-[#0167F3]/5 border-[#0167F3]/10 hover:border-[#0167F3]/20"
               }`}
             >
               <div className="mb-5 flex justify-center">
                 <div
                   className={`w-14 h-14 rounded-xl flex items-center justify-center transform transition-all duration-500 shadow-md ${
                     isDark
-                      ? `bg-gradient-to-br from-[${brandColors.primary}]/50 to-[${brandColors.secondary}]/30 text-[${brandColors.secondary}] border border-[${brandColors.primary}]/30`
-                      : `bg-gradient-to-br from-[${brandColors.primary}]/10 to-[${brandColors.secondary}]/10 text-[${brandColors.primary}] border border-[${brandColors.primary}]/20`
+                      ? "bg-gradient-to-br from-[#0167F3]/50 to-[#399AFC]/30 text-[#399AFC] border border-[#0167F3]/30"
+                      : "bg-gradient-to-br from-[#0167F3]/10 to-[#399AFC]/10 text-[#0167F3] border border-[#0167F3]/20"
                   }`}
                 >
                   <Icon className="w-6 h-6" />
                 </div>
               </div>
               <h3
-                className={`font-bold text-xl mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[${brandColors.primary}] to-[${brandColors.secondary}]`}
+                className={`font-bold text-xl mb-3 ${isDark ? "text-gray-100" : "text-gray-900"}`}
               >
                 {stage.title}
               </h3>
@@ -126,20 +133,20 @@ export default function CaseImplementation({
             y: -5,
             transition: { duration: 0.2 },
             boxShadow: isDark
-              ? `0 12px 24px rgba(0, 0, 0, 0.3), 0 0 12px rgba(${parseInt(brandColors.primary.substring(1, 3), 16)}, ${parseInt(brandColors.primary.substring(3, 5), 16)}, ${parseInt(brandColors.primary.substring(5, 7), 16)}, 0.15)`
-              : `0 12px 24px rgba(0, 0, 0, 0.06), 0 0 12px rgba(${parseInt(brandColors.primary.substring(1, 3), 16)}, ${parseInt(brandColors.primary.substring(3, 5), 16)}, ${parseInt(brandColors.primary.substring(5, 7), 16)}, 0.1)`,
+              ? `0 12px 24px rgba(0, 0, 0, 0.3), 0 0 12px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.15)`
+              : `0 12px 24px rgba(0, 0, 0, 0.06), 0 0 12px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.1)`,
           }}
           className={`mt-12 p-6 rounded-2xl flex items-start space-x-5 border transform transition-all duration-300 shadow-md backdrop-blur-sm ${
             isDark
-              ? `bg-gray-800/50 border-gray-700/40 hover:border-[${brandColors.primary}]/50`
-              : `bg-white/70 border-gray-200/70 hover:border-[${brandColors.primary}]/30`
+              ? "bg-gray-800/50 border-gray-700/40 hover:border-[#0167F3]/50"
+              : "bg-white/70 border-gray-200/70 hover:border-[#0167F3]/30"
           }`}
         >
           <div
             className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center shadow-md ${
               isDark
-                ? `bg-gradient-to-br from-[${brandColors.primary}]/40 to-[${brandColors.secondary}]/30 text-[${brandColors.secondary}] border border-[${brandColors.primary}]/30`
-                : `bg-gradient-to-br from-[${brandColors.primary}]/10 to-[${brandColors.secondary}]/10 text-[${brandColors.primary}] border border-[${brandColors.primary}]/20`
+                ? "bg-gradient-to-br from-[#0167F3]/40 to-[#399AFC]/30 text-[#399AFC] border border-[#0167F3]/30"
+                : "bg-gradient-to-br from-[#0167F3]/10 to-[#399AFC]/10 text-[#0167F3] border border-[#0167F3]/20"
             }`}
           >
             <FiInfo className="w-6 h-6" />
@@ -147,7 +154,7 @@ export default function CaseImplementation({
           <div>
             <h4
               className={`font-semibold text-lg mb-1 ${
-                isDark ? `text-[${brandColors.secondary}]` : `text-[${brandColors.primary}]`
+                isDark ? "text-gray-100" : "text-gray-900"
               }`}
             >
               Интересный факт

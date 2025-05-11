@@ -63,8 +63,8 @@ export default function CaseProblem({
               <div
                 className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-sm ${
                   isDark
-                    ? `bg-gradient-to-br from-[${brandColors.primary}]/30 to-[${brandColors.secondary}]/20 text-[${brandColors.secondary}] border border-[${brandColors.primary}]/20`
-                    : `bg-gradient-to-br from-[${brandColors.primary}]/10 to-[${brandColors.secondary}]/10 text-[${brandColors.primary}] border border-[${brandColors.primary}]/20`
+                    ? "bg-gradient-to-br from-[#0167F3]/30 to-[#399AFC]/20 text-[#399AFC] border border-[#0167F3]/20"
+                    : "bg-gradient-to-br from-[#0167F3]/10 to-[#399AFC]/10 text-[#0167F3] border border-[#0167F3]/20"
                 }`}
               >
                 <FiCheckCircle className="w-5 h-5" />

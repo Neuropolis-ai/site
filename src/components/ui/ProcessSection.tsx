@@ -167,28 +167,6 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
             </motion.div>
           ))}
         </motion.div>
-
-        <motion.div
-          variants={itemVariants}
-          className="relative overflow-hidden p-8 rounded-2xl max-w-4xl mx-auto bg-gradient-to-r from-primary/10 to-primary-light/10 backdrop-blur-sm border border-primary/20"
-        >
-          <div className="absolute -top-20 -right-20 w-40 h-40 bg-primary/40 rounded-full blur-3xl opacity-30"></div>
-          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-primary-light/40 rounded-full blur-3xl opacity-30"></div>
-          <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 text-left">
-            <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-r from-primary to-primary-light flex-shrink-0 flex items-center justify-center">
-              {resultIcon}
-            </div>
-            <div className="flex-grow text-center md:text-left">
-              <Heading
-                level={3}
-                className="font-bold text-gray-900 mb-3"
-              >
-                {resultTitle}
-              </Heading>
-              <p className="text-gray-600">{resultText}</p>
-            </div>
-          </div>
-        </motion.div>
       </Container>
     </motion.section>
   );

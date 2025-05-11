@@ -3,15 +3,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import { useTheme } from "@/context/ThemeContext";
 import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
 import BaseFAQ from "../FAQ/BaseFAQ";
 
 export default function ChatBotsFAQ() {
-  const { isDark } = useTheme();
-
   // Анимационные вариации
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -67,9 +64,9 @@ export default function ChatBotsFAQ() {
       className="py-20 md:py-28 relative overflow-hidden"
     >
       {/* Фоновые элементы */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
-      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 -z-10"></div>
+      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 rounded-full blur-3xl -z-10"></div>
 
       <Container>
         <motion.div
@@ -77,13 +74,13 @@ export default function ChatBotsFAQ() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <motion.div variants={itemVariants}>
             <Badge>Часто задаваемые вопросы</Badge>
           </motion.div>
           <motion.div variants={itemVariants}>
-            <Heading level={2} align="center" className="mb-6">
+            <Heading level={2} align="center" className="mb-4">
               Ответы на{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light">
                 популярные вопросы
@@ -93,7 +90,7 @@ export default function ChatBotsFAQ() {
           <motion.div variants={itemVariants}>
             <Subheading align="center" className="max-w-3xl mx-auto">
               Мы собрали ответы на самые распространенные вопросы о наших
-              ИИ-чат-ботах для бизнеса.
+              ИИ-решениях и услугах.
             </Subheading>
           </motion.div>
         </motion.div>

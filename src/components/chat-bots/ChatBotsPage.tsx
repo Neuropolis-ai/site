@@ -6,9 +6,6 @@ import ChatBotsSolution from "./ChatBotsSolution";
 import ChatBotsUseCases from "./ChatBotsUseCases";
 import ChatBotsProcess from "./ChatBotsProcess";
 import ChatBotsWhyUs from "./ChatBotsWhyUs";
-import ChatBotsFAQ from "./ChatBotsFAQ";
-import ChatBotsContactEnhanced from "./ChatBotsContactEnhanced";
-import ChatBotsContactCTA from "./ChatBotsContactCTA";
 
 export default function ChatBotsPage() {
   return (
@@ -19,9 +16,6 @@ export default function ChatBotsPage() {
       <ChatBotsUseCases />
       <ChatBotsProcess />
       <ChatBotsWhyUs />
-      <ChatBotsFAQ />
-      <ChatBotsContactCTA />
-      <ChatBotsContactEnhanced />
     </div>
   );
 }

@@ -28,7 +28,7 @@ import Badge from "@/components/ui/Badge";
 import Link from "next/link";
 
 export default function ChatBotsSolution() {
-  const { isDark } = useTheme();
+  const { theme } = useTheme();
 
   // Анимации
   const containerVariants = {
@@ -59,9 +59,7 @@ export default function ChatBotsSolution() {
     },
     hover: {
       y: -5,
-      boxShadow: isDark
-        ? "0 10px 30px rgba(30, 64, 175, 0.2)"
-        : "0 10px 30px rgba(59, 130, 246, 0.15)",
+      boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)",
       transition: { duration: 0.3 },
     },
   };
@@ -221,10 +219,10 @@ export default function ChatBotsSolution() {
       className="py-16 md:py-24 relative overflow-hidden"
     >
       {/* Градиентный фон */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white dark:from-blue-950/10 dark:to-black -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-white -z-10"></div>
 
       {/* Сетка-фон */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
+      <div className="absolute inset-0 opacity-[0.03]">
         <div
           className="w-full h-full"
           style={{
@@ -236,15 +234,15 @@ export default function ChatBotsSolution() {
       </div>
 
       {/* Декоративные элементы */}
-      <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
-      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-gradient-to-tr from-sky-200/30 to-sky-400/30 dark:from-sky-500/10 dark:to-sky-700/10 rounded-full blur-3xl -z-5"></div>
+      <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-blue-200/30 to-blue-400/30 rounded-full blur-3xl -z-5"></div>
+      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-gradient-to-tr from-sky-200/30 to-sky-400/30 rounded-full blur-3xl -z-5"></div>
 
       {/* Анимированные элементы */}
       <motion.div
         variants={floatingVariants}
         initial="initial"
         animate="animate"
-        className="absolute top-[5%] right-[15%] w-12 h-12 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
+        className="absolute top-[5%] right-[15%] w-12 h-12 bg-blue-400/20 rounded-full backdrop-blur-md z-0"
       ></motion.div>
 
       <Container>
@@ -257,13 +255,13 @@ export default function ChatBotsSolution() {
         >
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center justify-center border border-blue-300 dark:border-blue-800 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400"
+            className="inline-flex items-center justify-center border border-blue-300 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600"
           >
             Решение
           </motion.div>
           <motion.h2
             variants={itemVariants}
-            className="text-3xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-4 tracking-tight"
+            className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4 tracking-tight"
           >
             Интеллектуальные чат-боты{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">
@@ -272,7 +270,7 @@ export default function ChatBotsSolution() {
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+            className="text-lg text-gray-600 max-w-3xl mx-auto"
           >
             Мы создаем чат-боты на базе передовых технологий искусственного интеллекта,
             которые автоматизируют коммуникацию с клиентами и улучшают пользовательский опыт.
@@ -293,24 +291,22 @@ export default function ChatBotsSolution() {
               variants={benefitCardVariants}
               whileHover="hover"
               className={`p-6 rounded-xl transition-all ${
-                isDark
-                  ? "bg-gray-800/50 hover:bg-gray-800/80 border border-gray-700 backdrop-blur-sm"
-                  : "bg-white hover:shadow-xl border border-gray-200 hover:border-blue-200"
+                "bg-white hover:shadow-xl border border-gray-200 hover:border-blue-200"
               }`}
             >
               <div
                 className={`w-14 h-14 rounded-xl mb-4 flex items-center justify-center text-xl ${
-                  isDark ? "bg-blue-900/30" : "bg-blue-50"
+                  "bg-blue-50"
                 }`}
               >
-                <span className="text-blue-600 dark:text-blue-400">
+                <span className="text-blue-600">
                   {benefit.icon}
                 </span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
                 {benefit.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300">
+              <p className="text-gray-600">
                 {benefit.description}
               </p>
             </motion.div>
@@ -326,7 +322,7 @@ export default function ChatBotsSolution() {
           className="relative mb-20 p-10 rounded-3xl overflow-hidden"
         >
           {/* Улучшенный фон с более выраженным глассморфизмом */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-sky-400/10 dark:from-blue-500/20 dark:to-sky-400/20 backdrop-blur-xl border border-blue-300/30 dark:border-blue-400/30 rounded-3xl shadow-xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-sky-400/10 backdrop-blur-xl border border-blue-300/30 rounded-3xl shadow-xl"></div>
           
           {/* Модернизированные декоративные эффекты */}
           <div className="absolute -right-20 -top-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl opacity-60"></div>
@@ -347,8 +343,7 @@ export default function ChatBotsSolution() {
             
             <div className="flex-1 text-center md:text-left">
               <h3 className="text-3xl md:text-4xl font-bold mb-6 text-center md:text-left">
-                Чат-боты будущего <br/>
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">на базе нейросетей</span>
+                Чат-боты будущего <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">на базе нейросетей</span>
               </h3>
               
               <Subheading className="mb-8 leading-relaxed">
@@ -360,19 +355,19 @@ export default function ChatBotsSolution() {
               
               {/* Обновленные теги */}
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/15 text-blue-600 dark:bg-blue-500/25 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
+                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/15 text-blue-600 border border-blue-300/20 shadow-sm hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1">
                   <Sparkles className="w-4 h-4 mr-2" />
                   GPT-4 Turbo
                 </span>
-                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
+                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/20 text-blue-600 border border-blue-300/20 shadow-sm hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1">
                   <Sparkles className="w-4 h-4 mr-2" />
                   Gemini Pro
                 </span>
-                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/25 text-blue-600 dark:bg-blue-500/35 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
+                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/25 text-blue-600 border border-blue-300/20 shadow-sm hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1">
                   <Sparkles className="w-4 h-4 mr-2" />
                   Claude 3
                 </span>
-                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/30 text-blue-600 dark:bg-blue-500/40 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
+                <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/30 text-blue-600 border border-blue-300/20 shadow-sm hover:shadow-blue-500/20 transition-all duration-300 transform hover:-translate-y-1">
                   <Sparkles className="w-4 h-4 mr-2" />
                   Собственные модели
                 </span>
@@ -391,7 +386,7 @@ export default function ChatBotsSolution() {
         >
           <motion.h3
             variants={itemVariants}
-            className="text-2xl font-semibold text-gray-900 dark:text-white mb-8 text-center"
+            className="text-2xl font-semibold text-gray-900 mb-8 text-center"
           >
             Возможности интеграции с различными платформами
           </motion.h3>
@@ -404,27 +399,23 @@ export default function ChatBotsSolution() {
                 whileHover={{
                   y: -5,
                   transition: { duration: 0.3 },
-                  boxShadow: isDark
-                    ? "0 10px 30px rgba(30, 64, 175, 0.2)"
-                    : "0 10px 30px rgba(59, 130, 246, 0.15)",
+                  boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)",
                 }}
                 className={`p-6 rounded-xl transition-all ${
-                  isDark
-                    ? "bg-gray-800/50 border border-gray-700 backdrop-blur-sm"
-                    : "bg-white border border-gray-200 hover:border-blue-200"
+                  "bg-white border border-gray-200 hover:border-blue-200"
                 }`}
               >
                 <div className="flex items-start gap-3 mb-4">
                   <div
                     className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
-                      isDark ? "bg-blue-900/30" : "bg-blue-50"
+                      "bg-blue-50"
                     }`}
                   >
-                    <span className="text-blue-600 dark:text-blue-400">
+                    <span className="text-blue-600">
                       {platform.icon}
                     </span>
                   </div>
-                  <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400">
+                  <h4 className="text-xl font-semibold text-blue-600">
                     {platform.name}
                   </h4>
                 </div>
@@ -432,7 +423,7 @@ export default function ChatBotsSolution() {
                   {platform.capabilities.map((capability, i) => (
                     <li key={i} className="flex items-start">
                       <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
-                      <span className="text-gray-600 dark:text-gray-300">
+                      <span className="text-gray-600">
                         {capability}
                       </span>
                     </li>
@@ -453,7 +444,7 @@ export default function ChatBotsSolution() {
         >
           <motion.h3
             variants={itemVariants}
-            className="text-2xl font-semibold text-gray-900 dark:text-white mb-8 text-center"
+            className="text-2xl font-semibold text-gray-900 mb-8 text-center"
           >
             Специализированные решения для разных задач
           </motion.h3>
@@ -466,27 +457,23 @@ export default function ChatBotsSolution() {
                 whileHover={{
                   y: -5,
                   transition: { duration: 0.3 },
-                  boxShadow: isDark
-                    ? "0 10px 30px rgba(30, 64, 175, 0.2)"
-                    : "0 10px 30px rgba(59, 130, 246, 0.15)",
+                  boxShadow: "0 10px 30px rgba(59, 130, 246, 0.15)",
                 }}
                 className={`p-6 rounded-xl transition-all ${
-                  isDark
-                    ? "bg-gray-800/50 border border-gray-700 backdrop-blur-sm"
-                    : "bg-white border border-gray-200 hover:border-blue-200"
+                  "bg-white border border-gray-200 hover:border-blue-200"
                 }`}
               >
                 <div className="flex items-start gap-3 mb-4">
                   <div
                     className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
-                      isDark ? "bg-blue-900/30" : "bg-blue-50"
+                      "bg-blue-50"
                     }`}
                   >
-                    <span className="text-blue-600 dark:text-blue-400">
+                    <span className="text-blue-600">
                       {type.icon}
                     </span>
                   </div>
-                  <h4 className="text-xl font-semibold text-blue-600 dark:text-blue-400">
+                  <h4 className="text-xl font-semibold text-blue-600">
                     {type.name}
                   </h4>
                 </div>
@@ -494,7 +481,7 @@ export default function ChatBotsSolution() {
                   {type.features.map((feature, i) => (
                     <li key={i} className="flex items-start">
                       <div className="mr-2 mt-1.5 w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0"></div>
-                      <span className="text-gray-600 dark:text-gray-300">
+                      <span className="text-gray-600">
                         {feature}
                       </span>
                     </li>
@@ -514,29 +501,27 @@ export default function ChatBotsSolution() {
         >
           <motion.h3
             variants={itemVariants}
-            className="text-2xl font-semibold text-gray-900 dark:text-white mb-8 text-center"
+            className="text-2xl font-semibold text-gray-900 mb-8 text-center"
           >
             Сравнение с традиционными методами поддержки
           </motion.h3>
 
           <motion.div
             variants={itemVariants}
-            className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 shadow-lg"
+            className="overflow-x-auto rounded-xl border border-gray-200 shadow-lg"
           >
             <table
-              className={`w-full border-collapse ${
-                isDark ? "text-gray-300" : "text-gray-700"
-              }`}
+              className="w-full border-collapse"
             >
               <thead>
-                <tr className={`${isDark ? "bg-gray-800" : "bg-gray-50"}`}>
-                  <th className="p-4 text-left border-b dark:border-gray-700">
+                <tr className="bg-gray-50">
+                  <th className="p-4 text-left border-b">
                     Параметр
                   </th>
-                  <th className="p-4 text-left border-b dark:border-gray-700 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400">
+                  <th className="p-4 text-left border-b bg-blue-50 text-blue-600">
                     ИИ-чат-боты
                   </th>
-                  <th className="p-4 text-left border-b dark:border-gray-700">
+                  <th className="p-4 text-left border-b">
                     Традиционная поддержка
                   </th>
                 </tr>
@@ -545,14 +530,12 @@ export default function ChatBotsSolution() {
                 {comparisonTable.map((row, index) => (
                   <tr
                     key={index}
-                    className={`${
-                      isDark ? "hover:bg-gray-800/70" : "hover:bg-blue-50/30"
-                    } transition-colors`}
+                    className="hover:bg-blue-50/30 transition-colors"
                   >
-                    <td className="p-4 border-b dark:border-gray-700">
+                    <td className="p-4 border-b">
                       {row.parameter}
                     </td>
-                    <td className="p-4 border-b dark:border-gray-700 bg-blue-50/50 dark:bg-blue-900/20">
+                    <td className="p-4 border-b bg-blue-50/50">
                       <span className="text-green-500 flex items-center">
                         <svg
                           className="w-4 h-4 mr-1"
@@ -568,7 +551,7 @@ export default function ChatBotsSolution() {
                         {row.chatbots}
                       </span>
                     </td>
-                    <td className="p-4 border-b dark:border-gray-700">
+                    <td className="p-4 border-b">
                       <span className="text-red-500 flex items-center">
                         <svg
                           className="w-4 h-4 mr-1"
@@ -588,49 +571,6 @@ export default function ChatBotsSolution() {
                 ))}
               </tbody>
             </table>
-          </motion.div>
-        </motion.div>
-
-        {/* Дополнительный компонент "Решение есть!" */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="max-w-4xl mx-auto mt-20"
-        >
-          <motion.div
-            variants={itemVariants}
-            className="relative overflow-hidden p-10 rounded-3xl bg-gradient-to-r from-blue-500/10 to-sky-400/10 dark:from-blue-500/20 dark:to-sky-400/20 backdrop-blur-xl border border-blue-300/30 dark:border-blue-400/30 shadow-xl"
-          >
-            <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue-500/30 dark:bg-blue-500/20 rounded-full blur-3xl opacity-40"></div>
-            <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-sky-400/30 dark:bg-sky-400/20 rounded-full blur-3xl opacity-40"></div>
-            
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 text-left">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0 flex items-center justify-center transform rotate-3 hover:rotate-0 transition-all duration-500 shadow-2xl group">
-                <div className="absolute inset-0 bg-white opacity-20 rounded-2xl transform translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
-                <BrainCircuit className="w-10 h-10 md:w-12 md:h-12 text-white relative z-10" />
-                <div className="absolute -right-3 -bottom-3 w-8 h-8 bg-yellow-400/70 rounded-full blur-sm"></div>
-              </div>
-              
-              <div className="flex-grow">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                  Автоматизируйте коммуникации прямо сейчас!
-                </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                  Современные чат-боты на базе искусственного интеллекта способны решить все проблемы коммуникаций, обеспечивая круглосуточную поддержку и глубокую аналитику взаимодействий.
-                </p>
-                <Link
-                  href="#chatbots-cases"
-                  className="group inline-flex items-center bg-gradient-to-r from-blue-500 to-sky-400 text-white font-medium py-3.5 px-7 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 dark:hover:shadow-blue-400/20 transform hover:-translate-y-1"
-                >
-                  <span className="relative flex items-center">
-                    Посмотреть примеры внедрений
-                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1.5 duration-300" />
-                  </span>
-                </Link>
-              </div>
-            </div>
           </motion.div>
         </motion.div>
       </Container>

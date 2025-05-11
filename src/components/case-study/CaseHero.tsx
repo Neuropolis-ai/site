@@ -39,28 +39,6 @@ export default function CaseHero({
 }: CaseHeroProps) {
   const { isDark } = useTheme();
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
     <section className={`relative overflow-hidden pt-[100px] sm:pt-30 md:pt-[140px] lg:pt-[160px] pb-16 md:pb-24 ${gradientBackgroundStyles.lightGradient} ${gradientBackgroundStyles.darkGradient}`}>
       {/* Улучшенный фон с эффектами морфинга */}
@@ -81,16 +59,14 @@ export default function CaseHero({
 
       <Container>
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          animate={{ opacity: 1 }}
           className="text-center mb-12 md:mb-16"
         >
-          <motion.div variants={itemVariants}>
+          <motion.div animate={{ opacity: 1 }}>
             <Badge>Кейс</Badge>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
+          <motion.div animate={{ opacity: 1 }}>
             <Heading
               level={1}
               align="center"
@@ -116,7 +92,7 @@ export default function CaseHero({
             </Heading>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
+          <motion.div animate={{ opacity: 1 }}>
             <Subheading align="center" className="max-w-3xl mx-auto">
               {subtitle}
             </Subheading>
@@ -125,9 +101,7 @@ export default function CaseHero({
 
         {/* Основное изображение кейса - уменьшенный размер */}
         <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          animate="visible"
+          animate={{ opacity: 1 }}
           className="relative rounded-2xl overflow-hidden shadow-[0_15px_30px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_15px_30px_-15px_rgba(0,0,0,0.5)] max-w-4xl mx-auto"
         >
           <div className="relative h-[200px] sm:h-[280px] md:h-[350px] lg:h-[400px] w-full">

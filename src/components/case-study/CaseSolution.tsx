@@ -101,10 +101,7 @@ export default function CaseSolution({
   return (
     <CaseSection title="🤖 Предложенное решение">
       <motion.p
-        variants={itemVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
+        animate={{ opacity: 1 }}
         className="mb-10 text-lg leading-relaxed max-w-4xl"
       >
         {description}
@@ -113,10 +110,7 @@ export default function CaseSolution({
       {features.length > 0 && (
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          animate={{ opacity: 1 }}
         >
           {features.map((feature, index) => {
             const Icon =
@@ -126,7 +120,7 @@ export default function CaseSolution({
             return (
               <motion.div
                 key={index}
-                variants={itemVariants}
+                animate={{ opacity: 1 }}
                 whileHover={{
                   y: -8,
                   transition: { duration: 0.3 },
@@ -205,10 +199,7 @@ export default function CaseSolution({
 
       {technicalDetails && (
         <motion.div
-          variants={techSectionVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          animate={{ opacity: 1 }}
           className={`relative mt-20 mb-16 overflow-hidden rounded-3xl shadow-xl border ${
             isDark
               ? `bg-gradient-to-br from-[#121929] to-[#0d1117] border-[${brandColors.primary}]/30`
@@ -250,7 +241,7 @@ export default function CaseSolution({
 
             {/* Основное описание */}
             <motion.p
-              variants={itemVariants}
+              animate={{ opacity: 1 }}
               className={`mt-4 mb-10 text-lg max-w-3xl mx-auto px-6 ${
                 isDark ? "text-gray-300" : "text-gray-700"
               }`}
@@ -268,7 +259,7 @@ export default function CaseSolution({
                   return (
                     <motion.div
                       key={index}
-                      variants={itemVariants}
+                      animate={{ opacity: 1 }}
                       className={`p-5 rounded-xl border shadow-md flex items-start ${
                         isDark
                           ? `bg-gray-800/40 border-gray-700/50 hover:border-[${brandColors.primary}]/50`

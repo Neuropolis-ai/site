@@ -44,13 +44,10 @@ export default function CaseProblem({
   return (
     <CaseSection title="🔍 Анализ проблемы">
       <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
+        animate={{ opacity: 1 }}
       >
         <motion.p
-          variants={itemVariants}
+          animate={{ opacity: 1 }}
           className="mb-8 text-lg leading-relaxed"
         >
           {description}
@@ -60,7 +57,7 @@ export default function CaseProblem({
           {problemPoints.map((point, index) => (
             <motion.li
               key={index}
-              variants={itemVariants}
+              animate={{ opacity: 1 }}
               className="flex items-start"
             >
               <div
@@ -85,7 +82,7 @@ export default function CaseProblem({
 
         {conclusion && (
           <motion.p
-            variants={itemVariants}
+            animate={{ opacity: 1 }}
             className={`text-base leading-relaxed ${
               isDark ? "text-gray-300" : "text-gray-700"
             }`}

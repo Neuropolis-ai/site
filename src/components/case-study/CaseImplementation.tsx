@@ -60,10 +60,7 @@ export default function CaseImplementation({
     <CaseSection title="⚙️ Процесс внедрения">
       <motion.div
         className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
+        animate={{ opacity: 1 }}
       >
         {stages.map((stage, index) => {
           const Icon =
@@ -71,7 +68,7 @@ export default function CaseImplementation({
           return (
             <motion.div
               key={index}
-              variants={itemVariants}
+              animate={{ opacity: 1 }}
               whileHover={{
                 y: -8,
                 transition: { duration: 0.3 },
@@ -124,10 +121,7 @@ export default function CaseImplementation({
 
       {additionalInfo && (
         <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          animate={{ opacity: 1 }}
           whileHover={{
             y: -5,
             transition: { duration: 0.2 },

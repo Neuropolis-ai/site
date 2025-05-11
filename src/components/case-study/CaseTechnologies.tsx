@@ -72,17 +72,14 @@ export default function CaseTechnologies({
       >
         <motion.div
           className="flex flex-wrap justify-start gap-4" // Изменено: justify-center -> justify-start
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          animate={{ opacity: 1 }}
         >
           {technologies.map((tech, index) => {
             const Icon = getTechnologyIcon(tech);
             return (
               <motion.div
                 key={index}
-                variants={itemVariants}
+                animate={{ opacity: 1 }}
                 whileHover={{
                   y: -5,
                   scale: 1.05,

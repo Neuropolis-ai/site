@@ -29,29 +29,6 @@ interface CaseResultsProps {
   results: ResultPoint[];
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: "easeOut",
-    },
-  },
-};
-
 // Функция для выбора иконки на основе текста результата
 const getResultIcon = (
   text: string
@@ -89,15 +66,12 @@ export default function CaseResults({
       {metrics.length > 0 && (
         <motion.div
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-14"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
+          animate={{ opacity: 1 }}
         >
           {metrics.map((metric, index) => (
             <motion.div
               key={index}
-              variants={itemVariants}
+              animate={{ opacity: 1 }}
               whileHover={{
                 y: -8,
                 transition: { duration: 0.3 },
@@ -139,10 +113,7 @@ export default function CaseResults({
 
       {/* Вводный текст и список результатов */}
       <motion.div
-        variants={itemVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.1 }}
+        animate={{ opacity: 1 }}
         className={`p-8 rounded-3xl shadow-xl border backdrop-blur-md ${
           isDark
             ? "bg-gradient-to-br from-gray-900/70 to-[#121929]/70 border-gray-700/40"
@@ -156,17 +127,14 @@ export default function CaseResults({
         {results.length > 0 && (
           <motion.ul
             className="space-y-4"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
+            animate={{ opacity: 1 }}
           >
             {results.map((result, index) => {
               const Icon = getResultIcon(result.text);
               return (
                 <motion.li
                   key={index}
-                  variants={itemVariants}
+                  animate={{ opacity: 1 }}
                   whileHover={{
                     x: 5,
                     transition: { duration: 0.2 },

@@ -141,9 +141,6 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
                     isDark ? "bg-primary/30" : "bg-primary/10"
                   }`}
                 >
-                  <div className="relative w-8 h-8 flex items-center justify-center text-primary dark:text-primary-light">
-                    {step.icon}
-                  </div>
                 </div>
                 <div className="flex items-center gap-3 mb-3">
                   <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light">

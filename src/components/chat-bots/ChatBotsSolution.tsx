@@ -346,12 +346,12 @@ export default function ChatBotsSolution() {
             </div>
             
             <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
+              <h3 className="text-3xl md:text-4xl font-bold mb-6 text-center md:text-left">
                 Чат-боты будущего <br/>
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">на базе нейросетей</span>
               </h3>
               
-              <Subheading className="mb-8 max-w-3xl leading-relaxed">
+              <Subheading className="mb-8 leading-relaxed">
                 Мы используем передовые технологии искусственного интеллекта и
                 нейронных сетей, чтобы создавать чат-боты, которые понимают
                 естественный язык, распознают контекст и обучаются в процессе

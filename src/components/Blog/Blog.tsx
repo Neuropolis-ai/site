@@ -4,7 +4,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { getRecentArticles } from "@/lib/blogApi";
 import { Article } from "@/lib/supabase";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import Container from "../ui/Container";
 import BlogCard from "../BlogCard";
@@ -13,31 +13,26 @@ import { motion } from "framer-motion";
 const Blog = () => {
   const { isDark } = useTheme();
   const [blogPosts, setBlogPosts] = useState<Article[]>([]);
+  const fetchedRef = useRef(false);
 
   useEffect(() => {
+    // Проверяем, загружали ли мы уже статьи
+    if (blogPosts.length > 0 || fetchedRef.current) {
+      return;
+    }
+
+    fetchedRef.current = true;
+    
     const fetchPosts = async () => {
       const posts = await getRecentArticles(3);
-      console.log(
-        "DEBUG Blog component: получено статей:",
-        posts.map((p) => ({
-          id: p.id,
-          title: p.title,
-          is_published: p.is_published,
-        }))
-      );
 
       // Дополнительная проверка, что статьи опубликованы
       const visiblePosts = posts.filter((post) => post.is_published !== false);
-      console.log(
-        "DEBUG Blog component: после фильтрации:",
-        visiblePosts.length
-      );
-
       setBlogPosts(visiblePosts);
     };
 
     fetchPosts();
-  }, []);
+  }, [blogPosts.length]);
 
   const containerVariants = {
     hidden: { opacity: 0 },

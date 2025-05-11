@@ -10,7 +10,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
 // Импортируем компоненты кейса
-import CaseHero, { gradientBackgroundStyles, brandColors } from "@/components/case-study/CaseHero";
+import CaseHero from "@/components/case-study/CaseHero";
 import CaseTask from "@/components/case-study/CaseTask";
 import CaseProblem from "@/components/case-study/CaseProblem";
 import CaseSolution from "@/components/case-study/CaseSolution";
@@ -29,45 +29,26 @@ import {
   FiCheckSquare,
 } from "react-icons/fi";
 
+// Импортируем компонент CTA
+import AutomationCTA from "@/components/CTASection/AutomationCTA";
+
 // Компонент-обертка для секций с фоном (без центрирования)
 const SectionWrapper = ({
   children,
   className,
-  isAlternate = false,
 }: {
   children: React.ReactNode;
   className?: string;
-  isAlternate?: boolean;
-}) => {
-  const { isDark } = useTheme();
-  return (
-    <div className={`relative py-16 md:py-20 overflow-hidden ${className || ""} 
-      ${isAlternate 
-        ? `${gradientBackgroundStyles.lightGradient} ${gradientBackgroundStyles.darkGradient}` 
-        : isDark 
-          ? "bg-gradient-to-b from-gray-900 to-gray-950"
-          : "bg-gradient-to-b from-gray-50 to-white"
-      }`}>
-      {/* Улучшенный фоновый эффект */}
-      <div className={`absolute inset-0 ${gradientBackgroundStyles.overlay} -z-10 overflow-hidden`}>
-        <div className={`absolute top-0 right-0 w-full h-full ${gradientBackgroundStyles.grid}`}></div>
-      </div>
-      
-      {/* Градиентные пятна */}
-      <div className={`absolute -top-40 -right-40 w-96 h-96 ${gradientBackgroundStyles.glowEffects}`}></div>
-      <div
-        className={`absolute top-1/3 left-1/4 w-80 h-80 ${gradientBackgroundStyles.secondaryGlowEffects}`}
-        style={{ animationDelay: "2s" }}
-      ></div>
-      <div
-        className={`absolute -bottom-40 -left-40 w-96 h-96 ${gradientBackgroundStyles.secondaryGlowEffects}`}
-        style={{ animationDelay: "4s" }}
-      ></div>
-      
-      {children}
+}) => (
+  <div className={`relative py-16 md:py-20 overflow-hidden ${className || ""}`}>
+    {/* Фоновые элементы */}
+    <div className="absolute inset-0 -z-10 opacity-50 dark:opacity-100">
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-blue-400/15 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/15 to-indigo-400/15 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl"></div>
     </div>
-  );
-};
+    {children}
+  </div>
+);
 
 export default function CasePage() {
   const { isDark } = useTheme();
@@ -205,6 +186,22 @@ export default function CasePage() {
       },
       { text: "Экономия в размере <b>~$350,000</b> в годовом выражении" },
     ],
+    beforeAfter: {
+      before: [
+        "• Среднее время ответа — 24 часа",
+        "• Необходимость в 30 операторах",
+        "• NPS на уровне 34",
+        "• Высокая текучка кадров",
+        "• Упущенные продажи из-за медленной реакции",
+      ],
+      after: [
+        "• Среднее время ответа — 3 минуты",
+        "• Необходимость только в 12 опытных операторах",
+        "• NPS повысился до 87",
+        "• Повышение удовлетворенности сотрудников",
+        "• Рост конверсии на 43%",
+      ],
+    },
   };
 
   // Данные для секции Технологии
@@ -252,82 +249,169 @@ export default function CasePage() {
   };
 
   return (
-    <div className={`${gradientBackgroundStyles.lightGradient} ${gradientBackgroundStyles.darkGradient} min-h-screen`}>
+    <>
       <Header />
-      
-      {/* Hero секция */}
-      <CaseHero
-        title="ИИ-ассистент для поддержки клиентов"
-        subtitle="Как мы автоматизировали 82% обращений в службу поддержки e-commerce площадки и сократили время ответа в 480 раз"
-        imagePath="/assets/images/ai-customer-support-new.jpg"
-        imageAlt="ИИ-ассистент для поддержки клиентов"
-      />
-
-      {/* Основные секции кейса с чередующимся фоном */}
-      <SectionWrapper>
-        <CaseTask
-          description={taskData.description}
-          challenges={taskData.challenges}
+      <motion.div
+        className={`bg-gradient-to-b ${
+          isDark ? "from-black to-gray-900" : "from-white to-gray-50"
+        } text-gray-800 dark:text-white`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
+      >
+        {/* Hero секция */}
+        <CaseHero
+          title="ИИ-ассистент для поддержки клиентов"
+          subtitle="Как мы автоматизировали 82% обращений в службу поддержки e-commerce площадки и сократили время ответа в 480 раз"
+          imagePath="/assets/images/cases/ai-customer-support-cover.jpg"
+          imageAlt="ИИ-ассистент для поддержки клиентов"
         />
-      </SectionWrapper>
 
-      <SectionWrapper isAlternate={true}>
-        <CaseProblem
-          description={problemData.description}
-          problemPoints={problemData.problemPoints}
-          conclusion={problemData.conclusion}
-        />
-      </SectionWrapper>
+        {/* Задача клиента */}
+        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
+          <div className="container mx-auto px-4 max-w-screen-lg">
+            <CaseTask 
+              description={taskData.description}
+              challenges={taskData.challenges}
+            />
+          </div>
+        </SectionWrapper>
 
-      <SectionWrapper>
-        <CaseSolution
-          description={solutionData.description}
-          features={solutionData.features}
-          technicalDetails={solutionData.technicalDetails}
-          techPoints={solutionData.techPoints}
-        />
-      </SectionWrapper>
+        {/* Анализ проблемы */}
+        <SectionWrapper className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}>
+          <div className="container mx-auto px-4 max-w-screen-lg">
+            <CaseProblem
+              description={problemData.description}
+              problemPoints={problemData.problemPoints}
+              conclusion={problemData.conclusion}
+            />
+          </div>
+        </SectionWrapper>
 
-      <SectionWrapper isAlternate={true}>
-        <CaseImplementation
-          stages={implementationData.stages}
-          additionalInfo={implementationData.additionalInfo}
-        />
-      </SectionWrapper>
+        {/* Решение */}
+        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
+          <div className="container mx-auto px-4 max-w-screen-lg">
+            <CaseSolution
+              description={solutionData.description}
+              features={solutionData.features}
+              technicalDetails={solutionData.technicalDetails}
+              techPoints={solutionData.techPoints}
+            />
+          </div>
+        </SectionWrapper>
 
-      <SectionWrapper>
-        <CaseResults
-          metrics={resultsData.metrics}
-          intro={resultsData.intro}
-          results={resultsData.results}
-        />
-      </SectionWrapper>
+        {/* Процесс внедрения */}
+        <SectionWrapper className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}>
+          <div className="container mx-auto px-4 max-w-screen-lg">
+            <CaseImplementation
+              stages={implementationData.stages}
+              additionalInfo={implementationData.additionalInfo}
+            />
+          </div>
+        </SectionWrapper>
 
-      <SectionWrapper isAlternate={true}>
-        <CaseTechnologies technologies={technologiesData.technologies} />
-      </SectionWrapper>
+        {/* Результаты */}
+        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
+          <div className="container mx-auto px-4 max-w-screen-lg">
+            <CaseResults
+              metrics={resultsData.metrics}
+              intro={resultsData.intro}
+              results={resultsData.results}
+            />
+            
+            {/* Примеры улучшения обслуживания */}
+            <div className="mt-16 px-4 sm:px-6 py-8 sm:py-10 rounded-2xl border border-blue-200/30 dark:border-blue-700/30 bg-white/50 dark:bg-blue-900/20 backdrop-blur-sm shadow-sm">
+              <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
+                Примеры улучшения обслуживания с помощью ИИ
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6 mt-6">
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/70 dark:to-gray-900/80 p-4 rounded-xl border border-gray-200/80 dark:border-gray-700/50">
+                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                    До внедрения
+                  </div>
+                  <ul className="text-gray-700 dark:text-gray-300 space-y-2">
+                    {resultsData.beforeAfter.before.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 p-4 rounded-xl border border-blue-200/80 dark:border-blue-700/50">
+                  <div className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">
+                    После внедрения
+                  </div>
+                  <ul className="text-gray-700 dark:text-gray-300 space-y-2">
+                    {resultsData.beforeAfter.after.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="text-center mt-16">
+                <Link
+                  href="/contact"
+                  className={`inline-flex items-center justify-center px-8 py-4 rounded-xl
+                     bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold text-[18px]
+                     hover:opacity-90 transition-all duration-300 hover:-translate-y-0.5
+                     shadow-lg`}
+                >
+                  Узнать стоимость внедрения
+                  <BsArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </SectionWrapper>
 
-      <SectionWrapper>
-        <CaseTestimonial
-          text={testimonialData.text}
-          authorName={testimonialData.authorName}
-          authorPosition={testimonialData.authorPosition}
-          authorInitials={testimonialData.authorInitials}
-        />
-      </SectionWrapper>
+        {/* Технологии */}
+        <SectionWrapper className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}>
+          <div className="container mx-auto px-4 max-w-screen-lg">
+            <CaseTechnologies technologies={technologiesData.technologies} />
+          </div>
+        </SectionWrapper>
 
-      <SectionWrapper isAlternate={true}>
-        <CaseLongTermImpact
-          description={longTermImpactData.description}
-          impactPoints={longTermImpactData.impactPoints}
-        />
-      </SectionWrapper>
+        {/* Отзыв клиента */}
+        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
+          <div className="container mx-auto px-4 max-w-screen-lg">
+            <CaseTestimonial
+              text={testimonialData.text}
+              authorName={testimonialData.authorName}
+              authorPosition={testimonialData.authorPosition}
+              authorInitials={testimonialData.authorInitials}
+            />
+          </div>
+        </SectionWrapper>
 
-      <SectionWrapper className="pb-24 md:pb-32">
-        <CaseActionButtons buttons={actionButtonsData.buttons} />
-      </SectionWrapper>
+        {/* Долгосрочное влияние */}
+        <SectionWrapper className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}>
+          <div className="container mx-auto px-4 max-w-screen-lg">
+            <CaseLongTermImpact
+              description={longTermImpactData.description}
+              impactPoints={longTermImpactData.impactPoints}
+            />
+          </div>
+        </SectionWrapper>
 
+        {/* Кнопки действия */}
+        <div className="container mx-auto px-4 max-w-screen-lg py-16">
+          <div className="text-center">
+            <h3 className="text-2xl font-bold mb-4">Готовы автоматизировать клиентскую поддержку?</h3>
+            <p className="text-lg mb-8 max-w-3xl mx-auto">
+              Современный ИИ-ассистент может обрабатывать до 82% запросов без участия оператора. Увеличьте NPS и сократите расходы уже через 2 месяца после внедрения.
+            </p>
+            <Link
+              href="/contact"
+              className={`inline-flex items-center justify-center px-8 py-4 rounded-xl
+                 bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold text-[18px]
+                 hover:opacity-90 transition-all duration-300 hover:-translate-y-0.5
+                 shadow-lg`}
+            >
+              Хочу ИИ-ассистента для своего бизнеса
+              <BsArrowRight className="ml-2 w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </motion.div>
       <Footer />
-    </div>
+    </>
   );
 }

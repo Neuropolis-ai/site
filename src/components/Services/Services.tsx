@@ -386,7 +386,7 @@ const Services = () => {
                 <div>
                   <Heading
                     level={3}
-                    className={`font-medium text-base sm:text-lg mb-1 sm:mb-2 ${
+                    className={`font-semibold text-lg sm:text-xl mb-1 sm:mb-2 ${
                       isDark ? "text-white" : "text-gray-800"
                     }`}
                   >
@@ -457,7 +457,7 @@ const Services = () => {
                 <div className="mt-7.5">
                   <Heading
                     level={3}
-                    className={`font-medium text-base sm:text-lg mb-1 sm:mb-2 ${
+                    className={`font-semibold text-lg sm:text-xl mb-1 sm:mb-2 ${
                       isDark ? "text-white" : "text-gray-800"
                     }`}
                   >
@@ -537,7 +537,7 @@ const Services = () => {
                 <div className="mt-7.5">
                   <Heading
                     level={3}
-                    className="font-medium text-base sm:text-lg mb-1 sm:mb-2 dark:text-white text-gray-800"
+                    className="font-semibold text-lg sm:text-xl mb-1 sm:mb-2 dark:text-white text-gray-800"
                   >
                     Стратегический консалтинг
                   </Heading>

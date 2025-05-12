@@ -31,6 +31,7 @@ import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
 import Link from "next/link";
+import IconWrapper from "@/components/ui/IconWrapper";
 
 export default function AIAgentSolutionNew() {
   const { isDark } = useTheme();
@@ -86,37 +87,37 @@ export default function AIAgentSolutionNew() {
   // Данные о преимуществах ИИ-агентов
   const agentBenefits = [
     {
-      icon: <Clock className="w-6 h-6" />,
+      icon: <IconWrapper icon={Clock} size={24} className="text-blue-600" />,
       title: "Экономия времени",
       description:
         "Автоматизация рутинных задач освобождает до 40% рабочего времени сотрудников для выполнения более важных стратегических задач.",
     },
     {
-      icon: <Bot className="w-6 h-6" />,
+      icon: <IconWrapper icon={Bot} size={24} className="text-blue-600" />,
       title: "Автономность",
       description:
         "Агенты работают самостоятельно по заданным правилам и целям, не требуя постоянного контроля со стороны человека.",
     },
     {
-      icon: <RefreshCw className="w-6 h-6" />,
+      icon: <IconWrapper icon={RefreshCw} size={24} className="text-blue-600" />,
       title: "Обучаемость",
       description:
         "Алгоритмы машинного обучения позволяют агентам адаптироваться и улучшать свою производительность со временем.",
     },
     {
-      icon: <Database className="w-6 h-6" />,
+      icon: <IconWrapper icon={Database} size={24} className="text-blue-600" />,
       title: "Интеграция с системами",
       description:
         "Бесшовное подключение к любым бизнес-системам через API или прямой доступ к базам данных.",
     },
     {
-      icon: <DollarSign className="w-6 h-6" />,
+      icon: <IconWrapper icon={DollarSign} size={24} className="text-blue-600" />,
       title: "Снижение затрат",
       description:
         "Уменьшение операционных расходов на 30-50% за счет оптимизации процессов и сокращения ручного труда.",
     },
     {
-      icon: <Layers className="w-6 h-6" />,
+      icon: <IconWrapper icon={Layers} size={24} className="text-blue-600" />,
       title: "Масштабируемость",
       description:
         "Легко масштабируются под возрастающие объемы задач без необходимости пропорционального увеличения штата.",
@@ -126,7 +127,7 @@ export default function AIAgentSolutionNew() {
   // Типы ИИ-агентов
   const agentTypes = [
     {
-      icon: <MessageSquare className="w-6 h-6" />,
+      icon: <IconWrapper icon={MessageSquare} size={24} className="text-blue-600" />,
       name: "Коммуникационные агенты",
       capabilities: [
         "Автоматические ответы на запросы клиентов",
@@ -136,7 +137,7 @@ export default function AIAgentSolutionNew() {
       ],
     },
     {
-      icon: <FileText className="w-6 h-6" />,
+      icon: <IconWrapper icon={FileText} size={24} className="text-blue-600" />,
       name: "Аналитические агенты",
       capabilities: [
         "Сбор и обработка данных из различных источников",
@@ -146,7 +147,7 @@ export default function AIAgentSolutionNew() {
       ],
     },
     {
-      icon: <Briefcase className="w-6 h-6" />,
+      icon: <IconWrapper icon={Briefcase} size={24} className="text-blue-600" />,
       name: "Операционные агенты",
       capabilities: [
         "Автоматизация бизнес-процессов и документооборота",
@@ -235,7 +236,7 @@ export default function AIAgentSolutionNew() {
         className="absolute top-[5%] right-[15%] w-12 h-12 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
       ></motion.div>
 
-      <Container>
+      <Container className="">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -288,7 +289,7 @@ export default function AIAgentSolutionNew() {
               {/* Блик для 3D-эффекта */}
               <div className="absolute inset-0 bg-white opacity-20 rounded-2xl transform translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
               <div className="w-12 h-12 md:w-14 md:h-14 text-white relative z-10">
-                <Bot className="w-full h-full" />
+                <IconWrapper icon={Bot} size={56} />
               </div>
               
               {/* Декоративный элемент */}
@@ -297,32 +298,31 @@ export default function AIAgentSolutionNew() {
             
             <div className="flex-1 text-center md:text-left">
               <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
-                Что такое <br/>
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">ИИ-агент</span>
+                Что такое <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">ИИ-агент</span>
               </h3>
               
-              <Subheading className="mb-8 max-w-3xl leading-relaxed">
+              <p className="mb-8 max-w-3xl leading-relaxed text-lg text-gray-600 dark:text-gray-300">
                 Это программа, использующая искусственный интеллект для автономного выполнения 
                 конкретных бизнес-задач. Она может взаимодействовать с вашими системами, общаться 
                 с клиентами или сотрудниками, анализировать данные и обучаться на основе полученного опыта.
-              </Subheading>
+              </p>
               
               {/* Обновленные теги */}
               <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/15 text-blue-600 dark:bg-blue-500/25 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
-                  <Sparkles className="w-4 h-4 mr-2" />
+                  <IconWrapper icon={Sparkles} size={16} className="mr-2" />
                   Нейронные сети
                 </span>
                 <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
-                  <Sparkles className="w-4 h-4 mr-2" />
+                  <IconWrapper icon={Sparkles} size={16} className="mr-2" />
                   Машинное обучение
                 </span>
                 <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/25 text-blue-600 dark:bg-blue-500/35 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
-                  <Sparkles className="w-4 h-4 mr-2" />
+                  <IconWrapper icon={Sparkles} size={16} className="mr-2" />
                   Обработка языка
                 </span>
                 <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-500/30 text-blue-600 dark:bg-blue-500/40 dark:text-blue-400 border border-blue-300/20 dark:border-blue-500/40 shadow-sm hover:shadow-blue-500/20 dark:hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-1">
-                  <Sparkles className="w-4 h-4 mr-2" />
+                  <IconWrapper icon={Sparkles} size={16} className="mr-2" />
                   API интеграции
                 </span>
               </div>
@@ -550,50 +550,6 @@ export default function AIAgentSolutionNew() {
                 </span>
               </li>
             </ul>
-          </motion.div>
-        </motion.div>
-
-        {/* Призыв к действию */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="max-w-4xl mx-auto mt-20"
-        >
-          <motion.div
-            variants={itemVariants}
-            className="relative overflow-hidden p-10 rounded-3xl bg-gradient-to-r from-blue-500/10 to-sky-400/10 dark:from-blue-500/20 dark:to-sky-400/20 backdrop-blur-xl border border-blue-300/30 dark:border-blue-400/30 shadow-xl"
-          >
-            <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue-500/30 dark:bg-blue-500/20 rounded-full blur-3xl opacity-40"></div>
-            <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-sky-400/30 dark:bg-sky-400/20 rounded-full blur-3xl opacity-40"></div>
-            
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 text-left">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-r from-blue-500 to-sky-400 flex-shrink-0 flex items-center justify-center transform rotate-3 hover:rotate-0 transition-all duration-500 shadow-2xl group">
-                <div className="absolute inset-0 bg-white opacity-20 rounded-2xl transform translate-x-1 translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
-                <Bot className="w-10 h-10 md:w-12 md:h-12 text-white relative z-10" />
-                <div className="absolute -right-3 -bottom-3 w-8 h-8 bg-yellow-400/70 rounded-full blur-sm"></div>
-              </div>
-              
-              <div className="flex-grow">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-                  Автоматизируйте бизнес-процессы уже сегодня!
-                </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-                  Современные ИИ-агенты способны взять на себя до 40% рутинных задач, освобождая ваших сотрудников
-                  для более важной работы и увеличивая эффективность бизнеса.
-                </p>
-                <Link
-                  href="#ai-agent-cases"
-                  className="group inline-flex items-center bg-gradient-to-r from-blue-500 to-sky-400 text-white font-medium py-3.5 px-7 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 dark:hover:shadow-blue-400/20 transform hover:-translate-y-1"
-                >
-                  <span className="relative flex items-center">
-                    Посмотреть примеры внедрений
-                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1.5 duration-300" />
-                  </span>
-                </Link>
-              </div>
-            </div>
           </motion.div>
         </motion.div>
       </Container>

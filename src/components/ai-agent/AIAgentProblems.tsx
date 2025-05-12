@@ -13,6 +13,7 @@ import {
   BarChart2,
   CheckCircle,
 } from "lucide-react";
+import IconWrapper from "@/components/ui/IconWrapper";
 
 export default function AIAgentProblems() {
   const { theme } = useTheme();
@@ -33,7 +34,7 @@ export default function AIAgentProblems() {
 
   const problems = [
     {
-      icon: <Clock className="w-6 h-6 text-[#0167F3]" />,
+      icon: <IconWrapper icon={Clock} size={24} className="text-[#0167F3]" />,
       title: "Сотрудники тонут в рутине?",
       description:
         "Ценные специалисты тратят до 60% времени на повторяющиеся задачи вместо стратегических инициатив.",
@@ -43,7 +44,7 @@ export default function AIAgentProblems() {
         "ИИ-агент берет на себя до 80% рутинных операций, высвобождая время специалистов для значимых задач.",
     },
     {
-      icon: <TrendingDown className="w-6 h-6 text-[#0167F3]" />,
+      icon: <IconWrapper icon={TrendingDown} size={24} className="text-[#0167F3]" />,
       title: "Расходы растут быстрее прибыли?",
       description:
         "Поддержка клиентов и обработка данных требуют постоянного увеличения штата и бюджета.",
@@ -53,7 +54,7 @@ export default function AIAgentProblems() {
         "ИИ-агенты снижают операционные расходы на 15-30%, автоматизируя рутинные процессы без необходимости расширения команды.",
     },
     {
-      icon: <RefreshCcw className="w-6 h-6 text-[#0167F3]" />,
+      icon: <IconWrapper icon={RefreshCcw} size={24} className="text-[#0167F3]" />,
       title: "Не справляетесь с масштабированием?",
       description:
         "Увеличение объема работы требует пропорционального найма сотрудников и усложняет управление.",
@@ -63,7 +64,7 @@ export default function AIAgentProblems() {
         "ИИ-агенты масштабируются вместе с вашим бизнесом без дополнительных затрат, справляясь с растущей нагрузкой автоматически.",
     },
     {
-      icon: <Search className="w-6 h-6 text-[#0167F3]" />,
+      icon: <IconWrapper icon={Search} size={24} className="text-[#0167F3]" />,
       title: "Теряете клиентов из-за медленной реакции?",
       description:
         "Задержка в ответах на запросы снижает конверсию и отталкивает потенциальных клиентов.",
@@ -73,7 +74,7 @@ export default function AIAgentProblems() {
         "ИИ-агенты реагируют мгновенно 24/7, увеличивая конверсию на 20-40% и повышая удовлетворенность клиентов.",
     },
     {
-      icon: <FileText className="w-6 h-6 text-[#0167F3]" />,
+      icon: <IconWrapper icon={FileText} size={24} className="text-[#0167F3]" />,
       title: "Ваши данные не работают на вас?",
       description:
         "Огромные массивы информации не анализируются должным образом, скрывая ценные инсайты.",
@@ -83,7 +84,7 @@ export default function AIAgentProblems() {
         "ИИ-агенты автоматически обрабатывают и анализируют большие объемы данных, предоставляя готовые отчеты с ключевыми инсайтами.",
     },
     {
-      icon: <BarChart2 className="w-6 h-6 text-[#0167F3]" />,
+      icon: <IconWrapper icon={BarChart2} size={24} className="text-[#0167F3]" />,
       title: "Упускаете действия конкурентов?",
       description:
         "Без систематического мониторинга вы реагируете на рынок с опозданием, теряя позиции.",
@@ -160,7 +161,7 @@ export default function AIAgentProblems() {
         </svg>
       </div>
 
-      <Container>
+      <Container className="">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -252,67 +253,6 @@ export default function AIAgentProblems() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeInOut", delay: 0.3 }}
-          className="mt-20 text-center"
-        >
-          <div className="max-w-3xl mx-auto px-8 py-10 rounded-2xl relative overflow-hidden backdrop-blur-lg">
-            <div className="absolute inset-0 bg-white/60 -z-10"></div>
-            <div className="absolute inset-0 border border-white/20 rounded-2xl -z-10"></div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-blue-400/10 to-indigo-400/10 rounded-full blur-xl -z-10"></div>
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-gradient-to-r from-indigo-400/10 to-blue-400/10 rounded-full blur-xl -z-10"></div>
-
-            <div className="relative z-10">
-              <h3 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-4">
-                Трансформируйте эти вызовы в возможности для роста
-              </h3>
-              <p className="text-gray-600 mb-8 text-xl leading-relaxed">
-                Узнайте, как ИИ-агенты решают эти задачи и освобождают ресурсы
-                для развития вашего бизнеса
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="#solution"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl
-                         bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold text-lg
-                         hover:opacity-90 transition-opacity duration-300
-                         shadow-lg"
-                >
-                  Узнать о решении
-                  <svg
-                    className="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    ></path>
-                  </svg>
-                </a>
-                <a
-                  href="#cta"
-                  className="inline-flex items-center justify-center px-6 py-3
-                         border border-blue-200
-                         text-blue-600
-                         bg-white/50 hover:bg-blue-500/10
-                         backdrop-blur-sm rounded-xl font-medium text-lg
-                         transition-colors"
-                >
-                  Получить демонстрацию
-                </a>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </Container>
     </section>

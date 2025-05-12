@@ -1,223 +1,425 @@
 "use client";
 
-import React from "react";
+import Container from "@/components/ui/Container";
+import { useTheme } from "@/context/ThemeContext";
+import { useState } from "react";
+import {
+  FiCheckCircle,
+  FiAward,
+  FiUsers,
+  FiCode,
+  FiLifeBuoy,
+  FiTrendingUp,
+  FiBarChart,
+  FiClock,
+  FiDollarSign,
+  FiBookOpen,
+  FiHeadphones,
+  FiGitBranch,
+  FiArrowRight,
+  FiTarget,
+  FiLayers,
+  FiDatabase,
+  FiSettings,
+} from "react-icons/fi";
+import Badge from "@/components/ui/Badge";
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 export default function AIAgentWhyUs() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
+  const { theme } = useTheme();
+  const isDark = theme !== "light";
+  const [activeAdvantage, setActiveAdvantage] = useState(0);
+
+  // Преимущества компании в формате, похожем на use cases
+  const companyAdvantages = [
+    {
+      title: "Индивидуальная разработка",
+      description:
+        "Мы создаем ИИ-агентов, которые точно соответствуют вашим бизнес-потребностям. Вместо готовых шаблонных решений, мы проводим глубокий анализ ваших процессов и разрабатываем агентов, которые полностью интегрируются в вашу рабочую среду и решают конкретные задачи.",
+      features: [
+        { icon: <FiTarget />, label: "Персонализированные ИИ-решения", description: "Адаптируем к специфике вашего бизнеса" },
+        { icon: <FiUsers />, label: "Ориентация на пользователя", description: "Разработка с учетом потребностей команды" },
+        { icon: <FiTrendingUp />, label: "Масштабируемые возможности", description: "Растут и развиваются вместе с вашим бизнесом" },
+      ],
+      detailedDescription: [
+        "Детальный анализ бизнес-процессов и задач",
+        "Совместная разработка спецификаций и возможностей",
+        "Гибкая настройка под меняющиеся требования",
+        "Поэтапное внедрение с обратной связью"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiAward />,
     },
+    {
+      title: "Передовые технологии ИИ",
+      description:
+        "В основе наших ИИ-агентов лежат самые современные технологии искусственного интеллекта. Мы используем продвинутые языковые модели, нейронные сети и алгоритмы машинного обучения для создания интеллектуальных помощников, способных понимать контекст, обучаться и адаптироваться под ваши потребности.",
+      stats: [
+        { value: "LLM", label: "Языковые модели" },
+        { value: "RAG", label: "Генерация с извлечением" },
+        { value: "ML", label: "Машинное обучение" },
+      ],
+      detailedDescription: [
+        "Использование современных языковых моделей последнего поколения",
+        "Обучение на данных вашей компании для высокой точности",
+        "Многомодальный анализ и обработка информации",
+        "Постоянная оптимизация и улучшение алгоритмов"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiCode />,
+    },
+    {
+      title: "Бесшовная интеграция",
+      description:
+        "Наши ИИ-агенты легко интегрируются с существующими системами и инструментами вашей компании. Благодаря современной архитектуре и открытым API, мы обеспечиваем плавное внедрение ИИ-агентов в ваши рабочие процессы без необходимости полностью менять вашу ИТ-инфраструктуру.",
+      stats: [
+        { value: "API", label: "Открытые интерфейсы" },
+        { value: "500+", label: "Готовых интеграций" },
+        { value: "98%", label: "Совместимость с системами" },
+      ],
+      detailedDescription: [
+        "Поддержка всех популярных корпоративных систем и платформ",
+        "Разработка API-коннекторов для унаследованных систем",
+        "Единая платформа управления всеми ИИ-агентами",
+        "Возможность подключения к внешним источникам данных"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiSettings />,
+    },
+    {
+      title: "Полный цикл внедрения",
+      description:
+        "Мы обеспечиваем поддержку на всех этапах внедрения ИИ-агентов: от концепции и разработки до обучения персонала и постоянного совершенствования. Наша команда экспертов помогает плавно интегрировать ИИ-технологии в ваш бизнес с минимальными рисками и максимальной отдачей.",
+      stats: [
+        { value: "24/7", label: "Техническая поддержка" },
+        { value: "100%", label: "Обучение персонала" },
+        { value: "90%", label: "SLA выполнения запросов" },
+      ],
+      detailedDescription: [
+        "Комплексное обследование и планирование внедрения",
+        "Разработка и настройка ИИ-агентов под ваши потребности",
+        "Обучение сотрудников эффективной работе с агентами",
+        "Постоянное сопровождение и оптимизация решений"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiLifeBuoy />,
+    },
+  ];
+
+  const getTabClassName = (index: number): string => {
+    if (activeAdvantage === index) {
+      return `${companyAdvantages[index].colorBg} text-white shadow-lg ${
+        isDark ? "shadow-blue-900/30" : "shadow-blue-500/30"
+      }`;
+    }
+    return isDark
+      ? "bg-gray-800/80 backdrop-blur-sm text-gray-300 hover:bg-gray-800 border border-gray-700 hover:border-blue-800/30"
+      : "bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-blue-50 border border-gray-200 hover:border-blue-200";
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeInOut",
-      },
-    },
+  const getStatClassName = (index: number): string => {
+    return isDark
+      ? `${companyAdvantages[activeAdvantage].bgDark} border ${companyAdvantages[activeAdvantage].borderDark} backdrop-blur-sm`
+      : `${companyAdvantages[activeAdvantage].bgLight} border ${companyAdvantages[activeAdvantage].borderLight}`;
   };
 
   return (
-    <motion.section
-      id="why-us"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.1 }}
-      className="py-20 md:py-28 px-4 relative overflow-hidden"
+    <section
+      id="aiagent-why-us"
+      className="py-20 md:py-24 relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+      {/* Статический градиентный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
 
-      <div className="container mx-auto relative z-10">
-        <motion.h2
-          variants={itemVariants}
-          className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center mb-16 md:mb-20 text-gray-800 dark:text-white"
-        >
-          Почему выбирают нас?
-        </motion.h2>
-
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
-            className="space-y-6"
-          >
-            <motion.div
-              variants={itemVariants}
-              whileHover={{
-                y: -4,
-                transition: { type: "spring", stiffness: 300, damping: 15 },
-              }}
-              className="group backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="flex items-start gap-4 mb-3">
-                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-xl shadow-md w-10 h-10 flex items-center justify-center">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-white"
-                  >
-                    <path
-                      d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
-                  Специализация на бизнес-процессах
-                </h3>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                Мы не просто технари, мы понимаем бизнес и создаем ИИ-агентов,
-                которые решают конкретные бизнес-задачи: от лидогенерации до
-                оптимизации расходов.
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              whileHover={{
-                y: -4,
-                transition: { type: "spring", stiffness: 300, damping: 15 },
-              }}
-              className="group backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="flex items-start gap-4 mb-3">
-                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-xl shadow-md w-10 h-10 flex items-center justify-center">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-white"
-                  >
-                    <path
-                      d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5M12 12H15M12 16H15M9 12H9.01M9 16H9.01"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
-                  Полный цикл разработки
-                </h3>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                От анализа потребностей до внедрения и поддержки. Мы берем на
-                себя весь процесс создания ИИ-агента: консультации,
-                проектирование, разработку, тестирование и сопровождение.
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              whileHover={{
-                y: -4,
-                transition: { type: "spring", stiffness: 300, damping: 15 },
-              }}
-              className="group backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="flex items-start gap-4 mb-3">
-                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-xl shadow-md w-10 h-10 flex items-center justify-center">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-white"
-                  >
-                    <path
-                      d="M13 10V3L4 14H11V21L20 10H13Z"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
-                  Передовые технологии
-                </h3>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                Мы используем самые современные модели ИИ (Claude, GPT-4), LLM
-                Frameworks и облачные технологии для создания
-                высокопроизводительных и масштабируемых решений, адаптированных
-                под ваши уникальные потребности.
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              whileHover={{
-                y: -4,
-                transition: { type: "spring", stiffness: 300, damping: 15 },
-              }}
-              className="group backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="flex items-start gap-4 mb-3">
-                <div className="flex-shrink-0 bg-gradient-to-br from-[#0167F3] to-[#399AFC] p-2 rounded-xl shadow-md w-10 h-10 flex items-center justify-center">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-white"
-                  >
-                    <path
-                      d="M19.13 16.58C19.459 16.1441 19.9466 15.8861 20.4822 15.8568C21.0179 15.8275 21.5421 16.0311 21.91 16.42L22 16.5C22.3788 16.9078 22.5966 17.4388 22.5966 17.99C22.5966 18.5412 22.3788 19.0722 22 19.48L21.91 19.58C21.5823 19.9865 21.0971 20.2498 20.5649 20.3145C20.0327 20.3792 19.4957 20.2382 19.09 19.93L19 19.87C18.5404 19.4656 17.9027 19.2771 17.26 19.35C16.6173 19.4229 16.0596 19.7488 15.73 20.24L15.69 20.31C15.361 20.7459 14.8734 21.0039 14.3378 21.0332C13.8021 21.0625 13.2779 20.8589 12.91 20.47L12.83 20.37C12.4512 19.9622 12.2334 19.4312 12.2334 18.88C12.2334 18.3288 12.4512 17.7978 12.83 17.39L12.91 17.29C13.2377 16.8835 13.7229 16.6202 14.2551 16.5555C14.7873 16.4908 15.3243 16.6318 15.73 16.94L15.81 17C16.2696 17.4044 16.9073 17.5929 17.55 17.51C18.1927 17.4371 18.7504 17.1112 19.07 16.61L19.13 16.58Z M4.87 7.42C4.54096 7.85594 4.0534 8.11388 3.51777 8.14318C2.98214 8.17248 2.45794 7.96889 2.09 7.58L2 7.5C1.62122 7.09215 1.40338 6.56115 1.40338 6.01C1.40338 5.45879 1.62122 4.92779 2 4.52L2.09 4.42C2.41769 4.01352 2.9029 3.75019 3.43508 3.6855C3.96726 3.62081 4.5043 3.76182 4.91 4.07L5 4.13C5.45955 4.53436 6.09729 4.72289 6.74 4.65C7.38271 4.57711 7.94036 4.25118 8.27 3.76L8.31 3.69C8.63904 3.25406 9.1266 2.99612 9.66223 2.96682C10.1979 2.93752 10.7221 3.14111 11.09 3.53L11.17 3.63C11.5488 4.03779 11.7666 4.56879 11.7666 5.12C11.7666 5.67121 11.5488 6.20221 11.17 6.61L11.09 6.71C10.7623 7.11648 10.2771 7.37981 9.74492 7.4445C9.21274 7.50919 8.6757 7.36818 8.27 7.06L8.19 7C7.73045 6.59564 7.09271 6.40711 6.45 6.48C5.80729 6.55289 5.24964 6.87882 4.93 7.37L4.87 7.42Z"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white mt-1">
-                  Гибкость и масштабируемость
-                </h3>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                Создаем решения, которые растут вместе с вашим бизнесом. Начните
-                с небольшого проекта и расширяйте функциональность по мере
-                необходимости без необходимости переписывать код.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
+      {/* Сетка-фон */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: "url('/grid-pattern.svg')",
+            backgroundSize: "24px 24px",
+            backgroundRepeat: "repeat",
+          }}
+        ></div>
       </div>
-    </motion.section>
+
+      <Container>
+        <div className="text-center mb-14">
+          <div>
+            <Badge children="Почему мы" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Почему клиенты выбирают{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+              Нейрополис
+            </span>
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Мы создаём передовых ИИ-агентов, которые не просто автоматизируют задачи, 
+            но и обеспечивают интеллектуальное взаимодействие с данными, процессами и клиентами 
+            для достижения максимальной эффективности вашего бизнеса.
+          </p>
+        </div>
+
+        {/* Табы для переключения между преимуществами */}
+        <div className="mb-10">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-4 sm:px-0">
+            {companyAdvantages.map((advantage, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveAdvantage(index)}
+                className={`px-4 py-3 sm:py-2.5 rounded-lg text-sm font-medium transition-all w-full sm:w-auto ${getTabClassName(
+                  index
+                )}`}
+              >
+                <div className="flex items-center justify-start gap-2">
+                  <div className="flex items-center justify-center">
+                    {advantage.icon}
+                  </div>
+                  <span className="translate-y-[1px]">{advantage.title}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Контент активного преимущества */}
+        <div
+          className={`rounded-xl overflow-hidden shadow-lg ${
+            isDark
+              ? "bg-gray-800/50 border border-gray-700 shadow-blue-900/10"
+              : "bg-white/90 backdrop-blur-sm border border-gray-200 shadow-blue-200/30"
+          }`}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch">
+            {/* Левая колонка - Текст */}
+            <div className="p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div
+                  className={`w-12 h-12 rounded-lg flex items-center justify-center 
+                  ${
+                    isDark
+                      ? `bg-gradient-to-br ${companyAdvantages[activeAdvantage].gradientFrom}/20 ${companyAdvantages[activeAdvantage].gradientTo}/20 ${companyAdvantages[activeAdvantage].colorLight}`
+                      : `bg-gradient-to-br ${companyAdvantages[activeAdvantage].gradientFrom}/10 ${companyAdvantages[activeAdvantage].gradientTo}/10 ${companyAdvantages[activeAdvantage].colorText}`
+                  }`}
+                >
+                  {companyAdvantages[activeAdvantage].icon}
+                </div>
+                <h3
+                  className={`text-xl md:text-2xl font-semibold ${companyAdvantages[activeAdvantage].colorText}`}
+                >
+                  {companyAdvantages[activeAdvantage].title}
+                </h3>
+              </div>
+
+              <div className="mb-8">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                  {companyAdvantages[activeAdvantage].description}
+                </p>
+              </div>
+
+              {activeAdvantage === 0 ? (
+                // Новые карточки для первого блока
+                <div className="grid grid-cols-1 gap-4 mb-8">
+                  {companyAdvantages[0].features?.map((feature, index) => (
+                    <div
+                      key={index}
+                      className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(index)} transition-all duration-300`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`flex-shrink-0 p-2 rounded-lg bg-blue-100 dark:bg-blue-900/40 ${companyAdvantages[activeAdvantage].colorText}`}>
+                          {feature.icon}
+                        </div>
+                        <div>
+                          <div className={`font-semibold mb-1 ${companyAdvantages[activeAdvantage].colorText}`}>
+                            {feature.label}
+                          </div>
+                          <div className="text-sm text-gray-600 dark:text-gray-400">
+                            {feature.description}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                // Статистика для остальных блоков
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                  {companyAdvantages[activeAdvantage].stats?.map((stat, index) => (
+                    <div
+                      key={index}
+                      className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(
+                        index
+                      )} transition-all duration-300`}
+                    >
+                      <div
+                        className={`text-2xl md:text-3xl font-bold ${companyAdvantages[activeAdvantage].colorText} mb-1`}
+                      >
+                        {stat.value}
+                      </div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Правая колонка - Подробное описание преимущества */}
+            <div
+              className={`${
+                isDark ? "bg-gray-800/70" : "bg-blue-50/50"
+              } p-6 md:p-8 flex flex-col justify-center`}
+            >
+              <div className="mb-5">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span className="inline-block p-1.5 rounded-lg bg-blue-500/20 dark:bg-blue-400/20 text-blue-600 dark:text-blue-400">
+                    <FiBookOpen />
+                  </span>
+                  <span className="translate-y-[1px]">Что это означает для вашего бизнеса</span>
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 text-base">
+                  {activeAdvantage === 0 
+                    ? "Наш подход — это не просто внедрение ИИ-технологий, а стратегическое создание интеллектуальных помощников для достижения конкретных бизнес-результатов. Мы разрабатываем агентов, которые становятся ценными участниками вашей команды."
+                    : `Наш подход к ${companyAdvantages[activeAdvantage].title.toLowerCase()} обеспечивает не только эффективную автоматизацию, но и создает интеллектуальную среду для вашей компании, где ИИ-агенты становятся надежными помощниками в повседневной работе.`
+                  }
+                </p>
+              </div>
+              
+              {/* Подробное описание преимущества */}
+              <div className="space-y-5">
+                {companyAdvantages[activeAdvantage].detailedDescription.map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                      {index === 0 && <FiUsers />}
+                      {index === 1 && <FiGitBranch />}
+                      {index === 2 && <FiHeadphones />}
+                      {index === 3 && <FiBarChart />}
+                    </div>
+                    <div>
+                      <p className="text-gray-700 dark:text-gray-300 translate-y-[1px]">{item}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Бизнес-результаты */}
+              <div className="mt-8 p-4 rounded-lg bg-white/70 dark:bg-gray-800/70 border border-blue-100 dark:border-blue-800/30">
+                <h5 className="font-medium text-gray-900 dark:text-white mb-3">
+                  {activeAdvantage === 0 ? "Что вы получаете:" : "Ключевые результаты"}
+                </h5>
+                {activeAdvantage === 0 ? (
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600 dark:text-blue-400">
+                        <FiTrendingUp />
+                      </span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Автоматизация рутинных задач и процессов</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600 dark:text-blue-400">
+                        <FiClock />
+                      </span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Значительная экономия времени сотрудников</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600 dark:text-blue-400">
+                        <FiUsers />
+                      </span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Улучшение клиентского опыта и сервиса</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600 dark:text-blue-400">
+                        <FiLayers />
+                      </span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Масштабируемая инфраструктура для роста</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600 dark:text-blue-400">
+                        <FiTrendingUp />
+                      </span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение эффективности работы</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600 dark:text-blue-400">
+                        <FiClock />
+                      </span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение временных затрат</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600 dark:text-blue-400">
+                        <FiDollarSign />
+                      </span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Оптимизация операционных расходов</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-blue-600 dark:text-blue-400">
+                        <FiCheckCircle />
+                      </span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение качества работы</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Призыв к действию */}
+        <div className="mt-12 text-center">
+          <div className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+            <a
+              className="px-5 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-medium shadow-lg shadow-blue-500/20 dark:shadow-blue-600/20 flex items-center justify-center gap-2 w-full sm:w-auto"
+              href="#contact"
+            >
+              <span>Обсудить ваш проект</span>
+              <FiArrowRight />
+            </a>
+            <a
+              className="px-5 sm:px-6 py-3 rounded-lg border border-blue-300 dark:border-blue-700 text-blue-600 dark:text-blue-400 font-medium w-full sm:w-auto"
+              href="#aiagent-process"
+            >
+              Узнать о процессе внедрения
+            </a>
+          </div>
+        </div>
+      </Container>
+    </section>
   );
-}
+} 

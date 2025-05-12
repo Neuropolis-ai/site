@@ -146,17 +146,6 @@ const NeuralNetwork = () => {
 
 export default function NotFound() {
   const { isDark } = useTheme();
-  const [currentTime, setCurrentTime] = useState(new Date());
-  
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
   
   return (
     <div className={`relative min-h-screen flex flex-col items-center justify-center overflow-hidden ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
@@ -231,29 +220,16 @@ export default function NotFound() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="mb-10"
           >
             <ButtonLink 
               href="/" 
               className="px-8 py-3 rounded-[12px] text-white font-medium shadow-lg shadow-blue-500/20 
-                bg-gradient-to-b from-[#153aa1] to-[#00185e] hover:from-[#1e4bc2] hover:to-[#00236e] 
+                bg-gradient-to-b from-[#3b82f6] to-[#2563eb] hover:from-[#60a5fa] hover:to-[#3b82f6] 
                 transition-all duration-300"
               variantBtn="link"
             >
               Вернуться на главную
             </ButtonLink>
-          </motion.div>
-          
-          {/* Имитация системной информации */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded text-xs 
-              ${isDark ? 'bg-gray-800 text-gray-400' : 'bg-gray-100 text-gray-500'}`}
-          >
-            <span className="inline-block w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-            <span>Система: {currentTime.toLocaleTimeString()}</span>
           </motion.div>
         </motion.div>
       </div>

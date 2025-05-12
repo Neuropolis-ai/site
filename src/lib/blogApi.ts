@@ -433,3 +433,120 @@ export async function uploadArticleImage(file: File): Promise<string | null> {
 
   return data.publicUrl;
 }
+
+// Пример данных для статей блога
+const dummyArticles: Article[] = [
+  {
+    id: '1',
+    title: 'Как автоматизировать бизнес-процессы с помощью ИИ',
+    slug: 'business-process-automation-with-ai',
+    description: 'Узнайте, как искусственный интеллект может оптимизировать рабочие процессы и снизить операционные расходы.',
+    image_url: '/placeholder.jpg',
+    is_published: true,
+    created_at: '2023-01-15T10:00:00Z',
+    published_at: '2023-01-15T10:00:00Z',
+    author: 'Александр Иванов',
+    views: 1245,
+    tags: ['автоматизация', 'искусственный интеллект', 'бизнес-процессы'],
+    category: 'Автоматизация'
+  },
+  {
+    id: '2',
+    title: 'ИИ-ассистенты для продаж: повышаем конверсию в 2 раза',
+    slug: 'ai-sales-assistants',
+    description: 'Практическое руководство по внедрению ИИ-ассистентов в отдел продаж для увеличения конверсии и выручки.',
+    image_url: '/placeholder.jpg',
+    is_published: true,
+    created_at: '2023-02-20T09:30:00Z',
+    published_at: '2023-02-20T09:30:00Z',
+    author: 'Елена Петрова',
+    views: 2103,
+    tags: ['продажи', 'конверсия', 'ИИ-ассистенты'],
+    category: 'Продажи'
+  },
+  {
+    id: '3',
+    title: 'ИИ и аналитика данных: как получить ценные инсайты',
+    slug: 'ai-data-analytics',
+    description: 'Как использовать искусственный интеллект для глубокого анализа данных и получения ценных бизнес-инсайтов.',
+    image_url: '/placeholder.jpg',
+    is_published: true,
+    created_at: '2023-03-05T15:20:00Z',
+    published_at: '2023-03-05T15:20:00Z',
+    author: 'Дмитрий Соколов',
+    views: 1789,
+    tags: ['аналитика данных', 'бизнес-инсайты', 'машинное обучение'],
+    category: 'Аналитика'
+  }
+];
+
+// Добавляем больше статей для демонстрации пагинации
+const generateMoreArticles = (): Article[] => {
+  const articles: Article[] = [...dummyArticles];
+  
+  for (let i = 4; i <= 20; i++) {
+    articles.push({
+      id: i.toString(),
+      title: `Статья о технологиях ИИ #${i}`,
+      slug: `ai-technology-article-${i}`,
+      description: `Это пример статьи #${i} для демонстрации пагинации в блоге.`,
+      image_url: '/placeholder.jpg',
+      is_published: true,
+      created_at: `2023-04-${i < 10 ? '0' + i : i}T12:00:00Z`,
+      published_at: `2023-04-${i < 10 ? '0' + i : i}T12:00:00Z`,
+      author: 'Автор Тестовый',
+      views: Math.floor(Math.random() * 2000),
+      tags: ['искусственный интеллект', 'тестовая статья'],
+      category: 'Технологии'
+    });
+  }
+  
+  return articles;
+};
+
+const allArticles = generateMoreArticles();
+
+/**
+ * Получение всех статей блога
+ */
+export const getAllArticles = async (): Promise<Article[]> => {
+  // В реальном приложении здесь будет запрос к API или базе данных
+  return Promise.resolve(allArticles);
+};
+
+/**
+ * Получение статей с пагинацией
+ */
+export const getPaginatedArticles = async (
+  page: number = 1,
+  pageSize: number = 9
+): Promise<{ articles: Article[], total: number }> => {
+  // В реальном приложении здесь будет запрос к API или базе данных
+  const startIndex = (page - 1) * pageSize;
+  const paginatedArticles = allArticles.slice(startIndex, startIndex + pageSize);
+  
+  return Promise.resolve({
+    articles: paginatedArticles,
+    total: allArticles.length
+  });
+};
+
+/**
+ * Получение статьи по slug
+ */
+export const getArticleBySlug = async (slug: string): Promise<Article | null> => {
+  // В реальном приложении здесь будет запрос к API или базе данных
+  const article = allArticles.find(article => article.slug === slug);
+  return Promise.resolve(article || null);
+};
+
+/**
+ * Получение похожих статей
+ */
+export const getRelatedArticles = async (currentSlug: string, limit: number = 3): Promise<Article[]> => {
+  // В реальном приложении здесь будет логика выбора похожих статей
+  const otherArticles = allArticles.filter(article => article.slug !== currentSlug);
+  // Перемешиваем массив для случайной выборки
+  const shuffled = [...otherArticles].sort(() => 0.5 - Math.random());
+  return Promise.resolve(shuffled.slice(0, limit));
+};

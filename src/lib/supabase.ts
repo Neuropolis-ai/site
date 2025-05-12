@@ -30,18 +30,22 @@ export type BlogPost = {
 };
 
 // Типы для статей блога
-export type Article = {
+export interface Article {
   id: string;
   title: string;
-  content: string;
-  description: string | null;
-  image_url: string | null;
-  source: string | null;
-  published_at: string;
-  created_at: string;
   slug: string;
-  is_published: boolean;
-};
+  description?: string;
+  content?: string;
+  image_url?: string;
+  is_published?: boolean;
+  created_at: string;
+  published_at?: string;
+  updated_at?: string;
+  author?: string;
+  views?: number;
+  tags?: string[];
+  category?: string;
+}
 
 // Функции для работы с данными блога
 export async function getBlogCategories(): Promise<BlogCategory[]> {

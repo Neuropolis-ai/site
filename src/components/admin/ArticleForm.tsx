@@ -15,501 +15,241 @@ const ReactQuill = dynamic(() => import("react-quill"), {
   ),
 });
 
-type ArticleFormProps = {
-  article?: Article;
-  onSubmit: (articleData: Omit<Article, "id" | "created_at">) => Promise<void>;
-  isSubmitting: boolean;
-};
+interface ArticleFormProps {
+  initialData?: {
+    title?: string;
+    slug?: string;
+    description?: string;
+    content?: string;
+    image_url?: string;
+    is_published?: boolean;
+  };
+  onSubmit: (data: any) => void;
+  isEditing?: boolean;
+}
 
-export default function ArticleForm({
-  article,
+const ArticleForm: React.FC<ArticleFormProps> = ({ 
+  initialData = {}, 
   onSubmit,
-  isSubmitting,
-}: ArticleFormProps) {
-  const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState("");
-  const [content, setContent] = useState("");
-  const [description, setDescription] = useState("");
-  const [source, setSource] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [uploadingImage, setUploadingImage] = useState(false);
-  const [publishedAt, setPublishedAt] = useState("");
-  const [isPublished, setIsPublished] = useState(true);
+  isEditing = false
+}) => {
+  const [formData, setFormData] = useState({
+    title: initialData.title || '',
+    slug: initialData.slug || '',
+    description: initialData.description || '',
+    content: initialData.content || '',
+    image_url: initialData.image_url || '',
+    is_published: initialData.is_published || false
+  });
+  
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Заполнить форму данными существующей статьи при редактировании
+  // Генерация slug из заголовка
   useEffect(() => {
-    if (article) {
-      setTitle(article.title);
-      setSlug(article.slug);
-      setContent(article.content);
-      setDescription(article.description || "");
-      setSource(article.source || "");
-      setImageUrl(article.image_url || "");
-      setIsPublished(
-        article.is_published !== undefined ? article.is_published : true
-      );
-
-      // Форматирование даты для поля ввода типа datetime-local
-      const date = new Date(article.published_at);
-      setPublishedAt(date.toISOString().slice(0, 16));
-    } else {
-      // Значения по умолчанию для новой статьи
-      const now = new Date();
-      setPublishedAt(now.toISOString().slice(0, 16));
-      setIsPublished(true);
-    }
-  }, [article]);
-
-  // Автоматически создавать slug из заголовка
-  useEffect(() => {
-    if (!article) {
-      // Только для новых статей
-      const newSlug = title
+    if (!isEditing && formData.title && !formData.slug) {
+      // Только если это новая статья и slug пустой
+      const generatedSlug = formData.title
         .toLowerCase()
-        .replace(/[^\w\sа-яё]/g, "")
-        .replace(/\s+/g, "-")
-        .replace(/[а-яё]/g, (char) => {
-          const russianChars: Record<string, string> = {
-            а: "a",
-            б: "b",
-            в: "v",
-            г: "g",
-            д: "d",
-            е: "e",
-            ё: "yo",
-            ж: "zh",
-            з: "z",
-            и: "i",
-            й: "y",
-            к: "k",
-            л: "l",
-            м: "m",
-            н: "n",
-            о: "o",
-            п: "p",
-            р: "r",
-            с: "s",
-            т: "t",
-            у: "u",
-            ф: "f",
-            х: "h",
-            ц: "ts",
-            ч: "ch",
-            ш: "sh",
-            щ: "sch",
-            ъ: "",
-            ы: "y",
-            ь: "",
-            э: "e",
-            ю: "yu",
-            я: "ya",
-          };
-          return russianChars[char] || char;
-        });
-      setSlug(newSlug);
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/--+/g, '-')
+        .trim();
+      
+      setFormData(prev => ({ ...prev, slug: generatedSlug }));
     }
-  }, [title, article]);
+  }, [formData.title, isEditing, formData.slug]);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setImageFile(file);
-
-    // Создание превью изображения
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagePreview(reader.result as string);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  const handleImageUpload = async () => {
-    if (!imageFile) return;
-
-    try {
-      setUploadingImage(true);
-      const url = await uploadArticleImage(imageFile);
-      if (url) {
-        setImageUrl(url);
-        setImagePreview(null);
-      }
-    } catch (error) {
-      console.error("Ошибка при загрузке изображения:", error);
-    } finally {
-      setUploadingImage(false);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Очищаем ошибку при изменении поля
+    if (errors[name]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
     }
   };
 
-  // Загрузка изображений для редактора
-  const imageHandler = useCallback(() => {
-    const input = document.createElement("input");
-    input.setAttribute("type", "file");
-    input.setAttribute("accept", "image/*");
-    input.click();
-
-    input.onchange = async () => {
-      const file = input.files?.[0];
-      if (file) {
-        try {
-          const url = await uploadArticleImage(file);
-          if (url) {
-            // Использовать ReactQuill API из модуля
-            const quill = (document.querySelector(".ql-editor") as any)
-              ?.__quill;
-            if (quill) {
-              const range = quill.getSelection();
-              quill.insertEmbed(range?.index || 0, "image", url);
-            }
-          }
-        } catch (error) {
-          console.error("Ошибка загрузки изображения:", error);
-        }
-      }
-    };
-  }, []);
-
-  // Модули для React-Quill
-  const modules = {
-    toolbar: {
-      container: [
-        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-        ["bold", "italic", "underline", "strike", "blockquote"],
-        [
-          { list: "ordered" },
-          { list: "bullet" },
-          { indent: "-1" },
-          { indent: "+1" },
-        ],
-        ["link", "image", "video"],
-        [{ color: [] }, { background: [] }],
-        [{ align: [] }],
-        ["clean"],
-      ],
-      handlers: {
-        image: imageHandler,
-      },
-    },
-    clipboard: {
-      // Разрешаем вставку форматированного текста
-      matchVisual: false,
-    },
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    setFormData(prev => ({ ...prev, [name]: checked }));
   };
 
-  const formats = [
-    "header",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-    "video",
-    "color",
-    "background",
-    "align",
-  ];
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+    
+    if (!formData.title.trim()) {
+      newErrors.title = 'Заголовок обязателен';
+    }
+    
+    if (!formData.slug.trim()) {
+      newErrors.slug = 'URL-адрес обязателен';
+    } else if (!/^[a-z0-9-]+$/.test(formData.slug)) {
+      newErrors.slug = 'URL может содержать только строчные буквы, цифры и дефисы';
+    }
+    
+    if (!formData.description.trim()) {
+      newErrors.description = 'Описание обязательно';
+    }
+    
+    if (!formData.content.trim()) {
+      newErrors.content = 'Контент статьи обязателен';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const publishedDate = new Date(publishedAt);
-
-    // Создаем данные статьи с полем is_published
-    const articleData = {
-      title,
-      slug,
-      content,
-      description,
-      source,
-      image_url: imageUrl,
-      published_at: publishedDate.toISOString(),
-      is_published: isPublished,
-    };
-
-    // Пробуем сохранить статью
-    try {
-      await onSubmit(articleData as Omit<Article, "id" | "created_at">);
-    } catch (error) {
-      console.error("Ошибка при сохранении статьи:", error);
-      // Если ошибка связана с полем is_published, пробуем без него
-      if (
-        error instanceof Error &&
-        error.message &&
-        error.message.includes("is_published")
-      ) {
-        console.warn("Ошибка с полем is_published, повторяем без него");
-
-        // Создаем новый объект с нужными полями для сохранения
-        const dataWithoutPublished = {
-          title,
-          slug,
-          content,
-          description,
-          source,
-          image_url: imageUrl,
-          published_at: publishedDate.toISOString(),
-        };
-
-        // Явно указываем тип как частичный
-        await onSubmit(dataWithoutPublished as any);
-      } else {
-        throw error; // Пробрасываем ошибку дальше
-      }
+    
+    if (!validateForm()) {
+      return;
     }
-  };
-
-  const handleContentChange = (value: string) => {
-    setContent(value);
+    
+    setIsSubmitting(true);
+    
+    try {
+      await onSubmit(formData);
+      // Форма успешно отправлена
+      // Можно добавить редирект или сообщение об успехе
+    } catch (error) {
+      console.error('Ошибка при сохранении статьи:', error);
+      // Здесь можно отобразить сообщение об ошибке
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label
-          htmlFor="title"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          Заголовок *
+        <label htmlFor="title" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          Заголовок статьи*
         </label>
         <input
           type="text"
           id="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          className={`mt-1 block w-full rounded-md border ${
+            errors.title ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+          } px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white`}
         />
+        {errors.title && <p className="mt-1 text-sm text-red-500">{errors.title}</p>}
       </div>
 
       <div>
-        <label
-          htmlFor="slug"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          URL-slug *
+        <label htmlFor="slug" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          URL-адрес статьи*
         </label>
-        <input
-          type="text"
-          id="slug"
-          value={slug}
-          onChange={(e) => setSlug(e.target.value)}
-          required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white"
-        />
+        <div className="mt-1 flex rounded-md shadow-sm">
+          <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-gray-500 dark:border-gray-700 dark:bg-gray-700 dark:text-gray-300">
+            /blog/
+          </span>
+          <input
+            type="text"
+            id="slug"
+            name="slug"
+            value={formData.slug}
+            onChange={handleChange}
+            className={`block w-full flex-1 rounded-none rounded-r-md border ${
+              errors.slug ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+            } px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white`}
+          />
+        </div>
+        {errors.slug && <p className="mt-1 text-sm text-red-500">{errors.slug}</p>}
       </div>
 
       <div>
-        <label
-          htmlFor="description"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          Описание
+        <label htmlFor="description" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          Краткое описание*
         </label>
         <textarea
           id="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          name="description"
           rows={3}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white"
+          value={formData.description}
+          onChange={handleChange}
+          className={`mt-1 block w-full rounded-md border ${
+            errors.description ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+          } px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white`}
         />
+        {errors.description && <p className="mt-1 text-sm text-red-500">{errors.description}</p>}
       </div>
 
       <div>
-        <label
-          htmlFor="content"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          Содержание *
+        <label htmlFor="content" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          Содержание статьи*
         </label>
-        <div className="mt-1 quill-container">
-          <ReactQuill
-            theme="snow"
-            value={content}
-            onChange={handleContentChange}
-            modules={modules}
-            formats={formats}
-            placeholder="Введите содержание статьи..."
-            className="dark:text-white"
-          />
-        </div>
-      </div>
-
-      <div>
-        <label
-          htmlFor="source"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          Источник
-        </label>
-        <input
-          type="text"
-          id="source"
-          value={source}
-          onChange={(e) => setSource(e.target.value)}
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white"
+        <textarea
+          id="content"
+          name="content"
+          rows={10}
+          value={formData.content}
+          onChange={handleChange}
+          className={`mt-1 block w-full rounded-md border ${
+            errors.content ? 'border-red-500' : 'border-gray-300 dark:border-gray-700'
+          } px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white`}
         />
-      </div>
-
-      <div>
-        <label
-          htmlFor="published_at"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          Дата публикации *
-        </label>
-        <input
-          type="datetime-local"
-          id="published_at"
-          value={publishedAt}
-          onChange={(e) => setPublishedAt(e.target.value)}
-          required
-          className="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-white"
-        />
-      </div>
-
-      <div>
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            id="is_published"
-            checked={isPublished}
-            onChange={(e) => setIsPublished(e.target.checked)}
-            className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded dark:border-gray-700 dark:bg-gray-800"
-          />
-          <label
-            htmlFor="is_published"
-            className="ml-2 block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            Опубликована
-          </label>
-        </div>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-          Отметьте, если статья должна быть видна посетителям
+        {errors.content && <p className="mt-1 text-sm text-red-500">{errors.content}</p>}
+        <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+          Поддерживается markdown форматирование.
         </p>
       </div>
 
       <div>
-        <label
-          htmlFor="image"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          Обложка
+        <label htmlFor="image_url" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          URL изображения
         </label>
-        <div className="mt-1 flex items-center space-x-4">
-          <input
-            type="file"
-            id="image"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="hidden"
-          />
-          <label
-            htmlFor="image"
-            className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-          >
-            Выбрать файл
-          </label>
-          {imageFile && (
-            <button
-              type="button"
-              onClick={handleImageUpload}
-              disabled={uploadingImage}
-              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50 transition-colors"
-            >
-              {uploadingImage ? "Загрузка..." : "Загрузить"}
-            </button>
-          )}
-        </div>
-
-        {imagePreview && (
-          <div className="mt-4">
-            <p className="text-sm text-yellow-600 dark:text-yellow-400 mb-2">
-              Изображение не загружено. Нажмите &quot;Загрузить&quot;, чтобы
-              сохранить.
-            </p>
-            <div className="relative h-40 w-full max-w-md rounded overflow-hidden">
-              <Image
-                src={imagePreview}
-                alt="Предпросмотр"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-        )}
-
-        {imageUrl && !imagePreview && (
-          <div className="mt-4">
-            <p className="text-sm text-green-600 dark:text-green-400 mb-2">
-              Текущее изображение:
-            </p>
-            <div className="relative h-40 w-full max-w-md rounded overflow-hidden">
-              <Image
-                src={imageUrl}
-                alt="Обложка статьи"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </div>
-        )}
+        <input
+          type="text"
+          id="image_url"
+          name="image_url"
+          value={formData.image_url}
+          onChange={handleChange}
+          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+          placeholder="https://example.com/image.jpg"
+        />
       </div>
 
-      <div className="flex space-x-4">
+      <div className="flex items-start">
+        <div className="flex h-5 items-center">
+          <input
+            id="is_published"
+            name="is_published"
+            type="checkbox"
+            checked={formData.is_published}
+            onChange={handleCheckboxChange}
+            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 dark:border-gray-700"
+          />
+        </div>
+        <div className="ml-3 text-sm">
+          <label htmlFor="is_published" className="font-medium text-gray-700 dark:text-gray-300">
+            Опубликовать статью
+          </label>
+          <p className="text-gray-500 dark:text-gray-400">
+            Если отмечено, статья будет доступна для чтения.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex justify-end">
         <button
           type="submit"
-          disabled={isSubmitting || uploadingImage}
-          className="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors"
+          disabled={isSubmitting}
+          className="inline-flex justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isSubmitting
-            ? "Сохранение..."
-            : article
-            ? "Обновить статью"
-            : "Создать статью"}
+          {isSubmitting ? 'Сохранение...' : isEditing ? 'Обновить статью' : 'Создать статью'}
         </button>
       </div>
-
-      <style jsx global>{`
-        .quill-container {
-          height: 500px;
-        }
-        .ql-editor {
-          min-height: 400px;
-          max-height: 600px;
-        }
-        .ql-container {
-          font-size: 16px;
-        }
-        .dark .ql-toolbar.ql-snow {
-          background-color: #374151;
-          border-color: #4b5563;
-        }
-        .dark .ql-container.ql-snow {
-          border-color: #4b5563;
-        }
-        .dark .ql-editor {
-          color: #e5e7eb;
-          background-color: #1f2937;
-        }
-        .dark .ql-picker-label,
-        .dark .ql-picker-options {
-          color: #e5e7eb;
-        }
-        .dark .ql-toolbar.ql-snow .ql-formats button {
-          color: #e5e7eb;
-        }
-        .dark .ql-toolbar.ql-snow .ql-formats svg {
-          fill: #e5e7eb;
-          stroke: #e5e7eb;
-        }
-      `}</style>
     </form>
   );
-}
+};
+
+export default ArticleForm;

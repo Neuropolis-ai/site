@@ -1,0 +1,17 @@
+# Игнорируем файлы и директории, которые могут вызывать проблемы при деплое
+node_modules
+*.log
+.env*
+.vscode
+.idea
+.git
+.DS_Store
+*.md
+test.html
+*.png
+*.jpg
+*.svg
+Новая папка
+migrations
+scripts/check-data.js
+scripts/upload-to-supabase.ts 

@@ -266,13 +266,13 @@ export default function WorkflowAutomationUseCases() {
                 isDark ? "bg-gray-800/70" : "bg-blue-50/50"
               } p-6 md:p-8 flex flex-col justify-center`}
             >
-              <div className="relative w-full h-full min-h-[300px]">
+              <div className="relative w-full h-full min-h-[300px] flex items-center justify-center">
                 <Image
                   src={useCases[activeTab].image}
                   alt={useCases[activeTab].title}
-                  className="rounded-lg shadow-lg object-contain"
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="rounded-lg shadow-lg object-contain max-w-full max-h-[400px]"
+                  width={500}
+                  height={300}
                   style={{ objectFit: "contain" }}
                   priority={activeTab === 0}
                 />

@@ -15,13 +15,10 @@ import {
   FiSettings,
   FiUsers,
   FiSend,
-  FiArrowRight,
 } from "react-icons/fi";
-import { IconType } from "react-icons";
 import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
 import { motion } from "framer-motion";
-import Badge from "@/components/ui/Badge";
 
 // Функция для форматирования номера телефона
 const formatPhoneNumber = (value: string): string => {
@@ -46,31 +43,112 @@ const formatPhoneNumber = (value: string): string => {
   )}-${digits.slice(7, 9)}-${digits.slice(9, 11)}`;
 };
 
-export default function ChatBotsContactForm() {
-  const { theme } = useTheme();
-  const isDark = theme !== "light";
-  
-  // Анимации для motion
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
+export interface ContactFormProps {
+  title?: string;
+  subtitle?: string;
+  submitButtonText?: string;
+  showCompanyField?: boolean;
+  showPhoneField?: boolean;
+  showFeatures?: boolean;
+  showConfidentiality?: boolean;
+  useContainer?: boolean;
+  className?: string;
+  fullWidth?: boolean;
+  formId?: string;
+  features?: {
+    icon: React.ReactNode;
+    title: string;
+    description: string;
+  }[];
+  confidentialityText?: string;
+  formLabels?: {
+    name?: string;
+    email?: string;
+    phone?: string;
+    company?: string;
+    message?: string;
+    agreement?: string;
   };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
+  placeholders?: {
+    name?: string;
+    email?: string;
+    phone?: string;
+    company?: string;
+    message?: string;
   };
+  successMessage?: {
+    title?: string;
+    text?: string;
+  };
+  onSubmitSuccess?: (formData: any) => void;
+  onSubmitError?: (error: any) => void;
+  customSubmit?: (formData: any) => Promise<void>;
+  backgroundColor?: string;
+  privacyPolicyUrl?: string;
+}
 
-  // Состояние формы
+const defaultFeatures = [
+  {
+    icon: <FiSearch />,
+    title: "Бесплатный аудит процессов",
+    description:
+      "Проведем предварительный анализ ваших бизнес-процессов и определим возможности для автоматизации.",
+  },
+  {
+    icon: <FiSettings />,
+    title: "Индивидуальное решение",
+    description:
+      "Разработаем персонализированное решение, учитывающее специфику вашего бизнеса и существующую инфраструктуру.",
+  },
+  {
+    icon: <FiUsers />,
+    title: "Команда экспертов",
+    description:
+      "С вами будут работать опытные специалисты с многолетним опытом в автоматизации процессов различной сложности.",
+  },
+];
+
+export default function ChatBotsContactForm({
+  title = "Готовы автоматизировать ваш бизнес?",
+  subtitle = "Оставьте заявку, и наши эксперты свяжутся с вами в течение одного рабочего дня для обсуждения вашего проекта и предоставления бесплатной консультации.",
+  submitButtonText = "Отправить заявку",
+  showCompanyField = true,
+  showPhoneField = true,
+  showFeatures = true,
+  showConfidentiality = true,
+  useContainer = false,
+  className = "",
+  fullWidth = true,
+  formId = "contact-form",
+  features = defaultFeatures,
+  confidentialityText = "Мы ценим ваше доверие и гарантируем полную конфиденциальность всей информации, которую вы предоставляете нам. Ваши данные защищены в соответствии с законодательством.",
+  formLabels = {
+    name: "Ваше имя",
+    email: "Email",
+    phone: "Телефон",
+    company: "Компания",
+    message: "Сообщение",
+    agreement:
+      "Я согласен с политикой конфиденциальности и обработкой персональных данных",
+  },
+  placeholders = {
+    name: "Иван Иванов",
+    email: "ivan@company.com",
+    phone: "+7 (999) 123-45-67",
+    company: "ООО Компания",
+    message: "Расскажите о вашем проекте или задайте вопрос",
+  },
+  successMessage = {
+    title: "Спасибо за заявку!",
+    text: "Ваше сообщение успешно отправлено. Наши эксперты свяжутся с вами в ближайшее время.",
+  },
+  onSubmitSuccess,
+  onSubmitError,
+  customSubmit,
+  backgroundColor,
+  privacyPolicyUrl = "/privacy-policy",
+}: ContactFormProps) {
+  const { isDark } = useTheme();
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -81,9 +159,7 @@ export default function ChatBotsContactForm() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState("");
 
-  // Обработчики формы
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -113,64 +189,79 @@ export default function ChatBotsContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setError("");
 
     try {
-      // Имитация отправки формы с задержкой для показа состояния загрузки
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Form submitted:", formState);
+      // Если предоставлена функция кастомной отправки формы, используем её
+      if (customSubmit) {
+        await customSubmit(formState);
+      } else {
+        // Имитация отправки формы с задержкой для показа состояния загрузки
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+        console.log("Form submitted:", formState);
+      }
+
       setIsSubmitted(true);
-      setFormState({
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        message: "",
-        agreement: false,
-      });
-    } catch (err) {
-      console.error("Error submitting form:", err);
-      setError("Произошла ошибка при отправке формы. Пожалуйста, попробуйте снова.");
+
+      // Вызов колбэка при успешной отправке
+      if (onSubmitSuccess) {
+        onSubmitSuccess(formState);
+      }
+
+      // Сброс формы через некоторое время
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormState({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          message: "",
+          agreement: false,
+        });
+      }, 3000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      // Вызов колбэка при ошибке
+      if (onSubmitError) {
+        onSubmitError(error);
+      }
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Особенности для формы контакта
-  const features = [
-    {
-      Icon: FiMessageSquare,
-      title: "Бесплатная консультация",
-      description:
-        "Проведем детальный анализ ваших бизнес-процессов и коммуникационных потребностей для определения оптимального решения.",
-    },
-    {
-      Icon: FiSettings,
-      title: "Индивидуальный подход",
-      description:
-        "Разработаем персонализированного чат-бота, учитывающего специфику вашего бизнеса, целевую аудиторию и корпоративный стиль.",
-    },
-    {
-      Icon: FiUsers,
-      title: "Команда экспертов",
-      description:
-        "С вами будут работать опытные разработчики, лингвисты и специалисты по машинному обучению с большим опытом создания ИИ-решений.",
-    },
-  ];
+  // Стили для иконок, соответствующие основному дизайну сайта
+  const iconStyle = `w-6 h-6 ${isDark ? "text-[#399AFC]" : "text-[#0167F3]"}`;
+
+  // Стили для контейнеров иконок
+  const iconContainerStyle = `w-12 h-12 rounded-lg flex items-center justify-center ${
+    isDark
+      ? "bg-gray-800 text-[#399AFC]"
+      : "bg-blue-50 text-[#0167F3]"
+  }`;
 
   // Стили для полей ввода
-  const inputStyle = `w-full px-4 py-3 rounded-xl border transition-all duration-200 ${
+  const inputStyle = `w-full px-4 py-3 rounded-lg border ${
     isDark
-      ? "bg-gray-800/50 border-gray-700 text-white focus:border-[#399AFC] focus:bg-gray-800/70 placeholder-gray-400"
-      : "bg-white/90 border-gray-200 text-gray-900 focus:border-[#0167F3] focus:bg-white placeholder-gray-400"
-  } focus:ring-3 focus:ring-[#0167F3]/20 focus:outline-none`;
+      ? "bg-gray-800 border-gray-700 text-white focus:border-[#399AFC] focus:outline-none placeholder-gray-400"
+      : "bg-white border-gray-200 text-gray-900 focus:border-[#0167F3] focus:outline-none placeholder-gray-400"
+  }`;
 
-  return (
+  // Основной фон, соответствующий дизайну сайта
+  const bgStyle = backgroundColor
+    ? { backgroundColor }
+    : className && className.includes("from-") 
+      ? className
+      : "bg-gradient-to-b from-white/80 to-gray-50/90 dark:from-gray-900 dark:to-gray-950";
+
+  const content = (
     <section
       id="chatbots-contact"
-      className="py-20 md:py-28 relative overflow-hidden"
+      className={`py-16 md:py-20 relative ${
+        fullWidth ? "w-full" : "w-full"
+      }`}
     >
-      {/* Градиентный фон */}
+      {/* Статический градиентный фон */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
 
       {/* Сетка-фон */}
@@ -186,351 +277,333 @@ export default function ChatBotsContactForm() {
       </div>
 
       {/* Декоративные элементы */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-400/10 dark:bg-blue-500/5 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-400/10 dark:bg-indigo-500/5 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
 
-      <Container>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="max-w-5xl mx-auto"
-        >
-          {/* Заголовок секции */}
-          <motion.div variants={itemVariants} className="text-center mb-14">
-            <Badge>Свяжитесь с нами</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 mt-2">
-              Готовы создать умного{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
-                чат-бота
-              </span>{" "}
-              для вашего бизнеса?
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Оставьте заявку, и наши эксперты свяжутся с вами в течение одного
-              рабочего дня для обсуждения вашего проекта и предоставления бесплатной
-              консультации.
-            </p>
-          </motion.div>
-
+      <div className="w-full mx-auto relative z-10">
+        <div className="container mx-auto">
           <div
-            className={`rounded-2xl overflow-hidden shadow-lg ${
-              isDark
-                ? "bg-gray-800/50 border border-gray-700 shadow-blue-900/10"
-                : "bg-white/90 backdrop-blur-sm border border-gray-200 shadow-blue-200/30"
-            }`}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start px-4 md:px-6 relative z-10"
           >
-            <div className="flex flex-col lg:flex-row">
-              {/* Левая колонка с преимуществами */}
-              <motion.div
-                variants={itemVariants}
-                className={`lg:w-[40%] p-8 md:p-10 ${
-                  isDark
-                    ? "bg-gradient-to-br from-gray-800 to-gray-900/80 border-r border-gray-700"
-                    : "bg-gradient-to-br from-gray-50/80 to-white border-r border-gray-100"
-                }`}
-              >
-                <h3
-                  className={`text-xl font-semibold mb-8 ${
-                    isDark ? "text-white" : "text-gray-900"
-                  }`}
-                >
-                  Почему стоит выбрать нас?
-                </h3>
-
-                <div className="space-y-8">
-                  {features.map((feature, index) => (
-                    <div key={index} className="flex gap-4">
-                      <div
-                        className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${
-                          isDark
-                            ? "bg-blue-900/30 text-[#399AFC]"
-                            : "bg-blue-50 text-[#0167F3]"
-                        }`}
-                      >
-                        <feature.Icon className={isDark ? "text-[#399AFC]" : "text-[#0167F3]"} />
-                      </div>
-                      <div>
-                        <h4
-                          className={`text-base font-semibold mb-1.5 ${
-                            isDark ? "text-white" : "text-gray-900"
-                          }`}
-                        >
-                          {feature.title}
-                        </h4>
-                        <p
-                          className={`text-sm ${
-                            isDark ? "text-gray-400" : "text-gray-600"
-                          }`}
-                        >
-                          {feature.description}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700/50">
-                  <p
-                    className={`text-sm mb-4 ${
-                      isDark ? "text-gray-400" : "text-gray-600"
-                    }`}
-                  >
-                    Мы гарантируем конфиденциальность ваших данных
-                  </p>
-                  <div
-                    className={`flex items-start gap-3 p-4 rounded-lg ${
-                      isDark
-                        ? "bg-gray-800/80 border border-gray-700"
-                        : "bg-gray-50 border border-gray-100"
-                    }`}
-                  >
-                    <FiShield
-                      className={`flex-shrink-0 mt-1 ${
-                        isDark ? "text-[#399AFC]" : "text-[#0167F3]"
-                      }`}
-                    />
-                    <p
-                      className={`text-xs ${
-                        isDark ? "text-gray-400" : "text-gray-600"
-                      }`}
+            {/* Левая колонка - Текст */}
+            {(showFeatures || title || subtitle) && (
+              <div>
+                {(title || subtitle) && (
+                  <div className="mb-10">
+                    <div
+                      className="inline-block px-4 py-1 rounded-full text-sm mb-4 bg-[#0167F3]/10 text-[#0167F3] dark:bg-blue-900/30 dark:text-blue-400"
                     >
-                      Мы ценим ваше доверие и гарантируем полную конфиденциальность всей информации, которую вы предоставляете нам. Ваши данные защищены в соответствии с законодательством.
+                      Связаться с нами
+                    </div>
+                    {title && (
+                      <div>
+                        <Heading
+                          level={2}
+                          className="text-left font-bold text-gray-900 dark:text-white mb-4 text-3xl md:text-4xl"
+                        >
+                          {title.includes("автоматизировать") ? (
+                            <>
+                              Начните{" "}
+                              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+                                цифровую
+                              </span>{" "}
+                              трансформацию сегодня
+                            </>
+                          ) : (
+                            title
+                          )}
+                        </Heading>
+                      </div>
+                    )}
+                    {subtitle && (
+                      <p
+                        className="text-lg text-gray-600 dark:text-gray-300"
+                      >
+                        {subtitle}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* Преимущества обращения */}
+                {showFeatures && features && features.length > 0 && (
+                  <div className="space-y-6">
+                    {features.map((feature, index) => (
+                      <div key={index} className="flex items-start gap-4">
+                        <div
+                          className={iconContainerStyle}
+                          style={{ aspectRatio: "1/1" }}
+                        >
+                          {React.cloneElement(
+                            feature.icon as React.ReactElement,
+                            {
+                              className: iconStyle,
+                            }
+                          )}
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                            {feature.title}
+                          </h3>
+                          <p className="text-base text-gray-600 dark:text-gray-300 mt-1">
+                            {feature.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Дополнительная информация */}
+                {showConfidentiality && (
+                  <div
+                    className="mt-10 p-6 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700"
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="p-1.5 rounded-full bg-[#0167F3]/10 dark:bg-blue-900/30">
+                        <FiShield className="w-5 h-5 text-[#0167F3] dark:text-[#399AFC]" />
+                      </div>
+                      <span className="text-base font-medium text-gray-900 dark:text-white">
+                        Гарантия конфиденциальности
+                      </span>
+                    </div>
+                    <p className="text-base text-gray-600 dark:text-gray-300">
+                      {confidentialityText}
                     </p>
                   </div>
-                </div>
-              </motion.div>
+                )}
+              </div>
+            )}
 
-              {/* Правая колонка с формой */}
-              <div className="lg:w-[60%] p-8 md:p-10">
-                {isSubmitted ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="h-full flex flex-col items-center justify-center text-center py-8"
-                  >
-                    <div
-                      className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 ${
-                        isDark
-                          ? "bg-green-900/30 text-green-400"
-                          : "bg-green-100 text-green-600"
-                      }`}
-                    >
-                      <FiCheckCircle className="w-8 h-8" />
-                    </div>
-                    <h3
-                      className={`text-2xl font-semibold mb-4 ${
-                        isDark ? "text-white" : "text-gray-900"
-                      }`}
-                    >
-                      Спасибо за заявку!
-                    </h3>
-                    <p
-                      className={`text-base mb-8 max-w-md ${
-                        isDark ? "text-gray-300" : "text-gray-600"
-                      }`}
-                    >
-                      Ваше сообщение успешно отправлено. Наши эксперты свяжутся с вами в ближайшее время для обсуждения вашего проекта.
-                    </p>
-                    <button
-                      onClick={() => setIsSubmitted(false)}
-                      className="px-6 py-3 bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white rounded-lg hover:opacity-90 transition-opacity"
-                    >
-                      Отправить новую заявку
-                    </button>
-                  </motion.div>
-                ) : (
-                  <>
+            {/* Правая колонка - Форма */}
+            <div
+              className={`p-8 rounded-lg backdrop-blur-sm relative overflow-hidden ${
+                isDark
+                  ? "bg-gray-800/90 border border-gray-700"
+                  : "bg-white/90 border border-gray-200 shadow-sm"
+              }`}
+            >
+              {isSubmitted ? (
+                <div
+                  className="text-center py-10"
+                >
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#0167F3] dark:bg-[#399AFC] text-white mb-6">
+                    <FiCheckCircle className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                    {successMessage.title}
+                  </h3>
+                  <p className="text-base text-gray-600 dark:text-gray-300 mb-8 max-w-md mx-auto">
+                    {successMessage.text}
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <div className="relative">
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                       <span className="inline-block p-1.5 rounded-full bg-[#0167F3]/10 dark:bg-blue-900/30">
                         <FiMessageSquare className="w-5 h-5 text-[#0167F3] dark:text-[#399AFC]" />
                       </span>
                       Заполните форму
                     </h3>
-                    
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                    <form
+                      onSubmit={handleSubmit}
+                      id={formId}
+                      className="space-y-5"
+                    >
                       <div>
                         <label
-                          htmlFor="name"
+                          htmlFor={`${formId}-name`}
                           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
                         >
                           <FiUser className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
-                          Ваше имя <span className="text-red-500">*</span>
+                          {formLabels.name}{" "}
+                          <span className="text-red-500">*</span>
                         </label>
                         <input
-                          type="text"
-                          id="name"
+                          id={`${formId}-name`}
                           name="name"
+                          type="text"
                           value={formState.name}
                           onChange={handleChange}
-                          className={inputStyle}
-                          placeholder="Иван Иванов"
                           required
+                          className={inputStyle}
+                          placeholder={placeholders.name}
                         />
                       </div>
 
                       <div>
                         <label
-                          htmlFor="email"
+                          htmlFor={`${formId}-email`}
                           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
                         >
                           <FiMail className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
-                          Email <span className="text-red-500">*</span>
+                          {formLabels.email}{" "}
+                          <span className="text-red-500">*</span>
                         </label>
                         <input
-                          type="email"
-                          id="email"
+                          id={`${formId}-email`}
                           name="email"
+                          type="email"
                           value={formState.email}
                           onChange={handleChange}
-                          className={inputStyle}
-                          placeholder="ivan@company.com"
                           required
+                          className={inputStyle}
+                          placeholder={placeholders.email}
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                          <label
-                            htmlFor="phone"
-                            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
-                          >
-                            <FiPhone className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
-                            Телефон
-                          </label>
-                          <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            value={formState.phone}
-                            onChange={handleChange}
-                            className={inputStyle}
-                            placeholder="+7 (999) 123-45-67"
-                          />
-                        </div>
+                      <div
+                        className={`grid grid-cols-1 ${
+                          showPhoneField && showCompanyField
+                            ? "md:grid-cols-2"
+                            : ""
+                        } gap-5`}
+                      >
+                        {showPhoneField && (
+                          <div>
+                            <label
+                              htmlFor={`${formId}-phone`}
+                              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
+                            >
+                              <FiPhone className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
+                              {formLabels.phone}
+                            </label>
+                            <input
+                              id={`${formId}-phone`}
+                              name="phone"
+                              type="tel"
+                              value={formState.phone}
+                              onChange={handleChange}
+                              className={inputStyle}
+                              placeholder={placeholders.phone}
+                            />
+                          </div>
+                        )}
 
-                        <div>
-                          <label
-                            htmlFor="company"
-                            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
-                          >
-                            <FiHome className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
-                            Компания
-                          </label>
-                          <input
-                            type="text"
-                            id="company"
-                            name="company"
-                            value={formState.company}
-                            onChange={handleChange}
-                            className={inputStyle}
-                            placeholder="ООО Компания"
-                          />
-                        </div>
+                        {showCompanyField && (
+                          <div>
+                            <label
+                              htmlFor={`${formId}-company`}
+                              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
+                            >
+                              <FiHome className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
+                              {formLabels.company}
+                            </label>
+                            <input
+                              id={`${formId}-company`}
+                              name="company"
+                              type="text"
+                              value={formState.company}
+                              onChange={handleChange}
+                              className={inputStyle}
+                              placeholder={placeholders.company}
+                            />
+                          </div>
+                        )}
                       </div>
 
                       <div>
                         <label
-                          htmlFor="message"
+                          htmlFor={`${formId}-message`}
                           className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5 flex items-center gap-1.5"
                         >
                           <FiMessageSquare className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
-                          Сообщение
+                          {formLabels.message}
                         </label>
                         <textarea
-                          id="message"
+                          id={`${formId}-message`}
                           name="message"
+                          rows={4}
                           value={formState.message}
                           onChange={handleChange}
-                          rows={4}
-                          className={`${inputStyle} resize-none`}
-                          placeholder="Расскажите о вашем проекте или задайте вопрос"
+                          className={inputStyle}
+                          placeholder={placeholders.message}
                         ></textarea>
                       </div>
-
-                      {error && (
-                        <div className="p-3 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg text-sm">
-                          {error}
-                        </div>
-                      )}
 
                       <div className="flex items-start pt-2">
                         <div className="flex h-5">
                           <input
-                            id="agreement"
+                            id={`${formId}-agreement`}
                             name="agreement"
                             type="checkbox"
                             checked={formState.agreement}
                             onChange={handleCheckboxChange}
                             required
-                            className="h-5 w-5 rounded text-[#0167F3] focus:ring-[#0167F3] border-gray-300 focus:ring-2 focus:ring-offset-1 transition-colors"
+                            className="h-5 w-5 rounded text-[#0167F3] focus:ring-[#0167F3] border-gray-300"
                           />
                         </div>
                         <label
-                          htmlFor="agreement"
+                          htmlFor={`${formId}-agreement`}
                           className="ml-3 block text-sm text-gray-600 dark:text-gray-300"
                         >
-                          Я согласен с{" "}
-                          <a
-                            href="/privacy-policy"
-                            className="text-[#0167F3] dark:text-[#399AFC] hover:underline"
-                          >
-                            политикой конфиденциальности
-                          </a>{" "}
-                          и обработкой персональных данных
+                          {formLabels.agreement?.includes(
+                            "политикой конфиденциальности"
+                          ) ? (
+                            <>
+                              Я согласен с{" "}
+                              <a
+                                href={privacyPolicyUrl}
+                                className="text-[#0167F3] dark:text-[#399AFC] hover:underline"
+                              >
+                                политикой конфиденциальности
+                              </a>{" "}
+                              и обработкой персональных данных
+                            </>
+                          ) : (
+                            formLabels.agreement
+                          )}
                         </label>
                       </div>
 
-                      <div className="mt-8">
-                        <button
-                          type="submit"
-                          disabled={isSubmitting || !formState.agreement}
-                          className={`w-full py-3 px-6 rounded-xl flex items-center justify-center text-white font-medium
-                            bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:opacity-90 transition-opacity
-                            disabled:opacity-70 disabled:cursor-not-allowed`}
-                        >
-                          {isSubmitting ? (
-                            <>
-                              <svg
-                                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                              >
-                                <circle
-                                  className="opacity-25"
-                                  cx="12"
-                                  cy="12"
-                                  r="10"
-                                  stroke="currentColor"
-                                  strokeWidth="4"
-                                ></circle>
-                                <path
-                                  className="opacity-75"
-                                  fill="currentColor"
-                                  d="M4 12a8 8 0 018-8v8H4z"
-                                ></path>
-                              </svg>
-                              Отправка...
-                            </>
-                          ) : (
-                            <>
-                              Получить консультацию
-                              <FiArrowRight className="ml-2" />
-                            </>
-                          )}
-                        </button>
-                      </div>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className={`w-full mt-4 bg-[#0167F3] dark:bg-[#399AFC] text-white font-semibold py-3 px-6 rounded-lg transition-opacity ${
+                          isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                        }`}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <svg
+                              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              ></path>
+                            </svg>
+                            Отправка...
+                          </>
+                        ) : (
+                          <span className="flex items-center justify-center">
+                            {submitButtonText} <FiSend className="ml-2 w-5 h-5" />
+                          </span>
+                        )}
+                      </button>
                     </form>
-                  </>
-                )}
-              </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
-        </motion.div>
-      </Container>
+        </div>
+      </div>
     </section>
   );
-}
+
+  return useContainer ? <Container>{content}</Container> : content;
+} 

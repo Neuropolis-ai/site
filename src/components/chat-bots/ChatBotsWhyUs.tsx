@@ -15,7 +15,7 @@ import {
   FiDollarSign,
   FiBookOpen,
   FiHeadphones,
-  FiMessageSquare,
+  FiGitBranch,
   FiArrowRight,
   FiTarget,
   FiLayers,
@@ -33,7 +33,7 @@ export default function ChatBotsWhyUs() {
     {
       title: "Подход, создающий ценность",
       description:
-        "Мы не просто разрабатываем чат-боты — мы думаем как предприниматели и создаём решения, которые работают на рост вашего бизнеса. Вместо формального внедрения интеллектуальных ассистентов мы начинаем с бизнес-задач, вникаем в контекст и подбираем индивидуальный путь к результату.",
+        "Мы не просто внедряем технологии — мы думаем как предприниматели и создаём решения, которые работают на рост вашего бизнеса. Вместо формального внедрения автоматизации мы начинаем с бизнес-задач, вникаем в контекст и подбираем индивидуальный путь к результату.",
       features: [
         { icon: <FiTarget className="w-4 h-4" />, label: "Практический опыт в бизнес-решениях", description: "Создаём решения, которые приносят реальный эффект" },
         { icon: <FiUsers className="w-4 h-4" />, label: "Индивидуальный подход к каждому проекту", description: "Глубокое погружение в задачи клиента" },
@@ -41,7 +41,7 @@ export default function ChatBotsWhyUs() {
       ],
       detailedDescription: [
         "Погружение в бизнес-контекст и цели",
-        "Совместная проработка сценариев и гипотез",
+        "Совместная проработка решений и гипотез",
         "Гибкая архитектура под рост и изменения",
         "Быстрый запуск, постепенное масштабирование"
       ],
@@ -57,19 +57,19 @@ export default function ChatBotsWhyUs() {
       icon: <FiAward className="w-5 h-5" />,
     },
     {
-      title: "Индивидуальные решения",
+      title: "Индивидуальный подход",
       description:
-        "Каждый чат-бот разрабатывается с учетом специфики вашего бизнеса, целевой аудитории и конкретных бизнес-процессов. Мы не используем шаблонные решения – ваш бот будет уникальным инструментом, максимально адаптированным под ваши потребности.",
+        "Мы не используем шаблонные решения. Каждый проект начинается с тщательного анализа бизнес-процессов клиента для создания уникального решения, которое идеально подойдет именно вашему бизнесу, учитывая его особенности и требования.",
       stats: [
-        { value: "100%", label: "Индивидуальная настройка" },
-        { value: "85%", label: "Точность распознавания" },
-        { value: "24/7", label: "Непрерывная работа" },
+        { value: "100%", label: "Индивидуальных решений" },
+        { value: "3x", label: "Рост эффективности" },
+        { value: "60%", label: "Экономия ресурсов" },
       ],
       detailedDescription: [
-        "Анализ бизнес-процессов и сценариев общения",
-        "Настройка персонализированных диалоговых сценариев",
-        "Адаптация под корпоративный стиль и тон коммуникации",
-        "Интеграция с вашими бизнес-системами"
+        "Предпроектный анализ и аудит текущих процессов",
+        "Адаптация решения под бизнес-модель клиента",
+        "Учет существующей IT-инфраструктуры и интеграция с ней",
+        "Масштабируемость для будущего роста компании"
       ],
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
@@ -83,19 +83,19 @@ export default function ChatBotsWhyUs() {
       icon: <FiUsers className="w-5 h-5" />,
     },
     {
-      title: "Современные технологии",
+      title: "Инновационные технологии",
       description:
-        "Наши чат-боты используют передовые технологии искусственного интеллекта и машинного обучения. Мы применяем современные языковые модели, которые обеспечивают естественное общение и высокую точность понимания запросов пользователей на разных языках.",
+        "Мы применяем передовые технологии искусственного интеллекта, машинного обучения и облачных вычислений, чтобы создавать прогрессивные решения, которые не просто автоматизируют процессы, но и позволяют бизнесу развиваться в условиях цифровой трансформации.",
       stats: [
-        { value: "GPT", label: "Передовые языковые модели" },
-        { value: "NLP", label: "Обработка естественного языка" },
-        { value: "ML", label: "Самообучающиеся алгоритмы" },
+        { value: "AI", label: "Искусственный интеллект" },
+        { value: "ML", label: "Машинное обучение" },
+        { value: "API", label: "Первый подход к разработке" },
       ],
       detailedDescription: [
-        "Использование современных языковых моделей",
-        "Понимание контекста и поддержание диалога",
-        "Постоянное обучение на основе новых данных",
-        "Многоязычная поддержка и распознавание речи"
+        "Нейросети для автоматического распознавания и обработки данных",
+        "Предиктивная аналитика для прогнозирования бизнес-трендов",
+        "Облачная инфраструктура для гибкого масштабирования",
+        "Автоматизированное тестирование для обеспечения надежности"
       ],
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
@@ -109,19 +109,19 @@ export default function ChatBotsWhyUs() {
       icon: <FiCode className="w-5 h-5" />,
     },
     {
-      title: "Полный цикл разработки",
+      title: "Полный цикл услуг",
       description:
-        "Мы предоставляем комплексные услуги: от анализа потребностей и проектирования диалоговых сценариев до разработки, интеграции, тестирования и дальнейшей поддержки. После запуска мы помогаем улучшать бота на основе обратной связи от пользователей.",
+        "Мы предоставляем комплексное обслуживание: от анализа и разработки стратегии автоматизации до внедрения, обучения персонала и оказания последующей технической поддержки. Наша многоуровневая система позволяет обеспечить бесперебойную работу всех внедренных решений.",
       stats: [
         { value: "24/7", label: "Техническая поддержка" },
-        { value: "100%", label: "Сопровождение проекта" },
-        { value: "95%", label: "Удовлетворенность клиентов" },
+        { value: "100%", label: "Покрытие жизненного цикла" },
+        { value: "90%", label: "SLA выполнения запросов" },
       ],
       detailedDescription: [
-        "Детальный анализ потребностей и проектирование",
-        "Разработка и интеграция с существующими системами",
-        "Тщательное тестирование и обучение персонала",
-        "Мониторинг, анализ и постоянное улучшение"
+        "Детальный аудит и планирование автоматизации",
+        "Профессиональная разработка и внедрение решений",
+        "Комплексное обучение персонала компании-клиента",
+        "Многоуровневая система технической поддержки"
       ],
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
@@ -185,8 +185,8 @@ export default function ChatBotsWhyUs() {
             </span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Мы создаём умных чат-ботов, которые не просто отвечают на вопросы, но и решают бизнес-задачи, 
-            повышая эффективность коммуникации с клиентами и оптимизируя внутренние процессы.
+            Мы создаём интеллектуальные системы автоматизации, которые не просто оптимизируют процессы, 
+            но и обеспечивают конкурентное преимущество вашему бизнесу в эпоху цифровой трансформации.
           </p>
         </div>
 
@@ -235,9 +235,7 @@ export default function ChatBotsWhyUs() {
                   {companyAdvantages[activeAdvantage].icon}
                 </div>
                 <h3
-                  className={`text-xl md:text-2xl font-semibold ${
-                    isDark ? "text-white" : companyAdvantages[activeAdvantage].colorText
-                  }`}
+                  className={`text-xl md:text-2xl font-semibold ${companyAdvantages[activeAdvantage].colorText}`}
                 >
                   {companyAdvantages[activeAdvantage].title}
                 </h3>
@@ -249,167 +247,242 @@ export default function ChatBotsWhyUs() {
                 </p>
               </div>
 
-              {/* Кейсы использования или статистика */}
               {activeAdvantage === 0 ? (
-                <div className="grid grid-cols-1 gap-4">
-                  {companyAdvantages[activeAdvantage].features?.map(
-                    (feature, idx) => (
-                      <div
-                        key={idx}
-                        className={`p-4 rounded-lg ${
-                          isDark
-                            ? "bg-gray-800 border border-gray-700"
-                            : "bg-gray-50 border border-gray-100"
-                        }`}
-                      >
-                        <div className="flex items-start gap-3">
-                          <div
-                            className={`flex items-center justify-center rounded-lg p-2 mt-0.5 ${
-                              isDark
-                                ? `${companyAdvantages[activeAdvantage].bgDark} ${companyAdvantages[activeAdvantage].colorLight}`
-                                : `${companyAdvantages[activeAdvantage].bgLight} ${companyAdvantages[activeAdvantage].colorText}`
-                            }`}
-                          >
-                            {feature.icon}
+                // Новые карточки для первого блока
+                <div className="grid grid-cols-1 gap-4 mb-8">
+                  {companyAdvantages[0].features?.map((feature, index) => (
+                    <div
+                      key={index}
+                      className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(index)} transition-all duration-300`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`flex-shrink-0 p-2 rounded-lg bg-blue-100 dark:bg-blue-900/40 ${companyAdvantages[activeAdvantage].colorText}`}>
+                          {feature.icon}
+                        </div>
+                        <div>
+                          <div className={`font-semibold mb-1 ${companyAdvantages[activeAdvantage].colorText}`}>
+                            {feature.label}
                           </div>
-                          <div>
-                            <h4
-                              className={`font-medium mb-1 ${
-                                isDark ? "text-white" : "text-gray-800"
-                              }`}
-                            >
-                              {feature.label}
-                            </h4>
-                            <p
-                              className={`text-sm ${
-                                isDark ? "text-gray-400" : "text-gray-600"
-                              }`}
-                            >
-                              {feature.description}
-                            </p>
+                          <div className="text-sm text-gray-600 dark:text-gray-400">
+                            {feature.description}
                           </div>
                         </div>
                       </div>
-                    )
-                  )}
+                    </div>
+                  ))}
                 </div>
               ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {companyAdvantages[activeAdvantage].stats?.map(
-                    (stat, idx) => (
-                      <div
-                        key={idx}
-                        className={`p-4 rounded-lg ${getStatClassName(
-                          activeAdvantage
-                        )}`}
-                      >
-                        <div className="text-center">
-                          <p
-                            className={`text-2xl md:text-3xl font-bold mb-1 ${
-                              isDark
-                                ? companyAdvantages[activeAdvantage].colorLight
-                                : companyAdvantages[activeAdvantage].colorText
-                            }`}
-                          >
-                            {stat.value}
-                          </p>
-                          <p
-                            className={`text-sm ${
-                              isDark ? "text-gray-400" : "text-gray-600"
-                            }`}
-                          >
-                            {stat.label}
-                          </p>
-                        </div>
-                      </div>
-                    )
-                  )}
-                </div>
-              )}
-            </div>
-
-            {/* Правая колонка - Иллюстрация/Детали */}
-            <div
-              className={`p-6 md:p-8 ${
-                isDark
-                  ? "bg-gradient-to-br from-gray-800 to-gray-900/80 border-l border-gray-700"
-                  : "bg-gradient-to-br from-gray-50 to-white border-l border-gray-100"
-              }`}
-            >
-              <div
-                className={`border-l-2 pl-4 mb-6 ${
-                  isDark
-                    ? `border-${companyAdvantages[activeAdvantage].colorText}/30`
-                    : `border-${companyAdvantages[activeAdvantage].colorText}`
-                }`}
-              >
-                <h4
-                  className={`text-lg font-medium mb-2 ${
-                    isDark ? "text-white" : "text-gray-800"
-                  }`}
-                >
-                  Что мы предлагаем
-                </h4>
-                <p
-                  className={`text-sm ${
-                    isDark ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  Наш подход к разработке чат-ботов
-                </p>
-              </div>
-
-              <div className="space-y-4">
-                {companyAdvantages[activeAdvantage].detailedDescription?.map(
-                  (item, idx) => (
+                // Статистика для остальных блоков
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                  {companyAdvantages[activeAdvantage].stats?.map((stat, index) => (
                     <div
-                      key={idx}
-                      className={`flex items-start gap-3 p-3 rounded-lg ${
-                        isDark
-                          ? "bg-gray-800/50 border border-gray-700"
-                          : "bg-white border border-gray-100"
-                      }`}
+                      key={index}
+                      className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(
+                        index
+                      )} transition-all duration-300`}
                     >
                       <div
-                        className={`flex-shrink-0 text-lg ${
-                          isDark
-                            ? companyAdvantages[activeAdvantage].colorLight
-                            : companyAdvantages[activeAdvantage].colorText
-                        }`}
+                        className={`text-2xl md:text-3xl font-bold ${companyAdvantages[activeAdvantage].colorText} mb-1`}
                       >
-                        <FiCheckCircle className="w-5 h-5" />
+                        {stat.value}
                       </div>
-                      <p
-                        className={`text-sm ${
-                          isDark ? "text-gray-300" : "text-gray-700"
-                        }`}
-                      >
-                        {item}
-                      </p>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        {stat.label}
+                      </div>
                     </div>
-                  )
-                )}
-              </div>
+                  ))}
+                </div>
+              )}
 
-              <div className="mt-8">
-                <a
-                  href="/contact"
-                  className={`inline-flex items-center group ${
-                    isDark
-                      ? companyAdvantages[activeAdvantage].colorLight
-                      : companyAdvantages[activeAdvantage].colorText
-                  }`}
-                >
-                  <span className="mr-2 font-medium">
-                    Узнать больше о наших решениях
-                  </span>
-                  <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
-                </a>
+              {/* Дополнительная информация */}
+              <div
+                className={`p-5 rounded-lg backdrop-blur-sm ${
+                  isDark
+                    ? `${companyAdvantages[activeAdvantage].bgDark} border ${companyAdvantages[activeAdvantage].borderDark}`
+                    : `${companyAdvantages[activeAdvantage].bgLight} border ${companyAdvantages[activeAdvantage].borderLight}`
+                }`}
+              >
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
+                  {activeAdvantage === 0 ? "Ключевые особенности подхода" : "Ключевые особенности"}
+                </h4>
+                <ul className="space-y-3">
+                  {activeAdvantage === 0 ? (
+                    <>
+                      <li className="flex items-center gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Понимание целей бизнеса, а не только технических задач
+                        </span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Гибкие решения, адаптируемые под изменения
+                        </span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Эволюция продукта вместе с вашим бизнесом
+                        </span>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li className="flex items-center gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Проверенные методологии и подходы к автоматизации
+                        </span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Гибкость решений и возможность адаптации под изменения
+                        </span>
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Непрерывная поддержка и развитие внедренных систем
+                        </span>
+                      </li>
+                    </>
+                  )}
+                </ul>
               </div>
             </div>
+
+            {/* Правая колонка - Подробное описание преимущества */}
+            <div
+              className={`${
+                isDark ? "bg-gray-800/70" : "bg-blue-50/50"
+              } p-6 md:p-8 flex flex-col justify-center`}
+            >
+              <div className="mb-5">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span className="inline-block p-1.5 rounded-lg bg-blue-500/20 dark:bg-blue-400/20">
+                    <FiBookOpen className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                  </span>
+                  <span className="translate-y-[1px]">Что это означает для вашего бизнеса</span>
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 text-base">
+                  {activeAdvantage === 0 
+                    ? "Наш подход — это не просто автоматизация ради технологии, а инструмент для создания стратегических преимуществ. Мы работаем с бизнесом как партнёры, создавая решения, которые масштабируются и адаптируются вместе с вами."
+                    : `Наш подход к ${companyAdvantages[activeAdvantage].title.toLowerCase()} обеспечивает не только эффективную автоматизацию, но и создает долгосрочную ценность для вашей компании через инновационные решения и стратегическое партнерство.`
+                  }
+                </p>
+              </div>
+              
+              {/* Подробное описание преимущества */}
+              <div className="space-y-5">
+                {companyAdvantages[activeAdvantage].detailedDescription.map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                      {index === 0 && <FiUsers className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 1 && <FiGitBranch className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 2 && <FiHeadphones className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 3 && <FiBarChart className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                    </div>
+                    <div>
+                      <p className="text-gray-700 dark:text-gray-300 translate-y-[1px]">{item}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Бизнес-результаты */}
+              <div className="mt-8 p-4 rounded-lg bg-white/70 dark:bg-gray-800/70 border border-blue-100 dark:border-blue-800/30">
+                <h5 className="font-medium text-gray-900 dark:text-white mb-3">
+                  {activeAdvantage === 0 ? "Что вы получаете:" : "Ключевые результаты"}
+                </h5>
+                {activeAdvantage === 0 ? (
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2">
+                      <FiTrendingUp className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Решения, которые работают на рост прибыли</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiClock className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Уменьшение операционной нагрузки</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiUsers className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Продукт, понятный вашей команде</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiLayers className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Технологический фундамент под масштабирование</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2">
+                      <FiTrendingUp className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение производительности</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiClock className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение временных затрат</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiDollarSign className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Оптимизация расходов</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiCheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение качества</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Призыв к действию */}
+        <div className="mt-12 text-center">
+          <div className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+            <a
+              className="px-5 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-medium shadow-lg shadow-blue-500/20 dark:shadow-blue-600/20 flex items-center justify-center gap-2 w-full sm:w-auto"
+              href="#contact"
+            >
+              <span>Обсудить ваш проект</span>
+              <FiArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              className="px-5 sm:px-6 py-3 rounded-lg border border-blue-300 dark:border-blue-700 text-blue-600 dark:text-blue-400 font-medium w-full sm:w-auto"
+              href="#chatbots-process"
+            >
+              Узнать о процессе разработки
+            </a>
           </div>
         </div>
       </Container>
     </section>
   );
-}
+} 

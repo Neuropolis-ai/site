@@ -17,11 +17,6 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     scrollRestoration: true,
-    middleware: {
-      allowMiddlewareResponseBody: true,
-      unstable_allowDynamicGlobs: ['**/*'],
-      unstable_allowStatic: true,
-    },
   },
   // Игнорирование ошибок TypeScript и ESLint для возможности запуска
   typescript: {

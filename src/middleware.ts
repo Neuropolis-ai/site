@@ -1,9 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
-
-// Указываем Node.js среду выполнения для middleware
-export const runtime = 'nodejs';
 
 // Массив защищенных путей, которые требуют аутентификации
 const PROTECTED_PATHS: string[] = [
@@ -89,20 +84,8 @@ export function middleware(request: NextRequest) {
     response.headers.set("Pragma", "no-cache");
     response.headers.set("Expires", "0");
 
-    // Добавляем Last-Modified из файловой системы
-    try {
-      const rssPath = path.join(
-        process.cwd(),
-        "public",
-        request.nextUrl.pathname
-      );
-      const stats = fs.statSync(rssPath);
-      response.headers.set("Last-Modified", stats.mtime.toUTCString());
-    } catch (error) {
-      console.warn("Could not get RSS file modification date:", error);
-      // Используем текущую дату как запасной вариант
-      response.headers.set("Last-Modified", new Date().toUTCString());
-    }
+    // Используем текущую дату для заголовка Last-Modified
+    response.headers.set("Last-Modified", new Date().toUTCString());
   }
 
   return response;

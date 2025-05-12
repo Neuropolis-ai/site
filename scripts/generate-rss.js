@@ -8,10 +8,36 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.error(
-    "Ошибка: Не найдены переменные окружения NEXT_PUBLIC_SUPABASE_URL и/или NEXT_PUBLIC_SUPABASE_ANON_KEY"
+  console.warn(
+    "Предупреждение: Не найдены переменные окружения NEXT_PUBLIC_SUPABASE_URL и/или NEXT_PUBLIC_SUPABASE_ANON_KEY"
   );
-  process.exit(1);
+  console.log("Пропускаем генерацию RSS для деплоя на Vercel");
+  // Создаем пустой RSS-файл, чтобы избежать проблем с middleware
+  const publicDir = path.join(process.cwd(), "public");
+  if (!fs.existsSync(publicDir)) {
+    fs.mkdirSync(publicDir);
+  }
+  
+  const emptyRss = `<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+<title>Блог Neuropolis.ai</title>
+<link>https://neuropolis.ai/</link>
+<atom:link href="https://neuropolis.ai/rss.xml" rel="self" type="application/rss+xml" />
+<description>ИИ-агенты и автоматизация бизнес-процессов</description>
+<language>ru</language>
+<lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+</channel>
+</rss>`;
+  
+  fs.writeFileSync(path.join(publicDir, "rss.xml"), emptyRss, "utf8");
+  fs.writeFileSync(path.join(publicDir, "rss-new.xml"), emptyRss.replace(
+    '<atom:link href="https://neuropolis.ai/rss.xml" rel="self" type="application/rss+xml" />',
+    '<atom:link href="https://neuropolis.ai/rss-new.xml" rel="self" type="application/rss+xml" />'
+  ), "utf8");
+  
+  console.log("Созданы пустые RSS-файлы для деплоя");
+  process.exit(0);
 }
 
 // Инициализация Supabase клиента

@@ -3,7 +3,7 @@
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import { useState } from "react";
-import { FiBarChart, FiCheckCircle, FiTrendingUp, FiArrowRight, FiClock, FiUsers, FiDollarSign } from "react-icons/fi";
+import { FiBarChart, FiCheckCircle, FiTrendingUp, FiArrowRight } from "react-icons/fi";
 import Image from "next/image";
 import Badge from "@/components/ui/Badge";
 
@@ -264,15 +264,15 @@ export default function WorkflowAutomationUseCases() {
             <div
               className={`${
                 isDark ? "bg-gray-800/70" : "bg-blue-50/50"
-              } p-6 md:p-8 flex flex-col justify-center`}
+              } p-6 md:p-8 flex flex-col justify-center items-center`}
             >
-              <div className="relative w-full h-full min-h-[300px] flex items-center justify-center">
+              <div className="relative w-full max-w-md mx-auto">
                 <Image
                   src={useCases[activeTab].image}
                   alt={useCases[activeTab].title}
-                  className="rounded-lg shadow-lg object-contain max-w-full max-h-[400px]"
                   width={500}
-                  height={300}
+                  height={350}
+                  className="rounded-lg shadow-lg"
                   style={{ objectFit: "contain" }}
                   priority={activeTab === 0}
                 />

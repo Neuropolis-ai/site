@@ -276,7 +276,7 @@ export default function WorkflowAutomationSolution() {
                     : "bg-white border border-gray-200 hover:border-blue-200"
                 }`}
               >
-                <div className="flex items-start gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-4">
                   <div
                     className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${
                       isDark ? "bg-blue-900/30" : "bg-blue-50"

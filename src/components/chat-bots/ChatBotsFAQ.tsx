@@ -1,34 +1,10 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import { Heading } from "@/components/ui/heading";
-import Subheading from "@/components/ui/subheading";
-import Badge from "@/components/ui/Badge";
 import BaseFAQ from "../FAQ/BaseFAQ";
 
 export default function ChatBotsFAQ() {
-  // Анимационные вариации
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
   // Вопросы и ответы для чат-ботов
   const faqItems = [
     {
@@ -84,32 +60,6 @@ export default function ChatBotsFAQ() {
       <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 rounded-full blur-3xl -z-10"></div>
 
       <Container>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="text-center mb-12"
-        >
-          <motion.div variants={itemVariants}>
-            <Badge>Часто задаваемые вопросы</Badge>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <Heading level={2} align="center" className="mb-4">
-              Ответы на{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light">
-                популярные вопросы
-              </span>
-            </Heading>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <Subheading align="center" className="max-w-3xl mx-auto">
-              Мы собрали ответы на самые распространенные вопросы о наших
-              ИИ-решениях и услугах.
-            </Subheading>
-          </motion.div>
-        </motion.div>
-
         <BaseFAQ
           faqItems={faqItems}
           title="Часто задаваемые вопросы"

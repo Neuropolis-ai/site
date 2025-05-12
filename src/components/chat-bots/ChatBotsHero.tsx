@@ -237,12 +237,6 @@ export default function ChatBotsHero() {
 
                   {/* Область чата */}
                   <div className="p-4 h-[calc(460px-56px-60px)] bg-gray-50 dark:bg-gray-850 overflow-y-auto">
-                    {/* Заголовок сценария */}
-                    <div className="text-center py-2 mb-4">
-                      <div className="text-sm font-medium text-gray-500 dark:text-gray-400">Пример работы</div>
-                      <div className="text-lg font-semibold text-gray-800 dark:text-white">Поддержка клиентов</div>
-                    </div>
-                    
                     {/* Сообщение пользователя */}
                     <div className="flex justify-end mb-4">
                       <div className="bg-blue-100 dark:bg-blue-900/40 rounded-xl rounded-tr-none p-3 max-w-[80%]">

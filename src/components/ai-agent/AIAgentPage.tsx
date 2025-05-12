@@ -9,7 +9,7 @@ import AIAgentHero from "./AIAgentHero";
 import AIAgentProblems from "./AIAgentProblems";
 import AIAgentSolutionNew from "./AIAgentSolutionNew";
 import AIAgentUseCases from "./AIAgentUseCases"; // Import the updated component
-import AIAgentWhyUs from "./AIAgentWhyUs"; // Import Why Us
+import AIAgentWhyUs from "./AIAgentWhyUs"; // Импортируем AIAgentWhyUs вместо WorkflowAutomationWhyUs
 import AIAgentProcess from "./AIAgentProcess"; // Import Process
 import AIAgentFAQ from "./AIAgentFAQ"; // Import FAQ
 import AIAgentContactForm from "./AIAgentContactForm"; // Import Contact Form
@@ -41,7 +41,7 @@ export default function AIAgentPage() {
       <AIAgentSolutionNew />
       <AIAgentUseCases /> {/* Render the updated Use Cases component */}
       <AIAgentProcess /> {/* Render the Process component */}
-      <AIAgentWhyUs /> {/* Render the Why Us component */}
+      <AIAgentWhyUs /> {/* Используем адаптированный компонент AIAgentWhyUs */}
       <AIAgentFAQ /> {/* Render the FAQ component */}
       <AIAgentContactForm /> {/* Render the Contact Form component */}
       {/* Удаленные секции остаются удаленными */}

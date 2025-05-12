@@ -1,162 +1,409 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
-import { Target, Code2, Database, Users, Cpu, ShieldCheck } from "lucide-react";
-import { Heading } from "@/components/ui/heading";
-import Subheading from "@/components/ui/subheading";
+import { useState } from "react";
+import {
+  FiCheckCircle,
+  FiAward,
+  FiUsers,
+  FiCode,
+  FiLifeBuoy,
+  FiTrendingUp,
+  FiBarChart,
+  FiClock,
+  FiDollarSign,
+  FiBookOpen,
+  FiHeadphones,
+  FiGitBranch,
+  FiArrowRight,
+  FiTarget,
+  FiLayers,
+  FiMessageSquare,
+} from "react-icons/fi";
 import Badge from "@/components/ui/Badge";
+import Image from "next/image";
 
 export default function ChatBotsWhyUs() {
-  const { isDark } = useTheme();
+  const { theme } = useTheme();
+  const isDark = theme !== "light";
+  const [activeAdvantage, setActiveAdvantage] = useState(0);
 
-  // Анимации
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  const advantages = [
+  // Преимущества компании в формате, похожем на use cases
+  const companyAdvantages = [
     {
-      icon: <Target className="w-5 h-5" />,
-      title: "Индивидуальный подход",
+      title: "Подход, создающий ценность",
       description:
-        "Разрабатываем решения под конкретные задачи вашего бизнеса с учетом отраслевой специфики и требований",
+        "Мы не просто разрабатываем чат-ботов — мы думаем как предприниматели и создаём решения, которые работают на рост вашего бизнеса. Вместо формального внедрения интеллектуальных ассистентов мы начинаем с бизнес-задач, вникаем в контекст и подбираем индивидуальный путь к результату.",
+      features: [
+        { icon: <FiTarget size={16} />, label: "Практический опыт в бизнес-решениях", description: "Создаём решения, которые приносят реальный эффект" },
+        { icon: <FiUsers size={16} />, label: "Индивидуальный подход к каждому проекту", description: "Глубокое погружение в задачи клиента" },
+        { icon: <FiTrendingUp size={16} />, label: "Рост и развитие вместе с клиентами", description: "Строим долгосрочные отношения и ценность" },
+      ],
+      detailedDescription: [
+        "Погружение в бизнес-контекст и цели",
+        "Совместная проработка сценариев и гипотез",
+        "Гибкая архитектура под рост и изменения",
+        "Быстрый запуск, постепенное масштабирование"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiAward size={20} />,
     },
     {
-      icon: <Code2 className="w-5 h-5" />,
-      title: "Опытная команда разработчиков",
+      title: "Индивидуальные решения",
       description:
-        "Наши специалисты имеют 5+ лет опыта в создании интеллектуальных чат-ботов для различных отраслей",
+        "Каждый чат-бот разрабатывается с учетом специфики вашего бизнеса, целевой аудитории и конкретных бизнес-процессов. Мы не используем шаблонные решения – ваш бот будет уникальным инструментом, максимально адаптированным под ваши потребности.",
+      stats: [
+        { value: "100%", label: "Индивидуальная настройка" },
+        { value: "85%", label: "Точность распознавания" },
+        { value: "24/7", label: "Непрерывная работа" },
+      ],
+      detailedDescription: [
+        "Анализ бизнес-процессов и сценариев общения",
+        "Настройка персонализированных диалоговых сценариев",
+        "Адаптация под корпоративный стиль и тон коммуникации",
+        "Интеграция с вашими бизнес-системами"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiUsers size={20} />,
     },
     {
-      icon: <Database className="w-5 h-5" />,
-      title: "Работа с любыми объемами данных",
+      title: "Современные технологии",
       description:
-        "Создаем решения, способные обрабатывать большие массивы информации и эффективно использовать базы знаний",
+        "Наши чат-боты используют передовые технологии искусственного интеллекта и машинного обучения. Мы применяем современные языковые модели, которые обеспечивают естественное общение и высокую точность понимания запросов пользователей на разных языках.",
+      stats: [
+        { value: "GPT", label: "Передовые языковые модели" },
+        { value: "NLP", label: "Обработка естественного языка" },
+        { value: "ML", label: "Самообучающиеся алгоритмы" },
+      ],
+      detailedDescription: [
+        "Использование современных языковых моделей",
+        "Понимание контекста и поддержание диалога",
+        "Постоянное обучение на основе новых данных",
+        "Многоязычная поддержка и распознавание речи"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiCode size={20} />,
     },
     {
-      icon: <Users className="w-5 h-5" />,
-      title: "Обучение и поддержка персонала",
+      title: "Полный цикл разработки",
       description:
-        "Проводим полное обучение сотрудников работе с чат-ботом и обеспечиваем техническую поддержку 24/7",
-    },
-    {
-      icon: <Cpu className="w-5 h-5" />,
-      title: "Современные технологии ИИ",
-      description:
-        "Используем передовые нейросетевые модели и алгоритмы машинного обучения для создания интеллектуальных решений",
-    },
-    {
-      icon: <ShieldCheck className="w-5 h-5" />,
-      title: "Безопасность и надежность",
-      description:
-        "Обеспечиваем высокий уровень защиты данных, соответствие требованиям GDPR и российскому законодательству",
+        "Мы предоставляем комплексные услуги: от анализа потребностей и проектирования диалоговых сценариев до разработки, интеграции, тестирования и дальнейшей поддержки. После запуска мы помогаем улучшать бота на основе обратной связи от пользователей.",
+      stats: [
+        { value: "24/7", label: "Техническая поддержка" },
+        { value: "100%", label: "Сопровождение проекта" },
+        { value: "95%", label: "Удовлетворенность клиентов" },
+      ],
+      detailedDescription: [
+        "Детальный анализ потребностей и проектирование",
+        "Разработка и интеграция с существующими системами",
+        "Тщательное тестирование и обучение персонала",
+        "Мониторинг, анализ и постоянное улучшение"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiLifeBuoy size={20} />,
     },
   ];
 
+  const getTabClassName = (index: number): string => {
+    if (activeAdvantage === index) {
+      return `${companyAdvantages[index].colorBg} text-white shadow-lg ${
+        isDark ? "shadow-blue-900/30" : "shadow-blue-500/30"
+      }`;
+    }
+    return isDark
+      ? "bg-gray-800/80 backdrop-blur-sm text-gray-300 hover:bg-gray-800 border border-gray-700 hover:border-blue-800/30"
+      : "bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-blue-50 border border-gray-200 hover:border-blue-200";
+  };
+
+  const getStatClassName = (index: number): string => {
+    return isDark
+      ? `${companyAdvantages[activeAdvantage].bgDark} border ${companyAdvantages[activeAdvantage].borderDark} backdrop-blur-sm`
+      : `${companyAdvantages[activeAdvantage].bgLight} border ${companyAdvantages[activeAdvantage].borderLight}`;
+  };
+
   return (
-    <motion.section
+    <section
       id="chatbots-why-us"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.1 }}
-      className="py-20 md:py-28 px-4 relative overflow-hidden"
+      className="py-20 pb-16 md:py-24 md:pb-20 relative overflow-hidden -mb-6 sm:-mb-8"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+      {/* Статический градиентный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
+
+      {/* Сетка-фон */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: "url('/grid-pattern.svg')",
+            backgroundSize: "24px 24px",
+            backgroundRepeat: "repeat",
+          }}
+        ></div>
+      </div>
 
       <Container>
-        <div className="text-center mb-16">
-          <motion.div variants={itemVariants}>
-            <Badge>Преимущества</Badge>
-          </motion.div>
-          <motion.div variants={itemVariants}>
-            <Heading level={2} align="center" className="mb-6">
-              Почему выбирают{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-light">
-                нас
-              </span>
-            </Heading>
-          </motion.div>
+        <div className="text-center mb-14">
+          <div>
+            <Badge>Почему мы</Badge>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Почему клиенты выбирают{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+              Нейрополис
+            </span>
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Мы создаём умных чат-ботов, которые не просто отвечают на вопросы, но и решают бизнес-задачи, 
+            повышая эффективность коммуникации с клиентами и оптимизируя внутренние процессы.
+          </p>
         </div>
 
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.1 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          >
-            {advantages.map((advantage, index) => (
-              <motion.div
+        {/* Табы для переключения между преимуществами */}
+        <div className="mb-10">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-4 sm:px-0">
+            {companyAdvantages.map((advantage, index) => (
+              <button
                 key={index}
-                variants={itemVariants}
-                whileHover={{
-                  y: -4,
-                  transition: { type: "spring", stiffness: 300, damping: 15 },
-                }}
-                className="group backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 p-6 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md hover:shadow-lg transition-shadow duration-300 h-full"
+                onClick={() => setActiveAdvantage(index)}
+                className={`px-4 py-3 sm:py-2.5 rounded-lg text-sm font-medium transition-all w-full sm:w-auto ${getTabClassName(
+                  index
+                )}`}
               >
-                <div className="flex items-start gap-4 mb-3">
-                  <div className="flex-shrink-0 bg-gradient-to-br from-primary to-primary-light p-2 rounded-xl shadow-md w-10 h-10 flex items-center justify-center text-white">
+                <div className="flex items-center justify-start gap-2">
+                  <div className="flex items-center justify-center">
                     {advantage.icon}
                   </div>
-                  <Heading level={3} className="mt-1">
-                    {advantage.title}
-                  </Heading>
+                  <span className="translate-y-[1px]">{advantage.title}</span>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                  {advantage.description}
-                </p>
-              </motion.div>
+              </button>
             ))}
-          </motion.div>
+          </div>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          className="mt-16 text-center"
+        {/* Контент активного преимущества */}
+        <div
+          className={`rounded-xl overflow-hidden shadow-lg ${
+            isDark
+              ? "bg-gray-800/50 border border-gray-700 shadow-blue-900/10"
+              : "bg-white/90 backdrop-blur-sm border border-gray-200 shadow-blue-200/30"
+          }`}
         >
-          <div className="p-6 md:p-8 max-w-3xl mx-auto backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 rounded-2xl border border-white/20 dark:border-gray-700/30 shadow-md">
-            <Heading level={3} align="center" className="mb-4">
-              Готовы обсудить ваш проект?
-            </Heading>
-            <Subheading align="center" className="mb-6">
-              Закажите бесплатную консультацию с нашими экспертами, чтобы
-              узнать, как чат-боты могут помочь вашему бизнесу.
-            </Subheading>
-            <button className="px-6 py-3 bg-gradient-to-r from-primary to-primary-light text-white font-medium rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-              Обсудить ваш проект
-            </button>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch">
+            {/* Левая колонка - Текст */}
+            <div className="p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div
+                  className={`w-12 h-12 rounded-lg flex items-center justify-center 
+                  ${
+                    isDark
+                      ? `bg-gradient-to-br ${companyAdvantages[activeAdvantage].gradientFrom}/20 ${companyAdvantages[activeAdvantage].gradientTo}/20 ${companyAdvantages[activeAdvantage].colorLight}`
+                      : `bg-gradient-to-br ${companyAdvantages[activeAdvantage].gradientFrom}/10 ${companyAdvantages[activeAdvantage].gradientTo}/10 ${companyAdvantages[activeAdvantage].colorText}`
+                  }`}
+                >
+                  {companyAdvantages[activeAdvantage].icon}
+                </div>
+                <h3
+                  className={`text-xl md:text-2xl font-semibold ${
+                    isDark ? "text-white" : companyAdvantages[activeAdvantage].colorText
+                  }`}
+                >
+                  {companyAdvantages[activeAdvantage].title}
+                </h3>
+              </div>
+
+              <div className="mb-8">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                  {companyAdvantages[activeAdvantage].description}
+                </p>
+              </div>
+
+              {activeAdvantage === 0 ? (
+                // Новые карточки для первого блока
+                <div className="grid grid-cols-1 gap-4 mb-8">
+                  {companyAdvantages[0].features?.map((feature, index) => (
+                    <div
+                      key={index}
+                      className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(index)} transition-all duration-300`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`flex-shrink-0 p-2 rounded-lg bg-blue-100 dark:bg-blue-900/40 ${companyAdvantages[activeAdvantage].colorText}`}>
+                          {feature.icon}
+                        </div>
+                        <div>
+                          <div className={`font-semibold mb-1 ${companyAdvantages[activeAdvantage].colorText}`}>
+                            {feature.label}
+                          </div>
+                          <div className="text-sm text-gray-600 dark:text-gray-400">
+                            {feature.description}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                // Статистика для остальных блоков
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                  {companyAdvantages[activeAdvantage].stats?.map((stat, index) => (
+                    <div
+                      key={index}
+                      className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(
+                        index
+                      )} transition-all duration-300`}
+                    >
+                      <div
+                        className={`text-2xl md:text-3xl font-bold ${companyAdvantages[activeAdvantage].colorText} mb-1`}
+                      >
+                        {stat.value}
+                      </div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Правая колонка - Подробное описание преимущества */}
+            <div
+              className={`${
+                isDark ? "bg-gray-800/70" : "bg-blue-50/50"
+              } p-6 md:p-8 flex flex-col`}
+            >
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span className="inline-block p-1.5 rounded-lg bg-blue-500/20 dark:bg-blue-400/20">
+                    <FiBookOpen size={16} className="text-blue-600 dark:text-blue-400" />
+                  </span>
+                  <span className="translate-y-[1px]">Что это означает для вашего бизнеса</span>
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 text-base">
+                  {activeAdvantage === 0 
+                    ? "Наш подход — это не просто чат-бот ради технологии, а инструмент для создания стратегических преимуществ. Мы работаем с бизнесом как партнёры, создавая решения, которые масштабируются и адаптируются вместе с вами."
+                    : `Наш подход к ${companyAdvantages[activeAdvantage].title.toLowerCase()} обеспечивает не только эффективную коммуникацию, но и создает долгосрочную ценность для вашей компании через интеллектуальную автоматизацию и стратегическое партнерство.`
+                  }
+                </p>
+              </div>
+              
+              {/* Подробное описание преимущества */}
+              <div className="space-y-5">
+                {companyAdvantages[activeAdvantage].detailedDescription.map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                      {index === 0 && <FiUsers size={16} className="text-blue-600 dark:text-blue-400" />}
+                      {index === 1 && <FiMessageSquare size={16} className="text-blue-600 dark:text-blue-400" />}
+                      {index === 2 && <FiHeadphones size={16} className="text-blue-600 dark:text-blue-400" />}
+                      {index === 3 && <FiBarChart size={16} className="text-blue-600 dark:text-blue-400" />}
+                    </div>
+                    <div>
+                      <p className="text-gray-700 dark:text-gray-300 translate-y-[1px]">{item}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Бизнес-результаты */}
+              <div className="mt-8 p-4 rounded-lg bg-white/70 dark:bg-gray-800/70 border border-blue-100 dark:border-blue-800/30">
+                <h5 className="font-medium text-gray-900 dark:text-white mb-3">
+                  {activeAdvantage === 0 ? "Что вы получаете:" : "Ключевые результаты"}
+                </h5>
+                {activeAdvantage === 0 ? (
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2">
+                      <FiTrendingUp size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Решения, которые работают на рост прибыли</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiClock size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение времени обслуживания клиентов</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiUsers size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Чат-бот, понятный вашим клиентам</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiMessageSquare size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Интеллектуальное распознавание запросов</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2">
+                      <FiTrendingUp size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Улучшение клиентского опыта</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiClock size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Круглосуточное обслуживание</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiDollarSign size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение операционных затрат</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiCheckCircle size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение конверсии</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* Призыв к действию */}
+        <div className="mt-12 text-center">
+          <div className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+            <a
+              className="px-5 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-medium shadow-lg shadow-blue-500/20 dark:shadow-blue-600/20 flex items-center justify-center gap-2 w-full sm:w-auto"
+              href="#chatbots-contact"
+            >
+              <span>Обсудить ваш проект</span>
+              <FiArrowRight size={16} />
+            </a>
+            <a
+              className="px-5 sm:px-6 py-3 rounded-lg border border-blue-300 dark:border-blue-700 text-blue-600 dark:text-blue-400 font-medium w-full sm:w-auto"
+              href="#chatbots-process"
+            >
+              Узнать о процессе разработки
+            </a>
+          </div>
+        </div>
       </Container>
-    </motion.section>
+    </section>
   );
-}
+} 

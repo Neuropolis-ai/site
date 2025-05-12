@@ -84,7 +84,7 @@ const Footer = () => {
               </p>
               <div className="flex space-x-4">
                 <a
-                  href="https://t.me/neuropolis"
+                  href="https://t.me/maks_vc"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-600 hover:text-[#0167F3] dark:text-gray-400 dark:hover:text-[#399AFC] transition-colors"
@@ -191,22 +191,16 @@ const Footer = () => {
               </h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
-                  <FiMapPin className="text-[#0167F3] dark:text-[#399AFC] mt-1 flex-shrink-0" />
-                  <span className="text-gray-600 dark:text-gray-300">
-                    Москва, Россия
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
                   <FiPhone className="text-[#0167F3] dark:text-[#399AFC] mt-1 flex-shrink-0" />
-                  <span className="text-gray-600 dark:text-gray-300">
-                    +7 (495) 123-45-67
-                  </span>
+                  <a href="tel:+79601078900" className="text-gray-600 dark:text-gray-300 hover:text-[#0167F3] dark:hover:text-[#399AFC] transition-colors">
+                    +7 (960) 107-89-00
+                  </a>
                 </li>
                 <li className="flex items-start gap-3">
                   <FiMail className="text-[#0167F3] dark:text-[#399AFC] mt-1 flex-shrink-0" />
-                  <span className="text-gray-600 dark:text-gray-300">
+                  <a href="mailto:info@neuropolis.ai" className="text-gray-600 dark:text-gray-300 hover:text-[#0167F3] dark:hover:text-[#399AFC] transition-colors">
                     info@neuropolis.ai
-                  </span>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -216,24 +210,10 @@ const Footer = () => {
           <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent"></div>
 
           {/* Bottom Section */}
-          <div className="pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 md:mb-0">
-              © {currentYear} Neuropolis.ai. Все права защищены.
+          <div className="pt-8 flex flex-col md:flex-row justify-center items-center">
+            <p className="text-gray-600 dark:text-gray-400 text-sm text-center">
+              © 2025 Neuropolis.ai. Все права защищены.
             </p>
-            <div className="flex items-center space-x-6">
-              <a
-                href="#"
-                className="text-sm text-gray-600 dark:text-gray-400 hover:text-[#0167F3] dark:hover:text-[#399AFC] transition-colors"
-              >
-                Политика конфиденциальности
-              </a>
-              <a
-                href="#"
-                className="text-sm text-gray-600 dark:text-gray-400 hover:text-[#0167F3] dark:hover:text-[#399AFC] transition-colors"
-              >
-                Условия использования
-              </a>
-            </div>
           </div>
         </div>
       </Container>

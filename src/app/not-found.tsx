@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 import ButtonLink from "@/components/ui/buttonLink";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -144,7 +144,7 @@ const NeuralNetwork = () => {
   );
 };
 
-export default function NotFound() {
+function NotFound() {
   const { isDark } = useTheme();
   
   return (
@@ -171,8 +171,8 @@ export default function NotFound() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className={`inline-block px-4 py-1.5 rounded-full 
               ${isDark 
-                ? 'bg-gradient-to-r from-blue-900/30 to-indigo-900/30 text-blue-100 border border-blue-800/30' 
-                : 'bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-800 border border-blue-200/80'
+                ? 'bg-blue-700/30 text-blue-100 border border-blue-700/30' 
+                : 'bg-blue-100 text-blue-700 border border-blue-200'
               } text-sm mb-6 font-medium`}
           >
             Страница не найдена
@@ -182,12 +182,12 @@ export default function NotFound() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-[130px] leading-none font-bold text-transparent bg-clip-text bg-gradient-to-b from-blue-500 to-blue-700 mb-6 relative"
+            className="text-[130px] leading-none font-bold text-transparent bg-clip-text bg-gradient-to-b from-blue-400 to-blue-600 mb-6 relative"
           >
             404
             <motion.div 
               className="absolute inset-0 blur-2xl opacity-30 
-              bg-gradient-to-br from-blue-400 to-indigo-500
+              bg-gradient-to-br from-blue-400 to-blue-600
               rounded-full transform scale-75 z-0"
               animate={{ 
                 scale: [0.7, 0.85, 0.7],
@@ -223,8 +223,8 @@ export default function NotFound() {
           >
             <ButtonLink 
               href="/" 
-              className="px-8 py-3 rounded-[12px] text-white font-medium shadow-lg shadow-blue-500/20 
-                bg-gradient-to-b from-[#3b82f6] to-[#2563eb] hover:from-[#60a5fa] hover:to-[#3b82f6] 
+              className="px-8 py-3 rounded-[12px] text-white font-medium shadow-md 
+                bg-blue-500 hover:bg-blue-600 
                 transition-all duration-300"
               variantBtn="link"
             >
@@ -236,3 +236,5 @@ export default function NotFound() {
     </div>
   );
 }
+
+export default NotFound;

@@ -681,14 +681,14 @@ export default function CasePage() {
                       id: "1",
                       title: "ИИ-ассистент для HR-отдела",
                       subtitle: "Автоматизация процесса найма и онбординга сотрудников с помощью искусственного интеллекта",
-                      imagePath: "/assets/images/cases/ai-content-assistant-cover.jpg",
+                      imagePath: "/assets/images/cases/ssm.PNG",
                       url: "/cases/ai-content-assistant"
                     },
                     {
                       id: "2",
                       title: "Система предиктивной аналитики продаж",
                       subtitle: "Как мы увеличили точность прогнозов продаж на 78% с помощью машинного обучения",
-                      imagePath: "/assets/images/cases/ai-sales-agent-cover.jpg",
+                      imagePath: "/assets/images/cases/sale.PNG",
                       url: "/cases/ai-sales-agent"
                     },
                     {

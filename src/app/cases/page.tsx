@@ -31,7 +31,7 @@ const casesData = [
     title: "AI-агент в отделе продаж",
     description:
       "Внедрили ИИ-агента для квалификации и первичной обработки лидов в B2B SaaS-компании. Это позволило сократить время отклика с 2 часов до 15 секунд и повысить конверсию на 27%.",
-    image: "/assets/images/cases/ai-sales-agent-cover.jpg",
+    image: "/assets/images/cases/sale.PNG",
     link: "/cases/ai-sales-agent",
     metrics: [
       { number: "15 сек", label: "Время отклика" },
@@ -45,7 +45,7 @@ const casesData = [
     title: "ИИ-ассистент для создания контента",
     description:
       "Разработали ИИ-агента для блогера с аудиторией 500K+ подписчиков, который анализирует стиль, исследует актуальные темы и генерирует тексты контента. Это увеличило регулярность публикаций на 230% и повысило вовлеченность аудитории на 45%.",
-    image: "/assets/images/cases/ai-content-assistant-cover.jpg",
+    image: "/assets/images/cases/ssm.PNG",
     link: "/cases/ai-content-assistant",
     metrics: [
       { number: "230%", label: "Рост частоты публикаций" },

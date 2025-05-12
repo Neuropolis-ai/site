@@ -11,12 +11,22 @@ import {
   FiCode,
   FiLifeBuoy,
   FiTrendingUp,
+  FiShield,
+  FiBarChart,
+  FiClock,
+  FiDollarSign,
+  FiBookOpen,
+  FiHeadphones,
+  FiGitBranch,
+  FiArrowRight,
 } from "react-icons/fi";
+import Badge from "@/components/ui/Badge";
+import Image from "next/image";
 
 export default function WorkflowAutomationWhyUs() {
   const { theme } = useTheme();
   const isDark = theme !== "light";
-  const [activeFeature, setActiveFeature] = useState(0);
+  const [activeAdvantage, setActiveAdvantage] = useState(0);
 
   // Анимации
   const containerVariants = {
@@ -50,65 +60,164 @@ export default function WorkflowAutomationWhyUs() {
     },
   };
 
-  // Ключевые преимущества компании
-  const advantages = [
+  // Преимущества компании в формате, похожем на use cases
+  const companyAdvantages = [
     {
-      icon: <FiAward className="w-6 h-6" />,
-      title: "Опыт и экспертиза",
+      title: "Экспертиза и опыт",
       description:
-        "Наша команда состоит из сертифицированных экспертов с многолетним опытом в области автоматизации бизнес-процессов и разработки интеграционных решений для различных отраслей.",
-      points: [
-        "Более 50 успешно реализованных проектов",
-        "Команда сертифицированных разработчиков",
-        "Опыт работы с компаниями разного масштаба",
-        "Глубокое понимание бизнес-процессов",
+        "Наша команда объединяет сертифицированных специалистов с многолетним опытом внедрения систем автоматизации в различных отраслях. Мы успешно реализовали десятки проектов разной сложности, от автоматизации отдельных процессов до комплексной трансформации бизнеса.",
+      stats: [
+        { value: "50+", label: "Завершенных проектов" },
+        { value: "98%", label: "Довольных клиентов" },
+        { value: "8+", label: "Лет на рынке" },
       ],
+      detailedDescription: [
+        "Международная сертификация специалистов по автоматизации",
+        "Постоянное повышение квалификации сотрудников",
+        "Обширный опыт внедрения в различных отраслях",
+        "Глубокое знание бизнес-процессов в ключевых индустриях"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiAward className="w-5 h-5" />,
     },
     {
-      icon: <FiUsers className="w-6 h-6" />,
       title: "Индивидуальный подход",
       description:
-        "Мы не предлагаем шаблонных решений. Каждый проект автоматизации разрабатывается индивидуально под конкретные задачи и особенности вашего бизнеса.",
-      points: [
-        "Детальное изучение потребностей клиента",
-        "Адаптация решений под специфику бизнеса",
-        "Учет существующей IT-инфраструктуры",
-        "Масштабируемость под будущие изменения",
+        "Мы не используем шаблонные решения. Каждый проект начинается с тщательного анализа бизнес-процессов клиента для создания уникального решения, которое идеально подойдет именно вашему бизнесу, учитывая его особенности и требования.",
+      stats: [
+        { value: "100%", label: "Индивидуальных решений" },
+        { value: "3x", label: "Рост эффективности" },
+        { value: "60%", label: "Экономия ресурсов" },
       ],
+      detailedDescription: [
+        "Предпроектный анализ и аудит текущих процессов",
+        "Адаптация решения под бизнес-модель клиента",
+        "Учет существующей IT-инфраструктуры и интеграция с ней",
+        "Масштабируемость для будущего роста компании"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiUsers className="w-5 h-5" />,
     },
     {
-      icon: <FiCode className="w-6 h-6" />,
-      title: "Современные технологии",
+      title: "Инновационные технологии",
       description:
-        "В разработке решений мы используем передовые технологии искусственного интеллекта, машинного обучения и облачных вычислений для создания эффективных и инновационных систем автоматизации.",
-      points: [
-        "Алгоритмы искусственного интеллекта",
-        "Облачные решения для масштабирования",
-        "API-первый подход к разработке",
-        "Технологии обработки больших данных",
+        "Мы применяем передовые технологии искусственного интеллекта, машинного обучения и облачных вычислений, чтобы создавать прогрессивные решения, которые не просто автоматизируют процессы, но и позволяют бизнесу развиваться в условиях цифровой трансформации.",
+      stats: [
+        { value: "AI", label: "Искусственный интеллект" },
+        { value: "ML", label: "Машинное обучение" },
+        { value: "API", label: "Первый подход к разработке" },
       ],
+      detailedDescription: [
+        "Нейросети для автоматического распознавания и обработки данных",
+        "Предиктивная аналитика для прогнозирования бизнес-трендов",
+        "Облачная инфраструктура для гибкого масштабирования",
+        "Автоматизированное тестирование для обеспечения надежности"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiCode className="w-5 h-5" />,
     },
     {
-      icon: <FiLifeBuoy className="w-6 h-6" />,
       title: "Полный цикл услуг",
       description:
-        "Мы предоставляем полный спектр услуг: от анализа и разработки стратегии до внедрения, обучения персонала и последующей технической поддержки.",
-      points: [
-        "Аудит и анализ бизнес-процессов",
-        "Разработка и внедрение решений",
-        "Обучение пользователей системы",
-        "Техническая поддержка 24/7",
+        "Мы предоставляем комплексное обслуживание: от анализа и разработки стратегии автоматизации до внедрения, обучения персонала и оказания последующей технической поддержки. Наша многоуровневая система позволяет обеспечить бесперебойную работу всех внедренных решений.",
+      stats: [
+        { value: "24/7", label: "Техническая поддержка" },
+        { value: "100%", label: "Покрытие жизненного цикла" },
+        { value: "90%", label: "SLA выполнения запросов" },
       ],
+      detailedDescription: [
+        "Детальный аудит и планирование автоматизации",
+        "Профессиональная разработка и внедрение решений",
+        "Комплексное обучение персонала компании-клиента",
+        "Многоуровневая система технической поддержки"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiLifeBuoy className="w-5 h-5" />,
+    },
+    {
+      title: "Безопасность данных",
+      description:
+        "Безопасность данных — наш главный приоритет. Мы применяем многоуровневую защиту с шифрованием, строгим контролем доступа и регулярным резервным копированием. Все наши решения соответствуют международным стандартам безопасности и требованиям GDPR.",
+      stats: [
+        { value: "128-бит", label: "Шифрование данных" },
+        { value: "ISO", label: "Соответствие стандартам" },
+        { value: "0", label: "Инцидентов утечки данных" },
+      ],
+      detailedDescription: [
+        "Многоуровневая защита данных и шифрование",
+        "Строгий контроль доступа и аутентификация",
+        "Соответствие российским и международным стандартам",
+        "Регулярные аудиты и тесты на проникновение"
+      ],
+      colorBg: "bg-[#0167F3]",
+      colorText: "text-[#0167F3]",
+      colorLight: "text-[#399AFC]",
+      gradientFrom: "from-[#0167F3]",
+      gradientTo: "to-[#399AFC]",
+      bgDark: "bg-blue-900/30",
+      borderDark: "border-blue-800/30",
+      bgLight: "bg-blue-50/80",
+      borderLight: "border-blue-200",
+      icon: <FiShield className="w-5 h-5" />,
     },
   ];
+
+  const getTabClassName = (index: number): string => {
+    if (activeAdvantage === index) {
+      return `${companyAdvantages[index].colorBg} text-white shadow-lg ${
+        isDark ? "shadow-blue-900/30" : "shadow-blue-500/30"
+      }`;
+    }
+    return isDark
+      ? "bg-gray-800/80 backdrop-blur-sm text-gray-300 hover:bg-gray-800 border border-gray-700 hover:border-blue-800/30"
+      : "bg-white/90 backdrop-blur-sm text-gray-700 hover:bg-blue-50 border border-gray-200 hover:border-blue-200";
+  };
+
+  const getStatClassName = (index: number): string => {
+    return isDark
+      ? `${companyAdvantages[activeAdvantage].bgDark} border ${companyAdvantages[activeAdvantage].borderDark} backdrop-blur-sm`
+      : `${companyAdvantages[activeAdvantage].bgLight} border ${companyAdvantages[activeAdvantage].borderLight}`;
+  };
 
   return (
     <section
       id="workflow-why-us"
-      className="py-16 md:py-24 relative overflow-hidden"
+      className="py-20 md:py-24 relative overflow-hidden"
     >
       {/* Градиентный фон */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-50/80 to-white dark:from-blue-950/20 dark:to-gray-950 -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
 
       {/* Сетка-фон */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
@@ -123,21 +232,21 @@ export default function WorkflowAutomationWhyUs() {
       </div>
 
       {/* Декоративные элементы */}
-      <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
-      <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-gradient-to-tr from-sky-200/30 to-sky-400/30 dark:from-sky-500/10 dark:to-sky-700/10 rounded-full blur-3xl -z-5"></div>
+      <div className="absolute -top-24 -left-24 w-72 h-72 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
+      <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
 
       {/* Анимированные элементы */}
       <motion.div
         variants={floatingVariants}
         initial="initial"
         animate="animate"
-        className="absolute top-[15%] right-[10%] w-12 h-12 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
+        className="absolute top-[35%] left-[10%] w-14 h-14 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
       ></motion.div>
       <motion.div
         variants={floatingVariants}
         initial="initial"
         animate="animate"
-        className="absolute bottom-[15%] left-[7%] w-16 h-16 bg-sky-400/20 dark:bg-sky-600/30 rounded-full backdrop-blur-md z-0"
+        className="absolute bottom-[25%] right-[7%] w-20 h-20 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
         style={{ animationDelay: "1.5s" }}
       ></motion.div>
 
@@ -147,20 +256,17 @@ export default function WorkflowAutomationWhyUs() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          className="text-center mb-16"
+          className="text-center mb-14"
         >
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center justify-center border border-blue-300 dark:border-blue-800 gap-2 px-4 py-1 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 dark:text-blue-400"
-          >
-            Почему мы
+          <motion.div variants={itemVariants}>
+            <Badge>Почему мы</Badge>
           </motion.div>
           <motion.h2
             variants={itemVariants}
-            className="text-3xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-4"
+            className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
           >
             Почему клиенты выбирают{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-sky-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
               Нейрополис
             </span>
           </motion.h2>
@@ -168,222 +274,243 @@ export default function WorkflowAutomationWhyUs() {
             variants={itemVariants}
             className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
           >
-            Мы не просто автоматизируем процессы — мы создаем интеллектуальные
-            системы, которые развиваются вместе с вашим бизнесом.
+            Мы создаём интеллектуальные системы автоматизации, которые не просто оптимизируют процессы, 
+            но и обеспечивают конкурентное преимущество вашему бизнесу в эпоху цифровой трансформации.
           </motion.p>
         </motion.div>
 
-        {/* Планшеты и больше - интерактивная версия */}
-        <div className="hidden md:block">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-          >
-            {/* Левая колонка - Навигация */}
-            <motion.div variants={itemVariants}>
-              <div className="space-y-4">
-                {advantages.map((advantage, index) => (
-                  <div
-                    key={index}
-                    onClick={() => setActiveFeature(index)}
-                    className={`p-5 rounded-xl cursor-pointer transition-all ${
-                      activeFeature === index
-                        ? isDark
-                          ? "bg-blue-900/30 border border-blue-800/50 shadow-lg shadow-blue-900/10"
-                          : "bg-gradient-to-br from-blue-50 to-sky-50 border border-blue-200 shadow-md shadow-blue-200/30"
-                        : isDark
-                        ? "bg-gray-800/50 hover:bg-gray-800 backdrop-blur-sm border border-gray-700 hover:border-blue-700/40"
-                        : "bg-white hover:bg-blue-50/30 border border-gray-200 hover:border-blue-200"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                          activeFeature === index
-                            ? isDark
-                              ? "bg-blue-600/30 text-blue-400"
-                              : "bg-blue-500/20 text-blue-500"
-                            : isDark
-                            ? "bg-gray-700/50 text-gray-400"
-                            : "bg-gray-100 text-gray-500"
-                        }`}
-                      >
-                        {advantage.icon}
-                      </div>
-                      <h3
-                        className={`text-xl font-semibold ${
-                          activeFeature === index
-                            ? "text-blue-500 dark:text-blue-400"
-                            : "text-gray-800 dark:text-white"
-                        }`}
-                      >
-                        {advantage.title}
-                      </h3>
-                    </div>
-                    {activeFeature === index && (
-                      <p className="text-gray-600 dark:text-gray-300 mt-3 pl-[52px]">
-                        {advantage.description}
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Правая колонка - Детали */}
-            <motion.div
-              variants={itemVariants}
-              whileHover={{
-                y: -5,
-                transition: { duration: 0.3 },
-                boxShadow: isDark
-                  ? "0 10px 30px rgba(30, 64, 175, 0.2)"
-                  : "0 10px 30px rgba(59, 130, 246, 0.15)",
-              }}
-              className={`p-8 rounded-xl ${
-                isDark
-                  ? "bg-gray-800/50 backdrop-blur-sm border border-gray-700"
-                  : "bg-white border border-gray-200 hover:border-blue-200"
-              }`}
-            >
-              <div className="flex items-center mb-6">
-                <div
-                  className={`w-14 h-14 rounded-xl mr-4 flex items-center justify-center 
-                  ${
-                    isDark
-                      ? "bg-gradient-to-br from-blue-600/20 to-sky-600/20 text-blue-400"
-                      : "bg-gradient-to-br from-blue-50 to-sky-50 text-blue-500"
-                  }`}
-                >
-                  {advantages[activeFeature].icon}
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
-                  {advantages[activeFeature].title}
-                </h3>
-              </div>
-              <p className="text-gray-600 dark:text-gray-300 mb-8 border-b border-gray-200 dark:border-gray-700 pb-6">
-                {advantages[activeFeature].description}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {advantages[activeFeature].points.map((point, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50"
-                  >
-                    <FiCheckCircle className="text-blue-500 text-xl flex-shrink-0 mt-0.5" />
-                    <span className="text-gray-700 dark:text-gray-300">
-                      {point}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        {/* Мобильная версия - аккордеон */}
-        <div className="md:hidden">
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            className="space-y-4"
-          >
-            {advantages.map((advantage, index) => (
-              <motion.div
+        {/* Табы для переключения между преимуществами */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mb-10"
+        >
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-4 sm:px-0">
+            {companyAdvantages.map((advantage, index) => (
+              <motion.button
                 key={index}
                 variants={itemVariants}
-                className={`p-5 rounded-xl border ${
+                onClick={() => setActiveAdvantage(index)}
+                whileHover={{
+                  y: -2,
+                  transition: { duration: 0.2 },
+                }}
+                className={`px-4 py-3 sm:py-2.5 rounded-lg text-sm font-medium transition-all w-full sm:w-auto ${getTabClassName(
+                  index
+                )}`}
+              >
+                <div className="flex items-center justify-start gap-2">
+                  <div className="flex items-center justify-center">
+                    {advantage.icon}
+                  </div>
+                  <span className="translate-y-[1px]">{advantage.title}</span>
+                </div>
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Контент активного преимущества */}
+        <motion.div
+          key={activeAdvantage}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className={`rounded-xl overflow-hidden shadow-lg ${
+            isDark
+              ? "bg-gray-800/50 border border-gray-700 shadow-blue-900/10"
+              : "bg-white/90 backdrop-blur-sm border border-gray-200 shadow-blue-200/30"
+          }`}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch">
+            {/* Левая колонка - Текст */}
+            <div className="p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div
+                  className={`w-12 h-12 rounded-lg flex items-center justify-center 
+                  ${
+                    isDark
+                      ? `bg-gradient-to-br ${companyAdvantages[activeAdvantage].gradientFrom}/20 ${companyAdvantages[activeAdvantage].gradientTo}/20 ${companyAdvantages[activeAdvantage].colorLight}`
+                      : `bg-gradient-to-br ${companyAdvantages[activeAdvantage].gradientFrom}/10 ${companyAdvantages[activeAdvantage].gradientTo}/10 ${companyAdvantages[activeAdvantage].colorText}`
+                  }`}
+                >
+                  {companyAdvantages[activeAdvantage].icon}
+                </div>
+                <h3
+                  className={`text-xl md:text-2xl font-semibold ${companyAdvantages[activeAdvantage].colorText}`}
+                >
+                  {companyAdvantages[activeAdvantage].title}
+                </h3>
+              </div>
+
+              <div className="mb-8">
+                <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed">
+                  {companyAdvantages[activeAdvantage].description}
+                </p>
+              </div>
+
+              {/* Статистика */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                {companyAdvantages[activeAdvantage].stats.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                    className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(
+                      index
+                    )} transition-all duration-300`}
+                  >
+                    <div
+                      className={`text-2xl md:text-3xl font-bold ${companyAdvantages[activeAdvantage].colorText} mb-1`}
+                    >
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Дополнительная информация */}
+              <div
+                className={`p-5 rounded-lg backdrop-blur-sm ${
                   isDark
-                    ? "bg-gray-800/50 backdrop-blur-sm border-gray-700"
-                    : "bg-white border-gray-200"
-                } ${
-                  activeFeature === index
-                    ? isDark
-                      ? "shadow-lg shadow-blue-900/10"
-                      : "shadow-md shadow-blue-200/30"
-                    : ""
+                    ? `${companyAdvantages[activeAdvantage].bgDark} border ${companyAdvantages[activeAdvantage].borderDark}`
+                    : `${companyAdvantages[activeAdvantage].bgLight} border ${companyAdvantages[activeAdvantage].borderLight}`
                 }`}
               >
-                <div
-                  className="flex justify-between items-center cursor-pointer"
-                  onClick={() =>
-                    setActiveFeature(activeFeature === index ? -1 : index)
-                  }
-                >
-                  <div className="flex items-center gap-3">
-                    <div
-                      className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        activeFeature === index
-                          ? isDark
-                            ? "bg-blue-600/30 text-blue-400"
-                            : "bg-blue-500/20 text-blue-500"
-                          : isDark
-                          ? "bg-gray-700/50 text-gray-400"
-                          : "bg-gray-100 text-gray-500"
-                      }`}
-                    >
-                      {advantage.icon}
-                    </div>
-                    <h3
-                      className={`text-lg font-semibold ${
-                        activeFeature === index
-                          ? "text-blue-500 dark:text-blue-400"
-                          : "text-gray-800 dark:text-white"
-                      }`}
-                    >
-                      {advantage.title}
-                    </h3>
-                  </div>
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                      activeFeature === index
-                        ? isDark
-                          ? "bg-blue-900/50 text-blue-300"
-                          : "bg-blue-100 text-blue-500"
-                        : isDark
-                        ? "bg-gray-700"
-                        : "bg-gray-100"
-                    }`}
-                  >
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
+                  Ключевые особенности
+                </h4>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
                     <span
-                      className={`transition-transform ${
-                        activeFeature === index ? "transform rotate-180" : ""
-                      }`}
+                      className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                     >
-                      ↓
+                      <FiCheckCircle className="w-4 h-4" />
                     </span>
+                    <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                      Проверенные методологии и подходы к автоматизации
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span
+                      className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                    >
+                      <FiCheckCircle className="w-4 h-4" />
+                    </span>
+                    <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                      Гибкость решений и возможность адаптации под изменения
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span
+                      className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                    >
+                      <FiCheckCircle className="w-4 h-4" />
+                    </span>
+                    <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                      Непрерывная поддержка и развитие внедренных систем
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Правая колонка - Подробное описание преимущества */}
+            <div
+              className={`${
+                isDark ? "bg-gray-800/70" : "bg-blue-50/50"
+              } p-6 md:p-8 flex flex-col justify-center`}
+            >
+              <div className="mb-5">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span className="inline-block p-1.5 rounded-lg bg-blue-500/20 dark:bg-blue-400/20">
+                    <FiBookOpen className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                  </span>
+                  <span className="translate-y-[1px]">Что это означает для вашего бизнеса</span>
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 text-base">
+                  Наш подход к {companyAdvantages[activeAdvantage].title.toLowerCase()} обеспечивает не только эффективную автоматизацию, 
+                  но и создает долгосрочную ценность для вашей компании через инновационные решения и стратегическое партнерство.
+                </p>
+              </div>
+              
+              {/* Подробное описание преимущества */}
+              <div className="space-y-5">
+                {companyAdvantages[activeAdvantage].detailedDescription.map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                      {index === 0 && <FiUsers className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 1 && <FiGitBranch className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 2 && <FiHeadphones className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 3 && <FiBarChart className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                    </div>
+                    <div>
+                      <p className="text-gray-700 dark:text-gray-300 translate-y-[1px]">{item}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Бизнес-результаты */}
+              <div className="mt-8 p-4 rounded-lg bg-white/70 dark:bg-gray-800/70 border border-blue-100 dark:border-blue-800/30">
+                <h5 className="font-medium text-gray-900 dark:text-white mb-3">
+                  Ключевые результаты
+                </h5>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center gap-2">
+                    <FiTrendingUp className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение производительности</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FiClock className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение временных затрат</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FiDollarSign className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Оптимизация расходов</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FiCheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение качества</span>
                   </div>
                 </div>
-                {activeFeature === index && (
-                  <div className="mt-4 space-y-4">
-                    <p className="text-gray-600 dark:text-gray-300">
-                      {advantage.description}
-                    </p>
-                    <div className="space-y-3 pt-3 border-t border-gray-100 dark:border-gray-700">
-                      {advantage.points.map((point, pointIndex) => (
-                        <div
-                          key={pointIndex}
-                          className="flex items-start gap-3"
-                        >
-                          <FiCheckCircle className="text-blue-500 text-lg flex-shrink-0 mt-0.5" />
-                          <span className="text-gray-700 dark:text-gray-300">
-                            {point}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </motion.div>
-            ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Призыв к действию */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-12 text-center"
+        >
+          <motion.div variants={itemVariants} className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-5 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-medium shadow-lg shadow-blue-500/20 dark:shadow-blue-600/20 flex items-center justify-center gap-2 w-full sm:w-auto"
+              href="#contact"
+            >
+              <span>Обсудить ваш проект</span>
+              <FiArrowRight className="w-4 h-4" />
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-5 sm:px-6 py-3 rounded-lg border border-blue-300 dark:border-blue-700 text-blue-600 dark:text-blue-400 font-medium w-full sm:w-auto"
+              href="#workflow-process"
+            >
+              Узнать о процессе внедрения
+            </motion.a>
           </motion.div>
-        </div>
+        </motion.div>
       </Container>
     </section>
   );

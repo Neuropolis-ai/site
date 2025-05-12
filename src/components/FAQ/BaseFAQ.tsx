@@ -101,7 +101,7 @@ export default function BaseFAQ({
           variants={itemVariants}
           className="text-center mb-16 md:mb-20"
         >
-          <div className="text-center mb-16">
+          <div className="text-center mb-4">
             <Badge>FAQ</Badge>
             <Heading
               level={2}

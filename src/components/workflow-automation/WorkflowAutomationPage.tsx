@@ -90,24 +90,6 @@ export default function WorkflowAutomationPage() {
       <WorkflowAutomationWhyUs />
       <WorkflowAutomationFAQ />
       <WorkflowAutomationContactForm />
-
-      {/* Декоративный элемент - волнистая линия снизу */}
-      <div className="relative h-12 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-700 dark:to-blue-800 overflow-hidden">
-        <svg
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-          className="absolute top-0 left-0 w-full h-12 text-blue-50/50 dark:text-blue-950/10"
-        >
-          <path
-            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-            fill="currentColor"
-          />
-        </svg>
-
-        <div className="container mx-auto text-center text-white text-xs py-2 z-10 relative">
-          <p>© 2025 Нейрополис. Все права защищены.</p>
-        </div>
-      </div>
     </motion.div>
   );
 }

@@ -14,7 +14,8 @@ import {
 } from "react-icons/fi";
 
 export default function WorkflowAutomationWhyUs() {
-  const { isDark } = useTheme();
+  const { theme } = useTheme();
+  const isDark = theme !== "light";
   const [activeFeature, setActiveFeature] = useState(0);
 
   // Анимации
@@ -383,75 +384,6 @@ export default function WorkflowAutomationWhyUs() {
             ))}
           </motion.div>
         </div>
-
-        {/* Статистика */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="mt-20 p-8 rounded-xl bg-gradient-to-br from-blue-50 to-sky-50 dark:from-blue-900/20 dark:to-blue-800/10 border border-blue-100 dark:border-blue-800/30"
-        >
-          <motion.h3
-            variants={itemVariants}
-            className="text-2xl font-semibold text-gray-900 dark:text-white mb-8 text-center"
-          >
-            Цифры, которые говорят сами за себя
-          </motion.h3>
-
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            <div className="p-5 rounded-lg bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-blue-100 dark:border-blue-900/30 text-center">
-              <div className="inline-flex mb-3 bg-gradient-to-r from-blue-500 to-sky-400 text-white w-14 h-14 rounded-full items-center justify-center">
-                <FiTrendingUp className="w-6 h-6" />
-              </div>
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
-                98%
-              </div>
-              <div className="text-gray-600 dark:text-gray-300">
-                Удовлетворенность клиентов
-              </div>
-            </div>
-
-            <div className="p-5 rounded-lg bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-blue-100 dark:border-blue-900/30 text-center">
-              <div className="inline-flex mb-3 bg-gradient-to-r from-blue-500 to-sky-400 text-white w-14 h-14 rounded-full items-center justify-center">
-                <FiAward className="w-6 h-6" />
-              </div>
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
-                50+
-              </div>
-              <div className="text-gray-600 dark:text-gray-300">
-                Реализованных проектов
-              </div>
-            </div>
-
-            <div className="p-5 rounded-lg bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-blue-100 dark:border-blue-900/30 text-center">
-              <div className="inline-flex mb-3 bg-gradient-to-r from-blue-500 to-sky-400 text-white w-14 h-14 rounded-full items-center justify-center">
-                <FiUsers className="w-6 h-6" />
-              </div>
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
-                20+
-              </div>
-              <div className="text-gray-600 dark:text-gray-300">
-                Экспертов в команде
-              </div>
-            </div>
-
-            <div className="p-5 rounded-lg bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm border border-blue-100 dark:border-blue-900/30 text-center">
-              <div className="inline-flex mb-3 bg-gradient-to-r from-blue-500 to-sky-400 text-white w-14 h-14 rounded-full items-center justify-center">
-                <FiCode className="w-6 h-6" />
-              </div>
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
-                8+
-              </div>
-              <div className="text-gray-600 dark:text-gray-300">
-                Лет на рынке
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
       </Container>
     </section>
   );

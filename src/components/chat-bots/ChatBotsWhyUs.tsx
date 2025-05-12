@@ -36,9 +36,9 @@ export default function ChatBotsWhyUs() {
       description:
         "Мы не просто разрабатываем чат-ботов — мы думаем как предприниматели и создаём решения, которые работают на рост вашего бизнеса. Вместо формального внедрения интеллектуальных ассистентов мы начинаем с бизнес-задач, вникаем в контекст и подбираем индивидуальный путь к результату.",
       features: [
-        { icon: <FiTarget className="w-4 h-4" />, label: "Практический опыт в бизнес-решениях", description: "Создаём решения, которые приносят реальный эффект" },
-        { icon: <FiUsers className="w-4 h-4" />, label: "Индивидуальный подход к каждому проекту", description: "Глубокое погружение в задачи клиента" },
-        { icon: <FiTrendingUp className="w-4 h-4" />, label: "Рост и развитие вместе с клиентами", description: "Строим долгосрочные отношения и ценность" },
+        { icon: <FiTarget size={16} />, label: "Практический опыт в бизнес-решениях", description: "Создаём решения, которые приносят реальный эффект" },
+        { icon: <FiUsers size={16} />, label: "Индивидуальный подход к каждому проекту", description: "Глубокое погружение в задачи клиента" },
+        { icon: <FiTrendingUp size={16} />, label: "Рост и развитие вместе с клиентами", description: "Строим долгосрочные отношения и ценность" },
       ],
       detailedDescription: [
         "Погружение в бизнес-контекст и цели",
@@ -55,7 +55,7 @@ export default function ChatBotsWhyUs() {
       borderDark: "border-blue-800/30",
       bgLight: "bg-blue-50/80",
       borderLight: "border-blue-200",
-      icon: <FiAward className="w-5 h-5" />,
+      icon: <FiAward size={20} />,
     },
     {
       title: "Индивидуальные решения",
@@ -81,7 +81,7 @@ export default function ChatBotsWhyUs() {
       borderDark: "border-blue-800/30",
       bgLight: "bg-blue-50/80",
       borderLight: "border-blue-200",
-      icon: <FiUsers className="w-5 h-5" />,
+      icon: <FiUsers size={20} />,
     },
     {
       title: "Современные технологии",
@@ -107,7 +107,7 @@ export default function ChatBotsWhyUs() {
       borderDark: "border-blue-800/30",
       bgLight: "bg-blue-50/80",
       borderLight: "border-blue-200",
-      icon: <FiCode className="w-5 h-5" />,
+      icon: <FiCode size={20} />,
     },
     {
       title: "Полный цикл разработки",
@@ -133,7 +133,7 @@ export default function ChatBotsWhyUs() {
       borderDark: "border-blue-800/30",
       bgLight: "bg-blue-50/80",
       borderLight: "border-blue-200",
-      icon: <FiLifeBuoy className="w-5 h-5" />,
+      icon: <FiLifeBuoy size={20} />,
     },
   ];
 
@@ -157,7 +157,7 @@ export default function ChatBotsWhyUs() {
   return (
     <section
       id="chatbots-why-us"
-      className="py-20 pb-10 md:py-24 md:pb-12 relative overflow-hidden"
+      className="py-20 pb-4 md:py-24 md:pb-4 relative overflow-hidden -mb-12 sm:-mb-16"
     >
       {/* Статический градиентный фон */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
@@ -315,7 +315,7 @@ export default function ChatBotsWhyUs() {
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
-                          <FiCheckCircle className="w-4 h-4" />
+                          <FiCheckCircle size={16} />
                         </span>
                         <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
                           Понимание целей бизнеса, а не только технических задач
@@ -325,7 +325,7 @@ export default function ChatBotsWhyUs() {
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
-                          <FiCheckCircle className="w-4 h-4" />
+                          <FiCheckCircle size={16} />
                         </span>
                         <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
                           Гибкие решения, адаптируемые под изменения
@@ -335,7 +335,7 @@ export default function ChatBotsWhyUs() {
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
-                          <FiCheckCircle className="w-4 h-4" />
+                          <FiCheckCircle size={16} />
                         </span>
                         <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
                           Эволюция бота вместе с вашим бизнесом
@@ -348,7 +348,7 @@ export default function ChatBotsWhyUs() {
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
-                          <FiCheckCircle className="w-4 h-4" />
+                          <FiCheckCircle size={16} />
                         </span>
                         <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
                           Проверенные методологии и подходы к разработке чат-ботов
@@ -358,7 +358,7 @@ export default function ChatBotsWhyUs() {
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
-                          <FiCheckCircle className="w-4 h-4" />
+                          <FiCheckCircle size={16} />
                         </span>
                         <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
                           Гибкость интерфейса и возможность адаптации под изменения
@@ -368,7 +368,7 @@ export default function ChatBotsWhyUs() {
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
-                          <FiCheckCircle className="w-4 h-4" />
+                          <FiCheckCircle size={16} />
                         </span>
                         <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
                           Непрерывное обучение и улучшение чат-бота
@@ -384,12 +384,12 @@ export default function ChatBotsWhyUs() {
             <div
               className={`${
                 isDark ? "bg-gray-800/70" : "bg-blue-50/50"
-              } p-6 md:p-8 flex flex-col justify-center`}
+              } p-6 md:p-8 flex flex-col`}
             >
-              <div className="mb-5">
+              <div>
                 <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                   <span className="inline-block p-1.5 rounded-lg bg-blue-500/20 dark:bg-blue-400/20">
-                    <FiBookOpen className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                    <FiBookOpen size={16} className="text-blue-600 dark:text-blue-400" />
                   </span>
                   <span className="translate-y-[1px]">Что это означает для вашего бизнеса</span>
                 </h4>
@@ -406,10 +406,10 @@ export default function ChatBotsWhyUs() {
                 {companyAdvantages[activeAdvantage].detailedDescription.map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
-                      {index === 0 && <FiUsers className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
-                      {index === 1 && <FiMessageSquare className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
-                      {index === 2 && <FiHeadphones className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
-                      {index === 3 && <FiBarChart className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 0 && <FiUsers size={16} className="text-blue-600 dark:text-blue-400" />}
+                      {index === 1 && <FiMessageSquare size={16} className="text-blue-600 dark:text-blue-400" />}
+                      {index === 2 && <FiHeadphones size={16} className="text-blue-600 dark:text-blue-400" />}
+                      {index === 3 && <FiBarChart size={16} className="text-blue-600 dark:text-blue-400" />}
                     </div>
                     <div>
                       <p className="text-gray-700 dark:text-gray-300 translate-y-[1px]">{item}</p>
@@ -426,38 +426,38 @@ export default function ChatBotsWhyUs() {
                 {activeAdvantage === 0 ? (
                   <div className="grid grid-cols-2 gap-3">
                     <div className="flex items-center gap-2">
-                      <FiTrendingUp className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <FiTrendingUp size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Решения, которые работают на рост прибыли</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <FiClock className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <FiClock size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение времени обслуживания клиентов</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <FiUsers className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <FiUsers size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Чат-бот, понятный вашим клиентам</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <FiMessageSquare className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <FiMessageSquare size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Интеллектуальное распознавание запросов</span>
                     </div>
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 gap-3">
                     <div className="flex items-center gap-2">
-                      <FiTrendingUp className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <FiTrendingUp size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Улучшение клиентского опыта</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <FiClock className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <FiClock size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Круглосуточное обслуживание</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <FiDollarSign className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <FiDollarSign size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение операционных затрат</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <FiCheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <FiCheckCircle size={16} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
                       <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение конверсии</span>
                     </div>
                   </div>
@@ -475,7 +475,7 @@ export default function ChatBotsWhyUs() {
               href="#chatbots-contact"
             >
               <span>Обсудить ваш проект</span>
-              <FiArrowRight className="w-4 h-4" />
+              <FiArrowRight size={16} />
             </a>
             <a
               className="px-5 sm:px-6 py-3 rounded-lg border border-blue-300 dark:border-blue-700 text-blue-600 dark:text-blue-400 font-medium w-full sm:w-auto"

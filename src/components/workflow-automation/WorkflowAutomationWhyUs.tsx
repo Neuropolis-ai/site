@@ -11,7 +11,6 @@ import {
   FiCode,
   FiLifeBuoy,
   FiTrendingUp,
-  FiShield,
   FiBarChart,
   FiClock,
   FiDollarSign,
@@ -19,6 +18,8 @@ import {
   FiHeadphones,
   FiGitBranch,
   FiArrowRight,
+  FiTarget,
+  FiLayers,
 } from "react-icons/fi";
 import Badge from "@/components/ui/Badge";
 import Image from "next/image";
@@ -63,19 +64,19 @@ export default function WorkflowAutomationWhyUs() {
   // Преимущества компании в формате, похожем на use cases
   const companyAdvantages = [
     {
-      title: "Экспертиза и опыт",
+      title: "Подход, создающий ценность",
       description:
-        "Наша команда объединяет сертифицированных специалистов с многолетним опытом внедрения систем автоматизации в различных отраслях. Мы успешно реализовали десятки проектов разной сложности, от автоматизации отдельных процессов до комплексной трансформации бизнеса.",
-      stats: [
-        { value: "50+", label: "Завершенных проектов" },
-        { value: "98%", label: "Довольных клиентов" },
-        { value: "8+", label: "Лет на рынке" },
+        "Мы не просто внедряем технологии — мы думаем как предприниматели и создаём решения, которые работают на рост вашего бизнеса. Вместо формального внедрения автоматизации мы начинаем с бизнес-задач, вникаем в контекст и подбираем индивидуальный путь к результату.",
+      features: [
+        { icon: <FiTarget className="w-4 h-4" />, label: "Практический опыт в бизнес-решениях", description: "Создаём решения, которые приносят реальный эффект" },
+        { icon: <FiUsers className="w-4 h-4" />, label: "Индивидуальный подход к каждому проекту", description: "Глубокое погружение в задачи клиента" },
+        { icon: <FiTrendingUp className="w-4 h-4" />, label: "Рост и развитие вместе с клиентами", description: "Строим долгосрочные отношения и ценность" },
       ],
       detailedDescription: [
-        "Международная сертификация специалистов по автоматизации",
-        "Постоянное повышение квалификации сотрудников",
-        "Обширный опыт внедрения в различных отраслях",
-        "Глубокое знание бизнес-процессов в ключевых индустриях"
+        "Погружение в бизнес-контекст и цели",
+        "Совместная проработка решений и гипотез",
+        "Гибкая архитектура под рост и изменения",
+        "Быстрый запуск, постепенное масштабирование"
       ],
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
@@ -165,32 +166,6 @@ export default function WorkflowAutomationWhyUs() {
       bgLight: "bg-blue-50/80",
       borderLight: "border-blue-200",
       icon: <FiLifeBuoy className="w-5 h-5" />,
-    },
-    {
-      title: "Безопасность данных",
-      description:
-        "Безопасность данных — наш главный приоритет. Мы применяем многоуровневую защиту с шифрованием, строгим контролем доступа и регулярным резервным копированием. Все наши решения соответствуют международным стандартам безопасности и требованиям GDPR.",
-      stats: [
-        { value: "128-бит", label: "Шифрование данных" },
-        { value: "ISO", label: "Соответствие стандартам" },
-        { value: "0", label: "Инцидентов утечки данных" },
-      ],
-      detailedDescription: [
-        "Многоуровневая защита данных и шифрование",
-        "Строгий контроль доступа и аутентификация",
-        "Соответствие российским и международным стандартам",
-        "Регулярные аудиты и тесты на проникновение"
-      ],
-      colorBg: "bg-[#0167F3]",
-      colorText: "text-[#0167F3]",
-      colorLight: "text-[#399AFC]",
-      gradientFrom: "from-[#0167F3]",
-      gradientTo: "to-[#399AFC]",
-      bgDark: "bg-blue-900/30",
-      borderDark: "border-blue-800/30",
-      bgLight: "bg-blue-50/80",
-      borderLight: "border-blue-200",
-      icon: <FiShield className="w-5 h-5" />,
     },
   ];
 
@@ -351,27 +326,54 @@ export default function WorkflowAutomationWhyUs() {
                 </p>
               </div>
 
-              {/* Статистика */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                {companyAdvantages[activeAdvantage].stats.map((stat, index) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                    className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(
-                      index
-                    )} transition-all duration-300`}
-                  >
-                    <div
-                      className={`text-2xl md:text-3xl font-bold ${companyAdvantages[activeAdvantage].colorText} mb-1`}
+              {activeAdvantage === 0 ? (
+                // Новые карточки для первого блока
+                <div className="grid grid-cols-1 gap-4 mb-8">
+                  {companyAdvantages[0].features.map((feature, index) => (
+                    <motion.div
+                      key={index}
+                      whileHover={{ y: -2, transition: { duration: 0.2 } }}
+                      className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(index)} transition-all duration-300`}
                     >
-                      {stat.value}
-                    </div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+                      <div className="flex items-start gap-3">
+                        <div className={`flex-shrink-0 p-2 rounded-lg bg-blue-100 dark:bg-blue-900/40 ${companyAdvantages[activeAdvantage].colorText}`}>
+                          {feature.icon}
+                        </div>
+                        <div>
+                          <div className={`font-semibold mb-1 ${companyAdvantages[activeAdvantage].colorText}`}>
+                            {feature.label}
+                          </div>
+                          <div className="text-sm text-gray-600 dark:text-gray-400">
+                            {feature.description}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              ) : (
+                // Статистика для остальных блоков
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                  {companyAdvantages[activeAdvantage].stats?.map((stat, index) => (
+                    <motion.div
+                      key={index}
+                      whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                      className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(
+                        index
+                      )} transition-all duration-300`}
+                    >
+                      <div
+                        className={`text-2xl md:text-3xl font-bold ${companyAdvantages[activeAdvantage].colorText} mb-1`}
+                      >
+                        {stat.value}
+                      </div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        {stat.label}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
 
               {/* Дополнительная информация */}
               <div
@@ -382,39 +384,76 @@ export default function WorkflowAutomationWhyUs() {
                 }`}
               >
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
-                  Ключевые особенности
+                  {activeAdvantage === 0 ? "Ключевые особенности подхода" : "Ключевые особенности"}
                 </h4>
                 <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <span
-                      className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
-                    >
-                      <FiCheckCircle className="w-4 h-4" />
-                    </span>
-                    <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
-                      Проверенные методологии и подходы к автоматизации
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span
-                      className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
-                    >
-                      <FiCheckCircle className="w-4 h-4" />
-                    </span>
-                    <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
-                      Гибкость решений и возможность адаптации под изменения
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span
-                      className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
-                    >
-                      <FiCheckCircle className="w-4 h-4" />
-                    </span>
-                    <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
-                      Непрерывная поддержка и развитие внедренных систем
-                    </span>
-                  </li>
+                  {activeAdvantage === 0 ? (
+                    <>
+                      <li className="flex items-start gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Понимание целей бизнеса, а не только технических задач
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Гибкие решения, адаптируемые под изменения
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Эволюция продукта вместе с вашим бизнесом
+                        </span>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li className="flex items-start gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Проверенные методологии и подходы к автоматизации
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Гибкость решений и возможность адаптации под изменения
+                        </span>
+                      </li>
+                      <li className="flex items-start gap-3">
+                        <span
+                          className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                        >
+                          <FiCheckCircle className="w-4 h-4" />
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                          Непрерывная поддержка и развитие внедренных систем
+                        </span>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </div>
             </div>
@@ -433,8 +472,10 @@ export default function WorkflowAutomationWhyUs() {
                   <span className="translate-y-[1px]">Что это означает для вашего бизнеса</span>
                 </h4>
                 <p className="text-gray-600 dark:text-gray-300 mb-6 text-base">
-                  Наш подход к {companyAdvantages[activeAdvantage].title.toLowerCase()} обеспечивает не только эффективную автоматизацию, 
-                  но и создает долгосрочную ценность для вашей компании через инновационные решения и стратегическое партнерство.
+                  {activeAdvantage === 0 
+                    ? "Наш подход — это не просто автоматизация ради технологии, а инструмент для создания стратегических преимуществ. Мы работаем с бизнесом как партнёры, создавая решения, которые масштабируются и адаптируются вместе с вами."
+                    : `Наш подход к ${companyAdvantages[activeAdvantage].title.toLowerCase()} обеспечивает не только эффективную автоматизацию, но и создает долгосрочную ценность для вашей компании через инновационные решения и стратегическое партнерство.`
+                  }
                 </p>
               </div>
               
@@ -458,26 +499,47 @@ export default function WorkflowAutomationWhyUs() {
               {/* Бизнес-результаты */}
               <div className="mt-8 p-4 rounded-lg bg-white/70 dark:bg-gray-800/70 border border-blue-100 dark:border-blue-800/30">
                 <h5 className="font-medium text-gray-900 dark:text-white mb-3">
-                  Ключевые результаты
+                  {activeAdvantage === 0 ? "Что вы получаете:" : "Ключевые результаты"}
                 </h5>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center gap-2">
-                    <FiTrendingUp className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение производительности</span>
+                {activeAdvantage === 0 ? (
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2">
+                      <FiTrendingUp className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Решения, которые работают на рост прибыли</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiClock className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Уменьшение операционной нагрузки</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiUsers className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Продукт, понятный вашей команде</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiLayers className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Технологический фундамент под масштабирование</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <FiClock className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение временных затрат</span>
+                ) : (
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex items-center gap-2">
+                      <FiTrendingUp className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение производительности</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiClock className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение временных затрат</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiDollarSign className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Оптимизация расходов</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <FiCheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение качества</span>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <FiDollarSign className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Оптимизация расходов</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <FiCheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение качества</span>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>

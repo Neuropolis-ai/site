@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import { Target, Code2, Database, Users, Cpu, ShieldCheck } from "lucide-react";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/Heading";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
 

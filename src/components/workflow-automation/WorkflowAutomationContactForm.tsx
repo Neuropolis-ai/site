@@ -16,7 +16,7 @@ import {
   FiUsers,
   FiSend,
 } from "react-icons/fi";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/Heading";
 import Subheading from "@/components/ui/subheading";
 import { motion } from "framer-motion";
 

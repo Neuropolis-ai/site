@@ -18,7 +18,7 @@ import {
   FiBriefcase,
   FiSend,
 } from "react-icons/fi";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/Heading";
 import Subheading from "@/components/ui/subheading";
 
 // Функция для форматирования номера телефона

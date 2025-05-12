@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/Heading";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
 import BaseFAQ from "../FAQ/BaseFAQ";

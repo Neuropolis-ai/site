@@ -4,7 +4,7 @@ import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/Heading";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
 import { ReactNode } from "react";

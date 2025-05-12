@@ -16,7 +16,7 @@ import Badge from "@/components/ui/Badge";
 import WorkflowAutomationContactForm from "@/components/workflow-automation/WorkflowAutomationContactForm";
 import { FiUsers, FiLayers, FiTrendingUp } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/Heading";
 import Subheading from "@/components/ui/subheading";
 import BusinessProblems from "@/components/Problems/BusinessProblems";
 import MainUseCases from "@/components/MainUseCases";

@@ -6,7 +6,7 @@ import { ArrowRight, Brain, Zap, BarChart, Code, Sparkles, Bot } from "lucide-re
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/Heading";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
 import "@/style/hero.css";

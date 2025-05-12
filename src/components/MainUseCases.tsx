@@ -9,7 +9,7 @@ import {
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import { useState, useEffect, useRef } from "react";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/Heading";
 import {
   CheckCircle,
   ChevronRight,

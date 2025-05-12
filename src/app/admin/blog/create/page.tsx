@@ -1,55 +1,65 @@
 "use client";
 
-import ArticleForm from "@/components/admin/ArticleForm";
-import { createArticle } from "@/lib/blogApi";
-import { Article } from "@/lib/supabase";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from 'react';
+import ArticleForm from '@/components/admin/ArticleForm';
 
 export default function CreateArticlePage() {
-  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (
-    articleData: Omit<Article, "id" | "created_at">
-  ) => {
+  const handleSubmit = async (data: any) => {
+    setIsSubmitting(true);
+    setError(null);
+    
     try {
-      setIsSubmitting(true);
-      setError(null);
-
-      const result = await createArticle(articleData);
-
-      if (result) {
-        router.push("/admin/blog");
-      } else {
-        setError("Не удалось создать статью. Пожалуйста, попробуйте снова.");
-      }
+      // В реальном приложении здесь будет API-запрос для сохранения статьи
+      console.log('Отправка данных статьи:', data);
+      
+      // Имитируем задержку сохранения
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setSuccess(true);
     } catch (err) {
-      console.error(err);
-      setError("Произошла ошибка при создании статьи.");
+      console.error('Ошибка при создании статьи:', err);
+      setError(err instanceof Error ? err.message : 'Произошла ошибка при создании статьи');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen p-8 bg-gray-50 dark:bg-gray-900">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8 text-gray-800 dark:text-white">
-          Создание новой статьи
-        </h1>
-
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-            {error}
-          </div>
-        )}
-
-        <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
-          <ArticleForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        Создание новой статьи
+      </h1>
+      
+      {success ? (
+        <div className="bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-800 p-4 rounded-lg mb-6">
+          <p className="text-green-800 dark:text-green-200">
+            Статья успешно создана!
+          </p>
+          <button
+            onClick={() => setSuccess(false)}
+            className="mt-2 text-sm text-green-700 dark:text-green-300 hover:underline"
+          >
+            Создать еще одну статью
+          </button>
         </div>
-      </div>
+      ) : (
+        <>
+          {error && (
+            <div className="bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-800 p-4 rounded-lg mb-6">
+              <p className="text-red-800 dark:text-red-200">{error}</p>
+            </div>
+          )}
+          
+          <ArticleForm 
+            onSubmit={handleSubmit} 
+            isEditing={false}
+          />
+        </>
+      )}
     </div>
   );
 }

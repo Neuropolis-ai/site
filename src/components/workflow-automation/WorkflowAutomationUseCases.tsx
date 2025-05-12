@@ -4,7 +4,6 @@ import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import { useState } from "react";
 import { FiBarChart, FiCheckCircle, FiTrendingUp, FiArrowRight } from "react-icons/fi";
-import Image from "next/image";
 import Badge from "@/components/ui/Badge";
 
 export default function WorkflowAutomationUseCases() {
@@ -28,7 +27,6 @@ export default function WorkflowAutomationUseCases() {
         "Автоматический анализ эффективности маркетинговых каналов",
         "Интеграция с CRM для отслеживания полного пути клиента"
       ],
-      image: "/assets/images/workflow-marketing.png",
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
       colorLight: "text-[#399AFC]",
@@ -55,7 +53,6 @@ export default function WorkflowAutomationUseCases() {
         "Автоматическая квалификация лидов на основе их поведения",
         "Интеграция с платежными системами и документооборотом"
       ],
-      image: "/assets/images/workflow-sales.png",
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
       colorLight: "text-[#399AFC]",
@@ -82,7 +79,6 @@ export default function WorkflowAutomationUseCases() {
         "Отслеживание просроченных платежей и автоматические напоминания",
         "Подготовка финансовой отчетности для руководства и контролирующих органов"
       ],
-      image: "/assets/images/workflow-finance.png",
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
       colorLight: "text-[#399AFC]",
@@ -260,22 +256,36 @@ export default function WorkflowAutomationUseCases() {
               </div>
             </div>
 
-            {/* Правая колонка - Изображение */}
+            {/* Правая колонка - Интерактивная демонстрация */}
             <div
               className={`${
                 isDark ? "bg-gray-800/70" : "bg-blue-50/50"
-              } p-6 md:p-8 flex flex-col justify-center items-center`}
+              } p-6 md:p-8 flex items-center justify-center`}
             >
-              <div className="relative w-full max-w-md mx-auto">
-                <Image
-                  src={useCases[activeTab].image}
-                  alt={useCases[activeTab].title}
-                  width={500}
-                  height={350}
-                  className="rounded-lg shadow-lg"
-                  style={{ objectFit: "contain" }}
-                  priority={activeTab === 0}
-                />
+              <div className="relative w-full h-[300px] md:h-[400px] rounded-xl overflow-hidden">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div
+                    className={`w-full h-full bg-gradient-to-br from-blue-100/50 to-blue-50/50 dark:from-blue-900/20 dark:to-blue-800/10 backdrop-blur-sm rounded-xl border ${
+                      isDark ? "border-blue-800/20" : "border-blue-200/50"
+                    } flex items-center justify-center`}
+                  >
+                    <div className="text-center p-8">
+                      <div className="inline-flex items-center justify-center bg-gradient-to-r from-blue-500 to-sky-400 text-white w-16 h-16 rounded-full mb-4">
+                        {useCases[activeTab].icon}
+                      </div>
+                      <p className="text-blue-600 dark:text-blue-400 font-medium text-xl">
+                        Интерактивная демонстрация
+                      </p>
+                      <p className="text-gray-500 dark:text-gray-400 text-base mt-4 max-w-md mx-auto">
+                        Свяжитесь с нами для презентации решения по автоматизации {" "}
+                        <span className="font-medium text-blue-600 dark:text-blue-400">
+                          {useCases[activeTab].title.toLowerCase()}
+                        </span>
+                        {" "} в вашей компании
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

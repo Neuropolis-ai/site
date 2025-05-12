@@ -1,12 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
-import { IconType } from "react-icons";
 import { ReactNode } from "react";
 import "../../style/dot-grid.css";
-import { ArrowDown, ArrowDownRight, ArrowRight } from "lucide-react";
 import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
@@ -44,28 +41,6 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
 }) => {
   const { theme } = useTheme();
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
-
   function renderTitle() {
     if (!gradientTitlePart) {
       return <span className="text-gray-900">{title}</span>;
@@ -86,17 +61,11 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
   }
 
   return (
-    <motion.section
+    <section
       id={sectionId}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
       className="py-16 md:py-24 relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 -z-10"></div>
-      <div className="absolute -top-40 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute inset-0 bg-white dark:bg-gray-950 -z-10"></div>
 
       <Container>
         <div className="text-center mb-16">
@@ -119,14 +88,10 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
           </Subheading>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {processSteps.map((step, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={itemVariants}
               className="relative group p-7 rounded-2xl transition-all duration-500 overflow-hidden bg-white hover:shadow-xl border border-gray-200"
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/5 to-primary-light/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-5"></div>
@@ -151,9 +116,9 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
                     {step.details.map((detail: string, i: number) => (
                       <li
                         key={i}
-                        className="flex items-start gap-2 text-gray-700"
+                        className="flex items-center gap-2 text-gray-700"
                       >
-                        <div className="min-w-[14px] h-[14px] mt-[5px]">
+                        <div className="min-w-[14px] h-[14px]">
                           <div className="w-[14px] h-[14px] rounded-full bg-gradient-to-r from-primary to-primary-light flex items-center justify-center">
                             <div className="w-[5px] h-[5px] bg-white rounded-full"></div>
                           </div>
@@ -164,11 +129,11 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
                   </ul>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </Container>
-    </motion.section>
+    </section>
   );
 };
 

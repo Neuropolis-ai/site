@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useEffect } from "react";
 import WorkflowAutomationHero from "./WorkflowAutomationHero";
 import WorkflowAutomationProblems from "./WorkflowAutomationProblems";
@@ -12,15 +11,6 @@ import WorkflowAutomationFAQ from "./WorkflowAutomationFAQ";
 import WorkflowAutomationContactForm from "./WorkflowAutomationContactForm";
 
 export default function WorkflowAutomationPage() {
-  // Анимация для плавного появления страницы
-  const pageFadeIn = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { duration: 0.8, ease: "easeInOut" },
-    },
-  };
-
   // Эффект для плавного скролла к якорным ссылкам
   useEffect(() => {
     const handleScroll = (event: MouseEvent) => {
@@ -50,12 +40,7 @@ export default function WorkflowAutomationPage() {
   }, []);
 
   return (
-    <motion.div
-      className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 to-white text-gray-800 font-sans dark:from-blue-950/10 dark:to-gray-950 dark:text-white"
-      variants={pageFadeIn}
-      initial="hidden"
-      animate="show"
-    >
+    <div className="relative overflow-hidden bg-white text-gray-800 font-sans dark:bg-gray-950 dark:text-white">
       {/* Декоративный элемент - волнистая линия сверху */}
       <div className="absolute top-0 left-0 right-0 h-3 z-10 overflow-hidden">
         <svg
@@ -90,6 +75,6 @@ export default function WorkflowAutomationPage() {
       <WorkflowAutomationWhyUs />
       <WorkflowAutomationFAQ />
       <WorkflowAutomationContactForm />
-    </motion.div>
+    </div>
   );
 }

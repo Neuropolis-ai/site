@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { ChevronDownIcon } from "lucide-react";
 import Badge from "@/components/ui/Badge";
 import { Heading } from "@/components/ui/heading";
@@ -58,90 +57,18 @@ export default function BaseFAQ({
     setOpenItem(openItem === index ? null : index);
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  const floatingVariants = {
-    initial: { y: 0 },
-    animate: {
-      y: [0, -10, 0],
-      transition: {
-        duration: 5,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
-
   return (
-    <motion.section
+    <section
       id={sectionId}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, amount: 0.1 }}
-      className="relative py-20 md:py-28 px-4 overflow-hidden"
+      className="relative py-20 md:py-28 px-4"
     >
-      {/* Улучшенный градиентный фон */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
-      
-      {/* Сетка-фон */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: "url('/grid-pattern.svg')",
-            backgroundSize: "24px 24px",
-            backgroundRepeat: "repeat",
-          }}
-        ></div>
-      </div>
-
-      {/* Декоративные элементы */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
-      
-      {/* Анимированные плавающие элементы */}
-      <motion.div
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        className="absolute top-[25%] right-[15%] w-16 h-16 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
-      ></motion.div>
-      <motion.div
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        className="absolute bottom-[30%] left-[10%] w-12 h-12 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
-        style={{ animationDelay: "1.5s" }}
-      ></motion.div>
+      {/* Упрощенный фон */}
+      <div className="absolute inset-0 bg-white dark:bg-gray-950 -z-10"></div>
 
       <div className="container relative mx-auto max-w-5xl">
         <FAQSchema faqs={faqItems} />
 
-        <motion.div
-          variants={itemVariants}
-          className="text-center mb-16 md:mb-20"
-        >
+        <div className="text-center mb-16 md:mb-20">
           <div className="text-center mb-4">
             <Badge>FAQ</Badge>
             <Heading
@@ -166,20 +93,15 @@ export default function BaseFAQ({
               )}
             </Heading>
           </div>
-          <motion.p className="section-subtitle text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="section-subtitle text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             {subtitle}
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         <div className="grid gap-3 relative">
-          {/* Фоновый декоративный элемент для списка вопросов */}
-          <div className="absolute -left-5 top-1/4 w-20 h-20 bg-blue-100/50 dark:bg-blue-900/20 rounded-full blur-xl -z-10"></div>
-          <div className="absolute -right-5 bottom-1/4 w-20 h-20 bg-blue-100/50 dark:bg-blue-900/20 rounded-full blur-xl -z-10"></div>
-          
           {faqItems.map((faq, index) => (
-            <motion.div
+            <div
               key={faq.id || index}
-              variants={itemVariants}
               className="group"
             >
               <div className="relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md">
@@ -229,10 +151,10 @@ export default function BaseFAQ({
                   </div>
                 )}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

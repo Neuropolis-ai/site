@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import { useState } from "react";
@@ -28,38 +27,6 @@ export default function WorkflowAutomationWhyUs() {
   const { theme } = useTheme();
   const isDark = theme !== "light";
   const [activeAdvantage, setActiveAdvantage] = useState(0);
-
-  // Анимации
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
-
-  const floatingVariants = {
-    initial: { y: 0 },
-    animate: {
-      y: [0, -10, 0],
-      transition: {
-        duration: 5,
-        repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
-  };
 
   // Преимущества компании в формате, похожем на use cases
   const companyAdvantages = [
@@ -191,87 +158,33 @@ export default function WorkflowAutomationWhyUs() {
       id="workflow-why-us"
       className="py-20 md:py-24 relative overflow-hidden"
     >
-      {/* Градиентный фон */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
-
-      {/* Сетка-фон */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: "url('/grid-pattern.svg')",
-            backgroundSize: "24px 24px",
-            backgroundRepeat: "repeat",
-          }}
-        ></div>
-      </div>
-
-      {/* Декоративные элементы */}
-      <div className="absolute -top-24 -left-24 w-72 h-72 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
-      <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
-
-      {/* Анимированные элементы */}
-      <motion.div
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        className="absolute top-[35%] left-[10%] w-14 h-14 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
-      ></motion.div>
-      <motion.div
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        className="absolute bottom-[25%] right-[7%] w-20 h-20 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
-        style={{ animationDelay: "1.5s" }}
-      ></motion.div>
+      {/* Упрощенный фон */}
+      <div className="absolute inset-0 bg-white dark:bg-gray-950 -z-10"></div>
 
       <Container>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="text-center mb-14"
-        >
-          <motion.div variants={itemVariants}>
+        <div className="text-center mb-14">
+          <div>
             <Badge>Почему мы</Badge>
-          </motion.div>
-          <motion.h2
-            variants={itemVariants}
-            className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
-          >
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Почему клиенты выбирают{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
               Нейрополис
             </span>
-          </motion.h2>
-          <motion.p
-            variants={itemVariants}
-            className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
-          >
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Мы создаём интеллектуальные системы автоматизации, которые не просто оптимизируют процессы, 
             но и обеспечивают конкурентное преимущество вашему бизнесу в эпоху цифровой трансформации.
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Табы для переключения между преимуществами */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="mb-10"
-        >
+        <div className="mb-10">
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-4 sm:px-0">
             {companyAdvantages.map((advantage, index) => (
-              <motion.button
+              <button
                 key={index}
-                variants={itemVariants}
                 onClick={() => setActiveAdvantage(index)}
-                whileHover={{
-                  y: -2,
-                  transition: { duration: 0.2 },
-                }}
                 className={`px-4 py-3 sm:py-2.5 rounded-lg text-sm font-medium transition-all w-full sm:w-auto ${getTabClassName(
                   index
                 )}`}
@@ -282,17 +195,13 @@ export default function WorkflowAutomationWhyUs() {
                   </div>
                   <span className="translate-y-[1px]">{advantage.title}</span>
                 </div>
-              </motion.button>
+              </button>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Контент активного преимущества */}
-        <motion.div
-          key={activeAdvantage}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+        <div
           className={`rounded-xl overflow-hidden shadow-lg ${
             isDark
               ? "bg-gray-800/50 border border-gray-700 shadow-blue-900/10"
@@ -330,12 +239,11 @@ export default function WorkflowAutomationWhyUs() {
                 // Новые карточки для первого блока
                 <div className="grid grid-cols-1 gap-4 mb-8">
                   {companyAdvantages[0].features?.map((feature, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      whileHover={{ y: -2, transition: { duration: 0.2 } }}
                       className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(index)} transition-all duration-300`}
                     >
-                      <div className="flex items-start gap-3">
+                      <div className="flex items-center gap-3">
                         <div className={`flex-shrink-0 p-2 rounded-lg bg-blue-100 dark:bg-blue-900/40 ${companyAdvantages[activeAdvantage].colorText}`}>
                           {feature.icon}
                         </div>
@@ -348,16 +256,15 @@ export default function WorkflowAutomationWhyUs() {
                           </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               ) : (
                 // Статистика для остальных блоков
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                   {companyAdvantages[activeAdvantage].stats?.map((stat, index) => (
-                    <motion.div
+                    <div
                       key={index}
-                      whileHover={{ y: -3, transition: { duration: 0.2 } }}
                       className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(
                         index
                       )} transition-all duration-300`}
@@ -370,7 +277,7 @@ export default function WorkflowAutomationWhyUs() {
                       <div className="text-sm text-gray-600 dark:text-gray-400">
                         {stat.label}
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               )}
@@ -389,7 +296,7 @@ export default function WorkflowAutomationWhyUs() {
                 <ul className="space-y-3">
                   {activeAdvantage === 0 ? (
                     <>
-                      <li className="flex items-start gap-3">
+                      <li className="flex items-center gap-3">
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
@@ -399,7 +306,7 @@ export default function WorkflowAutomationWhyUs() {
                           Понимание целей бизнеса, а не только технических задач
                         </span>
                       </li>
-                      <li className="flex items-start gap-3">
+                      <li className="flex items-center gap-3">
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
@@ -409,7 +316,7 @@ export default function WorkflowAutomationWhyUs() {
                           Гибкие решения, адаптируемые под изменения
                         </span>
                       </li>
-                      <li className="flex items-start gap-3">
+                      <li className="flex items-center gap-3">
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
@@ -422,7 +329,7 @@ export default function WorkflowAutomationWhyUs() {
                     </>
                   ) : (
                     <>
-                      <li className="flex items-start gap-3">
+                      <li className="flex items-center gap-3">
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
@@ -432,7 +339,7 @@ export default function WorkflowAutomationWhyUs() {
                           Проверенные методологии и подходы к автоматизации
                         </span>
                       </li>
-                      <li className="flex items-start gap-3">
+                      <li className="flex items-center gap-3">
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
@@ -442,7 +349,7 @@ export default function WorkflowAutomationWhyUs() {
                           Гибкость решений и возможность адаптации под изменения
                         </span>
                       </li>
-                      <li className="flex items-start gap-3">
+                      <li className="flex items-center gap-3">
                         <span
                           className={`${companyAdvantages[activeAdvantage].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
                         >
@@ -543,36 +450,26 @@ export default function WorkflowAutomationWhyUs() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Призыв к действию */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="mt-12 text-center"
-        >
-          <motion.div variants={itemVariants} className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
-            <motion.a
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
+        <div className="mt-12 text-center">
+          <div className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+            <a
               className="px-5 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-medium shadow-lg shadow-blue-500/20 dark:shadow-blue-600/20 flex items-center justify-center gap-2 w-full sm:w-auto"
               href="#contact"
             >
               <span>Обсудить ваш проект</span>
               <FiArrowRight className="w-4 h-4" />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+            </a>
+            <a
               className="px-5 sm:px-6 py-3 rounded-lg border border-blue-300 dark:border-blue-700 text-blue-600 dark:text-blue-400 font-medium w-full sm:w-auto"
               href="#workflow-process"
             >
               Узнать о процессе внедрения
-            </motion.a>
-          </motion.div>
-        </motion.div>
+            </a>
+          </div>
+        </div>
       </Container>
     </section>
   );

@@ -7,11 +7,13 @@ export type Theme = "light";
 
 interface ThemeContextType {
   theme: Theme;
+  isDark: boolean;
 }
 
 // Создаем контекст только со светлой темой
 export const ThemeContext = createContext<ThemeContextType>({
-  theme: "light"
+  theme: "light",
+  isDark: false
 });
 
 // Хук для доступа к контексту
@@ -23,6 +25,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   // Всегда используем светлую тему
   const theme: Theme = "light";
+  const isDark = false;
 
   // Эффект для установки светлой темы при загрузке
   useEffect(() => {
@@ -35,7 +38,7 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme }}>
+    <ThemeContext.Provider value={{ theme, isDark }}>
       {children}
     </ThemeContext.Provider>
   );

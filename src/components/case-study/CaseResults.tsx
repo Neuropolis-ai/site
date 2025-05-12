@@ -1,0 +1,192 @@
+"use client";
+
+import { useTheme } from "@/context/ThemeContext";
+import CaseSection from "./CaseSection";
+// import MetricCard from "./MetricCard"; // Удаляем, так как дизайн метрик будет встроен
+import { motion } from "framer-motion";
+import {
+  FiCheck,
+  FiTrendingUp,
+  FiClock,
+  FiUsers,
+  FiDollarSign,
+  FiBarChart2,
+} from "react-icons/fi"; // Иконки для результатов
+import { brandColors } from "./CaseHero"; // Импортируем фирменные цвета
+
+interface Metric {
+  number: string;
+  label: string;
+}
+
+interface ResultPoint {
+  text: string;
+}
+
+interface CaseResultsProps {
+  metrics: Metric[];
+  intro?: string;
+  results: ResultPoint[];
+}
+
+// Функция для выбора иконки на основе текста результата
+const getResultIcon = (
+  text: string
+): React.ComponentType<{ className?: string }> => {
+  const lowerText = text.toLowerCase();
+  if (lowerText.includes("nps") || lowerText.includes("конверси"))
+    return FiTrendingUp;
+  if (
+    lowerText.includes("время") ||
+    lowerText.includes("минут") ||
+    lowerText.includes("часов")
+  )
+    return FiClock;
+  if (
+    lowerText.includes("обращений") ||
+    lowerText.includes("человека") ||
+    lowerText.includes("штата")
+  )
+    return FiUsers;
+  if (lowerText.includes("экономия") || lowerText.includes("$"))
+    return FiDollarSign;
+  return FiCheck; // Иконка по умолчанию
+};
+
+// Функция для преобразования HEX-цвета в RGB компоненты
+const hexToRgb = (hex: string) => {
+  const r = parseInt(hex.substring(1, 3), 16);
+  const g = parseInt(hex.substring(3, 5), 16);
+  const b = parseInt(hex.substring(5, 7), 16);
+  return { r, g, b };
+};
+
+// RGB-компоненты для основного цвета бренда
+const primaryRGB = hexToRgb("#0167F3");
+
+export default function CaseResults({
+  metrics,
+  intro,
+  results,
+}: CaseResultsProps) {
+  const { isDark } = useTheme();
+
+  return (
+    <CaseSection title="📊 Достигнутые результаты">
+      {/* Обновленные карточки метрик */}
+      {metrics.length > 0 && (
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-14"
+          animate={{ opacity: 1 }}
+        >
+          {metrics.map((metric, index) => (
+            <motion.div
+              key={index}
+              animate={{ opacity: 1 }}
+              whileHover={{
+                y: -8,
+                transition: { duration: 0.3 },
+                boxShadow: isDark
+                  ? `0 15px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.2)`
+                  : `0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.15)`,
+              }}
+              className={`p-6 rounded-2xl text-center transition-all duration-300 border shadow-lg backdrop-blur-sm ${
+                isDark
+                  ? "bg-gradient-to-br from-blue-900/20 to-blue-800/20 border-blue-800/30 hover:border-blue-700/50"
+                  : "bg-gradient-to-br from-blue-50/70 to-blue-50/50 border-blue-100/60 hover:border-blue-200/80"
+              }`}
+            >
+              <div
+                className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4 shadow-md ${
+                  isDark
+                    ? "bg-gradient-to-br from-blue-700/50 to-blue-800/50 text-blue-200 border border-blue-600/30"
+                    : "bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 border border-blue-200/50"
+                }`}
+              >
+                <FiBarChart2 className="w-6 h-6" />
+              </div>
+              <div
+                className={`text-3xl md:text-4xl font-bold mb-1 ${isDark ? "text-gray-100" : "text-gray-900"}`}
+              >
+                {metric.number}
+              </div>
+              <p
+                className={`text-sm font-medium ${
+                  isDark ? "text-gray-400" : "text-gray-500"
+                }`}
+              >
+                {metric.label}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+      )}
+
+      {/* Вводный текст и список результатов */}
+      <motion.div
+        animate={{ opacity: 1 }}
+        className={`p-8 rounded-3xl shadow-xl border backdrop-blur-md ${
+          isDark
+            ? "bg-gradient-to-br from-gray-900/70 to-[#121929]/70 border-gray-700/40"
+            : "bg-gradient-to-br from-white/90 to-gray-50/80 border-gray-200/70"
+        }`}
+      >
+        {intro && (
+          <p className="mb-8 text-lg leading-relaxed max-w-4xl">{intro}</p>
+        )}
+
+        {results.length > 0 && (
+          <motion.ul
+            className="space-y-4"
+            animate={{ opacity: 1 }}
+          >
+            {results.map((result, index) => {
+              const Icon = getResultIcon(result.text);
+              return (
+                <motion.li
+                  key={index}
+                  animate={{ opacity: 1 }}
+                  whileHover={{
+                    x: 5,
+                    transition: { duration: 0.2 },
+                    boxShadow: isDark
+                      ? "0 8px 20px rgba(0, 0, 0, 0.3)"
+                      : "0 8px 20px rgba(0, 0, 0, 0.07)",
+                  }}
+                  className={`flex items-start p-4 rounded-xl transition-all duration-300 border transform ${
+                    isDark
+                      ? "bg-gray-800/60 border-gray-700/50 hover:border-blue-700/50"
+                      : "bg-white/80 border-gray-200/80 hover:border-blue-300/70"
+                  }`}
+                >
+                  <div
+                    className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-sm ${
+                      isDark
+                        ? "bg-gradient-to-br from-blue-800/40 to-blue-900/40 text-blue-300 border border-blue-700/20"
+                        : "bg-gradient-to-br from-blue-100 to-blue-200/70 text-blue-600 border border-blue-200/50"
+                    }`}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span
+                    className={`flex-1 text-base leading-relaxed mt-1 ${
+                      isDark ? "text-gray-300" : "text-gray-700"
+                    }`}
+                    dangerouslySetInnerHTML={{
+                      __html: result.text.replace(
+                        /<b>(.*?)<\/b>/g,
+                        '<strong class="font-semibold ' +
+                          (isDark ? "text-white" : "text-gray-900") +
+                          '">$1</strong>'
+                      ),
+                    }}
+                  />
+                </motion.li>
+              );
+            })}
+          </motion.ul>
+        )}
+      </motion.div>
+    </CaseSection>
+  );
+}

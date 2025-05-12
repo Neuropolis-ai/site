@@ -1,0 +1,106 @@
+/* Добавьте эти стили в ваш CSS файл */
+.left-content {
+  position: relative;
+}
+
+.left-content.is-sticky {
+  position: sticky;
+  top: 20px;
+  align-self: start;
+}
+
+@media (max-width: 1023px) {
+  .left-content.is-sticky {
+    position: relative;
+    top: 0;
+  }
+}
+
+/* Улучшенные интервалы для текста */
+p:not(.animation-element):not(.animated):not(.ai-line):not(.ai-line-animated *),
+.text-sm:not(.animation-element):not(.animated):not(.ai-line):not(
+    .ai-line-animated *
+  ),
+.text-base:not(.animation-element):not(.animated):not(.ai-line):not(
+    .ai-line-animated *
+  ),
+.text-lg:not(.animation-element):not(.animated):not(.ai-line):not(
+    .ai-line-animated *
+  ) {
+  line-height: 1.7;
+}
+
+h1:not(.animation-element):not(.animated),
+h2:not(.animation-element):not(.animated),
+h3:not(.animation-element):not(.animated),
+h4:not(.animation-element):not(.animated),
+h5:not(.animation-element):not(.animated),
+h6:not(.animation-element):not(.animated) {
+  line-height: 1.3;
+}
+
+.feature-description {
+  line-height: 1.7;
+  margin-top: 0.75rem;
+}
+
+.faq-answer {
+  line-height: 1.8;
+}
+
+.ai-message,
+.user-message {
+  line-height: 1.7;
+}
+
+.leading-relaxed {
+  line-height: 1.75;
+}
+
+.leading-loose {
+  line-height: 2;
+}
+
+/* Предотвращаем влияние line-height на анимацию и интерактивные элементы */
+.ai-line,
+.ai-line-animated,
+.ai-line-animated *,
+.ai-line-glow,
+.workflow-animation,
+.workflow-animation *,
+.animation-element,
+.animated,
+button,
+.button,
+.clickable,
+[role="button"],
+a {
+  line-height: normal !important;
+}
+
+/* Убедимся, что события клика работают корректно */
+button,
+.button,
+[role="button"],
+a,
+.clickable {
+  cursor: pointer;
+  pointer-events: auto !important;
+  z-index: 1;
+  position: relative;
+}
+
+/* Единые стили типографики */
+.card-text {
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.small-text {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+p {
+  line-height: 1.3;
+}

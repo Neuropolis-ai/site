@@ -1,0 +1,82 @@
+/* Отключенные blur animation effects для hero section */
+
+/* Text blur reveal animation */
+.blur-reveal {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes blur-reveal {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+/* Floating animation for subtle movement */
+.float-animation {
+  animation: none;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Custom delays for animations - все задержки установлены на 0 */
+.anim-delay-1 {
+  animation-delay: 0s;
+}
+
+.anim-delay-2 {
+  animation-delay: 0s;
+}
+
+.anim-delay-3 {
+  animation-delay: 0s;
+}
+
+.anim-delay-4 {
+  animation-delay: 0s;
+}
+
+.anim-delay-5 {
+  animation-delay: 0s;
+}
+
+.anim-delay-6 {
+  animation-delay: 0s;
+}
+
+.anim-delay-7 {
+  animation-delay: 0s;
+}
+
+.anim-delay-8 {
+  animation-delay: 0s;
+}
+
+.anim-delay-9 {
+  animation-delay: 0s;
+}
+
+.anim-delay-10 {
+  animation-delay: 0s;
+}

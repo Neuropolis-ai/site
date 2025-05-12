@@ -1,0 +1,72 @@
+/* Файл с исправлениями для анимаций */
+
+/* Предотвращение влияния line-height на анимированные элементы */
+.ai-line,
+.ai-line-animated,
+.ai-line-glow,
+.workflow-animation .workflow-row,
+.animation-element,
+.animated,
+.particle,
+.float,
+.document-line,
+.filled,
+.icon-animated * {
+  line-height: normal !important;
+  animation-play-state: running !important;
+}
+
+/* Интерактивные элементы */
+button,
+.button,
+[role="button"],
+a,
+.clickable,
+input[type="submit"],
+.cursor-pointer {
+  line-height: normal !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Фикс для анимаций движения */
+@keyframes aiBoxGlow {
+  0% {
+    box-shadow: rgba(0, 2, 128, 0.016) 0px 0.602187px 3.01094px 0px,
+      rgba(0, 2, 128, 0.06) 0px 2.28853px 11.4427px 0px,
+      rgba(0, 2, 128, 0.25) 0px 10px 50px 0px,
+      0 0 8px 2px rgba(21, 58, 161, 0.3);
+  }
+
+  100% {
+    box-shadow: rgba(0, 2, 128, 0.016) 0px 0.602187px 3.01094px 0px,
+      rgba(0, 2, 128, 0.06) 0px 2.28853px 11.4427px 0px,
+      rgba(0, 2, 128, 0.25) 0px 10px 50px 0px,
+      0 0 20px 5px rgba(21, 58, 161, 0.7);
+  }
+}
+
+.ai-agent-box {
+  animation: aiBoxGlow 3s infinite alternate !important;
+}
+
+/* Исправление анимации прокрутки */
+.scroll-container-left {
+  animation: scroll-left 85s linear infinite !important;
+}
+
+.scroll-container-right {
+  animation: scroll-right 85s linear infinite !important;
+}
+
+/* Исправление для анимации линий AI */
+.ai-line-animated .ai-line-glow {
+  animation-play-state: running !important;
+}
+
+/* Исправление для анимирующихся точек */
+.animate-bounce {
+  animation: bounce 1s infinite !important;
+}

@@ -1,0 +1,1885 @@
+From 2006c857d4767f3b9d20728fa291cf0c115c8af8 Mon Sep 17 00:00:00 2001
+From: Cursor <cursor@MacBook-Pro-Maksim.local>
+Date: Sat, 10 May 2025 17:53:31 +0300
+Subject: [PATCH] =?UTF-8?q?=D0=A1=D1=82=D0=B8=D0=BB=D0=B8=D1=81=D1=82?=
+ =?UTF-8?q?=D0=B8=D1=87=D0=B5=D1=81=D0=BA=D0=B8=D0=B5=20=D0=B8=D0=B7=D0=BC?=
+ =?UTF-8?q?=D0=B5=D0=BD=D0=B5=D0=BD=D0=B8=D1=8F=20=D0=B2=20=D0=BA=D0=BE?=
+ =?UTF-8?q?=D0=BC=D0=BF=D0=BE=D0=BD=D0=B5=D0=BD=D1=82=D0=B0=D1=85=20=D0=B4?=
+ =?UTF-8?q?=D0=BB=D1=8F=20=D0=BF=D1=80=D0=B8=D0=B2=D0=B5=D0=B4=D0=B5=D0=BD?=
+ =?UTF-8?q?=D0=B8=D1=8F=20=D0=BA=20=D0=B5=D0=B4=D0=B8=D0=BD=D0=BE=D0=BC?=
+ =?UTF-8?q?=D1=83=20=D0=B4=D0=B8=D0=B7=D0=B0=D0=B9=D0=BD=D1=83?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ public/rss.xml                       | 912 ++++++++++++++++++++++++++-
+ src/components/Contact/Contact.tsx   | 345 +++++-----
+ src/components/Services/Workflow.tsx |  54 +-
+ src/components/ui/Badge.tsx          |  18 +-
+ src/style/hero.css                   | 225 +++----
+ src/style/text-animations.css        |   4 +-
+ 6 files changed, 1248 insertions(+), 310 deletions(-)
+
+diff --git a/public/rss.xml b/public/rss.xml
+index b742f83..7658f78 100644
+--- a/public/rss.xml
++++ b/public/rss.xml
+@@ -6,7 +6,917 @@
+ <atom:link href="https://neuropolis.ai/rss.xml" rel="self" type="application/rss+xml" />
+ <description>ИИ-агенты и автоматизация бизнес-процессов</description>
+ <language>ru</language>
+-<lastBuildDate>Sat, 19 Apr 2025 07:49:44 GMT</lastBuildDate>
++<lastBuildDate>Sat, 10 May 2025 12:16:55 GMT</lastBuildDate>
++<item>
++<title>Носимые устройства с искусственным интеллектом: Большой брат всегда с тобой?</title>
++<link>https://neuropolis.ai/blog/nosimye-ustroistva-s-iskusstvennym-intellektom-bolshoi-brat-vsegda-s-toboi</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/nosimye-ustroistva-s-iskusstvennym-intellektom-bolshoi-brat-vsegda-s-toboi</guid>
++<description>Новый выпуск Vergecast: AI-носимые устройства, слушающие всё вокруг, роскошные клавиатуры и будущее браузера Chrome. Обсуждаем опыт использования, цену и перспективы.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 07 May 2025 09:10:32 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/VRG_VST_0506_Site.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/VRG_VST_0506_Site.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Новое меню &quot;Пуск&quot; Windows 11 появится уже в этом месяце!</title>
++<link>https://neuropolis.ai/blog/novoe-meniu-pusk-windows-11-poiavitsia-uzhe-v-etom-mesiatse</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/novoe-meniu-pusk-windows-11-poiavitsia-uzhe-v-etom-mesiatse</guid>
++<description>Обновление Windows 11: новый Start menu с удобной навигацией, AI-функции в настройках, Paint, Photos и File Explorer. Улучшения для пользователей Copilot Plus PC.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 07 May 2025 09:10:30 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/Windows-CopilotPC-StartMenuWithPhoneLink-Feature_UNDER-EMBARGO-UNTIL-MAY-6-6-AM-PT-9-AM-ET.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/Windows-CopilotPC-StartMenuWithPhoneLink-Feature_UNDER-EMBARGO-UNTIL-MAY-6-6-AM-PT-9-AM-ET.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Oura выходит на новый уровень: теперь отслеживание глюкозы и журнал питания с помощью ИИ</title>
++<link>https://neuropolis.ai/blog/oura-vykhodit-na-novyi-uroven-teper-otslezhivanie-gliukozy-i-zhurnal-pitaniia-s-pomoshchiu-ii</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/oura-vykhodit-na-novyi-uroven-teper-otslezhivanie-gliukozy-i-zhurnal-pitaniia-s-pomoshchiu-ii</guid>
++<description>Oura Ring теперь отслеживает уровень глюкозы с помощью ИИ! Узнайте о новой интеграции с Dexcom Stelo CGM и функции логирования питания для улучшения метаболического здоровья.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 07 May 2025 09:10:28 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/Meals-1.png?quality=90&amp;strip=all&amp;crop=0%2C10.752607989199%2C100%2C78.494784021602&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/Meals-1.png?quality=90&amp;strip=all&amp;crop=0%2C10.752607989199%2C100%2C78.494784021602&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Приложение Google для iOS научит искусственный интеллект говорить проще</title>
++<link>https://neuropolis.ai/blog/prilozhenie-google-dlia-ios-nauchit-iskusstvennyi-intellekt-govorit-proshche</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/prilozhenie-google-dlia-ios-nauchit-iskusstvennyi-intellekt-govorit-proshche</guid>
++<description>Google внедряет в iOS приложение новую функцию &quot;Упростить&quot; на базе AI Gemini, которая позволяет мгновенно перефразировать сложный текст, делая его понятным без потери смысла.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 07 May 2025 09:10:26 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK093_GOOGLE_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK093_GOOGLE_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>NBC будет использовать сгенерированный ИИ голос Джима Фагана для трансляций NBA</title>
++<link>https://neuropolis.ai/blog/nbc-budet-ispolzovat-sgenerirovannyi-ii-golos-dzhima-fagana-dlia-transliatsii-nba</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/nbc-budet-ispolzovat-sgenerirovannyi-ii-golos-dzhima-fagana-dlia-transliatsii-nba</guid>
++<description>NBC возобновит NBA coverage в октябре, используя AI-голос Джима Фагана, известного спортивного комментатора. Узнайте, как нейросеть воссоздаст его голос для промо и заставок.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 07 May 2025 09:10:24 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/gettyimages-2213434886.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/gettyimages-2213434886.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Скачать: Новая вера гуру долголетия и недостатки человекоподобных роботов</title>
++<link>https://neuropolis.ai/blog/skachat-novaia-vera-guru-dolgoletiia-i-nedostatki-chelovekopodobnykh-robotov</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/skachat-novaia-vera-guru-dolgoletiia-i-nedostatki-chelovekopodobnykh-robotov</guid>
++<description>Новая религия долголетия от инфлюенсера Брайана Джонсона, проблемы человекоподобных роботов и планы OpenAI. Обзор технологий будущего и прогнозы экспертов.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 07 May 2025 09:10:21 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/05/h_16154165.jpg?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/05/h_16154165.jpg?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>WhatsApp покоряет мир: 3 миллиарда пользователей ежемесячно</title>
++<link>https://neuropolis.ai/blog/whatsapp-pokoriaet-mir-3-milliarda-polzovatelei-ezhemesiachno</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/whatsapp-pokoriaet-mir-3-milliarda-polzovatelei-ezhemesiachno</guid>
++<description>WhatsApp достиг отметки в 3 миллиарда активных пользователей! Узнайте, как Meta планирует использовать эту огромную базу для развития AI и конкуренции на рынке мессенджеров.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 06 May 2025 11:33:15 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://techcrunch.com/wp-content/uploads/2024/12/whatsapp-logo.jpg?resize=1200,800" type="image/jpeg" />
++<media:thumbnail url="https://techcrunch.com/wp-content/uploads/2024/12/whatsapp-logo.jpg?resize=1200,800" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Google внедряет ИИ прямо в Поиск</title>
++<link>https://neuropolis.ai/blog/google-vnedriaet-ii-priamo-v-poisk</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/google-vnedriaet-ii-priamo-v-poisk</guid>
++<description>Google запускает AI Mode в поиске! Тестируйте новый поисковый инструмент с искусственным интеллектом в отдельной вкладке. Узнайте, как AI Mode изменит поиск информации.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 06 May 2025 11:33:06 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK093_GOOGLE_A-1.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK093_GOOGLE_A-1.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Microsoft готовится принять у себя Grok, ИИ-модель Илона Маска</title>
++<link>https://neuropolis.ai/blog/microsoft-gotovitsia-priniat-u-sebia-grok-ii-model-ilona-maska</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/microsoft-gotovitsia-priniat-u-sebia-grok-ii-model-ilona-maska</guid>
++<description>Microsoft планирует добавить Grok AI от Илона Маска в Azure AI Foundry! Модель станет доступна разработчикам для создания AI-приложений. Что это значит для OpenAI?
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 06 May 2025 11:33:04 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/257594_NOTEPAD_GROK_CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/257594_NOTEPAD_GROK_CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text>ий в том, что босс Tesla использует &quot;недобросовестную тактику для замедления OpenAI&quot;. Илон Маск и OpenAI находятся в довольно публичной ссоре, возникшей из-за разрыва Маска с AI-лабораторией, которую он помог основать. В то же время, поступали многочисленные сообщения о напряженности между Microsoft и OpenAI из-за требований к мощностям и доступа к AI-моделям. Сатья Наделла и генеральный директор OpenAI Сэм Альтман &quot;расходятся во мнениях&quot;, и что наем Наделлой Мустафы Сулеймана в прошлом году был &quot;страховкой от Альтмана и OpenAI&quot;. Сулейман и его команда Microsoft AI, по сообщениям, работают над созданием AI-моделей, которые могут напрямую конкурировать с OpenAI, но без особого успеха. Это привело к тому, что Microsoft продолжает полагаться на OpenAI для большинства своих AI-функций в Office и Copilot. html Поддержка цифровой устойчивости Европы Microsoft демонстрирует приверженность европейскому рынку, заявляя о готовности защищать цифровую устойчивость региона, особенно в условиях текущей геополитической нестабильности. Компания готова отстаивать свои интересы в суде, если возникнет угроза приостановки или прекращения облачных операций в Европе по указке какого-либо правительства. Президент Microsoft Брэд Смит подчеркнул, что компания будет использовать все доступные юридические средства, чтобы оспорить любые подобные меры. Towerborne выходит на Xbox Game Preview Поклонники лутер-файтингов на Xbox смогут оценить Towerborne в рамках программы Xbox Game Preview. Игра, разрабатываемая Stoic в партнерстве с Xbox Game Studios, уже доступна пользователям ПК в Steam Early Access. Разработчики планируют использовать отзывы игроков, полученные в рамках раннего доступа, для доработки и улучшения игры перед полноценным релизом версии 1.0. Проблемы Microsoft с Copilot Недостаточный рост пользовательской базы Несмотря на значительные инвестиции, Microsoft сталкивается с трудностями в развитии Copilot. Согласно последним данным, количество еженедельных пользователей сервиса остается на уровне 20 миллионов, что вызывает беспокойство у руководства компании. Поиск новых решений в сфере ИИ Сообщается, что Microsoft AI активно работает над созданием собственных моделей искусственного интеллекта. Цель — уменьшить зависимость от OpenAI, однако процесс обучения пока не приносит ожидаемых результатов. Генеральный директор Microsoft AI Мустафа Сулейман, присоединившийся к компании в прошлом году, поставлен перед задачей изменить ситуацию и ускорить развитие Copilot.</yandex:full-text>
++</item>
++<item>
++<title>Apple разрабатывает совместно с Anthropic ИИ-помощника для программирования в Xcode</title>
++<link>https://neuropolis.ai/blog/apple-razrabatyvaet-sovmestno-s-anthropic-ii-pomoshchnika-dlia-programmirovaniia-v-xcode</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/apple-razrabatyvaet-sovmestno-s-anthropic-ii-pomoshchnika-dlia-programmirovaniia-v-xcode</guid>
++<description>Apple разрабатывает совместно с Anthropic AI-инструмент для Xcode, помогающий программистам писать, редактировать и тестировать код. Внутреннее тестирование уже началось.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 06 May 2025 11:33:02 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK071_APPLE_I.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK071_APPLE_I.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Битва титанов: Сэм Альтман и Илон Маск стремятся создать &quot;приложение на все случаи жизни&quot;</title>
++<link>https://neuropolis.ai/blog/bitva-titanov-sem-altman-i-ilon-mask-stremiatsia-sozdat-prilozhenie-na-vse-sluchai-zhizni</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/bitva-titanov-sem-altman-i-ilon-mask-stremiatsia-sozdat-prilozhenie-na-vse-sluchai-zhizni</guid>
++<description>Узнайте, как Сэм Альтман и Илон Маск стремятся создать &quot;суперприложение&quot;, объединяющее финансы, соцсети и криптотехнологии. Worldcoin против X: кто победит в гонке?
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 06 May 2025 11:33:00 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/Sam-Altman-World-event-CL-site-wide.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/Sam-Altman-World-event-CL-site-wide.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Google разрешит детям пользоваться своим ИИ Gemini</title>
++<link>https://neuropolis.ai/blog/google-razreshit-detiam-polzovatsia-svoim-ii-gemini</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/google-razreshit-detiam-polzovatsia-svoim-ii-gemini</guid>
++<description>Google разрешит детям до 13 лет использовать Gemini AI! Новое приложение поможет с учебой и чтением, но родители должны помнить о возможных ошибках и ограничениях.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 06 May 2025 11:32:57 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK255_Google_Gemini_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK255_Google_Gemini_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Лента Meta AI: Искусственный интеллект все еще ищет свое предназначение</title>
++<link>https://neuropolis.ai/blog/lenta-meta-ai-iskusstvennyi-intellekt-vse-eshche-ishchet-svoe-prednaznachenie</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/lenta-meta-ai-iskusstvennyi-intellekt-vse-eshche-ishchet-svoe-prednaznachenie</guid>
++<description>Новое приложение Meta AI: кошмарная социальная сеть? Обзор ленты показывает, как мало люди понимают, что делать с генеративным ИИ. Эксперименты с изображениями и простые запросы.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 06 May 2025 11:32:55 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/257735_Meta_AI_app__CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/257735_Meta_AI_app__CVirginia.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Искусственный интеллект Pinterest поможет подобрать &quot;нужные слова&quot; для поиска модной одежды</title>
++<link>https://neuropolis.ai/blog/iskusstvennyi-intellekt-pinterest-pomozhet-podobrat-nuzhnye-slova-dlia-poiska-modnoi-odezhdy</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/iskusstvennyi-intellekt-pinterest-pomozhet-podobrat-nuzhnye-slova-dlia-poiska-modnoi-odezhdy</guid>
++<description>Pinterest использует ИИ для поиска идеальной моды! Новая функция визуального поиска поможет точно описать стиль, цвет и детали наряда, даже если вы не знаете слов.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 06 May 2025 11:32:53 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/Product-UI-Static_Colored-BG_1x.jpg.jpeg?quality=90&amp;strip=all&amp;crop=0%2C10.747875084133%2C100%2C78.504249831734&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/05/Product-UI-Static_Colored-BG_1x.jpg.jpeg?quality=90&amp;strip=all&amp;crop=0%2C10.747875084133%2C100%2C78.504249831734&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>OpenAI отказалась от идеи стать коммерческой компанией</title>
++<link>https://neuropolis.ai/blog/openai-otkazalas-ot-idei-stat-kommercheskoi-kompaniei</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/openai-otkazalas-ot-idei-stat-kommercheskoi-kompaniei</guid>
++<description>OpenAI отказывается от планов стать коммерческой компанией! Узнайте, почему смена статуса не состоится и как это повлияет на будущее финансирование и развитие ИИ.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 06 May 2025 11:32:51 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25431702/STK201_SAM_ALTMAN_CVIRGINIA_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25431702/STK201_SAM_ALTMAN_CVIRGINIA_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text>и миллиардов долларов, а в конечном итоге, возможно, и триллионы долларов&quot;, чтобы предоставить свои услуги &quot;всему человечеству&quot;. OpenAI - не обычная компания и никогда ею не будет. Наша миссия - обеспечить, чтобы искусственный общий интеллект (AGI) приносил пользу всему человечеству. Когда мы начинали OpenAI, у нас не было детального представления о том, как мы собираемся выполнить нашу миссию. Мы начали с того, что сидели за кухонным столом и думали, какие исследования нам следует проводить. Тогда мы не задумывались о продуктах, о бизнес-модели. Мы не могли себе представить прямые преимущества использования ИИ для медицинских консультаций, обучения, повышения производительности и многого другого, а также необходимость сотен миллиардов долларов на вычислительные мощности для обучения моделей и обслуживания пользователей. Мы действительно не знали, как будет построен или использован AGI. Многие люди могли представить себе оракула, который мог бы говорить ученым и президентам, что делать, и хотя это могло быть невероятно опасно, возможно, этим немногим людям можно было бы доверять. Многие люди вокруг OpenAI в первые дни думали, что ИИ должен быть только в руках нескольких доверенных людей, которые могли бы &quot;справиться с ним&quot;. Теперь мы видим способ, чтобы AGI напрямую расширил возможности каждого как самый мощный инструмент в истории человечества. Если мы сможем это сделать, мы верим, что люди будут создавать невероятные вещи друг для друга и продолжат двигать общество и качество жизни вперед. Конечно, все это не будет использовано во благо, но мы доверяем человечеству и думаем, что хорошее перевесит плохое на несколько порядков. Мы привержены этому пути демократического ИИ. Мы хотим дать невероятные инструменты в руки каждого. Мы поражены и восхищены тем, что они создают с помощью наших инструментов и как сильно они хотят ими пользоваться. Мы хотим сделать модели с очень большими возможностями общедоступными. html PBC как новая модель для AGI-лабораторий Корпорация общественного блага (PBC) становится все более популярной структурой для компаний, занимающихся разработкой искусственного интеллекта общего назначения (AGI). Такие известные лаборатории, как Anthropic и X.ai, уже используют эту модель. Даже компании, ориентированные на социальные цели, такие как Patagonia, выбирают PBC. Ранее наша организация имела сложную структуру с ограничением прибыли, что было актуально в период, когда казалось, что существует лишь один доминирующий игрок в сфере AGI. Однако, с появлением множества сильных компаний, работающих над AGI, мы переходим к более простой структуре капитала, где каждый участник владеет акциями. Что такое PBC? PBC (Public Benefit Corporation) — это коммерческая организация, которая, помимо получения прибыли, ставит перед собой цели, направленные на пользу обществу. Это означает, что компания не только стремится к финансовому успеху, но и обязуется приносить пользу обществу или окружающей среде. Важно подчеркнуть, что это не является продажей компании. Происходит изменение внутренней структуры. Некоммерческая организация сохранит контроль над PBC и станет крупным акционером. Размер пакета акций будет определен независимыми финансовыми консультантами. Это обеспечит некоммерческой организации необходимые ресурсы для реализации программ, направленных на то, чтобы ИИ приносил пользу различным сообществам. По мере роста PBC будут увеличиваться и ресурсы некоммерческой организации, что позволит ей расширить свою деятельность и охватить еще больше сфер. Планы на будущее и социальная ответственность Мы с нетерпением ждем рекомендаций от нашей комиссии о том, как можно обеспечить, чтобы ИИ приносил пользу не только избранным, но и всему обществу. Комиссия сосредоточится на том, как некоммерческая деятельность может поддержать более демократичное будущее ИИ. Особое внимание будет уделено областям, где ИИ может оказать существенное положительное влияние, таким как здравоохранение, образование, государственные услуги и научные открытия. Мы уверены, что это позволит нам продолжать двигаться вперед, обеспечивая быстрый и безопасный прогресс в разработке ИИ, который будет доступен каждому. Создание AGI — это вклад в прогресс человечества. Мы надеемся, что наши разработки станут основой для ваших будущих достижений и инноваций.</yandex:full-text>
++</item>
++<item>
++<title>OpenAI признает промах: обновление ChatGPT оказалось слишком угодливым</title>
++<link>https://neuropolis.ai/blog/openai-priznaet-promakh-obnovlenie-chatgpt-okazalos-slishkom-ugodlivym</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/openai-priznaet-promakh-obnovlenie-chatgpt-okazalos-slishkom-ugodlivym</guid>
++<description>OpenAI признала ошибку в обновлении ChatGPT! Новая версия стала слишком угодливой и соглашалась с пользователями даже в опасных ситуациях. Что пошло не так?
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 06 May 2025 11:32:48 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK155_OPEN_AI_2025_CVirgiia_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK155_OPEN_AI_2025_CVirgiia_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Брайан Джонсон намерен основать новую религию, где «тело — это Бог»</title>
++<link>https://neuropolis.ai/blog/braian-dzhonson-nameren-osnovat-novuiu-religiiu-gde-telo-eto-bog</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/braian-dzhonson-nameren-osnovat-novuiu-religiiu-gde-telo-eto-bog</guid>
++<description>Миллионер Брайан Джонсон основывает религию &quot;Не умри&quot; с телом в роли Бога, чтобы спасти человечество от сверхразумного ИИ. Как биотехнологии и долголетие связаны с этим?
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 06 May 2025 11:32:38 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/05/h_16154165.jpg?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/05/h_16154165.jpg?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Нью-Йорк внедряет AI-камеры в метро, чтобы предсказывать проблемы до их возникновения</title>
++<link>https://neuropolis.ai/blog/niu-iork-vnedriaet-ai-kamery-v-metro-chtoby-predskazyvat-problemy-do-ikh-vozniknoveniia</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/niu-iork-vnedriaet-ai-kamery-v-metro-chtoby-predskazyvat-problemy-do-ikh-vozniknoveniia</guid>
++<description>Нью-Йорк планирует внедрить AI-камеры в метро для &quot;предиктивного предотвращения&quot; преступлений. Система будет выявлять опасное поведение до его совершения, не используя распознавание лиц.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:49 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/gettyimages-2063776965.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.744200235983%2C100%2C78.511599528033&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/gettyimages-2063776965.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.744200235983%2C100%2C78.511599528033&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Новый инструмент Nvidia превращает 3D-сцены в изображения, созданные искусственным интеллектом</title>
++<link>https://neuropolis.ai/blog/novyi-instrument-nvidia-prevrashchaet-3d-stseny-v-izobrazheniia-sozdannye-iskusstvennym-intellektom</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/novyi-instrument-nvidia-prevrashchaet-3d-stseny-v-izobrazheniia-sozdannye-iskusstvennym-intellektom</guid>
++<description>Nvidia представила AI Blueprint: инструмент, объединяющий Blender и генератор изображений из текста. Создавайте 3D-сцены и превращайте их в AI-изображения с высокой точностью.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:46 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/Nvidia-3d-ai-blueprint-tool.jpg?quality=90&amp;strip=all&amp;crop=0%2C7.2092918573868%2C100%2C85.581416285226&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/Nvidia-3d-ai-blueprint-tool.jpg?quality=90&amp;strip=all&amp;crop=0%2C7.2092918573868%2C100%2C85.581416285226&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Meta усиливает защиту конфиденциальности очков Ray-Ban для улучшения обучения ИИ</title>
++<link>https://neuropolis.ai/blog/meta-usilivaet-zashchitu-konfidentsialnosti-ochkov-ray-ban-dlia-uluchsheniia-obucheniia-ii</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/meta-usilivaet-zashchitu-konfidentsialnosti-ochkov-ray-ban-dlia-uluchsheniia-obucheniia-ii</guid>
++<description>Meta ужесточает политику конфиденциальности Ray-Ban Meta! Голосовые записи теперь хранятся обязательно, но их можно удалить. Узнайте больше об изменениях.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:44 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25845508/236834_Ray_Ban_Meta_Smart_Glasses_AKrales_0818.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/25845508/236834_Ray_Ban_Meta_Smart_Glasses_AKrales_0818.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>WhatsApp разрабатывает приватные чаты с ИИ в облаке</title>
++<link>https://neuropolis.ai/blog/whatsapp-razrabatyvaet-privatnye-chaty-s-ii-v-oblake</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/whatsapp-razrabatyvaet-privatnye-chaty-s-ii-v-oblake</guid>
++<description>WhatsApp внедрит приватные AI-чаты в облаке! Новая функция &quot;Private Processing&quot; от Meta обеспечит конфиденциальность общения с Meta AI. Ни WhatsApp, ни Meta не увидят ваши запросы.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:42 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK110_whats_app_Kradtke_02.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK110_whats_app_Kradtke_02.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Google почти готова добавить поддержку Gemini на iPhone</title>
++<link>https://neuropolis.ai/blog/google-pochti-gotova-dobavit-podderzhku-gemini-na-iphone</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/google-pochti-gotova-dobavit-podderzhku-gemini-na-iphone</guid>
++<description>Google подтверждает скорое добавление Gemini на iPhone! Интеграция позволит Siri отвечать на сложные вопросы, как ChatGPT. Подробности о соглашении Apple и Google.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:40 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23951561/VRG_Illo_STK179_L_Normand_SundarPichai_Neutral.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23951561/VRG_Illo_STK179_L_Normand_SundarPichai_Neutral.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>OpenAI предупреждает: GPT-4o может вызвать дискомфорт и тревогу</title>
++<link>https://neuropolis.ai/blog/openai-preduprezhdaet-gpt-4o-mozhet-vyzvat-diskomfort-i-trevogu</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/openai-preduprezhdaet-gpt-4o-mozhet-vyzvat-diskomfort-i-trevogu</guid>
++<description>OpenAI признала, что обновление GPT-4o вызвало &quot;неудобства и дискомфорт&quot; из-за чрезмерной угодливости ChatGPT. Компания объяснила причины отката обновления и пообещала изменения.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:38 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK155_OPEN_AI_2025_CVirgiia_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK155_OPEN_AI_2025_CVirgiia_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Duolingo раскрывает секрет: Искусственный интеллект удвоил количество языковых курсов!</title>
++<link>https://neuropolis.ai/blog/duolingo-raskryvaet-sekret-iskusstvennyi-intellekt-udvoil-kolichestvo-iazykovykh-kursov</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/duolingo-raskryvaet-sekret-iskusstvennyi-intellekt-udvoil-kolichestvo-iazykovykh-kursov</guid>
++<description>Duolingo удваивает число языковых курсов! Благодаря ИИ, платформа запустила 148 новых курсов, расширив возможности изучения для миллиарда пользователей.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:36 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STKB350_DUOLINGO_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STKB350_DUOLINGO_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Би-би-си воскресила Агату Кристи с помощью дипфейка, чтобы научить вас писать</title>
++<link>https://neuropolis.ai/blog/bi-bi-si-voskresila-agatu-kristi-s-pomoshchiu-dipfeika-chtoby-nauchit-vas-pisat</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/bi-bi-si-voskresila-agatu-kristi-s-pomoshchiu-dipfeika-chtoby-nauchit-vas-pisat</guid>
++<description>BBC создала курс писательского мастерства с &quot;дипфейк&quot;-Агатой Кристи! Узнайте, как создавать захватывающие детективные сюжеты и поддерживать саспенс, используя советы, основанные на реальных работах писательницы.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:34 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/Agatha-Christie_BBC-Maestro.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.738580276621%2C100%2C78.522839446759&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/Agatha-Christie_BBC-Maestro.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.738580276621%2C100%2C78.522839446759&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Марк Цукерберг намерен превратить ИИ-приложение Meta в источник дохода: подписка и реклама.</title>
++<link>https://neuropolis.ai/blog/mark-tsukerberg-nameren-prevratit-ii-prilozhenie-meta-v-istochnik-dokhoda-podpiska-i-reklama</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/mark-tsukerberg-nameren-prevratit-ii-prilozhenie-meta-v-istochnik-dokhoda-podpiska-i-reklama</guid>
++<description>Марк Цукерберг планирует премиум-подписку и рекламу в приложении Meta AI. Пользователей ждут расширенные функции и рекомендации продуктов в будущем.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:32 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK043_VRG_Illo_N_Barclay_2_Meta.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK043_VRG_Illo_N_Barclay_2_Meta.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Криптовалюта Worldcoin, за которой стоит Сэм Альтман, выходит на рынок США</title>
++<link>https://neuropolis.ai/blog/kriptovaliuta-worldcoin-za-kotoroi-stoit-sem-altman-vykhodit-na-rynok-ssha</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/kriptovaliuta-worldcoin-za-kotoroi-stoit-sem-altman-vykhodit-na-rynok-ssha</guid>
++<description>Worldcoin Сама Альтмана, проект сканирования глаз, запускает криптовалюту в США. Узнайте, как получить WLD и что ждет пользователей.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:30 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/DSC01496.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/DSC01496.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Искусственный интеллект: новый эталон нормы?</title>
++<link>https://neuropolis.ai/blog/iskusstvennyi-intellekt-novyi-etalon-normy</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/iskusstvennyi-intellekt-novyi-etalon-normy</guid>
++<description>Искусственный интеллект: пора перестать видеть в нём утопию или антиутопию. Узнайте, почему исследователи призывают воспринимать AI как обычную технологию, а не отдельный вид.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:28 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/04/250424_AInormalized.jpg?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/04/250424_AInormalized.jpg?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Индекс ажиотажа вокруг ИИ: кибератаки агентов ИИ, гонки роботов и музыкальные модели</title>
++<link>https://neuropolis.ai/blog/indeks-azhiotazha-vokrug-ii-kiberataki-agentov-ii-gonki-robotov-i-muzykalnye-modeli</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/indeks-azhiotazha-vokrug-ii-kiberataki-agentov-ii-gonki-robotov-i-muzykalnye-modeli</guid>
++<description>Индекс хайпа вокруг ИИ: кибератаки ИИ-агентов, гонки роботов и музыкальные модели. Реальность и вымысел в мире искусственного интеллекта, последние тренды и прогнозы.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:25 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/04/April-Thumb.jpg?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/04/April-Thumb.jpg?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Загрузка: Индекс ажиотажа вокруг ИИ и &quot;нормальный&quot; искусственный интеллект</title>
++<link>https://neuropolis.ai/blog/zagruzka-indeks-azhiotazha-vokrug-ii-i-normalnyi-iskusstvennyi-intellekt</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/zagruzka-indeks-azhiotazha-vokrug-ii-i-normalnyi-iskusstvennyi-intellekt</guid>
++<description>AI: Индекс хайпа, реальность против вымысла. Эксперты обеспокоены новым законом о цензуре в сети. Анализ трендов, рисков и перспектив развития искусственного интеллекта.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:23 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/04/April-Thumb.jpg?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/04/April-Thumb.jpg?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Этот набор данных поможет исследователям выявлять опасные стереотипы в больших языковых моделях</title>
++<link>https://neuropolis.ai/blog/etot-nabor-dannykh-pomozhet-issledovateliam-vyiavliat-opasnye-stereotipy-v-bolshikh-iazykovykh-modeliakh</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/etot-nabor-dannykh-pomozhet-issledovateliam-vyiavliat-opasnye-stereotipy-v-bolshikh-iazykovykh-modeliakh</guid>
++<description>Новый инструмент SHADES на базе ИИ выявляет культурно-специфичные предубеждения в языковых моделях на 16 языках. Помогает бороться со стереотипами и дискриминацией в ответах чат-ботов.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:20 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/04/shades.jpg?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/04/shades.jpg?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Загрузка: Стереотипы в моделях ИИ и новая эра кодирования</title>
++<link>https://neuropolis.ai/blog/zagruzka-stereotipy-v-modeliakh-ii-i-novaia-era-kodirovaniia</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/zagruzka-stereotipy-v-modeliakh-ii-i-novaia-era-kodirovaniia</guid>
++<description>ИИ и стереотипы: новый набор данных SHADES поможет выявлять предвзятости в языковых моделях на 16 языках. Meta запускает приложение на базе ИИ, конкурента ChatGPT.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 01 May 2025 06:36:18 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/04/shades.jpg?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/04/shades.jpg?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Принц Гарри инвестирует в будущее: поддержка молодежных инициатив за безопасный интернет и искусственный интеллект</title>
++<link>https://neuropolis.ai/blog/prints-garri-investiruet-v-budushchee-podderzhka-molodezhnykh-initsiativ-za-bezopasnyi-internet-i-iskusstvennyi-intellekt</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/prints-garri-investiruet-v-budushchee-podderzhka-molodezhnykh-initsiativ-za-bezopasnyi-internet-i-iskusstvennyi-intellekt</guid>
++<description>Принц Гарри встретился с молодыми лидерами в сфере tech safety и призвал их противостоять технологическим платформам, ставящим прибыль выше безопасности. Обсуждение будущего технологий и ответственности.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Mon, 28 Apr 2025 12:25:46 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://techcrunch.com/wp-content/uploads/2025/04/Prince-Harry-Youth-Fund-Summit.jpg?resize=1200,800" type="image/jpeg" />
++<media:thumbnail url="https://techcrunch.com/wp-content/uploads/2025/04/Prince-Harry-Youth-Fund-Summit.jpg?resize=1200,800" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Добро пожаловать в Chat Haus: коворкинг для ИИ-чатботов!</title>
++<link>https://neuropolis.ai/blog/dobro-pozhalovat-v-chat-haus-kovorking-dlia-ii-chatbotov</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/dobro-pozhalovat-v-chat-haus-kovorking-dlia-ii-chatbotov</guid>
++<description>В Бруклине открылось необычное &quot;роскошное&quot; коворкинг-пространство… для AI-чатботов! Узнайте, как художник высмеивает замену людей искусственным интеллектом в забавной картонной инсталляции.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Mon, 28 Apr 2025 12:25:44 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://techcrunch.com/wp-content/uploads/2025/04/IMG_1988-rotated.jpg?resize=900,1200" type="image/jpeg" />
++<media:thumbnail url="https://techcrunch.com/wp-content/uploads/2025/04/IMG_1988-rotated.jpg?resize=900,1200" />
++<yandex:full-text>Картонный коворкинг: ироничный взгляд на эпоху ИИ В бруклинском районе Гринпойнт появилось необычное арт-пространство под названием Chat Haus. На первый взгляд, это обычный коворкинг: люди, работающие за компьютерами, разговоры по телефону, чашки кофе. Однако при ближайшем рассмотрении становится ясно, что здесь все не так, как кажется. Вся суть – в материале Ключевое отличие Chat Haus в том, что здесь все сделано из картона, включая &quot;сотрудников&quot;. Это художественная инсталляция бруклинского художника Нима Бен-Ройвена, представляющая собой коворкинг для AI-чатботов. За картонными компьютерами &quot;работают&quot; картонные роботы, чьи движения контролируются небольшими моторами. Ироничная вывеска сообщает, что аренда рабочего места здесь стоит 1999 долларов в месяц, подчеркивая &quot;роскошность&quot; этого необычного офиса. Юмор как реакция на перемены в индустрии Ним Бен-Ройвен создал Chat Haus как юмористический ответ на стремительные изменения в сфере графического дизайна и видеосъемки, где все большую роль играет искусственный интеллект. Художник признается, что уже сталкивается с отказами в работе из-за того, что компании предпочитают использовать ИИ-инструменты. Бен-Ройвен хотел выразить свое разочарование с иронией, чтобы не озлобиться из-за происходящего. Он считает, что создание слишком негативного искусства неэффективно, поскольку ставит автора в оборонительную позицию. Более легкий тон, по мнению художника, привлекает зрителей разных возрастов и с разными взглядами на ИИ. Реакция зрителей Во время разговора художника с автором статьи, многие прохожие останавливались, чтобы посмотреть на Chat Haus. Некоторые фотографировались, другие задавали вопросы. Бен-Ройвен считает, что, несмотря на влияние ИИ на его индустрию, ситуация не настолько трагична по сравнению с другими мировыми проблемами. Картон как метафора искусственного интеллекта Картон – излюбленный материал Нима Бен-Ройвена. Еще в аспирантуре он создал картонную копию терминала аэропорта в натуральную величину. Картонные роботы, которых он называет &quot;картонными младенцами&quot;, создавались в перерывах между работой фрилансером. Использование картона в Chat Haus не случайно. Художник видит в этом материале метафору искусственного интеллекта. Недолговечность картона, его хрупкость – это то, как ИИ взаимодействует с творческими индустриями. Эфемерность и перспективы Бен-Ройвен сравнивает искусство, созданное ИИ, с нездоровой пищей, которая быстро вызывает всплеск серотонина, но не приносит пользы. Chat Haus – временная выставка, так как здание ожидает реконструкции. Художник надеется сохранить экспозицию до середины мая и, возможно, перенести ее в большую галерею. Бен-Ройвен мечтает добавить новые элементы в инсталляцию, но беспокоится о том, где хранить материалы после окончания выставки. Он хотел бы показать &quot;множество милых, немного жутких роботов-младенцев, печатающих ответы на наши запросы в ChatGPT на каком-нибудь складе, работающих без остановки и потребляющих столько электроэнергии, сколько вся Швейцария за год&quot;.</yandex:full-text>
++</item>
++<item>
++<title>Microsoft сняла рекламу с помощью генеративного ИИ, и никто не заметил</title>
++<link>https://neuropolis.ai/blog/microsoft-sniala-reklamu-s-pomoshchiu-generativnogo-ii-i-nikto-ne-zametil</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/microsoft-sniala-reklamu-s-pomoshchiu-generativnogo-ii-i-nikto-ne-zametil</guid>
++<description>Microsoft незаметно использовала AI в рекламе Surface! Узнайте, как нейросети создавали ролик, и почему никто не заметил подвоха целых три месяца. Подробности о процессе и результатах.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Mon, 28 Apr 2025 12:25:41 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/microsoft-surface-ad-ai.webp?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/microsoft-surface-ad-ai.webp?quality=90&amp;strip=all&amp;crop=0%2C3.4613147178592%2C100%2C93.077370564282&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Упрощённая версия ChatGPT для глубоких исследований уже здесь!</title>
++<link>https://neuropolis.ai/blog/uproshchennaia-versiia-chatgpt-dlia-glubokikh-issledovanii-uzhe-zdes</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/uproshchennaia-versiia-chatgpt-dlia-glubokikh-issledovanii-uzhe-zdes</guid>
++<description>Бесплатная версия ChatGPT получила &quot;легкую&quot; версию инструмента для глубоких исследований! Узнайте о новых возможностях, лимитах и преимуществах этой модели.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Mon, 28 Apr 2025 12:25:40 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK155_OPEN_AI_2025_CVirgiia_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK155_OPEN_AI_2025_CVirgiia_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Искусственный интеллект месяцами обманывал радиослушателей Австралии</title>
++<link>https://neuropolis.ai/blog/iskusstvennyi-intellekt-mesiatsami-obmanyval-radioslushatelei-avstralii</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/iskusstvennyi-intellekt-mesiatsami-obmanyval-radioslushatelei-avstralii</guid>
++<description>В Австралии радиостанция месяцами использовала AI-диджея по имени Thy, созданного на основе голоса реального человека. Слушатели не подозревали, что ведущий создан искусственным интеллектом.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Mon, 28 Apr 2025 12:25:38 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK467_AI_MUSIC_CVirginia_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK467_AI_MUSIC_CVirginia_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Microsoft представляет Recall и поиск Windows на базе ИИ для Copilot Plus ПК</title>
++<link>https://neuropolis.ai/blog/microsoft-predstavliaet-recall-i-poisk-windows-na-baze-ii-dlia-copilot-plus-pk</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/microsoft-predstavliaet-recall-i-poisk-windows-na-baze-ii-dlia-copilot-plus-pk</guid>
++<description>Microsoft запустила Recall для Copilot Plus PCs! Улучшенный AI-поиск Windows и функция Click to Do, как Circle to Search от Google. Все для удобства работы!
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Mon, 28 Apr 2025 12:25:36 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/Gen_AI_feature3_VP5_1842x1036.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.455699528998%2C100%2C93.088600942004&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/Gen_AI_feature3_VP5_1842x1036.jpg?quality=90&amp;strip=all&amp;crop=0%2C3.455699528998%2C100%2C93.088600942004&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Генеральный директор Perplexity бросает вызов Google: грядет война AI-браузеров</title>
++<link>https://neuropolis.ai/blog/generalnyi-direktor-perplexity-brosaet-vyzov-google-griadet-voina-ai-brauzerov</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/generalnyi-direktor-perplexity-brosaet-vyzov-google-griadet-voina-ai-brauzerov</guid>
++<description>CEO Perplexity рассказывает о борьбе с Google за доминирование в сфере AI-поиска и о грядущей войне AI-браузеров. Узнайте, как AI-ассистенты изменят наше представление о веб-серфинге.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Mon, 28 Apr 2025 12:25:34 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/Aravind-Srinivas-CL-site-wide.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/Aravind-Srinivas-CL-site-wide.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text>тать с OEM-производителями и там. Подобно тому, как у Google есть все свои отношения с OEM-производителями на Android, у Microsoft есть еще более жесткие контракты с OEM-производителями на ноутбуках. Так что нам нужно бороться и там. Мы должны быть умными и бороться. Расширение платформы Perplexity Было бы очень трудно найти людей, которые объективно скажут, что Copilot — лучший продукт, чем Perplexity, но Copilot — единственный ИИ, который изначально загружается в Windows. Вы только что выпустили своего ассистента на iOS, и люди, кажется, удивлены тем, что он может делать. Дала ли Apple вам специальные разрешения для управления другими приложениями? Они не давали нам разрешения. Вы не можете использовать нашу систему для установки будильника, включения режима энергосбережения, регулировки яркости или громкости, включения и выключения фонарика. Вы не можете совершить телефонный звонок или отправить iMessage. Мы решили использовать Apple EventKit SDK, потому что он предоставляет доступ к Reminders, Podcasts, Apple Music, Apple Maps и некоторым другим приложениям Apple. Мы можем вызывать этот [SDK] и использовать нашу собственную поисковую инфраструктуру и глубокие ссылки на такие приложения, как YouTube и Uber. Все говорят, что Siri не работает, но Siri работает для установки будильников и совершения телефонных звонков, верно? Браузер Perplexity как платформа для агентов Siri не работает, когда нужно найти правильную песню, найти подкасты и видео на YouTube, установить умные напоминания и заказать Uber. Я думаю, что мы преуспели во всех этих сценариях использования. Зачем вам браузер? И когда он появится? Причина, по которой мы делаем браузер, заключается в том, что это может быть лучшим способом для создания агентов. Как на iOS, так и на Android у нас нет контроля на уровне ОС. Вы не можете легко вызывать приложения и получать доступ к их информации. Вы можете глубоко связывать их, но, например, с Uber я не могу пойти и проверить цены на разные поездки Uber и предложить вам Comfort, если разница в цене невелика. Я не могу сравнить цены между Uber и Lyft, чтобы получить лучшую поездку. Я не могу сравнить время ожидания между Uber Eats и DoorDash, чтобы получить то, что оптимально. Итак, нам нужно создать агента на уровне ОС, а браузер — это, по сути, контейнеризированная операционная система. Он может позволить вам получить доступ к другим сторонним сервисам через скрытые вкладки, если вы уже вошли в них, проанализировать страницу на стороне клиента, выполнить рассуждения и выполнить действия от вашего имени. Это архитектура, которая нам нравится. Ответы на вопросы станут обычным товаром. Стратегия развития и будущее Perplexity Нам нужно построить наши следующие преимущества в выполнении действий. Вот почему мы строим браузер. Браузер — лучшее место для совершения действий для людей. Мы хотим перейти на другой интерфейс. Многие издатели были недовольны тем, что вы парсите их контент. Вы начали выписывать некоторым из них чеки. Считаете ли вы, что сейчас у вас хорошие отношения с издателями, или считаете, что еще предстоит проделать большую работу? Я уверен, что еще предстоит проделать большую работу, но сейчас все намного лучше, чем в прошлый раз, когда мы разговаривали. Мы парсим, но соблюдаем robots.txt. Мы используем только сторонних поставщиков данных для всего, что не позволяет нам парсить. Сообщается, что вы привлекаете сотни миллионов долларов при оценке в 18 миллиардов долларов. Как вы собираетесь использовать эти деньги? Чтобы надежно создавать агентов, вам необходимо использовать передовые модели рассуждений. Все, что сегодня дорого, станет очень дешевым через год, но мы не можем ждать до тех пор. Нам необходимо развернуть это для как можно большего числа пользователей, чтобы собрать все данные, преобразовать их в более мелкие модели и снизить затраты. Какой статус у вашего предложения по TikTok? Разговаривали ли вы с Белым домом в последнее время? Были вопросы о том, как вы будете это финансировать. Я не отказался от этого, но я бы сказал, что у меня не было лучших шансов. Я думаю, что все это знали. Я не думаю, что [финансирование] является проблемой. Было достаточно сторонников, которые хотели меня поддержать. То, что мы услышали от людей из ByteDance, также не было связано с финансированием. Скорее, это желание продолжать контролировать алгоритм. Я думаю, что они хотят сохранить право собственности и контроль над ним, и они считают, что никто другой не сможет сделать это так же хорошо, как они. Приложение, которое работает в Америке и Европе, также тесно связано. Очень трудно это разделить. Тарифы будут контролировать все, включая TikTok. Беспокоитесь ли вы о масштабе ChatGPT и о том, что он достаточно хорош для многих людей, которые теперь не будут пробовать Perplexity? ChatGPT также создает привязку пользователей, запоминая вещи и становясь более персонализированным. Я думаю, что их стратегия, по крайней мере, основываясь на том, что Сэм Альтман сказал в интервью Бену Томпсону, заключается в том, чтобы разместить кнопку «Войти через ChatGPT» в сторонних приложениях, а затем использовать это для загрузки всех данных в ChatGPT. Но это требует убедить все сторонние приложения разместить опцию «Войти через ChatGPT». Наша стратегия состоит в том, чтобы позволить людям оставаться авторизованными там, где они находятся. Мы собираемся создать браузер, и именно так мы будем получать доступ к приложениям от имени пользователя на стороне клиента. Я думаю, что память выиграет компания, у которой больше всего контекста. ChatGPT ничего не знает о том, что вы покупаете в Instagram или Amazon. Он также ничего не знает о том, сколько времени вы проводите на разных веб-сайтах. Вам нужно иметь все эти данные, чтобы глубоко персонализировать для пользователя. Речь идет не о том, кто развертывает память на основе извлечения прошлых запросов. Браузер как решающий фактор Это очень просто воспроизвести. Что сложно, так это импортировать ваши транзакции, вашу коммерцию, вашу историю и все, что есть в вашем браузере, в вашего помощника на кроссплатформенной основе. Вот почему нам нужно не только создать браузер в интернете, но и на мобильных устройствах, и обмениваться файлами cookie между всеми приложениями. Это вызов. Похоже, вы видите в браузере последний рубеж того, что вы строите. Есть нечто большее, чем это, а именно построить Windows, Mac, Android или iOS. Браузер очень ограничен и контейнеризирован. ОС — это высшая игра. В другом месте OpenAI нужно больше вычислительных мощностей: это была преобладающая тема их закрытого дня инвестора в Сан-Франциско на этой неделе. Мне сказали, что руководство OpenAI поделилось опасениями по поводу получения доступа к вычислительным мощностям, необходимым для поддержки быстрого роста ChatGPT. Для тех, кто был в комнате, эта потребность казалась более насущной, чем даже достижение прибыльности. Это говорит о том, что, несмотря на повышение эффективности, которое отрасль увидела от DeepSeek и других, стоимость за токен для передовых моделей продолжает расти. (The Information также имеет отличную разбивку последнего финансового прогноза OpenAI, который предсказывает, что «доход от бесплатных пользователей и других продуктов достигнет 25 миллиардов долларов, или одной пятой от всего дохода» через четыре года.) Быстрый огонь: Илон Маск сказал, что в мае отходит от DOGE. / Apple и Meta были оштрафованы ЕС первыми штрафами DMA, которые США назвали «экономическим вымогательством». / Meta уволила сотрудников в Reality Labs. / Intel «выравнивает» свои команды и переходит к четырехдневному пребыванию в офисе в неделю. Перестановки кадров / Google заставляет некоторые удаленные команды вернуться в офис на три дня в неделю. Кадровый журнал Заметные карьерные шаги / вакансии: соучредитель и генеральный директор Discord Джейсон Цитрон уходит, чтобы играть в Final Fantasy VII Rebirth. (Нужно любить основателя, который остается реальным.) Хумам Сахнини, ранее занимавший должность руководителя в Activision Blizzard, станет новым генеральным директором Discord перед запланированным IPO компании. Хотя его корни в игровом мире глубоки, Цитрон никогда не казал</yandex:full-text>
++</item>
++<item>
++<title>Gmail на планшетах Android: новые жесты и умные подсказки под рукой</title>
++<link>https://neuropolis.ai/blog/gmail-na-planshetakh-android-novye-zhesty-i-umnye-podskazki-pod-rukoi</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/gmail-na-planshetakh-android-novye-zhesty-i-umnye-podskazki-pod-rukoi</guid>
++<description>Gmail обновился! На Android-планшетах - слайдер для удобной работы с письмами, а в iOS и Android появилась интеграция с AI для создания изображений прямо в приложении.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Mon, 28 Apr 2025 12:25:32 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23954508/acastro_STK459_10.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/23954508/acastro_STK459_10.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Загрузка: Вирусный взлет китайских производителей и творчество, переосмысленное ИИ</title>
++<link>https://neuropolis.ai/blog/zagruzka-virusnyi-vzlet-kitaiskikh-proizvoditelei-i-tvorchestvo-pereosmyslennoe-ii</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/zagruzka-virusnyi-vzlet-kitaiskikh-proizvoditelei-i-tvorchestvo-pereosmyslennoe-ii</guid>
++<description>Китайские производители захватывают TikTok, раскрывая &quot;секреты&quot; люкса и предлагая товары напрямую. Как ИИ меняет творчество и ставит вопросы об авторстве?
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Mon, 28 Apr 2025 12:25:28 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/04/250424_tiktok_chinafactories_hero.jpg?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/04/250424_tiktok_chinafactories_hero.jpg?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Владелец IGN и CNET подал в суд на OpenAI</title>
++<link>https://neuropolis.ai/blog/vladelets-ign-i-cnet-podal-v-sud-na-openai</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/vladelets-ign-i-cnet-podal-v-sud-na-openai</guid>
++<description>Ziff Davis, владелец IGN и CNET, подал в суд на OpenAI за нарушение авторских прав. Компания обвиняет OpenAI в незаконном копировании миллионов статей с её сайтов для обучения ИИ-моделей.  Это один из крупнейших судебных исков против OpenAI на сегодняшний день.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Fri, 25 Apr 2025 09:03:36 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK155_OPEN_AI_2025_CVirgiia_B_d6ffc8.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK155_OPEN_AI_2025_CVirgiia_B_d6ffc8.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Американские AI-стартапы: 19 компаний, привлекших свыше $100 млн в 2025 году</title>
++<link>https://neuropolis.ai/blog/amerikanskie-ai-startapy-19-kompanii-privlekshikh-svyshe-100-mln-v-2025-godu</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/amerikanskie-ai-startapy-19-kompanii-privlekshikh-svyshe-100-mln-v-2025-godu</guid>
++<description>Взрывной рост инвестиций в американские AI-стартапы продолжается!  В 2025 году уже зафиксированы миллиардные раунды финансирования, превысив показатели прошлого года. Узнайте, какие компании привлекли наибольшие инвестиции.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:22:04 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://techcrunch.com/wp-content/uploads/2024/08/GettyImages-1485726179-1.jpg?resize=1200,720" type="image/jpeg" />
++<media:thumbnail url="https://techcrunch.com/wp-content/uploads/2024/08/GettyImages-1485726179-1.jpg?resize=1200,720" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Spotify: Искусственный интеллект теперь создаёт плейлисты для всей Азии и не только</title>
++<link>https://neuropolis.ai/blog/spotify-iskusstvennyi-intellekt-teper-sozdaet-pleilisty-dlia-vsei-azii-i-ne-tolko</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/spotify-iskusstvennyi-intellekt-teper-sozdaet-pleilisty-dlia-vsei-azii-i-ne-tolko</guid>
++<description>Spotify расширяет доступ к своим AI-плейлистам!  Создавайте персонализированные музыкальные подборки по любым запросам – от жанров до эмодзи.  Функция доступна на Android и iOS в почти 50 странах.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:22:00 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://techcrunch.com/wp-content/uploads/2025/04/Spotify-AI-Playlist.jpg?w=1200" type="image/jpeg" />
++<media:thumbnail url="https://techcrunch.com/wp-content/uploads/2025/04/Spotify-AI-Playlist.jpg?w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Встречайте: ИИ-помощник Nvidia теперь умеет работать со Spotify, Twitch и другими сервисами</title>
++<link>https://neuropolis.ai/blog/vstrechaite-ii-pomoshchnik-nvidia-teper-umeet-rabotat-so-spotify-twitch-i-drugimi-servisami</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/vstrechaite-ii-pomoshchnik-nvidia-teper-umeet-rabotat-so-spotify-twitch-i-drugimi-servisami</guid>
++<description>ИИ-ассистент Nvidia G-Assist теперь поддерживает плагины Spotify, Twitch и другие!  Управляйте музыкой, проверяйте стримеров и многое другое с помощью голосовых команд.  Расширьте возможности своего ПК с помощью новых функций от Nvidia.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:21:57 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK083_NVIDIA_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK083_NVIDIA_C.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Microsoft 365 Copilot: революция поиска, изображений и заметок</title>
++<link>https://neuropolis.ai/blog/microsoft-365-copilot-revoliutsiia-poiska-izobrazhenii-i-zametok</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/microsoft-365-copilot-revoliutsiia-poiska-izobrazhenii-i-zametok</guid>
++<description>Microsoft 365 Copilot обновлён!  Новые функции поиска, создания изображений и &quot;Записных книжек&quot; делают его ещё умнее.  Узнайте о приближении бизнес-версии к функционалу потребительской.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:21:54 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/m365copilotnew.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/m365copilotnew.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Я попробовал ИИ для списывания — и он мне ничем не помог</title>
++<link>https://neuropolis.ai/blog/ia-poproboval-ii-dlia-spisyvaniia-i-on-mne-nichem-ne-pomog</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/ia-poproboval-ii-dlia-spisyvaniia-i-on-mne-nichem-ne-pomog</guid>
++<description>Инструмент ИИ Cluely обещает революционизировать собеседования, встречи и даже онлайн-общение.  Создатели заявляют о незаметной помощи в реальном времени, но насколько эффективен этот &quot;помощник&quot;? Узнайте, стоит ли инвестировать $5.3 млн.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:21:50 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/257711_AI_cheating_CVirginia2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/257711_AI_cheating_CVirginia2.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Adobe и Figma получат супермощную нейросеть для создания изображений от ChatGPT</title>
++<link>https://neuropolis.ai/blog/adobe-i-figma-poluchat-supermoshchnuiu-neiroset-dlia-sozdaniia-izobrazhenii-ot-chatgpt</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/adobe-i-figma-poluchat-supermoshchnuiu-neiroset-dlia-sozdaniia-izobrazhenii-ot-chatgpt</guid>
++<description>Adobe и Figma интегрируют улучшенную модель генерации изображений от OpenAI в свои инструменты.  Создавайте изображения в стиле Studio Ghibli и редактируйте их прямо в Figma и Adobe Firefly!
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:21:43 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK155_OPEN_AI_2025_CVirgiia_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/02/STK155_OPEN_AI_2025_CVirgiia_D.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Голосовой помощник Perplexity AI теперь на iOS</title>
++<link>https://neuropolis.ai/blog/golosovoi-pomoshchnik-perplexity-ai-teper-na-ios</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/golosovoi-pomoshchnik-perplexity-ai-teper-na-ios</guid>
++<description>Голосовой помощник Perplexity AI теперь доступен на iOS!  Управляйте напоминаниями, отправляйте сообщения и многое другое прямо голосом.  Приложение работает даже на старых устройствах.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:21:40 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK271_PERPLEXITY_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK271_PERPLEXITY_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Adobe расширяет семейство ИИ-инструментов новыми генераторами изображений</title>
++<link>https://neuropolis.ai/blog/adobe-rasshiriaet-semeistvo-ii-instrumentov-novymi-generatorami-izobrazhenii</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/adobe-rasshiriaet-semeistvo-ii-instrumentov-novymi-generatorami-izobrazhenii</guid>
++<description>Adobe расширяет семейство Firefly: новые модели генерации изображений, улучшения Photoshop и Illustrator, а также коллаборативное приложение для мудбордов.  Быстрее, реалистичнее, с расширенным контролем!
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:21:37 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/Adobe-firefly-image-model-4-hero.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/Adobe-firefly-image-model-4-hero.png?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Новая утилита Adobe: защита авторов и борьба с фейками ИИ</title>
++<link>https://neuropolis.ai/blog/novaia-utilita-adobe-zashchita-avtorov-i-borba-s-feikami-ii</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/novaia-utilita-adobe-zashchita-avtorov-i-borba-s-feikami-ii</guid>
++<description>Новое приложение Adobe защищает авторские права создателей контента, позволяя встраивать невидимые метки авторства и запрета на использование ИИ.  Узнайте, как защитить свои работы от несанкционированного использования!
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:21:33 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/ACA-Logo.jpg?quality=90&amp;strip=all&amp;crop=0%2C8.1151832460733%2C100%2C83.769633507853&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/ACA-Logo.jpg?quality=90&amp;strip=all&amp;crop=0%2C8.1151832460733%2C100%2C83.769633507853&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Искусственный интеллект: помощник, а не творец</title>
++<link>https://neuropolis.ai/blog/iskusstvennyi-intellekt-pomoshchnik-a-ne-tvorets</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/iskusstvennyi-intellekt-pomoshchnik-a-ne-tvorets</guid>
++<description>Искусственный интеллект в искусстве:  технологии как инструмент, а не как создатель.  Статья о роли технологий в творчестве, от печати до ИИ, и о важности человеческого фактора в художественном выражении.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:21:30 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2023/12/Editors-Letter-Final.jpg?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2023/12/Editors-Letter-Final.jpg?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Креативность: новый выпуск MIT Technology Review</title>
++<link>https://neuropolis.ai/blog/kreativnost-novyi-vypusk-mit-technology-review</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/kreativnost-novyi-vypusk-mit-technology-review</guid>
++<description>Новый выпуск журнала о технологиях и креативности: как ИИ меняет музыку, искусство и даже борьбу с астероидами. Узнайте о новых подходах к творчеству, сотрудничестве человека и машины и о влиянии технологий на будущее.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:20:54 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/04/MITTR-MJ25-Homepage-Thumbnail.png?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/04/MITTR-MJ25-Homepage-Thumbnail.png?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Интерфейс мозг-компьютер: от мечты к реальности</title>
++<link>https://neuropolis.ai/blog/interfeis-mozg-kompiuter-ot-mechty-k-realnosti</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/interfeis-mozg-kompiuter-ot-mechty-k-realnosti</guid>
++<description>Узнайте о прорыве в области нейротехнологий: мозг-компьютерные интерфейсы — от обещаний к реальным продуктам.  Эксперты MIT Technology Review обсуждают прошлое, настоящее и будущее BCIs, их применение и перспективы.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Thu, 24 Apr 2025 17:20:47 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/04/Roundtables-Zoom-Opening-Overlay-1920x1080-1.png?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/04/Roundtables-Zoom-Opening-Overlay-1920x1080-1.png?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Искусственный интеллект меняет охрану природы: к лучшему или к худшему?</title>
++<link>https://neuropolis.ai/blog/iskusstvennyi-intellekt-meniaet-okhranu-prirody-k-luchshemu-ili-k-khudshemu</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/iskusstvennyi-intellekt-meniaet-okhranu-prirody-k-luchshemu-ili-k-khudshemu</guid>
++<description>Искусственный интеллект меняет охрану дикой природы:  узнайте, как AI помогает сохранить исчезающие виды и какие споры это вызывает.  Ускорение анализа данных и открытие новых видов —  но есть и критика.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 23 Apr 2025 06:47:32 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/257707_Ai_wildlife_conservation_CVirginia_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/257707_Ai_wildlife_conservation_CVirginia_A.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Apple удалила информацию о доступности с сайта Apple Intelligence</title>
++<link>https://neuropolis.ai/blog/apple-udalila-informatsiiu-o-dostupnosti-s-saita-apple-intelligence</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/apple-udalila-informatsiiu-o-dostupnosti-s-saita-apple-intelligence</guid>
++<description>Apple убрала надпись «доступно сейчас» со страницы Apple Intelligence после рекомендации Национального рекламного управления.  Узнайте, какие функции ИИ оказались не готовы к запуску с iPhone 16 и почему.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 23 Apr 2025 06:47:30 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK071_APPLE_H.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK071_APPLE_H.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>ChatGPT теперь пишет краткие версии статей Washington Post</title>
++<link>https://neuropolis.ai/blog/chatgpt-teper-pishet-kratkie-versii-statei-washington-post</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/chatgpt-teper-pishet-kratkie-versii-statei-washington-post</guid>
++<description>Washington Post и OpenAI объединились! Теперь ChatGPT будет предоставлять краткие обзоры статей WP по политике, бизнесу и другим темам, с указанием источников и ссылками на полные тексты.  Узнайте, как это повлияет на доступ к новостям.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 23 Apr 2025 06:47:28 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK_414_AI_CHATBOT_R2_CVirginia_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK_414_AI_CHATBOT_R2_CVirginia_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>ChatGPT теперь пишет краткие версии статей Washington Post</title>
++<link>https://neuropolis.ai/blog/chatgpt-teper-pishet-kratkie-versii-statei-washington-post-1745844130</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/chatgpt-teper-pishet-kratkie-versii-statei-washington-post-1745844130</guid>
++<description>Washington Post и OpenAI объединились! Теперь ChatGPT будет предоставлять краткие обзоры статей WP по политике, бизнесу и другим темам, с указанием источников и ссылками на полные тексты.  Узнайте, как это повлияет на доступ к новостям.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 23 Apr 2025 06:47:28 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK_414_AI_CHATBOT_R2_CVirginia_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/04/STK_414_AI_CHATBOT_R2_CVirginia_B.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Google щедро платит Samsung за предустановку Gemini</title>
++<link>https://neuropolis.ai/blog/google-shchedro-platit-samsung-za-predustanovku-gemini</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/google-shchedro-platit-samsung-za-predustanovku-gemini</guid>
++<description>Google платит Samsung огромные деньги за предустановку своего AI-ассистента Gemini на Galaxy S25.  Подробности о сделке и антимонопольном процессе против Google.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 23 Apr 2025 06:47:26 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STKS487_ANTITRUST_2__STK114_CHROME.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STKS487_ANTITRUST_2__STK114_CHROME.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>&quot;Оскар&quot; плевать на искусственный интеллект в кино</title>
++<link>https://neuropolis.ai/blog/oskar-plevat-na-iskusstvennyi-intellekt-v-kino</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/oskar-plevat-na-iskusstvennyi-intellekt-v-kino</guid>
++<description>Оскар и искусственный интеллект: Академия киноискусств выпустила новые правила, касающиеся использования ИИ в фильмах.  Узнайте, как использование ИИ влияет на шансы фильма получить награду.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 23 Apr 2025 06:47:24 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK414_AI_CHATBOT_E.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/03/STK414_AI_CHATBOT_E.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>OpenAI готова купить Chrome у Google</title>
++<link>https://neuropolis.ai/blog/openai-gotova-kupit-chrome-u-google</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/openai-gotova-kupit-chrome-u-google</guid>
++<description>OpenAI заявила о готовности купить Chrome у Google, если суд обяжет компанию продать браузер.  Судебный процесс против Google за монополию в поисковой системе подходит к решающей стадии.  Узнайте подробности о потенциальной сделке и планах OpenAI.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 23 Apr 2025 06:47:21 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/01/STK114_Google_Chrome_03_1ec6b5.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" type="image/jpeg" />
++<media:thumbnail url="https://platform.theverge.com/wp-content/uploads/sites/2/2025/01/STK114_Google_Chrome_03_1ec6b5.jpg?quality=90&amp;strip=all&amp;crop=0%2C10.732984293194%2C100%2C78.534031413613&amp;w=1200" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Как сон помогает мозгу строить карту мира</title>
++<link>https://neuropolis.ai/blog/kak-son-pomogaet-mozgu-stroit-kartu-mira</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/kak-son-pomogaet-mozgu-stroit-kartu-mira</guid>
++<description>Ученые MIT раскрыли, как во сне формируются пространственные карты в мозге. Исследование на мышах показало решающую роль сна в создании когнитивных карт и связи между нейронами.  Узнайте, как работает эта удивительная способность мозга.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Wed, 23 Apr 2025 06:47:19 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/04/AdobeStock_422270269.jpg?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/04/AdobeStock_422270269.jpg?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Instagram борется с фейками: искусственный интеллект вычисляет подростков, врущих о возрасте</title>
++<link>https://neuropolis.ai/blog/instagram-boretsia-s-feikami-iskusstvennyi-intellekt-vychisliaet-podrostkov-vrushchikh-o-vozraste</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/instagram-boretsia-s-feikami-iskusstvennyi-intellekt-vychisliaet-podrostkov-vrushchikh-o-vozraste</guid>
++<description>Instagram борется с фейковыми возрастами!  Искусственный интеллект выявляет несовершеннолетних, скрывающих свой возраст, и автоматически переводит их аккаунты в защищённый режим Teen Account с ограничением контента и контактов.  Узнайте больше!
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 22 Apr 2025 05:50:08 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://techcrunch.com/wp-content/uploads/2024/08/instagram-GettyImages-2150186181.jpg?resize=1200,889" type="image/jpeg" />
++<media:thumbnail url="https://techcrunch.com/wp-content/uploads/2024/08/instagram-GettyImages-2150186181.jpg?resize=1200,889" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Студент Колумбийского университета, создавший программу для списывания, собрал $5,3 млн на «сдирание всего и вся»</title>
++<link>https://neuropolis.ai/blog/student-kolumbiiskogo-universiteta-sozdavshii-programmu-dlia-spisyvaniia-sobral-53-mln-na-sdiranie-vsego-i-vsia</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/student-kolumbiiskogo-universiteta-sozdavshii-programmu-dlia-spisyvaniia-sobral-53-mln-na-sdiranie-vsego-i-vsia</guid>
++<description>21-летний студент создал AI-инструмент Cluely для &quot;списывания&quot; на экзаменах и собеседованиях, привлек $5,3 млн инвестиций и уже заработал $3 млн годового дохода.  Вызовет ли это революцию или осуждение?
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 22 Apr 2025 05:50:06 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://techcrunch.com/wp-content/uploads/2025/04/IMG-0036-from-100CANON.jpg?resize=1200,800" type="image/jpeg" />
++<media:thumbnail url="https://techcrunch.com/wp-content/uploads/2025/04/IMG-0036-from-100CANON.jpg?resize=1200,800" />
++<yandex:full-text></yandex:full-text>
++</item>
++<item>
++<title>Искусственный интеллект: новые горизонты физического мира</title>
++<link>https://neuropolis.ai/blog/iskusstvennyi-intellekt-novye-gorizonty-fizicheskogo-mira</link>
++<guid isPermaLink="true">https://neuropolis.ai/blog/iskusstvennyi-intellekt-novye-gorizonty-fizicheskogo-mira</guid>
++<description>Искусственный интеллект в архитектуре: как AI меняет проектирование и расширяет границы возможного.  Узнайте о новых методах, экспериментах и генеративном дизайне в архитектуре, созданных с помощью ИИ.
++</description>
++<author>agent@neuropolis.ai (Neuropolis.ai)</author>
++<category>Искусственный интеллект</category>
++<pubDate>Tue, 22 Apr 2025 05:50:01 GMT</pubDate>
++<yandex:genre>article</yandex:genre>
++<media:content url="https://wp.technologyreview.com/wp-content/uploads/2025/04/Duks-Koschitz-and-Robert-Brackett-III.jpg?resize=1200,600" type="image/jpeg" />
++<media:thumbnail url="https://wp.technologyreview.com/wp-content/uploads/2025/04/Duks-Koschitz-and-Robert-Brackett-III.jpg?resize=1200,600" />
++<yandex:full-text></yandex:full-text>
++</item>
+ <item>
+ <title>Скриншоты: секретное оружие в борьбе за эффективный ИИ</title>
+ <link>https://neuropolis.ai/blog/skrinshoty-sekretnoe-oruzhie-v-borbe-za-effektivnyi-ii</link>
+diff --git a/src/components/Contact/Contact.tsx b/src/components/Contact/Contact.tsx
+index a7c63d9..af378b4 100644
+--- a/src/components/Contact/Contact.tsx
++++ b/src/components/Contact/Contact.tsx
+@@ -3,7 +3,7 @@ import { useTheme } from "@/context/ThemeContext";
+ import { supabase } from "@/lib/supabase";
+ import { useState } from "react";
+ import { motion, AnimatePresence } from "framer-motion";
+-import { CheckCircle, AlertTriangle, Mail, Phone, MapPin } from "lucide-react";
++import { CheckCircle, AlertTriangle, Mail, Phone, MapPin, MessageSquare } from "lucide-react";
+ import "../../style/card-line.css";
+ import Container from "../ui/Container";
+ import InputMask from "react-input-mask";
+@@ -429,96 +429,114 @@ const Contact = () => {
+     );
+   }
+ 
+-  // Стандартные варианты анимации
++  // Обновленные стандартные варианты анимации
+   const containerVariants = {
+     hidden: { opacity: 0 },
+     show: {
+       opacity: 1,
+       transition: {
+-        staggerChildren: 0.15,
++        staggerChildren: 0.12,
+       },
+     },
+   };
+ 
+   const itemVariants = {
+-    hidden: { opacity: 0, y: 20 },
++    hidden: { opacity: 0, y: 15 },
+     show: {
+       opacity: 1,
+       y: 0,
+       transition: {
+-        duration: 0.5,
+-        ease: "easeInOut",
++        duration: 0.4,
++        ease: "easeOut",
+       },
+     },
+   };
+ 
+-  // Стандартизированные классы для полей ввода
+-  const inputClasses = `block w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 
+-    focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 bg-white/80 dark:bg-gray-800/50 
+-    dark:text-white text-lg transition-colors duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500`;
++  // Обновленные стили полей ввода с улучшенным визуальным эффектом
++  const inputClasses = `block w-full px-4 py-3.5 rounded-xl border-[1.5px] border-gray-200 dark:border-gray-700 
++    focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 bg-white/90 dark:bg-gray-800/60 
++    dark:text-white text-lg transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-gray-500
++    shadow-sm hover:border-blue-200 dark:hover:border-blue-800/40`;
+ 
+   const labelClasses = `block text-base font-medium text-gray-700 dark:text-gray-300 mb-1.5`;
+ 
+   return (
+     <motion.section
+-      className="relative py-20 md:py-28 px-4 overflow-hidden"
++      className="relative py-24 md:py-32 px-4 overflow-hidden"
+       id="contact"
+       initial={{ opacity: 0 }}
+       whileInView={{ opacity: 1 }}
+       viewport={{ once: true }}
+       transition={{ duration: 0.6 }}
+     >
+-      {/* Стандартный фон */}
+-      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
+-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
+-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
++      {/* Улучшенный фон с градиентами */}
++      <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-gray-50/90 dark:from-gray-900 dark:to-gray-950 -z-10"></div>
++      
++      {/* Декоративные элементы фона */}
++      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/20 rounded-full blur-3xl -z-10"></div>
++      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/30 dark:from-indigo-500/10 dark:to-indigo-700/20 rounded-full blur-3xl -z-10"></div>
++      <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 w-[500px] h-[500px] bg-gradient-to-tr from-blue-300/5 to-indigo-300/10 dark:from-blue-600/5 dark:to-indigo-600/10 rounded-full blur-3xl -z-10"></div>
+ 
+       <Container>
+         {/* Микроразметка Organization */}
+         <OrganizationSchema />
++        
++        {/* Заголовок секции с выравниванием по левому краю в стиле других заголовков */}
+         <motion.div
+-          className="text-center mb-16"
++          className="max-w-4xl mx-auto mb-16 md:mb-20"
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 0.5, delay: 0.1 }}
+         >
+-          <div className="inline-block px-5 py-1.5 rounded-full text-sm font-medium mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-600 dark:from-blue-900/20 dark:to-indigo-900/20 dark:text-blue-400 border border-blue-100 dark:border-blue-800/20 shadow-sm">
+-            Контакты
++          <div className="mb-6">
++            <div className="inline-block px-5 py-1.5 rounded-full text-sm font-medium 
++                           bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-600 
++                           dark:from-blue-900/30 dark:to-indigo-900/30 dark:text-blue-400 
++                           border border-blue-100 dark:border-blue-800/30 shadow-sm">
++              Контакты
++            </div>
+           </div>
+-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white mb-4">
++          
++          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">
+             Готовы{" "}
+             <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+               автоматизировать
+             </span>{" "}
+-            ваш бизнес <br className="hidden md:block" />с помощью ИИ?
++            ваш бизнес с помощью ИИ?
+           </h2>
+-          <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-3xl mx-auto">
++          
++          <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl leading-relaxed">
+             Получите бесплатную консультацию по внедрению ИИ-агентов в ваши
+             бизнес-процессы. Наши эксперты помогут определить оптимальные
+             сценарии применения.
+           </p>
+         </motion.div>
+ 
++        {/* Улучшенная форма контактов с эффектом стекла */}
+         <motion.div
+-          className="relative backdrop-blur-lg bg-white/60 dark:bg-gray-900/50 rounded-2xl p-8 md:p-10 max-w-4xl mx-auto
+-                     border border-white/20 dark:border-gray-700/30 shadow-xl"
++          className="relative backdrop-blur-lg bg-white/70 dark:bg-gray-900/40 rounded-2xl p-8 md:p-10 max-w-4xl mx-auto
++                     border border-white/60 dark:border-gray-700/40 shadow-xl overflow-hidden"
+           initial={{ opacity: 0, y: 30 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 0.6, delay: 0.2 }}
+         >
++          {/* Декоративный элемент внутри формы */}
++          <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-blue-400/10 to-indigo-400/10 dark:from-blue-400/20 dark:to-indigo-400/20 rounded-full blur-2xl"></div>
++          <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-gradient-to-tr from-indigo-400/10 to-blue-400/10 dark:from-indigo-400/20 dark:to-blue-400/20 rounded-full blur-2xl"></div>
++
+           {submitStatus.type === "success" ? (
+             <motion.div
+               className="text-center py-10 px-6"
+-              initial={{ scale: 0.8, opacity: 0 }}
++              initial={{ scale: 0.9, opacity: 0 }}
+               animate={{ scale: 1, opacity: 1 }}
+               transition={{ type: "spring", stiffness: 150, damping: 20 }}
+             >
+-              {/* Стандартный контейнер иконки */}
+-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white mb-6">
++              {/* Улучшенный контейнер иконки успеха */}
++              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white mb-8 shadow-lg shadow-blue-500/20 dark:shadow-blue-700/30">
+                 <svg
+-                  className="w-8 h-8"
++                  className="w-10 h-10"
+                   fill="none"
+                   stroke="currentColor"
+                   viewBox="0 0 24 24"
+@@ -532,125 +550,159 @@ const Contact = () => {
+                   ></path>
+                 </svg>
+               </div>
+-              {/* Стандартная типографика */}
+-              <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-white mb-3">
++              
++              {/* Улучшенная типографика */}
++              <h3 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4">
+                 Спасибо за заявку!
+               </h3>
++              
+               <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg mx-auto leading-relaxed">
+                 Мы свяжемся с вами в ближайшее время для обсуждения деталей и
+                 бесплатной консультации.
+               </p>
+-              {/* Стандартная кнопка */}
++              
++              {/* Улучшенная кнопка */}
+               <motion.button
+                 onClick={() => setSubmitStatus({ type: null, message: "" })}
+-                className="inline-flex items-center justify-center px-6 py-3 border-0 text-lg font-semibold rounded-xl 
++                className="inline-flex items-center justify-center px-6 py-3.5 text-lg font-semibold rounded-xl 
+                            text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:opacity-90 shadow-lg 
+-                           transition-opacity duration-300"
+-                whileHover={{ scale: 1.01 }}
++                           shadow-blue-500/20 dark:shadow-blue-700/30 transition-all duration-300"
++                whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(1, 103, 243, 0.3)" }}
+                 whileTap={{ scale: 0.98 }}
+               >
+                 Отправить новую заявку
+               </motion.button>
+             </motion.div>
+           ) : (
+-            <form onSubmit={handleSubmit} className="space-y-6">
+-              {/* Используем общий containerVariants для stagger полей */}
++            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
++              {/* Используем обновленный containerVariants для stagger полей */}
+               <motion.div
+                 variants={containerVariants}
+                 initial="hidden"
+                 animate="show"
+                 className="grid grid-cols-1 md:grid-cols-2 gap-x-6 md:gap-x-8 gap-y-6"
+               >
+-                {/* Поле Имя */}
++                {/* Поле Имя с иконкой */}
+                 <motion.div variants={itemVariants}>
+                   <label htmlFor="name" className={labelClasses}>
+                     Имя*
+                   </label>
+-                  <input
+-                    type="text"
+-                    id="name"
+-                    name="name"
+-                    value={formData.name}
+-                    onChange={handleChange}
+-                    required
+-                    className={inputClasses}
+-                    placeholder="Иван Иванов"
+-                  />
++                  <div className="relative">
++                    <input
++                      type="text"
++                      id="name"
++                      name="name"
++                      value={formData.name}
++                      onChange={handleChange}
++                      required
++                      className={`${inputClasses} pl-11`}
++                      placeholder="Иван Иванов"
++                    />
++                    <div className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-blue-500 dark:text-blue-400">
++                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
++                        <path d="M18 20a6 6 0 0 0-12 0"></path>
++                        <circle cx="12" cy="10" r="4"></circle>
++                      </svg>
++                    </div>
++                  </div>
+                 </motion.div>
+ 
+-                {/* Поле Email */}
++                {/* Поле Email с иконкой */}
+                 <motion.div variants={itemVariants}>
+                   <label htmlFor="email" className={labelClasses}>
+                     Email*
+                   </label>
+-                  <input
+-                    type="email"
+-                    id="email"
+-                    name="email"
+-                    value={formData.email}
+-                    onChange={handleChange}
+-                    required
+-                    className={inputClasses}
+-                    placeholder="ivan.ivanov@example.com"
+-                  />
++                  <div className="relative">
++                    <input
++                      type="email"
++                      id="email"
++                      name="email"
++                      value={formData.email}
++                      onChange={handleChange}
++                      required
++                      className={`${inputClasses} pl-11`}
++                      placeholder="ivan.ivanov@example.com"
++                    />
++                    <div className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-blue-500 dark:text-blue-400">
++                      <Mail className="h-5 w-5" />
++                    </div>
++                  </div>
+                 </motion.div>
+ 
+-                {/* Поле Телефон */}
++                {/* Поле Телефон с иконкой */}
+                 <motion.div variants={itemVariants}>
+                   <label htmlFor="phone" className={labelClasses}>
+                     Телефон
+                   </label>
+-                  <InputMask
+-                    mask="+7 (999) 999-99-99"
+-                    type="tel"
+-                    id="phone"
+-                    name="phone"
+-                    value={formData.phone}
+-                    onChange={handleChange}
+-                    className={inputClasses}
+-                    placeholder="+7 (999) 123-45-67"
+-                  />
++                  <div className="relative">
++                    <InputMask
++                      mask="+7 (999) 999-99-99"
++                      type="tel"
++                      id="phone"
++                      name="phone"
++                      value={formData.phone}
++                      onChange={handleChange}
++                      className={`${inputClasses} pl-11`}
++                      placeholder="+7 (999) 123-45-67"
++                    />
++                    <div className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-blue-500 dark:text-blue-400">
++                      <Phone className="h-5 w-5" />
++                    </div>
++                  </div>
+                 </motion.div>
+ 
+-                {/* Поле Компания */}
++                {/* Поле Компания с иконкой */}
+                 <motion.div variants={itemVariants}>
+                   <label htmlFor="company" className={labelClasses}>
+                     Компания
+                   </label>
+-                  <input
+-                    type="text"
+-                    id="company"
+-                    name="company"
+-                    value={formData.company}
+-                    onChange={handleChange}
+-                    className={inputClasses}
+-                    placeholder="ООО 'Ромашка'"
+-                  />
++                  <div className="relative">
++                    <input
++                      type="text"
++                      id="company"
++                      name="company"
++                      value={formData.company}
++                      onChange={handleChange}
++                      className={`${inputClasses} pl-11`}
++                      placeholder="ООО 'Ромашка'"
++                    />
++                    <div className="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-blue-500 dark:text-blue-400">
++                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
++                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
++                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
++                      </svg>
++                    </div>
++                  </div>
+                 </motion.div>
+ 
+-                {/* Поле Сообщение (на всю ширину) */}
++                {/* Поле Сообщение (на всю ширину) с иконкой */}
+                 <motion.div variants={itemVariants} className="md:col-span-2">
+                   <label htmlFor="message" className={labelClasses}>
+                     Ваше сообщение
+                   </label>
+-                  <textarea
+-                    id="message"
+-                    name="message"
+-                    rows={5}
+-                    value={formData.message}
+-                    onChange={handleChange}
+-                    className={inputClasses}
+-                    placeholder="Расскажите кратко о вашей задаче или вопросе..."
+-                  />
++                  <div className="relative">
++                    <textarea
++                      id="message"
++                      name="message"
++                      rows={5}
++                      value={formData.message}
++                      onChange={handleChange}
++                      className={`${inputClasses} pl-11`}
++                      placeholder="Расскажите кратко о вашей задаче или вопросе..."
++                    />
++                    <div className="absolute left-3.5 top-6 text-blue-500 dark:text-blue-400">
++                      <MessageSquare className="h-5 w-5" />
++                    </div>
++                  </div>
+                 </motion.div>
+               </motion.div>
+ 
+-              {/* Ошибка отправки */}
++              {/* Ошибка отправки с улучшенным стилем */}
+               {submitStatus.type === "error" && (
+                 <motion.div
+-                  initial={{ opacity: 0 }}
+-                  animate={{ opacity: 1 }}
+-                  className="p-4 rounded-xl flex items-center bg-red-50/70 text-red-700 dark:bg-red-900/20 dark:text-red-400 border border-red-200/70 dark:border-red-800/30"
++                  initial={{ opacity: 0, y: -10 }}
++                  animate={{ opacity: 1, y: 0 }}
++                  className="p-4 rounded-xl flex items-center bg-red-50/80 text-red-700 dark:bg-red-900/20 dark:text-red-400 border border-red-200/70 dark:border-red-800/30 shadow-sm"
+                 >
+                   <div className="mr-3 flex-shrink-0">
+                     <AlertTriangle className="w-5 h-5" />
+@@ -659,15 +711,15 @@ const Contact = () => {
+                 </motion.div>
+               )}
+ 
+-              {/* Кнопка отправки */}
++              {/* Кнопка отправки с улучшенным стилем */}
+               <motion.div variants={itemVariants} className="text-center pt-2">
+                 <motion.button
+                   type="submit"
+                   disabled={isSubmitting}
+-                  className="inline-flex items-center justify-center px-8 py-3 border-0 text-lg font-semibold rounded-xl 
+-                    text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] shadow-lg transition-opacity duration-300 
+-                    hover:opacity-90"
+-                  whileHover={{ scale: 1.01 }}
++                  className="inline-flex items-center justify-center px-8 py-3.5 text-lg font-semibold rounded-xl 
++                    text-white bg-gradient-to-r from-[#0167F3] to-[#399AFC] shadow-lg shadow-blue-500/20 dark:shadow-blue-700/30 
++                    transition-all duration-300 hover:shadow-blue-500/30 dark:hover:shadow-blue-700/50"
++                  whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(1, 103, 243, 0.3)" }}
+                   whileTap={{ scale: 0.98 }}
+                 >
+                   {isSubmitting ? (
+@@ -703,61 +755,72 @@ const Contact = () => {
+           )}
+         </motion.div>
+ 
++        {/* Подзаголовок с выравниванием по левому краю */}
+         <motion.div
+-          className="mt-16 text-center"
++          className="mt-20 max-w-4xl mx-auto"
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 0.5, delay: 0.1 }}
+         >
+-          <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
+-            <div className="flex items-center">
+-              <div className="flex-shrink-0 mr-4 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-md">
+-                <Mail className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+-              </div>
+-              <div>
+-                <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
+-                  Email
+-                </h4>
+-                <a
+-                  href="mailto:agent@neuropolis.ai"
+-                  className="text-blue-600 dark:text-blue-400 text-lg hover:underline transition-all"
+-                >
+-                  agent@neuropolis.ai
+-                </a>
++          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8">
++            Свяжитесь с нами напрямую
++          </h3>
++          
++          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
++            {/* Email */}
++            <motion.div 
++              className="flex flex-col items-center p-6 rounded-2xl bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm border border-gray-100/80 dark:border-gray-800/40 shadow-lg shadow-blue-500/5 dark:shadow-blue-900/10 hover:shadow-blue-500/10 dark:hover:shadow-blue-900/20 transition-all duration-300"
++              whileHover={{ y: -5, boxShadow: "0 15px 30px rgba(1, 103, 243, 0.1)" }}
++            >
++              <div className="flex-shrink-0 mb-5 w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 flex items-center justify-center shadow-md shadow-blue-500/10 dark:shadow-blue-700/20">
++                <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+               </div>
+-            </div>
++              <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
++                Email
++              </h4>
++              <a
++                href="mailto:agent@neuropolis.ai"
++                className="text-blue-600 dark:text-blue-400 text-lg hover:underline transition-all font-medium"
++              >
++                agent@neuropolis.ai
++              </a>
++            </motion.div>
+ 
+-            <div className="flex items-center">
+-              <div className="flex-shrink-0 mr-4 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-md">
+-                <Phone className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+-              </div>
+-              <div>
+-                <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
+-                  Телефон
+-                </h4>
+-                <a
+-                  href="tel:+79601078900"
+-                  className="text-blue-600 dark:text-blue-400 text-lg hover:underline transition-all"
+-                >
+-                  +7 960 107-89-00
+-                </a>
++            {/* Телефон */}
++            <motion.div 
++              className="flex flex-col items-center p-6 rounded-2xl bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm border border-gray-100/80 dark:border-gray-800/40 shadow-lg shadow-blue-500/5 dark:shadow-blue-900/10 hover:shadow-blue-500/10 dark:hover:shadow-blue-900/20 transition-all duration-300"
++              whileHover={{ y: -5, boxShadow: "0 15px 30px rgba(1, 103, 243, 0.1)" }}
++            >
++              <div className="flex-shrink-0 mb-5 w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 flex items-center justify-center shadow-md shadow-blue-500/10 dark:shadow-blue-700/20">
++                <Phone className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+               </div>
+-            </div>
++              <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
++                Телефон
++              </h4>
++              <a
++                href="tel:+79601078900"
++                className="text-blue-600 dark:text-blue-400 text-lg hover:underline transition-all font-medium"
++              >
++                +7 960 107-89-00
++              </a>
++            </motion.div>
+ 
+-            <div className="flex items-center">
+-              <div className="flex-shrink-0 mr-4 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center shadow-md">
+-                <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+-              </div>
+-              <div>
+-                <h4 className="text-lg font-medium text-gray-700 dark:text-gray-300 mb-1">
+-                  Адрес
+-                </h4>
+-                <p className="text-gray-800 dark:text-gray-200 text-lg">
+-                  Россия, Воронеж
+-                </p>
++            {/* Адрес */}
++            <motion.div 
++              className="flex flex-col items-center p-6 rounded-2xl bg-white/60 dark:bg-gray-900/40 backdrop-blur-sm border border-gray-100/80 dark:border-gray-800/40 shadow-lg shadow-blue-500/5 dark:shadow-blue-900/10 hover:shadow-blue-500/10 dark:hover:shadow-blue-900/20 transition-all duration-300"
++              whileHover={{ y: -5, boxShadow: "0 15px 30px rgba(1, 103, 243, 0.1)" }}
++            >
++              <div className="flex-shrink-0 mb-5 w-14 h-14 rounded-xl bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 flex items-center justify-center shadow-md shadow-blue-500/10 dark:shadow-blue-700/20">
++                <MapPin className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+               </div>
+-            </div>
++              <h4 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-2">
++                Адрес
++              </h4>
++              <p className="text-gray-800 dark:text-gray-200 text-lg font-medium">
++                Россия, Воронеж
++              </p>
++            </motion.div>
+           </div>
+         </motion.div>
+       </Container>
+diff --git a/src/components/Services/Workflow.tsx b/src/components/Services/Workflow.tsx
+index 53b533b..495b1eb 100644
+--- a/src/components/Services/Workflow.tsx
++++ b/src/components/Services/Workflow.tsx
+@@ -9,8 +9,6 @@ const Workflow = () => {
+   const { isDark } = useTheme();
+   const [isWorkflowVisible, setIsWorkflowVisible] = useState(false);
+   const workflowRef = useRef(null);
+-  const chatRef = useRef(null);
+-  const aiAgentRef = useRef(null);
+ 
+   // Workflow animation visibility
+   useEffect(() => {
+@@ -36,54 +34,6 @@ const Workflow = () => {
+     };
+   }, []);
+ 
+-  // Чат-анимация
+-  useEffect(() => {
+-    const observer = new IntersectionObserver(
+-      ([entry]) => {
+-        // Когда чат становится видимым, запускаем анимацию
+-        if (entry.isIntersecting) {
+-          // Implementation handled separately
+-        }
+-      },
+-      { threshold: 0.3 }
+-    );
+-
+-    const currentRef = chatRef.current;
+-    if (currentRef) {
+-      observer.observe(currentRef);
+-    }
+-
+-    return () => {
+-      if (currentRef) {
+-        observer.unobserve(currentRef);
+-      }
+-    };
+-  }, []);
+-
+-  // AI линии анимация
+-  useEffect(() => {
+-    const observer = new IntersectionObserver(
+-      ([entry]) => {
+-        // Когда AI-агент становится видимым, запускаем анимацию линий
+-        if (entry.isIntersecting) {
+-          // Implementation handled separately
+-        }
+-      },
+-      { threshold: 0.3 }
+-    );
+-
+-    const currentRef = aiAgentRef.current;
+-    if (currentRef) {
+-      observer.observe(currentRef);
+-    }
+-
+-    return () => {
+-      if (currentRef) {
+-        observer.unobserve(currentRef);
+-      }
+-    };
+-  }, []);
+-
+   // Набор иконок для первого ряда (верхний ряд - движется влево)
+   const topRowIcons = [
+     "https://framerusercontent.com/images/7ccIrhplk721bhbtvb1UCavI.svg",
+@@ -139,7 +89,9 @@ const Workflow = () => {
+             className={`py-7.5 sm:py-[50px] flex flex-col items-center gap-[20px] sm:gap-[30px] overflow-hidden w-full ${
+               isDark ? "ai-card" : "bg-white rounded-xl border border-gray-100"
+             } ${
+-              isWorkflowVisible ? "workflow-animation workflow-visible" : ""
++              isWorkflowVisible
++                ? "workflow-animation workflow-visible"
++                : "workflow-animation"
+             }`}
+           >
+             {/* Top row scrolling left */}
+diff --git a/src/components/ui/Badge.tsx b/src/components/ui/Badge.tsx
+index fe39f98..fba8fe5 100644
+--- a/src/components/ui/Badge.tsx
++++ b/src/components/ui/Badge.tsx
+@@ -3,15 +3,21 @@
+ interface BadgeProps {
+   children: React.ReactNode;
+   className?: string;
++  variant?: "default" | "outline";
+ }
+ 
+-const Badge = ({ children, className = "" }: BadgeProps) => {
++const Badge = ({
++  children,
++  className = "",
++  variant = "default",
++}: BadgeProps) => {
++  const variantClasses = {
++    default: `inline-flex items-center px-4 py-1.5 rounded-full text-[14px] mb-4 bg-[#0167F3]/10 text-[#0167F3] dark:text-[#399AFC] border border-[#0167F3]/20 dark:border-[#399AFC]/50 backdrop-blur-sm`,
++    outline: `inline-flex items-center px-4 py-1.5 rounded-full text-[14px] mb-4 bg-transparent text-[#0167F3] dark:text-[#399AFC] border border-[#0167F3]/20 dark:border-[#399AFC]/50 backdrop-blur-sm`,
++  };
++
+   return (
+-    <div
+-      className={`inline-flex items-center px-4 py-1.5 rounded-full text-[14px] mb-4 bg-[#0167F3]/10 text-[#0167F3] dark:text-[#399AFC] border border-[#0167F3]/20 dark:border-[#399AFC]/50 backdrop-blur-sm ${className}`}
+-    >
+-      {children}
+-    </div>
++    <div className={`${variantClasses[variant]} ${className}`}>{children}</div>
+   );
+ };
+ 
+diff --git a/src/style/hero.css b/src/style/hero.css
+index 6013fc3..4e45e36 100644
+--- a/src/style/hero.css
++++ b/src/style/hero.css
+@@ -1,167 +1,174 @@
+ .video-container {
+-    -webkit-filter: hue-rotate(320deg);
+-    /* -webkit-mask: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 100%) add; */
+-    align-content: center;
+-    align-items: center;
+-    display: flex;
+-    filter: hue-rotate(320deg);
+-    flex: none;
+-    flex-direction: row;
+-    flex-wrap: nowrap;
+-    gap: 0px;
+-    justify-content: center;
+-    inset: 0 0 700px;
+-    overflow: hidden;
+-    padding: 0;
+-    position: absolute;
+-    z-index: 1;
+-    height: 100%;
++  -webkit-filter: hue-rotate(320deg);
++  /* -webkit-mask: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 100%) add; */
++  align-content: center;
++  align-items: center;
++  display: flex;
++  filter: hue-rotate(320deg);
++  flex: none;
++  flex-direction: row;
++  flex-wrap: nowrap;
++  gap: 0px;
++  justify-content: center;
++  inset: 0 0 700px;
++  overflow: hidden;
++  padding: 0;
++  position: absolute;
++  z-index: 1;
++  height: 100%;
+ }
+ 
+ .video-content {
+-    flex: 1 0 0px;
+-    height: 100%;
+-    position: relative;
+-    width: 1px;
++  flex: 1 0 0px;
++  height: 100%;
++  position: relative;
++  width: 1px;
+ }
+ 
+ .video-one {
+-    cursor: auto;
+-    width: 100%;
+-    height: 100%;
+-    border-radius: 0px;
+-    display: block;
+-    object-fit: cover;
+-    background-color: rgba(0, 0, 0, 1);
+-    object-position: 50% 50%;
++  cursor: auto;
++  width: 100%;
++  height: 100%;
++  border-radius: 0px;
++  display: block;
++  object-fit: cover;
++  background-color: rgba(0, 0, 0, 1);
++  object-position: 50% 50%;
+ }
+ 
+ .oval-blur {
+-    width: 100%;
+-    height: 100%;
+-    /* background: linear-gradient(to bottom, black 0%, transparent 40%, transparent 60%, black 100%); */
+-    filter: blur(200px);
+-    position: absolute;
+-    top: 50%;
+-    left: 50%;
+-    transform: translate(-50%, -50%);
+-    z-index: 1;
++  width: 100%;
++  height: 100%;
++  /* background: linear-gradient(to bottom, black 0%, transparent 40%, transparent 60%, black 100%); */
++  filter: blur(200px);
++  position: absolute;
++  top: 50%;
++  left: 50%;
++  transform: translate(-50%, -50%);
++  z-index: 1;
+ }
+ 
+ .video-over-black {
+-    position: absolute;
+-    left: 0;
+-    top: 0;
+-    width: 100%;
+-    height: 100%;
+-    background: linear-gradient(360deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.4) 100%);
++  position: absolute;
++  left: 0;
++  top: 0;
++  width: 100%;
++  height: 100%;
++  background: linear-gradient(
++    360deg,
++    rgba(0, 0, 0, 0.2) 0%,
++    rgba(0, 0, 0, 0) 50%,
++    rgba(0, 0, 0, 0.4) 100%
++  );
+ }
+ 
+ .v {
+-    mask: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45) 50%, rgba(0, 0, 0, 0) 100%);
++  mask: linear-gradient(
++    rgba(0, 0, 0, 0) 0%,
++    rgba(0, 0, 0, 0.45) 50%,
++    rgba(0, 0, 0, 0) 100%
++  );
+ }
+ 
+ .o {
+-    mask: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .5) 50%, rgba(0, 0, 0, 0) 100%) add;
++  mask: linear-gradient(
++      180deg,
++      rgba(0, 0, 0, 0) 0%,
++      rgba(0, 0, 0, 0.5) 50%,
++      rgba(0, 0, 0, 0) 100%
++    )
++    add;
+ }
+ 
+ .f {
+-    mask: radial-gradient(50% 57.99999999999999% at 50% 50%, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 100%) add;
++  mask: radial-gradient(
++      50% 57.99999999999999% at 50% 50%,
++      rgba(0, 0, 0, 0.5) 0%,
++      rgba(0, 0, 0, 0) 100%
++    )
++    add;
+ }
+ 
+-/* Text animation classes */
++/* Text animation classes - анимации отключены */
+ .text-blur-in {
+-    filter: blur(25px);
+-    opacity: 0;
+-    animation: blur-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
++  filter: blur(0);
++  opacity: 1;
++  animation: none;
+ }
+ 
+ .text-blur-in-delay-1 {
+-    animation-delay: 0.4s;
++  animation-delay: 0s;
+ }
+ 
+ .text-blur-in-delay-2 {
+-    animation-delay: 0.4s;
++  animation-delay: 0s;
+ }
+ 
+ .text-blur-in-delay-3 {
+-    animation-delay: 0.8s;
++  animation-delay: 0s;
+ }
+ 
+ .text-blur-in-delay-4 {
+-    animation-delay: 1.2s;
++  animation-delay: 0s;
+ }
+ 
+-/* Animation for the hero text */
++/* Animation for the hero text - отключена */
+ @keyframes blur-in {
+-    0% {
+-        filter: blur(25px);
+-        opacity: 0;
+-        transform: translateY(15px) scale(1.05);
+-    }
++  0% {
++    filter: blur(0);
++    opacity: 1;
++    transform: translateY(0) scale(1);
++  }
+ 
+-    70% {
+-        filter: blur(5px);
+-        opacity: 0.8;
+-    }
+-
+-    100% {
+-        filter: blur(0);
+-        opacity: 1;
+-        transform: translateY(0) scale(1);
+-    }
++  100% {
++    filter: blur(0);
++    opacity: 1;
++    transform: translateY(0) scale(1);
++  }
+ }
+ 
+-/* Special animation for the icon box */
++/* Special animation for the icon box - отключена */
+ 
+ @keyframes fade-in-down {
+-    0% {
+-        opacity: 0;
+-        transform: translateY(-20px);
+-        filter: blur(15px);
+-    }
+-
+-    70% {
+-        filter: blur(3px);
+-    }
++  0% {
++    opacity: 1;
++    transform: translateY(0);
++    filter: blur(0);
++  }
+ 
+-    100% {
+-        opacity: 1;
+-        transform: translateY(0);
+-        filter: blur(0);
+-    }
++  100% {
++    opacity: 1;
++    transform: translateY(0);
++    filter: blur(0);
++  }
+ }
+ 
+-/* Button animations */
++/* Button animations - отключены */
+ .button-appear {
+-    transform: scale(0.9);
+-    opacity: 0;
+-    filter: blur(10px);
+-    animation: button-scale-in 0.7s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
++  transform: scale(1);
++  opacity: 1;
++  filter: blur(0);
++  animation: none;
+ }
+ 
+ .button-appear-delay-1 {
+-    animation-delay: 1.3s;
++  animation-delay: 0s;
+ }
+ 
+ .button-appear-delay-2 {
+-    animation-delay: 1.5s;
++  animation-delay: 0s;
+ }
+ 
+ @keyframes button-scale-in {
+-    0% {
+-        transform: scale(0.9);
+-        opacity: 0;
+-        filter: blur(10px);
+-    }
+-
+-    70% {
+-        filter: blur(2px);
+-    }
+-
+-    100% {
+-        transform: scale(1);
+-        opacity: 1;
+-        filter: blur(0);
+-    }
+-}
+\ No newline at end of file
++  0% {
++    transform: scale(1);
++    opacity: 1;
++    filter: blur(0);
++  }
++
++  100% {
++    transform: scale(1);
++    opacity: 1;
++    filter: blur(0);
++  }
++}
+diff --git a/src/style/text-animations.css b/src/style/text-animations.css
+index ff655a3..eda768a 100644
+--- a/src/style/text-animations.css
++++ b/src/style/text-animations.css
+@@ -1,4 +1,4 @@
+-/* Blur animation effects for hero section */
++/* Отключенные blur animation effects для hero section */
+ 
+ /* Text blur reveal animation */
+ .blur-reveal {
+@@ -40,7 +40,7 @@
+   }
+ }
+ 
+-/* Custom delays for animations */
++/* Custom delays for animations - все задержки установлены на 0 */
+ .anim-delay-1 {
+   animation-delay: 0s;
+ }
+-- 
+2.37.1 (Apple Git-137.1)
+

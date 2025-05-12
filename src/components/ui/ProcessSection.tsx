@@ -65,7 +65,22 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
       id={sectionId}
       className="py-16 md:py-24 relative overflow-hidden"
     >
-      <div className="absolute inset-0 bg-white dark:bg-gray-950 -z-10"></div>
+      {/* Статический градиентный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 -z-10"></div>
+      <div className="absolute -top-40 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 rounded-full blur-3xl -z-10"></div>
+
+      {/* Сетка-фон */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: "url('/grid-pattern.svg')",
+            backgroundSize: "24px 24px",
+            backgroundRepeat: "repeat",
+          }}
+        ></div>
+      </div>
 
       <Container>
         <div className="text-center mb-16">

@@ -40,7 +40,7 @@ export default function WorkflowAutomationPage() {
   }, []);
 
   return (
-    <div className="relative overflow-hidden bg-white text-gray-800 font-sans dark:bg-gray-950 dark:text-white">
+    <div className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 to-white text-gray-800 font-sans dark:from-blue-950/10 dark:to-gray-950 dark:text-white">
       {/* Декоративный элемент - волнистая линия сверху */}
       <div className="absolute top-0 left-0 right-0 h-3 z-10 overflow-hidden">
         <svg

@@ -261,8 +261,24 @@ export default function ContactForm({
         fullWidth ? "w-full" : "w-full"
       }`}
     >
-      {/* Упрощенный фон */}
-      <div className="absolute inset-0 bg-white dark:bg-gray-950 -z-10"></div>
+      {/* Статический градиентный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
+
+      {/* Сетка-фон */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: "url('/grid-pattern.svg')",
+            backgroundSize: "24px 24px",
+            backgroundRepeat: "repeat",
+          }}
+        ></div>
+      </div>
+
+      {/* Декоративные элементы */}
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
 
       <div className="w-full mx-auto relative z-10">
         <div className="container mx-auto">

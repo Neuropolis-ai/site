@@ -62,8 +62,20 @@ export default function BaseFAQ({
       id={sectionId}
       className="relative py-20 md:py-28 px-4"
     >
-      {/* Упрощенный фон */}
-      <div className="absolute inset-0 bg-white dark:bg-gray-950 -z-10"></div>
+      {/* Статический градиентный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
+      
+      {/* Сетка-фон */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: "url('/grid-pattern.svg')",
+            backgroundSize: "24px 24px",
+            backgroundRepeat: "repeat",
+          }}
+        ></div>
+      </div>
 
       <div className="container relative mx-auto max-w-5xl">
         <FAQSchema faqs={faqItems} />

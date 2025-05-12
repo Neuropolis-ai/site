@@ -15,14 +15,17 @@ export default function ChatBotsContactCTA() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState({
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({
     type: null,
     message: "",
   });
   const [privacyAccepted, setPrivacyAccepted] = useState(false);
 
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -41,7 +44,7 @@ export default function ChatBotsContactCTA() {
       const botToken = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN || "8020073798:AAHmXxi9XijA0z1k9JY2DzNpDI7j6ICqthI";
       const chatId = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID || "-1002655068247";
       
-      const text = `\n📩 Новая заявка с сайта (чат-боты CTA):\n👤 Имя: ${formData.name}\n🏢 Компания: ${formData.company || "Не указана"}\n📞 Телефон: ${formData.phone}\n✉️ Email: ${formData.email || "Не указан"}\n�� Сообщение: ${formData.message || "Не указано"}\n`;
+      const text = `\n📩 Новая заявка с сайта (чат-боты CTA):\n👤 Имя: ${formData.name}\n🏢 Компания: ${formData.company || "Не указана"}\n📞 Телефон: ${formData.phone}\n✉️ Email: ${formData.email || "Не указан"}\n Сообщение: ${formData.message || "Не указано"}\n`;
       
       const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
       const response = await fetch(url, {
@@ -61,12 +64,12 @@ export default function ChatBotsContactCTA() {
 
       return { ok: true };
     } catch (error) {
-      return { ok: false, error: `Ошибка: ${error.message}` };
+      return { ok: false, error: `Ошибка: ${error instanceof Error ? error.message : String(error)}` };
     }
   };
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!privacyAccepted) {
@@ -110,7 +113,7 @@ export default function ChatBotsContactCTA() {
     } catch (error) {
       setSubmitStatus({
         type: "error",
-        message: `Произошла ошибка: ${error.message}`,
+        message: `Произошла ошибка: ${error instanceof Error ? error.message : String(error)}`,
       });
     } finally {
       setIsSubmitting(false);

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 
 const AIAgent = () => {

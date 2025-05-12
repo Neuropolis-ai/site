@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 
 const Chatbots = () => {
@@ -16,8 +16,7 @@ const Chatbots = () => {
             <span className="text-[#0167F3]">искусственного интеллекта</span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Интеллектуальные чат-боты для автоматизации коммуникации с клиентами
-            и сотрудниками
+            Современные чат-боты для обслуживания клиентов, продаж и автоматизации бизнес-процессов
           </p>
         </div>
       </div>

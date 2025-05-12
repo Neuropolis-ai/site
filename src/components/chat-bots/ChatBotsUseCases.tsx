@@ -10,7 +10,7 @@ import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { Heading } from "@/components/ui/Heading";
+import { Heading } from "@/components/ui/heading";
 import {
   CheckCircle,
   ChevronRight,

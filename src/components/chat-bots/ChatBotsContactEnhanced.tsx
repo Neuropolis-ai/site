@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, AlertTriangle, Mail, Phone, MapPin, MessageSquare } from "lucide-react";
 import Container from "../ui/Container";
 import InputMask from "react-input-mask";
-import { Heading } from "../ui/Heading";
+import { Heading } from "../ui/heading";
 import Badge from "../ui/Badge";
 import Subheading from "../ui/subheading";
 

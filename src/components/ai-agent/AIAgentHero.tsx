@@ -6,7 +6,7 @@ import { ArrowRight, Bot, Brain, Zap, BarChart, MessageSquare, Search, RefreshCw
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
-import { Heading } from "@/components/ui/Heading";
+import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
 

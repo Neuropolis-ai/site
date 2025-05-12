@@ -7,7 +7,7 @@ import { BsStarFill } from "react-icons/bs";
 import { Quote } from "lucide-react";
 import "../../style/card-line.css";
 import Container from "../ui/Container";
-import { Heading } from "@/components/ui/Heading";
+import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
 
 const testimonialData = [

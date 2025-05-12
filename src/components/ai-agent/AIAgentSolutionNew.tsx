@@ -27,7 +27,7 @@ import {
   Settings,
   RefreshCw,
 } from "lucide-react";
-import { Heading } from "@/components/ui/Heading";
+import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
 import Link from "next/link";

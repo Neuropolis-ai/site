@@ -4,7 +4,7 @@ import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import { ReactNode } from "react";
 import "../../style/dot-grid.css";
-import { Heading } from "@/components/ui/Heading";
+import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
 import Badge from "@/components/ui/Badge";
 

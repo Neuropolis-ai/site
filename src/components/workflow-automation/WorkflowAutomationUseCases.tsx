@@ -1,14 +1,48 @@
 "use client";
 
+import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
 import { useTheme } from "@/context/ThemeContext";
 import { useState } from "react";
-import { FiBarChart, FiCheckCircle, FiTrendingUp, FiArrowRight } from "react-icons/fi";
+import { FiBarChart, FiCheckCircle, FiTrendingUp, FiArrowRight, FiClock, FiUsers, FiDollarSign } from "react-icons/fi";
+import Image from "next/image";
 import Badge from "@/components/ui/Badge";
 
 export default function WorkflowAutomationUseCases() {
   const { isDark } = useTheme();
   const [activeTab, setActiveTab] = useState(0);
+
+  // Анимации
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const floatingVariants = {
+    initial: { y: 0 },
+    animate: {
+      y: [0, -10, 0],
+      transition: {
+        duration: 5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  };
 
   // Обновленные данные о кейсах с цветами сайта
   const useCases = [
@@ -27,6 +61,7 @@ export default function WorkflowAutomationUseCases() {
         "Автоматический анализ эффективности маркетинговых каналов",
         "Интеграция с CRM для отслеживания полного пути клиента"
       ],
+      image: "/assets/images/workflow-marketing.png",
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
       colorLight: "text-[#399AFC]",
@@ -53,6 +88,7 @@ export default function WorkflowAutomationUseCases() {
         "Автоматическая квалификация лидов на основе их поведения",
         "Интеграция с платежными системами и документооборотом"
       ],
+      image: "/assets/images/workflow-sales.png",
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
       colorLight: "text-[#399AFC]",
@@ -79,6 +115,7 @@ export default function WorkflowAutomationUseCases() {
         "Отслеживание просроченных платежей и автоматические напоминания",
         "Подготовка финансовой отчетности для руководства и контролирующих органов"
       ],
+      image: "/assets/images/workflow-finance.png",
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
       colorLight: "text-[#399AFC]",
@@ -114,7 +151,7 @@ export default function WorkflowAutomationUseCases() {
       id="workflow-cases"
       className="py-20 md:py-24 relative overflow-hidden"
     >
-      {/* Статический градиентный фон */}
+      {/* Градиентный фон */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
 
       {/* Сетка-фон */}
@@ -133,30 +170,68 @@ export default function WorkflowAutomationUseCases() {
       <div className="absolute -top-24 -left-24 w-72 h-72 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
       <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
 
-      <Container>
-        <div className="text-center mb-14">
-          <div>
-            <Badge>Примеры использования</Badge>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Возможности{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
-              интеграции
-            </span>{" "}
-            с различными системами
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Наша платформа легко интегрируется с любыми существующими бизнес-системами и автоматизирует ключевые процессы, позволяя достичь максимальной эффективности
-          </p>
-        </div>
+      {/* Анимированные элементы */}
+      <motion.div
+        variants={floatingVariants}
+        initial="initial"
+        animate="animate"
+        className="absolute top-[35%] left-[10%] w-14 h-14 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
+      ></motion.div>
+      <motion.div
+        variants={floatingVariants}
+        initial="initial"
+        animate="animate"
+        className="absolute bottom-[25%] right-[7%] w-20 h-20 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
+        style={{ animationDelay: "1.5s" }}
+      ></motion.div>
 
-        {/* Табы для переключения между примерами */}
-        <div className="mb-10">
+      <Container>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="text-center mb-14"
+        >
+          <motion.div variants={itemVariants}>
+            <Badge>Примеры использования</Badge>
+          </motion.div>
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4"
+          >
+            Как автоматизация{" "}
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+              решает бизнес-задачи
+            </span>
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
+          >
+            Ознакомьтесь с реальными примерами внедрения автоматизации рабочих
+            процессов в различных сферах бизнеса и достигнутыми результатами.
+          </motion.p>
+        </motion.div>
+
+        {/* Табы для переключения между кейсами */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mb-10"
+        >
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 px-4 sm:px-0">
             {useCases.map((useCase, index) => (
-              <button
+              <motion.button
                 key={index}
+                variants={itemVariants}
                 onClick={() => setActiveTab(index)}
+                whileHover={{
+                  y: -2,
+                  transition: { duration: 0.2 },
+                }}
                 className={`px-4 py-3 sm:py-2.5 rounded-lg text-sm font-medium transition-all w-full sm:w-auto ${getTabClassName(
                   index
                 )}`}
@@ -167,13 +242,17 @@ export default function WorkflowAutomationUseCases() {
                   </div>
                   <span className="translate-y-[1px]">{useCase.title}</span>
                 </div>
-              </button>
+              </motion.button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        {/* Контент активного таба */}
-        <div
+        {/* Контент активного кейса */}
+        <motion.div
+          key={activeTab}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
           className={`rounded-xl overflow-hidden shadow-lg ${
             isDark
               ? "bg-gray-800/50 border border-gray-700 shadow-blue-900/10"
@@ -210,8 +289,9 @@ export default function WorkflowAutomationUseCases() {
               {/* Статистика */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                 {useCases[activeTab].stats.map((stat, index) => (
-                  <div
+                  <motion.div
                     key={index}
+                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
                     className={`p-4 rounded-lg backdrop-blur-sm ${getStatClassName(
                       index
                     )} transition-all duration-300`}
@@ -224,11 +304,11 @@ export default function WorkflowAutomationUseCases() {
                     <div className="text-sm text-gray-600 dark:text-gray-400">
                       {stat.label}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
-              {/* Подробная информация */}
+              {/* Детали реализации */}
               <div
                 className={`p-5 rounded-lg backdrop-blur-sm ${
                   isDark
@@ -237,78 +317,137 @@ export default function WorkflowAutomationUseCases() {
                 }`}
               >
                 <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
-                  Ключевые возможности
+                  Ключевые интеграции
                 </h4>
                 <ul className="space-y-3">
-                  {useCases[activeTab].detailedDescription.map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-3">
-                      <span
-                        className={`${useCases[activeTab].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
-                      >
-                        <FiCheckCircle className="w-4 h-4" />
-                      </span>
-                      <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
-                        {item}
-                      </span>
-                    </li>
-                  ))}
+                  <li className="flex items-start gap-3">
+                    <span
+                      className={`${useCases[activeTab].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                    >
+                      <FiCheckCircle className="w-4 h-4" />
+                    </span>
+                    <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                      Интеграция с CRM-системой для централизованного управления
+                      данными
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span
+                      className={`${useCases[activeTab].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                    >
+                      <FiCheckCircle className="w-4 h-4" />
+                    </span>
+                    <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                      Автоматическая синхронизация данных между всеми
+                      платформами
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span
+                      className={`${useCases[activeTab].colorText} bg-blue-100 dark:bg-blue-900/40 p-1 rounded-full flex-shrink-0`}
+                    >
+                      <FiCheckCircle className="w-4 h-4" />
+                    </span>
+                    <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
+                      Аналитическая панель для отслеживания ключевых показателей
+                    </span>
+                  </li>
                 </ul>
               </div>
             </div>
 
-            {/* Правая колонка - Интерактивная демонстрация */}
+            {/* Правая колонка - Подробное описание процесса автоматизации */}
             <div
               className={`${
                 isDark ? "bg-gray-800/70" : "bg-blue-50/50"
-              } p-6 md:p-8 flex items-center justify-center`}
+              } p-6 md:p-8 flex flex-col justify-center`}
             >
-              <div className="relative w-full h-[300px] md:h-[400px] rounded-xl overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div
-                    className={`w-full h-full bg-gradient-to-br from-blue-100/50 to-blue-50/50 dark:from-blue-900/20 dark:to-blue-800/10 backdrop-blur-sm rounded-xl border ${
-                      isDark ? "border-blue-800/20" : "border-blue-200/50"
-                    } flex items-center justify-center`}
-                  >
-                    <div className="text-center p-8">
-                      <div className="inline-flex items-center justify-center bg-gradient-to-r from-blue-500 to-sky-400 text-white w-16 h-16 rounded-full mb-4">
-                        {useCases[activeTab].icon}
-                      </div>
-                      <p className="text-blue-600 dark:text-blue-400 font-medium text-xl">
-                        Интерактивная демонстрация
-                      </p>
-                      <p className="text-gray-500 dark:text-gray-400 text-base mt-4 max-w-md mx-auto">
-                        Свяжитесь с нами для презентации решения по автоматизации {" "}
-                        <span className="font-medium text-blue-600 dark:text-blue-400">
-                          {useCases[activeTab].title.toLowerCase()}
-                        </span>
-                        {" "} в вашей компании
-                      </p>
+              <div className="mb-5">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <span className="inline-block p-1.5 rounded-lg bg-blue-500/20 dark:bg-blue-400/20">
+                    <FiClock className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                  </span>
+                  <span className="translate-y-[1px]">Как работает процесс автоматизации</span>
+                </h4>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 text-base">
+                  Внедрение автоматизации позволяет выстроить эффективный рабочий процесс, 
+                  исключающий рутинные операции и снижающий вероятность человеческих ошибок.
+                </p>
+              </div>
+              
+              {/* Подробное описание процесса */}
+              <div className="space-y-5">
+                {useCases[activeTab].detailedDescription.map((item, index) => (
+                  <div key={index} className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
+                      {index === 0 && <FiUsers className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 1 && <FiBarChart className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 2 && <FiClock className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 3 && <FiDollarSign className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
                     </div>
+                    <div>
+                      <p className="text-gray-700 dark:text-gray-300 translate-y-[1px]">{item}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Преимущества */}
+              <div className="mt-8 p-4 rounded-lg bg-white/70 dark:bg-gray-800/70 border border-blue-100 dark:border-blue-800/30">
+                <h5 className="font-medium text-gray-900 dark:text-white mb-3">
+                  Ключевые преимущества
+                </h5>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="flex items-center gap-2">
+                    <FiCheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Экономия времени</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FiCheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Снижение ошибок</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FiCheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Масштабируемость</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FiCheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                    <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Прозрачность процессов</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Призыв к действию */}
-        <div className="mt-12 text-center">
-          <div className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
-            <a
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-12 text-center"
+        >
+          <motion.div variants={itemVariants} className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+            <motion.a
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
               className="px-5 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-medium shadow-lg shadow-blue-500/20 dark:shadow-blue-600/20 flex items-center justify-center gap-2 w-full sm:w-auto"
               href="#contact"
             >
               <span>Обсудить ваш проект</span>
               <FiArrowRight className="w-4 h-4" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               className="px-5 sm:px-6 py-3 rounded-lg border border-blue-300 dark:border-blue-700 text-blue-600 dark:text-blue-400 font-medium w-full sm:w-auto"
-              href="#workflow-process"
+              href="#workflow-solution"
             >
-              Узнать о процессе внедрения
-            </a>
-          </div>
-        </div>
+              Узнать больше
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </Container>
     </section>
   );

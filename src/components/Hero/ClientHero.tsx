@@ -225,7 +225,7 @@ const ClientHero = () => {
                       
                       {/* Решение 1 */}
                       <div className="ml-6 pl-4 relative">
-                        <div className="absolute left-[-16px] top-3 w-3 h-3 rounded-full bg-blue-500"></div>
+                        <div className="absolute left-[-16.5px] top-3 w-3 h-3 rounded-full bg-blue-500 transform -translate-x-[0.5px]"></div>
                         <div className="bg-white dark:bg-gray-700 rounded-xl p-4 shadow-sm">
                           <div className="flex items-center mb-2">
                             <Bot size={18} className="text-blue-500 mr-2" />
@@ -239,7 +239,7 @@ const ClientHero = () => {
                       
                       {/* Решение 2 */}
                       <div className="ml-6 pl-4 relative">
-                        <div className="absolute left-[-16px] top-3 w-3 h-3 rounded-full bg-indigo-500"></div>
+                        <div className="absolute left-[-16.5px] top-3 w-3 h-3 rounded-full bg-indigo-500 transform -translate-x-[0.5px]"></div>
                         <div className="bg-white dark:bg-gray-700 rounded-xl p-4 shadow-sm">
                           <div className="flex items-center mb-2">
                             <Code size={18} className="text-indigo-500 mr-2" />
@@ -253,7 +253,7 @@ const ClientHero = () => {
                       
                       {/* Решение 3 */}
                       <div className="ml-6 pl-4 relative">
-                        <div className="absolute left-[-16px] top-3 w-3 h-3 rounded-full bg-teal-500"></div>
+                        <div className="absolute left-[-16.5px] top-3 w-3 h-3 rounded-full bg-teal-500 transform -translate-x-[0.5px]"></div>
                         <div className="bg-white dark:bg-gray-700 rounded-xl p-4 shadow-sm">
                           <div className="flex items-center mb-2">
                             <Sparkles size={18} className="text-teal-500 mr-2" />

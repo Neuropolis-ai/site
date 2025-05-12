@@ -19,6 +19,7 @@ import {
   FiArrowRight,
   FiTarget,
   FiLayers,
+  FiMessageSquare,
 } from "react-icons/fi";
 import Badge from "@/components/ui/Badge";
 import Image from "next/image";
@@ -33,7 +34,7 @@ export default function ChatBotsWhyUs() {
     {
       title: "Подход, создающий ценность",
       description:
-        "Мы не просто внедряем технологии — мы думаем как предприниматели и создаём решения, которые работают на рост вашего бизнеса. Вместо формального внедрения автоматизации мы начинаем с бизнес-задач, вникаем в контекст и подбираем индивидуальный путь к результату.",
+        "Мы не просто разрабатываем чат-ботов — мы думаем как предприниматели и создаём решения, которые работают на рост вашего бизнеса. Вместо формального внедрения интеллектуальных ассистентов мы начинаем с бизнес-задач, вникаем в контекст и подбираем индивидуальный путь к результату.",
       features: [
         { icon: <FiTarget className="w-4 h-4" />, label: "Практический опыт в бизнес-решениях", description: "Создаём решения, которые приносят реальный эффект" },
         { icon: <FiUsers className="w-4 h-4" />, label: "Индивидуальный подход к каждому проекту", description: "Глубокое погружение в задачи клиента" },
@@ -41,7 +42,7 @@ export default function ChatBotsWhyUs() {
       ],
       detailedDescription: [
         "Погружение в бизнес-контекст и цели",
-        "Совместная проработка решений и гипотез",
+        "Совместная проработка сценариев и гипотез",
         "Гибкая архитектура под рост и изменения",
         "Быстрый запуск, постепенное масштабирование"
       ],
@@ -57,19 +58,19 @@ export default function ChatBotsWhyUs() {
       icon: <FiAward className="w-5 h-5" />,
     },
     {
-      title: "Индивидуальный подход",
+      title: "Индивидуальные решения",
       description:
-        "Мы не используем шаблонные решения. Каждый проект начинается с тщательного анализа бизнес-процессов клиента для создания уникального решения, которое идеально подойдет именно вашему бизнесу, учитывая его особенности и требования.",
+        "Каждый чат-бот разрабатывается с учетом специфики вашего бизнеса, целевой аудитории и конкретных бизнес-процессов. Мы не используем шаблонные решения – ваш бот будет уникальным инструментом, максимально адаптированным под ваши потребности.",
       stats: [
-        { value: "100%", label: "Индивидуальных решений" },
-        { value: "3x", label: "Рост эффективности" },
-        { value: "60%", label: "Экономия ресурсов" },
+        { value: "100%", label: "Индивидуальная настройка" },
+        { value: "85%", label: "Точность распознавания" },
+        { value: "24/7", label: "Непрерывная работа" },
       ],
       detailedDescription: [
-        "Предпроектный анализ и аудит текущих процессов",
-        "Адаптация решения под бизнес-модель клиента",
-        "Учет существующей IT-инфраструктуры и интеграция с ней",
-        "Масштабируемость для будущего роста компании"
+        "Анализ бизнес-процессов и сценариев общения",
+        "Настройка персонализированных диалоговых сценариев",
+        "Адаптация под корпоративный стиль и тон коммуникации",
+        "Интеграция с вашими бизнес-системами"
       ],
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
@@ -83,19 +84,19 @@ export default function ChatBotsWhyUs() {
       icon: <FiUsers className="w-5 h-5" />,
     },
     {
-      title: "Инновационные технологии",
+      title: "Современные технологии",
       description:
-        "Мы применяем передовые технологии искусственного интеллекта, машинного обучения и облачных вычислений, чтобы создавать прогрессивные решения, которые не просто автоматизируют процессы, но и позволяют бизнесу развиваться в условиях цифровой трансформации.",
+        "Наши чат-боты используют передовые технологии искусственного интеллекта и машинного обучения. Мы применяем современные языковые модели, которые обеспечивают естественное общение и высокую точность понимания запросов пользователей на разных языках.",
       stats: [
-        { value: "AI", label: "Искусственный интеллект" },
-        { value: "ML", label: "Машинное обучение" },
-        { value: "API", label: "Первый подход к разработке" },
+        { value: "GPT", label: "Передовые языковые модели" },
+        { value: "NLP", label: "Обработка естественного языка" },
+        { value: "ML", label: "Самообучающиеся алгоритмы" },
       ],
       detailedDescription: [
-        "Нейросети для автоматического распознавания и обработки данных",
-        "Предиктивная аналитика для прогнозирования бизнес-трендов",
-        "Облачная инфраструктура для гибкого масштабирования",
-        "Автоматизированное тестирование для обеспечения надежности"
+        "Использование современных языковых моделей",
+        "Понимание контекста и поддержание диалога",
+        "Постоянное обучение на основе новых данных",
+        "Многоязычная поддержка и распознавание речи"
       ],
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
@@ -109,19 +110,19 @@ export default function ChatBotsWhyUs() {
       icon: <FiCode className="w-5 h-5" />,
     },
     {
-      title: "Полный цикл услуг",
+      title: "Полный цикл разработки",
       description:
-        "Мы предоставляем комплексное обслуживание: от анализа и разработки стратегии автоматизации до внедрения, обучения персонала и оказания последующей технической поддержки. Наша многоуровневая система позволяет обеспечить бесперебойную работу всех внедренных решений.",
+        "Мы предоставляем комплексные услуги: от анализа потребностей и проектирования диалоговых сценариев до разработки, интеграции, тестирования и дальнейшей поддержки. После запуска мы помогаем улучшать бота на основе обратной связи от пользователей.",
       stats: [
         { value: "24/7", label: "Техническая поддержка" },
-        { value: "100%", label: "Покрытие жизненного цикла" },
-        { value: "90%", label: "SLA выполнения запросов" },
+        { value: "100%", label: "Сопровождение проекта" },
+        { value: "95%", label: "Удовлетворенность клиентов" },
       ],
       detailedDescription: [
-        "Детальный аудит и планирование автоматизации",
-        "Профессиональная разработка и внедрение решений",
-        "Комплексное обучение персонала компании-клиента",
-        "Многоуровневая система технической поддержки"
+        "Детальный анализ потребностей и проектирование",
+        "Разработка и интеграция с существующими системами",
+        "Тщательное тестирование и обучение персонала",
+        "Мониторинг, анализ и постоянное улучшение"
       ],
       colorBg: "bg-[#0167F3]",
       colorText: "text-[#0167F3]",
@@ -156,7 +157,7 @@ export default function ChatBotsWhyUs() {
   return (
     <section
       id="chatbots-why-us"
-      className="py-20 md:py-24 relative overflow-hidden"
+      className="py-20 pb-10 md:py-24 md:pb-12 relative overflow-hidden"
     >
       {/* Статический градиентный фон */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
@@ -185,8 +186,8 @@ export default function ChatBotsWhyUs() {
             </span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Мы создаём интеллектуальные системы автоматизации, которые не просто оптимизируют процессы, 
-            но и обеспечивают конкурентное преимущество вашему бизнесу в эпоху цифровой трансформации.
+            Мы создаём умных чат-ботов, которые не просто отвечают на вопросы, но и решают бизнес-задачи, 
+            повышая эффективность коммуникации с клиентами и оптимизируя внутренние процессы.
           </p>
         </div>
 
@@ -235,7 +236,9 @@ export default function ChatBotsWhyUs() {
                   {companyAdvantages[activeAdvantage].icon}
                 </div>
                 <h3
-                  className={`text-xl md:text-2xl font-semibold ${companyAdvantages[activeAdvantage].colorText}`}
+                  className={`text-xl md:text-2xl font-semibold ${
+                    isDark ? "text-white" : companyAdvantages[activeAdvantage].colorText
+                  }`}
                 >
                   {companyAdvantages[activeAdvantage].title}
                 </h3>
@@ -335,7 +338,7 @@ export default function ChatBotsWhyUs() {
                           <FiCheckCircle className="w-4 h-4" />
                         </span>
                         <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
-                          Эволюция продукта вместе с вашим бизнесом
+                          Эволюция бота вместе с вашим бизнесом
                         </span>
                       </li>
                     </>
@@ -348,7 +351,7 @@ export default function ChatBotsWhyUs() {
                           <FiCheckCircle className="w-4 h-4" />
                         </span>
                         <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
-                          Проверенные методологии и подходы к автоматизации
+                          Проверенные методологии и подходы к разработке чат-ботов
                         </span>
                       </li>
                       <li className="flex items-center gap-3">
@@ -358,7 +361,7 @@ export default function ChatBotsWhyUs() {
                           <FiCheckCircle className="w-4 h-4" />
                         </span>
                         <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
-                          Гибкость решений и возможность адаптации под изменения
+                          Гибкость интерфейса и возможность адаптации под изменения
                         </span>
                       </li>
                       <li className="flex items-center gap-3">
@@ -368,7 +371,7 @@ export default function ChatBotsWhyUs() {
                           <FiCheckCircle className="w-4 h-4" />
                         </span>
                         <span className="text-gray-600 dark:text-gray-300 translate-y-[1px]">
-                          Непрерывная поддержка и развитие внедренных систем
+                          Непрерывное обучение и улучшение чат-бота
                         </span>
                       </li>
                     </>
@@ -392,8 +395,8 @@ export default function ChatBotsWhyUs() {
                 </h4>
                 <p className="text-gray-600 dark:text-gray-300 mb-6 text-base">
                   {activeAdvantage === 0 
-                    ? "Наш подход — это не просто автоматизация ради технологии, а инструмент для создания стратегических преимуществ. Мы работаем с бизнесом как партнёры, создавая решения, которые масштабируются и адаптируются вместе с вами."
-                    : `Наш подход к ${companyAdvantages[activeAdvantage].title.toLowerCase()} обеспечивает не только эффективную автоматизацию, но и создает долгосрочную ценность для вашей компании через инновационные решения и стратегическое партнерство.`
+                    ? "Наш подход — это не просто чат-бот ради технологии, а инструмент для создания стратегических преимуществ. Мы работаем с бизнесом как партнёры, создавая решения, которые масштабируются и адаптируются вместе с вами."
+                    : `Наш подход к ${companyAdvantages[activeAdvantage].title.toLowerCase()} обеспечивает не только эффективную коммуникацию, но и создает долгосрочную ценность для вашей компании через интеллектуальную автоматизацию и стратегическое партнерство.`
                   }
                 </p>
               </div>
@@ -404,7 +407,7 @@ export default function ChatBotsWhyUs() {
                   <div key={index} className="flex items-center gap-3">
                     <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center">
                       {index === 0 && <FiUsers className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
-                      {index === 1 && <FiGitBranch className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
+                      {index === 1 && <FiMessageSquare className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
                       {index === 2 && <FiHeadphones className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
                       {index === 3 && <FiBarChart className="w-4 h-4 text-blue-600 dark:text-blue-400" />}
                     </div>
@@ -428,34 +431,34 @@ export default function ChatBotsWhyUs() {
                     </div>
                     <div className="flex items-center gap-2">
                       <FiClock className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
-                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Уменьшение операционной нагрузки</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение времени обслуживания клиентов</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <FiUsers className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
-                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Продукт, понятный вашей команде</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Чат-бот, понятный вашим клиентам</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <FiLayers className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
-                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Технологический фундамент под масштабирование</span>
+                      <FiMessageSquare className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Интеллектуальное распознавание запросов</span>
                     </div>
                   </div>
                 ) : (
                   <div className="grid grid-cols-2 gap-3">
                     <div className="flex items-center gap-2">
                       <FiTrendingUp className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
-                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение производительности</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Улучшение клиентского опыта</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <FiClock className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
-                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение временных затрат</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Круглосуточное обслуживание</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <FiDollarSign className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
-                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Оптимизация расходов</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Сокращение операционных затрат</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <FiCheckCircle className="text-blue-600 dark:text-blue-400 w-4 h-4 flex-shrink-0" />
-                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение качества</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-300 translate-y-[1px]">Повышение конверсии</span>
                     </div>
                   </div>
                 )}
@@ -469,7 +472,7 @@ export default function ChatBotsWhyUs() {
           <div className="inline-flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
             <a
               className="px-5 sm:px-6 py-3 rounded-lg bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-medium shadow-lg shadow-blue-500/20 dark:shadow-blue-600/20 flex items-center justify-center gap-2 w-full sm:w-auto"
-              href="#contact"
+              href="#chatbots-contact"
             >
               <span>Обсудить ваш проект</span>
               <FiArrowRight className="w-4 h-4" />

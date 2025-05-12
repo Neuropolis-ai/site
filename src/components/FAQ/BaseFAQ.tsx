@@ -80,6 +80,18 @@ export default function BaseFAQ({
     },
   };
 
+  const floatingVariants = {
+    initial: { y: 0 },
+    animate: {
+      y: [0, -10, 0],
+      transition: {
+        duration: 5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      },
+    },
+  };
+
   return (
     <motion.section
       id={sectionId}
@@ -89,10 +101,39 @@ export default function BaseFAQ({
       viewport={{ once: true, amount: 0.1 }}
       className="relative py-20 md:py-28 px-4 overflow-hidden"
     >
-      {/* Градиентный фон */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+      {/* Улучшенный градиентный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
+      
+      {/* Сетка-фон */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02] -z-10">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: "url('/grid-pattern.svg')",
+            backgroundSize: "24px 24px",
+            backgroundRepeat: "repeat",
+          }}
+        ></div>
+      </div>
+
+      {/* Декоративные элементы */}
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"></div>
+      
+      {/* Анимированные плавающие элементы */}
+      <motion.div
+        variants={floatingVariants}
+        initial="initial"
+        animate="animate"
+        className="absolute top-[25%] right-[15%] w-16 h-16 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
+      ></motion.div>
+      <motion.div
+        variants={floatingVariants}
+        initial="initial"
+        animate="animate"
+        className="absolute bottom-[30%] left-[10%] w-12 h-12 bg-blue-400/20 dark:bg-blue-600/30 rounded-full backdrop-blur-md z-0"
+        style={{ animationDelay: "1.5s" }}
+      ></motion.div>
 
       <div className="container relative mx-auto max-w-5xl">
         <FAQSchema faqs={faqItems} />
@@ -130,14 +171,18 @@ export default function BaseFAQ({
           </motion.p>
         </motion.div>
 
-        <div className="grid gap-3">
+        <div className="grid gap-3 relative">
+          {/* Фоновый декоративный элемент для списка вопросов */}
+          <div className="absolute -left-5 top-1/4 w-20 h-20 bg-blue-100/50 dark:bg-blue-900/20 rounded-full blur-xl -z-10"></div>
+          <div className="absolute -right-5 bottom-1/4 w-20 h-20 bg-blue-100/50 dark:bg-blue-900/20 rounded-full blur-xl -z-10"></div>
+          
           {faqItems.map((faq, index) => (
             <motion.div
               key={faq.id || index}
               variants={itemVariants}
               className="group"
             >
-              <div className="relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden transition-all duration-300 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md">
+              <div className="relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md">
                 <button
                   onClick={() => toggleItem(index)}
                   className="flex justify-between items-center w-full p-4 md:p-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50 rounded-2xl"

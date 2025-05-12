@@ -329,7 +329,7 @@ export default function WorkflowAutomationWhyUs() {
               {activeAdvantage === 0 ? (
                 // Новые карточки для первого блока
                 <div className="grid grid-cols-1 gap-4 mb-8">
-                  {companyAdvantages[0].features.map((feature, index) => (
+                  {companyAdvantages[0].features?.map((feature, index) => (
                     <motion.div
                       key={index}
                       whileHover={{ y: -2, transition: { duration: 0.2 } }}

@@ -52,12 +52,12 @@ const ButtonLink = ({
       <Link
         href={href}
         style={{
-          background: "linear-gradient(180deg, #153aa1 0%, #00185e 100%)",
+          background: "linear-gradient(180deg, #3b82f6 0%, #2563eb 100%)",
           position: "relative",
           isolation: "isolate",
           transition: "all 0.3s ease",
         }}
-        className={`text-white px-6 py-3 rounded-[12px] before:absolute before:inset-0 before:bg-[#153aa1] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 before:-z-[1] before:rounded-[12px] ${className}`}
+        className={`text-white px-6 py-3 rounded-[12px] before:absolute before:inset-0 before:bg-[#60a5fa] before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300 before:-z-[1] before:rounded-[12px] ${className}`}
       >
         {children}
       </Link>

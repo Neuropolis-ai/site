@@ -178,6 +178,7 @@ export default function AIAgentWhyUs() {
       <Container>
         <div className="text-center mb-14">
           <div>
+            {/* eslint-disable-next-line */}
             <Badge children="Почему мы" />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">

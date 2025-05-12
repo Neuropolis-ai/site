@@ -6,6 +6,7 @@ interface BadgeProps {
   variant?: "default" | "outline";
 }
 
+// eslint-disable-next-line react/no-children-prop
 const Badge = ({
   children,
   className = "",

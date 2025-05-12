@@ -52,7 +52,7 @@ export default function ChatBotsFAQ() {
   return (
     <section 
       id="chatbots-faq"
-      className="pt-0 pb-20 md:pt-0 md:pb-28 relative overflow-hidden"
+      className="pt-12 pb-20 md:pt-16 md:pb-28 relative overflow-hidden"
     >
       {/* Фоновые элементы */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 -z-10"></div>

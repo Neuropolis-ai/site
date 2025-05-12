@@ -157,7 +157,7 @@ export default function ChatBotsWhyUs() {
   return (
     <section
       id="chatbots-why-us"
-      className="py-20 pb-4 md:py-24 md:pb-4 relative overflow-hidden -mb-12 sm:-mb-16"
+      className="py-20 pb-16 md:py-24 md:pb-20 relative overflow-hidden -mb-6 sm:-mb-8"
     >
       {/* Статический градиентный фон */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ChevronDownIcon } from "lucide-react";
 import Badge from "@/components/ui/Badge";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/Heading";
 
 export interface FAQItem {
   id?: number;

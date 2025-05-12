@@ -10,7 +10,7 @@ import "../../style/hero.css";
 import "../../style/services.css";
 import Container from "../ui/Container";
 import Workflow from "./Workflow";
-import { Heading } from "@/components/ui/heading";
+import { Heading } from "@/components/ui/Heading";
 import Badge from "@/components/ui/Badge";
 import { motion, useInView, useSpring } from "framer-motion";
 import Subheading from "@/components/ui/subheading";

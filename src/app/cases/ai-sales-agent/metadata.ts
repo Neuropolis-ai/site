@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Кейс: AI-агент для продаж — Neuropolis",
+  title: "AI-агент в отделе продаж — Neuropolis",
   description:
     "Как AI-агент сократил время отклика в отделе продаж с 2 часов до 15 секунд и повысил конверсию на 27%",
   keywords:

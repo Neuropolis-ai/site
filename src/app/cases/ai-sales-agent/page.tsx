@@ -264,7 +264,7 @@ export default function CasePage() {
         <CaseHero
           title="ИИ-агент в отделе продаж"
           subtitle="Как мы сократили время отклика с 2 часов до 15 секунд и повысили конверсию на 27%"
-          imagePath="https://framerusercontent.com/images/ZpI3KG6axlIk98Y3TLt8CBGEJ0.jpg"
+          imagePath="/assets/images/cases/sale.jpg"
           imageAlt="AI-агент в отделе продаж"
         />
 

@@ -15,7 +15,6 @@ const nextConfig = {
         port: "",
       },
     ],
-    domains: ['cdn.sanity.io', 'framerusercontent.com'],
     unoptimized: true,
   },
   poweredByHeader: false,

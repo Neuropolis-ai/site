@@ -433,7 +433,7 @@ export default function CasePage() {
                 />
               }
               subtitle="Как мы автоматизировали 82% обращений в службу поддержки e-commerce площадки и сократили время ответа в 480 раз"
-              imagePath="/assets/images/cases/ai-customer-support-cover.jpg"
+              imagePath="/assets/images/ai-customer-support-new.jpg"
               imageAlt="ИИ-ассистент для поддержки клиентов"
             />
           </header>

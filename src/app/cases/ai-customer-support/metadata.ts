@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: "https://neuropolis.ai/cases/ai-customer-support",
     images: [
       {
-        url: "https://neuropolis.ai/assets/images/cases/ai-customer-support-cover.jpg",
+        url: "https://neuropolis.ai/assets/images/ai-customer-support-new.jpg",
         width: 1200,
         height: 630,
         alt: "ИИ-ассистент для поддержки клиентов"
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ИИ-ассистент для поддержки клиентов: время ответа с 24 часов до 3 минут",
     description: "Как мы автоматизировали 82% обращений в службу поддержки e-commerce площадки с помощью ИИ-ассистента",
-    images: ["https://neuropolis.ai/assets/images/cases/ai-customer-support-cover.jpg"],
+    images: ["https://neuropolis.ai/assets/images/ai-customer-support-new.jpg"],
     creator: "@neuropolis_ai"
   },
   
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
       },
       "datePublished": "2023-10-15",
       "dateModified": "2023-12-20",
-      "image": "https://neuropolis.ai/assets/images/cases/ai-customer-support-cover.jpg",
+      "image": "https://neuropolis.ai/assets/images/ai-customer-support-new.jpg",
       "publisher": {
         "@type": "Organization",
         "name": "Neuropolis.ai",

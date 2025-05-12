@@ -263,7 +263,7 @@ export default function CasePage() {
         <CaseHero
           title="ИИ-ассистент для создания контента"
           subtitle="Как мы помогли блогеру увеличить регулярность публикаций на 230% и поднять вовлеченность на 45%"
-          imagePath="/assets/images/ai-consultation.jpg"
+          imagePath="/assets/images/cases/ssm.jpg"
           imageAlt="ИИ-ассистент для создания контента"
         />
 

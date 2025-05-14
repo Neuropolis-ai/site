@@ -65,6 +65,7 @@ body {
     @apply text-base leading-relaxed text-gray-600 dark:text-gray-400;
     font-size: 16px !important;
     line-height: 26px !important;
+    font-family: inherit !important;
   }
 
   .feature-card-action {
@@ -111,4 +112,16 @@ p {
 .dark .prose pre {
   background-color: #1f2937;
   color: #f9fafb;
+}
+
+/* Фикс для предотвращения горизонтального скролла */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Защита от избыточных margin и padding */
+* {
+  box-sizing: border-box;
 }

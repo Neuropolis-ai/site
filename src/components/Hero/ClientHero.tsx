@@ -139,7 +139,7 @@ const ClientHero = () => {
                 </span>
               </button>
               <button
-                onClick={() => scrollToSection("solutions")}
+                onClick={() => scrollToSection("services")}
                 className="group relative bg-white dark:bg-gray-800 text-gray-800 dark:text-white border border-gray-200 dark:border-gray-700 font-semibold py-3.5 px-7 rounded-lg flex items-center justify-center overflow-hidden"
               >
                 <span className="absolute inset-0 w-full h-full bg-gray-100 dark:bg-gray-700 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>

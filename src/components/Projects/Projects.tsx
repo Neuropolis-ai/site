@@ -160,23 +160,16 @@ const Projects = () => {
                 </div>
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-gray-900 dark:text-white mb-6 max-[425px]:text-center leading-tight">
-                Наши успешные{" "}
+                Реальные кейсы{" "}
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
-                  ИИ-проекты
+                  внедрения ИИ
                 </span>
               </h2>
               <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-xl max-[425px]:text-[14px] leading-relaxed">
-                Каждый из этих проектов демонстрирует, как ИИ может обеспечить
-                измеримые результаты в различных отраслях и принести реальную
-                пользу бизнесу.
+                Каждый проект — это доказательство того, как искусственный интеллект помогает компаниям 
+                достигать ощутимых результатов, повышать эффективность и открывать новые возможности 
+                в самых разных сферах.
               </p>
-              <motion.a
-                href="#projects"
-                whileHover={{ x: 5 }}
-                className="inline-flex items-center mt-6 text-blue-600 dark:text-blue-400 font-medium text-lg"
-              >
-                Все наши решения <ArrowRight className="ml-2 w-5 h-5" />
-              </motion.a>
             </div>
           </motion.div>
 

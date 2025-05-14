@@ -171,7 +171,7 @@ const Projects = () => {
                 пользу бизнесу.
               </p>
               <motion.a
-                href="/cases"
+                href="#projects"
                 whileHover={{ x: 5 }}
                 className="inline-flex items-center mt-6 text-blue-600 dark:text-blue-400 font-medium text-lg"
               >

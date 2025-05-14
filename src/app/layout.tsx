@@ -78,6 +78,8 @@ export default function RootLayout({
           }}
         />
         <link rel="canonical" href="https://neuropolis.ai/" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </head>
       <body
         className={`${inter.className} antialiased bg-[#ffffff] dark:bg-[#050505] text-foreground min-h-screen transition-colors duration-300`}

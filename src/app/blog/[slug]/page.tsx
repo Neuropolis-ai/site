@@ -15,6 +15,7 @@ import { FaVk } from "react-icons/fa";
 import { PageTransitionWrapper } from "@/components/ui/PageTransitionWrapper";
 import SectionDivider from "@/components/ui/SectionDivider";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import SchemaOrg from "@/components/SchemaOrg";
 
 // Функция для генерации описания из контента
 function generateDescription(content: string): string {
@@ -71,10 +72,8 @@ function BreadcrumbNav({ slug, title }: { slug: string; title: string }) {
 }
 
 // Компонент структурированных данных JSON-LD
-function JsonLd({ article, url }: { article: Article; url: string }) {
+function ArticleSchema({ article, url }: { article: Article; url: string }) {
   const articleData = {
-    "@context": "https://schema.org",
-    "@type": "Article",
     headline: article.title,
     description: article.description || generateDescription(article.content),
     image: article.image_url || "",
@@ -101,8 +100,6 @@ function JsonLd({ article, url }: { article: Article; url: string }) {
   };
 
   const breadcrumbData = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
     itemListElement: [
       {
         "@type": "ListItem",
@@ -127,14 +124,8 @@ function JsonLd({ article, url }: { article: Article; url: string }) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleData) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
-      />
+      <SchemaOrg type="Article" data={articleData} />
+      <SchemaOrg type="BreadcrumbList" data={breadcrumbData} />
     </>
   );
 }
@@ -242,7 +233,7 @@ export default async function ArticlePage({
   return (
     <PageTransitionWrapper>
       {/* Структурированные данные JSON-LD */}
-      <JsonLd article={article} url={articleUrl} />
+      <ArticleSchema article={article} url={articleUrl} />
       <div className="min-h-screen pt-32 pb-20 bg-white dark:bg-black">
         <div className="container mx-auto max-w-4xl px-6">
           {/* Хлебные крошки */}

@@ -2,7 +2,7 @@ import React from "react";
 import Script from "next/script";
 
 interface SchemaOrgProps {
-  type: "Organization" | "Service" | "FAQPage" | "WebSite" | "LocalBusiness" | string;
+  type: "Organization" | "Service" | "FAQPage" | "WebSite" | "LocalBusiness" | "Article" | "BreadcrumbList" | "Review" | string;
   data: Record<string, any>;
 }
 

@@ -9,6 +9,7 @@ import "../../style/card-line.css";
 import Container from "../ui/Container";
 import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
+import SchemaOrg from "@/components/SchemaOrg";
 
 const testimonialData = [
   {
@@ -63,9 +64,7 @@ const TestimonialSchema = ({
     company: string;
   }[];
 }) => {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
+  const serviceData = {
     name: "Neuropolis.ai — AI-решения для бизнеса",
     aggregateRating: {
       "@type": "AggregateRating",
@@ -74,26 +73,44 @@ const TestimonialSchema = ({
       ).toFixed(1),
       reviewCount: testimonials.length,
     },
-    review: testimonials.map((t) => ({
-      "@type": "Review",
-      author: t.name,
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: t.stars,
-      },
-      reviewBody: t.text,
-      publisher: {
-        "@type": "Organization",
-        name: t.company,
-      },
-    })),
   };
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  
+  return <SchemaOrg type="Service" data={serviceData} />;
+};
+
+const ReviewSchema = ({ 
+  review 
+}: { 
+  review: { 
+    name: string; 
+    stars: number; 
+    text: string; 
+    company: string;
+  } 
+}) => {
+  const reviewData = {
+    author: {
+      "@type": "Person",
+      name: review.name,
+    },
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: review.stars,
+      bestRating: 5,
+    },
+    reviewBody: review.text,
+    publisher: {
+      "@type": "Organization",
+      name: review.company,
+    },
+    datePublished: new Date().toISOString().split('T')[0], // текущая дата в формате YYYY-MM-DD
+    itemReviewed: {
+      "@type": "Service",
+      name: "Neuropolis.ai — AI-решения для бизнеса"
+    }
+  };
+  
+  return <SchemaOrg type="Review" data={reviewData} />;
 };
 
 const Testimonials = () => {
@@ -243,6 +260,15 @@ const Testimonials = () => {
                   border border-gray-100 dark:border-gray-800 
                   shadow-lg transition-all duration-300"
                 >
+                  <ReviewSchema 
+                    review={{ 
+                      name: testimonial.name, 
+                      stars: testimonial.stars, 
+                      text: testimonial.text, 
+                      company: testimonial.company 
+                    }} 
+                  />
+                  
                   <div>
                     <div className="relative mb-6">
                       <div className="flex mb-5">

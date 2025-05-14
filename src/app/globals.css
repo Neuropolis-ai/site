@@ -62,7 +62,7 @@ body {
   }
 
   .feature-card-text {
-    @apply text-base leading-relaxed text-gray-600 dark:text-gray-400;
+    @apply text-xs !important leading-relaxed text-gray-600 dark:text-gray-400;
   }
 
   .feature-card-action {

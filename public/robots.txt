@@ -1,0 +1,26 @@
+# Разрешить всем роботам доступ к сайту
+User-agent: *
+Allow: /
+
+# Запрет для несуществующих поддиректорий
+Disallow: /undefined
+Disallow: /undefined/
+Disallow: /null
+Disallow: /null/
+Disallow: /api/
+Disallow: /_next/static/
+Disallow: /_next/image/
+
+# Специальные правила для Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Специальные правила для Yandex
+User-agent: Yandex
+Allow: /
+Clean-param: utm_source&utm_medium&utm_campaign
+Clean-param: _openstat
+Clean-param: yclid
+
+# Sitemap
+Sitemap: https://neuropolis.ai/sitemap.xml 

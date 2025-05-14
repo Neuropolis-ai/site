@@ -1,4 +1,5 @@
 import React from "react";
+import { Heading } from "@/components/ui/heading";
 
 export default function BusinessProblems() {
   return (
@@ -20,7 +21,11 @@ export default function BusinessProblems() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm mb-4 bg-blue-500/10 text-blue-600 border border-blue-500/20 backdrop-blur-sm">
             Проблемы бизнеса
           </div>
-          <h2 className="text-[36px] font-bold text-gray-900 mb-6">
+          <Heading
+            level={2}
+            align="center"
+            className="mb-6 text-gray-900"
+          >
             С какими вызовами сталкивается{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 relative">
               ваш бизнес?
@@ -37,7 +42,7 @@ export default function BusinessProblems() {
                 />
               </svg>
             </span>
-          </h2>
+          </Heading>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Современные ИИ-решения помогают преодолеть типичные проблемы бизнеса и повысить эффективность
           </p>
@@ -49,9 +54,9 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <h3 className="text-[18px] font-semibold text-gray-900 mb-3">
+              <Heading level={3} className="mb-3 text-gray-900">
                 Потеря времени на рутине
-              </h3>
+              </Heading>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
                 Сотрудники тратят большую часть рабочего времени на повторяющиеся задачи вместо решения стратегических вопросов
               </p>
@@ -71,9 +76,9 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <h3 className="text-[18px] font-semibold text-gray-900 mb-3">
+              <Heading level={3} className="mb-3 text-gray-900">
                 Высокие операционные затраты
-              </h3>
+              </Heading>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
                 Ручная обработка данных и процессов требует большого штата сотрудников и значительных затрат
               </p>
@@ -93,9 +98,9 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <h3 className="text-[18px] font-semibold text-gray-900 mb-3">
+              <Heading level={3} className="mb-3 text-gray-900">
                 Упущенные клиенты
-              </h3>
+              </Heading>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
                 Отсутствие круглосуточного обслуживания и задержки в коммуникации приводят к потере потенциальных клиентов
               </p>
@@ -115,9 +120,9 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <h3 className="text-[18px] font-semibold text-gray-900 mb-3">
+              <Heading level={3} className="mb-3 text-gray-900">
                 Потеря контрактов из-за медлительности
-              </h3>
+              </Heading>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
                 Медленная реакция на запросы и согласование документов приводит к потере клиентов, выбирающих более оперативных конкурентов
               </p>
@@ -137,9 +142,9 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <h3 className="text-[18px] font-semibold text-gray-900 mb-3">
+              <Heading level={3} className="mb-3 text-gray-900">
                 Разрозненные данные и хаос в информации
-              </h3>
+              </Heading>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
                 Критически важная информация распределена по разным системам, из-за чего сотрудники тратят время на поиск данных вместо работы с клиентами
               </p>
@@ -159,9 +164,9 @@ export default function BusinessProblems() {
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             
             <div className="flex flex-col relative z-10">
-              <h3 className="text-[18px] font-semibold text-gray-900 mb-3">
+              <Heading level={3} className="mb-3 text-gray-900">
                 Невозможность масштабирования процессов
-              </h3>
+              </Heading>
               <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
                 Зависимость от ручного труда создает "потолок роста" - при увеличении бизнеса приходится линейно наращивать штат, снижая прибыльность
               </p>

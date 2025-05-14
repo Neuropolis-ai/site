@@ -3,19 +3,21 @@ const nextConfig = {
   // Временно отключаем standalone режим для отладки проблем деплоя
   // output: 'standalone',
   images: {
+    formats: ['image/avif', 'image/webp'],
+    // Автоматически оптимизировать изображения
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Разрешить внешние домены для изображений
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-        port: "",
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
       },
       {
-        protocol: "https",
-        hostname: "framerusercontent.com",
-        port: "",
+        protocol: 'https',
+        hostname: '**.supabase.co',
       },
     ],
-    unoptimized: true,
   },
   poweredByHeader: false,
   reactStrictMode: true,
@@ -24,7 +26,10 @@ const nextConfig = {
     scrollRestoration: true,
     // Добавляем поддержку внешних пакетов для серверных компонентов
     serverComponentsExternalPackages: ['@supabase/supabase-js', 'dotenv'],
+    optimizeCss: true,
+    optimizeServerReact: true,
   },
+  compress: true,
   async headers() {
     return [
       {

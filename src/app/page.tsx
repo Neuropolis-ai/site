@@ -20,6 +20,7 @@ import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
 import BusinessProblems from "@/components/Problems/BusinessProblems";
 import MainUseCases from "@/components/MainUseCases";
+import SchemaOrg from "@/components/SchemaOrg";
 
 // Отключаем кеширование данных для этой страницы
 export const dynamic = "force-dynamic";
@@ -28,8 +29,79 @@ export const revalidate = 0;
 export default async function Home() {
   const recentArticles = await getRecentArticles(3);
 
+  // Organization Schema
+  const organizationSchema = {
+    name: "Neuropolis.ai",
+    url: "https://neuropolis.ai",
+    logo: "https://neuropolis.ai/favicon.svg",
+    description: "Автоматизируйте до 80% рутинных процессов с помощью ИИ-решений. Снижение издержек и рост эффективности бизнеса.",
+    sameAs: [
+      "https://t.me/neuropolis",
+      "https://vk.com/neuropolis"
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+7-800-555-3535",
+      contactType: "customer service",
+      areaServed: "RU",
+      availableLanguage: ["Russian", "English"]
+    }
+  };
+
+  // Services Schema
+  const servicesSchema = {
+    provider: {
+      "@type": "Organization",
+      name: "Neuropolis.ai"
+    },
+    serviceType: "ИИ-решения и автоматизация",
+    areaServed: {
+      "@type": "Country",
+      name: "Россия"
+    },
+    description: "Разработка и внедрение ИИ-решений для автоматизации бизнес-процессов и снижения издержек",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "RUB",
+      description: "Бесплатная консультация по внедрению ИИ-решений для вашего бизнеса"
+    }
+  };
+
+  // Local Business Schema
+  const localBusinessSchema = {
+    name: "Neuropolis.ai",
+    image: "https://neuropolis.ai/og-image.jpg",
+    telephone: "+7-800-555-3535",
+    email: "info@neuropolis.ai",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Москва",
+      addressRegion: "Москва",
+      postalCode: "119019",
+      addressCountry: "RU"
+    },
+    openingHoursSpecification: {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      opens: "09:00",
+      closes: "18:00"
+    }
+  };
+
   return (
     <>
+      {/* Schema.org микроразметка */}
+      <SchemaOrg type="Organization" data={organizationSchema} />
+      <SchemaOrg type="Service" data={servicesSchema} />
+      <SchemaOrg type="LocalBusiness" data={localBusinessSchema} />
+
       <Header />
       <main className="min-h-screen">
         <Hero />

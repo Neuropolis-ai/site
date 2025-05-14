@@ -14,6 +14,7 @@ import { BsArrowRight, BsTwitterX, BsFacebook, BsTelegram, BsCalendar } from "re
 import { FaVk } from "react-icons/fa";
 import { PageTransitionWrapper } from "@/components/ui/PageTransitionWrapper";
 import SectionDivider from "@/components/ui/SectionDivider";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 // Функция для генерации описания из контента
 function generateDescription(content: string): string {
@@ -58,38 +59,15 @@ async function getAdjacentArticles(currentSlug: string) {
   return { prev, next };
 }
 
-// Создаем компонент хлебных крошек
+// Компонент навигации "хлебные крошки" с микроразметкой
 function BreadcrumbNav({ slug, title }: { slug: string; title: string }) {
-  return (
-    <nav className="mb-10" aria-label="breadcrumb">
-      <ol className="flex items-center text-sm">
-        <li className="flex items-center">
-          <Link
-            href="/"
-            className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
-          >
-            Главная
-          </Link>
-          <span className="mx-2 text-gray-500 dark:text-gray-400">/</span>
-        </li>
-        <li className="flex items-center">
-          <Link
-            href="/blog"
-            className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors"
-          >
-            Блог
-          </Link>
-          <span className="mx-2 text-gray-500 dark:text-gray-400">/</span>
-        </li>
-        <li
-          className="text-gray-700 dark:text-gray-300 truncate max-w-[200px] font-medium"
-          aria-current="page"
-        >
-          {title}
-        </li>
-      </ol>
-    </nav>
-  );
+  const breadcrumbItems = [
+    { label: "Главная", href: "/" },
+    { label: "Блог", href: "/blog" },
+    { label: title, href: `/blog/${slug}`, isCurrentPage: true },
+  ];
+
+  return <Breadcrumbs items={breadcrumbItems} />;
 }
 
 // Компонент структурированных данных JSON-LD

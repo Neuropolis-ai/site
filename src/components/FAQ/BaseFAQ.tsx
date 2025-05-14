@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronDownIcon } from "lucide-react";
 import Badge from "@/components/ui/Badge";
 import { Heading } from "@/components/ui/heading";
+import SchemaOrg from "@/components/SchemaOrg";
 
 export interface FAQItem {
   id?: number;
@@ -22,9 +23,7 @@ export interface BaseFAQProps {
 
 // Компонент для SEO-разметки FAQ
 export function FAQSchema({ faqs }: { faqs: FAQItem[] }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
+  const schemaData = {
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
@@ -35,12 +34,7 @@ export function FAQSchema({ faqs }: { faqs: FAQItem[] }) {
     })),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
+  return <SchemaOrg type="FAQPage" data={schemaData} />;
 }
 
 export default function BaseFAQ({
@@ -62,6 +56,8 @@ export default function BaseFAQ({
       id={sectionId}
       className="relative py-20 md:py-28 px-4"
     >
+      <FAQSchema faqs={faqItems} />
+
       {/* Статический градиентный фон */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
       
@@ -78,8 +74,6 @@ export default function BaseFAQ({
       </div>
 
       <div className="container relative mx-auto max-w-5xl">
-        <FAQSchema faqs={faqItems} />
-
         <div className="text-center mb-16 md:mb-20">
           <div className="text-center mb-4">
             <Badge>FAQ</Badge>
@@ -110,11 +104,14 @@ export default function BaseFAQ({
           </p>
         </div>
 
-        <div className="grid gap-3 relative">
+        <div className="grid gap-3 relative" itemScope itemType="https://schema.org/FAQPage">
           {faqItems.map((faq, index) => (
             <div
               key={faq.id || index}
               className="group"
+              itemScope
+              itemProp="mainEntity"
+              itemType="https://schema.org/Question"
             >
               <div className="relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md">
                 <button
@@ -126,6 +123,7 @@ export default function BaseFAQ({
                   <span
                     className="font-semibold text-base text-gray-900 dark:text-white pr-4"
                     style={{ fontSize: "16px" }}
+                    itemProp="name"
                   >
                     {faq.question}
                   </span>
@@ -150,6 +148,9 @@ export default function BaseFAQ({
                     className={`px-4 md:px-5 pb-4 md:pb-5 ${
                       openItem === index ? "max-h-[1000px]" : "max-h-0"
                     }`}
+                    itemScope
+                    itemProp="acceptedAnswer"
+                    itemType="https://schema.org/Answer"
                   >
                     <div
                       className={`answer mt-2 card-text ${
@@ -157,6 +158,7 @@ export default function BaseFAQ({
                           ? "text-gray-600 dark:text-gray-300"
                           : "text-gray-600 dark:text-gray-300"
                       }`}
+                      itemProp="text"
                     >
                       {faq.answer}
                     </div>

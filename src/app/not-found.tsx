@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import ButtonLink from "@/components/ui/buttonLink";
 import { useTheme } from "@/context/ThemeContext";
+import Link from "next/link";
+import { Metadata } from "next";
 
 // Основные цвета сайта
 const COLORS = {
@@ -144,97 +146,40 @@ const NeuralNetwork = () => {
   );
 };
 
-function NotFound() {
+export const metadata: Metadata = {
+  title: "Страница не найдена | Neuropolis.ai",
+  description: "Запрошенная страница не существует или была перемещена.",
+  robots: "noindex, follow",
+};
+
+export default function NotFound() {
   const { isDark } = useTheme();
   
   return (
-    <div className={`relative min-h-screen flex flex-col items-center justify-center overflow-hidden ${isDark ? 'bg-gray-900' : 'bg-gray-50'}`}>
-      {/* Контейнер для нейронной сети */}
-      <div className="absolute inset-0 overflow-hidden">
-        <NeuralNetwork />
-      </div>
-      
-      {/* Затемнение для лучшего контраста с контентом */}
-      <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-br from-gray-900/80 to-slate-900/50' : 'bg-gradient-to-br from-gray-50/90 to-white/70'} z-10`}></div>
-      
-      {/* Основной контент */}
-      <div className="relative z-20 w-full max-w-5xl px-4 py-8">
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <motion.div
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className={`inline-block px-4 py-1.5 rounded-full 
-              ${isDark 
-                ? 'bg-blue-700/30 text-blue-100 border border-blue-700/30' 
-                : 'bg-blue-100 text-blue-700 border border-blue-200'
-              } text-sm mb-6 font-medium`}
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-black px-4 text-center">
+      <div className="max-w-md space-y-8">
+        <h1 className="text-6xl font-bold text-gray-900 dark:text-white">404</h1>
+        <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
+          Страница не найдена
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400">
+          Запрошенная страница не существует или была перемещена. Возможно, вы перешли по устаревшей ссылке или допустили опечатку в URL.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <Link
+            href="/"
+            className="px-8 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            Страница не найдена
-          </motion.div>
-          
-          <motion.div 
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-[130px] leading-none font-bold text-transparent bg-clip-text bg-gradient-to-b from-blue-400 to-blue-600 mb-6 relative"
+            Вернуться на главную
+          </Link>
+          <Link
+            href="/blog"
+            className="px-8 py-3 text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
-            404
-            <motion.div 
-              className="absolute inset-0 blur-2xl opacity-30 
-              bg-gradient-to-br from-blue-400 to-blue-600
-              rounded-full transform scale-75 z-0"
-              animate={{ 
-                scale: [0.7, 0.85, 0.7],
-                opacity: [0.2, 0.4, 0.2],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            />
-          </motion.div>
-          
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="mb-8"
-          >
-            <p className="text-xl dark:text-gray-300 text-gray-700 mb-3">
-              Упс! Запрашиваемая страница не найдена.
-            </p>
-            <p className="text-md dark:text-gray-400 text-gray-500 max-w-[600px] mx-auto">
-              Возможно, страница была перемещена или удалена.
-              Вы можете вернуться на главную страницу и продолжить работу.
-            </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-          >
-            <ButtonLink 
-              href="/" 
-              className="px-8 py-3 rounded-[12px] text-white font-medium shadow-md 
-                bg-blue-500 hover:bg-blue-600 
-                transition-all duration-300"
-              variantBtn="link"
-            >
-              Вернуться на главную
-            </ButtonLink>
-          </motion.div>
-        </motion.div>
+            Перейти в блог
+          </Link>
+        </div>
       </div>
     </div>
   );
 }
-
-export default NotFound;

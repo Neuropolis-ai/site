@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
+import OptimizedImage from "@/components/ui/OptimizedImage";
 
 interface CaseImageProps {
   src: string;
@@ -24,26 +23,16 @@ const CaseImage: React.FC<CaseImageProps> = ({
   priority = false,
   loading = "lazy"
 }) => {
-  const [isError, setIsError] = useState(false);
-
-  const handleError = () => {
-    setIsError(true);
-  };
-
-  // Если изображение не загрузилось, показываем запасное
-  const imageSrc = isError ? "/assets/images/placeholder.jpg" : src;
-
   return (
     <div className="relative h-full w-full">
-      <Image
-        src={imageSrc}
+      <OptimizedImage
+        src={src}
         alt={alt}
         fill
         className={className}
         sizes={sizes}
         priority={priority}
-        loading={loading}
-        onError={handleError}
+        lazyLoad={loading === "lazy"}
       />
     </div>
   );

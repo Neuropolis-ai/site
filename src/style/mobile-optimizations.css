@@ -1,0 +1,89 @@
+/* Оптимизации для мобильной версии сайта */
+
+/* Глобальные улучшения для мобильной версии */
+@media (max-width: 768px) {
+  /* Убираем горизонтальную прокрутку */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+  }
+  
+  /* Увеличиваем размер кликабельных областей для лучшего UX на мобильных */
+  button, 
+  [role="button"],
+  .btn,
+  a.btn,
+  a.link,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    touch-action: manipulation;
+  }
+  
+  /* Увеличиваем межстрочный интервал для лучшей читаемости на мобильных */
+  p, .text-sm, .text-base, .text-lg, .card-text {
+    line-height: 1.6;
+  }
+  
+  /* Увеличиваем размер шрифта для лучшей читаемости на мобильных */
+  body {
+    font-size: 16px;
+  }
+  
+  /* Улучшаем навигацию - увеличиваем отступы между элементами */
+  nav a, nav button {
+    margin: 4px;
+    padding: 12px;
+  }
+  
+  /* Улучшаем формы на мобильных */
+  input, 
+  select, 
+  textarea {
+    font-size: 16px; /* Предотвращает автоматическое масштабирование на iOS */
+    padding: 12px;
+    min-height: 44px;
+  }
+  
+  /* Улучшенное управление пространством */
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  /* Улучшение обратной связи при касании */
+  a:active, 
+  button:active, 
+  [role="button"]:active {
+    opacity: 0.7;
+    transform: scale(0.98);
+    transition: all 0.1s ease;
+  }
+}
+
+/* Исправления для самых маленьких экранов */
+@media (max-width: 375px) {
+  /* Уменьшаем отступы для экономии места */
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  /* Более компактные заголовки на маленьких экранах */
+  h1 {
+    font-size: 1.8rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.3rem !important;
+  }
+} 

@@ -85,6 +85,7 @@ export interface ContactFormProps {
   customSubmit?: (formData: any) => Promise<void>;
   backgroundColor?: string;
   privacyPolicyUrl?: string;
+  requirePhoneField?: boolean;
 }
 
 const defaultFeatures = [
@@ -147,6 +148,7 @@ export default function ContactForm({
   customSubmit,
   backgroundColor,
   privacyPolicyUrl = "/privacy-policy",
+  requirePhoneField = false,
 }: ContactFormProps) {
   const { isDark } = useTheme();
   const [formState, setFormState] = useState({
@@ -468,6 +470,7 @@ export default function ContactForm({
                             >
                               <FiPhone className="w-4 h-4 text-[#0167F3] dark:text-[#399AFC]" />
                               {formLabels.phone}
+                              {requirePhoneField && <span className="text-red-500">*</span>}
                             </label>
                             <input
                               id={`${formId}-phone`}
@@ -477,6 +480,7 @@ export default function ContactForm({
                               onChange={handleChange}
                               className={inputStyle}
                               placeholder={placeholders.phone}
+                              required={requirePhoneField}
                             />
                           </div>
                         )}

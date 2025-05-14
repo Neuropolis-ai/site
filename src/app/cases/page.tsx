@@ -1,16 +1,19 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import AIAgentContactForm from "@/components/ai-agent/AIAgentContactForm";
+import CasesWhyUs from "@/components/cases/CasesWhyUs";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import { ArrowRight } from "lucide-react";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
 
 // Данные о кейсах
-const casesData = [
+const projectsData = [
   {
     id: 1,
     category: "Поддержка клиентов",
@@ -55,153 +58,189 @@ const casesData = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeInOut",
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-  hover: {
-    y: -10,
-    boxShadow:
-      "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-    transition: {
-      duration: 0.3,
-      ease: "easeInOut",
-    },
-  },
-};
-
-export default function CasesPage() {
+const CasesProjects = () => {
   const { isDark } = useTheme();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+    hover: {
+      y: -8,
+      boxShadow:
+        "0 20px 30px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 103, 243, 0.08)",
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+    },
+  };
 
   return (
-    <>
-      <Header />
-      <motion.section
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-        className="py-20 md:py-28 px-4 relative overflow-hidden"
-      >
-        {/* Градиентный фон */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 -z-10"></div>
-        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
-        <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
+    <motion.section
+      id="projects"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.1 }}
+      className="py-16 md:py-24 px-4 relative overflow-hidden"
+    >
+      {/* Градиентный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900 -z-10"></div>
+      <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute -bottom-32 -left-32 w-[500px] h-[500px] bg-gradient-to-tr from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl -z-10"></div>
 
-        <Container>
-          <div className="text-center mb-16">
-            <div
-              className={`inline-block px-4 py-1 rounded-full text-sm mb-4 switch-box ${
-                !isDark && "light-switch-box"
-              }`}
-            >
-              Кейсы
+      <Container>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] md:gap-[40px] lg:gap-[60px]">
+          {/* Left side - Fixed content */}
+          <motion.div
+            variants={itemVariants}
+            className="lg:sticky lg:top-20"
+            style={{ height: "fit-content" }}
+          >
+            <div className="p-4 sm:p-6 md:p-8">
+              <div className="max-[425px]:flex max-[425px]:justify-center">
+                <div
+                  className={`inline-block px-4 py-1 rounded-full text-sm mb-4 bg-blue-50 text-blue-600 dark:bg-blue-900/40 dark:text-blue-300 font-medium border border-blue-100 dark:border-blue-800/60 ${
+                    !isDark && "light-switch-box"
+                  }`}
+                >
+                  Проекты
+                </div>
+              </div>
+              <h2 className="text-3xl md:text-4xl lg:text-[42px] font-bold text-gray-900 dark:text-white mb-6 max-[425px]:text-center leading-tight">
+                Реальные кейсы{" "}
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
+                  внедрения ИИ
+                </span>
+              </h2>
+              <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-xl max-[425px]:text-[14px] leading-relaxed">
+                Каждый проект — это доказательство того, как искусственный интеллект помогает компаниям 
+                достигать ощутимых результатов, повышать эффективность и открывать новые возможности 
+                в самых разных сферах.
+              </p>
             </div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 dark:text-white mb-6">
-              Наши успешные{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
-                ИИ-проекты
-              </span>
-            </h1>
-            <p className="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-2xl mx-auto">
-              Каждый из этих проектов демонстрирует, как ИИ может обеспечить
-              измеримые результаты в различных отраслях и принести реальную
-              пользу бизнесу.
-            </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 gap-10">
-            {casesData.map((caseItem, index) => (
-              <motion.div
-                key={caseItem.id}
-                variants={cardVariants}
-                whileHover="hover"
-                className="relative w-full rounded-3xl overflow-hidden bg-white/95 dark:bg-gray-900/90 border border-gray-100 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <Link href={caseItem.link} className="block">
-                  <div className="flex flex-col">
-                    <div className="relative w-full h-[300px]">
-                      <Image
-                        src={caseItem.image}
-                        alt={caseItem.title}
-                        fill
-                        className="object-cover"
-                        priority
-                      />
-                    </div>
-                    <div className="flex flex-col justify-between p-6">
-                      <div>
-                        <div className="inline-block px-4 py-1 rounded-full text-sm mb-4 bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400 font-medium">
-                          {caseItem.category}
-                        </div>
-                        <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                          {caseItem.title}
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-300 text-base leading-relaxed mb-6">
-                          {caseItem.description}
-                        </p>
+          {/* Right side - Scrollable cards */}
+          <div>
+            <div
+              ref={scrollContainerRef}
+              className="flex flex-col pb-8 gap-6 hide-scrollbar"
+              style={{ scrollBehavior: "smooth" }}
+            >
+              {projectsData.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  variants={cardVariants}
+                  whileHover="hover"
+                  className="relative flex-shrink-0 w-full overflow-hidden backdrop-blur-sm 
+                  bg-white/95 dark:bg-gray-900/90 rounded-2xl
+                  border border-blue-100/60 dark:border-blue-900/40
+                  shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <Link href={project.link} className="block">
+                    <div className="flex flex-col h-full">
+                      <div className="relative w-full h-[220px]">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, 100%"
+                          priority
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40 dark:to-black/60"></div>
+                      </div>
+                      <div className="flex flex-col justify-between p-5 flex-grow">
+                        <div>
+                          <div
+                            className="inline-block px-3 py-1 rounded-full text-xs mb-3 font-medium tracking-wide
+                          bg-blue-50 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300
+                          border border-blue-200/80 dark:border-blue-800/50"
+                          >
+                            {project.category}
+                          </div>
+                          <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+                            {project.title}
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2 md:line-clamp-3">
+                            {project.description}
+                          </p>
 
-                        {/* Метрики */}
-                        <div className="grid grid-cols-3 gap-6 mb-6">
-                          {caseItem.metrics.map((metric, i) => (
-                            <div key={i} className="text-center">
-                              <div className="text-xl md:text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">
-                                {metric.number}
+                          {/* Метрики */}
+                          <div className="grid grid-cols-3 gap-4">
+                            {project.metrics.map((metric, i) => (
+                              <div
+                                key={i}
+                                className="text-center bg-blue-50/50 dark:bg-blue-900/20 p-2 rounded-lg border border-blue-100/50 dark:border-blue-800/40"
+                              >
+                                <div className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-0.5">
+                                  {metric.number}
+                                </div>
+                                <div className="text-xs text-gray-600 dark:text-gray-400 tracking-tight">
+                                  {metric.label}
+                                </div>
                               </div>
-                              <div className="text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                                {metric.label}
-                              </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
           </div>
+        </div>
+      </Container>
+    </motion.section>
+  );
+};
 
-          <div className="mt-16 text-center">
-            <Link
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl 
-              bg-gradient-to-r from-[#0167F3] to-[#399AFC] hover:from-[#0157D3] hover:to-[#2988E8]
-              text-white font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Обсудить ваш проект
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-          </div>
-        </Container>
-      </motion.section>
+export default function CasesPage() {
+  return (
+    <>
+      <Header />
+      
+      {/* Модифицированный компонент Projects для страницы cases */}
+      <CasesProjects />
+      
+      {/* Компонент CasesWhyUs */}
+      <CasesWhyUs />
+      
+      {/* Контактная форма перед футером */}
+      <AIAgentContactForm />
+      
       <Footer />
     </>
   );

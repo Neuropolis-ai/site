@@ -108,7 +108,7 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Предиктивная аналитика
             </Heading>
-            <Subheading className="mb-4 feature-card-text text-xs line-clamp-3" style={{fontSize: "0.75rem", lineHeight: "1.2"}}>
+            <Subheading className="mb-4 feature-card-text">
               Используйте ИИ для анализа исторических данных и прогнозирования
               будущих трендов. Повышайте точность бизнес-прогнозов на 30-40%.
             </Subheading>
@@ -134,7 +134,7 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Персонализация маркетинга
             </Heading>
-            <Subheading className="mb-4 feature-card-text text-xs line-clamp-3" style={{fontSize: "0.75rem", lineHeight: "1.2"}}>
+            <Subheading className="mb-4 feature-card-text">
               Применяйте ИИ для точечного таргетинга аудитории и создания
               персонализированного контента. Увеличение конверсии до 25%.
             </Subheading>
@@ -160,7 +160,7 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Служба поддержки с ИИ-агентом
             </Heading>
-            <Subheading className="mb-4 feature-card-text text-xs line-clamp-3" style={{fontSize: "0.75rem", lineHeight: "1.2"}}>
+            <Subheading className="mb-4 feature-card-text">
               Разрабатываем ИИ-агентов для службы поддержки, которые общаются с
               клиентами и отвечают на сложные запросы 24/7.
             </Subheading>
@@ -186,7 +186,7 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Интеграция ИИ
             </Heading>
-            <Subheading className="mb-4 feature-card-text text-xs line-clamp-3" style={{fontSize: "0.75rem", lineHeight: "1.2"}}>
+            <Subheading className="mb-4 feature-card-text">
               Помогаем компаниям внедрять ИИ-агентов в их существующие
               программные платформы и бизнес-процессы без нарушения работы.
             </Subheading>
@@ -212,7 +212,7 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Создание контента с ИИ
             </Heading>
-            <Subheading className="mb-4 feature-card-text text-xs line-clamp-3" style={{fontSize: "0.75rem", lineHeight: "1.2"}}>
+            <Subheading className="mb-4 feature-card-text">
               Разрабатываем ИИ-решения для генерации маркетинговых материалов,
               статей, описаний товаров и отчетов в соответствии с вашим
               фирменным стилем.
@@ -239,7 +239,7 @@ const Features = () => {
             <Heading level={3} className="text-gray-900 dark:text-white mb-3">
               Обработка и анализ данных
             </Heading>
-            <Subheading className="mb-4 feature-card-text text-xs line-clamp-3" style={{fontSize: "0.75rem", lineHeight: "1.2"}}>
+            <Subheading className="mb-4 feature-card-text">
               Создаем системы автоматической обработки и интеллектуального
               анализа больших объемов данных для выявления закономерностей и
               аномалий.

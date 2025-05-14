@@ -159,7 +159,7 @@ const Services = () => {
                   : "bg-gray-50 border border-gray-200 hover:border-blue-200"
               }`}
             >
-              <a href="/main-content/chat-bots" className="block">
+              <a href="/services/chat-bots" className="block">
                 <div
                   className={`px-6 py-4 relative ${
                     isDark
@@ -413,7 +413,7 @@ const Services = () => {
                   : "bg-gray-50 border-gray-200 hover:border-blue-200"
               }`}
             >
-              <a href="/main-content/ai-agent" className="block">
+              <a href="/services/ai-agent" className="block">
                 <div
                   className={`flex items-center justify-center h-[341px] sm:h-[341px] ${
                     isDark
@@ -488,7 +488,7 @@ const Services = () => {
                   : "bg-gray-50 border border-gray-200 hover:border-blue-200"
               }`}
             >
-              <a href="/main-content/workflow-automation" className="block">
+              <a href="/services/workflow-automation" className="block">
                 <div
                   ref={chartRef}
                   className={`flex items-end justify-center h-[235.23px] sm:h-[235.23px] ${

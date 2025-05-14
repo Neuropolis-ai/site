@@ -62,7 +62,9 @@ body {
   }
 
   .feature-card-text {
-    @apply text-xs !important leading-relaxed text-gray-600 dark:text-gray-400;
+    @apply text-xs leading-relaxed text-gray-600 dark:text-gray-400;
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
   }
 
   .feature-card-action {

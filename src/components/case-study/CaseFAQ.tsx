@@ -53,7 +53,7 @@ const CaseFAQ: React.FC<CaseFAQProps> = ({
       
       <div className="mb-10 text-center">
         <h2 className="text-3xl font-bold mb-4">{title}</h2>
-        <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        <p className="text-gray-600 max-w-2xl mx-auto">
           {subtitle}
         </p>
       </div>
@@ -62,9 +62,9 @@ const CaseFAQ: React.FC<CaseFAQProps> = ({
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className={`border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden
+            className={`border border-gray-200 rounded-xl overflow-hidden
                         transition-all duration-300 
-                        ${openIndex === index ? "bg-blue-50 dark:bg-blue-900/20" : "bg-white dark:bg-gray-800/30"}`}
+                        ${openIndex === index ? "bg-blue-50" : "bg-white"}`}
             itemScope
             itemType="https://schema.org/Question"
           >
@@ -95,8 +95,8 @@ const CaseFAQ: React.FC<CaseFAQProps> = ({
                   itemType="https://schema.org/Answer"
                   itemProp="acceptedAnswer"
                 >
-                  <div className="p-5 pt-0 border-t border-gray-200 dark:border-gray-700">
-                    <p className="text-gray-600 dark:text-gray-300" itemProp="text">
+                  <div className="p-5 pt-0 border-t border-gray-200">
+                    <p className="text-gray-600" itemProp="text">
                       {faq.answer}
                     </p>
                   </div>

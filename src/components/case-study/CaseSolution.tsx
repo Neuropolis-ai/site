@@ -73,13 +73,13 @@ export default function CaseSolution({
   technicalDetails,
   techPoints,
 }: CaseSolutionProps) {
-  const { isDark } = useTheme();
+  const { isDark: _ } = useTheme();
 
   return (
     <CaseSection title="🤖 Предложенное решение">
       <motion.p
         animate={{ opacity: 1 }}
-        className="mb-8 text-base leading-relaxed max-w-3xl text-gray-600 dark:text-gray-400"
+        className="mb-8 text-base leading-relaxed max-w-3xl text-gray-600"
       >
         {description}
       </motion.p>
@@ -102,49 +102,29 @@ export default function CaseSolution({
                   y: -8,
                   scale: 1.02,
                   transition: { duration: 0.3 },
-                  boxShadow: isDark
-                    ? `0 15px 30px rgba(0, 0, 0, 0.5), 0 0 12px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.25)`
-                    : `0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.15)`,
+                  boxShadow: `0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.15)`,
                 }}
-                className={`p-6 rounded-xl flex flex-col transition-all duration-300 border shadow-md h-full ${
-                  isDark
-                    ? "bg-gradient-to-br from-gray-800/90 to-gray-900/90 border-gray-700/40 hover:border-blue-600/70"
-                    : "bg-gradient-to-br from-white to-gray-50/95 border-gray-200/70 hover:border-blue-400"
-                }`}
+                className="p-6 rounded-xl flex flex-col transition-all duration-300 border shadow-md h-full bg-gradient-to-br from-white to-gray-50/95 border-gray-200/70 hover:border-blue-400"
               >
                 <div className="flex items-center mb-5">
                   <div
-                    className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center mr-4 transform transition-all duration-300 shadow-sm ${
-                      isDark
-                        ? "bg-gradient-to-br from-[#0167F3]/60 to-[#399AFC]/40 text-white border border-[#0167F3]/40"
-                        : "bg-gradient-to-br from-[#0167F3]/20 to-[#399AFC]/20 text-[#0167F3] border border-[#0167F3]/30"
-                    }`}
+                    className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center mr-4 transform transition-all duration-300 shadow-sm bg-gradient-to-br from-[#0167F3]/20 to-[#399AFC]/20 text-[#0167F3] border border-[#0167F3]/30"
                   >
                     <Icon className="w-6 h-6" />
                   </div>
                   <h3
-                    className={`font-bold text-lg ${
-                      isDark 
-                        ? "text-gray-100" 
-                        : "text-gray-900"
-                    }`}
+                    className="font-bold text-lg text-gray-900"
                   >
                     {feature.title}
                   </h3>
                 </div>
                 <ul
-                  className={`list-none pl-0 space-y-3 text-sm flex-grow ${
-                    isDark ? "text-gray-300" : "text-gray-600"
-                  } ml-16`}
+                  className="list-none pl-0 space-y-3 text-sm flex-grow text-gray-600 ml-16"
                 >
                   {feature.items.map((item, idx) => (
                     <li key={idx} className="flex items-center group">
                       <div
-                        className={`flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center mr-3 transform transition-all shadow-sm ${
-                          isDark 
-                            ? "bg-[#0167F3]/20 text-[#399AFC] group-hover:bg-[#0167F3]/40"
-                            : "bg-[#0167F3]/10 text-[#0167F3] group-hover:bg-[#0167F3]/20"
-                        }`}
+                        className="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center mr-3 transform transition-all shadow-sm bg-[#0167F3]/10 text-[#0167F3] group-hover:bg-[#0167F3]/20"
                       >
                         <svg
                           width="14"
@@ -183,23 +163,15 @@ export default function CaseSolution({
       {technicalDetails && (
         <motion.div
           animate={{ opacity: 1 }}
-          className={`relative mt-16 mb-16 overflow-hidden rounded-2xl shadow-lg border ${
-            isDark
-              ? "bg-gradient-to-br from-[#121929] to-[#0d1117] border-[#0167F3]/40"
-              : "bg-gradient-to-br from-[#0167F3]/5 to-[#399AFC]/5 border-[#0167F3]/20"
-          }`}
+          className="relative mt-16 mb-16 overflow-hidden rounded-2xl shadow-lg border bg-gradient-to-br from-[#0167F3]/5 to-[#399AFC]/5 border-[#0167F3]/20"
         >
           {/* Декоративные элементы фона */}
           <div className="absolute inset-0 overflow-hidden -z-10">
             <div
-              className={`absolute w-[400px] h-[400px] rounded-full blur-3xl ${
-                isDark ? "bg-[#0167F3]/8" : "bg-[#0167F3]/15"
-              } -top-20 -right-20`}
+              className="absolute w-[400px] h-[400px] rounded-full blur-3xl bg-[#0167F3]/15 -top-20 -right-20"
             ></div>
             <div
-              className={`absolute w-[400px] h-[400px] rounded-full blur-3xl ${
-                isDark ? "bg-[#399AFC]/8" : "bg-[#399AFC]/15"
-              } -bottom-20 -left-20`}
+              className="absolute w-[400px] h-[400px] rounded-full blur-3xl bg-[#399AFC]/15 -bottom-20 -left-20"
             ></div>
           </div>
 
@@ -207,18 +179,12 @@ export default function CaseSolution({
           <div className="text-center pt-10 pb-8">
             <div className="flex items-center justify-center gap-3 mb-2">
               <div
-                className={`inline-flex w-12 h-12 rounded-lg items-center justify-center ${
-                  isDark
-                    ? "bg-gradient-to-br from-[#0167F3]/30 to-[#399AFC]/20 text-[#399AFC] border border-[#0167F3]/30"
-                    : "bg-gradient-to-br from-[#0167F3]/20 to-[#399AFC]/20 text-[#0167F3] border border-[#0167F3]/30"
-                }`}
+                className="inline-flex w-12 h-12 rounded-lg items-center justify-center bg-gradient-to-br from-[#0167F3]/20 to-[#399AFC]/20 text-[#0167F3] border border-[#0167F3]/30"
               >
                 <FiServer className="w-6 h-6" />
               </div>
               <h3
-                className={`text-2xl font-bold ${
-                  isDark ? "text-gray-100" : "text-gray-900"
-                }`}
+                className="text-2xl font-bold text-gray-900"
               >
                 Ключевые технические особенности
               </h3>
@@ -227,9 +193,7 @@ export default function CaseSolution({
             {/* Основное описание */}
             <motion.p
               animate={{ opacity: 1 }}
-              className={`mt-4 mb-10 text-base max-w-3xl mx-auto px-8 ${
-                isDark ? "text-gray-400" : "text-gray-600"
-              }`}
+              className="mt-4 mb-10 text-base max-w-3xl mx-auto px-8 text-gray-600"
             >
               {technicalDetails}
             </motion.p>
@@ -249,30 +213,18 @@ export default function CaseSolution({
                       whileHover={{
                         y: -3,
                         transition: { duration: 0.2 },
-                        boxShadow: isDark
-                          ? `0 10px 25px rgba(0, 0, 0, 0.3), 0 0 8px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.2)`
-                          : `0 10px 25px rgba(0, 0, 0, 0.08), 0 0 8px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.1)`,
+                        boxShadow: `0 10px 25px rgba(0, 0, 0, 0.08), 0 0 8px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.1)`,
                       }}
-                      className={`p-4 rounded-lg border shadow-sm flex items-center ${
-                        isDark
-                          ? "bg-gray-800/70 border-gray-700/50 hover:border-[#0167F3]/30"
-                          : "bg-white/90 border-gray-200/70 hover:border-[#0167F3]/30"
-                      }`}
+                      className="p-4 rounded-lg border shadow-sm flex items-center bg-white/90 border-gray-200/70 hover:border-[#0167F3]/30"
                     >
                       <div
-                        className={`flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center mr-4 ${
-                          isDark
-                            ? "bg-gradient-to-br from-[#0167F3]/40 to-[#399AFC]/30 text-[#399AFC] border-[#0167F3]/30"
-                            : "bg-gradient-to-br from-[#0167F3]/15 to-[#399AFC]/10 text-[#0167F3] border-[#0167F3]/30"
-                        }`}
+                        className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center mr-4 bg-gradient-to-br from-[#0167F3]/15 to-[#399AFC]/10 text-[#0167F3] border-[#0167F3]/30"
                       >
                         <IconComponent className="w-5 h-5" />
                       </div>
                       <div className="flex-1">
                         <p
-                          className={`text-sm leading-relaxed ${
-                            isDark ? "text-gray-200" : "text-gray-700"
-                          }`}
+                          className="text-sm leading-relaxed text-gray-700"
                           dangerouslySetInnerHTML={{ __html: point }}
                         />
                       </div>

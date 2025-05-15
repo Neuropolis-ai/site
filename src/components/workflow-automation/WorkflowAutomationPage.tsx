@@ -10,8 +10,6 @@ import WorkflowAutomationWhyUs from "./WorkflowAutomationWhyUs";
 import WorkflowAutomationFAQ from "./WorkflowAutomationFAQ";
 import WorkflowAutomationContactForm from "./WorkflowAutomationContactForm";
 import RelatedServices from "./RelatedServices";
-import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import Container from "@/components/ui/Container";
 
 export default function WorkflowAutomationPage() {
   // Эффект для плавного скролла к якорным ссылкам
@@ -42,13 +40,6 @@ export default function WorkflowAutomationPage() {
     };
   }, []);
 
-  // Настраиваем хлебные крошки
-  const breadcrumbItems = [
-    { label: "Главная", href: "/" },
-    { label: "Услуги", href: "/services" },
-    { label: "Автоматизация бизнес-процессов", href: "/services/workflow-automation", isCurrentPage: true }
-  ];
-
   return (
     <div className="relative overflow-hidden bg-gradient-to-b from-blue-50/50 to-white text-gray-800 font-sans dark:from-blue-950/10 dark:to-gray-950 dark:text-white">
       {/* Декоративный элемент - волнистая линия сверху */}
@@ -75,11 +66,6 @@ export default function WorkflowAutomationPage() {
           />
         </svg>
       </div>
-
-      {/* Хлебные крошки */}
-      <Container>
-        <Breadcrumbs items={breadcrumbItems} className="py-4 mt-20" />
-      </Container>
 
       {/* Главный контент */}
       <WorkflowAutomationHero />

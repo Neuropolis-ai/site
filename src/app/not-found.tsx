@@ -156,28 +156,118 @@ export default function NotFound() {
   const { isDark } = useTheme();
   
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-black px-4 text-center">
-      <div className="max-w-md space-y-8">
-        <h1 className="text-6xl font-bold text-gray-900 dark:text-white">404</h1>
-        <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
-          Страница не найдена
-        </h2>
-        <p className="text-gray-600 dark:text-gray-400">
-          Запрошенная страница не существует или была перемещена. Возможно, вы перешли по устаревшей ссылке или допустили опечатку в URL.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-          <Link
-            href="/"
-            className="px-8 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+    <div className="min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden">
+      {/* Фон с нейронной сетью */}
+      <div className="absolute inset-0 w-full h-full bg-white dark:bg-gray-950">
+        <NeuralNetwork />
+      </div>
+      
+      {/* Графическое наполнение и контент */}
+      <div className="container relative z-10 px-4 py-8 mx-auto">
+        <div className="flex flex-col items-center justify-center text-center">
+          {/* Плавающие частицы/символы */}
+          <div className="relative w-full h-64">
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                className={`absolute ${isDark ? 'text-blue-400' : 'text-blue-500'} opacity-40 font-mono text-xl`}
+                initial={{ 
+                  x: Math.random() * 1000 - 500, 
+                  y: Math.random() * 200 - 100,
+                  opacity: 0 
+                }}
+                animate={{ 
+                  x: Math.random() * 1000 - 500, 
+                  y: Math.random() * 200 - 100,
+                  opacity: [0, 0.8, 0],
+                  scale: [0.8, 1.2, 0.8]
+                }}
+                transition={{ 
+                  repeat: Infinity, 
+                  duration: 10 + Math.random() * 15,
+                  delay: i * 0.5 
+                }}
+              >
+                {['01', '10', '404', '{!}', '0x00', '://', '[]', '</>'][i]}
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Верхний бейдж */}
+          <motion.div
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className={`inline-block px-4 py-1.5 rounded-full 
+              ${isDark 
+                ? 'bg-blue-700/30 text-blue-100 border border-blue-700/30' 
+                : 'bg-blue-100 text-blue-700 border border-blue-200'
+              } text-sm mb-6 font-medium`}
           >
-            Вернуться на главную
-          </Link>
-          <Link
-            href="/blog"
-            className="px-8 py-3 text-blue-600 bg-blue-50 dark:bg-blue-900/30 dark:text-blue-400 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            Страница не найдена
+          </motion.div>
+          
+          {/* Цифра 404 */}
+          <motion.h1
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="text-[130px] leading-none font-bold text-transparent bg-clip-text bg-gradient-to-b from-blue-400 to-blue-600 mb-6 relative"
           >
-            Перейти в блог
-          </Link>
+            404
+            <motion.div 
+              className="absolute inset-0 blur-2xl opacity-30 
+              bg-gradient-to-br from-blue-400 to-blue-600
+              rounded-full transform scale-75 z-0"
+              animate={{ 
+                scale: [0.7, 0.85, 0.7],
+                opacity: [0.2, 0.3, 0.2]
+              }}
+              transition={{ 
+                repeat: Infinity, 
+                duration: 5,
+                ease: "easeInOut"
+              }}
+            />
+          </motion.h1>
+          
+          {/* Описание ошибки */}
+          <motion.p 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-xl mb-10"
+          >
+            Запрошенная страница не существует или была перемещена. 
+            Возможно, вы перешли по устаревшей ссылке или допустили опечатку в адресе.
+          </motion.p>
+          
+          {/* Кнопки */}
+          <motion.div 
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4"
+          >
+            <ButtonLink 
+              href="/" 
+              className="px-8 py-3 rounded-[12px] text-white font-medium shadow-md 
+                bg-blue-500 hover:bg-blue-600 
+                transition-all duration-300"
+              variantBtn="link"
+            >
+              На главную
+            </ButtonLink>
+            <ButtonLink 
+              href="/blog" 
+              className="px-8 py-3 rounded-[12px] border border-gray-200 dark:border-gray-700
+                bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200
+                hover:bg-gray-50 dark:hover:bg-gray-800 font-medium transition-all duration-300"
+              variantBtn="link"
+            >
+              Перейти в блог
+            </ButtonLink>
+          </motion.div>
         </div>
       </div>
     </div>

@@ -539,7 +539,7 @@ const Services = () => {
                     level={3}
                     className="font-semibold text-lg sm:text-xl mb-1 sm:mb-2 dark:text-white text-gray-800"
                   >
-                    Стратегический консалтинг
+                    Автоматизация рабочих процессов
                   </Heading>
                   <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
                     Мы оцениваем ваш бизнес и отрасль, определяем, где ИИ может

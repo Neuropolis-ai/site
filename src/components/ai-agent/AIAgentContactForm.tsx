@@ -122,32 +122,8 @@ async function sendDataToN8N(formData: any): Promise<void> {
   });
 }
 
-// Функция для отладки соединения с сервером n8n
-function testN8NConnection() {
-  console.log('Тестирование соединения с n8n...');
-  fetch('https://dev.neuropolis.ai/webhook/9f5b312f-f10f-4ac8-8908-2ae20c8d93de?test=connection', {
-    method: 'GET',
-    mode: 'cors',
-  })
-  .then(response => {
-    console.log('Тест соединения статус:', response.status, response.statusText);
-    return response.text();
-  })
-  .then(text => {
-    console.log('Тест соединения ответ:', text);
-  })
-  .catch(e => {
-    console.error('Ошибка при тестировании соединения:', e);
-  });
-}
-
 export default function AIAgentContactForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
-  
-  // Тестируем соединение при монтировании компонента
-  React.useEffect(() => {
-    testN8NConnection();
-  }, []);
   
   const handleSubmitSuccess = (data: any) => {
     console.log('Форма успешно отправлена:', data);

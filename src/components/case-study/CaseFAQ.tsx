@@ -1,66 +1,113 @@
 "use client";
 
-import BaseFAQ from "../FAQ/BaseFAQ";
-import CaseSection from "./CaseSection";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { IoIosArrowDown } from "react-icons/io";
+
+type FAQItem = {
+  question: string;
+  answer: string;
+};
 
 interface CaseFAQProps {
-  sectionId?: string;
+  title?: string;
+  subtitle?: string;
+  faqs: FAQItem[];
 }
 
-export default function CaseFAQ({ sectionId = "case-faq" }: CaseFAQProps) {
-  const faqs = [
-    {
-      question: "Как ИИ-агент определяет приоритетность лидов?",
-      answer:
-        "ИИ-агент использует комплексную систему оценки, которая учитывает несколько факторов: потенциальный бюджет клиента, срочность потребности, стадию принятия решения, размер компании и соответствие профилю идеального клиента. Алгоритм машинного обучения постоянно улучшает эту оценку на основе исторических данных и результатов предыдущих взаимодействий.",
-    },
-    {
-      question: "Может ли ИИ-агент адаптироваться к специфике нашего бизнеса?",
-      answer:
-        "Да, это ключевое преимущество решения. ИИ-агент обучается на ваших данных, включая успешные продажи, скрипты, информацию о продуктах и типичные возражения клиентов. Чем дольше он используется, тем лучше понимает уникальные аспекты вашего бизнеса. Кроме того, система регулярно обновляется с учетом изменений в ассортименте, ценах и стратегии продаж.",
-    },
-    {
-      question: "Какое техническое обеспечение требуется для внедрения?",
-      answer:
-        "Решение работает в облаке и не требует установки дополнительного оборудования или программного обеспечения. Для интеграции с существующими системами (CRM, телефония, мессенджеры) используются стандартные API. В большинстве случаев внедрение занимает 4-6 недель, включая настройку, обучение и тестирование. Мы также предоставляем подробную документацию и обучение для вашей команды.",
-    },
-    {
-      question: "Как ИИ-агент передает лида живому менеджеру?",
-      answer:
-        "Процесс передачи лида полностью автоматизирован. Когда ИИ-агент определяет, что лид квалифицирован и готов к следующему этапу, он автоматически создает карточку в CRM с полной информацией о клиенте и контекстом разговора. Система назначает наиболее подходящего менеджера, учитывая его специализацию и текущую загрузку. Менеджер получает уведомление с кратким резюме и может сразу продолжить общение с клиентом, имея всю необходимую информацию.",
-    },
-    {
-      question: "Насколько сложно масштабировать решение при росте бизнеса?",
-      answer:
-        "Система изначально спроектирована для масштабирования. Облачная инфраструктура автоматически адаптируется к увеличению нагрузки, будь то рост числа лидов или расширение географии. Вы можете легко добавлять новые каналы коммуникации, продукты и сценарии взаимодействия. Архитектура решения позволяет обрабатывать от нескольких десятков до тысяч лидов ежедневно без потери в качестве обслуживания.",
-    },
-    {
-      question: "Как обеспечивается безопасность данных клиентов?",
-      answer:
-        "Безопасность — наш приоритет. Все данные шифруются как при передаче, так и при хранении. Мы используем многоуровневую систему аутентификации, регулярное резервное копирование и мониторинг подозрительных активностей. Решение соответствует требованиям GDPR и ФЗ-152. Кроме того, мы проводим регулярный аудит безопасности и можем предоставить все необходимые гарантии и сертификаты.",
-    },
-    {
-      question: "Как оценить эффективность ИИ-агента для нашего бизнеса?",
-      answer:
-        "Мы предоставляем детальную аналитическую панель, которая в реальном времени отслеживает ключевые метрики: количество обработанных лидов, время отклика, конверсию на разных этапах воронки, количество успешных квалификаций, средний чек и другие показатели. Вы можете сравнивать эффективность до и после внедрения, а также анализировать динамику по периодам. Кроме того, регулярно проводится A/B тестирование различных подходов к коммуникации для постоянного улучшения результатов.",
-    },
-    {
-      question: "Можно ли интегрировать ИИ-агента в существующие каналы коммуникации?",
-      answer:
-        "Да, ИИ-агент интегрируется со всеми популярными каналами: ваш корпоративный веб-сайт, мессенджеры (Telegram, WhatsApp, Viber), электронная почта, социальные сети, телефония. Клиент может начать общение в одном канале и продолжить в другом без потери контекста. Это создает единое бесшовное пространство взаимодействия и повышает удобство как для клиентов, так и для ваших сотрудников.",
-    },
-  ];
+const CaseFAQ: React.FC<CaseFAQProps> = ({
+  title = "Часто задаваемые вопросы",
+  subtitle = "Ответы на популярные вопросы о внедрении ИИ-ассистентов для поддержки клиентов",
+  faqs
+}) => {
+  // State to track which FAQ item is open
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const handleToggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  // Создаем данные для структурированной разметки FAQ
+  const faqSchemaData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
 
   return (
-    <CaseSection title="❓ Часто задаваемые вопросы">
-      <BaseFAQ
-        faqItems={faqs}
-        title="Вопросы об ИИ-агенте продаж"
-        subtitle="Ответы на самые популярные вопросы о внедрении и использовании ИИ-агентов в отделе продаж"
-        sectionId={sectionId}
-        contactLink="/contact"
-        contactText="Обсудить внедрение"
+    <div className="w-full" id="faq">
+      {/* Добавляем структурированную разметку Schema.org в виде JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchemaData)
+        }}
       />
-    </CaseSection>
+      
+      <div className="mb-10 text-center">
+        <h2 className="text-3xl font-bold mb-4">{title}</h2>
+        <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          {subtitle}
+        </p>
+      </div>
+
+      <div className="space-y-4 max-w-3xl mx-auto">
+        {faqs.map((faq, index) => (
+          <div
+            key={index}
+            className={`border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden
+                        transition-all duration-300 
+                        ${openIndex === index ? "bg-blue-50 dark:bg-blue-900/20" : "bg-white dark:bg-gray-800/30"}`}
+            itemScope
+            itemType="https://schema.org/Question"
+          >
+            <button
+              className="flex justify-between items-center w-full p-5 text-left"
+              onClick={() => handleToggle(index)}
+              aria-expanded={openIndex === index}
+              aria-controls={`faq-answer-${index}`}
+            >
+              <span className="text-lg font-medium" itemProp="name">{faq.question}</span>
+              <IoIosArrowDown
+                className={`w-5 h-5 transition-transform duration-300 ${
+                  openIndex === index ? "transform rotate-180" : ""
+                }`}
+              />
+            </button>
+            
+            <AnimatePresence>
+              {openIndex === index && (
+                <motion.div
+                  id={`faq-answer-${index}`}
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden"
+                  itemScope
+                  itemType="https://schema.org/Answer"
+                  itemProp="acceptedAnswer"
+                >
+                  <div className="p-5 pt-0 border-t border-gray-200 dark:border-gray-700">
+                    <p className="text-gray-600 dark:text-gray-300" itemProp="text">
+                      {faq.answer}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        ))}
+      </div>
+    </div>
   );
-} 
+};
+
+export default CaseFAQ; 

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
@@ -15,7 +16,6 @@ import CaseTechnologies from "@/components/case-study/CaseTechnologies";
 import CaseTestimonial from "@/components/case-study/CaseTestimonial";
 import CaseLongTermImpact from "@/components/case-study/CaseLongTermImpact";
 import CaseActionButtons from "@/components/case-study/CaseActionButtons";
-import CaseFAQ from "@/components/case-study/CaseFAQ";
 
 import {
   FiGlobe,
@@ -36,17 +36,19 @@ const SectionWrapper = ({
   children: React.ReactNode;
   className?: string;
 }) => (
-  <div className={`relative py-16 md:py-24 overflow-hidden ${className || ""}`}>
+  <div className={`relative py-16 md:py-20 overflow-hidden ${className || ""}`}>
     {/* Фоновые элементы */}
-    <div className="absolute inset-0 -z-10 opacity-50">
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-blue-400/15 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/15 to-indigo-400/15 rounded-full blur-3xl"></div>
+    <div className="absolute inset-0 -z-10 opacity-50 dark:opacity-100">
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-blue-400/15 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/15 to-indigo-400/15 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl"></div>
     </div>
     {children}
   </div>
 );
 
 export default function CasePage() {
+  const { isDark } = useTheme();
+
   // Данные для секции Задача
   const taskData = {
     description:
@@ -247,7 +249,9 @@ export default function CasePage() {
   return (
     <>
       <motion.div
-        className="bg-gradient-to-b from-white to-gray-50 text-gray-800"
+        className={`bg-gradient-to-b ${
+          isDark ? "from-black to-gray-900" : "from-white to-gray-50"
+        } text-gray-800 dark:text-white`}
         variants={pageVariants}
         initial="hidden"
         animate="show"
@@ -259,8 +263,8 @@ export default function CasePage() {
           imageAlt="AI-агент в отделе продаж"
         />
 
-        <SectionWrapper className="bg-white/80">
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
+          <div className="container mx-auto px-4">
             <CaseTask
               description={taskData.description}
               challenges={taskData.challenges}
@@ -269,9 +273,9 @@ export default function CasePage() {
         </SectionWrapper>
 
         <SectionWrapper
-          className="bg-gray-50/90"
+          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
         >
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+          <div className="container mx-auto px-4">
             <CaseProblem
               description={problemData.description}
               problemPoints={problemData.problemPoints}
@@ -280,8 +284,8 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper className="bg-white/80">
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
+          <div className="container mx-auto px-4">
             <CaseSolution
               description={solutionData.description}
               features={solutionData.features}
@@ -292,9 +296,9 @@ export default function CasePage() {
         </SectionWrapper>
 
         <SectionWrapper
-          className="bg-gray-50/90"
+          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
         >
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+          <div className="container mx-auto px-4">
             <CaseImplementation
               stages={implementationData.stages}
               additionalInfo={implementationData.additionalInfo}
@@ -302,8 +306,8 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper className="bg-white/80">
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
+          <div className="container mx-auto px-4">
             <CaseResults
               metrics={resultsData.metrics}
               intro={resultsData.intro}
@@ -311,27 +315,27 @@ export default function CasePage() {
             />
 
             {/* Дополнительный блок */}
-            <div className="mt-16 px-6 sm:px-8 py-10 sm:py-12 rounded-2xl border border-blue-200/30 bg-white/70 backdrop-blur-sm shadow-sm">
-              <h3 className="text-xl sm:text-2xl font-semibold mb-6 text-gray-900">
+            <div className="mt-16 px-4 sm:px-6 py-8 sm:py-10 rounded-2xl border border-blue-200/30 dark:border-blue-700/30 bg-white/50 dark:bg-blue-900/20 backdrop-blur-sm shadow-sm">
+              <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
                 Как работает ИИ-агент по продажам на практике
               </h3>
-              <div className="grid md:grid-cols-2 gap-8 mt-8">
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-5 rounded-xl border border-gray-200/80">
-                  <div className="text-sm font-medium text-gray-500 mb-3">
+              <div className="grid md:grid-cols-2 gap-6 mt-6">
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/70 dark:to-gray-900/80 p-4 rounded-xl border border-gray-200/80 dark:border-gray-700/50">
+                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
                     Традиционный процесс
                   </div>
-                  <ul className="text-gray-700 space-y-3">
+                  <ul className="text-gray-700 dark:text-gray-300 space-y-2">
                     <li>• Клиент оставляет заявку и ждет несколько часов</li>
                     <li>• Менеджер тратит время на первичный скрининг</li>
                     <li>• Значительная часть лидов теряется из-за задержек</li>
                     <li>• Непоследовательная квалификация лидов</li>
                   </ul>
                 </div>
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-5 rounded-xl border border-blue-200/80">
-                  <div className="text-sm font-medium text-blue-600 mb-3">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 p-4 rounded-xl border border-blue-200/80 dark:border-blue-700/50">
+                  <div className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">
                     Процесс с ИИ-агентом
                   </div>
-                  <ul className="text-gray-700 space-y-3">
+                  <ul className="text-gray-700 dark:text-gray-300 space-y-2">
                     <li>• Мгновенный ответ и начало диалога (15 сек)</li>
                     <li>
                       • Структурированный сбор всей необходимой информации
@@ -346,7 +350,7 @@ export default function CasePage() {
                   </ul>
                 </div>
               </div>
-              <div className="text-center mt-20">
+              <div className="text-center mt-16">
                 <Link
                   href="/contact"
                   className={`inline-flex items-center justify-center px-8 py-4 rounded-xl
@@ -363,15 +367,15 @@ export default function CasePage() {
         </SectionWrapper>
 
         <SectionWrapper
-          className="bg-gray-50/90"
+          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
         >
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+          <div className="container mx-auto px-4">
             <CaseTechnologies technologies={technologiesData.technologies} />
           </div>
         </SectionWrapper>
 
-        <SectionWrapper className="bg-white/80">
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
+          <div className="container mx-auto px-4">
             <CaseTestimonial
               text={testimonialData.text}
               authorName={testimonialData.authorName}
@@ -382,9 +386,9 @@ export default function CasePage() {
         </SectionWrapper>
 
         <SectionWrapper
-          className="bg-gray-50/90"
+          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
         >
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+          <div className="container mx-auto px-4">
             <CaseLongTermImpact
               description={longTermImpactData.description}
               impactPoints={longTermImpactData.impactPoints}
@@ -392,15 +396,8 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        {/* Добавляем секцию FAQ */}
-        <SectionWrapper className="bg-white/80">
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <CaseFAQ sectionId="ai-sales-faq" />
-          </div>
-        </SectionWrapper>
-
         {/* Кнопки и связанные кейсы */}
-        <div className="container mx-auto px-4 md:px-8 max-w-7xl py-16">
+        <div className="container mx-auto px-4">
           <CaseActionButtons buttons={actionButtonsData.buttons} />
         </div>
       </motion.div>

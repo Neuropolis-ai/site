@@ -21,6 +21,8 @@ import "../style/mobile-optimizations.css";
 import "../style/header-fix.css";
 import BadgeRenderer from "@/components/ui/BadgeRenderer";
 import Script from "next/script";
+import { usePathname } from "next/navigation";
+import ContactSectionForm from "@/components/Contact/ContactSectionForm";
 const inter = Inter({ subsets: ["latin"] });
 
 // Метаданные определены в отдельном файле src/app/metadata.ts
@@ -33,6 +35,21 @@ export default function RootLayout({
 }>) {
   // Используем темную тему по умолчанию для рендеринга на сервере
   const initialTheme = "dark";
+  const pathname = usePathname();
+  
+  // Определяем, нужно ли показывать форму обратной связи
+  const shouldShowContactForm = () => {
+    // Не показываем на странице 404
+    if (pathname === "/not-found") return false;
+    
+    // Не показываем на странице блога и его подстраницах
+    if (pathname === "/blog" || pathname.startsWith("/blog/")) return false;
+    
+    // Не показываем на открытых статьях (URL вида /some-slug)
+    if (pathname.match(/^\/[^\/]+$/) && pathname !== "/" && !pathname.startsWith("/services/")) return false;
+    
+    return true;
+  };
 
   return (
     <html lang="ru" data-theme={initialTheme}>
@@ -71,6 +88,7 @@ export default function RootLayout({
           <BadgeRenderer />
           <Header />
           {children}
+          {shouldShowContactForm() && <ContactSectionForm />}
           <Footer />
           <YandexMetrika />
         </ThemeProvider>

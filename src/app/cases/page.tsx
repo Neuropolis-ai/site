@@ -1,16 +1,13 @@
 "use client";
 
-import { useTheme } from "@/context/ThemeContext";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-import AIAgentContactForm from "@/components/ai-agent/AIAgentContactForm";
-import CasesWhyUs from "@/components/cases/CasesWhyUs";
+import { Metadata } from "next";
+import { useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
+import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { useRef } from "react";
+import CasesWhyUs from "@/components/cases/CasesWhyUs";
 
 // Данные о кейсах
 const projectsData = [
@@ -230,18 +227,8 @@ const CasesProjects = () => {
 export default function CasesPage() {
   return (
     <>
-      <Header />
-      
-      {/* Модифицированный компонент Projects для страницы cases */}
       <CasesProjects />
-      
-      {/* Компонент CasesWhyUs */}
       <CasesWhyUs />
-      
-      {/* Контактная форма перед футером */}
-      <AIAgentContactForm />
-      
-      <Footer />
     </>
   );
 }

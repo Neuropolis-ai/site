@@ -7,7 +7,6 @@ import ChatBotsUseCases from "./ChatBotsUseCases";
 import ChatBotsProcess from "./ChatBotsProcess";
 import ChatBotsWhyUs from "./ChatBotsWhyUs";
 import ChatBotsFAQ from "./ChatBotsFAQ";
-import ChatBotsContactForm from "./ChatBotsContactForm";
 
 export default function ChatBotsPage() {
   return (
@@ -19,7 +18,6 @@ export default function ChatBotsPage() {
       <ChatBotsProcess />
       <ChatBotsWhyUs />
       <ChatBotsFAQ />
-      <ChatBotsContactForm />
     </div>
   );
 }

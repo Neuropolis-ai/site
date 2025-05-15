@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 
 export default function ServicesLayout({
   children,
@@ -9,9 +7,7 @@ export default function ServicesLayout({
 }) {
   return (
     <>
-      <Header />
       {children}
-      <Footer />
     </>
   );
 }

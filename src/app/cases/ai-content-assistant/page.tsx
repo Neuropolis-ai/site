@@ -5,10 +5,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 
-// Импортируем стандартные компоненты
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-
 // Импортируем компоненты кейса
 import CaseHero from "@/components/case-study/CaseHero";
 import CaseTask from "@/components/case-study/CaseTask";
@@ -251,7 +247,6 @@ export default function CasePage() {
 
   return (
     <>
-      <Header />
       <motion.div
         className={`bg-gradient-to-b ${
           isDark ? "from-black to-gray-900" : "from-white to-gray-50"
@@ -398,7 +393,6 @@ export default function CasePage() {
           <CaseActionButtons buttons={actionButtonsData.buttons} />
         </div>
       </motion.div>
-      <Footer />
     </>
   );
 }

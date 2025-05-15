@@ -74,7 +74,7 @@ export default function WorkflowAutomationPage() {
       <WorkflowAutomationProcess />
       <WorkflowAutomationWhyUs />
       <WorkflowAutomationFAQ />
-      <WorkflowAutomationContactForm />
+      {/* <WorkflowAutomationContactForm /> */}
     </div>
   );
 }

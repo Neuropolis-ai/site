@@ -1,7 +1,5 @@
 import { Metadata } from "next";
 import ServicesHeading from "@/components/Services/ServicesHeading";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "Демо компонентов для услуг | Neuropolis",
@@ -11,8 +9,6 @@ export const metadata: Metadata = {
 export default function ServicesDemo() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-
       <main className="flex-grow pt-32 md:pt-40 pb-20">
         <section className="relative overflow-hidden py-10 md:py-16">
           <div className="absolute inset-0 -z-10 opacity-50">
@@ -46,8 +42,6 @@ export default function ServicesDemo() {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 }

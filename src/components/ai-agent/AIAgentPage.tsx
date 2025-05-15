@@ -12,7 +12,8 @@ import AIAgentUseCases from "./AIAgentUseCases"; // Import the updated component
 import AIAgentWhyUs from "./AIAgentWhyUs"; // Импортируем AIAgentWhyUs вместо WorkflowAutomationWhyUs
 import AIAgentProcess from "./AIAgentProcess"; // Import Process
 import AIAgentFAQ from "./AIAgentFAQ"; // Import FAQ
-import AIAgentContactForm from "./AIAgentContactForm"; // Import Contact Form
+// Удаляем импорт компонента формы обратной связи
+// import AIAgentContactForm from "./AIAgentContactForm"; // Import Contact Form
 
 export default function AIAgentPage() {
   // console.log("AIAgentPage component rendering with individual components"); // Updated log
@@ -43,7 +44,8 @@ export default function AIAgentPage() {
       <AIAgentProcess /> {/* Render the Process component */}
       <AIAgentWhyUs /> {/* Используем адаптированный компонент AIAgentWhyUs */}
       <AIAgentFAQ /> {/* Render the FAQ component */}
-      <AIAgentContactForm /> {/* Render the Contact Form component */}
+      {/* Удаляем компонент ContactForm, так как он теперь добавлен через layout */}
+      {/* <AIAgentContactForm /> */}
       {/* Удаленные секции остаются удаленными */}
     </motion.div>
   );

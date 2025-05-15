@@ -5,8 +5,6 @@ import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import { BsArrowRight, BsCheck2Circle } from "react-icons/bs";
 import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 import { supabase } from "@/lib/supabase";
 import WorkflowAutomationContactForm from "@/components/workflow-automation/WorkflowAutomationContactForm";
 
@@ -258,8 +256,6 @@ export default function ContactPage() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
-
       <motion.main
         variants={containerVariants}
         initial="hidden"
@@ -503,8 +499,6 @@ export default function ContactPage() {
           </div>
         </div>
       </motion.main>
-
-      <Footer />
     </div>
   );
 }

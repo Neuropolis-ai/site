@@ -10,10 +10,7 @@ import Projects from "@/components/Projects/Projects";
 import Testimonials from "@/components/Testimonials/Testimonials";
 import FAQ from "@/components/FAQ/FAQ";
 import { BsArrowRight } from "react-icons/bs";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
 import Badge from "@/components/ui/Badge";
-import WorkflowAutomationContactForm from "@/components/workflow-automation/WorkflowAutomationContactForm";
 import { FiUsers, FiLayers, FiTrendingUp } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
@@ -102,7 +99,6 @@ export default async function Home() {
       <SchemaOrg type="Service" data={servicesSchema} />
       <SchemaOrg type="LocalBusiness" data={localBusinessSchema} />
 
-      <Header />
       <main className="min-h-screen">
         <Hero />
         <BusinessProblems />
@@ -166,17 +162,7 @@ export default async function Home() {
         )}
 
         <FAQ />
-
-        <WorkflowAutomationContactForm
-          title="Начните цифровую трансформацию сегодня"
-          subtitle="Свяжитесь с нами, чтобы узнать, как наши решения по автоматизации могут улучшить ваш бизнес"
-          showCompanyField={true}
-          showPhoneField={true}
-          formId="workflow-contact-form-2"
-          className="bg-gradient-to-b from-blue-100/90 to-blue-50/80 dark:from-blue-900/20 dark:to-blue-800/10"
-        />
       </main>
-      <Footer />
     </>
   );
 }

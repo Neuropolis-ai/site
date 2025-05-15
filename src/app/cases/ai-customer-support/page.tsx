@@ -22,10 +22,6 @@ declare global {
   }
 }
 
-// Импортируем стандартные компоненты
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
-
 // Импортируем компоненты кейса
 import CaseHero from "@/components/case-study/CaseHero";
 import CaseTask from "@/components/case-study/CaseTask";
@@ -406,7 +402,6 @@ export default function CasePage() {
 
   return (
     <>
-      <Header />
       <ReadingProgressBar />
       <motion.div
         className={`bg-gradient-to-b ${
@@ -737,7 +732,6 @@ export default function CasePage() {
           </footer>
         </article>
       </motion.div>
-      <Footer />
     </>
   );
 }

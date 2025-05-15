@@ -4,22 +4,21 @@ import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
-
-// Импортируем стандартные компоненты
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
+import SocialHead from "@/components/ui/SocialHead";
 
 // Импортируем компоненты кейса
-import CaseHero from "@/components/case-study/CaseHero";
-import CaseTask from "@/components/case-study/CaseTask";
-import CaseProblem from "@/components/case-study/CaseProblem";
-import CaseSolution from "@/components/case-study/CaseSolution";
-import CaseImplementation from "@/components/case-study/CaseImplementation";
-import CaseResults from "@/components/case-study/CaseResults";
-import CaseTechnologies from "@/components/case-study/CaseTechnologies";
-import CaseTestimonial from "@/components/case-study/CaseTestimonial";
-import CaseLongTermImpact from "@/components/case-study/CaseLongTermImpact";
-import CaseActionButtons from "@/components/case-study/CaseActionButtons";
+import {
+  CaseHero,
+  CaseTask,
+  CaseProblem,
+  CaseSolution,
+  CaseImplementation,
+  CaseResults,
+  CaseTechnologies,
+  CaseTestimonial,
+  CaseLongTermImpact,
+  CaseActionButtons,
+} from "@/components/case-study/CaseBlocks";
 
 import {
   FiGlobe,
@@ -252,7 +251,6 @@ export default function CasePage() {
 
   return (
     <>
-      <Header />
       <motion.div
         className={`bg-gradient-to-b ${
           isDark ? "from-black to-gray-900" : "from-white to-gray-50"
@@ -406,7 +404,6 @@ export default function CasePage() {
           <CaseActionButtons buttons={actionButtonsData.buttons} />
         </div>
       </motion.div>
-      <Footer />
     </>
   );
 }

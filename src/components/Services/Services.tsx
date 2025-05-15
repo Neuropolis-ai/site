@@ -488,7 +488,7 @@ const Services = () => {
                   : "bg-gray-50 border border-gray-200 hover:border-blue-200"
               }`}
             >
-              <a href="/services/workflow-automation" className="block">
+              <a href="/services/strategic-consulting" className="block">
                 <div
                   ref={chartRef}
                   className={`flex items-end justify-center h-[235.23px] sm:h-[235.23px] ${
@@ -539,7 +539,7 @@ const Services = () => {
                     level={3}
                     className="font-semibold text-lg sm:text-xl mb-1 sm:mb-2 dark:text-white text-gray-800"
                   >
-                    Автоматизация рабочих процессов
+                    Стратегический консалтинг
                   </Heading>
                   <p className="dark:text-[#919191] text-gray-600 text-sm sm:text-base">
                     Мы оцениваем ваш бизнес и отрасль, определяем, где ИИ может

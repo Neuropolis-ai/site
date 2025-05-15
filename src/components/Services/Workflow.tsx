@@ -82,7 +82,7 @@ const Workflow = () => {
             : "bg-gray-50 border-gray-200 hover:border-blue-200"
         }`}
       >
-        <Link href="/workflow-automation" className="block">
+        <Link href="/services/workflow-automation" className="block">
           {/* Icons container */}
           <div
             ref={workflowRef}

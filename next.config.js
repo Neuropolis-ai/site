@@ -17,6 +17,30 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.supabase.co',
       },
+      {
+        protocol: 'https',
+        hostname: 'platform.theverge.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.theverge.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.techcrunch.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.wired.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.cnet.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.engadget.com',
+      },
     ],
   },
   poweredByHeader: false,

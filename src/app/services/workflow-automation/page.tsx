@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import WorkflowAutomationPage from "@/components/workflow-automation/WorkflowAutomationPage";
+import SchemaOrg from "@/components/SchemaOrg";
 
 export const metadata: Metadata = {
   title: "Workflow Automation | Автоматизация бизнес-процессов | Нейрополис",
@@ -14,5 +15,30 @@ export const metadata: Metadata = {
 };
 
 export default function WorkflowAutomation() {
-  return <WorkflowAutomationPage />;
+  const serviceData = {
+    name: "Автоматизация бизнес-процессов",
+    description: "Интеллектуальная автоматизация рабочих процессов с использованием ИИ для повышения эффективности бизнеса на 30%, сокращения расходов и ускорения роста.",
+    provider: {
+      "@type": "Organization",
+      name: "Нейрополис",
+      url: "https://neuropolis.ai"
+    },
+    serviceType: "Workflow Automation",
+    areaServed: "Россия",
+    offers: {
+      "@type": "Offer",
+      price: "От 100000",
+      priceCurrency: "RUB",
+      availability: "https://schema.org/InStock"
+    },
+    image: "https://neuropolis.ai/assets/images/workflow-automation.webp",
+    url: "https://neuropolis.ai/services/workflow-automation"
+  };
+
+  return (
+    <>
+      <SchemaOrg type="Service" data={serviceData} />
+      <WorkflowAutomationPage />
+    </>
+  );
 } 

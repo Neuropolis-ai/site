@@ -12,6 +12,16 @@ const PROTECTED_PATHS: string[] = [
 // Пути, требующие доступа администратора
 const ADMIN_PATHS = ["/test-telegram", "/admin"];
 
+// Массив путей, которые нужно кешировать
+const STATIC_PATHS = [
+  '/grid-pattern.svg',
+  '/assets/images/grid-pattern.svg',
+  '/assets/images/workflow-marketing.png',
+  '/assets/images/workflow-sales.png',
+  '/assets/images/workflow-finance.png',
+  // Добавьте другие статические ресурсы
+];
+
 // Простая функция для проверки базовой аутентификации
 function isAuthenticated(request: NextRequest): boolean {
   const authHeader = request.headers.get("authorization");
@@ -100,6 +110,16 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // Настройка кеширования для статических ресурсов
+  if (STATIC_PATHS.includes(pathname)) {
+    response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+  }
+
+  // Настройка кеширования для страницы workflow-automation
+  if (pathname === '/services/workflow-automation') {
+    response.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=7200');
+  }
+
   return response;
 }
 
@@ -114,5 +134,11 @@ export const config = {
     "/admin/:path*",
     "/rss.xml",
     "/rss-new.xml",
+    '/services/workflow-automation',
+    '/grid-pattern.svg',
+    '/assets/images/grid-pattern.svg',
+    '/assets/images/workflow-marketing.png',
+    '/assets/images/workflow-sales.png',
+    '/assets/images/workflow-finance.png',
   ],
 };

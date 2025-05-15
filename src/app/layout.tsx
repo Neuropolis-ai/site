@@ -18,6 +18,7 @@ import "../style/dot-grid.css";
 import "../style/icon-animations.css";
 import "../style/text-animations.css";
 import "../style/mobile-optimizations.css";
+import "../style/header-fix.css";
 import BadgeRenderer from "@/components/ui/BadgeRenderer";
 import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });

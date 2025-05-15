@@ -98,10 +98,10 @@ const Header = () => {
   return (
     <header
       className={`fixed top-[8px] sm:top-[15px] left-0 right-0 z-50 w-[95%] sm:w-[90%] md:w-[85%] lg:w-[800px] mx-auto 
-                bg-[var(--card-bg)]/80 backdrop-blur-sm border border-[#b4b4b4] rounded-[12px] 
+                bg-white dark:bg-gray-900 border border-[#b4b4b4] rounded-[12px] 
                 transition-all duration-300 ease-in-out overflow-hidden
                 ${mobileMenuOpen ? "pb-3" : "pb-0.5"}`}
-      style={{ backdropFilter: "blur(30px)" }}
+      style={{ backdropFilter: "none" }}
     >
       {/* Header Main */}
       <div className="w-full p-[8px] pr-[15px] flex items-center justify-between">
@@ -125,7 +125,7 @@ const Header = () => {
                 fill="currentColor"
               />
             </svg>
-            <span className="text-gray-800 mt-[1px] text-sm sm:text-base">
+            <span className="text-gray-800 dark:text-gray-200 mt-[1px] text-sm sm:text-base font-semibold">
               Neuropolis
             </span>
           </div>
@@ -138,9 +138,9 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-sm py-1.5 px-3.5 rounded-lg text-gray-800
-                            ${pathname === "/blog" ? "bg-[#e0e0e0]" : ""} 
-                            hover:text-[#0a2e6b] transition-colors`}
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-gray-800 dark:text-gray-200 font-medium
+                            ${pathname === "/blog" ? "bg-[#e0e0e0] dark:bg-gray-700" : ""} 
+                            hover:text-[#0a2e6b] dark:hover:text-white transition-colors`}
               >
                 {item.label}
               </Link>
@@ -148,9 +148,9 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/cases"
-                className={`text-sm py-1.5 px-3.5 rounded-lg text-gray-800
-                            ${pathname === "/cases" ? "bg-[#e0e0e0]" : ""} 
-                            hover:text-[#0a2e6b] transition-colors`}
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-gray-800 dark:text-gray-200 font-medium
+                            ${pathname === "/cases" ? "bg-[#e0e0e0] dark:bg-gray-700" : ""} 
+                            hover:text-[#0a2e6b] dark:hover:text-white transition-colors`}
               >
                 {item.label}
               </Link>
@@ -158,13 +158,13 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-sm py-1.5 px-3.5 rounded-lg text-gray-800
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-gray-800 dark:text-gray-200 font-medium
                             ${
                               activeSection === item.id && isHomePage
-                                ? "bg-[#e0e0e0]"
+                                ? "bg-[#e0e0e0] dark:bg-gray-700"
                                 : ""
                             } 
-                            hover:text-[#0a2e6b] transition-colors`}
+                            hover:text-[#0a2e6b] dark:hover:text-white transition-colors`}
               >
                 {item.label}
               </button>
@@ -176,7 +176,7 @@ const Header = () => {
         <div className="md:hidden flex items-center">
           {/* Mobile Menu Toggle */}
           <button
-            className="text-gray-800 p-1.5"
+            className="text-gray-800 dark:text-gray-200 p-1.5"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
@@ -203,13 +203,13 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/blog"
-                className={`text-sm py-1.5 px-3.5 rounded-lg text-center text-gray-800
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-center text-gray-800 dark:text-gray-200 font-medium
                             ${
                               pathname === "/blog"
-                                ? "bg-[#e0e0e0]"
+                                ? "bg-[#e0e0e0] dark:bg-gray-700"
                                 : "bg-transparent"
                             } 
-                            hover:text-[#0a2e6b] transition-colors`}
+                            hover:text-[#0a2e6b] dark:hover:text-white transition-colors`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
@@ -218,13 +218,13 @@ const Header = () => {
               <Link
                 key={item.id}
                 href="/cases"
-                className={`text-sm py-1.5 px-3.5 rounded-lg text-center text-gray-800
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-center text-gray-800 dark:text-gray-200 font-medium
                             ${
                               pathname === "/cases"
-                                ? "bg-[#e0e0e0]"
+                                ? "bg-[#e0e0e0] dark:bg-gray-700"
                                 : "bg-transparent"
                             } 
-                            hover:text-[#0a2e6b] transition-colors`}
+                            hover:text-[#0a2e6b] dark:hover:text-white transition-colors`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.label}
@@ -233,13 +233,13 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => navigateToSection(item.id)}
-                className={`text-sm py-1.5 px-3.5 rounded-lg text-center text-gray-800
+                className={`text-sm py-1.5 px-3.5 rounded-lg text-center text-gray-800 dark:text-gray-200 font-medium
                             ${
                               activeSection === item.id && isHomePage
-                                ? "bg-[#e0e0e0]"
+                                ? "bg-[#e0e0e0] dark:bg-gray-700"
                                 : "bg-transparent"
                             } 
-                            hover:text-[#0a2e6b] transition-colors`}
+                            hover:text-[#0a2e6b] dark:hover:text-white transition-colors`}
               >
                 {item.label}
               </button>

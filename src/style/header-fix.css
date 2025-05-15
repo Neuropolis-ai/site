@@ -1,0 +1,22 @@
+/* Исправление стилей хедера */
+header {
+  background-color: #FFFFFF !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html[data-theme="dark"] header {
+  background-color: #121212 !important;
+}
+
+/* Повышение контрастности текста в хедере */
+header a, 
+header button, 
+header span {
+  text-shadow: none !important;
+}
+
+/* Убедимся, что нет полупрозрачности */
+header.fixed {
+  background-opacity: 1 !important;
+} 

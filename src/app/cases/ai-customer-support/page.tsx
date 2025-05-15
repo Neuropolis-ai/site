@@ -713,7 +713,7 @@ export default function CasePage() {
           {/* Кнопки действия - CTA */}
           <footer className="container mx-auto px-4 max-w-screen-lg py-16">
             <div className="text-center">
-              <h2 className="text-2xl font-bold mb-4">Готовы автоматизировать клиентскую поддержку?</h2>
+              <h2 className="text-2xl font-bold mb-4">Революция в клиентской поддержке с ИИ-ассистентом!</h2>
               <p className="text-lg mb-8 max-w-3xl mx-auto">
                 Современный ИИ-ассистент может обрабатывать до 82% запросов без участия оператора. Увеличьте NPS и сократите расходы уже через 2 месяца после внедрения автоматизированного решения на основе искусственного интеллекта.
               </p>

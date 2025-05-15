@@ -26,7 +26,7 @@ const AutomationCTA: React.FC<AutomationCTAProps> = ({ className = "" }) => {
               : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"
           }`}
         >
-          Готовы автоматизировать клиентскую поддержку?
+          Революция в клиентской поддержке с ИИ-ассистентом!
         </h3>
         <p
           className={`text-base md:text-lg mb-8 max-w-3xl mx-auto ${

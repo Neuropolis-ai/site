@@ -265,7 +265,7 @@ export default function CasePage() {
         />
 
         <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseTask
               description={taskData.description}
               challenges={taskData.challenges}
@@ -276,7 +276,7 @@ export default function CasePage() {
         <SectionWrapper
           className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
         >
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseProblem
               description={problemData.description}
               problemPoints={problemData.problemPoints}
@@ -286,7 +286,7 @@ export default function CasePage() {
         </SectionWrapper>
 
         <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseSolution
               description={solutionData.description}
               features={solutionData.features}
@@ -299,7 +299,7 @@ export default function CasePage() {
         <SectionWrapper
           className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
         >
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseImplementation
               stages={implementationData.stages}
               additionalInfo={implementationData.additionalInfo}
@@ -308,7 +308,7 @@ export default function CasePage() {
         </SectionWrapper>
 
         <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseResults
               metrics={resultsData.metrics}
               intro={resultsData.intro}
@@ -370,13 +370,13 @@ export default function CasePage() {
         <SectionWrapper
           className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
         >
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseTechnologies technologies={technologiesData.technologies} />
           </div>
         </SectionWrapper>
 
         <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseTestimonial
               text={testimonialData.text}
               authorName={testimonialData.authorName}

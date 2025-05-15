@@ -66,6 +66,16 @@ const nextConfig = {
       },
     ];
   },
+  // Настройка для обработки 404 страницы
+  async rewrites() {
+    return [
+      // Убеждаемся, что наша кастомная страница 404 используется всегда
+      {
+        source: '/_next/static/chunks/pages/404.js',
+        destination: '/_next/static/chunks/pages/not-found.js',
+      },
+    ];
+  },
   // Отключаем логи во время сборки на Vercel
   onBuildStart: () => {
     if (process.env.VERCEL) {

@@ -111,7 +111,7 @@ export default function CaseHero({
         {/* Основное изображение кейса - уменьшенный размер */}
         <motion.div
           animate={{ opacity: 1 }}
-          className="relative rounded-2xl overflow-hidden shadow-[0_15px_30px_-15px_rgba(0,0,0,0.2)] mx-auto"
+          className="relative rounded-2xl overflow-hidden shadow-[0_15px_30px_-15px_rgba(0,0,0,0.2)] mx-auto max-w-4xl"
           itemProp="image"
           itemScope
           itemType="https://schema.org/ImageObject"

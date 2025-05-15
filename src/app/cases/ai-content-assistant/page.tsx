@@ -17,6 +17,7 @@ import CaseTestimonial from "@/components/case-study/CaseTestimonial";
 import CaseLongTermImpact from "@/components/case-study/CaseLongTermImpact";
 import CaseActionButtons from "@/components/case-study/CaseActionButtons";
 import CaseFAQ from "@/components/case-study/CaseFAQ";
+import AIContentAssistantFAQ from "@/components/cases/ai-content-assistant/AIContentAssistantFAQ";
 
 // Импортируем компоненты призыва к действию
 import CostReduceCTA from "@/components/CTASection/CostReduceCTA";
@@ -210,7 +211,7 @@ export default function CasePage() {
   // Данные для секции Отзыв клиента
   const testimonialData = {
     text: "ИИ-ассистент кардинально изменил мой подход к созданию контента. Больше никакого творческого блока или недель простоя между публикациями! Система не просто генерирует тексты — она действительно улавливает мой стиль и тональность, предлагает актуальные идеи и создает материалы, которые кажутся написанными мной. Моя аудитория заметно выросла, вовлеченность повысилась, а я могу сосредоточиться на других аспектах развития бизнеса, не беспокоясь о регулярности публикаций. При этом я сохраняю полный контроль над контентом и всегда могу внести свои коррективы.",
-    authorName: "Алексей Миронов",
+    authorName: "Алексей М.",
     authorPosition: "Бизнес-блогер, предприниматель",
     authorInitials: "АМ",
   };
@@ -309,35 +310,61 @@ export default function CasePage() {
             />
 
             {/* Дополнительный блок */}
-            <div className="mt-16 px-4 sm:px-6 py-8 sm:py-10 rounded-2xl border border-blue-200/30 bg-white/50 backdrop-blur-sm shadow-sm">
-              <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900">
+            <div className="mt-16 px-6 sm:px-8 py-10 sm:py-12 rounded-2xl border border-blue-200/40 bg-gradient-to-br from-white/80 to-blue-50/80 dark:from-gray-900/80 dark:to-blue-950/80 backdrop-blur-sm shadow-lg">
+              <h3 className="text-xl sm:text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 text-center">
                 Примеры улучшения контента с помощью ИИ
               </h3>
-              <div className="grid md:grid-cols-2 gap-6 mt-6">
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-xl border border-gray-200/80">
-                  <div className="text-sm font-medium text-gray-500 mb-2">
+              <div className="grid md:grid-cols-2 gap-8 mt-8">
+                <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200/80 dark:border-gray-700/80 shadow-md transform transition-transform hover:-translate-y-1 duration-300">
+                  <div className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 flex items-center">
+                    <span className="inline-block w-3 h-3 bg-gray-400 dark:bg-gray-500 rounded-full mr-2"></span>
                     До внедрения
                   </div>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• 3-4 публикации в месяц</li>
-                    <li>• 4-8 часов на создание одного материала</li>
-                    <li>• Частые периоды без новых публикаций</li>
-                    <li>• Неполное использование актуальных трендов</li>
+                  <ul className="text-gray-700 dark:text-gray-300 space-y-3 font-medium">
+                    <li className="flex items-center">
+                      <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
+                      <span>3-4 публикации в месяц</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
+                      <span>4-8 часов на создание одного материала</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
+                      <span>Частые периоды без новых публикаций</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
+                      <span>Неполное использование актуальных трендов</span>
+                    </li>
                   </ul>
                 </div>
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border border-blue-200/80">
-                  <div className="text-sm font-medium text-blue-600 mb-2">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 p-6 rounded-xl border border-blue-200/80 dark:border-blue-700/50 shadow-md transform transition-transform hover:-translate-y-1 duration-300">
+                  <div className="text-sm font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-4 flex items-center">
+                    <span className="inline-block w-3 h-3 bg-blue-500 dark:bg-blue-400 rounded-full mr-2"></span>
                     После внедрения
                   </div>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• 10-12 публикаций в месяц</li>
-                    <li>• 1-2 часа на создание и редактирование материала</li>
-                    <li>• Стабильный график выхода контента</li>
-                    <li>• Оперативная реакция на тренды и события</li>
+                  <ul className="text-gray-700 dark:text-blue-100 space-y-3 font-medium">
+                    <li className="flex items-center">
+                      <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
+                      <span>10-12 публикаций в месяц</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
+                      <span>1-2 часа на создание и редактирование материала</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
+                      <span>Стабильный график выхода контента</span>
+                    </li>
+                    <li className="flex items-center">
+                      <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
+                      <span>Оперативная реакция на тренды и события</span>
+                    </li>
                   </ul>
                 </div>
               </div>
-              <div className="text-center mt-16">
+              <div className="text-center mt-10">
                 <Link
                   href="/contact"
                   className={`inline-flex items-center justify-center px-8 py-4 rounded-xl
@@ -366,6 +393,7 @@ export default function CasePage() {
               authorName={testimonialData.authorName}
               authorPosition={testimonialData.authorPosition}
               authorInitials={testimonialData.authorInitials}
+              textClassName="text-sm sm:text-base"
             />
           </div>
         </SectionWrapper>
@@ -382,37 +410,7 @@ export default function CasePage() {
         {/* FAQ раздел */}
         <SectionWrapper className="bg-white/50">
           <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <CaseFAQ 
-              faqs={[
-                {
-                  question: "Как ИИ-ассистент имитирует авторский стиль?",
-                  answer:
-                    "ИИ-ассистент обучается на существующих материалах автора, выявляя характерные языковые паттерны, стилистические приёмы, тональность и структуру повествования. Система анализирует десятки параметров, включая длину предложений, словарный запас, ритмику текста и особенности построения аргументации. На основе этого анализа создаётся индивидуальный стилистический профиль, который применяется при генерации нового контента."
-                },
-                {
-                  question: "Какие типы контента может создавать система?",
-                  answer:
-                    "Система способна генерировать разнообразные форматы контента: информационные и аналитические статьи, обзоры, интервью, новостные заметки, лонгриды, посты для социальных сетей, e-mail рассылки, сценарии для видео и подкастов. ИИ-ассистент также адаптирует один и тот же материал под различные платформы, учитывая их специфику и особенности восприятия аудитории."
-                },
-                {
-                  question: "Насколько оригинален контент, созданный ИИ?",
-                  answer:
-                    "Контент, генерируемый нашей системой, полностью оригинален и проходит автоматическую проверку на уникальность. ИИ-ассистент не копирует существующие тексты, а создаёт новый материал на основе анализа тренда и темы. Система включает модуль проверки фактов, который верифицирует информацию по надёжным источникам и создаёт уникальную структуру повествования. При этом сохраняется авторский стиль и тональность."
-                },
-                {
-                  question: "Как происходит интеграция ИИ в рабочий процесс?",
-                  answer:
-                    "Интеграция происходит поэтапно. Сначала система обучается на существующих материалах и формирует стилистический профиль. Затем настраивается рабочий процесс: ИИ может предлагать идеи для контента на основе анализа трендов, создавать черновики по выбранным темам, или автоматически адаптировать материал для разных платформ. Автор всегда сохраняет контроль над процессом и может редактировать, корректировать или полностью переписывать предложенные ИИ тексты."
-                },
-                {
-                  question: "Как обеспечивается фактическая точность контента?",
-                  answer:
-                    "Система использует многоуровневый подход к проверке фактов. Первый уровень — это встроенные знания языковой модели о мире. Второй — специализированная база знаний по тематике блога. Третий — автоматизированная система поиска и верификации данных по внешним источникам в реальном времени. Все утверждения фактического характера проверяются и снабжаются внутренними метками достоверности, чтобы автор мог легко идентифицировать информацию, требующую дополнительной проверки."
-                },
-              ]}
-              title="Вопросы об ИИ-ассистенте для контента"
-              subtitle="Ответы на самые популярные вопросы о внедрении и использовании ИИ для создания контента"
-            />
+            <AIContentAssistantFAQ />
           </div>
         </SectionWrapper>
 

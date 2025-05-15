@@ -10,6 +10,7 @@ interface CaseTestimonialProps {
   authorName: string;
   authorPosition: string;
   authorInitials: string;
+  textClassName?: string;
 }
 
 const itemVariants = {
@@ -29,6 +30,7 @@ export default function CaseTestimonial({
   authorName,
   authorPosition,
   authorInitials,
+  textClassName = "text-lg md:text-xl",
 }: CaseTestimonialProps) {
   const { isDark } = useTheme();
 
@@ -51,9 +53,9 @@ export default function CaseTestimonial({
           } opacity-50 z-0`}
         />
         <blockquote
-          className={`relative z-10 italic text-lg md:text-xl leading-relaxed mb-6 pl-8 ${
-            isDark ? "text-gray-200" : "text-gray-700"
-          }`}
+          className={`relative z-10 italic leading-relaxed mb-6 pl-8 ${
+            textClassName
+          } ${isDark ? "text-gray-200" : "text-gray-700"}`}
         >
           {text}
         </blockquote>
@@ -70,7 +72,7 @@ export default function CaseTestimonial({
           </div>
           <div>
             <div
-              className={`font-semibold text-lg ${
+              className={`font-semibold text-base ${
                 isDark ? "text-white" : "text-gray-900"
               }`}
             >

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 import { ChevronDownIcon } from "lucide-react";
 import Badge from "@/components/ui/Badge";
 import { Heading } from "@/components/ui/heading";
@@ -14,7 +14,7 @@ export interface FAQItem {
 
 export interface BaseFAQProps {
   faqItems: FAQItem[];
-  title?: string;
+  title?: ReactNode;
   subtitle?: string;
   sectionId?: string;
   contactLink?: string;
@@ -82,20 +82,22 @@ export default function BaseFAQ({
               align="center"
               className="text-gray-900 dark:text-white mb-4"
             >
-              {title.includes("вопросы") ? (
+              {typeof title === 'string' && title.includes("вопросы") ? (
                 <>
                   {title.split("вопросы")[0]}
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
                     вопросы
                   </span>
                 </>
-              ) : (
+              ) : typeof title === 'string' ? (
                 <>
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
                     FAQ
                   </span>{" "}
                   {title.replace(/FAQ/i, "")}
                 </>
+              ) : (
+                title
               )}
             </Heading>
           </div>

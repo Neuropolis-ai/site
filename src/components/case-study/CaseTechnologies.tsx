@@ -67,7 +67,7 @@ export default function CaseTechnologies({
   return (
     <CaseSection title="🧩 Используемые технологии">
       <div // Внешний div: убрана рамка (border)
-        className={`p-8 rounded-3xl backdrop-blur-md`}
+        className={`p-8 rounded-3xl backdrop-blur-sm bg-transparent`}
         // Убраны классы border и связанные с ним цвета
       >
         <motion.div
@@ -95,7 +95,6 @@ export default function CaseTechnologies({
                     : `bg-white/60 border-[${brandColors.primary}]/20 hover:border-[${brandColors.primary}]/40 text-gray-700`
                 }`}
               >
-                {/* ... иконка и текст ... */}
                 <div
                   className={`flex-shrink-0 w-6 h-6 rounded-lg flex items-center justify-center shadow-sm ${
                     isDark

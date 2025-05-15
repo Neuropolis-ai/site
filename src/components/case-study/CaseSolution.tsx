@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "@/context/ThemeContext";
 import CaseSection from "./CaseSection";
 import { motion } from "framer-motion";
 import {
@@ -72,18 +73,20 @@ export default function CaseSolution({
   technicalDetails,
   techPoints,
 }: CaseSolutionProps) {
+  const { isDark: _ } = useTheme();
+
   return (
     <CaseSection title="🤖 Предложенное решение">
       <motion.p
         animate={{ opacity: 1 }}
-        className="mb-10 text-base text-blue-600 leading-relaxed max-w-3xl font-medium"
+        className="mb-8 text-base leading-relaxed max-w-3xl text-gray-600"
       >
         {description}
       </motion.p>
 
       {features.length > 0 && (
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16"
           animate={{ opacity: 1 }}
         >
           {features.map((feature, index) => {
@@ -101,35 +104,31 @@ export default function CaseSolution({
                   transition: { duration: 0.3 },
                   boxShadow: `0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.15)`,
                 }}
-                className={`p-7 rounded-2xl flex flex-col transition-all duration-300 border shadow-md h-full bg-gradient-to-br from-white to-gray-50/95 border-gray-200/70 hover:border-blue-400`}
+                className="p-6 rounded-xl flex flex-col transition-all duration-300 border shadow-md h-full bg-gradient-to-br from-white to-gray-50/95 border-gray-200/70 hover:border-blue-400"
               >
                 <div className="flex items-center mb-5">
                   <div
-                    className={`flex-shrink-0 w-14 h-14 rounded-lg flex items-center justify-center mr-5 transform transition-all duration-300 shadow-sm 
-                      ${index === 0
-                        ? "bg-gradient-to-br from-blue-500/20 to-indigo-600/20 text-blue-600 border border-blue-500/30"
-                        : "bg-gradient-to-br from-cyan-500/20 to-blue-600/20 text-cyan-600 border border-cyan-500/30"
-                      }`}
+                    className="flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center mr-4 transform transition-all duration-300 shadow-sm bg-gradient-to-br from-[#0167F3]/20 to-[#399AFC]/20 text-[#0167F3] border border-[#0167F3]/30"
                   >
-                    <Icon className="w-7 h-7" />
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-xl text-gray-900">
+                  <h3
+                    className="font-bold text-lg text-gray-900"
+                  >
                     {feature.title}
                   </h3>
                 </div>
-                <ul className="list-none pl-0 space-y-4 text-sm flex-grow text-gray-600 ml-16">
+                <ul
+                  className="list-none pl-0 space-y-3 text-sm flex-grow text-gray-600 ml-16"
+                >
                   {feature.items.map((item, idx) => (
                     <li key={idx} className="flex items-center group">
                       <div
-                        className={`flex-shrink-0 w-7 h-7 rounded-md flex items-center justify-center mr-3 transform transition-all shadow-sm
-                          ${index === 0
-                            ? "bg-blue-500/10 text-blue-600 group-hover:bg-blue-500/20"
-                            : "bg-cyan-500/10 text-cyan-600 group-hover:bg-cyan-500/20"
-                          }`}
+                        className="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center mr-3 transform transition-all shadow-sm bg-[#0167F3]/10 text-[#0167F3] group-hover:bg-[#0167F3]/20"
                       >
                         <svg
-                          width="16"
-                          height="16"
+                          width="14"
+                          height="14"
                           viewBox="0 0 16 16"
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +150,7 @@ export default function CaseSolution({
                           />
                         </svg>
                       </div>
-                      <span className="text-base group-hover:translate-x-1 transition-transform duration-300">{item}</span>
+                      <span className="group-hover:translate-x-1 transition-transform duration-300">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -168,17 +167,25 @@ export default function CaseSolution({
         >
           {/* Декоративные элементы фона */}
           <div className="absolute inset-0 overflow-hidden -z-10">
-            <div className="absolute w-[500px] h-[500px] rounded-full blur-3xl bg-[#0167F3]/15 -top-20 -right-20"></div>
-            <div className="absolute w-[500px] h-[500px] rounded-full blur-3xl bg-[#399AFC]/15 -bottom-20 -left-20"></div>
+            <div
+              className="absolute w-[400px] h-[400px] rounded-full blur-3xl bg-[#0167F3]/15 -top-20 -right-20"
+            ></div>
+            <div
+              className="absolute w-[400px] h-[400px] rounded-full blur-3xl bg-[#399AFC]/15 -bottom-20 -left-20"
+            ></div>
           </div>
 
           {/* Заголовок с иконкой */}
           <div className="text-center pt-10 pb-8">
             <div className="flex items-center justify-center gap-3 mb-2">
-              <div className="inline-flex w-14 h-14 rounded-lg items-center justify-center bg-gradient-to-br from-blue-500/20 to-cyan-500/20 text-blue-600 border border-blue-500/30">
-                <FiServer className="w-7 h-7" />
+              <div
+                className="inline-flex w-12 h-12 rounded-lg items-center justify-center bg-gradient-to-br from-[#0167F3]/20 to-[#399AFC]/20 text-[#0167F3] border border-[#0167F3]/30"
+              >
+                <FiServer className="w-6 h-6" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900">
+              <h3
+                className="text-2xl font-bold text-gray-900"
+              >
                 Ключевые технические особенности
               </h3>
             </div>
@@ -186,7 +193,7 @@ export default function CaseSolution({
             {/* Основное описание */}
             <motion.p
               animate={{ opacity: 1 }}
-              className="mt-4 mb-12 text-lg max-w-3xl mx-auto px-8 text-blue-600"
+              className="mt-4 mb-10 text-base max-w-3xl mx-auto px-8 text-gray-600"
             >
               {technicalDetails}
             </motion.p>
@@ -194,19 +201,10 @@ export default function CaseSolution({
 
           {/* Технические пункты */}
           {techPoints && techPoints.length > 0 && (
-            <div className="px-8 pb-12">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <div className="px-6 pb-10">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {techPoints.map((point, index) => {
                   const IconComponent = techIconMap[index % techIconMap.length];
-                  const colors = [
-                    { icon: "text-blue-600", bg: "from-blue-500/15 to-blue-600/10", border: "border-blue-500/30" },
-                    { icon: "text-cyan-600", bg: "from-cyan-500/15 to-cyan-600/10", border: "border-cyan-500/30" },
-                    { icon: "text-indigo-600", bg: "from-indigo-500/15 to-indigo-600/10", border: "border-indigo-500/30" },
-                    { icon: "text-purple-600", bg: "from-purple-500/15 to-purple-600/10", border: "border-purple-500/30" },
-                    { icon: "text-sky-600", bg: "from-sky-500/15 to-sky-600/10", border: "border-sky-500/30" }
-                  ];
-                  
-                  const colorIndex = index % colors.length;
                   
                   return (
                     <motion.div
@@ -217,16 +215,16 @@ export default function CaseSolution({
                         transition: { duration: 0.2 },
                         boxShadow: `0 10px 25px rgba(0, 0, 0, 0.08), 0 0 8px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.1)`,
                       }}
-                      className={`p-5 rounded-xl border shadow-sm flex items-center bg-white/90 border-gray-200/70 hover:border-${colors[colorIndex].border}`}
+                      className="p-4 rounded-lg border shadow-sm flex items-center bg-white/90 border-gray-200/70 hover:border-[#0167F3]/30"
                     >
                       <div
-                        className={`flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center mr-4 bg-gradient-to-br ${colors[colorIndex].bg} ${colors[colorIndex].icon} ${colors[colorIndex].border}`}
+                        className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center mr-4 bg-gradient-to-br from-[#0167F3]/15 to-[#399AFC]/10 text-[#0167F3] border-[#0167F3]/30"
                       >
-                        <IconComponent className="w-6 h-6" />
+                        <IconComponent className="w-5 h-5" />
                       </div>
                       <div className="flex-1">
                         <p
-                          className="text-base leading-relaxed text-gray-700"
+                          className="text-sm leading-relaxed text-gray-700"
                           dangerouslySetInnerHTML={{ __html: point }}
                         />
                       </div>

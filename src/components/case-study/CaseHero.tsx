@@ -12,11 +12,10 @@ import { ReactNode } from "react";
 // Общие стили градиентного фона, которые можно применить к любому компоненту
 export const gradientBackgroundStyles = {
   lightGradient: "bg-gradient-to-b from-white via-blue-50/30 to-gray-50",
-  darkGradient: "dark:bg-gradient-to-b dark:from-black dark:via-blue-950/10 dark:to-gray-900",
-  overlay: "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white via-blue-50 to-blue-100/30 dark:from-gray-950 dark:via-blue-950/10 dark:to-blue-900/10",
-  grid: "bg-[url('/assets/images/grid-pattern.svg')] opacity-[0.03] dark:opacity-[0.07]",
-  glowEffects: "animate-pulse bg-gradient-to-br from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5",
-  secondaryGlowEffects: "animate-pulse bg-gradient-to-tr from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl -z-5"
+  overlay: "bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white via-blue-50 to-blue-100/30",
+  grid: "bg-[url('/assets/images/grid-pattern.svg')] opacity-[0.03]",
+  glowEffects: "animate-pulse bg-gradient-to-br from-blue-200/20 to-blue-400/20 rounded-full blur-3xl -z-5",
+  secondaryGlowEffects: "animate-pulse bg-gradient-to-tr from-blue-200/20 to-blue-400/20 rounded-full blur-3xl -z-5"
 };
 
 // Фирменные цвета для градиентов
@@ -38,11 +37,11 @@ export default function CaseHero({
   imagePath,
   imageAlt,
 }: CaseHeroProps) {
-  const { isDark } = useTheme();
+  const { isDark: _ } = useTheme();
 
   return (
     <section 
-      className={`relative overflow-hidden pt-[100px] sm:pt-30 md:pt-[140px] lg:pt-[160px] pb-16 md:pb-24 ${gradientBackgroundStyles.lightGradient} ${gradientBackgroundStyles.darkGradient}`}
+      className={`relative overflow-hidden pt-[100px] sm:pt-30 md:pt-[140px] lg:pt-[160px] pb-16 md:pb-24 ${gradientBackgroundStyles.lightGradient}`}
       itemScope
       itemType="https://schema.org/WebPageElement"
     >
@@ -76,10 +75,10 @@ export default function CaseHero({
               <Heading
                 level={1}
                 align="center"
-                className="text-gray-900 dark:text-white mb-8 leading-tight"
+                className="text-gray-900 mb-8 leading-tight"
                 itemProp="headline"
               >
-                <span className={`${isDark ? "text-gray-100" : "text-gray-900"} relative`}>
+                <span className="text-gray-900 relative">
                   {title}
                   <svg
                     className="absolute -bottom-2 left-0 w-full h-2 text-[#0167F3]/20"
@@ -112,7 +111,7 @@ export default function CaseHero({
         {/* Основное изображение кейса - уменьшенный размер */}
         <motion.div
           animate={{ opacity: 1 }}
-          className="relative rounded-2xl overflow-hidden shadow-[0_15px_30px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_15px_30px_-15px_rgba(0,0,0,0.5)] mx-auto"
+          className="relative rounded-2xl overflow-hidden shadow-[0_15px_30px_-15px_rgba(0,0,0,0.2)] mx-auto"
           itemProp="image"
           itemScope
           itemType="https://schema.org/ImageObject"

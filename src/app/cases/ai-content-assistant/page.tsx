@@ -16,6 +16,7 @@ import CaseTechnologies from "@/components/case-study/CaseTechnologies";
 import CaseTestimonial from "@/components/case-study/CaseTestimonial";
 import CaseLongTermImpact from "@/components/case-study/CaseLongTermImpact";
 import CaseActionButtons from "@/components/case-study/CaseActionButtons";
+import CaseFAQ from "@/components/case-study/CaseFAQ";
 
 // Импортируем компоненты призыва к действию
 import CostReduceCTA from "@/components/CTASection/CostReduceCTA";
@@ -41,16 +42,16 @@ const SectionWrapper = ({
 }) => (
   <div className={`relative py-16 md:py-20 overflow-hidden ${className || ""}`}>
     {/* Фоновые элементы */}
-    <div className="absolute inset-0 -z-10 opacity-50 dark:opacity-100">
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-blue-400/15 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/15 to-indigo-400/15 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl"></div>
+    <div className="absolute inset-0 -z-10 opacity-50">
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-blue-400/15 rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/15 to-indigo-400/15 rounded-full blur-3xl"></div>
     </div>
     {children}
   </div>
 );
 
 export default function CasePage() {
-  const { isDark } = useTheme();
+  const { isDark: _ } = useTheme();
 
   // Данные для секции Задача
   const taskData = {
@@ -248,9 +249,7 @@ export default function CasePage() {
   return (
     <>
       <motion.div
-        className={`bg-gradient-to-b ${
-          isDark ? "from-black to-gray-900" : "from-white to-gray-50"
-        } text-gray-800 dark:text-white`}
+        className="bg-gradient-to-b from-white to-gray-50 text-gray-800"
         variants={pageVariants}
         initial="hidden"
         animate="show"
@@ -262,8 +261,8 @@ export default function CasePage() {
           imageAlt="ИИ-ассистент для создания контента"
         />
 
-        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <div className="container mx-auto px-4 max-w-screen-lg">
+        <SectionWrapper className="bg-white/50">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseTask
               description={taskData.description}
               challenges={taskData.challenges}
@@ -271,10 +270,8 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper
-          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
-        >
-          <div className="container mx-auto px-4 max-w-screen-lg">
+        <SectionWrapper className="bg-gray-100/60">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseProblem
               description={problemData.description}
               problemPoints={problemData.problemPoints}
@@ -283,8 +280,8 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <div className="container mx-auto px-4 max-w-screen-lg">
+        <SectionWrapper className="bg-white/50">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseSolution
               description={solutionData.description}
               features={solutionData.features}
@@ -294,10 +291,8 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper
-          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
-        >
-          <div className="container mx-auto px-4 max-w-screen-lg">
+        <SectionWrapper className="bg-gray-100/60">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseImplementation
               stages={implementationData.stages}
               additionalInfo={implementationData.additionalInfo}
@@ -305,8 +300,8 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <div className="container mx-auto px-4 max-w-screen-lg">
+        <SectionWrapper className="bg-white/50">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseResults
               metrics={resultsData.metrics}
               intro={resultsData.intro}
@@ -314,27 +309,27 @@ export default function CasePage() {
             />
 
             {/* Дополнительный блок */}
-            <div className="mt-16 px-4 sm:px-6 py-8 sm:py-10 rounded-2xl border border-blue-200/30 dark:border-blue-700/30 bg-white/50 dark:bg-blue-900/20 backdrop-blur-sm shadow-sm">
-              <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
+            <div className="mt-16 px-4 sm:px-6 py-8 sm:py-10 rounded-2xl border border-blue-200/30 bg-white/50 backdrop-blur-sm shadow-sm">
+              <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-900">
                 Примеры улучшения контента с помощью ИИ
               </h3>
               <div className="grid md:grid-cols-2 gap-6 mt-6">
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/70 dark:to-gray-900/80 p-4 rounded-xl border border-gray-200/80 dark:border-gray-700/50">
-                  <div className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-xl border border-gray-200/80">
+                  <div className="text-sm font-medium text-gray-500 mb-2">
                     До внедрения
                   </div>
-                  <ul className="text-gray-700 dark:text-gray-300 space-y-2">
+                  <ul className="text-gray-700 space-y-2">
                     <li>• 3-4 публикации в месяц</li>
                     <li>• 4-8 часов на создание одного материала</li>
                     <li>• Частые периоды без новых публикаций</li>
                     <li>• Неполное использование актуальных трендов</li>
                   </ul>
                 </div>
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 p-4 rounded-xl border border-blue-200/80 dark:border-blue-700/50">
-                  <div className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl border border-blue-200/80">
+                  <div className="text-sm font-medium text-blue-600 mb-2">
                     После внедрения
                   </div>
-                  <ul className="text-gray-700 dark:text-gray-300 space-y-2">
+                  <ul className="text-gray-700 space-y-2">
                     <li>• 10-12 публикаций в месяц</li>
                     <li>• 1-2 часа на создание и редактирование материала</li>
                     <li>• Стабильный график выхода контента</li>
@@ -350,7 +345,7 @@ export default function CasePage() {
                        hover:opacity-90 transition-all duration-300 hover:-translate-y-0.5
                        shadow-lg`}
                 >
-                  Узнать стоимость внедрения
+                  Обсудить внедрение ИИ-ассистента
                   <BsArrowRight className="ml-2 w-5 h-5" />
                 </Link>
               </div>
@@ -358,16 +353,14 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper
-          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
-        >
-          <div className="container mx-auto px-4 max-w-screen-lg">
+        <SectionWrapper className="bg-gray-100/60">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseTechnologies technologies={technologiesData.technologies} />
           </div>
         </SectionWrapper>
 
-        <SectionWrapper className={isDark ? "bg-black/30" : "bg-white/50"}>
-          <div className="container mx-auto px-4 max-w-screen-lg">
+        <SectionWrapper className="bg-white/50">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseTestimonial
               text={testimonialData.text}
               authorName={testimonialData.authorName}
@@ -377,10 +370,8 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper
-          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
-        >
-          <div className="container mx-auto px-4 max-w-screen-lg">
+        <SectionWrapper className="bg-gray-100/60">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseLongTermImpact
               description={longTermImpactData.description}
               impactPoints={longTermImpactData.impactPoints}
@@ -388,8 +379,45 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
+        {/* FAQ раздел */}
+        <SectionWrapper className="bg-white/50">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+            <CaseFAQ 
+              faqs={[
+                {
+                  question: "Как ИИ-ассистент имитирует авторский стиль?",
+                  answer:
+                    "ИИ-ассистент обучается на существующих материалах автора, выявляя характерные языковые паттерны, стилистические приёмы, тональность и структуру повествования. Система анализирует десятки параметров, включая длину предложений, словарный запас, ритмику текста и особенности построения аргументации. На основе этого анализа создаётся индивидуальный стилистический профиль, который применяется при генерации нового контента."
+                },
+                {
+                  question: "Какие типы контента может создавать система?",
+                  answer:
+                    "Система способна генерировать разнообразные форматы контента: информационные и аналитические статьи, обзоры, интервью, новостные заметки, лонгриды, посты для социальных сетей, e-mail рассылки, сценарии для видео и подкастов. ИИ-ассистент также адаптирует один и тот же материал под различные платформы, учитывая их специфику и особенности восприятия аудитории."
+                },
+                {
+                  question: "Насколько оригинален контент, созданный ИИ?",
+                  answer:
+                    "Контент, генерируемый нашей системой, полностью оригинален и проходит автоматическую проверку на уникальность. ИИ-ассистент не копирует существующие тексты, а создаёт новый материал на основе анализа тренда и темы. Система включает модуль проверки фактов, который верифицирует информацию по надёжным источникам и создаёт уникальную структуру повествования. При этом сохраняется авторский стиль и тональность."
+                },
+                {
+                  question: "Как происходит интеграция ИИ в рабочий процесс?",
+                  answer:
+                    "Интеграция происходит поэтапно. Сначала система обучается на существующих материалах и формирует стилистический профиль. Затем настраивается рабочий процесс: ИИ может предлагать идеи для контента на основе анализа трендов, создавать черновики по выбранным темам, или автоматически адаптировать материал для разных платформ. Автор всегда сохраняет контроль над процессом и может редактировать, корректировать или полностью переписывать предложенные ИИ тексты."
+                },
+                {
+                  question: "Как обеспечивается фактическая точность контента?",
+                  answer:
+                    "Система использует многоуровневый подход к проверке фактов. Первый уровень — это встроенные знания языковой модели о мире. Второй — специализированная база знаний по тематике блога. Третий — автоматизированная система поиска и верификации данных по внешним источникам в реальном времени. Все утверждения фактического характера проверяются и снабжаются внутренними метками достоверности, чтобы автор мог легко идентифицировать информацию, требующую дополнительной проверки."
+                },
+              ]}
+              title="Вопросы об ИИ-ассистенте для контента"
+              subtitle="Ответы на самые популярные вопросы о внедрении и использовании ИИ для создания контента"
+            />
+          </div>
+        </SectionWrapper>
+
         {/* Кнопки и связанные кейсы */}
-        <div className="container mx-auto px-4 max-w-screen-lg">
+        <div className="container mx-auto px-4 md:px-8 max-w-7xl py-16">
           <CaseActionButtons buttons={actionButtonsData.buttons} />
         </div>
       </motion.div>

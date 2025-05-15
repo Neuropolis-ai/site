@@ -1,11 +1,21 @@
 import { MetadataRoute } from "next";
-// Временно отключаем импорт Article для деплоя
-// import { Article } from "@/lib/supabase";
+import { Article } from "@/lib/supabase";
+import { getPublishedArticles } from "@/lib/blogApi";
+
+// Включает или отключает отладочные логи
+const ENABLE_DEBUG_LOGS = false;
+
+// Вспомогательная функция для логирования
+function debugLog(...args: any[]) {
+  if (ENABLE_DEBUG_LOGS) {
+    console.log(...args);
+  }
+}
 
 // Базовый URL сайта
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://neuropolis.ai';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Основные страницы
   const mainRoutes = [
     {
@@ -68,9 +78,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ] as MetadataRoute.Sitemap;
 
-  // Временно отключаем динамическую генерацию URL для статей блога
-  // В реальном приложении здесь можно было бы динамически получать
-  // страницы из CMS или базы данных
+  // Динамическая генерация URL для статей блога
+  let blogRoutes: MetadataRoute.Sitemap = [];
+  
+  try {
+    debugLog("Получаем статьи для sitemap");
+    const articles = await getPublishedArticles();
+    debugLog(`Найдено ${articles.length} статей для sitemap`);
+    
+    blogRoutes = articles.map(article => ({
+      url: `${baseUrl}/blog/${article.slug}`,
+      lastModified: new Date(article.published_at),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    }));
+  } catch (error) {
+    console.error('Ошибка при получении статей для sitemap:', error);
+  }
 
-  return [...mainRoutes, ...caseStudyRoutes];
+  return [...mainRoutes, ...caseStudyRoutes, ...blogRoutes];
 }

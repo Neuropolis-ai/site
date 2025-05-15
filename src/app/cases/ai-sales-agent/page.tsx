@@ -16,6 +16,7 @@ import CaseTechnologies from "@/components/case-study/CaseTechnologies";
 import CaseTestimonial from "@/components/case-study/CaseTestimonial";
 import CaseLongTermImpact from "@/components/case-study/CaseLongTermImpact";
 import CaseActionButtons from "@/components/case-study/CaseActionButtons";
+import CaseFAQ from "@/components/case-study/CaseFAQ";
 
 import {
   FiGlobe,
@@ -386,9 +387,9 @@ export default function CasePage() {
         </SectionWrapper>
 
         <SectionWrapper
-          className={isDark ? "bg-gray-900/40" : "bg-gray-100/60"}
+          className="bg-gray-50/90"
         >
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseLongTermImpact
               description={longTermImpactData.description}
               impactPoints={longTermImpactData.impactPoints}
@@ -396,8 +397,15 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
+        {/* FAQ раздел */}
+        <SectionWrapper className="bg-white/80">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+            <CaseFAQ sectionId="faq-sales-agent" />
+          </div>
+        </SectionWrapper>
+
         {/* Кнопки и связанные кейсы */}
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 md:px-8 max-w-7xl py-16">
           <CaseActionButtons buttons={actionButtonsData.buttons} />
         </div>
       </motion.div>

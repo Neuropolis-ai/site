@@ -140,7 +140,7 @@ const CasesProjects = () => {
                   внедрения ИИ
                 </span>
               </h2>
-              <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-xl max-[425px]:text-[14px] leading-relaxed">
+              <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-[425px]:text-[14px] leading-relaxed">
                 Каждый проект — это доказательство того, как искусственный интеллект помогает компаниям 
                 достигать ощутимых результатов, повышать эффективность и открывать новые возможности 
                 в самых разных сферах.

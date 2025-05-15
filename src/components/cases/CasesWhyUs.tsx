@@ -187,7 +187,7 @@ export default function CasesWhyUs() {
               успешные ИИ-проекты
             </span>
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
             Наш подход к разработке ИИ-решений основан на глубоком понимании бизнес-процессов, 
             использовании передовых технологий и обеспечении измеримых результатов 
             для каждого проекта.

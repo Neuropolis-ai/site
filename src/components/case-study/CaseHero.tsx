@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
@@ -37,8 +36,6 @@ export default function CaseHero({
   imagePath,
   imageAlt,
 }: CaseHeroProps) {
-  const { isDark: _ } = useTheme();
-
   return (
     <section 
       className={`relative overflow-hidden pt-[100px] sm:pt-30 md:pt-[140px] lg:pt-[160px] pb-16 md:pb-24 ${gradientBackgroundStyles.lightGradient}`}
@@ -111,7 +108,7 @@ export default function CaseHero({
         {/* Основное изображение кейса - уменьшенный размер */}
         <motion.div
           animate={{ opacity: 1 }}
-          className="relative rounded-2xl overflow-hidden shadow-[0_15px_30px_-15px_rgba(0,0,0,0.2)] mx-auto max-w-4xl"
+          className="relative rounded-2xl overflow-hidden shadow-[0_15px_30px_-15px_rgba(0,0,0,0.2)] mx-auto"
           itemProp="image"
           itemScope
           itemType="https://schema.org/ImageObject"

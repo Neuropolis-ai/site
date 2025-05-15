@@ -65,7 +65,7 @@ export default function CaseHero({
       <Container>
         <motion.div
           animate={{ opacity: 1 }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-12 md:mb-16 mx-auto"
         >
           <motion.div animate={{ opacity: 1 }}>
             <Badge>Кейс</Badge>
@@ -112,7 +112,7 @@ export default function CaseHero({
         {/* Основное изображение кейса - уменьшенный размер */}
         <motion.div
           animate={{ opacity: 1 }}
-          className="relative rounded-2xl overflow-hidden shadow-[0_15px_30px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_15px_30px_-15px_rgba(0,0,0,0.5)] max-w-4xl mx-auto"
+          className="relative rounded-2xl overflow-hidden shadow-[0_15px_30px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_15px_30px_-15px_rgba(0,0,0,0.5)] mx-auto"
           itemProp="image"
           itemScope
           itemType="https://schema.org/ImageObject"

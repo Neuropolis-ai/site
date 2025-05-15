@@ -42,14 +42,10 @@ export default function CaseActionButtons({ buttons }: CaseActionButtonsProps) {
 
   return (
     <div className="relative py-16 md:py-20 overflow-hidden">
-      {/* Фоновые элементы */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white to-gray-50 dark:from-black dark:to-gray-900"></div>
-        <div className="absolute top-32 -left-32 w-96 h-96 bg-gradient-to-tr from-blue-200/20 to-blue-400/20 dark:from-blue-500/10 dark:to-blue-700/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 -right-32 w-96 h-96 bg-gradient-to-tl from-indigo-200/20 to-indigo-400/20 dark:from-indigo-500/10 dark:to-indigo-700/10 rounded-full blur-3xl"></div>
-      </div>
+      {/* Градиентный фон */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/0 to-white/50 dark:from-black/0 dark:to-black/50 -z-10"></div>
 
-      <div className="container mx-auto px-4 max-w-screen-md relative z-10">
+      <div className="container mx-auto px-4 max-w-screen-lg relative z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -74,7 +70,7 @@ export default function CaseActionButtons({ buttons }: CaseActionButtonsProps) {
                 : "text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600"
             }`}
           >
-            Революция в клиентской поддержке с ИИ-ассистентом!
+            Готовы автоматизировать клиентскую поддержку?
           </motion.h3>
 
           <motion.p

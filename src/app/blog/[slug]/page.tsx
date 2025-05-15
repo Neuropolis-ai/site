@@ -167,8 +167,8 @@ export async function generateMetadata({
 
 // SSG: Генерация статических путей для всех статей
 export async function generateStaticParams() {
-  const articles = await getAllArticles();
-  return articles.map((article) => ({ slug: article.slug }));
+  // Временно отключаем генерацию статических путей для деплоя
+  return [];
 }
 
 // Компонент социальной иконки для шеринга

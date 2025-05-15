@@ -5,53 +5,16 @@ import { createClient } from "@supabase/supabase-js";
  * Получение всех статей блога
  */
 export async function getAllArticles(): Promise<Article[]> {
-  const { data, error } = await supabase
-    .from("articles")
-    .select("*")
-    .order("published_at", { ascending: false });
-
-  if (error) {
-    console.error("Ошибка при получении статей:", error);
-    return [];
-  }
-
-  return data || [];
+  // Временно отключаем загрузку статей для деплоя
+  return [];
 }
 
 /**
  * Получение опубликованных статей блога
  */
 export async function getPublishedArticles(): Promise<Article[]> {
-  try {
-    console.log("Запрос опубликованных статей");
-
-    // Сначала пробуем получить все статьи без фильтрации
-    const { data, error } = await supabase
-      .from("articles")
-      .select("*")
-      .order("published_at", { ascending: false });
-
-    if (error) {
-      console.error("Ошибка при получении статей:", error);
-      return [];
-    }
-
-    console.log(`Получено ${data?.length || 0} статей`);
-
-    // Фильтруем статьи на стороне клиента
-    // Статья считается опубликованной, если is_published не равно явно false
-    const publishedArticles = (data || []).filter((article) => {
-      if (article.is_published === undefined) return true; // Если поля нет, считаем опубликованной
-      return article.is_published !== false; // Если false - скрыта, иначе опубликована
-    });
-
-    console.log(`После фильтрации осталось ${publishedArticles.length} статей`);
-
-    return publishedArticles;
-  } catch (err) {
-    console.error("Ошибка при получении опубликованных статей:", err);
-    return [];
-  }
+  // Временно отключаем загрузку статей для деплоя
+  return [];
 }
 
 /**
@@ -63,63 +26,16 @@ export async function getPaginatedArticles(
   page: number = 1,
   pageSize: number = 9
 ): Promise<{ articles: Article[]; total: number }> {
-  try {
-    console.log(
-      `Запрос статей с пагинацией: страница ${page}, размер ${pageSize}`
-    );
-
-    // Вычисляем смещение для запроса
-    const offset = (page - 1) * pageSize;
-
-    // Получаем все статьи без фильтрации, чтобы избежать проблем с is_published
-    const { data, error, count } = await supabase
-      .from("articles")
-      .select("*", { count: "exact" })
-      .order("published_at", { ascending: false })
-      .range(offset, offset + pageSize - 1);
-
-    if (error) {
-      console.error("Ошибка при получении статей с пагинацией:", error);
-      return { articles: [], total: 0 };
-    }
-
-    console.log(`Получено ${data?.length || 0} статей из ${count || 0}`);
-
-    // Фильтруем статьи на стороне клиента, оставляя только опубликованные
-    const publishedArticles = (data || []).filter((article) => {
-      // Статья считается опубликованной, если is_published не равно явно false
-      if (article.is_published === undefined) return true; // Если поля нет, считаем опубликованной
-      return article.is_published !== false; // Если false - скрыта, иначе опубликована
-    });
-
-    console.log(`После фильтрации осталось ${publishedArticles.length} статей`);
-
-    return {
-      articles: publishedArticles,
-      total: count || 0,
-    };
-  } catch (err) {
-    console.error("Ошибка при получении статей с пагинацией:", err);
-    return { articles: [], total: 0 };
-  }
+  // Временно отключаем загрузку статей для деплоя
+  return { articles: [], total: 0 };
 }
 
 /**
  * Получение статьи по slug
  */
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
-  const { data, error } = await supabase
-    .from("articles")
-    .select("*")
-    .eq("slug", slug)
-    .single();
-
-  if (error) {
-    console.error(`Ошибка при получении статьи с slug ${slug}:`, error);
-    return null;
-  }
-
-  return data;
+  // Временно отключаем загрузку статей для деплоя
+  return null;
 }
 
 /**
@@ -128,68 +44,16 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
 export async function getPublishedArticleBySlug(
   slug: string
 ): Promise<Article | null> {
-  try {
-    console.log(`Запрос статьи по slug: ${slug}`);
-
-    // Получаем статью без проверки is_published
-    const { data, error } = await supabase
-      .from("articles")
-      .select("*")
-      .eq("slug", slug)
-      .single();
-
-    if (error) {
-      console.error(`Ошибка при получении статьи с slug ${slug}:`, error);
-      return null;
-    }
-
-    // Проверяем, опубликована ли статья
-    if (data && data.is_published === false) {
-      console.warn(`Статья с slug ${slug} не опубликована`);
-      return null;
-    }
-
-    console.log(`Найдена статья:`, data);
-    return data;
-  } catch (err) {
-    console.error(`Ошибка при получении статьи с slug ${slug}:`, err);
-    return null;
-  }
+  // Временно отключаем загрузку статей для деплоя
+  return null;
 }
 
 /**
  * Получение последних N статей
  */
 export async function getRecentArticles(limit: number = 3): Promise<Article[]> {
-  try {
-    console.log(`Запрос последних ${limit} статей`);
-
-    // Получаем статьи без фильтрации
-    const { data, error } = await supabase
-      .from("articles")
-      .select("*")
-      .order("published_at", { ascending: false })
-      .limit(limit);
-
-    if (error) {
-      console.error("Ошибка при получении последних статей:", error);
-      return [];
-    }
-
-    console.log(`Получено ${data?.length || 0} последних статей`);
-
-    // Фильтруем на стороне клиента
-    const publishedArticles = (data || []).filter(
-      (article) => article.is_published !== false
-    );
-
-    console.log(`После фильтрации осталось ${publishedArticles.length} статей`);
-
-    return publishedArticles;
-  } catch (err) {
-    console.error("Ошибка при получении последних статей:", err);
-    return [];
-  }
+  // Временно отключаем загрузку статей для деплоя
+  return [];
 }
 
 /**

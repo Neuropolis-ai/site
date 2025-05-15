@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
-import { Article } from "@/lib/supabase";
+// Временно отключаем импорт Article для деплоя
+// import { Article } from "@/lib/supabase";
 
 // Базовый URL сайта
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://neuropolis.ai';
@@ -67,6 +68,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ] as MetadataRoute.Sitemap;
 
+  // Временно отключаем динамическую генерацию URL для статей блога
   // В реальном приложении здесь можно было бы динамически получать
   // страницы из CMS или базы данных
 

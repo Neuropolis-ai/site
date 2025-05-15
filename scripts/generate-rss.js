@@ -1,21 +1,22 @@
 require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
-const { createClient } = require("@supabase/supabase-js");
+// Временно отключаем Supabase для деплоя
+// const { createClient } = require("@supabase/supabase-js");
 
 // Проверяем наличие необходимых переменных окружения
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+// const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+// const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.error(
-    "Ошибка: Не найдены переменные окружения NEXT_PUBLIC_SUPABASE_URL и/или NEXT_PUBLIC_SUPABASE_ANON_KEY"
-  );
-  process.exit(1);
-}
+// if (!supabaseUrl || !supabaseAnonKey) {
+//   console.error(
+//     "Ошибка: Не найдены переменные окружения NEXT_PUBLIC_SUPABASE_URL и/или NEXT_PUBLIC_SUPABASE_ANON_KEY"
+//   );
+//   process.exit(1);
+// }
 
 // Инициализация Supabase клиента
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Функция для экранирования XML
 function escapeXml(unsafe) {
@@ -66,64 +67,8 @@ async function generateRss() {
   try {
     console.log("Начинаем генерацию RSS...");
 
-    // Получаем статьи из Supabase
-    const { data: articles, error } = await supabase
-      .from("articles")
-      .select("*")
-      .order("published_at", { ascending: false });
-
-    if (error) {
-      console.error("Ошибка при получении статей:", error);
-      throw error;
-    }
-
-    if (!articles || articles.length === 0) {
-      console.log("Предупреждение: Статьи не найдены");
-    }
-
-    console.log(`Найдено ${articles?.length || 0} статей`);
-
-    // Создаем массив для элементов item
-    const items = [];
-
-    // Обрабатываем каждую статью
-    if (articles && articles.length > 0) {
-      for (const article of articles) {
-        const articleUrl = formatUrl(
-          `https://neuropolis.ai/blog/${article.slug}`
-        );
-        const pubDate = new Date(article.published_at).toUTCString();
-        const imageUrl = formatUrl(article.image_url);
-        const fullText = cleanText(article.content);
-
-        // Формируем item без переносов строк внутри тегов
-        let item = `<item>
-<title>${escapeXml(article.title)}</title>
-<link>${articleUrl}</link>
-<guid isPermaLink="true">${articleUrl}</guid>
-<description>${escapeXml(article.description || "")}</description>
-<author>agent@neuropolis.ai (Neuropolis.ai)</author>
-<category>Искусственный интеллект</category>
-<pubDate>${pubDate}</pubDate>
-<yandex:genre>article</yandex:genre>`;
-
-        // Добавляем информацию об изображении, только если оно есть
-        if (imageUrl) {
-          item += `
-<media:content url="${imageUrl}" type="image/jpeg" />
-<media:thumbnail url="${imageUrl}" />`;
-        }
-
-        // Добавляем полный текст и закрываем item
-        item += `
-<yandex:full-text>${escapeXml(fullText)}</yandex:full-text>
-</item>`;
-
-        items.push(item);
-      }
-    }
-
-    // Формируем XML с добавлением atom namespace и atom:link
+    // Временно отключаем генерацию RSS с реальными статьями для деплоя
+    // Создаем пустой RSS-файл
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:yandex="http://news.yandex.ru" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
 <channel>
@@ -133,7 +78,7 @@ async function generateRss() {
 <description>ИИ-агенты и автоматизация бизнес-процессов</description>
 <language>ru</language>
 <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-${items.join("\n")}
+<!-- Статьи временно отключены для деплоя -->
 </channel>
 </rss>`;
 
@@ -146,7 +91,7 @@ ${items.join("\n")}
     // Сохраняем в UTF-8
     const rssPath = path.join(publicDir, "rss.xml");
     fs.writeFileSync(rssPath, xml, "utf8");
-    console.log("RSS файл успешно сгенерирован:", rssPath);
+    console.log("Пустой RSS файл успешно сгенерирован:", rssPath);
 
     // Создаем альтернативный RSS файл с другим atom:link
     const rssNewXml = xml.replace(
@@ -155,7 +100,7 @@ ${items.join("\n")}
     );
     const rssNewPath = path.join(publicDir, "rss-new.xml");
     fs.writeFileSync(rssNewPath, rssNewXml, "utf8");
-    console.log("Альтернативный RSS файл успешно сгенерирован:", rssNewPath);
+    console.log("Альтернативный пустой RSS файл успешно сгенерирован:", rssNewPath);
 
     // Проверяем размер
     const stats = fs.statSync(rssPath);

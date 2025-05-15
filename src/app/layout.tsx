@@ -95,7 +95,9 @@ export default function RootLayout({
         
         <ThemeProvider>
           <BadgeRenderer />
+          <Header />
           {children}
+          <Footer />
           <YandexMetrika />
         </ThemeProvider>
       </body>

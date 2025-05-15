@@ -4,21 +4,18 @@ import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
-import SocialHead from "@/components/ui/SocialHead";
 
-// Импортируем компоненты кейса
-import {
-  CaseHero,
-  CaseTask,
-  CaseProblem,
-  CaseSolution,
-  CaseImplementation,
-  CaseResults,
-  CaseTechnologies,
-  CaseTestimonial,
-  CaseLongTermImpact,
-  CaseActionButtons,
-} from "@/components/case-study/CaseBlocks";
+// Импортируем компоненты кейса из отдельных файлов
+import CaseHero from "@/components/case-study/CaseHero";
+import CaseTask from "@/components/case-study/CaseTask";
+import CaseProblem from "@/components/case-study/CaseProblem";
+import CaseSolution from "@/components/case-study/CaseSolution";
+import CaseImplementation from "@/components/case-study/CaseImplementation";
+import CaseResults from "@/components/case-study/CaseResults";
+import CaseTechnologies from "@/components/case-study/CaseTechnologies";
+import CaseTestimonial from "@/components/case-study/CaseTestimonial";
+import CaseLongTermImpact from "@/components/case-study/CaseLongTermImpact";
+import CaseActionButtons from "@/components/case-study/CaseActionButtons";
 
 import {
   FiGlobe,

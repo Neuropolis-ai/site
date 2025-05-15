@@ -20,10 +20,17 @@ import Image from "next/image";
 import { useTheme } from "@/context/ThemeContext";
 import { Heading } from "@/components/ui/heading";
 import Subheading from "@/components/ui/subheading";
-import Badge from "@/components/ui/Badge";
+import Breadcrumbs, { BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 
 export default function ChatBotsHero() {
   const { isDark } = useTheme();
+
+  // Настраиваем хлебные крошки
+  const breadcrumbItems: BreadcrumbItem[] = [
+    { label: "Главная", href: "/" },
+    { label: "Услуги", href: "/services" },
+    { label: "Чат-боты на основе ИИ", href: "/services/chat-bots", isCurrentPage: true }
+  ];
 
   // Анимации
   const fadeIn = {
@@ -84,8 +91,8 @@ export default function ChatBotsHero() {
             animate="visible"
             className="lg:col-span-7 max-w-2xl lg:max-w-none mx-auto lg:mx-0"
           >
-            <motion.div variants={fadeIn}>
-              <Badge>Чат-боты на основе ИИ</Badge>
+            <motion.div variants={fadeIn} className="mb-6">
+              <Breadcrumbs items={breadcrumbItems} className="text-sm" />
             </motion.div>
 
             <motion.div variants={fadeIn}>

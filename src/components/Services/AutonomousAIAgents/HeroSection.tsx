@@ -5,6 +5,7 @@ import "@/style/hero.css";
 import { BsArrowRight } from "react-icons/bs";
 import ButtonLink from "@/components/ui/buttonLink";
 import Container from "@/components/ui/Container";
+import Breadcrumbs, { BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 
 // Helper function for smooth scrolling
 const scrollToSection = (sectionId: string) => {
@@ -16,6 +17,14 @@ const scrollToSection = (sectionId: string) => {
 
 const HeroSection = () => {
   const { isDark } = useTheme();
+  
+  // Настраиваем хлебные крошки
+  const breadcrumbItems: BreadcrumbItem[] = [
+    { label: "Главная", href: "/" },
+    { label: "Услуги", href: "/services" },
+    { label: "ИИ-агенты", href: "/services/autonomous-ai-agents", isCurrentPage: true }
+  ];
+  
   return (
     <div
       id="hero"
@@ -33,14 +42,8 @@ const HeroSection = () => {
       {/* Content */}
       <Container>
         <div className="relative z-20 text-center max-w-90p sm:max-w-[85%] md:max-w-[80%] lg:max-w-[900px] mx-auto px-4">
-          <div>
-            <span
-              className={`inline-flex items-center justify-center border border-blue-500 gap-2 px-4 py-1 rounded-full switch-box ${
-                !isDark && "light-switch-box"
-              } text-sm mb-4`}
-            >
-              Neuropolis.ai
-            </span>
+          <div className="mb-4">
+            <Breadcrumbs items={breadcrumbItems} className="justify-center" />
           </div>
 
           <div>

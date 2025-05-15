@@ -11,7 +11,8 @@
     "check-telegram": "node scripts/check-telegram-settings.js",
     "test-telegram": "node scripts/test-telegram-message.js",
     "fix-rls": "node scripts/apply-rls-fix.js",
-    "generate-rss": "node scripts/generate-rss.js"
+    "generate-rss": "node scripts/generate-rss.js",
+    "vercel-build": "node scripts/vercel-deploy.js build"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.8",
@@ -21,6 +22,7 @@
     "@types/iconv-lite": "^0.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "critters": "^0.0.23",
     "framer-motion": "^12.9.4",
     "lucide-react": "^0.506.0",
     "next": "14.2.24",

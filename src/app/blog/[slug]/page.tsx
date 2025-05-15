@@ -170,10 +170,19 @@ export async function generateStaticParams() {
   // Ограничиваем количество статей для статической генерации
   // чтобы избежать большого количества логов и ошибок во время сборки
   try {
+    // Получаем лимит из переменной окружения или используем значение по умолчанию
+    const maxStaticArticles = 
+      typeof process !== 'undefined' && 
+      process.env.NEXT_PUBLIC_MAX_STATIC_ARTICLES !== undefined
+        ? parseInt(process.env.NEXT_PUBLIC_MAX_STATIC_ARTICLES)
+        : 20;
+
+    console.log(`Лимит статей для статической генерации: ${maxStaticArticles}`);
+    
     const articles = await getAllArticles();
-    // Берем только первые 20 статей для статической генерации
+    // Берем только ограниченное количество статей для статической генерации
     // остальные будут генерироваться по запросу
-    return articles.slice(0, 20).map((article) => ({ 
+    return articles.slice(0, maxStaticArticles).map((article) => ({ 
       slug: article.slug 
     }));
   } catch (error) {

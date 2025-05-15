@@ -2,7 +2,12 @@ import { supabase, Article } from "./supabase";
 import { createClient } from "@supabase/supabase-js";
 
 // Включает или отключает отладочные логи
-const ENABLE_DEBUG_LOGS = false;
+// Приоритет отдается переменной окружения, если она определена
+const ENABLE_DEBUG_LOGS = 
+  typeof process !== 'undefined' && 
+  process.env.NEXT_PUBLIC_ENABLE_DEBUG_LOGS !== undefined
+    ? process.env.NEXT_PUBLIC_ENABLE_DEBUG_LOGS === 'true'
+    : false;
 
 // Вспомогательная функция для логирования
 function debugLog(...args: any[]) {
@@ -11,21 +16,50 @@ function debugLog(...args: any[]) {
   }
 }
 
+// Оставляем только существенные логи
+function logError(message: string, error?: any) {
+  console.error(message, error);
+}
+
 /**
  * Получение всех статей блога
  */
 export async function getAllArticles(): Promise<Article[]> {
-  const { data, error } = await supabase
-    .from("articles")
-    .select("*")
-    .order("published_at", { ascending: false });
+  // Ограничиваем количество статей для статической генерации при деплое
+  const maxStaticArticles = 
+    typeof process !== 'undefined' && 
+    process.env.NEXT_PUBLIC_MAX_STATIC_ARTICLES !== undefined
+      ? parseInt(process.env.NEXT_PUBLIC_MAX_STATIC_ARTICLES)
+      : 0;
 
-  if (error) {
-    console.error("Ошибка при получении статей:", error);
+  try {
+    const { data, error } = await supabase
+      .from("articles")
+      .select("*")
+      .order("published_at", { ascending: false });
+
+    if (error) {
+      logError("Ошибка при получении статей:", error);
+      return [];
+    }
+
+    // Если установлено ограничение и мы не в режиме разработки, 
+    // ограничиваем количество возвращаемых статей
+    if (
+      maxStaticArticles > 0 && 
+      process.env.NODE_ENV === 'production' && 
+      data && 
+      data.length > maxStaticArticles
+    ) {
+      debugLog(`Ограничение количества статей до ${maxStaticArticles} из ${data.length} для статической генерации`);
+      return data.slice(0, maxStaticArticles);
+    }
+
+    return data || [];
+  } catch (err) {
+    logError("Ошибка при получении всех статей:", err);
     return [];
   }
-
-  return data || [];
 }
 
 /**

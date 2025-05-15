@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "buildCommand": "node scripts/vercel-deploy.js build",
+  "outputDirectory": ".next",
+  "env": {
+    "NODE_ENV": "production",
+    "LOG_LEVEL": "error",
+    "NEXT_PUBLIC_ENABLE_DEBUG_LOGS": "false",
+    "NEXT_PUBLIC_MAX_STATIC_ARTICLES": "10"
+  },
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next",
+      "config": {
+        "buildCommand": "node scripts/vercel-deploy.js build"
+      }
+    }
+  ]
+} 

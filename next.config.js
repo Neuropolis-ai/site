@@ -66,6 +66,35 @@ const nextConfig = {
       },
     ];
   },
+  // Отключаем логи во время сборки на Vercel
+  onBuildStart: () => {
+    if (process.env.VERCEL) {
+      // Переопределяем console.log для окружения Vercel
+      const originalConsoleLog = console.log;
+      const originalConsoleInfo = console.info;
+      const originalConsoleDebug = console.debug;
+      
+      // Сохраняем только критически важные логи (ошибки и предупреждения)
+      console.log = (...args) => {
+        if (args[0] && typeof args[0] === 'string' && (
+          args[0].includes('error') || 
+          args[0].includes('Error') || 
+          args[0].includes('ERRO') ||
+          args[0].includes('warn') || 
+          args[0].includes('Warn') || 
+          args[0].includes('WARN')
+        )) {
+          originalConsoleLog(...args);
+        }
+      };
+      console.info = (...args) => {
+        // Отключаем info-логи полностью
+      };
+      console.debug = (...args) => {
+        // Отключаем debug-логи полностью
+      };
+    }
+  },
 };
 
 module.exports = nextConfig;

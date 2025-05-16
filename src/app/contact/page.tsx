@@ -97,50 +97,7 @@ async function sendDataToN8N(formData: any): Promise<void> {
       resolve(); // Продолжаем выполнение
     }
     
-    // Одновременно попробуем отправить через форму в iframe
-    try {
-      const frame = document.createElement('iframe');
-      frame.name = 'hiddenFrame';
-      frame.style.display = 'none';
-      document.body.appendChild(frame);
-      
-      const form = document.createElement('form');
-      form.action = webhookUrl;
-      form.method = 'get'; // Используем GET вместо POST
-      form.target = 'hiddenFrame';
-      
-      // Добавляем все поля формы как скрытые input
-      Object.entries(payload).forEach(([key, value]) => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        
-        if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-          input.value = String(value);
-        } else {
-          input.value = JSON.stringify(value);
-        }
-        
-        form.appendChild(input);
-      });
-      
-      document.body.appendChild(form);
-      form.submit();
-      
-      console.log('Данные отправлены через форму в скрытом фрейме');
-      
-      // Очистка
-      setTimeout(() => {
-        try {
-          document.body.removeChild(frame);
-          document.body.removeChild(form);
-        } catch (e) {
-          console.error('Ошибка при удалении iframe:', e);
-        }
-      }, 1000);
-    } catch (frameError) {
-      console.error('Ошибка при отправке через фрейм:', frameError);
-    }
+    // Убираем дублирующую отправку через iframe для избежания двойных запросов
   });
 }
 
@@ -234,31 +191,7 @@ export default function ContactPage() {
     console.log('Форма успешно отправлена:', data);
     setFormSubmitted(true);
     
-    // Отправка данных через Beacon API как резервный вариант
-    if (navigator.sendBeacon) {
-      // Создаем URL с параметрами запроса вместо тела
-      const urlParams = new URLSearchParams();
-      const payload = {
-        formId: "contact-page-form",
-        ...data,
-        submittedAt: new Date().toISOString(),
-      };
-      
-      // Добавляем все поля формы как параметры запроса
-      Object.entries(payload).forEach(([key, value]) => {
-        if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-          urlParams.append(key, String(value));
-        } else {
-          urlParams.append(key, JSON.stringify(value));
-        }
-      });
-      
-      // Полный URL с параметрами
-      const fullUrl = `https://dev.neuropolis.ai/webhook/9f5b312f-f10f-4ac8-8908-2ae20c8d93de?${urlParams.toString()}`;
-      
-      const success = navigator.sendBeacon(fullUrl);
-      console.log('Результат отправки через Beacon API:', success);
-    }
+    // Убираем дублирующую отправку через Beacon API для избежания двойных запросов
   };
   
   const handleSubmitError = (error: any) => {

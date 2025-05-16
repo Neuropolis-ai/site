@@ -17,6 +17,7 @@ interface ImplementationStage {
 interface CaseImplementationProps {
   stages: ImplementationStage[];
   additionalInfo?: string;
+  transparent?: boolean;
 }
 
 const containerVariants = {

@@ -116,7 +116,7 @@ export default function CaseHero({
           <meta itemProp="url" content={imagePath} />
           <meta itemProp="contentUrl" content={imagePath} />
           <meta itemProp="caption" content={imageAlt} />
-          <div className="relative h-[200px] sm:h-[260px] md:h-[320px] lg:h-[360px] max-w-[800px] mx-auto w-full">
+          <div className="relative h-[240px] sm:h-[300px] md:h-[360px] lg:h-[400px] max-w-[800px] mx-auto w-full">
             <Image 
               src={imagePath} 
               alt={imageAlt} 

@@ -104,7 +104,7 @@ export default function CaseLongTermImpact({
                 >
                   <Icon className="w-5 h-5" />
                 </div>
-                <span className={`text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+                <span className={`text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`} style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>
                   {point}
                 </span>
               </motion.div>

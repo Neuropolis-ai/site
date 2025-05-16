@@ -74,7 +74,7 @@ export default function CaseTask({
                 <FiAlertTriangle className="w-5 h-5" />
               </div>
               <span
-                className={`flex-1 text-gray-700 ${challenge.className || ""}`}
+                className={`flex-1 text-gray-700 text-base leading-[26px] ${challenge.className || ""}`}
               >
                 {challenge.text}
               </span>

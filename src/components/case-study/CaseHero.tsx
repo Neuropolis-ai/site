@@ -144,7 +144,12 @@ export default function CaseHero({
                 itemProp="headline"
               >
                 <span className="text-gray-900 relative">
-                  {title.includes("ИИ-ассистент") ? (
+                  {title.includes("ИИ-агент") ? (
+                    <>
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">ИИ-агент</span>
+                      {title.replace("ИИ-агент", "")}
+                    </>
+                  ) : title.includes("ИИ-ассистент") ? (
                     <>
                       <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">ИИ-ассистент</span>
                       {title.replace("ИИ-ассистент", "")}

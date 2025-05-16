@@ -19,7 +19,8 @@ import {
 import { brandColors } from "./CaseHero"; // Импортируем фирменные цвета
 
 interface Metric {
-  number: string;
+  number?: string;
+  value?: string;
   label: string;
 }
 
@@ -142,7 +143,7 @@ export default function CaseResults({
                   <MetricIcon className="w-6 h-6" />
                 </div>
                 <div className="text-3xl md:text-4xl font-bold mb-1 text-gray-900">
-                  {metric.number}
+                  {metric.number || metric.value}
                 </div>
                 <p className="text-sm font-medium text-gray-500">
                   {metric.label}

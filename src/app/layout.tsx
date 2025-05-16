@@ -19,6 +19,7 @@ import "../style/icon-animations.css";
 import "../style/text-animations.css";
 import "../style/mobile-optimizations.css";
 import "../style/header-fix.css";
+import "../style/fonts.css";
 import BadgeRenderer from "@/components/ui/BadgeRenderer";
 import Script from "next/script";
 import { usePathname } from "next/navigation";
@@ -57,11 +58,14 @@ export default function RootLayout({
         <ThemeScript />
         {/* Preload fonts */}
         <link 
+          rel="preconnect" 
+          href="https://rsms.me/" 
+          crossOrigin="anonymous"
+        />
+        <link 
           rel="preload" 
-          href="/fonts/inter-var.woff2" 
-          as="font" 
-          type="font/woff2" 
-          crossOrigin="anonymous" 
+          href="https://rsms.me/inter/inter.css" 
+          as="style" 
         />
         <link rel="canonical" href="https://neuropolis.ai/" />
         <link rel="icon" href="/favicon.ico" sizes="any" />

@@ -131,6 +131,8 @@ function generateBreadcrumbsFromPath(
       label = 'ИИ-ассистент для создания контента';
     } else if (segment === 'ai-sales-agent-new') {
       label = 'ИИ-ассистент для продаж';
+    } else if (segment === 'ai-sales-agent-new2') {
+      label = 'ИИ-агент в отделе продаж';
     } else if (segment === 'ai-customer-support-new') {
       label = 'ИИ-агент для поддержки клиентов';
     } else {

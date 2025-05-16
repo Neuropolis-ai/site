@@ -16,6 +16,7 @@ import { brandColors } from "./CaseHero"; // Импортируем фирмен
 
 interface CaseTechnologiesProps {
   technologies: string[];
+  transparent?: boolean;
 }
 
 const containerVariants = {
@@ -61,11 +62,12 @@ const getTechnologyIcon = (
 
 export default function CaseTechnologies({
   technologies,
+  transparent = false,
 }: CaseTechnologiesProps) {
   const { isDark } = useTheme();
 
   return (
-    <CaseSection title="🧩 Используемые технологии">
+    <CaseSection title="🧩 Используемые технологии" transparent={transparent}>
       <div // Внешний div: убрана рамка (border)
         className={`p-8 rounded-3xl backdrop-blur-sm bg-transparent`}
         // Убраны классы border и связанные с ним цвета
@@ -91,8 +93,8 @@ export default function CaseTechnologies({
                 // Стили для плашек технологий остаются прежними
                 className={`px-5 py-2.5 rounded-xl flex items-center space-x-2.5 text-base transition-all duration-300 border shadow-md transform ${
                   isDark
-                    ? `bg-gray-800/50 border-[${brandColors.primary}]/30 hover:border-[${brandColors.primary}]/50 text-gray-200`
-                    : `bg-white/60 border-[${brandColors.primary}]/20 hover:border-[${brandColors.primary}]/40 text-gray-700`
+                    ? `bg-gray-800/30 border-[${brandColors.primary}]/30 hover:border-[${brandColors.primary}]/50 text-gray-200 backdrop-blur-sm`
+                    : `bg-white/40 border-[${brandColors.primary}]/20 hover:border-[${brandColors.primary}]/40 text-gray-700 backdrop-blur-sm`
                 }`}
               >
                 <div

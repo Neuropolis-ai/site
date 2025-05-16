@@ -1,6 +1,7 @@
 "use client";
 
 import BaseFAQ from "../../FAQ/BaseFAQ";
+import { motion } from "framer-motion";
 
 export default function AIContentAssistantFAQ() {
   const faqs = [
@@ -32,13 +33,24 @@ export default function AIContentAssistantFAQ() {
   ];
 
   return (
-    <BaseFAQ
-      faqItems={faqs}
-      title={<>Вопросы и ответы<br />об ИИ-ассистенте для создания контента</>}
-      subtitle="Ответы на самые популярные вопросы о внедрении и использовании ИИ для создания контента"
-      sectionId="content-assistant-faq"
-      contactLink="/contact"
-      contactText="Получить консультацию"
-    />
+    <section className="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden">
+      {/* Фоновые элементы */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
+      
+      {/* Анимированные градиентные окружности */}
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite] -z-10"></div>
+      <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_2s_infinite] -z-10"></div>
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_4s_infinite] -z-10"></div>
+      
+      <BaseFAQ
+        faqItems={faqs}
+        title={<>Вопросы и ответы<br />об ИИ-ассистенте для создания контента</>}
+        subtitle="Ответы на самые популярные вопросы о внедрении и использовании ИИ для создания контента"
+        sectionId="content-assistant-faq"
+        contactLink="/contact"
+        contactText="Получить консультацию"
+        transparent={true}
+      />
+    </section>
   );
 } 

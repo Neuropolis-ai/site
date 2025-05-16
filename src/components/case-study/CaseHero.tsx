@@ -76,7 +76,14 @@ export default function CaseHero({
                 itemProp="headline"
               >
                 <span className="text-gray-900 relative">
-                  {title}
+                  {title.includes("ИИ-ассистент") ? (
+                    <>
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">ИИ-ассистент</span>
+                      {title.replace("ИИ-ассистент", "")}
+                    </>
+                  ) : (
+                    title
+                  )}
                   <svg
                     className="absolute -bottom-2 left-0 w-full h-2 text-[#0167F3]/20"
                     viewBox="0 0 100 15"

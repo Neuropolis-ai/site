@@ -34,7 +34,7 @@ export default function AIContentAssistantFAQ() {
   return (
     <BaseFAQ
       faqItems={faqs}
-      title={<>Вопросы и ответы<br />об ИИ-ассистенте для создания контента</>}
+      title="Часто задаваемые вопросы"
       subtitle="Ответы на самые популярные вопросы о внедрении и использовании ИИ для создания контента"
       sectionId="content-assistant-faq"
       contactLink="/contact"

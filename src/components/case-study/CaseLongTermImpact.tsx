@@ -92,7 +92,7 @@ export default function CaseLongTermImpact({
                 className={`p-6 rounded-2xl flex items-start space-x-4 transition-all duration-300 border shadow-sm ${
                   isDark
                     ? "bg-gray-800/30 border-gray-700/40 hover:border-teal-700/60 hover:bg-gray-800/50 backdrop-blur-sm"
-                    : "bg-white/30 border-gray-200/50 hover:border-teal-300/60 hover:bg-white/40 backdrop-blur-sm"
+                    : "bg-white border-gray-200/50 hover:border-teal-300/60 hover:bg-white backdrop-blur-sm"
                 }`}
               >
                 <div
@@ -104,7 +104,7 @@ export default function CaseLongTermImpact({
                 >
                   <Icon className="w-5 h-5" />
                 </div>
-                <span className={isDark ? "text-gray-300" : "text-gray-700"}>
+                <span className={`text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>
                   {point}
                 </span>
               </motion.div>

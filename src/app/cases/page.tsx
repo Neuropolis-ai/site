@@ -14,11 +14,11 @@ const projectsData = [
   {
     id: 1,
     category: "Поддержка клиентов",
-    title: "Улучшение клиентского сервиса с ИИ-агентами",
+    title: "ИИ-агент для службы поддержки",
     description:
       "Разработали чат-бот на основе ИИ, который автоматизирует обработку запросов от клиентов. Чат-бот 24/7 решает 70% запросов без участия человека, сокращая время ожидания и повышая удовлетворенность клиентов на 40%.",
     image: "/assets/images/ai-customer-support-new.jpg",
-    link: "/cases/ai-customer-support",
+    link: "/cases/ai-customer-support-new",
     metrics: [
       { number: "3 мин", label: "Среднее время ответа" },
       { number: "68%", label: "Рост NPS" },
@@ -32,7 +32,7 @@ const projectsData = [
     description:
       "Внедрили ИИ-агента для квалификации и первичной обработки лидов в B2B SaaS-компании. Это позволило сократить время отклика с 2 часов до 15 секунд и повысить конверсию на 27%.",
     image: "/assets/images/cases/sale.jpg",
-    link: "/cases/ai-sales-agent",
+    link: "/cases/ai-sales-agent-new2",
     metrics: [
       { number: "15 сек", label: "Время отклика" },
       { number: "27%", label: "Рост конверсии" },

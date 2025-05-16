@@ -6,6 +6,7 @@ import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { useRef, useEffect, useState } from "react";
 import React from "react";
+import Image from "next/image";
 
 // Импортируем компоненты кейса
 import CaseHero from "@/components/case-study/CaseHero";
@@ -329,10 +330,10 @@ export default function CasePage() {
       >
               {/* Секция Hero */}
       <CaseHero
-        title="ИИ-агент для поддержки клиентов"
+        title="ИИ-агент для службы поддержки"
         subtitle="Как мы автоматизировали 82% обращений в службу поддержки e-commerce площадки и сократили время ответа в 480 раз"
         imagePath="/assets/images/cases/ai-customer-support-bg.webp"
-        imageAlt="ИИ-агент для поддержки клиентов e-commerce маркетплейса"
+        imageAlt="ИИ-агент для службы поддержки e-commerce маркетплейса"
       />
 
         {/* Секция Задача */}
@@ -430,61 +431,153 @@ export default function CasePage() {
         </SectionWrapper>
 
         {/* Секция Похожие кейсы */}
-        <div className="max-w-7xl mx-auto px-4 py-20">
+        <div className="max-w-5xl mx-auto px-4 py-20">
           <h2 className="text-3xl font-bold mb-12 text-center">Похожие кейсы</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Кейс 1 */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md transform transition duration-300 hover:scale-105">
-              <div className="aspect-w-16 aspect-h-9 bg-gray-100 dark:bg-gray-700">
-                <img 
-                  src="/assets/images/cases/hr-assistant.webp" 
-                  alt="ИИ-ассистент для HR" 
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">ИИ-ассистент для HR-отдела</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Автоматизация процесса найма и онбординга сотрудников с помощью искусственного интеллекта</p>
-                <Link href="/cases/ai-hr-assistant" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-                  Подробнее <BsArrowRight className="ml-2" />
-                </Link>
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mx-auto">
+            {/* Кейс 1 - AI-агент в отделе продаж */}
+            <div className="relative flex-shrink-0 w-full overflow-hidden backdrop-blur-sm 
+                  bg-white/95 dark:bg-gray-900/90 rounded-2xl
+                  border border-blue-100/60 dark:border-blue-900/40
+                  shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <Link href="/cases/ai-sales-agent-new2" className="block">
+                <div className="flex flex-col h-full">
+                  <div className="relative w-full h-[220px]">
+                    <Image
+                      src="/assets/images/cases/sale.jpg"
+                      alt="AI-агент в отделе продаж"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 100%"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40 dark:to-black/60"></div>
+                  </div>
+                  <div className="flex flex-col justify-between p-5 flex-grow">
+                    <div>
+                      <div
+                        className="inline-block px-3 py-1 rounded-full text-xs mb-3 font-medium tracking-wide
+                          bg-blue-50 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300
+                          border border-blue-200/80 dark:border-blue-800/50"
+                      >
+                        Продажи
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+                        AI-агент в отделе продаж
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2 md:line-clamp-3">
+                        Как мы сократили время отклика с 2 часов до 15 секунд и повысили конверсию на 27%
+                      </p>
+
+                      {/* Метрики */}
+                      <div className="grid grid-cols-3 gap-4">
+                        <div
+                          className="text-center bg-blue-50/50 dark:bg-blue-900/20 p-2 rounded-lg border border-blue-100/50 dark:border-blue-800/40"
+                        >
+                          <div className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-0.5">
+                            15 сек
+                          </div>
+                          <div className="text-xs text-gray-600 dark:text-gray-400 tracking-tight">
+                            Время отклика
+                          </div>
+                        </div>
+                        <div
+                          className="text-center bg-blue-50/50 dark:bg-blue-900/20 p-2 rounded-lg border border-blue-100/50 dark:border-blue-800/40"
+                        >
+                          <div className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-0.5">
+                            27%
+                          </div>
+                          <div className="text-xs text-gray-600 dark:text-gray-400 tracking-tight">
+                            Рост конверсии
+                          </div>
+                        </div>
+                        <div
+                          className="text-center bg-blue-50/50 dark:bg-blue-900/20 p-2 rounded-lg border border-blue-100/50 dark:border-blue-800/40"
+                        >
+                          <div className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-0.5">
+                            24/7
+                          </div>
+                          <div className="text-xs text-gray-600 dark:text-gray-400 tracking-tight">
+                            Доступность
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             </div>
 
-            {/* Кейс 2 */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md transform transition duration-300 hover:scale-105">
-              <div className="aspect-w-16 aspect-h-9 bg-gray-100 dark:bg-gray-700">
-                <img 
-                  src="/assets/images/cases/predictive-analytics.webp" 
-                  alt="Система предиктивной аналитики продаж" 
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Система предиктивной аналитики продаж</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Как мы увеличили точность прогнозов продаж на 78% с помощью машинного обучения</p>
-                <Link href="/cases/predictive-sales-analytics" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-                  Подробнее <BsArrowRight className="ml-2" />
-                </Link>
-              </div>
-            </div>
+            {/* Кейс 2 - ИИ-ассистент для создания контента */}
+            <div className="relative flex-shrink-0 w-full overflow-hidden backdrop-blur-sm 
+                  bg-white/95 dark:bg-gray-900/90 rounded-2xl
+                  border border-blue-100/60 dark:border-blue-900/40
+                  shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+              <Link href="/cases/ai-content-assistant" className="block">
+                <div className="flex flex-col h-full">
+                  <div className="relative w-full h-[220px]">
+                    <Image
+                      src="/assets/images/cases/ssm.jpg"
+                      alt="ИИ-ассистент для создания контента"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 100%"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40 dark:to-black/60"></div>
+                  </div>
+                  <div className="flex flex-col justify-between p-5 flex-grow">
+                    <div>
+                      <div
+                        className="inline-block px-3 py-1 rounded-full text-xs mb-3 font-medium tracking-wide
+                          bg-blue-50 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300
+                          border border-blue-200/80 dark:border-blue-800/50"
+                      >
+                        Контент-маркетинг
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
+                        ИИ-ассистент для создания контента
+                      </h3>
+                      <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2 md:line-clamp-3">
+                        Как увеличить регулярность публикаций на 230% и повысить вовлеченность аудитории
+                      </p>
 
-            {/* Кейс 3 */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md transform transition duration-300 hover:scale-105">
-              <div className="aspect-w-16 aspect-h-9 bg-gray-100 dark:bg-gray-700">
-                <img 
-                  src="/assets/images/cases/finance-bot.webp" 
-                  alt="Чат-бот для финансовой организации" 
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Чат-бот для финансовой организации</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">Автоматизация 92% запросов клиентов банка с помощью мультиязычного чат-бота</p>
-                <Link href="/cases/banking-chatbot" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
-                  Подробнее <BsArrowRight className="ml-2" />
-                </Link>
-              </div>
+                      {/* Метрики */}
+                      <div className="grid grid-cols-3 gap-4">
+                        <div
+                          className="text-center bg-blue-50/50 dark:bg-blue-900/20 p-2 rounded-lg border border-blue-100/50 dark:border-blue-800/40"
+                        >
+                          <div className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-0.5">
+                            230%
+                          </div>
+                          <div className="text-xs text-gray-600 dark:text-gray-400 tracking-tight">
+                            Рост публикаций
+                          </div>
+                        </div>
+                        <div
+                          className="text-center bg-blue-50/50 dark:bg-blue-900/20 p-2 rounded-lg border border-blue-100/50 dark:border-blue-800/40"
+                        >
+                          <div className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-0.5">
+                            45%
+                          </div>
+                          <div className="text-xs text-gray-600 dark:text-gray-400 tracking-tight">
+                            Вовлеченность
+                          </div>
+                        </div>
+                        <div
+                          className="text-center bg-blue-50/50 dark:bg-blue-900/20 p-2 rounded-lg border border-blue-100/50 dark:border-blue-800/40"
+                        >
+                          <div className="text-lg font-bold text-blue-600 dark:text-blue-400 mb-0.5">
+                            5x
+                          </div>
+                          <div className="text-xs text-gray-600 dark:text-gray-400 tracking-tight">
+                            Ускорение
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
@@ -492,7 +585,7 @@ export default function CasePage() {
         {/* CTA Секция */}
         <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 py-16">
           <div className="max-w-7xl mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold mb-6">Готовы автоматизировать клиентскую поддержку?</h2>
+            <h2 className="text-3xl font-bold mb-6">Готовы автоматизировать службу поддержки?</h2>
             <p className="text-lg mb-8 max-w-3xl mx-auto" style={{ lineHeight: '26px', fontSize: '18px' }}>
               Современный ИИ-агент может обрабатывать до 82% запросов без участия оператора. 
               Увеличьте NPS и сократите расходы уже через 2 месяца после внедрения автоматизированного 

@@ -312,7 +312,7 @@ export default function ContactForm({
                               трансформацию сегодня
                             </>
                           ) : title.includes("внедрять ИИ") ? (
-                            <span className="leading-tight">
+                            <span className="leading-none">
                               Начните{" "}
                               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#0167F3] to-[#399AFC]">
                                 внедрять ИИ

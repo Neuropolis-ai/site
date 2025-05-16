@@ -444,19 +444,19 @@ export default function CasePage() {
                   <ul className="text-gray-700 dark:text-gray-300 space-y-3 font-medium">
                     <li className="flex items-center">
                       <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
-                      <span>3-4 публикации в месяц</span>
+                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>3-4 публикации в месяц</span>
                     </li>
                     <li className="flex items-center">
                       <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
-                      <span>4-8 часов на создание одного материала</span>
+                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>4-8 часов на создание одного материала</span>
                     </li>
                     <li className="flex items-center">
                       <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
-                      <span>Частые периоды без новых публикаций</span>
+                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>Частые периоды без новых публикаций</span>
                     </li>
                     <li className="flex items-center">
                       <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
-                      <span>Неполное использование актуальных трендов</span>
+                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>Неполное использование актуальных трендов</span>
                     </li>
                   </ul>
                 </div>
@@ -468,19 +468,19 @@ export default function CasePage() {
                   <ul className="text-gray-700 dark:text-blue-100 space-y-3 font-medium">
                     <li className="flex items-center">
                       <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
-                      <span>10-12 публикаций в месяц</span>
+                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>10-12 публикаций в месяц</span>
                     </li>
                     <li className="flex items-center">
                       <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
-                      <span>1-2 часа на создание и редактирование материала</span>
+                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>1-2 часа на создание и редактирование материала</span>
                     </li>
                     <li className="flex items-center">
                       <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
-                      <span>Стабильный график выхода контента</span>
+                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>Стабильный график выхода контента</span>
                     </li>
                     <li className="flex items-center">
                       <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
-                      <span>Оперативная реакция на тренды и события</span>
+                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>Оперативная реакция на тренды и события</span>
                     </li>
                   </ul>
                 </div>

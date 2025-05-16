@@ -47,8 +47,7 @@ export default function CaseProblem({
     <CaseSection title="🔍 Анализ проблемы" transparent={transparent}>
       <motion.div
         animate={{ opacity: 1 }}
-        className="bg-transparent"
-        style={{ backgroundColor: 'transparent', backdropFilter: 'none' }}
+        className="rounded-2xl p-6 bg-gradient-to-br from-white/60 to-gray-50/30 border border-gray-200/60 shadow-md backdrop-blur-sm"
       >
         <motion.p
           animate={{ opacity: 1 }}
@@ -57,12 +56,12 @@ export default function CaseProblem({
           {description}
         </motion.p>
 
-        <motion.ul className="space-y-4 mb-8 bg-transparent">
+        <motion.ul className="space-y-4 mb-8">
           {problemPoints.map((point, index) => (
             <motion.li
               key={index}
               animate={{ opacity: 1 }}
-              className="flex items-start bg-transparent"
+              className="flex items-start"
             >
               <div
                 className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-sm ${

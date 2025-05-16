@@ -85,8 +85,8 @@ export default function CaseImplementation({
               }}
               className={`p-6 rounded-2xl flex flex-col text-center transition-all duration-300 border shadow-lg h-full backdrop-blur-sm ${
                 isDark
-                  ? "bg-[#0167F3]/10 border-[#0167F3]/30 hover:border-[#0167F3]/50"
-                  : "bg-[#0167F3]/5 border-[#0167F3]/10 hover:border-[#0167F3]/20"
+                  ? "bg-gray-800/50 border-gray-700/40 hover:border-[#0167F3]/50"
+                  : "bg-white/70 border-gray-200/70 hover:border-[#0167F3]/30"
               }`}
             >
               <div className="mb-5 flex justify-center">

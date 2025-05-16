@@ -64,7 +64,7 @@ export default function CaseImplementation({
   };
 
   return (
-    <CaseSection title="⚙️ Процесс внедрения">
+    <CaseSection title="⚙️ Процесс внедрения" transparent={true}>
       <motion.div
         className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10"
         animate={{ opacity: 1 }}

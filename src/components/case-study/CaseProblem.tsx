@@ -10,6 +10,7 @@ interface CaseProblemProps {
   description: string;
   problemPoints: string[];
   conclusion?: string;
+  transparent?: boolean;
 }
 
 const containerVariants = {
@@ -38,13 +39,16 @@ export default function CaseProblem({
   description,
   problemPoints,
   conclusion,
+  transparent = false,
 }: CaseProblemProps) {
   const { isDark } = useTheme();
 
   return (
-    <CaseSection title="🔍 Анализ проблемы">
+    <CaseSection title="🔍 Анализ проблемы" transparent={transparent}>
       <motion.div
         animate={{ opacity: 1 }}
+        className="bg-transparent"
+        style={{ backgroundColor: 'transparent', backdropFilter: 'none' }}
       >
         <motion.p
           animate={{ opacity: 1 }}
@@ -53,18 +57,18 @@ export default function CaseProblem({
           {description}
         </motion.p>
 
-        <motion.ul className="space-y-4 mb-8">
+        <motion.ul className="space-y-4 mb-8 bg-transparent">
           {problemPoints.map((point, index) => (
             <motion.li
               key={index}
               animate={{ opacity: 1 }}
-              className="flex items-start"
+              className="flex items-start bg-transparent"
             >
               <div
                 className={`flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-sm ${
                   isDark
-                    ? "bg-gradient-to-br from-[#0167F3]/30 to-[#399AFC]/20 text-[#399AFC] border border-[#0167F3]/20"
-                    : "bg-gradient-to-br from-[#0167F3]/10 to-[#399AFC]/10 text-[#0167F3] border border-[#0167F3]/20"
+                    ? "bg-gradient-to-br from-[#0167F3]/20 to-[#399AFC]/10 text-[#399AFC] border border-[#0167F3]/10"
+                    : "bg-gradient-to-br from-[#0167F3]/10 to-[#399AFC]/5 text-[#0167F3] border border-[#0167F3]/10"
                 }`}
               >
                 <FiCheckCircle className="w-5 h-5" />

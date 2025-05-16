@@ -4,6 +4,7 @@ import { useTheme } from "@/context/ThemeContext";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
+import { useRef, useEffect, useState } from "react";
 
 // Импортируем компоненты кейса
 import CaseHero from "@/components/case-study/CaseHero";
@@ -33,26 +34,126 @@ import {
   FiEdit,
 } from "react-icons/fi";
 
-// Компонент-обертка для секций с фоном (без центрирования)
+// Компонент-обертка для секций с контентом (не отвечает за фон)
 const SectionWrapper = ({
   children,
   className,
+  id,
 }: {
   children: React.ReactNode;
   className?: string;
+  id?: string;
 }) => (
-  <div className={`relative py-16 md:py-20 overflow-hidden ${className || ""}`}>
-    {/* Фоновые элементы */}
-    <div className="absolute inset-0 -z-10 opacity-50">
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-gradient-to-br from-blue-200/15 to-blue-400/15 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-gradient-to-tr from-indigo-200/15 to-indigo-400/15 rounded-full blur-3xl"></div>
-    </div>
+  <div 
+    id={id} 
+    className={`relative py-16 md:py-20 overflow-hidden ${className || ""}`}
+  >
     {children}
   </div>
 );
 
+// Отдельный компонент для управления фоном секций
+const SectionBackgroundLayer = ({
+  active,
+  section
+}: {
+  active: boolean;
+  section: string;
+}) => {
+  const backgroundClass = active 
+    ? "opacity-100 transition-opacity duration-700" 
+    : "opacity-0 transition-opacity duration-700";
+
+  // Выбираем разные варианты градиентов для разных секций
+  let gradientStyle;
+  
+  if (section === 'implementation') {
+    gradientStyle = (
+      <>
+        {/* Градиентный оверлей для секции "Процесс внедрения" - с фиолетовым оттенком */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-white via-blue-50 to-indigo-100/40"></div>
+        
+        {/* Анимированные градиентные блоки - более интенсивные цвета */}
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-indigo-200/30 to-purple-300/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_infinite]"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-indigo-300/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_1.5s_infinite]"></div>
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-blue-300/30 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_3s_infinite]"></div>
+      </>
+    );
+  } else {
+    // Стандартный стиль для анализа проблемы и других секций
+    gradientStyle = (
+      <>
+        {/* Градиентный оверлей */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white via-blue-50 to-blue-100/30"></div>
+        
+        {/* Анимированные градиентные блоки */}
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite]"></div>
+        <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_1s_infinite]"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_2s_infinite]"></div>
+      </>
+    );
+  }
+
+  return (
+    <div 
+      data-section={section}
+      className={`fixed inset-0 pointer-events-none ${backgroundClass}`} 
+      style={{zIndex: -10}}
+    >
+      {gradientStyle}
+    </div>
+  );
+};
+
 export default function CasePage() {
   const { isDark: _ } = useTheme();
+  const analysisRef = useRef<HTMLDivElement>(null);
+  const implementationRef = useRef<HTMLDivElement>(null);
+  const [activeSection, setActiveSection] = useState('none');
+
+  // Использование IntersectionObserver для определения активных секций
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target.id === 'analysis-section') {
+              setActiveSection('analysis');
+            } else if (entry.target.id === 'implementation-section') {
+              setActiveSection('implementation');
+            }
+          } else {
+            // Убираем активную секцию только если наблюдаемая секция перестала быть видимой
+            if (
+              (entry.target.id === 'analysis-section' && activeSection === 'analysis') ||
+              (entry.target.id === 'implementation-section' && activeSection === 'implementation')
+            ) {
+              setActiveSection('none');
+            }
+          }
+        });
+      },
+      { threshold: 0.3 } // Секция считается видимой, когда 30% её площади в области просмотра
+    );
+
+    // Начинаем наблюдение за секциями
+    if (analysisRef.current) {
+      observer.observe(analysisRef.current);
+    }
+    if (implementationRef.current) {
+      observer.observe(implementationRef.current);
+    }
+
+    // Очистка при размонтировании
+    return () => {
+      if (analysisRef.current) {
+        observer.unobserve(analysisRef.current);
+      }
+      if (implementationRef.current) {
+        observer.unobserve(implementationRef.current);
+      }
+    };
+  }, [activeSection]);
 
   // Данные для секции Задача
   const taskData = {
@@ -240,17 +341,21 @@ export default function CasePage() {
   };
 
   const pageVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0.9 },
     show: {
       opacity: 1,
-      transition: { duration: 0.5, ease: "easeInOut" },
+      transition: { duration: 0.7, ease: "easeInOut" },
     },
   };
 
   return (
     <>
+      {/* Фиксированные фоновые слои для разных секций */}
+      <SectionBackgroundLayer active={activeSection === 'analysis'} section="analysis" />
+      <SectionBackgroundLayer active={activeSection === 'implementation'} section="implementation" />
+      
       <motion.div
-        className="bg-gradient-to-b from-white to-gray-50 text-gray-800"
+        className="relative text-gray-800"
         variants={pageVariants}
         initial="hidden"
         animate="show"
@@ -271,15 +376,18 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper className="bg-gray-100/60">
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <CaseProblem
-              description={problemData.description}
-              problemPoints={problemData.problemPoints}
-              conclusion={problemData.conclusion}
-            />
-          </div>
-        </SectionWrapper>
+        <div id="analysis-section" ref={analysisRef}>
+          <SectionWrapper className="">
+            <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+              <CaseProblem
+                description={problemData.description}
+                problemPoints={problemData.problemPoints}
+                conclusion={problemData.conclusion}
+                transparent={true}
+              />
+            </div>
+          </SectionWrapper>
+        </div>
 
         <SectionWrapper className="bg-white/50">
           <div className="container mx-auto px-4 md:px-8 max-w-7xl">
@@ -292,14 +400,16 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        <SectionWrapper className="bg-gray-100/60">
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <CaseImplementation
-              stages={implementationData.stages}
-              additionalInfo={implementationData.additionalInfo}
-            />
-          </div>
-        </SectionWrapper>
+        <div id="implementation-section" ref={implementationRef}>
+          <SectionWrapper className="">
+            <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+              <CaseImplementation
+                stages={implementationData.stages}
+                additionalInfo={implementationData.additionalInfo}
+              />
+            </div>
+          </SectionWrapper>
+        </div>
 
         <SectionWrapper className="bg-white/50">
           <div className="container mx-auto px-4 md:px-8 max-w-7xl">

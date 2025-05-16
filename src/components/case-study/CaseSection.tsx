@@ -10,6 +10,7 @@ interface CaseSectionProps {
   customBackground?: boolean;
   className?: string;
   isLightBg?: boolean;
+  transparent?: boolean;
 }
 
 export default function CaseSection({
@@ -17,18 +18,22 @@ export default function CaseSection({
   children,
   className = "",
   isLightBg = false,
+  transparent = false,
 }: CaseSectionProps) {
   // Определяем фоновые классы
-  const bgClass = isLightBg
-    ? "bg-gray-50/70"
-    : "bg-white";
+  const bgClass = transparent 
+    ? "bg-transparent backdrop-blur-none" 
+    : isLightBg
+      ? "bg-gray-50/70"
+      : "bg-white";
 
   return (
     <motion.section
       className={`py-16 md:py-20 ${bgClass} ${className}`}
       animate={{ opacity: 1 }}
+      style={{ backgroundColor: transparent ? 'transparent !important' : '' }}
     >
-      <div className={`container mx-auto px-4 max-w-screen-lg ${className}`}>
+      <div className={`container mx-auto px-4 max-w-screen-lg ${transparent ? 'bg-transparent' : ''}`}>
         <h2
           className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-gray-900"
         >
@@ -37,7 +42,7 @@ export default function CaseSection({
           </span>
         </h2>
         <div
-          className="text-base md:text-lg text-gray-700 leading-relaxed space-y-4 md:space-y-6"
+          className={`text-base md:text-lg text-gray-700 leading-relaxed space-y-4 md:space-y-6 ${transparent ? 'bg-transparent' : ''}`}
         >
           {children}
         </div>

@@ -47,7 +47,7 @@ export default function CaseProblem({
     <CaseSection title="🔍 Анализ проблемы" transparent={transparent}>
       <motion.div
         animate={{ opacity: 1 }}
-        className="rounded-2xl p-6 bg-gradient-to-br from-white/60 to-gray-50/30 border border-gray-200/60 shadow-md backdrop-blur-sm"
+        className="rounded-2xl p-6 bg-white border border-gray-200/70 shadow-md backdrop-blur-sm"
       >
         <motion.p
           animate={{ opacity: 1 }}

@@ -11,6 +11,7 @@ interface CaseTestimonialProps {
   authorPosition: string;
   authorInitials: string;
   textClassName?: string;
+  transparent?: boolean;
 }
 
 const itemVariants = {
@@ -31,20 +32,21 @@ export default function CaseTestimonial({
   authorPosition,
   authorInitials,
   textClassName = "text-lg md:text-xl",
+  transparent = false,
 }: CaseTestimonialProps) {
   const { isDark } = useTheme();
 
   return (
-    <CaseSection title="💬 Отзыв клиента">
+    <CaseSection title="💬 Отзыв клиента" transparent={transparent}>
       <motion.div
         variants={itemVariants}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.1 }}
-        className={`p-6 md:p-8 rounded-2xl relative overflow-hidden border shadow-sm ${
-          isDark
-            ? "bg-gray-800/30 border-gray-700/40"
-            : "bg-white/40 border-gray-200/70"
+        className={`relative p-8 rounded-3xl shadow-xl border backdrop-blur-md ${
+          transparent
+            ? "bg-gradient-to-br from-white/40 to-gray-50/20 border-gray-200/50"
+            : "bg-gradient-to-br from-white/90 to-gray-50/80 border-gray-200/70"
         }`}
       >
         <FiMessageSquare

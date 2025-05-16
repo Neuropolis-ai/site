@@ -502,18 +502,13 @@ export default function CasePage() {
 
         <SectionWrapper className="bg-gray-100/60">
           <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <CaseTechnologies technologies={technologiesData.technologies} />
-          </div>
-        </SectionWrapper>
-
-        <SectionWrapper className="bg-white/50">
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseTestimonial
               text={testimonialData.text}
               authorName={testimonialData.authorName}
               authorPosition={testimonialData.authorPosition}
               authorInitials={testimonialData.authorInitials}
               textClassName="text-sm sm:text-base"
+              transparent={true}
             />
           </div>
         </SectionWrapper>
@@ -527,7 +522,12 @@ export default function CasePage() {
           </div>
         </SectionWrapper>
 
-        {/* FAQ раздел */}
+        <SectionWrapper className="bg-gray-100/60">
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+            <CaseTechnologies technologies={technologiesData.technologies} />
+          </div>
+        </SectionWrapper>
+
         <SectionWrapper className="relative overflow-hidden">
           {/* Фоновые элементы */}
           <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>

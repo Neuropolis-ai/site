@@ -1,0 +1,452 @@
+"use client";
+
+import { useTheme } from "@/context/ThemeContext";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { BsArrowRight } from "react-icons/bs";
+import { useRef, useEffect, useState } from "react";
+import React from "react";
+
+// Импортируем компоненты кейса
+import CaseHero from "@/components/case-study/CaseHero";
+import CaseTask from "@/components/case-study/CaseTask";
+import CaseProblem from "@/components/case-study/CaseProblem";
+import CaseSolution from "@/components/case-study/CaseSolution";
+import CaseImplementation from "@/components/case-study/CaseImplementation";
+import CaseResults from "@/components/case-study/CaseResults";
+import CaseTechnologies from "@/components/case-study/CaseTechnologies";
+import CaseTestimonial from "@/components/case-study/CaseTestimonial";
+import CaseLongTermImpact from "@/components/case-study/CaseLongTermImpact";
+import CaseFAQ from "@/components/case-study/CaseFAQ";
+import AICustomerSupportFAQ from "@/components/cases/ai-customer-support-new/AICustomerSupportFAQ";
+
+import {
+  FiGlobe,
+  FiSettings,
+  FiDatabase,
+  FiCpu,
+  FiCheckSquare,
+  FiSearch,
+  FiEdit,
+} from "react-icons/fi";
+
+// Исправляем компонент SectionWrapper для поддержки ref
+const SectionWrapper = React.forwardRef<HTMLDivElement, {
+  children: React.ReactNode;
+  className?: string;
+  id?: string;
+}>(({ children, className, id }, ref) => (
+  <div 
+    id={id} 
+    ref={ref}
+    className={`relative py-16 md:py-20 overflow-hidden ${className || ""}`}
+  >
+    {children}
+  </div>
+));
+
+// Устанавливаем displayName для правила ESLint react/display-name
+SectionWrapper.displayName = "SectionWrapper";
+
+// Отдельный компонент для управления фоном секций
+const SectionBackgroundLayer = ({
+  active,
+  section
+}: {
+  active: boolean;
+  section: string;
+}) => {
+  const backgroundClass = active 
+    ? "opacity-100 transition-opacity duration-700" 
+    : "opacity-0 transition-opacity duration-700";
+
+  // Выбираем разные варианты градиентов для разных секций
+  let gradientStyle;
+  
+  if (section === 'implementation') {
+    gradientStyle = (
+      <>
+        {/* Градиентный оверлей для секции "Процесс внедрения" - с фиолетовым оттенком */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-white via-blue-50 to-indigo-100/40 dark:from-gray-900 dark:via-blue-950/20 dark:to-indigo-950/40"></div>
+        
+        {/* Анимированные градиентные блоки - более интенсивные цвета */}
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-indigo-200/30 to-purple-300/30 dark:from-indigo-800/20 dark:to-purple-800/20 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_infinite]"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-indigo-300/30 dark:from-blue-800/20 dark:to-indigo-800/20 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_1.5s_infinite]"></div>
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-blue-300/30 dark:from-blue-800/20 dark:to-blue-800/20 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_3s_infinite]"></div>
+      </>
+    );
+  } else {
+    // Стандартный стиль для анализа проблемы и других секций
+    gradientStyle = (
+      <>
+        {/* Градиентный оверлей */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white via-blue-50 to-blue-100/30 dark:from-gray-900 dark:via-blue-950/20 dark:to-blue-950/30"></div>
+        
+        {/* Анимированные градиентные блоки */}
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-800/20 dark:to-blue-600/20 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite]"></div>
+        <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 dark:from-blue-800/20 dark:to-blue-600/20 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_1s_infinite]"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 dark:from-indigo-800/20 dark:to-indigo-600/20 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_2s_infinite]"></div>
+      </>
+    );
+  }
+
+  return (
+    <div 
+      data-section={section}
+      className={`fixed inset-0 pointer-events-none ${backgroundClass}`} 
+      style={{zIndex: -10}}
+    >
+      {gradientStyle}
+    </div>
+  );
+};
+
+export default function CasePage() {
+  const { isDark: _ } = useTheme();
+  const analysisRef = useRef<HTMLDivElement>(null);
+  const implementationRef = useRef<HTMLDivElement>(null);
+  const [activeSection, setActiveSection] = useState('none');
+
+  // Использование IntersectionObserver для определения активных секций
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (entry.target.id === 'analysis-section') {
+              setActiveSection('analysis');
+            } else if (entry.target.id === 'implementation-section') {
+              setActiveSection('implementation');
+            }
+          } else {
+            // Убираем активную секцию только если наблюдаемая секция перестала быть видимой
+            if (
+              (entry.target.id === 'analysis-section' && activeSection === 'analysis') ||
+              (entry.target.id === 'implementation-section' && activeSection === 'implementation')
+            ) {
+              setActiveSection('none');
+            }
+          }
+        });
+      },
+      { threshold: 0.3 } // Секция считается видимой, когда 30% её площади в области просмотра
+    );
+
+    // Начинаем наблюдение за секциями
+    if (analysisRef.current) {
+      observer.observe(analysisRef.current);
+    }
+    if (implementationRef.current) {
+      observer.observe(implementationRef.current);
+    }
+
+    // Очистка при размонтировании
+    return () => {
+      if (analysisRef.current) {
+        observer.unobserve(analysisRef.current);
+      }
+      if (implementationRef.current) {
+        observer.unobserve(implementationRef.current);
+      }
+    };
+  }, [activeSection]);
+
+  // Данные для секции Задача
+  const taskData = {
+    description:
+      "Крупный e-commerce маркетплейс с ассортиментом более 500,000 товаров и ежемесячной аудиторией более 2 миллионов уникальных посетителей столкнулся с серьезными вызовами в обслуживании клиентов:",
+    challenges: [
+      {
+        text: "Среднее время ожидания ответа на запрос составляло 24 часа",
+      },
+      {
+        text: "Команда из 30 операторов не справлялась с потоком из 5000+ обращений в день",
+      },
+      {
+        text: "Высокая текучка кадров из-за рутинных и однотипных запросов",
+      },
+      {
+        text: "Низкие оценки удовлетворенности (NPS 34 из 100)",
+      },
+      {
+        text: "Упущенные продажи из-за медленных ответов на предпродажные вопросы",
+      },
+    ],
+  };
+
+  // Данные для секции Анализ проблемы
+  const problemData = {
+    description:
+      "Наш анализ показал, что более 78% всех обращений относились к типовым сценариям:",
+    problemPoints: [
+      "Вопросы о статусе заказа и доставке (42%)",
+      "Запросы на отмену или изменение заказа (16%)",
+      "Вопросы о возврате товара и возмещении средств (14%)",
+      "Предпродажные вопросы о характеристиках товаров (20%)",
+      "Прочие запросы (8%)",
+    ],
+    conclusion:
+      "Эти обращения можно было автоматизировать, освободив операторов для решения более сложных и нестандартных задач.",
+  };
+
+  // Данные для секции Решение
+  const solutionData = {
+    description:
+      "Мы разработали комплексного ИИ-ассистента поддержки клиентов, интегрированного во все каналы коммуникации:",
+    features: [
+      {
+        title: "Многоканальное присутствие",
+        items: [
+          "Чат на сайте",
+          "Мессенджеры (WhatsApp, Telegram)",
+          "Email-поддержка",
+          "Колл-центр (голосовой ассистент)",
+        ],
+        icon: FiGlobe,
+      },
+      {
+        title: "Основные функции",
+        items: [
+          "Автоматические ответы на типовые вопросы",
+          "Отслеживание статуса заказа в реальном времени",
+          "Автоматическое инициирование возврата",
+          "Предоставление детальной информации о товарах",
+        ],
+        icon: FiSettings,
+      },
+    ],
+    technicalDetails:
+      "Под капотом — экосистема ИИ‑модулей: RAG‑ядро, семантический поиск, многоуровневое NLU и глубокие CRM/ERP‑интеграции, которые вместе обеспечивают мгновенные точные ответы и умную эскалацию сложных запросов.",
+    techPoints: [
+      "<strong>RAG-система</strong> на основе базы знаний о товарах и FAQ",
+      "<strong>Интеграция с CRM и ERP</strong> для доступа к актуальным данным о заказах и клиентах",
+      "<strong>Многоступенчатая система распознавания намерений</strong> пользователя",
+      "<strong>Семантический поиск</strong> по каталогу товаров",
+      "<strong>Механизм эскалации</strong> сложных запросов на операторов",
+    ],
+  };
+
+  // Данные для секции Процесс внедрения
+  const implementationData = {
+    stages: [
+      {
+        number: "1",
+        title: "Анализ и подготовка данных",
+        duration: "3 недели",
+        icon: FiDatabase,
+        details:
+          "Погружение в бизнес-процессы, анализ существующих каналов и данных (FAQ, логи), сбор и структурирование базы знаний для ИИ.",
+      },
+      {
+        number: "2",
+        title: "Разработка и обучение ИИ",
+        duration: "4 недели",
+        icon: FiCpu,
+        details:
+          "Выбор LLM (GPT-4o), разработка архитектуры агента, системы распознавания намерений, обучение модели на данных клиента.",
+      },
+      {
+        number: "3",
+        title: "Интеграция и тестирование",
+        duration: "4 недели",
+        icon: FiCheckSquare,
+        details:
+          "Развертывание на платформах (сайт, мессенджеры), интеграция с CRM/ERP, комплексное тестирование и UAT.",
+      }
+    ],
+    additionalInfo: 
+      "Интересно, что во время внедрения мы столкнулись с проблемой интеграции с устаревшей CRM-системой клиента. Решением стало создание промежуточного API-слоя, который позволил бесшовно соединить нашего ИИ-ассистента с существующей инфраструктурой без необходимости полной миграции данных.",
+  };
+
+  // Данные для секции Результаты
+  const resultsData = {
+    metrics: [
+      {
+        number: "3 мин",
+        label: "Среднее время ответа",
+      },
+      {
+        number: "82%",
+        label: "Автоматизация обращений",
+      },
+      {
+        number: "87",
+        label: "Индекс NPS",
+      },
+      {
+        number: "43%",
+        label: "Рост конверсии",
+      },
+    ],
+    intro:
+      "Внедрение ИИ-ассистента привело к значительным бизнес-результатам:",
+    results: [
+      {
+        text: "Сокращение среднего времени ответа с <strong>24 часов до 3 минут</strong>"
+      },
+      {
+        text: "Увеличение NPS с 34 до 87 пунктов (<strong>+68%</strong>)"
+      },
+      {
+        text: "<strong>82%</strong> всех обращений решаются без участия человека"
+      },
+      {
+        text: "Рост конверсии предпродажных запросов на <strong>43%</strong>"
+      },
+      {
+        text: "Сокращение штата операторов с 30 до 12 человек с перераспределением их на стратегические задачи"
+      },
+      {
+        text: "Экономия в размере <strong>~$350,000</strong> в годовом выражении"
+      },
+    ],
+  };
+
+  // Технологии использованные в проекте
+  const techData = [
+    "GPT-4o",
+    "Langchain",
+    "Pinecone",
+    "Websockets",
+    "RAG",
+    "FastAPI",
+  ];
+
+  return (
+    <div className="relative pb-20 overflow-hidden">
+      {/* Анимированные фоны для различных секций */}
+      <SectionBackgroundLayer active={activeSection === 'analysis'} section="analysis" />
+      <SectionBackgroundLayer active={activeSection === 'implementation'} section="implementation" />
+
+      {/* Секция Hero */}
+      <CaseHero
+        title="Как мы автоматизировали 82% обращений в службу поддержки e-commerce площадки и сократили время ответа в 480 раз"
+        subtitle="ИИ-ассистент для поддержки клиентов"
+        imagePath="/assets/images/cases/ai-customer-support-bg.webp"
+        imageAlt="ИИ-ассистент для поддержки клиентов e-commerce маркетплейса"
+      />
+
+      {/* Секция Задача */}
+      <CaseTask
+        description={taskData.description}
+        challenges={taskData.challenges}
+      />
+
+      {/* Секция Анализ проблемы */}
+      <SectionWrapper id="analysis-section" ref={analysisRef}>
+        <CaseProblem
+          description={problemData.description}
+          problemPoints={problemData.problemPoints}
+          conclusion={problemData.conclusion}
+        />
+      </SectionWrapper>
+
+      {/* Секция Решение */}
+      <CaseSolution
+        description={solutionData.description}
+        features={solutionData.features}
+        technicalDetails={solutionData.technicalDetails}
+        techPoints={solutionData.techPoints}
+      />
+
+      {/* Секция Процесс внедрения */}
+      <SectionWrapper id="implementation-section" ref={implementationRef}>
+        <CaseImplementation
+          stages={implementationData.stages}
+          additionalInfo={implementationData.additionalInfo}
+        />
+      </SectionWrapper>
+
+      {/* Секция Результаты */}
+      <CaseResults
+        metrics={resultsData.metrics}
+        intro={resultsData.intro}
+        results={resultsData.results}
+      />
+
+      {/* Секция Технологии */}
+      <CaseTechnologies technologies={techData} />
+
+      {/* Секция FAQ */}
+      <AICustomerSupportFAQ />
+
+      {/* Секция Похожие кейсы */}
+      <div className="max-w-7xl mx-auto px-4 py-20">
+        <h2 className="text-3xl font-bold mb-12 text-center">Похожие кейсы</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Кейс 1 */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md transform transition duration-300 hover:scale-105">
+            <div className="aspect-w-16 aspect-h-9 bg-gray-100 dark:bg-gray-700">
+              <img 
+                src="/assets/images/cases/hr-assistant.webp" 
+                alt="ИИ-ассистент для HR" 
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold mb-2">ИИ-ассистент для HR-отдела</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">Автоматизация процесса найма и онбординга сотрудников с помощью искусственного интеллекта</p>
+              <Link href="/cases/ai-hr-assistant" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+                Подробнее <BsArrowRight className="ml-2" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Кейс 2 */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md transform transition duration-300 hover:scale-105">
+            <div className="aspect-w-16 aspect-h-9 bg-gray-100 dark:bg-gray-700">
+              <img 
+                src="/assets/images/cases/predictive-analytics.webp" 
+                alt="Система предиктивной аналитики продаж" 
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold mb-2">Система предиктивной аналитики продаж</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">Как мы увеличили точность прогнозов продаж на 78% с помощью машинного обучения</p>
+              <Link href="/cases/predictive-sales-analytics" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+                Подробнее <BsArrowRight className="ml-2" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Кейс 3 */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md transform transition duration-300 hover:scale-105">
+            <div className="aspect-w-16 aspect-h-9 bg-gray-100 dark:bg-gray-700">
+              <img 
+                src="/assets/images/cases/finance-bot.webp" 
+                alt="Чат-бот для финансовой организации" 
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold mb-2">Чат-бот для финансовой организации</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">Автоматизация 92% запросов клиентов банка с помощью мультиязычного чат-бота</p>
+              <Link href="/cases/banking-chatbot" className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline">
+                Подробнее <BsArrowRight className="ml-2" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Секция */}
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-700 py-16">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6">Готовы автоматизировать клиентскую поддержку?</h2>
+          <p className="text-lg mb-8 max-w-3xl mx-auto">
+            Современный ИИ-ассистент может обрабатывать до 82% запросов без участия оператора. 
+            Увеличьте NPS и сократите расходы уже через 2 месяца после внедрения автоматизированного 
+            решения на основе искусственного интеллекта.
+          </p>
+          <Link 
+            href="/contact"
+            className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300"
+          >
+            Хочу ИИ-ассистента для своего бизнеса
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+} 

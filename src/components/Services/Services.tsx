@@ -498,39 +498,44 @@ const Services = () => {
                   }`}
                   style={{
                     mask: "linear-gradient(rgb(0, 0, 0) 80%, rgba(0, 0, 0, 0) 100%)",
+                    position: "relative",
+                    overflow: "hidden"
                   }}
                 >
-                  <div className="flex items-end gap-[15px] sm:gap-[30px] relative">
-                    <div className="chart-line-gradient absolute top-0 left-0 w-full h-full"></div>
-                    <div className="chart-line-gradient absolute top-[30px] left-0 w-full h-full"></div>
-                    <div className="chart-line-gradient absolute top-[60px] left-0 w-full h-full"></div>
-                    <div className="chart-line-gradient absolute top-[90px] left-0 w-full h-full"></div>
-                    <div className="chart-line-gradient absolute top-[120px] left-0 w-full h-full"></div>
-                    {[15, 25, 60, 110, 120, 165, 140, 160].map(
-                      (height, index) => {
-                        // Scale down heights for mobile
-                        const mobileHeight = Math.floor(height * 0.75);
-                        return (
-                          <div
-                            key={index}
-                            className={`chart-line w-[12px] sm:w-[16px] z-10 ${
-                              isChartVisible ? "chart-bar-animation" : ""
-                            }`}
-                            style={{
-                              height: `clamp(${mobileHeight}px, ${
-                                mobileHeight / 10
-                              }vw, ${height}px)`,
-                              animationDelay: isChartVisible
-                                ? `${index * 0.1}s`
-                                : "0s",
-                              transform: isChartVisible
-                                ? ""
-                                : "translateY(100%)",
-                            }}
-                          ></div>
-                        );
-                      }
-                    )}
+                  <div className="flex items-end gap-[15px] sm:gap-[30px] relative h-full w-full justify-center">
+                    {/* Фоновые линии */}
+                    <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-between z-0 py-4">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <div key={`line-${i}`} className="chart-line-gradient"></div>
+                      ))}
+                    </div>
+                    
+                    {/* Столбцы графика */}
+                    <div className="flex items-end gap-[15px] sm:gap-[30px] z-10 pb-5">
+                      {[20, 35, 70, 120, 150, 180, 130, 170].map(
+                        (height, index) => {
+                          // Scale down heights for mobile
+                          const mobileHeight = Math.floor(height * 0.75);
+                          return (
+                            <div
+                              key={index}
+                              className={`chart-line w-[12px] sm:w-[16px] ${
+                                isChartVisible ? "chart-bar-animation" : ""
+                              }`}
+                              style={{
+                                height: `clamp(${mobileHeight}px, ${
+                                  mobileHeight / 10
+                                }vw, ${height}px)`,
+                                animationDelay: isChartVisible
+                                  ? `${index * 0.1}s`
+                                  : "0s",
+                                opacity: isChartVisible ? 1 : 0,
+                              }}
+                            ></div>
+                          );
+                        }
+                      )}
+                    </div>
                   </div>
                 </div>
 

@@ -164,12 +164,15 @@
 .chart-line {
   border-radius: 15px 15px 0 0;
   width: 12px;
-  height: 291px;
-  border-left: 1px solid #0167f3;
-  border-right: 1px solid #0167f3;
-  border-top: 1px solid #0167f3;
-  border-radius: 15px 15px 0 0;
   background: linear-gradient(180deg, #0167f3 0%, #399afc 100%);
+  border: 1px solid #0167f3;
+  border-bottom: none;
+  position: relative;
+  overflow: visible;
+  transform-origin: bottom;
+  will-change: transform;
+  box-shadow: 0 0 8px rgba(1, 103, 243, 0.5);
+  z-index: 10;
 }
 
 .chart-line-gradient {
@@ -181,24 +184,24 @@
   background: linear-gradient(
     90deg,
     rgba(84, 84, 84, 0) 0%,
-    rgb(18, 18, 18) 50%,
+    rgba(18, 18, 18, 0.3) 50%,
     rgba(0, 0, 0, 0) 100%
   );
-  opacity: 1;
+  opacity: 0.5;
 }
 
 @keyframes chart-rise {
   0% {
-    transform: translateY(100%);
+    transform: scaleY(0);
   }
 
   100% {
-    transform: translateY(0);
+    transform: scaleY(1);
   }
 }
 
 .chart-bar-animation {
-  transform: translateY(100%);
+  transform: scaleY(0);
   animation: chart-rise 0.8s ease-out forwards;
   will-change: transform;
 }
@@ -785,4 +788,47 @@
 
 .workflow-visible .workflow-row:nth-child(2) {
   transition-delay: 0.4s;
+}
+
+/* Дополнительные стили для графика в разделе стратегического консалтинга */
+@media (prefers-reduced-motion: no-preference) {
+  .chart-bar-animation:hover {
+    transform: scaleY(1.05);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 12px rgba(1, 103, 243, 0.8);
+  }
+}
+
+/* Градиент для графика в темном и светлом режимах */
+:root {
+  --chart-gradient-light: linear-gradient(180deg, #0167f3 0%, #399afc 100%);
+  --chart-gradient-dark: linear-gradient(180deg, #0157d3 0%, #0167f3 100%);
+}
+
+.dark .chart-line {
+  background: var(--chart-gradient-dark);
+  box-shadow: 0 0 10px rgba(1, 103, 243, 0.6);
+}
+
+.chart-line {
+  background: var(--chart-gradient-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Улучшенная анимация для графика */
+@keyframes pulse-chart {
+  0% {
+    box-shadow: 0 0 5px rgba(1, 103, 243, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(57, 154, 252, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(1, 103, 243, 0.3);
+  }
+}
+
+.chart-line.chart-bar-animation:nth-child(4),
+.chart-line.chart-bar-animation:nth-child(6) {
+  animation: chart-rise 0.8s ease-out forwards, pulse-chart 3s infinite 0.8s;
 }

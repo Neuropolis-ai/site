@@ -411,7 +411,15 @@ export default function CasePage() {
           </SectionWrapper>
         </div>
 
-        <SectionWrapper className="bg-white/50">
+        <SectionWrapper className="relative overflow-hidden">
+          {/* Фоновые элементы */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
+          
+          {/* Анимированные градиентные окружности */}
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite] -z-10"></div>
+          <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_2s_infinite] -z-10"></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_4s_infinite] -z-10"></div>
+          
           <div className="container mx-auto px-4 md:px-8 max-w-7xl">
             <CaseResults
               metrics={resultsData.metrics}

@@ -127,7 +127,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
                   {step.description}
                 </p>
                 <div className="pt-3 border-t border-gray-200">
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 list-text">
                     {step.details.map((detail: string, i: number) => (
                       <li
                         key={i}
@@ -138,7 +138,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
                             <div className="w-[5px] h-[5px] bg-white rounded-full"></div>
                           </div>
                         </div>
-                        <span className="text-sm">{detail}</span>
+                        <span className="text-sm list-text">{detail}</span>
                       </li>
                     ))}
                   </ul>

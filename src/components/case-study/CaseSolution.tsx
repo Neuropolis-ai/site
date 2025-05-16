@@ -81,7 +81,7 @@ export default function CaseSolution({
     <CaseSection title="🤖 Предложенное решение" transparent={transparent}>
       <motion.p
         animate={{ opacity: 1 }}
-        className="mb-8 text-base leading-relaxed max-w-3xl text-gray-600"
+        className="mb-8 text-base leading-relaxed max-w-3xl text-gray-600 solution-description"
       >
         {description}
       </motion.p>
@@ -195,7 +195,7 @@ export default function CaseSolution({
             {/* Основное описание */}
             <motion.p
               animate={{ opacity: 1 }}
-              className="mt-4 mb-10 text-base max-w-3xl mx-auto px-8 text-gray-600"
+              className="mt-4 mb-10 text-base max-w-3xl mx-auto px-8 text-gray-600 tech-details-text"
             >
               {technicalDetails}
             </motion.p>

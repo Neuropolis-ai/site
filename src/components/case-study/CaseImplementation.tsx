@@ -105,16 +105,9 @@ export default function CaseImplementation({
               >
                 {stage.title}
               </h3>
-              <p
-                className={`text-sm font-medium mb-3 ${
-                  isDark ? "text-gray-500" : "text-gray-400"
-                }`}
-              >
-                {stage.duration}
-              </p>
               {stage.details && (
                 <p
-                  className={`text-base flex-grow ${
+                  className={`text-base flex-grow implementation-details-text ${
                     isDark ? "text-gray-400" : "text-gray-600"
                   }`}
                 >

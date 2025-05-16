@@ -8,6 +8,7 @@ import { useTheme } from "@/context/ThemeContext";
 interface CaseLongTermImpactProps {
   description: string;
   impactPoints: string[];
+  transparent?: boolean;
 }
 
 const containerVariants = {
@@ -57,11 +58,12 @@ const getImpactIcon = (
 export default function CaseLongTermImpact({
   description,
   impactPoints,
+  transparent = false,
 }: CaseLongTermImpactProps) {
   const { isDark } = useTheme();
 
   return (
-    <CaseSection title="📈 Долгосрочное влияние">
+    <CaseSection title="📈 Долгосрочное влияние" transparent={transparent}>
       <motion.p
         variants={itemVariants}
         initial="hidden"
@@ -89,8 +91,8 @@ export default function CaseLongTermImpact({
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className={`p-6 rounded-2xl flex items-start space-x-4 transition-all duration-300 border shadow-sm ${
                   isDark
-                    ? "bg-gray-800/30 border-gray-700/40 hover:border-teal-700/60 hover:bg-gray-800/50"
-                    : "bg-white/40 border-gray-200/70 hover:border-gray-300 hover:bg-white/60"
+                    ? "bg-gray-800/30 border-gray-700/40 hover:border-teal-700/60 hover:bg-gray-800/50 backdrop-blur-sm"
+                    : "bg-white/30 border-gray-200/50 hover:border-teal-300/60 hover:bg-white/40 backdrop-blur-sm"
                 }`}
               >
                 <div

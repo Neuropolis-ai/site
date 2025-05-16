@@ -1,8 +1,27 @@
-# Allow all crawlers
+# Основные правила для всех роботов
 User-agent: *
 Allow: /
 Disallow: /services/autonomous-ai-agents
 Disallow: /cases/ai-sales-agent
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*?*
 
-# Sitemap location
+# Специальные инструкции для Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Специальные инструкции для Яндекса
+User-agent: Yandex
+Allow: /
+Crawl-delay: 2
+
+# Инструкции для Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Расположение файлов Sitemap
 Sitemap: https://neuropolis.ai/sitemap.xml 

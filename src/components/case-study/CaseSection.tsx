@@ -25,7 +25,7 @@ export default function CaseSection({
     ? "bg-transparent backdrop-blur-none" 
     : isLightBg
       ? "bg-gray-50/70"
-      : "bg-white";
+      : "bg-transparent";
 
   return (
     <motion.section

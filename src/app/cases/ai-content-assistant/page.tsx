@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 import { useRef, useEffect, useState } from "react";
+import React from "react";
 
 // Импортируем компоненты кейса
 import CaseHero from "@/components/case-study/CaseHero";
@@ -29,23 +30,20 @@ import {
   FiEdit,
 } from "react-icons/fi";
 
-// Компонент-обертка для секций с контентом (не отвечает за фон)
-const SectionWrapper = ({
-  children,
-  className,
-  id,
-}: {
+// Исправляем компонент SectionWrapper для поддержки ref
+const SectionWrapper = React.forwardRef<HTMLDivElement, {
   children: React.ReactNode;
   className?: string;
   id?: string;
-}) => (
+}>(({ children, className, id }, ref) => (
   <div 
     id={id} 
+    ref={ref}
     className={`relative py-16 md:py-20 overflow-hidden ${className || ""}`}
   >
     {children}
   </div>
-);
+));
 
 // Отдельный компонент для управления фоном секций
 const SectionBackgroundLayer = ({
@@ -66,12 +64,12 @@ const SectionBackgroundLayer = ({
     gradientStyle = (
       <>
         {/* Градиентный оверлей для секции "Процесс внедрения" - с фиолетовым оттенком */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-white via-blue-50 to-indigo-100/40"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-white via-blue-50 to-indigo-100/40 dark:from-gray-900 dark:via-blue-950/20 dark:to-indigo-950/40"></div>
         
         {/* Анимированные градиентные блоки - более интенсивные цвета */}
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-indigo-200/30 to-purple-300/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_infinite]"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-indigo-300/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_1.5s_infinite]"></div>
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-blue-300/30 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_3s_infinite]"></div>
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-indigo-200/30 to-purple-300/30 dark:from-indigo-800/20 dark:to-purple-800/20 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_infinite]"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-indigo-300/30 dark:from-blue-800/20 dark:to-indigo-800/20 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_1.5s_infinite]"></div>
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-tr from-blue-200/30 to-blue-300/30 dark:from-blue-800/20 dark:to-blue-800/20 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_3s_infinite]"></div>
       </>
     );
   } else {
@@ -79,12 +77,12 @@ const SectionBackgroundLayer = ({
     gradientStyle = (
       <>
         {/* Градиентный оверлей */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white via-blue-50 to-blue-100/30"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white via-blue-50 to-blue-100/30 dark:from-gray-900 dark:via-blue-950/20 dark:to-blue-950/30"></div>
         
         {/* Анимированные градиентные блоки */}
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite]"></div>
-        <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_1s_infinite]"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_2s_infinite]"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 dark:from-blue-800/20 dark:to-blue-600/20 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite]"></div>
+        <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 dark:from-blue-800/20 dark:to-blue-600/20 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_1s_infinite]"></div>
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 dark:from-indigo-800/20 dark:to-indigo-600/20 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_2s_infinite]"></div>
       </>
     );
   }
@@ -334,7 +332,7 @@ export default function CasePage() {
 
   return (
     <>
-      {/* Фиксированные фоновые слои для разных секций */}
+      {/* Фоновые слои для анимации при скролле */}
       <SectionBackgroundLayer active={activeSection === 'analysis'} section="analysis" />
       <SectionBackgroundLayer active={activeSection === 'implementation'} section="implementation" />
       
@@ -348,10 +346,10 @@ export default function CasePage() {
           title="ИИ-ассистент для создания контента"
           subtitle="Как мы помогли блогеру увеличить регулярность публикаций на 230% и поднять вовлеченность на 45%"
           imagePath="/assets/images/cases/ssm.jpg"
-          imageAlt="ИИ-ассистент для создания контента"
+          imageAlt="ИИ-ассистент для создания контента: кейс Neuropolis"
         />
 
-        <SectionWrapper className="relative overflow-hidden">
+        <SectionWrapper id="task-section" className="relative overflow-hidden">
           {/* Фоновые элементы */}
           <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
           
@@ -360,60 +358,24 @@ export default function CasePage() {
           <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_2s_infinite] -z-10"></div>
           <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_4s_infinite] -z-10"></div>
           
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <CaseTask
-              description={taskData.description}
-              challenges={taskData.challenges}
-              transparent={true}
-            />
-          </div>
+          <CaseTask
+            description={taskData.description}
+            challenges={taskData.challenges}
+          />
         </SectionWrapper>
 
-        <div id="analysis-section" ref={analysisRef}>
-          <SectionWrapper className="">
-            <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-              <CaseProblem
-                description={problemData.description}
-                problemPoints={problemData.problemPoints}
-                conclusion={problemData.conclusion}
-                transparent={true}
-              />
-            </div>
-          </SectionWrapper>
-        </div>
-
-        <SectionWrapper className="relative overflow-hidden">
-          {/* Фоновые элементы */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
+        <SectionWrapper id="analysis-section" ref={analysisRef} className="relative overflow-hidden">
+          {/* Фоновые элементы - более светлые для контраста */}
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white/80 dark:from-gray-900 dark:to-gray-950/80 -z-10"></div>
           
-          {/* Анимированные градиентные окружности */}
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite] -z-10"></div>
-          <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_2s_infinite] -z-10"></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_4s_infinite] -z-10"></div>
-          
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <CaseSolution
-              description={solutionData.description}
-              features={solutionData.features}
-              technicalDetails={solutionData.technicalDetails}
-              techPoints={solutionData.techPoints}
-              transparent={true}
-            />
-          </div>
+          <CaseProblem
+            description={problemData.description}
+            problemPoints={problemData.problemPoints}
+            conclusion={problemData.conclusion}
+          />
         </SectionWrapper>
 
-        <div id="implementation-section" ref={implementationRef}>
-          <SectionWrapper className="">
-            <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-              <CaseImplementation
-                stages={implementationData.stages}
-                additionalInfo={implementationData.additionalInfo}
-              />
-            </div>
-          </SectionWrapper>
-        </div>
-
-        <SectionWrapper className="relative overflow-hidden">
+        <SectionWrapper id="solution-section" className="relative overflow-hidden">
           {/* Фоновые элементы */}
           <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
           
@@ -422,83 +384,51 @@ export default function CasePage() {
           <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_2s_infinite] -z-10"></div>
           <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_4s_infinite] -z-10"></div>
           
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <CaseResults
-              metrics={resultsData.metrics}
-              intro={resultsData.intro}
-              results={resultsData.results}
-              transparent={true}
-            />
+          <CaseSolution
+            description={solutionData.description}
+            features={solutionData.features}
+            technicalDetails={solutionData.technicalDetails}
+            techPoints={solutionData.techPoints}
+          />
+        </SectionWrapper>
 
-            {/* Дополнительный блок */}
-            <div className="mt-16 px-6 sm:px-8 py-10 sm:py-12 rounded-2xl border border-blue-200/40 bg-gradient-to-br from-white/80 to-blue-50/80 dark:from-gray-900/80 dark:to-blue-950/80 backdrop-blur-sm shadow-lg">
-              <h3 className="text-xl sm:text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 text-center">
-                Примеры улучшения контента с помощью ИИ
-              </h3>
-              <div className="grid md:grid-cols-2 gap-8 mt-8">
-                <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200/80 dark:border-gray-700/80 shadow-md transform transition-transform hover:-translate-y-1 duration-300">
-                  <div className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 flex items-center">
-                    <span className="inline-block w-3 h-3 bg-gray-400 dark:bg-gray-500 rounded-full mr-2"></span>
-                    До внедрения
-                  </div>
-                  <ul className="text-gray-700 dark:text-gray-300 space-y-3 font-medium">
-                    <li className="flex items-center">
-                      <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
-                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>3-4 публикации в месяц</span>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
-                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>4-8 часов на создание одного материала</span>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
-                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>Частые периоды без новых публикаций</span>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="text-gray-500 dark:text-gray-400 mr-2">•</span>
-                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>Неполное использование актуальных трендов</span>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 p-6 rounded-xl border border-blue-200/80 dark:border-blue-700/50 shadow-md transform transition-transform hover:-translate-y-1 duration-300">
-                  <div className="text-sm font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider mb-4 flex items-center">
-                    <span className="inline-block w-3 h-3 bg-blue-500 dark:bg-blue-400 rounded-full mr-2"></span>
-                    После внедрения
-                  </div>
-                  <ul className="text-gray-700 dark:text-blue-100 space-y-3 font-medium">
-                    <li className="flex items-center">
-                      <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
-                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>10-12 публикаций в месяц</span>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
-                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>1-2 часа на создание и редактирование материала</span>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
-                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>Стабильный график выхода контента</span>
-                    </li>
-                    <li className="flex items-center">
-                      <span className="text-blue-500 dark:text-blue-400 mr-2">•</span>
-                      <span style={{ fontSize: "16px", lineHeight: "26px", fontWeight: "normal" }}>Оперативная реакция на тренды и события</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="text-center mt-10">
-                <Link
-                  href="/contact"
-                  className={`inline-flex items-center justify-center px-8 py-4 rounded-xl
-                       bg-gradient-to-r from-[#0167F3] to-[#399AFC] text-white font-semibold text-[18px]
-                       hover:opacity-90 transition-all duration-300 hover:-translate-y-0.5
-                       shadow-lg`}
-                >
-                  Обсудить внедрение ИИ-ассистента
-                  <BsArrowRight className="ml-2 w-5 h-5" />
-                </Link>
-              </div>
-            </div>
-          </div>
+        <SectionWrapper id="implementation-section" ref={implementationRef} className="relative overflow-hidden">
+          {/* Фоновые элементы - более светлые для контраста */}
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white/80 dark:from-gray-900 dark:to-gray-950/80 -z-10"></div>
+          
+          <CaseImplementation
+            stages={implementationData.stages}
+            additionalInfo={implementationData.additionalInfo}
+          />
+        </SectionWrapper>
+
+        <SectionWrapper id="results-section" className="relative overflow-hidden">
+          {/* Фоновые элементы */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
+          
+          {/* Анимированные градиентные окружности */}
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite] -z-10"></div>
+          <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_2s_infinite] -z-10"></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_4s_infinite] -z-10"></div>
+          
+          <CaseResults
+            metrics={resultsData.metrics}
+            intro={resultsData.intro}
+            results={resultsData.results}
+          />
+        </SectionWrapper>
+
+        <SectionWrapper id="testimonial-section" className="relative overflow-hidden">
+          {/* Фоновые элементы - более светлые для контраста */}
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white/80 dark:from-gray-900 dark:to-gray-950/80 -z-10"></div>
+          
+          <CaseTestimonial
+            text={testimonialData.text}
+            authorName={testimonialData.authorName}
+            authorPosition={testimonialData.authorPosition}
+            authorInitials={testimonialData.authorInitials}
+            textClassName="text-sm sm:text-base"
+          />
         </SectionWrapper>
 
         <SectionWrapper className="relative overflow-hidden">
@@ -510,19 +440,20 @@ export default function CasePage() {
           <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_2s_infinite] -z-10"></div>
           <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_4s_infinite] -z-10"></div>
           
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <CaseTestimonial
-              text={testimonialData.text}
-              authorName={testimonialData.authorName}
-              authorPosition={testimonialData.authorPosition}
-              authorInitials={testimonialData.authorInitials}
-              textClassName="text-sm sm:text-base"
-              transparent={true}
-            />
-          </div>
+          <CaseLongTermImpact
+            description={longTermImpactData.description}
+            impactPoints={longTermImpactData.impactPoints}
+          />
         </SectionWrapper>
 
         <SectionWrapper className="relative overflow-hidden">
+          {/* Фоновые элементы - более светлые для контраста */}
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white/80 dark:from-gray-900 dark:to-gray-950/80 -z-10"></div>
+          
+          <CaseTechnologies technologies={technologiesData.technologies} />
+        </SectionWrapper>
+
+        <SectionWrapper id="faq-section" className="relative overflow-hidden">
           {/* Фоновые элементы */}
           <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
           
@@ -531,41 +462,7 @@ export default function CasePage() {
           <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_2s_infinite] -z-10"></div>
           <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_4s_infinite] -z-10"></div>
           
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <CaseLongTermImpact
-              description={longTermImpactData.description}
-              impactPoints={longTermImpactData.impactPoints}
-              transparent={true}
-            />
-          </div>
-        </SectionWrapper>
-
-        <SectionWrapper className="relative overflow-hidden">
-          {/* Фоновые элементы */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
-          
-          {/* Анимированные градиентные окружности */}
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite] -z-10"></div>
-          <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_2s_infinite] -z-10"></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_4s_infinite] -z-10"></div>
-          
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <CaseTechnologies technologies={technologiesData.technologies} transparent={true} />
-          </div>
-        </SectionWrapper>
-
-        <SectionWrapper className="relative overflow-hidden">
-          {/* Фоновые элементы */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white to-blue-50/80 dark:from-gray-950 dark:to-blue-950/10 -z-10"></div>
-          
-          {/* Анимированные градиентные окружности */}
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite] -z-10"></div>
-          <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-blue-400/30 rounded-full blur-3xl animate-[pulse_5s_ease-in-out_2s_infinite] -z-10"></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-indigo-200/30 to-indigo-400/30 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_4s_infinite] -z-10"></div>
-          
-          <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-            <AIContentAssistantFAQ />
-          </div>
+          <AIContentAssistantFAQ />
         </SectionWrapper>
       </motion.div>
     </>

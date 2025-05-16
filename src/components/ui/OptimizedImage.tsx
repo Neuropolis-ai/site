@@ -7,6 +7,7 @@ interface OptimizedImageProps extends Omit<ImageProps, "src"> {
   src: string;
   fallbackSrc?: string;
   lazyLoad?: boolean;
+  seoDescription?: string;
 }
 
 /**
@@ -14,7 +15,8 @@ interface OptimizedImageProps extends Omit<ImageProps, "src"> {
  * @param src - Путь к изображению (будет автоматически заменен на WebP версию если она существует)
  * @param fallbackSrc - Запасное изображение, если основное не загрузится
  * @param lazyLoad - Флаг для включения отложенной загрузки (по умолчанию true)
- * @param alt - Альтернативный текст для изображения
+ * @param alt - Альтернативный текст для изображения (обязательный параметр для SEO)
+ * @param seoDescription - Расширенное описание изображения для SEO
  * @param className - CSS классы
  * @param priority - Приоритет загрузки (отключает lazy loading)
  * @param other - Остальные свойства компонента Image из Next.js
@@ -23,13 +25,17 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   src,
   fallbackSrc = "/assets/images/placeholder.jpg",
   lazyLoad = true,
-  alt,
+  alt = "",
+  seoDescription,
   className = "",
   priority = false,
   ...other
 }) => {
   const [isError, setIsError] = useState(false);
   const [isWebpFailed, setIsWebpFailed] = useState(false);
+
+  // Убедимся, что у изображения всегда есть описательный alt-текст
+  const safeAlt = alt || getAltFromSrc(src);
 
   // Преобразуем путь изображения в WebP формат
   const getWebpSrc = (originalSrc: string) => {
@@ -44,6 +50,22 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     }
     return originalSrc;
   };
+
+  // Извлекаем alt из имени файла, если не указан явно
+  function getAltFromSrc(src: string): string {
+    try {
+      // Извлекаем имя файла из пути
+      const fileName = src.split('/').pop() || '';
+      // Извлекаем имя без расширения
+      const nameWithoutExtension = fileName.split('.')[0] || '';
+      // Заменяем дефисы и подчеркивания на пробелы и делаем первую букву заглавной
+      return nameWithoutExtension
+        .replace(/[-_]/g, ' ')
+        .replace(/\b\w/g, l => l.toUpperCase());
+    } catch (e) {
+      return "Изображение";
+    }
+  }
 
   const handleError = () => {
     // Если WebP не загрузился, пробуем оригинальный формат
@@ -66,15 +88,25 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const loadingStrategy = priority ? "eager" : lazyLoad ? "lazy" : "eager";
 
   return (
-    <Image
-      src={imageSrc}
-      alt={alt || ""}
-      className={className}
-      loading={loadingStrategy}
-      priority={priority}
-      onError={handleError}
-      {...other}
-    />
+    <div 
+      itemScope 
+      itemType="https://schema.org/ImageObject"
+      className="relative"
+    >
+      <meta itemProp="contentUrl" content={src} />
+      <meta itemProp="name" content={safeAlt} />
+      {seoDescription && <meta itemProp="description" content={seoDescription} />}
+      
+      <Image
+        src={imageSrc}
+        alt={safeAlt}
+        className={className}
+        loading={loadingStrategy}
+        priority={priority}
+        onError={handleError}
+        {...other}
+      />
+    </div>
   );
 };
 

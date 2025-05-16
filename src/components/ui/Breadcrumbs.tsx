@@ -122,10 +122,22 @@ function generateBreadcrumbsFromPath(
     currentPath += `/${segment}`;
     
     // Преобразуем сегмент URL в читаемую метку
-    const label = segment
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
+    let label = '';
+    
+    // Проверяем специальные случаи для перевода
+    if (segment === 'cases') {
+      label = 'Кейсы';
+    } else if (segment === 'ai-content-assistant') {
+      label = 'ИИ-ассистент для создания контента';
+    } else if (segment === 'ai-sales-agent-new') {
+      label = 'ИИ-ассистент для продаж';
+    } else {
+      // Стандартное преобразование
+      label = segment
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    }
     
     breadcrumbs.push({
       label,

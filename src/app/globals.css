@@ -8,7 +8,7 @@
   --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
   --foreground: #000;
-  --background: #fff;
+  --background: transparent;
   --card-bg: rgba(240, 240, 240, 0.7);
   --shadow-color: rgba(0, 0, 0, 0.1);
   --border-color: #e0e0e0;
@@ -30,7 +30,7 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
     --foreground: #fff;
-    --background: #000;
+    --background: #050505;
     --card-bg: rgba(30, 30, 30, 0.7);
     --shadow-color: rgba(0, 0, 0, 0.2);
     --border-color: #262626;

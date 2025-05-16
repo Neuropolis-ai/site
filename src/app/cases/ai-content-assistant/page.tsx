@@ -45,6 +45,9 @@ const SectionWrapper = React.forwardRef<HTMLDivElement, {
   </div>
 ));
 
+// Устанавливаем displayName для правила ESLint react/display-name
+SectionWrapper.displayName = "SectionWrapper";
+
 // Отдельный компонент для управления фоном секций
 const SectionBackgroundLayer = ({
   active,

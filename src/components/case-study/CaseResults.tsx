@@ -31,6 +31,7 @@ interface CaseResultsProps {
   metrics: Metric[];
   intro?: string;
   results: ResultPoint[];
+  transparent?: boolean;
 }
 
 // Функция для выбора иконки на основе текста результата и метрики
@@ -109,11 +110,12 @@ export default function CaseResults({
   metrics,
   intro,
   results,
+  transparent = false,
 }: CaseResultsProps) {
   const { isDark } = useTheme();
 
   return (
-    <CaseSection title="📊 Достигнутые результаты">
+    <CaseSection title="📊 Достигнутые результаты" transparent={transparent}>
       {/* Обновленные карточки метрик */}
       {metrics.length > 0 && (
         <motion.div
@@ -134,9 +136,9 @@ export default function CaseResults({
                   transition: { duration: 0.3 },
                   boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)"
                 }}
-                className="p-6 rounded-2xl text-center transition-all duration-300 border shadow-lg backdrop-blur-sm bg-gradient-to-br from-blue-50/70 to-blue-50/50 border-blue-100/60 hover:border-blue-200/80"
+                className="p-6 rounded-2xl text-center transition-all duration-300 border shadow-lg backdrop-blur-sm bg-gradient-to-br from-blue-50/30 to-blue-50/10 border-blue-100/40 hover:border-blue-200/60"
               >
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4 shadow-md bg-gradient-to-br from-blue-100 to-blue-200 text-blue-600 border border-blue-200/50">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4 shadow-md bg-gradient-to-br from-blue-100/80 to-blue-200/80 text-blue-600 border border-blue-200/50">
                   <MetricIcon className="w-6 h-6" />
                 </div>
                 <div className="text-3xl md:text-4xl font-bold mb-1 text-gray-900">
@@ -154,7 +156,7 @@ export default function CaseResults({
       {/* Вводный текст и список результатов */}
       <motion.div
         animate={{ opacity: 1 }}
-        className="p-8 rounded-3xl shadow-xl border backdrop-blur-md bg-gradient-to-br from-white/90 to-gray-50/80 border-gray-200/70"
+        className="p-8 rounded-3xl shadow-xl border backdrop-blur-md bg-gradient-to-br from-white/40 to-gray-50/20 border-gray-200/50"
       >
         {intro && (
           <motion.p 
@@ -187,7 +189,7 @@ export default function CaseResults({
                     transition: { duration: 0.2 },
                     boxShadow: "0 8px 20px rgba(0, 0, 0, 0.07)"
                   }}
-                  className="flex items-start p-4 rounded-xl transition-all duration-300 border transform bg-white/80 border-gray-200/80 hover:border-blue-300/70"
+                  className="flex items-start p-4 rounded-xl transition-all duration-300 border transform bg-white/40 border-gray-200/60 hover:border-blue-300/50"
                 >
                   <div className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center mr-4 shadow-sm bg-gradient-to-br from-blue-100 to-blue-200/70 text-blue-600 border border-blue-200/50">
                     <Icon className="w-5 h-5" />

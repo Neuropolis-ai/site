@@ -396,6 +396,7 @@ export default function CasePage() {
               features={solutionData.features}
               technicalDetails={solutionData.technicalDetails}
               techPoints={solutionData.techPoints}
+              transparent={true}
             />
           </div>
         </SectionWrapper>
@@ -425,6 +426,7 @@ export default function CasePage() {
               metrics={resultsData.metrics}
               intro={resultsData.intro}
               results={resultsData.results}
+              transparent={true}
             />
 
             {/* Дополнительный блок */}

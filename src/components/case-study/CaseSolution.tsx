@@ -36,6 +36,7 @@ interface CaseSolutionProps {
   features: SolutionFeature[];
   technicalDetails?: string;
   techPoints?: string[];
+  transparent?: boolean;
 }
 
 // Функция для преобразования HEX-цвета в RGB компоненты
@@ -72,11 +73,12 @@ export default function CaseSolution({
   features,
   technicalDetails,
   techPoints,
+  transparent = false,
 }: CaseSolutionProps) {
   const { isDark: _ } = useTheme();
 
   return (
-    <CaseSection title="🤖 Предложенное решение">
+    <CaseSection title="🤖 Предложенное решение" transparent={transparent}>
       <motion.p
         animate={{ opacity: 1 }}
         className="mb-8 text-base leading-relaxed max-w-3xl text-gray-600"
@@ -104,7 +106,7 @@ export default function CaseSolution({
                   transition: { duration: 0.3 },
                   boxShadow: `0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.15)`,
                 }}
-                className="p-6 rounded-xl flex flex-col transition-all duration-300 border shadow-md h-full bg-gradient-to-br from-white to-gray-50/95 border-gray-200/70 hover:border-blue-400"
+                className="p-6 rounded-xl flex flex-col transition-all duration-300 border shadow-md h-full bg-gradient-to-br from-white/60 to-gray-50/30 border-gray-200/70 hover:border-blue-400 backdrop-blur-sm"
               >
                 <div className="flex items-center mb-5">
                   <div
@@ -163,7 +165,7 @@ export default function CaseSolution({
       {technicalDetails && (
         <motion.div
           animate={{ opacity: 1 }}
-          className="relative mt-16 mb-16 overflow-hidden rounded-2xl shadow-lg border bg-gradient-to-br from-[#0167F3]/5 to-[#399AFC]/5 border-[#0167F3]/20"
+          className="relative mt-16 mb-16 overflow-hidden rounded-2xl shadow-lg border bg-gradient-to-br from-[#0167F3]/5 to-[#399AFC]/5 border-[#0167F3]/20 backdrop-blur-sm"
         >
           {/* Декоративные элементы фона */}
           <div className="absolute inset-0 overflow-hidden -z-10">
@@ -215,7 +217,7 @@ export default function CaseSolution({
                         transition: { duration: 0.2 },
                         boxShadow: `0 10px 25px rgba(0, 0, 0, 0.08), 0 0 8px rgba(${primaryRGB.r}, ${primaryRGB.g}, ${primaryRGB.b}, 0.1)`,
                       }}
-                      className="p-4 rounded-lg border shadow-sm flex items-center bg-white/90 border-gray-200/70 hover:border-[#0167F3]/30"
+                      className="p-4 rounded-lg border shadow-sm flex items-center bg-white/40 border-gray-200/70 hover:border-[#0167F3]/30 backdrop-blur-sm"
                     >
                       <div
                         className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center mr-4 bg-gradient-to-br from-[#0167F3]/15 to-[#399AFC]/10 text-[#0167F3] border-[#0167F3]/30"

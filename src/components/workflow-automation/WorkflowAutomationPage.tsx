@@ -9,7 +9,6 @@ import WorkflowAutomationProcess from "./WorkflowAutomationProcess";
 import WorkflowAutomationWhyUs from "./WorkflowAutomationWhyUs";
 import WorkflowAutomationFAQ from "./WorkflowAutomationFAQ";
 import WorkflowAutomationContactForm from "./WorkflowAutomationContactForm";
-import RelatedServices from "./RelatedServices";
 
 export default function WorkflowAutomationPage() {
   // Эффект для плавного скролла к якорным ссылкам
@@ -75,9 +74,6 @@ export default function WorkflowAutomationPage() {
       <WorkflowAutomationProcess />
       <WorkflowAutomationWhyUs />
       <WorkflowAutomationFAQ />
-      
-      {/* Блок с релевантными ссылками на другие услуги */}
-      <RelatedServices />
       
       {/* <WorkflowAutomationContactForm /> */}
     </div>

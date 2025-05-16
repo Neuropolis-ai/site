@@ -116,14 +116,14 @@ export default function CaseHero({
           <meta itemProp="url" content={imagePath} />
           <meta itemProp="contentUrl" content={imagePath} />
           <meta itemProp="caption" content={imageAlt} />
-          <div className="relative h-[160px] sm:h-[220px] md:h-[280px] lg:h-[320px] max-w-[900px] mx-auto w-full">
+          <div className="relative h-[200px] sm:h-[260px] md:h-[320px] lg:h-[360px] max-w-[800px] mx-auto w-full">
             <Image 
               src={imagePath} 
               alt={imageAlt} 
               fill 
               className="object-cover" 
               priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 900px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 800px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
           </div>

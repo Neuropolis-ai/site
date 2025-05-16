@@ -121,7 +121,7 @@ export default function CaseSolution({
                   </h3>
                 </div>
                 <ul
-                  className="list-none pl-0 space-y-3 text-sm flex-grow text-gray-600 ml-16"
+                  className="list-none pl-0 space-y-3 text-base flex-grow text-gray-600 ml-0"
                 >
                   {feature.items.map((item, idx) => (
                     <li key={idx} className="flex items-center group">
@@ -165,7 +165,7 @@ export default function CaseSolution({
       {technicalDetails && (
         <motion.div
           animate={{ opacity: 1 }}
-          className="relative mt-16 mb-16 overflow-hidden rounded-2xl shadow-lg border bg-gradient-to-br from-[#0167F3]/5 to-[#399AFC]/5 border-[#0167F3]/20 backdrop-blur-sm"
+          className="relative mt-16 mb-16 overflow-hidden rounded-2xl shadow-lg border bg-white border-gray-200/70 backdrop-blur-sm"
         >
           {/* Декоративные элементы фона */}
           <div className="absolute inset-0 overflow-hidden -z-10">
@@ -226,7 +226,7 @@ export default function CaseSolution({
                       </div>
                       <div className="flex-1">
                         <p
-                          className="text-sm leading-relaxed text-gray-700"
+                          className="text-base leading-relaxed text-gray-700"
                           dangerouslySetInnerHTML={{ __html: point }}
                         />
                       </div>
